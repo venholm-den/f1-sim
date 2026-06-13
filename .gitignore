@@ -1,0 +1,26 @@
+# Virtual environments
+.venv/
+venv/
+
+# Secrets
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# FastF1 cache / generated data
+data/cache/
+
+# Generated outputs
+outputs/report/
+outputs/backtest/
+outputs/debug/
+outputs/raw_simulation_results.csv
+outputs/fantasy_results.csv
+
+# Editor / OS
+.vscode/
+.DS_Store

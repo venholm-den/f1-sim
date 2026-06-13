@@ -1,0 +1,14 @@
+Event,OvertakingDifficulty,SafetyCarChance,RedFlagBaseChance,Notes
+Bahrain Grand Prix,0.45,0.35,0.03,Good overtaking
+Saudi Arabian Grand Prix,0.50,0.55,0.06,Fast street circuit
+Australian Grand Prix,0.55,0.50,0.05,Moderate overtaking
+Monaco Grand Prix,0.88,0.55,0.08,Very hard to overtake
+Barcelona Grand Prix,0.72,0.35,0.035,Barcelona: high tyre degradation and moderate-to-hard overtaking; grid position matters.
+Spanish Grand Prix,0.72,0.35,0.035,Barcelona: high tyre degradation and moderate-to-hard overtaking; grid position matters.
+Canadian Grand Prix,0.48,0.55,0.05,Good overtaking and safety car risk
+British Grand Prix,0.45,0.40,0.04,Good overtaking
+Hungarian Grand Prix,0.72,0.40,0.04,Hard to overtake
+Dutch Grand Prix,0.68,0.45,0.04,Track position important
+Italian Grand Prix,0.38,0.35,0.03,Low drag overtaking
+Singapore Grand Prix,0.78,0.65,0.07,Street circuit chaos
+Abu Dhabi Grand Prix,0.52,0.35,0.03,Moderate overtaking
