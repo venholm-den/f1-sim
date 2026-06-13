@@ -148,21 +148,51 @@ Primary generated files (non-exhaustive):
 	- `outputs/strategy/predicted_tyre_strategy.csv`
 	- `outputs/strategy/predicted_tyre_strategy_history_adjusted.csv`
 	- `outputs/strategy/predicted_tyre_strategy.png`
+    ### Predicted tyre strategy
+
+<img src="assets/images/predicted_tyre_strategy.png" alt="Predicted tyre strategy" width="900">
+
 - Historical strategy baseline outputs
 	- `outputs/history/historical_strategy_driver_runs.csv`
 	- `outputs/history/historical_strategy_summary.csv`
 	- `outputs/history/historical_strategy_baseline.csv`
 - Report assets
 	- `outputs/report/race_dashboard.png`
+    ### Race dashboard
+
+<img src="assets/images/race_dashboard.png" alt="Race dashboard" width="900">
+
 	- `outputs/report/tyre_strategy_timeline.png`
+    ### Tyre strategy timeline
+
+<img src="assets/images/tyre_strategy_timeline.png" alt="Tyre strategy timeline" width="900">
+
+
 	- `outputs/report/fantasy_risk_reward.png`
+    ### Fantasy risk/reward
+
+<img src="assets/images/fantasy_risk_reward.png" alt="Fantasy risk reward chart" width="900">
+
+
 	- `outputs/report/simulated_race_times.png`
 	- `outputs/report/model_commentary.txt`
 	- `outputs/probabilities.png`
 	- `outputs/detailed_report.png`
+    ### Detailed report
+
+<img src="assets/images/detailed_report.png" alt="Detailed report" width="900">
+
 	- `outputs/fantasy_expected_points.png`
+    ### Fantasy expected points
+
+<img src="assets/images/fantasy_expected_points.png" alt="Fantasy expected points" width="900">
+
 	- `outputs/fantasy_value.png` (only when prices are available)
 - Backtest outputs
+### Fantasy value
+
+<img src="assets/images/fantasy_value.png" alt="Fantasy value chart" width="900">
+
 	- `outputs/history/*prediction_snapshot*.csv`
 	- `outputs/history/latest_prediction_snapshot.csv`
 	- `outputs/history/*prediction_snapshot*.config.json`
