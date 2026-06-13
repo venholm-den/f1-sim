@@ -41,7 +41,7 @@ Pulled at runtime via FastF1:
 ### Local input files
 
 - `data/fantasy_prices.csv`
-	- Required columns for value calculations: `Driver`, `Price`
+	- Required columns for value calculations: `Driver`, `Team`, `fantasy_price`
 	- If missing, `main.py` creates a template file and value chart/`xPPM` is skipped until prices are filled.
 - `data/track_profiles.csv`
 	- Created automatically if missing.

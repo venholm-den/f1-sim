@@ -31,6 +31,11 @@ notes.txt
 # One-off local setup script
 setup_project.py
 
+# Keep README preview images committed separately
+!assets/
+!assets/images/
+!assets/images/*
+
 # Editor / OS
 .vscode/
 .DS_Store
