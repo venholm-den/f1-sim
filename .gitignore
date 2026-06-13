@@ -21,6 +21,16 @@ outputs/debug/
 outputs/raw_simulation_results.csv
 outputs/fantasy_results.csv
 
+# Generated run outputs
+outputs/
+outputs_lap_details_*.csv
+
+# Local notes / scratch
+notes.txt
+
+# One-off local setup script
+setup_project.py
+
 # Editor / OS
 .vscode/
 .DS_Store
