@@ -252,20 +252,166 @@ def save_prediction_snapshot(
 
 
 def _extract_actual_results_from_session(year: int, event: str) -> pd.DataFrame:
-    session = load_session(year, event, "R")
+    loaded = load_session(year, event, "R")
 
-    results = getattr(session, "results", None)
+    if isinstance(loaded, tuple):
+        race_session = loaded[0]
+    else:
+        race_session = loaded
 
-    if results is None or not isinstance(results, pd.DataFrame) or results.empty:
-        raise ValueError("Race results are not available yet from FastF1.")
+    if hasattr(race_session, "load"):
+        race_session.load()
 
-    df = results.copy()
+    results = getattr(race_session, "results", pd.DataFrame())
 
-    driver_col = _first_existing_column(df, ["Abbreviation", "Driver", "BroadcastName", "FullName"])
-    team_col = _first_existing_column(df, ["TeamName", "Team", "TeamId"])
-    position_col = _first_existing_column(df, ["Position", "ClassifiedPosition"])
-    points_col = _first_existing_column(df, ["Points"])
-    status_col = _first_existing_column(df, ["Status"])
+    if results is not None and not results.empty:
+        actual = results.copy()
+
+        driver_col = None
+        for candidate in ["Abbreviation", "Driver", "BroadcastName"]:
+            if candidate in actual.columns:
+                driver_col = candidate
+                break
+
+        if driver_col is None:
+            raise ValueError(
+                "FastF1 race results are available, but no usable driver column was found."
+            )
+
+        if "Position" not in actual.columns:
+            raise ValueError(
+                "FastF1 race results are available, but no Position column was found."
+            )
+
+        actual["Driver"] = actual[driver_col].astype(str).str.strip().str.upper()
+
+        if "TeamName" in actual.columns:
+            actual["Team"] = actual["TeamName"]
+        elif "Team" not in actual.columns:
+            actual["Team"] = ""
+
+        actual["actual_position"] = pd.to_numeric(
+            actual["Position"],
+            errors="coerce",
+        )
+
+        actual = actual.dropna(subset=["Driver", "actual_position"]).copy()
+        actual["actual_position"] = actual["actual_position"].astype(int)
+
+        points_map = {
+            1: 25,
+            2: 18,
+            3: 15,
+            4: 12,
+            5: 10,
+            6: 8,
+            7: 6,
+            8: 4,
+            9: 2,
+            10: 1,
+        }
+
+        actual["actual_points"] = (
+            actual["actual_position"].map(points_map).fillna(0.0)
+        )
+
+        if "Status" in actual.columns:
+            actual["actual_status"] = actual["Status"].fillna("").astype(str)
+            actual["actual_dnf"] = actual["actual_status"].str.contains(
+                "accident|collision|retired|dnf|engine|gearbox|brakes|hydraulics",
+                case=False,
+                na=False,
+            )
+        else:
+            actual["actual_status"] = "classified"
+            actual["actual_dnf"] = False
+
+        actual["actual_result_source"] = "fastf1_results"
+
+        return actual[
+            [
+                "Driver",
+                "Team",
+                "actual_position",
+                "actual_points",
+                "actual_dnf",
+                "actual_status",
+                "actual_result_source",
+            ]
+        ].sort_values("actual_position").reset_index(drop=True)
+
+    laps = getattr(race_session, "laps", pd.DataFrame())
+
+    if laps is None or laps.empty:
+        raise ValueError(
+            "Race results are not available yet from FastF1, and no lap data "
+            "was available to build a provisional classification."
+        )
+
+    provisional = laps.copy()
+
+    required_cols = {"Driver", "LapNumber", "Position"}
+    missing_cols = required_cols.difference(provisional.columns)
+
+    if missing_cols:
+        raise ValueError(
+            "Race results are not available yet from FastF1, and lap data is "
+            f"missing required columns for provisional classification: {sorted(missing_cols)}"
+        )
+
+    provisional = provisional.dropna(subset=["Driver", "LapNumber", "Position"])
+    provisional = provisional.sort_values(["Driver", "LapNumber"])
+
+    final_laps = (
+        provisional.groupby("Driver", as_index=False)
+        .tail(1)
+        .copy()
+        .sort_values("Position")
+        .reset_index(drop=True)
+    )
+
+    if "Team" not in final_laps.columns:
+        final_laps["Team"] = ""
+
+    final_laps["Driver"] = final_laps["Driver"].astype(str).str.strip().str.upper()
+
+    final_laps["actual_position"] = (
+        pd.to_numeric(final_laps["Position"], errors="coerce")
+        .rank(method="first")
+        .astype(int)
+    )
+
+    points_map = {
+        1: 25,
+        2: 18,
+        3: 15,
+        4: 12,
+        5: 10,
+        6: 8,
+        7: 6,
+        8: 4,
+        9: 2,
+        10: 1,
+    }
+
+    final_laps["actual_points"] = (
+        final_laps["actual_position"].map(points_map).fillna(0.0)
+    )
+    final_laps["actual_dnf"] = False
+    final_laps["actual_status"] = "provisional_from_final_lap"
+    final_laps["actual_result_source"] = "fastf1_laps_fallback"
+
+    return final_laps[
+        [
+            "Driver",
+            "Team",
+            "actual_position",
+            "actual_points",
+            "actual_dnf",
+            "actual_status",
+            "actual_result_source",
+        ]
+    ].sort_values("actual_position").reset_index(drop=True)
 
     if driver_col is None or position_col is None:
         raise ValueError("Could not identify driver/position columns in FastF1 race results.")
@@ -356,6 +502,169 @@ def _overlap_score(predicted: list[str], actual: list[str], n: int) -> float:
 
     return len(set(predicted[:n]) & set(actual[:n])) / n
 
+def _extract_actual_results_from_session(year: int, event: str) -> pd.DataFrame:
+    loaded = load_session(year, event, "R")
+
+    if isinstance(loaded, tuple):
+        race_session = loaded[0]
+    else:
+        race_session = loaded
+
+    # Your load_session helper may already return a loaded session.
+    # Only call .load() if this is a real FastF1 session object.
+    if hasattr(race_session, "load"):
+        race_session.load()
+
+    results = getattr(race_session, "results", pd.DataFrame())
+
+    if results is not None and not results.empty:
+        actual = results.copy()
+
+        driver_col = None
+        for candidate in ["Abbreviation", "Driver", "BroadcastName"]:
+            if candidate in actual.columns:
+                driver_col = candidate
+                break
+
+        if driver_col is None:
+            raise ValueError(
+                "FastF1 race results are available, but no usable driver column was found."
+            )
+
+        if "Position" not in actual.columns:
+            raise ValueError(
+                "FastF1 race results are available, but no Position column was found."
+            )
+
+        actual["Driver"] = actual[driver_col].astype(str).str.strip().str.upper()
+
+        if "TeamName" in actual.columns:
+            actual["Team"] = actual["TeamName"]
+        elif "Team" not in actual.columns:
+            actual["Team"] = ""
+
+        actual["actual_position"] = pd.to_numeric(
+            actual["Position"],
+            errors="coerce",
+        )
+
+        actual = actual.dropna(subset=["Driver", "actual_position"]).copy()
+        actual["actual_position"] = actual["actual_position"].astype(int)
+
+        points_map = {
+            1: 25,
+            2: 18,
+            3: 15,
+            4: 12,
+            5: 10,
+            6: 8,
+            7: 6,
+            8: 4,
+            9: 2,
+            10: 1,
+        }
+
+        actual["actual_points"] = (
+            actual["actual_position"].map(points_map).fillna(0.0)
+        )
+
+        if "Status" in actual.columns:
+            actual["actual_status"] = actual["Status"].fillna("").astype(str)
+            actual["actual_dnf"] = actual["actual_status"].str.contains(
+                "accident|collision|retired|dnf|engine|gearbox|brakes|hydraulics",
+                case=False,
+                na=False,
+            )
+        else:
+            actual["actual_status"] = "classified"
+            actual["actual_dnf"] = False
+
+        actual["actual_result_source"] = "fastf1_results"
+
+        return actual[
+            [
+                "Driver",
+                "Team",
+                "actual_position",
+                "actual_points",
+                "actual_dnf",
+                "actual_status",
+                "actual_result_source",
+            ]
+        ].sort_values("actual_position").reset_index(drop=True)
+
+    laps = getattr(race_session, "laps", pd.DataFrame())
+
+    if laps is None or laps.empty:
+        raise ValueError(
+            "Race results are not available yet from FastF1, and no lap data "
+            "was available to build a provisional classification."
+        )
+
+    provisional = laps.copy()
+
+    required_cols = {"Driver", "LapNumber", "Position"}
+    missing_cols = required_cols.difference(provisional.columns)
+
+    if missing_cols:
+        raise ValueError(
+            "Race results are not available yet from FastF1, and lap data is "
+            f"missing required columns for provisional classification: {sorted(missing_cols)}"
+        )
+
+    provisional = provisional.dropna(subset=["Driver", "LapNumber", "Position"])
+    provisional = provisional.sort_values(["Driver", "LapNumber"])
+
+    final_laps = (
+        provisional.groupby("Driver", as_index=False)
+        .tail(1)
+        .copy()
+        .sort_values("Position")
+        .reset_index(drop=True)
+    )
+
+    if "Team" not in final_laps.columns:
+        final_laps["Team"] = ""
+
+    final_laps["Driver"] = final_laps["Driver"].astype(str).str.strip().str.upper()
+
+    final_laps["actual_position"] = (
+        pd.to_numeric(final_laps["Position"], errors="coerce")
+        .rank(method="first")
+        .astype(int)
+    )
+
+    points_map = {
+        1: 25,
+        2: 18,
+        3: 15,
+        4: 12,
+        5: 10,
+        6: 8,
+        7: 6,
+        8: 4,
+        9: 2,
+        10: 1,
+    }
+
+    final_laps["actual_points"] = (
+        final_laps["actual_position"].map(points_map).fillna(0.0)
+    )
+    final_laps["actual_dnf"] = False
+    final_laps["actual_status"] = "provisional_from_final_lap"
+    final_laps["actual_result_source"] = "fastf1_laps_fallback"
+
+    return final_laps[
+        [
+            "Driver",
+            "Team",
+            "actual_position",
+            "actual_points",
+            "actual_dnf",
+            "actual_status",
+            "actual_result_source",
+        ]
+    ].sort_values("actual_position").reset_index(drop=True)
 
 def backtest_prediction_snapshot(
     snapshot_path: str = "outputs/history/latest_prediction_snapshot.csv",
