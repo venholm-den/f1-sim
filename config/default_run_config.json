@@ -1,0 +1,30 @@
+{
+  "run": {
+    "year": 2026,
+    "event": "latest",
+    "session": "Q",
+    "n_sims": 50000,
+    "random_seed": 42,
+    "n_baseline_races": 5,
+    "default_overtaking_difficulty": 0.55,
+    "historical_strategy_lookback_years": 5
+  },
+  "outputs": {
+    "output_dir": "outputs",
+    "save_prediction_snapshot": true,
+    "save_report_images": true,
+    "save_raw_results": true,
+    "post_to_discord": false
+  },
+  "data": {
+    "fantasy_prices_path": "data/fantasy_prices.csv",
+    "track_profiles_path": "data/track_profiles.csv",
+    "fia_document_index_path": "data/fia_documents/fia_document_index.csv"
+  },
+  "model": {
+    "model_version": "phase_1_performance_profile",
+    "use_fastf1_weather": true,
+    "use_race_control_context": true,
+    "use_track_red_flag_base_chance": true
+  }
+}

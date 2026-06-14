@@ -23,6 +23,7 @@ from src.performance import add_performance_profile
 from src.fantasy import ensure_price_template, calculate_fantasy_summary
 from src.fantasy_charts import make_fantasy_points_chart, make_fantasy_value_chart
 from src.charts import make_probability_chart, make_text_report_image
+from src.run_config import config_to_dict, load_app_config, parse_config_args
 from src.discord_post import post_to_discord
 from src.track import load_track_profile
 from src.lap_details import export_weekend_lap_details
@@ -39,17 +40,8 @@ except Exception:
     # even if a local backtest dependency/import is temporarily broken.
     save_prediction_snapshot = None
 
-
-YEAR = 2026
-TARGET_EVENT: str | int = "latest"
-TARGET_SESSION = "Q"
-
-N_BASELINE_RACES = 5
-N_SIMS = 50000
+# Module-level fallback for helper function defaults
 DEFAULT_OVERTAKING_DIFFICULTY = 0.55
-SAVE_RAW_RESULTS = True
-HISTORICAL_STRATEGY_LOOKBACK_YEARS = 5
-
 
 def _ensure_output_dirs() -> None:
     folders = [
@@ -644,6 +636,19 @@ def main() -> None:
     load_dotenv()
     _ensure_output_dirs()
 
+    args = parse_config_args()
+    app_config = load_app_config(config_path=args.config, args=args)
+
+    year = app_config.run.year
+    target_event: str | int = app_config.run.event
+    target_session = app_config.run.session
+
+    n_baseline_races = app_config.run.n_baseline_races
+    n_sims = app_config.run.n_sims
+    default_overtaking_difficulty = app_config.run.default_overtaking_difficulty
+    save_raw_results = app_config.outputs.save_raw_results
+    historical_strategy_lookback_years = app_config.run.historical_strategy_lookback_years
+
     enable_fastf1_cache()
 
     print("=" * 80)
@@ -653,13 +658,13 @@ def main() -> None:
     print()
     print("Loading target session...")
 
-    if str(TARGET_EVENT).lower() == "latest":
-        current_session, metadata = load_latest_predictor_session(YEAR)
+    if str(target_event).lower() == "latest":
+        current_session, metadata = load_latest_predictor_session(year)
     else:
         current_session, metadata = load_session(
-            YEAR,
-            TARGET_EVENT,
-            TARGET_SESSION,
+            year,
+            target_event,
+            target_session,
         )
 
     print(
@@ -739,7 +744,7 @@ def main() -> None:
     recent_races = load_recent_race_sessions(
         target_year=metadata["year"],
         target_round=metadata["round"],
-        count=N_BASELINE_RACES,
+        count=n_baseline_races,
     )
 
     print(f"- recent races loaded: {len(recent_races)}")
@@ -802,11 +807,11 @@ def main() -> None:
         print(f"Fantasy price template warning: {exc}")
 
     print()
-    print(f"Running Monte Carlo simulation: {N_SIMS:,} races...")
+    print(f"Running Monte Carlo simulation: {n_sims:,} races...")
 
     race_summary, position_matrix, results = simulate_races(
         features=model_features,
-        n_sims=N_SIMS,
+        n_sims=n_sims,
         seed=42,
         overtaking_difficulty=overtaking_difficulty,
         weather_modifiers=weather_summary,
@@ -825,14 +830,14 @@ def main() -> None:
     summary.to_csv("outputs/simulation_summary.csv", index=False)
     position_matrix.to_csv("outputs/position_matrix.csv", index=False)
 
-    if SAVE_RAW_RESULTS:
+    if save_raw_results:
         results.to_csv("outputs/raw_simulation_results.csv", index=False)
         fantasy_results.to_csv("outputs/raw_fantasy_results.csv", index=False)
 
     print("- saved: outputs/simulation_summary.csv")
     print("- saved: outputs/position_matrix.csv")
 
-    if SAVE_RAW_RESULTS:
+    if save_raw_results:
         print("- saved: outputs/raw_simulation_results.csv")
         print("- saved: outputs/raw_fantasy_results.csv")
 
@@ -849,12 +854,12 @@ def main() -> None:
                 weather_summary=weather_summary,
                 track_profile=track_profile,
                 model_parameters={
-                    "n_sims": N_SIMS,
-                    "n_baseline_races": N_BASELINE_RACES,
+                    "n_sims": n_sims,
+                    "n_baseline_races": n_baseline_races,
                     "overtaking_difficulty": overtaking_difficulty,
-                    "target_event": TARGET_EVENT,
-                    "target_session": TARGET_SESSION,
-                    "save_raw_results": SAVE_RAW_RESULTS,
+                    "target_event": target_event,
+                    "target_session": target_session,
+                    "save_raw_results": save_raw_results,
                 },
             )
 
@@ -885,7 +890,7 @@ def main() -> None:
                 strategy_csv_path=strategy_output_files["predicted_tyre_strategy_csv"],
                 current_year=metadata["year"],
                 event_name=metadata["event"],
-                lookback_years=HISTORICAL_STRATEGY_LOOKBACK_YEARS,
+                lookback_years=historical_strategy_lookback_years,
                 session=current_session,
             )
         except TypeError:
@@ -893,7 +898,7 @@ def main() -> None:
                 strategy_csv_path=strategy_output_files["predicted_tyre_strategy_csv"],
                 current_year=metadata["year"],
                 event_name=metadata["event"],
-                lookback_years=HISTORICAL_STRATEGY_LOOKBACK_YEARS,
+                lookback_years=historical_strategy_lookback_years,
             )
         except Exception as exc:
             print(f"Historical strategy adjustment skipped: {exc}")
