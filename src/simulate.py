@@ -292,6 +292,12 @@ def simulate_races(
     degradation_factor = _weather_value(weather_modifiers, "degradation_factor", 1.0)
     uncertainty_factor = _weather_value(weather_modifiers, "uncertainty_factor", 1.0)
 
+    race_control_red_flag_probability_hint = _weather_value(
+        weather_modifiers,
+        "race_control_red_flag_probability_hint",
+        0.02,
+    )
+
     race_pace_seconds_multiplier = _sim_param("race_pace_seconds_multiplier", 0.20)
     long_run_penalty_multiplier = _sim_param("long_run_penalty_multiplier", 0.25)
     tyre_deg_multiplier = _sim_param("tyre_deg_multiplier", 7.00)
@@ -305,6 +311,12 @@ def simulate_races(
     red_flag_noise_seconds = _sim_param("red_flag_noise_seconds", 2.00)
 
     red_flag_probability = _calculate_red_flag_probability(weather_modifiers)
+    red_flag_probability = max(
+        red_flag_probability,
+        race_control_red_flag_probability_hint,
+    )
+    red_flag_probability = min(red_flag_probability, 0.45)
+
     red_flags = rng.random(n_sims) < red_flag_probability
 
     race_pace = base["race_pace_score"].to_numpy(dtype=float)

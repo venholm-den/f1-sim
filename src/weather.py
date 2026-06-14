@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from typing import Any
 
+from src.race_control import merge_race_control_into_weather_modifiers, summarise_race_control
+
 import numpy as np
 import pandas as pd
 
@@ -229,6 +231,9 @@ def summarize_weather(session: Any) -> dict[str, Any]:
     }
 
     summary.update(modifiers)
+
+    race_control_summary = summarise_race_control(session)
+    summary = merge_race_control_into_weather_modifiers(summary, race_control_summary)
 
     return summary
 
