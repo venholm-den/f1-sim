@@ -80,3 +80,42 @@ def test_fia_document_index_can_be_created(tmp_path) -> None:
     context = build_fia_context(path=str(path))
 
     assert set(context) == {"official_grid", "penalties", "summons", "classification"}
+
+def test_blank_fia_fields_do_not_create_false_penalties_or_summons(tmp_path) -> None:
+    path = tmp_path / "fia_document_index.csv"
+
+    pd.DataFrame(
+        [
+            {
+                "year": 2026,
+                "event": "Barcelona Grand Prix",
+                "session": "R",
+                "document_type": "official starting grid",
+                "doc_number": "Doc 01",
+                "document_title": "Official Starting Grid",
+                "document_url": "",
+                "published_at": "",
+                "driver": "RUS",
+                "team": "Mercedes",
+                "grid_position": 1,
+                "classification_position": "",
+                "penalty_type": "",
+                "penalty_value": "",
+                "summons_reason": "",
+                "status": "",
+                "notes": "",
+            }
+        ]
+    ).to_csv(path, index=False)
+
+    context = build_fia_context(
+        year=2026,
+        event="Barcelona Grand Prix",
+        session="R",
+        path=str(path),
+    )
+
+    assert len(context["official_grid"]) == 1
+    assert context["penalties"].empty
+    assert context["summons"].empty
+    assert context["classification"].empty
