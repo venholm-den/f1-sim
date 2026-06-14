@@ -32,7 +32,22 @@ def _safe_dataframe(value: Any) -> pd.DataFrame:
         return pd.DataFrame(value)
     except Exception:
         return pd.DataFrame()
+    
+def _get_session_dataframe(session: Any, attribute_name: str) -> pd.DataFrame:
+    """
+    Safely read a FastF1 session dataframe-like attribute.
 
+    FastF1 can raise DataNotLoadedError when optional data such as
+    race_control_messages has not been loaded. This helper keeps race-control
+    modelling optional instead of crashing the whole simulation.
+    """
+
+    try:
+        value = getattr(session, attribute_name)
+    except Exception:
+        return pd.DataFrame()
+
+    return _safe_dataframe(value)
 
 def _normalise_track_status(track_status: pd.DataFrame) -> pd.DataFrame:
     if track_status.empty:
@@ -170,8 +185,8 @@ def summarise_race_control(session: Any | None = None) -> dict[str, Any]:
     if session is None:
         return neutral_race_control_summary()
 
-    raw_track_status = _safe_dataframe(getattr(session, "track_status", None))
-    raw_messages = _safe_dataframe(getattr(session, "race_control_messages", None))
+    raw_track_status = _get_session_dataframe(session, "track_status")
+    raw_messages = _get_session_dataframe(session, "race_control_messages")
 
     track_status = _normalise_track_status(raw_track_status)
     messages = _normalise_race_control_messages(raw_messages)
