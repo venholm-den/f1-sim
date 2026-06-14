@@ -4,15 +4,22 @@ venv/
 
 # Secrets
 .env
+.env.*
 
 # Python
 __pycache__/
-*.pyc
+*.py[cod]
 *.pyo
 *.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
 
-# FastF1 cache / generated data
+# FastF1/cache data
 data/cache/
+cache/
+.fastf1/
+fastf1_cache/
 
 # Generated outputs
 outputs/report/
@@ -21,12 +28,20 @@ outputs/debug/
 outputs/raw_simulation_results.csv
 outputs/fantasy_results.csv
 
-# Generated run outputs
+# Generated simulation outputs
 outputs/
 outputs_lap_details_*.csv
 
-# Local notes / scratch
+# Temporary/local notes
 notes.txt
+*.tmp
+*.log
+
+# OS/editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
 
 # One-off local setup script
 setup_project.py
