@@ -18,6 +18,9 @@ def _timedelta_to_seconds(series: pd.Series) -> pd.Series:
 
 
 def _normalise_driver(value: Any) -> str:
+    if pd.isna(value):
+        return ""
+
     return str(value).strip().upper()
 
 
@@ -259,6 +262,98 @@ def _extract_actual_grid(
     return _extract_actual_quali_grid_from_laps(current_session)
 
 
+def _extract_fia_official_grid(
+    fia_context: dict[str, pd.DataFrame] | None,
+) -> pd.DataFrame:
+    if not fia_context:
+        return pd.DataFrame()
+
+    grid = fia_context.get("official_grid", pd.DataFrame()).copy()
+
+    if grid.empty or "Driver" not in grid.columns or "fia_grid_position" not in grid.columns:
+        return pd.DataFrame()
+
+    output = pd.DataFrame()
+    output["Driver"] = grid["Driver"].map(_normalise_driver)
+
+    if "team" in grid.columns:
+        output["fia_grid_team"] = grid["team"].fillna("").astype(str)
+    else:
+        output["fia_grid_team"] = ""
+
+    output["fia_grid_position"] = pd.to_numeric(
+        grid["fia_grid_position"],
+        errors="coerce",
+    )
+
+    if "fia_grid_source" in grid.columns:
+        output["fia_grid_source"] = grid["fia_grid_source"].fillna("FIA official grid").astype(str)
+    else:
+        output["fia_grid_source"] = "FIA official grid"
+
+    for col in ["document_url", "published_at"]:
+        if col in grid.columns:
+            output[f"fia_grid_{col}"] = grid[col].fillna("").astype(str)
+        else:
+            output[f"fia_grid_{col}"] = ""
+
+    output = output.dropna(subset=["Driver", "fia_grid_position"]).copy()
+
+    if output.empty:
+        return output
+
+    output["fia_grid_position"] = output["fia_grid_position"].astype(int)
+    output["fia_grid_score"] = output["fia_grid_position"].astype(float)
+
+    return output.sort_values(
+        "fia_grid_position",
+        ascending=True,
+    ).drop_duplicates(subset=["Driver"], keep="first").reset_index(drop=True)
+
+
+def _extract_fia_penalty_notes(
+    fia_context: dict[str, pd.DataFrame] | None,
+) -> pd.DataFrame:
+    if not fia_context:
+        return pd.DataFrame()
+
+    penalties = fia_context.get("penalties", pd.DataFrame()).copy()
+
+    if penalties.empty or "driver" not in penalties.columns:
+        return pd.DataFrame()
+
+    penalties["Driver"] = penalties["driver"].map(_normalise_driver)
+    penalties = penalties[penalties["Driver"].astype(bool)].copy()
+
+    if penalties.empty:
+        return pd.DataFrame()
+
+    note_cols = [
+        col
+        for col in ["penalty_type", "penalty_value", "document_title", "notes"]
+        if col in penalties.columns
+    ]
+
+    if note_cols:
+        penalties["fia_penalty_note"] = (
+            penalties[note_cols]
+            .fillna("")
+            .astype(str)
+            .agg(" | ".join, axis=1)
+            .str.replace(r"(\s*\|\s*)+", " | ", regex=True)
+            .str.strip(" |")
+        )
+    else:
+        penalties["fia_penalty_note"] = "FIA penalty"
+
+    grouped = penalties.groupby("Driver", as_index=False).agg(
+        fia_penalty_count=("Driver", "size"),
+        fia_penalty_notes=("fia_penalty_note", lambda values: "; ".join(sorted(set(values)))),
+    )
+
+    return grouped
+
+
 def _estimate_grid_from_features(
     model_features: pd.DataFrame,
     current_features: pd.DataFrame,
@@ -394,14 +489,16 @@ def build_grid_features(
     current_features: pd.DataFrame,
     current_session_type: str,
     current_session: Any | None = None,
+    fia_context: dict[str, pd.DataFrame] | None = None,
 ) -> pd.DataFrame:
     """
     Adds grid information to model features.
 
     Priority:
-    1. Actual Q/SQ FastF1 session.results Position
-    2. Actual Q/SQ fastest-lap fallback
-    3. Estimated grid from current/model pace
+    1. FIA official starting grid when available
+    2. Actual Q/SQ FastF1 session.results Position
+    3. Actual Q/SQ fastest-lap fallback
+    4. Estimated grid from current/model pace
     """
 
     if model_features.empty:
@@ -414,6 +511,14 @@ def build_grid_features(
         "actual_grid_team",
         "actual_grid_position",
         "actual_grid_score",
+        "fia_grid_team",
+        "fia_grid_position",
+        "fia_grid_score",
+        "fia_grid_source",
+        "fia_grid_document_url",
+        "fia_grid_published_at",
+        "fia_penalty_count",
+        "fia_penalty_notes",
         "grid_current_pace",
         "grid_current_laps",
         "grid_model_pace",
@@ -434,6 +539,8 @@ def build_grid_features(
         current_session=current_session,
         current_session_type=current_session_type,
     )
+    fia_grid = _extract_fia_official_grid(fia_context)
+    fia_penalties = _extract_fia_penalty_notes(fia_context)
 
     estimated_grid = _estimate_grid_from_features(
         model_features=output,
@@ -464,7 +571,40 @@ def build_grid_features(
         output["actual_grid_position"] = np.nan
         output["actual_grid_score"] = np.nan
 
-    output["grid_position"] = output["actual_grid_position"].fillna(
+    if not fia_grid.empty:
+        output = output.merge(
+            fia_grid,
+            on="Driver",
+            how="left",
+        )
+    else:
+        output["fia_grid_team"] = ""
+        output["fia_grid_position"] = np.nan
+        output["fia_grid_score"] = np.nan
+        output["fia_grid_source"] = ""
+        output["fia_grid_document_url"] = ""
+        output["fia_grid_published_at"] = ""
+
+    if not fia_penalties.empty:
+        output = output.merge(
+            fia_penalties,
+            on="Driver",
+            how="left",
+        )
+    else:
+        output["fia_penalty_count"] = 0
+        output["fia_penalty_notes"] = ""
+
+    output["fia_penalty_count"] = (
+        pd.to_numeric(output["fia_penalty_count"], errors="coerce")
+        .fillna(0)
+        .astype(int)
+    )
+    output["fia_penalty_notes"] = output["fia_penalty_notes"].fillna("").astype(str)
+
+    output["grid_position"] = output["fia_grid_position"].fillna(
+        output["actual_grid_position"]
+    ).fillna(
         output["estimated_grid_position"]
     )
 
@@ -483,22 +623,40 @@ def build_grid_features(
         errors="coerce",
     ).astype(int)
 
-    output["grid_source"] = np.where(
-        output["actual_grid_position"].notna(),
-        "actual_session_results",
-        "estimated_model_grid",
+    output["grid_source"] = np.select(
+        [
+            output["fia_grid_position"].notna(),
+            output["actual_grid_position"].notna(),
+        ],
+        [
+            "fia_official_grid",
+            "actual_session_results",
+        ],
+        default="estimated_model_grid",
     )
 
-    output["grid_score"] = np.where(
-        output["actual_grid_position"].notna(),
-        output["actual_grid_score"],
-        output["estimated_grid_score"],
+    output["grid_score"] = np.select(
+        [
+            output["fia_grid_position"].notna(),
+            output["actual_grid_position"].notna(),
+        ],
+        [
+            output["fia_grid_score"],
+            output["actual_grid_score"],
+        ],
+        default=output["estimated_grid_score"],
     )
 
-    output["grid_confidence"] = np.where(
-        output["actual_grid_position"].notna(),
-        1.00,
-        0.38,
+    output["grid_confidence"] = np.select(
+        [
+            output["fia_grid_position"].notna(),
+            output["actual_grid_position"].notna(),
+        ],
+        [
+            1.00,
+            1.00,
+        ],
+        default=0.38,
     )
 
     output = output.sort_values(

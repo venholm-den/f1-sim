@@ -32,6 +32,7 @@ from src.strategy import predict_tyre_strategies, make_strategy_table_image
 from src.strategy_history import apply_historical_strategy_adjustment_to_outputs
 from src.report_card import build_report_outputs
 from src.simulation_viz import make_simulated_race_time_chart
+from src.data_sources.fia_documents import build_fia_context
 
 try:
     from src.backtest import save_prediction_snapshot
@@ -744,6 +745,18 @@ def main() -> None:
     print(f"- overtaking difficulty: {overtaking_difficulty:.2f}")
 
     print()
+    print("Loading FIA document context...")
+
+    fia_context = build_fia_context(
+        year=metadata["year"],
+        event=metadata["event"],
+        path=app_config.data.fia_document_index_path,
+    )
+
+    for context_name, context_frame in fia_context.items():
+        print(f"- {context_name}: {len(context_frame)} rows")
+
+    print()
     print("Summarising weather...")
 
     weather_summary = summarize_weather(current_session)
@@ -800,6 +813,7 @@ def main() -> None:
             current_features=current_features,
             current_session_type=metadata["session"],
             current_session=current_session,
+            fia_context=fia_context,
         )
     except TypeError:
         model_features = build_grid_features(

@@ -9,7 +9,11 @@ import main
 from src.run_config import AppConfig, DataSettings, ModelSettings, OutputSettings, RunSettings
 
 
-def _app_config(output_dir: str, fantasy_prices_path: str) -> AppConfig:
+def _app_config(
+    output_dir: str,
+    fantasy_prices_path: str,
+    fia_index_path: str,
+) -> AppConfig:
     return AppConfig(
         run=RunSettings(
             year=2026,
@@ -31,7 +35,7 @@ def _app_config(output_dir: str, fantasy_prices_path: str) -> AppConfig:
         data=DataSettings(
             fantasy_prices_path=fantasy_prices_path,
             track_profiles_path="unused_track_profiles.csv",
-            fia_document_index_path="unused_fia_index.csv",
+            fia_document_index_path=fia_index_path,
         ),
         model=ModelSettings(
             model_version="test",
@@ -46,6 +50,7 @@ def _app_config(output_dir: str, fantasy_prices_path: str) -> AppConfig:
 def test_main_uses_config_seed_and_output_dir(monkeypatch, tmp_path) -> None:
     output_dir = tmp_path / "custom_outputs"
     fantasy_prices_path = tmp_path / "data" / "fantasy_prices.csv"
+    fia_index_path = tmp_path / "data" / "fia_document_index.csv"
     captured: dict[str, int] = {}
     snapshot_called = False
 
@@ -95,7 +100,11 @@ def test_main_uses_config_seed_and_output_dir(monkeypatch, tmp_path) -> None:
     monkeypatch.setattr(
         main,
         "load_app_config",
-        lambda config_path, args: _app_config(str(output_dir), str(fantasy_prices_path)),
+        lambda config_path, args: _app_config(
+            str(output_dir),
+            str(fantasy_prices_path),
+            str(fia_index_path),
+        ),
     )
     monkeypatch.setattr(main, "enable_fastf1_cache", lambda: None)
     monkeypatch.setattr(main, "load_session", lambda *args, **kwargs: (session, metadata))

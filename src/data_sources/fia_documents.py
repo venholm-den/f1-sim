@@ -53,7 +53,7 @@ def load_fia_document_index(
         if col not in df.columns:
             df[col] = pd.NA
             
-    df.replace(r"^\s*$", pd.NA, regex=True)
+    df = df.replace(r"^\s*$", pd.NA, regex=True)
 
     df["driver"] = df["driver"].astype(str).str.strip().str.upper()
     df["event"] = df["event"].astype(str).str.strip()
