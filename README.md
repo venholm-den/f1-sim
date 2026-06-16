@@ -127,6 +127,25 @@ python -m src.backtest
 
 By default this reads `outputs/history/latest_prediction_snapshot.csv` and writes comparison artifacts to `outputs/backtest`.
 
+### Build calibration recommendations from backtests
+
+```powershell
+python -m src.calibration
+```
+
+By default this reads `outputs/backtest/*_metrics.csv` and writes:
+
+- `outputs/calibration/calibration_report.json`
+- `outputs/calibration/calibration_report.txt`
+
+You can pass explicit metrics files or globs:
+
+```powershell
+python -m src.calibration --metrics "outputs/backtest/*_metrics.csv" --output-dir outputs/calibration
+```
+
+Calibration reports are advisory. They do not edit `src/model_config.py`; review suggested parameter changes before applying them.
+
 ## Build/package commands
 
 This repository currently has no npm/pbiviz build or packaging workflow.
