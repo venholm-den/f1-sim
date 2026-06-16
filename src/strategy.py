@@ -333,6 +333,260 @@ def _allocate_compound_sequence(
     return " → ".join(legs), int(sum(old_flags))
 
 
+def _compound_sequence_label(compounds: list[str]) -> str:
+    return "-".join(compound.upper() for compound in compounds)
+
+
+def _dedupe_candidate_sequences(candidates: list[list[str]]) -> list[list[str]]:
+    seen: set[tuple[str, ...]] = set()
+    output: list[list[str]] = []
+
+    for candidate in candidates:
+        key = tuple(compound.upper() for compound in candidate)
+
+        if key in seen:
+            continue
+
+        seen.add(key)
+        output.append(list(key))
+
+    return output
+
+
+def _candidate_sequences(
+    base_compounds: list[str],
+    grid_position: float | None,
+    degradation_signal: float,
+    fresh_hard: int,
+    fresh_medium: int,
+    fresh_soft: int,
+    overtaking_difficulty: float,
+) -> list[list[str]]:
+    grid = grid_position if grid_position is not None else 12
+
+    candidates = [
+        base_compounds,
+        ["MEDIUM", "HARD"],
+        ["HARD", "MEDIUM"],
+        ["SOFT", "HARD"],
+        ["SOFT", "MEDIUM", "HARD"],
+        ["MEDIUM", "HARD", "MEDIUM"],
+        ["SOFT", "HARD", "MEDIUM"],
+        ["MEDIUM", "HARD", "SOFT"],
+    ]
+
+    if degradation_signal >= 0.085:
+        candidates.extend(
+            [
+                ["MEDIUM", "SOFT", "HARD"],
+                ["HARD", "MEDIUM", "SOFT"],
+            ]
+        )
+
+    if grid >= 13:
+        candidates.extend(
+            [
+                ["HARD", "SOFT", "MEDIUM"],
+                ["SOFT", "MEDIUM", "SOFT"],
+            ]
+        )
+
+    if overtaking_difficulty >= 0.68 and fresh_hard > 0 and fresh_medium > 0:
+        candidates.insert(1, ["MEDIUM", "HARD"])
+
+    if overtaking_difficulty <= 0.55 and fresh_soft > 0:
+        candidates.insert(1, ["SOFT", "MEDIUM", "HARD"])
+
+    return _dedupe_candidate_sequences(candidates)
+
+
+def _old_tyre_risk_score(
+    old_tyre_count: int,
+    fresh_hard: int,
+    fresh_medium: int,
+    fresh_soft: int,
+) -> float:
+    soft_quali_pressure = 0
+
+    if fresh_soft <= 1:
+        soft_quali_pressure = 20
+    elif fresh_soft <= 2:
+        soft_quali_pressure = 10
+
+    hard_medium_shortage = 0
+
+    if fresh_hard <= 0:
+        hard_medium_shortage += 20
+
+    if fresh_medium <= 0:
+        hard_medium_shortage += 25
+
+    return float(
+        min(
+            100,
+            old_tyre_count * 38
+            + soft_quali_pressure
+            + hard_medium_shortage,
+        )
+    )
+
+
+def _score_candidate_sequence(
+    compounds: list[str],
+    old_tyre_count: int,
+    grid_position: float | None,
+    overtaking_difficulty: float,
+    degradation_signal: float,
+    fresh_hard: int,
+    fresh_medium: int,
+    fresh_soft: int,
+) -> tuple[float, list[str]]:
+    grid = grid_position if grid_position is not None else 12
+    stops = max(len(compounds) - 1, 0)
+    start = compounds[0] if compounds else "UNKNOWN"
+    score = 100.0
+    reasons: list[str] = []
+
+    if old_tyre_count > 0:
+        penalty = old_tyre_count * 30.0
+        score -= penalty
+        reasons.append(f"-{penalty:.0f} old/unknown tyre use")
+
+    if degradation_signal >= 0.085:
+        if stops >= 2:
+            score += 22
+            reasons.append("+22 high degradation favours 2-stop")
+        else:
+            score -= 24
+            reasons.append("-24 high degradation hurts 1-stop")
+    elif degradation_signal >= 0.075:
+        if stops >= 2:
+            score += 10
+            reasons.append("+10 elevated degradation supports extra stop")
+        else:
+            score -= 6
+            reasons.append("-6 elevated degradation strains 1-stop")
+    elif degradation_signal <= 0.06:
+        if stops <= 1:
+            score += 12
+            reasons.append("+12 low degradation favours 1-stop")
+        else:
+            score -= 10
+            reasons.append("-10 low degradation weakens 2-stop")
+
+    if overtaking_difficulty >= 0.68:
+        if stops <= 1:
+            score += 12
+            reasons.append("+12 hard overtaking favours track position")
+        else:
+            score -= 8
+            reasons.append("-8 hard overtaking penalises extra stop")
+    elif overtaking_difficulty <= 0.48 and grid >= 12:
+        if stops >= 2:
+            score += 8
+            reasons.append("+8 easier overtaking supports recovery stops")
+        if start == "SOFT":
+            score += 6
+            reasons.append("+6 soft start helps attack")
+
+    if grid <= 10:
+        if start == "MEDIUM":
+            score += 10
+            reasons.append("+10 front-grid medium start")
+        elif start == "HARD":
+            score -= 4
+            reasons.append("-4 front-grid hard start loses launch flexibility")
+        elif start == "SOFT" and degradation_signal < 0.075:
+            score -= 6
+            reasons.append("-6 front-grid soft start adds tyre risk")
+    elif grid >= 13:
+        if start == "HARD":
+            score += 8
+            reasons.append("+8 lower-grid hard alternate")
+        elif start == "SOFT" and overtaking_difficulty <= 0.55:
+            score += 8
+            reasons.append("+8 lower-grid soft attack")
+
+    if start == "SOFT":
+        if fresh_soft <= 1:
+            score -= 12
+            reasons.append("-12 low fresh-soft buffer")
+        elif fresh_soft >= 3:
+            score += 4
+            reasons.append("+4 fresh soft available")
+
+    if compounds.count("MEDIUM") >= 2 and fresh_medium < 2:
+        score -= 12
+        reasons.append("-12 medium repeat may need old set")
+
+    if compounds.count("HARD") >= 2 and fresh_hard < 2:
+        score -= 10
+        reasons.append("-10 hard repeat may need old set")
+
+    return score, reasons
+
+
+def _score_strategy_candidates(
+    base_compounds: list[str],
+    grid_position: float | None,
+    overtaking_difficulty: float,
+    degradation_signal: float,
+    fresh_hard: int,
+    fresh_medium: int,
+    fresh_soft: int,
+    observed_stints: dict[str, int],
+) -> list[dict[str, Any]]:
+    scored: list[dict[str, Any]] = []
+
+    for compounds in _candidate_sequences(
+        base_compounds=base_compounds,
+        grid_position=grid_position,
+        degradation_signal=degradation_signal,
+        fresh_hard=fresh_hard,
+        fresh_medium=fresh_medium,
+        fresh_soft=fresh_soft,
+        overtaking_difficulty=overtaking_difficulty,
+    ):
+        strategy, old_tyre_count = _allocate_compound_sequence(
+            compounds=compounds,
+            fresh_hard=fresh_hard,
+            fresh_medium=fresh_medium,
+            fresh_soft=fresh_soft,
+            observed_stints=observed_stints,
+        )
+        score, reasons = _score_candidate_sequence(
+            compounds=compounds,
+            old_tyre_count=old_tyre_count,
+            grid_position=grid_position,
+            overtaking_difficulty=overtaking_difficulty,
+            degradation_signal=degradation_signal,
+            fresh_hard=fresh_hard,
+            fresh_medium=fresh_medium,
+            fresh_soft=fresh_soft,
+        )
+
+        scored.append(
+            {
+                "compounds": compounds,
+                "strategy": strategy,
+                "score": round(float(score), 1),
+                "old_tyre_count": old_tyre_count,
+                "expected_stops": max(len(compounds) - 1, 0),
+                "label": _compound_sequence_label(compounds),
+                "reasons": reasons,
+            }
+        )
+
+    return sorted(scored, key=lambda item: item["score"], reverse=True)
+
+
+def _candidate_score_summary(candidates: list[dict[str, Any]], limit: int = 4) -> str:
+    return "; ".join(
+        f"{candidate['label']} {candidate['score']:.1f}"
+        for candidate in candidates[:limit]
+    )
+
+
 def _alternative_compounds(
     primary_compounds: list[str],
     grid_position: float | None,
@@ -405,6 +659,11 @@ def _order_strategy_columns(strategies: pd.DataFrame) -> pd.DataFrame:
         "strategy_source",
         "strategy_confidence",
         "confidence_reason",
+        "selected_strategy_score",
+        "alternative_strategy_score",
+        "strategy_score_gap",
+        "candidate_strategy_count",
+        "candidate_strategy_summary",
         "risk_level",
         "strategy_risk_level",
         "strategy_risk_reason",
@@ -593,53 +852,49 @@ def predict_driver_strategy(
         notes = "Wet or rain-affected session. Dry tyre strategy is less reliable."
         alternative_strategy = "Dry fallback unavailable until weather is clearer"
         strategy_reason = notes
+        strategy_source = "weather_dependent_model"
     else:
-        predicted_strategy, old_tyre_count = _allocate_compound_sequence(
-            compounds=compounds,
-            fresh_hard=fresh_hard,
-            fresh_medium=fresh_medium,
-            fresh_soft=fresh_soft,
-            observed_stints=observed_stints,
-        )
-
-        alternative_compounds = _alternative_compounds(
-            primary_compounds=compounds,
+        scored_candidates = _score_strategy_candidates(
+            base_compounds=compounds,
             grid_position=grid_position,
+            overtaking_difficulty=overtaking_difficulty,
             degradation_signal=degradation_signal,
             fresh_hard=fresh_hard,
             fresh_medium=fresh_medium,
             fresh_soft=fresh_soft,
-            overtaking_difficulty=overtaking_difficulty,
-            rainfall_flag=rainfall_flag,
+            observed_stints=observed_stints,
         )
-        alternative_strategy, _ = _allocate_compound_sequence(
-            compounds=alternative_compounds,
+        selected_candidate = scored_candidates[0]
+        alternative_candidate = scored_candidates[1] if len(scored_candidates) > 1 else None
+
+        compounds = selected_candidate["compounds"]
+        predicted_strategy = selected_candidate["strategy"]
+        old_tyre_count = selected_candidate["old_tyre_count"]
+        expected_stops = selected_candidate["expected_stops"]
+        selected_strategy_score = float(selected_candidate["score"])
+        alternative_strategy = (
+            str(alternative_candidate["strategy"])
+            if alternative_candidate is not None
+            else "No viable alternative generated"
+        )
+        alternative_strategy_score = (
+            float(alternative_candidate["score"])
+            if alternative_candidate is not None
+            else None
+        )
+        strategy_score_gap = (
+            round(selected_strategy_score - alternative_strategy_score, 1)
+            if alternative_strategy_score is not None
+            else None
+        )
+        candidate_strategy_count = len(scored_candidates)
+        candidate_strategy_summary = _candidate_score_summary(scored_candidates)
+
+        old_tyre_risk_score = _old_tyre_risk_score(
+            old_tyre_count=old_tyre_count,
             fresh_hard=fresh_hard,
             fresh_medium=fresh_medium,
             fresh_soft=fresh_soft,
-            observed_stints=observed_stints,
-        )
-
-        soft_quali_pressure = 0
-
-        if fresh_soft <= 1:
-            soft_quali_pressure = 20
-        elif fresh_soft <= 2:
-            soft_quali_pressure = 10
-
-        hard_medium_shortage = 0
-
-        if fresh_hard <= 0:
-            hard_medium_shortage += 20
-
-        if fresh_medium <= 0:
-            hard_medium_shortage += 25
-
-        old_tyre_risk_score = min(
-            100,
-            old_tyre_count * 38
-            + soft_quali_pressure
-            + hard_medium_shortage,
         )
 
         old_tyre_risk = _risk_label(old_tyre_risk_score)
@@ -659,7 +914,13 @@ def predict_driver_strategy(
         if degradation_confidence == "Low":
             confidence = _cap_confidence(confidence, "Medium")
 
-        notes = f"{base_reason}. {degradation_note}."
+        candidate_note = (
+            f"Candidate model selected {selected_candidate['label']} "
+            f"over {alternative_candidate['label'] if alternative_candidate is not None else 'none'} "
+            f"(gap {_fmt_number(strategy_score_gap, 1)})."
+        )
+
+        notes = f"{base_reason}. {candidate_note} {degradation_note}."
 
         if old_tyre_count > 0:
             notes += f" Strategy likely uses {old_tyre_count} old/unknown dry set(s)."
@@ -668,9 +929,23 @@ def predict_driver_strategy(
             notes += " Low fresh-soft buffer for quali/late race."
 
         strategy_reason = (
-            f"{base_reason}. {degradation_note}. "
+            f"{base_reason}. {candidate_note} {degradation_note}. "
             f"Estimated fresh sets remaining: H{fresh_hard}/M{fresh_medium}/S{fresh_soft}."
         )
+        strategy_source = "candidate_score_model"
+        strategy_type = _strategy_type_from_reason(
+            base_reason=base_reason,
+            grid_position=grid_position,
+            degradation_signal=degradation_signal,
+            rainfall_flag=rainfall_flag,
+        )
+
+    if rainfall_flag:
+        selected_strategy_score = None
+        alternative_strategy_score = None
+        strategy_score_gap = None
+        candidate_strategy_count = 0
+        candidate_strategy_summary = ""
 
     strategy_risk_reason = _strategy_risk_reason(
         old_tyre_count=old_tyre_count,
@@ -721,8 +996,18 @@ def predict_driver_strategy(
         "AvgRacePoints": avg_race_points,
         "WinChance": win_chance,
         "PodiumChance": podium_chance,
-        "strategy_source": "model_estimate",
-        "StrategySource": "model_estimate",
+        "strategy_source": strategy_source,
+        "StrategySource": strategy_source,
+        "selected_strategy_score": selected_strategy_score,
+        "SelectedStrategyScore": selected_strategy_score,
+        "alternative_strategy_score": alternative_strategy_score,
+        "AlternativeStrategyScore": alternative_strategy_score,
+        "strategy_score_gap": strategy_score_gap,
+        "StrategyScoreGap": strategy_score_gap,
+        "candidate_strategy_count": candidate_strategy_count,
+        "CandidateStrategyCount": candidate_strategy_count,
+        "candidate_strategy_summary": candidate_strategy_summary,
+        "CandidateStrategySummary": candidate_strategy_summary,
         "tyre_data_source": tyre_data_source,
         "TyreDataSource": tyre_data_source,
         "inventory_confidence": inventory_confidence,
