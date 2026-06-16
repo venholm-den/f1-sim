@@ -131,3 +131,57 @@ def test_strategy_uses_team_degradation_before_default() -> None:
     assert strategy["degradation_confidence"] == "Medium"
     assert strategy["degradation_sample_laps"] == 18
     assert strategy["EstimatedDegPerLap"] == ((0.09 * 10) + (0.07 * 8)) / 18
+
+
+def test_candidate_scoring_selects_two_stop_for_high_degradation() -> None:
+    long_run = pd.DataFrame(
+        [
+            {
+                "Driver": "RUS",
+                "Team": "Mercedes",
+                "degradation_per_lap": 0.09,
+                "laps_in_run": 20,
+            }
+        ]
+    )
+
+    strategy = predict_driver_strategy(
+        driver_row=_driver_row(),
+        inventory=_inventory(confidence="High"),
+        long_run_summary=long_run,
+        weather_summary=_weather(),
+        track_profile=_track(),
+    )
+
+    assert strategy["strategy_source"] == "candidate_score_model"
+    assert strategy["expected_stops"] == 2
+    assert strategy["alternative_strategy_score"] is not None
+    assert strategy["strategy_score_gap"] >= 0
+    assert strategy["candidate_strategy_count"] >= 6
+    assert "MEDIUM-HARD-MEDIUM" in strategy["candidate_strategy_summary"]
+
+
+def test_candidate_scoring_keeps_one_stop_for_low_degradation_front_runner() -> None:
+    long_run = pd.DataFrame(
+        [
+            {
+                "Driver": "RUS",
+                "Team": "Mercedes",
+                "degradation_per_lap": 0.05,
+                "laps_in_run": 20,
+            }
+        ]
+    )
+
+    strategy = predict_driver_strategy(
+        driver_row=_driver_row(),
+        inventory=_inventory(confidence="High"),
+        long_run_summary=long_run,
+        weather_summary=_weather(),
+        track_profile=_track(),
+    )
+
+    assert strategy["primary_strategy"] == "Medium(new) → Hard(new)"
+    assert strategy["expected_stops"] == 1
+    assert strategy["alternative_strategy"] != strategy["primary_strategy"]
+    assert strategy["selected_strategy_score"] > strategy["alternative_strategy_score"]

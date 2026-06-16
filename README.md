@@ -311,6 +311,7 @@ Report/plot behavior currently implemented:
 
 - Team-colored bars and dark-theme chart/report styling across chart modules.
 - Simulation summary + strategy risk are rendered into report-card images.
+- Tyre strategy output ranks multiple candidate plans and exposes score, score gap, and candidate summary columns.
 - Historical strategy adjustment can overwrite default tyre strategy output when same-event history indicates likely higher stop counts.
 - Discord posting sends:
 	- One long summary message (auto-split to respect Discord length limits)
