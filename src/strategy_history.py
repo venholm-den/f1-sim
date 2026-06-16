@@ -14,6 +14,12 @@ DRY_COMPOUNDS = ["HARD", "MEDIUM", "SOFT"]
 WET_COMPOUNDS = ["INTERMEDIATE", "WET"]
 ALL_COMPOUNDS = DRY_COMPOUNDS + WET_COMPOUNDS
 
+CONFIDENCE_ORDER = {
+    "Low": 1,
+    "Medium": 2,
+    "High": 3,
+}
+
 EVENT_STOP_WORDS = {
     "grand",
     "prix",
@@ -55,6 +61,23 @@ def _to_float_or_none(value: Any) -> float | None:
         return None
 
     return float(number)
+
+
+def _cap_confidence(confidence: Any, cap: Any) -> str:
+    confidence_label = str(confidence) if str(confidence) in CONFIDENCE_ORDER else "Medium"
+    cap_label = str(cap) if str(cap) in CONFIDENCE_ORDER else "Medium"
+
+    if CONFIDENCE_ORDER[confidence_label] <= CONFIDENCE_ORDER[cap_label]:
+        return confidence_label
+
+    return cap_label
+
+
+def _strategy_confidence_inventory_cap(inventory_confidence: Any) -> str:
+    if str(inventory_confidence) == "High":
+        return "High"
+
+    return "Medium"
 
 
 def _safe_read_csv(path: str | None) -> pd.DataFrame:
@@ -1257,6 +1280,16 @@ def _apply_history_to_strategies(
             )
             changed = False
             alternative_strategy = candidate_strategy
+
+        final_confidence = _cap_confidence(
+            final_confidence,
+            _strategy_confidence_inventory_cap(
+                row.get("inventory_confidence", row.get("InventoryConfidence", "Medium"))
+            ),
+        )
+
+        if str(row.get("degradation_confidence", row.get("DegradationConfidence", "Medium"))) == "Low":
+            final_confidence = _cap_confidence(final_confidence, "Medium")
 
         output.at[index, "PredictedStrategy"] = final_strategy
         output.at[index, "history_candidate_strategy"] = candidate_strategy

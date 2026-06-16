@@ -26,6 +26,12 @@ RISK_ORDER = {
     "High": 3,
 }
 
+CONFIDENCE_ORDER = {
+    "Low": 1,
+    "Medium": 2,
+    "High": 3,
+}
+
 
 def _confidence_from_risk(risk: str, rainfall_flag: bool = False) -> str:
     if rainfall_flag:
@@ -104,6 +110,23 @@ def _fmt_number(value: Any, decimals: int = 2) -> str:
     return f"{number:.{decimals}f}"
 
 
+def _cap_confidence(confidence: str, cap: str) -> str:
+    confidence_label = str(confidence) if confidence in CONFIDENCE_ORDER else "Medium"
+    cap_label = str(cap) if cap in CONFIDENCE_ORDER else "Medium"
+
+    if CONFIDENCE_ORDER[confidence_label] <= CONFIDENCE_ORDER[cap_label]:
+        return confidence_label
+
+    return cap_label
+
+
+def _strategy_confidence_inventory_cap(inventory_confidence: str) -> str:
+    if inventory_confidence == "High":
+        return "High"
+
+    return "Medium"
+
+
 def _get_driver_compound_inventory(
     inventory: pd.DataFrame,
     driver: str,
@@ -147,55 +170,96 @@ def _get_driver_compound_inventory(
     }
 
 
+def _weighted_degradation_estimate(
+    runs: pd.DataFrame,
+    source: str,
+) -> dict[str, Any] | None:
+    if runs.empty or "degradation_per_lap" not in runs.columns:
+        return None
+
+    runs = runs.copy()
+    runs["degradation_per_lap"] = pd.to_numeric(
+        runs["degradation_per_lap"],
+        errors="coerce",
+    )
+
+    valid = runs["degradation_per_lap"].notna()
+
+    if valid.sum() == 0:
+        return None
+
+    if "laps_in_run" in runs.columns:
+        runs["laps_in_run"] = pd.to_numeric(
+            runs["laps_in_run"],
+            errors="coerce",
+        ).fillna(1)
+    else:
+        runs["laps_in_run"] = 1
+
+    weights = runs.loc[valid, "laps_in_run"].clip(lower=1)
+    sample_laps = int(weights.sum())
+
+    value = float(
+        np.average(
+            runs.loc[valid, "degradation_per_lap"],
+            weights=weights,
+        )
+    )
+
+    if source == "driver_long_run":
+        confidence = "High" if sample_laps >= 12 else "Medium" if sample_laps >= 6 else "Low"
+    elif source == "team_long_run":
+        confidence = "Medium" if sample_laps >= 16 else "Low"
+    else:
+        confidence = "Medium" if sample_laps >= 30 else "Low"
+
+    return {
+        "degradation_per_lap": value,
+        "source": source,
+        "confidence": confidence,
+        "sample_laps": sample_laps,
+    }
+
+
+def _degradation_estimate(
+    long_run_summary: pd.DataFrame,
+    driver: str,
+    team: str,
+) -> dict[str, Any] | None:
+    if long_run_summary.empty or "degradation_per_lap" not in long_run_summary.columns:
+        return None
+
+    if "Driver" in long_run_summary.columns:
+        driver_runs = long_run_summary[
+            long_run_summary["Driver"].astype(str) == str(driver)
+        ]
+        estimate = _weighted_degradation_estimate(driver_runs, "driver_long_run")
+
+        if estimate is not None:
+            return estimate
+
+    if "Team" in long_run_summary.columns:
+        team_runs = long_run_summary[
+            long_run_summary["Team"].astype(str) == str(team)
+        ]
+        estimate = _weighted_degradation_estimate(team_runs, "team_long_run")
+
+        if estimate is not None:
+            return estimate
+
+    return _weighted_degradation_estimate(long_run_summary, "field_long_run")
+
+
 def _driver_long_run_degradation(
     long_run_summary: pd.DataFrame,
     driver: str,
 ) -> float | None:
-    if long_run_summary.empty:
+    estimate = _degradation_estimate(long_run_summary, driver, "")
+
+    if estimate is None:
         return None
 
-    if "Driver" not in long_run_summary.columns:
-        return None
-
-    driver_runs = long_run_summary[
-        long_run_summary["Driver"].astype(str) == str(driver)
-    ].copy()
-
-    if driver_runs.empty:
-        return None
-
-    if "degradation_per_lap" not in driver_runs.columns:
-        return None
-
-    driver_runs["degradation_per_lap"] = pd.to_numeric(
-        driver_runs["degradation_per_lap"],
-        errors="coerce",
-    )
-
-    if "laps_in_run" in driver_runs.columns:
-        driver_runs["laps_in_run"] = pd.to_numeric(
-            driver_runs["laps_in_run"],
-            errors="coerce",
-        ).fillna(1)
-
-        valid = driver_runs["degradation_per_lap"].notna()
-
-        if valid.sum() == 0:
-            return None
-
-        return float(
-            np.average(
-                driver_runs.loc[valid, "degradation_per_lap"],
-                weights=driver_runs.loc[valid, "laps_in_run"],
-            )
-        )
-
-    value = driver_runs["degradation_per_lap"].mean()
-
-    if pd.isna(value):
-        return None
-
-    return float(value)
+    return float(estimate["degradation_per_lap"])
 
 
 def _select_tyre_leg(
@@ -356,6 +420,9 @@ def _order_strategy_columns(strategies: pd.DataFrame) -> pd.DataFrame:
         "ObservedMediumStints",
         "ObservedSoftStints",
         "EstimatedDegPerLap",
+        "degradation_source",
+        "degradation_confidence",
+        "degradation_sample_laps",
         "inventory_confidence",
         "tyre_data_source",
         "tyre_confidence_reason",
@@ -480,14 +547,24 @@ def predict_driver_strategy(
         "Tyre inventory is estimated from FastF1 lap/stint data, not official FIA/Pirelli allocation data."
     )
 
-    degradation = _driver_long_run_degradation(long_run_summary, driver)
+    degradation = _degradation_estimate(long_run_summary, driver, team)
 
     if degradation is None:
         degradation_signal = 0.055 * degradation_factor
+        degradation_source = "weather_adjusted_default"
+        degradation_confidence = "Low"
+        degradation_sample_laps = 0
         degradation_note = "No reliable long-run degradation; using weather-adjusted default"
     else:
-        degradation_signal = degradation * degradation_factor
-        degradation_note = f"Long-run deg {_fmt_number(degradation_signal, 3)}s/lap"
+        degradation_signal = float(degradation["degradation_per_lap"]) * degradation_factor
+        degradation_source = str(degradation["source"])
+        degradation_confidence = str(degradation["confidence"])
+        degradation_sample_laps = int(degradation["sample_laps"])
+        source_label = degradation_source.replace("_", " ")
+        degradation_note = (
+            f"{source_label.title()} deg {_fmt_number(degradation_signal, 3)}s/lap "
+            f"from {degradation_sample_laps} lap(s)"
+        )
 
     compounds, base_reason = _choose_base_strategy(
         grid_position=grid_position,
@@ -574,6 +651,14 @@ def predict_driver_strategy(
         else:
             confidence = "Medium"
 
+        confidence = _cap_confidence(
+            confidence,
+            _strategy_confidence_inventory_cap(inventory_confidence),
+        )
+
+        if degradation_confidence == "Low":
+            confidence = _cap_confidence(confidence, "Medium")
+
         notes = f"{base_reason}. {degradation_note}."
 
         if old_tyre_count > 0:
@@ -625,6 +710,12 @@ def predict_driver_strategy(
         "ObservedMediumStints": observed_stints["MEDIUM"],
         "ObservedSoftStints": observed_stints["SOFT"],
         "EstimatedDegPerLap": degradation_signal,
+        "degradation_source": degradation_source,
+        "DegradationSource": degradation_source,
+        "degradation_confidence": degradation_confidence,
+        "DegradationConfidence": degradation_confidence,
+        "degradation_sample_laps": degradation_sample_laps,
+        "DegradationSampleLaps": degradation_sample_laps,
         "StrategyConfidence": confidence,
         "AvgFantasyPoints": avg_fantasy_points,
         "AvgRacePoints": avg_race_points,
