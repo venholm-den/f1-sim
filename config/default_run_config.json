@@ -24,6 +24,7 @@
   "model": {
     "model_version": "phase_1_performance_profile",
     "use_fastf1_weather": true,
+    "use_weather_forecast": true,
     "use_race_control_context": true,
     "use_track_red_flag_base_chance": true
   }
