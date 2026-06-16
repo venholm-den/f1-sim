@@ -31,6 +31,17 @@ def _ensure_outputs() -> None:
     Path("outputs/strategy").mkdir(parents=True, exist_ok=True)
 
 
+def _ensure_output_dirs(output_dir: str | Path) -> tuple[Path, Path]:
+    root = Path(output_dir)
+    history_dir = root / "history"
+    strategy_dir = root / "strategy"
+
+    history_dir.mkdir(parents=True, exist_ok=True)
+    strategy_dir.mkdir(parents=True, exist_ok=True)
+
+    return history_dir, strategy_dir
+
+
 def _to_float_or_none(value: Any) -> float | None:
     if value is None:
         return None
@@ -327,8 +338,9 @@ def build_historical_strategy_baseline(
     current_year: int,
     event_name: str,
     lookback_years: int = 5,
+    output_dir: str | Path = "outputs",
 ) -> dict[str, Any]:
-    _ensure_outputs()
+    history_dir, _ = _ensure_output_dirs(output_dir)
 
     frames: list[pd.DataFrame] = []
     years_used: list[int] = []
@@ -362,7 +374,7 @@ def build_historical_strategy_baseline(
 
     all_runs = pd.concat(frames, ignore_index=True)
 
-    driver_runs_path = "outputs/history/historical_strategy_driver_runs.csv"
+    driver_runs_path = str(history_dir / "historical_strategy_driver_runs.csv")
     all_runs.to_csv(driver_runs_path, index=False)
 
     valid = all_runs[
@@ -389,7 +401,7 @@ def build_historical_strategy_baseline(
         .reset_index(drop=True)
     )
 
-    strategy_counts_path = "outputs/history/historical_strategy_summary.csv"
+    strategy_counts_path = str(history_dir / "historical_strategy_summary.csv")
     strategy_counts.to_csv(strategy_counts_path, index=False)
 
     stop_counts = valid["DryStops"].value_counts(normalize=True)
@@ -427,15 +439,13 @@ def build_historical_strategy_baseline(
         "summary_path": strategy_counts_path,
     }
 
-    pd.DataFrame([summary_data]).to_csv(
-        "outputs/history/historical_strategy_baseline.csv",
-        index=False,
-    )
+    baseline_path = str(history_dir / "historical_strategy_baseline.csv")
+    pd.DataFrame([summary_data]).to_csv(baseline_path, index=False)
 
     return {
         "driver_runs_path": driver_runs_path,
         "summary_path": strategy_counts_path,
-        "baseline_path": "outputs/history/historical_strategy_baseline.csv",
+        "baseline_path": baseline_path,
         "summary_data": summary_data,
     }
 
@@ -1307,13 +1317,14 @@ def apply_historical_strategy_adjustment_to_outputs(
     event_name: str,
     lookback_years: int = 5,
     session: Any | None = None,
+    output_dir: str | Path = "outputs",
 ) -> dict[str, str]:
     """
     Builds a historical strategy baseline and rewrites predicted strategies
     if historical races suggest that the current 1-stop default is too simple.
     """
 
-    _ensure_outputs()
+    history_dir, strategy_dir = _ensure_output_dirs(output_dir)
 
     strategies = _safe_read_csv(strategy_csv_path)
 
@@ -1325,6 +1336,7 @@ def apply_historical_strategy_adjustment_to_outputs(
         current_year=current_year,
         event_name=event_name,
         lookback_years=lookback_years,
+        output_dir=output_dir,
     )
 
     history_data = historical.get("summary_data", {})
@@ -1339,12 +1351,12 @@ def apply_historical_strategy_adjustment_to_outputs(
     adjusted = _apply_history_to_strategies(strategies, history_data)
     adjusted = _order_history_strategy_columns(adjusted)
 
-    adjusted_csv = "outputs/strategy/predicted_tyre_strategy_history_adjusted.csv"
+    adjusted_csv = str(strategy_dir / "predicted_tyre_strategy_history_adjusted.csv")
     adjusted.to_csv(adjusted_csv, index=False)
 
     chart_path = make_strategy_table_image(
         adjusted,
-        output_path="outputs/strategy/predicted_tyre_strategy.png",
+        output_path=str(strategy_dir / "predicted_tyre_strategy.png"),
         session=session,
     )
 
