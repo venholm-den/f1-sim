@@ -715,11 +715,18 @@ def make_fantasy_risk_reward_chart(
     return output_path
 
 
+
 def make_tyre_strategy_timeline(
     strategy_csv_path: str,
     output_path: str = "outputs/report/tyre_strategy_timeline.png",
     session: Any | None = None,
 ) -> str:
+    """
+    Builds a colour-coded tyre strategy timeline for the report pack.
+
+    This is a report companion to outputs/strategy/predicted_tyre_strategy.png.
+    It highlights stint sequence, confidence/risk, and history-adjusted changes.
+    """
     _ensure_outputs()
 
     strategies = _load_strategy_df(strategy_csv_path)
@@ -727,19 +734,265 @@ def make_tyre_strategy_timeline(
     if strategies.empty:
         raise ValueError("No tyre strategy data available")
 
+    def first_text(row: pd.Series, columns: list[str], default: str = "") -> str:
+        for column in columns:
+            if column in row.index and pd.notna(row.get(column)):
+                value = str(row.get(column)).strip()
+                if value and value.lower() not in {"nan", "none"}:
+                    return value
+        return default
+
+    def boolish(value: Any) -> bool:
+        return str(value).strip().lower() in {"true", "1", "yes", "y"}
+
+    def history_changed(row: pd.Series) -> bool:
+        explicit = first_text(
+            row,
+            ["strategy_changed_by_history", "history_adjustment_applied"],
+            default="",
+        )
+
+        if explicit:
+            return boolish(explicit)
+
+        original = first_text(row, ["original_predicted_strategy"], default="")
+        adjusted = first_text(row, ["history_adjusted_strategy", "PredictedStrategy"], default="")
+
+        return bool(original and adjusted and original != adjusted)
+
+    def segment_label(segment: Any) -> str:
+        compound = _strategy_compound(str(segment))
+        short = {
+            "SOFT": "S",
+            "MEDIUM": "M",
+            "HARD": "H",
+            "INTERMEDIATE": "I",
+            "WET": "W",
+            "UNKNOWN": "?",
+        }.get(compound, "?")
+
+        text = str(segment).lower()
+        if "used/unknown" in text:
+            return f"{short}?"
+        if "used" in text:
+            return f"{short}u"
+        if "new" in text:
+            return f"{short}n"
+        return short
+
+    def truncate(text: Any, max_len: int) -> str:
+        value = " ".join(str(text).replace(chr(10), " ").split())
+        if len(value) <= max_len:
+            return value
+        return value[: max_len - 1].rstrip() + "…"
+
+    def stops_text(row: pd.Series, segments: list[str]) -> str:
+        explicit = _to_float_or_none(row.get("expected_stops"))
+
+        if explicit is None:
+            explicit = _to_float_or_none(row.get("ExpectedStops"))
+
+        if explicit is None:
+            stop_count = max(len(segments) - 1, 0)
+        else:
+            stop_count = int(round(explicit))
+
+        return "1 stop" if stop_count == 1 else f"{stop_count} stops"
+
     if "GridPosition" in strategies.columns:
         plot_data = strategies.sort_values("GridPosition", ascending=True).copy()
     else:
         plot_data = strategies.copy()
 
-    plot_data = plot_data.head(20).reset_index(drop=True)
+    plot_data = plot_data.head(22).reset_index(drop=True)
 
+    strategy_segments = [
+        _parse_strategy(
+            first_text(
+                row,
+                ["history_adjusted_strategy", "PredictedStrategy", "primary_strategy", "PrimaryStrategy"],
+                default="Unknown",
+            )
+        )
+        for _, row in plot_data.iterrows()
+    ]
+
+    max_segments = max([len(segments) for segments in strategy_segments] + [2])
     n_drivers = len(plot_data)
-    fig_height = max(9, 0.52 * n_drivers + 2.0)
 
-    fig, ax = plt.subplots(figsize=(16, fig_height))
+    fig_width = 22
+    fig_height = max(8.2, 2.4 + n_drivers * 0.58)
+
+    fig, ax = plt.subplots(figsize=(fig_width, fig_height))
     fig.patch.set_facecolor(BACKGROUND_COLOUR)
     ax.set_facecolor(BACKGROUND_COLOUR)
+    ax.axis("off")
+
+    segment_width = 1.10
+    segment_gap = 0.08
+    timeline_width = max_segments * (segment_width + segment_gap)
+
+    x_driver = -4.25
+    x_grid = -3.10
+    x_timeline = -2.35
+    x_stops = x_timeline + timeline_width + 0.35
+    x_conf = x_stops + 1.25
+    x_risk = x_conf + 1.35
+    x_hist = x_risk + 1.25
+    x_notes = x_hist + 1.10
+
+    y_top = n_drivers + 1.25
+
+    ax.text(
+        0.01,
+        0.985,
+        "Tyre Strategy Timeline",
+        transform=ax.transAxes,
+        ha="left",
+        va="top",
+        color=TEXT_COLOUR,
+        fontsize=18,
+        fontweight="bold",
+    )
+    ax.text(
+        0.01,
+        0.945,
+        "Colour blocks show predicted stints. Tyre availability is estimated from FastF1 stint/lap data, not official FIA/Pirelli barcode data.",
+        transform=ax.transAxes,
+        ha="left",
+        va="top",
+        color=MUTED_TEXT_COLOUR,
+        fontsize=10.5,
+    )
+
+    headers = [
+        (x_driver, "Driver"),
+        (x_grid, "Grid"),
+        (x_timeline, "Stints"),
+        (x_stops, "Stops"),
+        (x_conf, "Conf"),
+        (x_risk, "Risk"),
+        (x_hist, "Hist"),
+        (x_notes, "Key assumption"),
+    ]
+
+    for x, text in headers:
+        ax.text(
+            x,
+            y_top,
+            text,
+            ha="left",
+            va="center",
+            color=TEXT_COLOUR,
+            fontsize=10.5,
+            fontweight="bold",
+        )
+
+    ax.hlines(y_top - 0.36, x_driver, x_notes + 6.5, color="#6b7280", linewidth=1.0, alpha=0.7)
+
+    for idx, (_, row) in enumerate(plot_data.iterrows()):
+        y = n_drivers - idx
+        team = str(row.get("Team", ""))
+        driver = str(row.get("Driver", ""))
+        team_colour = get_team_colour(team, session=session)
+
+        if idx % 2 == 0:
+            ax.axhspan(y - 0.33, y + 0.33, color="#252932", alpha=0.55, linewidth=0)
+
+        grid_value = _to_float_or_none(row.get("GridPosition"))
+        grid = f"P{int(round(grid_value))}" if grid_value is not None else str(row.get("Grid", "N/A"))
+
+        ax.text(
+            x_driver,
+            y,
+            driver,
+            ha="left",
+            va="center",
+            color=team_colour,
+            fontsize=10.5,
+            fontweight="bold",
+        )
+        ax.text(
+            x_grid,
+            y,
+            grid,
+            ha="left",
+            va="center",
+            color=MUTED_TEXT_COLOUR,
+            fontsize=9.7,
+        )
+
+        x = x_timeline
+        segments = strategy_segments[idx]
+
+        for segment in segments:
+            compound = _strategy_compound(segment)
+            colour = _compound_colour(compound)
+            label = segment_label(segment)
+            text_colour = "#111827" if compound in {"MEDIUM", "HARD"} else "white"
+
+            ax.barh(
+                y,
+                segment_width,
+                left=x,
+                height=0.46,
+                color=colour,
+                edgecolor="#111827",
+                linewidth=1.0,
+            )
+            ax.text(
+                x + segment_width / 2,
+                y,
+                label,
+                ha="center",
+                va="center",
+                fontsize=9.0,
+                color=text_colour,
+                fontweight="bold",
+            )
+
+            x += segment_width + segment_gap
+
+        confidence = _strategy_confidence_value(row)
+        risk = first_text(
+            row,
+            ["strategy_risk_level", "RiskLevel", "OldTyreRisk", "risk_level"],
+            default="N/A",
+        )
+        hist = "Yes" if history_changed(row) else "No"
+
+        note = first_text(
+            row,
+            [
+                "visual_key_assumption",
+                "history_adjustment_blocked_reason",
+                "history_adjustment_reason",
+                "strategy_reason",
+                "StrategyReason",
+                "strategy_risk_reason",
+                "confidence_reason",
+                "Notes",
+            ],
+            default=_strategy_risk_reason_value(row),
+        )
+
+        risk_colour = {
+            "Low": "#22c55e",
+            "Medium": "#facc15",
+            "High": "#ef4444",
+        }.get(risk, MUTED_TEXT_COLOUR)
+        confidence_colour = {
+            "High": "#22c55e",
+            "Medium": "#facc15",
+            "Low": "#ef4444",
+        }.get(confidence, MUTED_TEXT_COLOUR)
+        hist_colour = "#facc15" if hist == "Yes" else MUTED_TEXT_COLOUR
+
+        ax.text(x_stops, y, stops_text(row, segments), va="center", ha="left", fontsize=9.3, color=TEXT_COLOUR)
+        ax.text(x_conf, y, confidence, va="center", ha="left", fontsize=9.3, color=confidence_colour, fontweight="bold")
+        ax.text(x_risk, y, risk, va="center", ha="left", fontsize=9.3, color=risk_colour, fontweight="bold")
+        ax.text(x_hist, y, hist, va="center", ha="left", fontsize=9.3, color=hist_colour, fontweight="bold")
+        ax.text(x_notes, y, truncate(note, 70), va="center", ha="left", fontsize=8.6, color=MUTED_TEXT_COLOUR)
 
     legend_handles = [
         Patch(color=_compound_colour("SOFT"), label="Soft"),
@@ -747,109 +1000,42 @@ def make_tyre_strategy_timeline(
         Patch(color=_compound_colour("HARD"), label="Hard"),
         Patch(color=_compound_colour("INTERMEDIATE"), label="Intermediate"),
         Patch(color=_compound_colour("WET"), label="Wet"),
+        Patch(color=_compound_colour("UNKNOWN"), label="Unknown"),
     ]
-
-    max_segments = 0
-
-    for idx, row in plot_data.iterrows():
-        strategy_text = str(row.get("PredictedStrategy", "Unknown"))
-        segments = _parse_strategy(strategy_text)
-        max_segments = max(max_segments, len(segments))
-
-        y = idx
-        x = 0.0
-        segment_width = 1.6
-
-        for segment in segments:
-            compound = _strategy_compound(segment)
-
-            ax.barh(
-                y,
-                segment_width,
-                left=x,
-                height=0.58,
-                color=_compound_colour(compound),
-                edgecolor="#111827",
-                linewidth=1.0,
-            )
-
-            text_color = "#111827" if compound in {"MEDIUM", "HARD"} else "white"
-
-            ax.text(
-                x + segment_width / 2,
-                y,
-                segment,
-                ha="center",
-                va="center",
-                fontsize=8.5,
-                color=text_color,
-            )
-
-            x += segment_width + 0.18
-
-        risk_text = str(row.get("OldTyreRisk", "N/A"))
-        grid_text = str(row.get("Grid", "N/A"))
-
-        ax.text(
-            x + 0.22,
-            y,
-            f"Risk: {risk_text}",
-            va="center",
-            ha="left",
-            fontsize=9,
-            color=get_team_colour(str(row.get("Team", "")), session=session),
-            weight="bold",
-        )
-
-        ax.text(
-            -0.22,
-            y,
-            grid_text,
-            va="center",
-            ha="right",
-            fontsize=9,
-            color=MUTED_TEXT_COLOUR,
-        )
-
-    y_labels = [str(driver) for driver in plot_data["Driver"].tolist()]
-    y_colours = [
-        get_team_colour(str(team), session=session)
-        for team in plot_data["Team"].tolist()
-    ]
-
-    ax.set_yticks(np.arange(n_drivers))
-    ax.set_yticklabels(y_labels)
-    ax.invert_yaxis()
-
-    for tick_label, colour in zip(ax.get_yticklabels(), y_colours):
-        tick_label.set_color(colour)
-        tick_label.set_fontweight("bold")
-
-    ax.set_xticks([])
-    ax.tick_params(colors="white")
-    ax.set_title(
-        "Predicted Tyre Strategy Timeline",
-        color="white",
-        fontsize=16,
-        weight="bold",
-    )
-    ax.set_xlabel("Predicted stint sequence", color="white")
 
     ax.legend(
         handles=legend_handles,
         facecolor=BACKGROUND_COLOUR,
         edgecolor="#6b7280",
-        labelcolor="white",
-        loc="upper right",
+        labelcolor=TEXT_COLOUR,
+        loc="lower left",
+        bbox_to_anchor=(0.01, -0.035),
+        ncol=6,
+        framealpha=1.0,
+        fontsize=9.0,
     )
 
-    ax.set_xlim(-0.9, max_segments * 1.85 + 3.2)
+    ax.text(
+        0.99,
+        -0.025,
+        "Labels: n=new, u=used, ?=used/unknown",
+        transform=ax.transAxes,
+        ha="right",
+        va="bottom",
+        color=MUTED_TEXT_COLOUR,
+        fontsize=9.0,
+    )
 
-    for spine in ax.spines.values():
-        spine.set_color("#6b7280")
+    ax.set_xlim(x_driver - 0.15, x_notes + 7.2)
+    ax.set_ylim(-0.35, n_drivers + 2.05)
 
-    plt.tight_layout()
-    plt.savefig(output_path, dpi=200, facecolor=fig.get_facecolor())
+    plt.savefig(
+        output_path,
+        dpi=200,
+        facecolor=fig.get_facecolor(),
+        bbox_inches="tight",
+        pad_inches=0.25,
+    )
     plt.close(fig)
 
     return output_path

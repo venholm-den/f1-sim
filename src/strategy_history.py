@@ -497,6 +497,84 @@ def _fallback_three_stop_sequence(row: pd.Series) -> list[str]:
     return ["SOFT", "MEDIUM", "HARD", "SOFT"]
 
 
+def _driver_specific_two_stop_sequence(row: pd.Series, grid_position: float | None) -> list[str]:
+    """
+    Chooses a two-stop compound sequence per driver.
+
+    Historical data is used as a stop-count signal, not as a field-wide compound
+    template. This avoids giving every driver the same historical sequence.
+    Compound choice remains driven by grid position, estimated tyre inventory,
+    and tyre-risk information.
+    """
+
+    fresh_hard = int(_to_float_or_none(row.get("FreshHardRemaining")) or 0)
+    fresh_medium = int(_to_float_or_none(row.get("FreshMediumRemaining")) or 0)
+    fresh_soft = int(_to_float_or_none(row.get("FreshSoftRemaining")) or 0)
+
+    grid = grid_position if grid_position is not None else 12
+    risk = str(row.get("OldTyreRisk", row.get("strategy_risk_level", "Medium")))
+
+    # Front runners: prefer medium/hard based two-stops, closer to a
+    # tyre-management race than an all-out soft-heavy plan.
+    if grid <= 5:
+        if fresh_medium >= 1 and fresh_hard >= 2:
+            return ["MEDIUM", "HARD", "HARD"]
+        if fresh_medium >= 2 and fresh_hard >= 1:
+            return ["MEDIUM", "HARD", "MEDIUM"]
+        if fresh_medium >= 1 and fresh_hard >= 1 and fresh_soft >= 1:
+            return ["MEDIUM", "HARD", "SOFT"]
+
+    # Upper midfield: default to a medium-hard-medium style two-stop where
+    # possible. This avoids a soft-heavy field-wide override.
+    if grid <= 10:
+        if fresh_medium >= 2 and fresh_hard >= 1:
+            return ["MEDIUM", "HARD", "MEDIUM"]
+        if fresh_medium >= 1 and fresh_hard >= 1 and fresh_soft >= 1:
+            return ["MEDIUM", "HARD", "SOFT"]
+
+    # Lower midfield: alternate strategy is more plausible, especially if the
+    # base model put them on a simple one-stop.
+    if grid <= 16:
+        if fresh_hard >= 1 and fresh_medium >= 1 and fresh_soft >= 1:
+            return ["HARD", "MEDIUM", "SOFT"]
+        if fresh_medium >= 2 and fresh_hard >= 1:
+            return ["MEDIUM", "HARD", "MEDIUM"]
+
+    # Back of the field can justify a more aggressive offset, but avoid soft
+    # starts if the tyre-risk model is already warning.
+    if grid >= 17:
+        if risk != "High" and fresh_soft >= 1 and fresh_medium >= 1 and fresh_hard >= 1:
+            return ["SOFT", "MEDIUM", "HARD"]
+        if fresh_hard >= 1 and fresh_medium >= 1 and fresh_soft >= 1:
+            return ["HARD", "MEDIUM", "SOFT"]
+        if fresh_medium >= 2 and fresh_hard >= 1:
+            return ["MEDIUM", "HARD", "MEDIUM"]
+
+    # Safe fallbacks.
+    if fresh_medium >= 2 and fresh_hard >= 1:
+        return ["MEDIUM", "HARD", "MEDIUM"]
+
+    if fresh_medium >= 1 and fresh_hard >= 1:
+        return ["MEDIUM", "HARD", "MEDIUM"]
+
+    if fresh_soft >= 1 and fresh_medium >= 1 and fresh_hard >= 1:
+        return ["SOFT", "MEDIUM", "HARD"]
+
+    return ["MEDIUM", "HARD"]
+
+
+def _historical_two_stop_sequence(row: pd.Series, history: dict[str, Any], grid_position: float | None) -> list[str]:
+    """
+    Builds a two-stop history candidate.
+
+    History is used to say "this event usually needs more than a one-stop".
+    It should not copy the dominant historical compound sequence onto every
+    driver, because that creates unrealistic field-wide uniformity.
+    """
+
+    return _driver_specific_two_stop_sequence(row, grid_position)
+
+
 def _target_sequence_for_row(
     row: pd.Series,
     history: dict[str, Any],
@@ -506,32 +584,48 @@ def _target_sequence_for_row(
     dominant_stops = int(history.get("dominant_stops", 1))
     two_stop_rate = float(history.get("two_stop_rate", 0.0))
     three_plus_rate = float(history.get("three_plus_stop_rate", 0.0))
+    multi_stop_rate = two_stop_rate + three_plus_rate
 
     if sample_drivers < 6:
         return None
 
     current_stints = _strategy_stint_count(row.get("PredictedStrategy"))
+    current_stops = max(current_stints - 1, 0)
     grid_position = _to_float_or_none(row.get("GridPosition"))
     estimated_deg = _to_float_or_none(row.get("EstimatedDegPerLap")) or 0.055
 
-    force_three_stop = (
+    strong_multi_stop = (
+        dominant_stops >= 2
+        or multi_stop_rate >= 0.45
+        or average_stops >= 1.65
+    )
+
+    very_strong_three_stop = (
         dominant_stops >= 3
-        or three_plus_rate >= 0.25
-        or average_stops >= 2.45
+        and three_plus_rate >= 0.45
+        and average_stops >= 2.25
+        and estimated_deg >= 0.075
     )
 
     force_two_stop = (
         dominant_stops == 2
-        or two_stop_rate >= 0.40
+        or two_stop_rate >= 0.35
         or average_stops >= 1.45
+        or strong_multi_stop
     )
 
     mixed_two_stop = (
-        two_stop_rate >= 0.22
-        and estimated_deg >= 0.060
+        multi_stop_rate >= 0.35
+        and estimated_deg >= 0.055
     )
 
-    if force_three_stop and current_stints < 4:
+    # Most important correction: if the base model is one-stop but history says
+    # this event is usually multi-stop, promote to a two-stop candidate first.
+    # Do not jump straight to a three-stop pattern for the whole field.
+    if current_stops <= 1 and (force_two_stop or mixed_two_stop):
+        return _historical_two_stop_sequence(row, history, grid_position)
+
+    if very_strong_three_stop and current_stints < 4:
         historical = _parse_historical_sequence(
             str(history.get("dominant_three_stop_strategy") or history.get("dominant_strategy", ""))
         )
@@ -540,16 +634,6 @@ def _target_sequence_for_row(
             return historical[:4]
 
         return _fallback_three_stop_sequence(row)
-
-    if (force_two_stop or mixed_two_stop) and current_stints < 3:
-        historical = _parse_historical_sequence(
-            str(history.get("dominant_two_stop_strategy") or history.get("dominant_strategy", ""))
-        )
-
-        if len(historical) >= 3:
-            return historical[:3]
-
-        return _fallback_two_stop_sequence(row, grid_position)
 
     return None
 
@@ -745,6 +829,42 @@ def _ensure_history_comparison_columns(output: pd.DataFrame) -> pd.DataFrame:
     if "ConfidenceReason" not in output.columns:
         output["ConfidenceReason"] = output["confidence_reason"]
 
+    if "history_candidate_strategy" not in output.columns:
+        output["history_candidate_strategy"] = ""
+
+    if "HistoryCandidateStrategy" not in output.columns:
+        output["HistoryCandidateStrategy"] = output["history_candidate_strategy"]
+
+    if "history_adjustment_confidence" not in output.columns:
+        output["history_adjustment_confidence"] = "Low"
+
+    if "HistoryAdjustmentConfidence" not in output.columns:
+        output["HistoryAdjustmentConfidence"] = output["history_adjustment_confidence"]
+
+    if "history_adjustment_strength" not in output.columns:
+        output["history_adjustment_strength"] = "Low"
+
+    if "HistoryAdjustmentStrength" not in output.columns:
+        output["HistoryAdjustmentStrength"] = output["history_adjustment_strength"]
+
+    if "history_adjustment_blocked_reason" not in output.columns:
+        output["history_adjustment_blocked_reason"] = ""
+
+    if "HistoryAdjustmentBlockedReason" not in output.columns:
+        output["HistoryAdjustmentBlockedReason"] = output["history_adjustment_blocked_reason"]
+
+    if "strategy_display_source" not in output.columns:
+        output["strategy_display_source"] = output.get("strategy_source", "model_estimate")
+
+    if "StrategyDisplaySource" not in output.columns:
+        output["StrategyDisplaySource"] = output["strategy_display_source"]
+
+    if "visual_key_assumption" not in output.columns:
+        output["visual_key_assumption"] = output.get("strategy_reason", output.get("Notes", "Model estimate."))
+
+    if "VisualKeyAssumption" not in output.columns:
+        output["VisualKeyAssumption"] = output["visual_key_assumption"]
+
     return output
 
 
@@ -758,11 +878,17 @@ def _order_history_strategy_columns(output: pd.DataFrame) -> pd.DataFrame:
         "Grid",
         "GridPosition",
         "original_predicted_strategy",
+        "history_candidate_strategy",
         "history_adjusted_strategy",
         "PredictedStrategy",
         "history_adjustment_applied",
         "strategy_changed_by_history",
+        "history_adjustment_confidence",
+        "history_adjustment_strength",
+        "history_adjustment_blocked_reason",
         "history_adjustment_reason",
+        "strategy_display_source",
+        "visual_key_assumption",
         "primary_strategy",
         "alternative_strategy",
         "expected_stops",
@@ -792,6 +918,224 @@ def _order_history_strategy_columns(output: pd.DataFrame) -> pd.DataFrame:
     return output[ordered + remaining].copy()
 
 
+
+def _history_signal_metrics(history: dict[str, Any]) -> dict[str, Any]:
+    sample_drivers = int(history.get("sample_drivers", 0) or 0)
+    dominant_count = int(history.get("dominant_strategy_count", 0) or 0)
+    dominant_share = dominant_count / sample_drivers if sample_drivers > 0 else 0.0
+
+    two_stop_rate = float(history.get("two_stop_rate", 0.0) or 0.0)
+    three_plus_stop_rate = float(history.get("three_plus_stop_rate", 0.0) or 0.0)
+
+    return {
+        "sample_drivers": sample_drivers,
+        "average_stops": float(history.get("average_stops", 1.0) or 1.0),
+        "dominant_stops": int(history.get("dominant_stops", 1) or 1),
+        "dominant_strategy": str(history.get("dominant_strategy", "")),
+        "dominant_strategy_count": dominant_count,
+        "dominant_share": float(dominant_share),
+        "two_stop_rate": two_stop_rate,
+        "three_plus_stop_rate": three_plus_stop_rate,
+        "multi_stop_rate": two_stop_rate + three_plus_stop_rate,
+        "years_used": str(history.get("years_used", "N/A")),
+    }
+
+
+def _history_adjustment_strength(metrics: dict[str, Any], target_stops: int) -> str:
+    sample_drivers = int(metrics.get("sample_drivers", 0))
+    dominant_share = float(metrics.get("dominant_share", 0.0))
+    two_stop_rate = float(metrics.get("two_stop_rate", 0.0))
+    three_plus_rate = float(metrics.get("three_plus_stop_rate", 0.0))
+
+    if sample_drivers < 12:
+        return "Low"
+
+    if target_stops >= 3:
+        if sample_drivers >= 16 and (three_plus_rate >= 0.55 or dominant_share >= 0.55):
+            return "High"
+        if three_plus_rate >= 0.35 or dominant_share >= 0.40:
+            return "Medium"
+        return "Low"
+
+    if target_stops == 2:
+        average_stops = float(metrics.get("average_stops", 1.0))
+        multi_stop_rate = float(metrics.get("multi_stop_rate", two_stop_rate + three_plus_rate))
+
+        if sample_drivers >= 16 and (
+            two_stop_rate >= 0.55
+            or multi_stop_rate >= 0.65
+            or dominant_share >= 0.55
+            or average_stops >= 1.85
+        ):
+            return "High"
+        if (
+            two_stop_rate >= 0.30
+            or multi_stop_rate >= 0.45
+            or dominant_share >= 0.40
+            or average_stops >= 1.55
+        ):
+            return "Medium"
+        return "Low"
+
+    if dominant_share >= 0.55:
+        return "Medium"
+
+    return "Low"
+
+
+def _history_adjustment_decision(
+    row: pd.Series,
+    history: dict[str, Any],
+    sequence: list[str] | None,
+    candidate_strategy: str,
+    old_count: int,
+    risk_score: float,
+) -> tuple[bool, str, str, str]:
+    """
+    Decides whether history should override the base model strategy.
+
+    History is intentionally conservative here. Historical races can be a useful
+    warning that a modelled one-stop is too simple, but it should not force the
+    whole field into the same strategy unless the signal is strong and tyre
+    availability supports it.
+
+    Returns:
+    - applied
+    - confidence label
+    - strength label
+    - reason/blocking explanation
+    """
+
+    if not sequence:
+        return False, "Low", "Low", "No history-based strategy candidate was generated."
+
+    metrics = _history_signal_metrics(history)
+    target_stops = max(len(sequence) - 1, 0)
+    current_stops = max(_strategy_stint_count(row.get("PredictedStrategy")) - 1, 0)
+    stop_delta = target_stops - current_stops
+    estimated_deg = _to_float_or_none(row.get("EstimatedDegPerLap")) or 0.055
+    original_strategy = str(row.get("original_predicted_strategy", row.get("PredictedStrategy", "")))
+    strength = _history_adjustment_strength(metrics, target_stops)
+
+    if candidate_strategy == original_strategy:
+        return False, "Low", strength, "Historical candidate matches the base model strategy."
+
+    if metrics["sample_drivers"] < 12:
+        return (
+            False,
+            "Low",
+            strength,
+            f"Historical sample is too small ({metrics['sample_drivers']} driver-runs).",
+        )
+
+    if stop_delta <= 0:
+        return (
+            False,
+            "Low",
+            strength,
+            "Historical candidate does not add a materially different stop profile.",
+        )
+
+    if stop_delta > 1:
+        return (
+            False,
+            "Low",
+            strength,
+            f"Historical candidate would add {stop_delta} extra stops, which is too aggressive for an automatic override.",
+        )
+
+    if old_count > 1:
+        return (
+            False,
+            "Low",
+            strength,
+            f"Historical candidate would require {old_count} old/unknown sets, so it remains an alternative only.",
+        )
+
+    if risk_score >= 70:
+        return (
+            False,
+            "Low",
+            strength,
+            f"Historical candidate risk is High ({risk_score:.0f}/100), so it remains an alternative only.",
+        )
+
+    if target_stops >= 3:
+        if strength != "High":
+            return (
+                False,
+                "Low",
+                strength,
+                "Three-stop historical signal is not strong enough for an automatic override.",
+            )
+
+        if estimated_deg < 0.075:
+            return (
+                False,
+                "Medium",
+                strength,
+                f"Three-stop candidate needs stronger current degradation evidence; estimated deg is {estimated_deg:.3f}s/lap.",
+            )
+
+        return True, "High", strength, "Strong historical three-stop signal and current degradation support an override."
+
+    if target_stops == 2:
+        average_stops = float(metrics.get("average_stops", 1.0))
+        multi_stop_rate = float(metrics.get("multi_stop_rate", 0.0))
+
+        if strength == "Low":
+            return (
+                False,
+                "Low",
+                strength,
+                "Two-stop historical signal is too weak for an automatic override.",
+            )
+
+        # If current long-run data is weak/defaulted, allow a strong historical
+        # multi-stop signal to correct an over-simple one-stop prediction.
+        if estimated_deg < 0.060 and strength != "High" and average_stops < 1.75 and multi_stop_rate < 0.60:
+            return (
+                False,
+                "Medium",
+                strength,
+                f"Two-stop candidate needs stronger degradation/history evidence; estimated deg is {estimated_deg:.3f}s/lap.",
+            )
+
+        return (
+            True,
+            "Medium",
+            strength,
+            "Historical multi-stop signal supports promoting the base one-stop to a driver-specific two-stop strategy.",
+        )
+
+    return False, "Low", strength, "History candidate is not useful enough to override the base model."
+
+
+def _history_candidate_note(
+    history: dict[str, Any],
+    candidate_strategy: str,
+    applied: bool,
+    confidence: str,
+    strength: str,
+    decision_reason: str,
+) -> str:
+    metrics = _history_signal_metrics(history)
+
+    if not candidate_strategy:
+        return "No usable historical strategy candidate."
+
+    if applied:
+        return (
+            f"History stop-count adjusted from baseline {metrics['years_used']} to {candidate_strategy}; "
+            f"signal={strength}, confidence={confidence}."
+        )
+
+    return (
+        f"Kept base strategy. History suggested {candidate_strategy}, but not applied: "
+        f"{decision_reason}"
+    )
+
+
 def _apply_history_to_strategies(
     strategies: pd.DataFrame,
     history: dict[str, Any],
@@ -802,18 +1146,35 @@ def _apply_history_to_strategies(
         return output
 
     if not history:
+        output["strategy_display_source"] = output.get("strategy_source", "model_estimate")
+        output["visual_key_assumption"] = output.get("strategy_reason", output.get("Notes", "Model estimate."))
         return _order_history_strategy_columns(output)
 
+    metrics = _history_signal_metrics(history)
+
     for index, row in output.iterrows():
+        original_strategy = str(row.get("original_predicted_strategy", row.get("PredictedStrategy", "")))
         sequence = _target_sequence_for_row(row, history)
 
         if sequence is None:
-            output.at[index, "history_adjusted_strategy"] = row.get("PredictedStrategy", "")
-            output.at[index, "HistoryAdjustedStrategy"] = row.get("PredictedStrategy", "")
+            output.at[index, "history_candidate_strategy"] = ""
+            output.at[index, "HistoryCandidateStrategy"] = ""
+            output.at[index, "history_adjusted_strategy"] = original_strategy
+            output.at[index, "HistoryAdjustedStrategy"] = original_strategy
+            output.at[index, "history_adjustment_applied"] = False
+            output.at[index, "HistoryAdjustmentApplied"] = False
+            output.at[index, "strategy_changed_by_history"] = False
+            output.at[index, "StrategyChangedByHistory"] = False
+            output.at[index, "history_adjustment_confidence"] = "Low"
+            output.at[index, "history_adjustment_strength"] = "Low"
+            output.at[index, "history_adjustment_blocked_reason"] = "No strong historical adjustment signal for this row."
+            output.at[index, "history_adjustment_reason"] = "No historical adjustment applied."
+            output.at[index, "HistoryAdjustmentReason"] = "No historical adjustment applied."
+            output.at[index, "strategy_display_source"] = str(row.get("strategy_source", "model_estimate"))
+            output.at[index, "visual_key_assumption"] = str(row.get("strategy_reason", row.get("Notes", "Model estimate.")))
             continue
 
-        original_strategy = str(row.get("original_predicted_strategy", row.get("PredictedStrategy", "")))
-        strategy_text, old_count = _allocate_sequence(sequence, row)
+        candidate_strategy, old_count = _allocate_sequence(sequence, row)
 
         soft_remaining = int(_to_float_or_none(row.get("FreshSoftRemaining")) or 0)
         medium_remaining = int(_to_float_or_none(row.get("FreshMediumRemaining")) or 0)
@@ -832,70 +1193,113 @@ def _apply_history_to_strategies(
 
         risk_score = min(100.0, old_count * 38.0 + shortage_score)
         risk = _risk_label(risk_score)
-
-        history_note = (
-            f"Historical baseline {history.get('years_used', 'N/A')}: "
-            f"avg stops {float(history.get('average_stops', 0.0)):.2f}, "
-            f"2-stop rate {float(history.get('two_stop_rate', 0.0)):.0%}, "
-            f"dominant {history.get('dominant_strategy', 'N/A')}."
-        )
-
-        existing_notes = str(row.get("Notes", "")).strip()
-
-        if existing_notes:
-            notes = f"{existing_notes} {history_note}"
-        else:
-            notes = history_note
-
-        adjustment_reason = _history_adjustment_reason(history, sequence)
-        confidence = "Medium" if old_count > 0 else "High"
-        risk_reason = (
-            f"{adjustment_reason} Tyre availability is still estimated from FastF1 lap/stint data, "
-            "not official FIA/Pirelli allocation data."
-        )
-        changed = strategy_text != original_strategy
         expected_stops = int(max(len(sequence) - 1, 0))
         strategy_type = _history_strategy_type(sequence)
 
-        output.at[index, "PredictedStrategy"] = strategy_text
-        output.at[index, "history_adjusted_strategy"] = strategy_text
-        output.at[index, "HistoryAdjustedStrategy"] = strategy_text
-        output.at[index, "primary_strategy"] = strategy_text
-        output.at[index, "PrimaryStrategy"] = strategy_text
-        output.at[index, "alternative_strategy"] = original_strategy
-        output.at[index, "AlternativeStrategy"] = original_strategy
-        output.at[index, "expected_stops"] = expected_stops
-        output.at[index, "ExpectedStops"] = expected_stops
-        output.at[index, "strategy_type"] = strategy_type
-        output.at[index, "StrategyType"] = strategy_type
-        output.at[index, "LikelyOldTyreUse"] = old_count
-        output.at[index, "OldTyreRiskScore"] = risk_score
-        output.at[index, "OldTyreRisk"] = risk
-        output.at[index, "StrategyConfidence"] = confidence
-        output.at[index, "strategy_confidence"] = confidence
-        output.at[index, "StrategyConfidenceLabel"] = confidence
-        output.at[index, "strategy_source"] = "history_adjusted_model_estimate"
-        output.at[index, "StrategySource"] = "history_adjusted_model_estimate"
-        output.at[index, "risk_level"] = risk
-        output.at[index, "RiskLevel"] = risk
-        output.at[index, "strategy_risk_level"] = risk
-        output.at[index, "StrategyRiskLevel"] = risk
-        output.at[index, "strategy_risk_reason"] = risk_reason
-        output.at[index, "StrategyRiskReason"] = risk_reason
-        output.at[index, "tyre_availability_risk"] = risk
-        output.at[index, "TyreAvailabilityRisk"] = risk
-        output.at[index, "confidence_reason"] = risk_reason
-        output.at[index, "ConfidenceReason"] = risk_reason
-        output.at[index, "history_adjustment_applied"] = True
-        output.at[index, "HistoryAdjustmentApplied"] = True
-        output.at[index, "strategy_changed_by_history"] = changed
-        output.at[index, "StrategyChangedByHistory"] = changed
-        output.at[index, "history_adjustment_reason"] = adjustment_reason
-        output.at[index, "HistoryAdjustmentReason"] = adjustment_reason
+        applied, confidence, strength, decision_reason = _history_adjustment_decision(
+            row=row,
+            history=history,
+            sequence=sequence,
+            candidate_strategy=candidate_strategy,
+            old_count=old_count,
+            risk_score=risk_score,
+        )
+
+        candidate_reason = (
+            f"Historical baseline {metrics['years_used']}: avg stops {metrics['average_stops']:.2f}, "
+            f"multi-stop {metrics.get('multi_stop_rate', metrics['two_stop_rate'] + metrics['three_plus_stop_rate']):.0%}, "
+            f"2-stop {metrics['two_stop_rate']:.0%}, 3+ stop {metrics['three_plus_stop_rate']:.0%}, "
+            f"dominant {metrics['dominant_strategy']}."
+        )
+        visual_note = _history_candidate_note(
+            history=history,
+            candidate_strategy=candidate_strategy,
+            applied=applied,
+            confidence=confidence,
+            strength=strength,
+            decision_reason=decision_reason,
+        )
+
+        existing_notes = str(row.get("Notes", "")).strip()
+        notes = f"{existing_notes} {candidate_reason}".strip() if existing_notes else candidate_reason
+
+        if applied:
+            final_strategy = candidate_strategy
+            final_source = "history_adjusted_model_estimate"
+            final_risk = risk
+            final_risk_score = risk_score
+            final_confidence = confidence
+            final_reason = (
+                f"{_history_adjustment_reason(history, sequence)} "
+                "Tyre availability is still estimated from FastF1 lap/stint data, not official FIA/Pirelli allocation data."
+            )
+            changed = final_strategy != original_strategy
+            alternative_strategy = original_strategy
+        else:
+            final_strategy = original_strategy
+            final_source = str(row.get("strategy_source", "model_estimate"))
+            final_risk = str(row.get("OldTyreRisk", row.get("strategy_risk_level", "Medium")))
+            final_risk_score = _to_float_or_none(row.get("OldTyreRiskScore")) or 0.0
+            final_confidence = str(row.get("strategy_confidence", row.get("StrategyConfidence", "Medium")))
+            final_reason = (
+                f"Historical candidate kept as alternative only. {decision_reason} "
+                "Final strategy remains the base model estimate."
+            )
+            changed = False
+            alternative_strategy = candidate_strategy
+
+        output.at[index, "PredictedStrategy"] = final_strategy
+        output.at[index, "history_candidate_strategy"] = candidate_strategy
+        output.at[index, "HistoryCandidateStrategy"] = candidate_strategy
+        output.at[index, "history_candidate_expected_stops"] = expected_stops
+        output.at[index, "HistoryCandidateExpectedStops"] = expected_stops
+        output.at[index, "history_adjusted_strategy"] = final_strategy
+        output.at[index, "HistoryAdjustedStrategy"] = final_strategy
+        output.at[index, "primary_strategy"] = final_strategy
+        output.at[index, "PrimaryStrategy"] = final_strategy
+        output.at[index, "alternative_strategy"] = alternative_strategy
+        output.at[index, "AlternativeStrategy"] = alternative_strategy
+        output.at[index, "expected_stops"] = int(max(_strategy_stint_count(final_strategy) - 1, 0))
+        output.at[index, "ExpectedStops"] = int(max(_strategy_stint_count(final_strategy) - 1, 0))
+        output.at[index, "strategy_type"] = strategy_type if applied else str(row.get("strategy_type", "model_estimate"))
+        output.at[index, "StrategyType"] = output.at[index, "strategy_type"]
+        output.at[index, "LikelyOldTyreUse"] = old_count if applied else row.get("LikelyOldTyreUse", 0)
+        output.at[index, "OldTyreRiskScore"] = final_risk_score
+        output.at[index, "OldTyreRisk"] = final_risk
+        output.at[index, "StrategyConfidence"] = final_confidence
+        output.at[index, "strategy_confidence"] = final_confidence
+        output.at[index, "StrategyConfidenceLabel"] = final_confidence
+        output.at[index, "strategy_source"] = final_source
+        output.at[index, "StrategySource"] = final_source
+        output.at[index, "risk_level"] = final_risk
+        output.at[index, "RiskLevel"] = final_risk
+        output.at[index, "strategy_risk_level"] = final_risk
+        output.at[index, "StrategyRiskLevel"] = final_risk
+        output.at[index, "strategy_risk_reason"] = final_reason
+        output.at[index, "StrategyRiskReason"] = final_reason
+        output.at[index, "tyre_availability_risk"] = final_risk
+        output.at[index, "TyreAvailabilityRisk"] = final_risk
+        output.at[index, "confidence_reason"] = final_reason
+        output.at[index, "ConfidenceReason"] = final_reason
+        output.at[index, "history_adjustment_applied"] = bool(applied)
+        output.at[index, "HistoryAdjustmentApplied"] = bool(applied)
+        output.at[index, "strategy_changed_by_history"] = bool(changed)
+        output.at[index, "StrategyChangedByHistory"] = bool(changed)
+        output.at[index, "history_adjustment_confidence"] = confidence
+        output.at[index, "HistoryAdjustmentConfidence"] = confidence
+        output.at[index, "history_adjustment_strength"] = strength
+        output.at[index, "HistoryAdjustmentStrength"] = strength
+        output.at[index, "history_adjustment_blocked_reason"] = "" if applied else decision_reason
+        output.at[index, "HistoryAdjustmentBlockedReason"] = "" if applied else decision_reason
+        output.at[index, "history_adjustment_reason"] = visual_note
+        output.at[index, "HistoryAdjustmentReason"] = visual_note
+        output.at[index, "strategy_display_source"] = final_source
+        output.at[index, "StrategyDisplaySource"] = final_source
+        output.at[index, "visual_key_assumption"] = visual_note
+        output.at[index, "VisualKeyAssumption"] = visual_note
         output.at[index, "Notes"] = notes
 
     return _order_history_strategy_columns(output)
-
 
 def apply_historical_strategy_adjustment_to_outputs(
     strategy_csv_path: str,

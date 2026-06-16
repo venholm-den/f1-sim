@@ -7,6 +7,7 @@ from src.colours import get_team_colour
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from matplotlib.patches import Patch
 
 
 DRY_COMPOUNDS = ["HARD", "MEDIUM", "SOFT"]
@@ -693,115 +694,373 @@ def predict_tyre_strategies(
     return _order_strategy_columns(output.reset_index(drop=True))
 
 
+
 def make_strategy_table_image(
     strategies: pd.DataFrame,
     output_path: str = "outputs/strategy/predicted_tyre_strategy.png",
     session: Any | None = None,
 ) -> str:
+    """
+    Builds a visual tyre-strategy report image.
+
+    The image is designed to be readable in Discord/GitHub without opening the CSV:
+    - compound-coloured stint blocks
+    - expected stop count
+    - confidence and risk labels
+    - history-adjustment marker where available
+    - short strategy caveat/notes
+    """
     _ensure_outputs()
 
     if strategies.empty:
         raise ValueError("No predicted tyre strategy data available")
 
+    compound_colours = {
+        "SOFT": "#ef4444",
+        "MEDIUM": "#facc15",
+        "HARD": "#f8fafc",
+        "INTERMEDIATE": "#22c55e",
+        "WET": "#3b82f6",
+        "UNKNOWN": "#9ca3af",
+    }
+
+    def compound_colour(compound: str) -> str:
+        return compound_colours.get(str(compound).upper(), compound_colours["UNKNOWN"])
+
+    def compound_from_segment(segment: Any) -> str:
+        text = str(segment).upper()
+        if "SOFT" in text or text.strip() == "S":
+            return "SOFT"
+        if "MEDIUM" in text or text.strip() == "M":
+            return "MEDIUM"
+        if "HARD" in text or text.strip() == "H":
+            return "HARD"
+        if "INTER" in text or text.strip() in {"I", "INT"}:
+            return "INTERMEDIATE"
+        if "WET" in text or text.strip() == "W":
+            return "WET"
+        return "UNKNOWN"
+
+    def segment_label(segment: Any) -> str:
+        compound = compound_from_segment(segment)
+        short = {
+            "SOFT": "S",
+            "MEDIUM": "M",
+            "HARD": "H",
+            "INTERMEDIATE": "I",
+            "WET": "W",
+            "UNKNOWN": "?",
+        }.get(compound, "?")
+
+        text = str(segment).lower()
+        if "used/unknown" in text:
+            return f"{short}?"
+        if "used" in text:
+            return f"{short}u"
+        if "new" in text:
+            return f"{short}n"
+        return short
+
+    def parse_strategy(strategy_text: Any) -> list[str]:
+        text = str(strategy_text).strip()
+
+        if not text or text.lower() in {"nan", "none"}:
+            return ["Unknown"]
+
+        for separator in ["→", "->", ">"]:
+            if separator in text:
+                return [part.strip() for part in text.split(separator) if part.strip()]
+
+        if "-" in text and any(compound in text.upper() for compound in ["SOFT", "MEDIUM", "HARD", "INTER", "WET"]):
+            return [part.strip() for part in text.split("-") if part.strip()]
+
+        return [text]
+
+    def first_text(row: pd.Series, columns: list[str], default: str = "") -> str:
+        for column in columns:
+            if column in row.index and pd.notna(row.get(column)):
+                value = str(row.get(column)).strip()
+                if value and value.lower() not in {"nan", "none"}:
+                    return value
+        return default
+
+    def boolish(value: Any) -> bool:
+        return str(value).strip().lower() in {"true", "1", "yes", "y"}
+
+    def history_changed(row: pd.Series) -> bool:
+        explicit = first_text(
+            row,
+            ["strategy_changed_by_history", "history_adjustment_applied"],
+            default="",
+        )
+
+        if explicit:
+            return boolish(explicit)
+
+        original = first_text(row, ["original_predicted_strategy"], default="")
+        adjusted = first_text(row, ["history_adjusted_strategy", "PredictedStrategy"], default="")
+
+        return bool(original and adjusted and original != adjusted)
+
+    def truncate(text: Any, max_len: int) -> str:
+        value = " ".join(str(text).replace(chr(10), " ").split())
+        if len(value) <= max_len:
+            return value
+        return value[: max_len - 1].rstrip() + "…"
+
+    def stops_text(row: pd.Series, segments: list[str]) -> str:
+        explicit = _to_float_or_none(row.get("expected_stops"))
+
+        if explicit is None:
+            explicit = _to_float_or_none(row.get("ExpectedStops"))
+
+        if explicit is None:
+            stop_count = max(len(segments) - 1, 0)
+        else:
+            stop_count = int(round(explicit))
+
+        return "1 stop" if stop_count == 1 else f"{stop_count} stops"
+
     display = strategies.copy()
+
     display["GridPosition"] = pd.to_numeric(
         display.get("GridPosition"),
         errors="coerce",
     )
-    display = display.sort_values("GridPosition", ascending=True).copy()
 
-    def _int_or_zero(value: Any) -> int:
-        number = _to_float_or_none(value)
-        return int(number) if number is not None else 0
+    if display["GridPosition"].notna().any():
+        display = display.sort_values("GridPosition", ascending=True).copy()
 
-    title = "Predicted tyre strategy and old-tyre risk"
-    subtitle_1 = "H/M/S = estimated fresh dry sets remaining."
-    subtitle_2 = "Tyre availability/confidence is estimated, not official FIA/Pirelli barcode data."
+    display = display.head(22).reset_index(drop=True)
 
-    header = (
-        f"{'DR':<4} "
-        f"{'Team':<12} "
-        f"{'Grid':<5} "
-        f"{'Strategy':<42} "
-        f"{'Risk':<6} "
-        f"{'H':>2} {'M':>2} {'S':>2} "
-        f"{'Conf':<6}"
-    )
-
-    rows: list[tuple[str, str]] = []
-
-    for _, row in display.iterrows():
-        driver = str(row.get("Driver", ""))
-        team = str(row.get("Team", ""))
-        grid_value = _to_float_or_none(row.get("GridPosition"))
-        grid = f"P{int(round(grid_value))}" if grid_value is not None else str(row.get("Grid", "N/A"))
-
-        strategy = str(row.get("PredictedStrategy", "N/A"))
-        risk = str(row.get("OldTyreRisk", "N/A"))
-        confidence = str(row.get("StrategyConfidence", "N/A"))
-
-        h = _int_or_zero(row.get("FreshHardRemaining"))
-        m = _int_or_zero(row.get("FreshMediumRemaining"))
-        s = _int_or_zero(row.get("FreshSoftRemaining"))
-
-        line = (
-            f"{driver:<4} "
-            f"{team:<12.12} "
-            f"{grid:<5} "
-            f"{strategy:<42.42} "
-            f"{risk:<6} "
-            f"{h:>2} {m:>2} {s:>2} "
-            f"{confidence:<6}"
+    strategy_segments = [
+        parse_strategy(
+            first_text(
+                row,
+                ["history_adjusted_strategy", "PredictedStrategy", "primary_strategy", "PrimaryStrategy"],
+                default="Unknown",
+            )
         )
+        for _, row in display.iterrows()
+    ]
 
-        rows.append((line, get_team_colour(team, session=session)))
+    max_segments = max([len(segments) for segments in strategy_segments] + [2])
+    n_rows = len(display)
 
-    line_count = len(rows) + 7
-    fig_height = max(7.0, line_count * 0.34)
-    fig_width = 18
+    fig_width = 22
+    fig_height = max(8.2, 2.4 + n_rows * 0.58)
 
     fig, ax = plt.subplots(figsize=(fig_width, fig_height))
     fig.patch.set_facecolor("#30343b")
     ax.set_facecolor("#30343b")
     ax.axis("off")
 
-    y = 0.98
-    line_gap = 0.035
+    segment_width = 1.10
+    segment_gap = 0.08
+    timeline_width = max_segments * (segment_width + segment_gap)
 
-    def draw_line(
-        text: str,
-        colour: str = "#f8fafc",
-        fontsize: float = 12.0,
-        weight: str = "normal",
-        extra_gap: float = 0.0,
-    ) -> None:
-        nonlocal y
+    x_driver = -4.25
+    x_grid = -3.10
+    x_timeline = -2.35
+    x_stops = x_timeline + timeline_width + 0.35
+    x_conf = x_stops + 1.25
+    x_risk = x_conf + 1.35
+    x_hist = x_risk + 1.25
+    x_notes = x_hist + 1.10
 
+    y_top = n_rows + 1.25
+
+    ax.text(
+        0.01,
+        0.985,
+        "Predicted Tyre Strategies",
+        transform=ax.transAxes,
+        ha="left",
+        va="top",
+        color="#f8fafc",
+        fontsize=18,
+        fontweight="bold",
+    )
+    ax.text(
+        0.01,
+        0.945,
+        "Colour blocks show predicted stint sequence. Tyre availability is estimated from FastF1 lap/stint data, not official FIA/Pirelli barcode data.",
+        transform=ax.transAxes,
+        ha="left",
+        va="top",
+        color="#d1d5db",
+        fontsize=10.5,
+    )
+
+    headers = [
+        (x_driver, "Driver"),
+        (x_grid, "Grid"),
+        (x_timeline, "Stints"),
+        (x_stops, "Stops"),
+        (x_conf, "Conf"),
+        (x_risk, "Risk"),
+        (x_hist, "Hist"),
+        (x_notes, "Key assumption"),
+    ]
+
+    for x, text in headers:
         ax.text(
-            0.015,
-            y,
+            x,
+            y_top,
             text,
-            va="top",
             ha="left",
-            family="DejaVu Sans Mono",
-            fontsize=fontsize,
-            color=colour,
-            fontweight=weight,
-            transform=ax.transAxes,
+            va="center",
+            color="#f8fafc",
+            fontsize=10.5,
+            fontweight="bold",
         )
 
-        y -= line_gap + extra_gap
+    ax.hlines(y_top - 0.36, x_driver, x_notes + 6.5, color="#6b7280", linewidth=1.0, alpha=0.7)
 
-    draw_line(title, fontsize=15, weight="bold")
-    draw_line("=" * len(title), fontsize=12, extra_gap=0.012)
-    draw_line(header, fontsize=11.5, weight="bold")
+    for idx, (_, row) in enumerate(display.iterrows()):
+        y = n_rows - idx
+        team = str(row.get("Team", ""))
+        driver = str(row.get("Driver", ""))
+        team_colour = get_team_colour(team, session=session)
 
-    for line, colour in rows:
-        draw_line(line, colour=colour, fontsize=11.5)
+        if idx % 2 == 0:
+            ax.axhspan(y - 0.33, y + 0.33, color="#252932", alpha=0.55, linewidth=0)
 
-    y -= 0.015
-    draw_line(subtitle_1, fontsize=10.5)
-    draw_line(subtitle_2, fontsize=10.5)
+        grid_value = _to_float_or_none(row.get("GridPosition"))
+        grid = f"P{int(round(grid_value))}" if grid_value is not None else str(row.get("Grid", "N/A"))
+
+        segments = strategy_segments[idx]
+
+        ax.text(
+            x_driver,
+            y,
+            driver,
+            ha="left",
+            va="center",
+            color=team_colour,
+            fontsize=10.5,
+            fontweight="bold",
+        )
+        ax.text(
+            x_grid,
+            y,
+            grid,
+            ha="left",
+            va="center",
+            color="#d1d5db",
+            fontsize=9.7,
+        )
+
+        x = x_timeline
+
+        for segment in segments:
+            compound = compound_from_segment(segment)
+            colour = compound_colour(compound)
+            label = segment_label(segment)
+            text_colour = "#111827" if compound in {"MEDIUM", "HARD"} else "white"
+
+            ax.barh(
+                y,
+                segment_width,
+                left=x,
+                height=0.46,
+                color=colour,
+                edgecolor="#111827",
+                linewidth=1.0,
+            )
+            ax.text(
+                x + segment_width / 2,
+                y,
+                label,
+                ha="center",
+                va="center",
+                color=text_colour,
+                fontsize=9.0,
+                fontweight="bold",
+            )
+
+            x += segment_width + segment_gap
+
+        stops = stops_text(row, segments)
+        confidence = first_text(
+            row,
+            ["strategy_confidence", "StrategyConfidenceLabel", "StrategyConfidence"],
+            default="N/A",
+        )
+        risk = first_text(
+            row,
+            ["strategy_risk_level", "RiskLevel", "OldTyreRisk", "risk_level"],
+            default="N/A",
+        )
+        hist = "Yes" if history_changed(row) else "No"
+
+        note = first_text(
+            row,
+            [
+                "visual_key_assumption",
+                "history_adjustment_blocked_reason",
+                "history_adjustment_reason",
+                "strategy_reason",
+                "StrategyReason",
+                "strategy_risk_reason",
+                "confidence_reason",
+                "Notes",
+            ],
+            default="Estimated tyre strategy.",
+        )
+
+        risk_colour = {
+            "Low": "#22c55e",
+            "Medium": "#facc15",
+            "High": "#ef4444",
+        }.get(risk, "#d1d5db")
+        confidence_colour = {
+            "High": "#22c55e",
+            "Medium": "#facc15",
+            "Low": "#ef4444",
+        }.get(confidence, "#d1d5db")
+        hist_colour = "#facc15" if hist == "Yes" else "#d1d5db"
+
+        ax.text(x_stops, y, stops, ha="left", va="center", color="#f8fafc", fontsize=9.3)
+        ax.text(x_conf, y, confidence, ha="left", va="center", color=confidence_colour, fontsize=9.3, fontweight="bold")
+        ax.text(x_risk, y, risk, ha="left", va="center", color=risk_colour, fontsize=9.3, fontweight="bold")
+        ax.text(x_hist, y, hist, ha="left", va="center", color=hist_colour, fontsize=9.3, fontweight="bold")
+        ax.text(x_notes, y, truncate(note, 70), ha="left", va="center", color="#d1d5db", fontsize=8.6)
+
+    legend_handles = [
+        Patch(facecolor=compound_colour("SOFT"), edgecolor="#111827", label="Soft"),
+        Patch(facecolor=compound_colour("MEDIUM"), edgecolor="#111827", label="Medium"),
+        Patch(facecolor=compound_colour("HARD"), edgecolor="#111827", label="Hard"),
+        Patch(facecolor=compound_colour("INTERMEDIATE"), edgecolor="#111827", label="Inter"),
+        Patch(facecolor=compound_colour("WET"), edgecolor="#111827", label="Wet"),
+        Patch(facecolor=compound_colour("UNKNOWN"), edgecolor="#111827", label="Unknown"),
+    ]
+
+    ax.legend(
+        handles=legend_handles,
+        facecolor="#30343b",
+        edgecolor="#6b7280",
+        labelcolor="#f8fafc",
+        loc="lower left",
+        bbox_to_anchor=(0.01, -0.035),
+        ncol=6,
+        framealpha=1.0,
+        fontsize=9.0,
+    )
+
+    ax.text(
+        0.99,
+        -0.025,
+        "Labels: n=new, u=used, ?=used/unknown",
+        transform=ax.transAxes,
+        ha="right",
+        va="bottom",
+        color="#d1d5db",
+        fontsize=9.0,
+    )
+
+    ax.set_xlim(x_driver - 0.15, x_notes + 7.2)
+    ax.set_ylim(-0.35, n_rows + 2.05)
 
     plt.savefig(
         output_path,
