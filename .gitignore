@@ -37,6 +37,11 @@ assets/images-jpg/
 outputs/
 outputs_lap_details_*.csv
 
+# PyInstaller artifacts
+build/
+dist/
+*.spec
+
 # Temporary/local notes
 notes.txt
 *.tmp

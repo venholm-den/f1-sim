@@ -137,6 +137,39 @@ Recommended weekend rhythm:
 For sprint weekends, run the same flow after `SQ` and again after `S` if sprint data should influence the race read.
 Do not run `python -m src.backtest` until FastF1 race results are available.
 
+### Run the desktop GUI
+
+```powershell
+python app_gui.py
+```
+
+The GUI wraps the same simulation pipeline as `main.py`.
+It lets you set the year, event, session, simulation count, output folder, output toggles, and Discord posting before starting a run.
+The run log is streamed into the app window.
+
+### Build a Windows GUI executable
+
+Install development dependencies first:
+
+```powershell
+pip install -r requirements-dev.txt
+```
+
+Then build the GUI app:
+
+```powershell
+.\scripts\build_windows_gui_exe.ps1
+```
+
+The build output is written to:
+
+```text
+dist\F1SimGUI\F1SimGUI.exe
+```
+
+The first packaged version is a folder-style app, not a single-file installer.
+Keep the generated `dist\F1SimGUI` folder together when sharing it.
+
 ### Generate data-source roadmap artifacts
 
 ```powershell
