@@ -600,13 +600,59 @@ def _risk_label(score: float) -> str:
     return "Low"
 
 
+
+def _history_adjustment_reason(history: dict[str, Any], sequence: list[str] | None) -> str:
+    if sequence is None:
+        return "No historical adjustment applied."
+
+    return (
+        f"Adjusted using historical strategy baseline {history.get('years_used', 'N/A')}; "
+        f"average stops {float(history.get('average_stops', 0.0)):.2f}, "
+        f"dominant strategy {history.get('dominant_strategy', 'N/A')}."
+    )
+
+
 def _apply_history_to_strategies(
     strategies: pd.DataFrame,
     history: dict[str, Any],
 ) -> pd.DataFrame:
     output = strategies.copy()
 
-    if output.empty or not history:
+    if output.empty:
+        return output
+
+    if "OriginalPredictedStrategy" not in output.columns:
+        output["OriginalPredictedStrategy"] = output.get("PredictedStrategy", "")
+
+    if "original_predicted_strategy" not in output.columns:
+        output["original_predicted_strategy"] = output.get("PredictedStrategy", "")
+
+    output["history_adjustment_applied"] = False
+    output["HistoryAdjustmentApplied"] = False
+    output["history_adjustment_reason"] = "No historical adjustment applied."
+    output["HistoryAdjustmentReason"] = "No historical adjustment applied."
+
+    if "strategy_source" not in output.columns:
+        output["strategy_source"] = "model_estimate"
+
+    if "StrategySource" not in output.columns:
+        output["StrategySource"] = "model_estimate"
+
+    if "strategy_risk_reason" not in output.columns:
+        output["strategy_risk_reason"] = (
+            "Strategy depends on estimated tyre availability and modelled degradation assumptions."
+        )
+
+    if "StrategyRiskReason" not in output.columns:
+        output["StrategyRiskReason"] = output["strategy_risk_reason"]
+
+    if "tyre_availability_risk" not in output.columns and "OldTyreRisk" in output.columns:
+        output["tyre_availability_risk"] = output["OldTyreRisk"]
+
+    if "TyreAvailabilityRisk" not in output.columns and "OldTyreRisk" in output.columns:
+        output["TyreAvailabilityRisk"] = output["OldTyreRisk"]
+
+    if not history:
         return output
 
     for index, row in output.iterrows():
@@ -649,11 +695,34 @@ def _apply_history_to_strategies(
         else:
             notes = history_note
 
+        adjustment_reason = _history_adjustment_reason(history, sequence)
+        confidence = "Medium" if old_count > 0 else "High"
+        risk_reason = (
+            f"{adjustment_reason} Tyre availability is still estimated from FastF1 lap/stint data, "
+            "not official FIA/Pirelli allocation data."
+        )
+
         output.at[index, "PredictedStrategy"] = strategy_text
         output.at[index, "LikelyOldTyreUse"] = old_count
         output.at[index, "OldTyreRiskScore"] = risk_score
         output.at[index, "OldTyreRisk"] = risk
-        output.at[index, "StrategyConfidence"] = "Medium" if old_count > 0 else "High"
+        output.at[index, "StrategyConfidence"] = confidence
+        output.at[index, "strategy_confidence"] = confidence
+        output.at[index, "StrategyConfidenceLabel"] = confidence
+        output.at[index, "strategy_source"] = "history_adjusted_model_estimate"
+        output.at[index, "StrategySource"] = "history_adjusted_model_estimate"
+        output.at[index, "strategy_risk_level"] = risk
+        output.at[index, "StrategyRiskLevel"] = risk
+        output.at[index, "strategy_risk_reason"] = risk_reason
+        output.at[index, "StrategyRiskReason"] = risk_reason
+        output.at[index, "tyre_availability_risk"] = risk
+        output.at[index, "TyreAvailabilityRisk"] = risk
+        output.at[index, "confidence_reason"] = risk_reason
+        output.at[index, "ConfidenceReason"] = risk_reason
+        output.at[index, "history_adjustment_applied"] = True
+        output.at[index, "HistoryAdjustmentApplied"] = True
+        output.at[index, "history_adjustment_reason"] = adjustment_reason
+        output.at[index, "HistoryAdjustmentReason"] = adjustment_reason
         output.at[index, "Notes"] = notes
 
     return output

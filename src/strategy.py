@@ -26,6 +26,46 @@ RISK_ORDER = {
 }
 
 
+def _confidence_from_risk(risk: str, rainfall_flag: bool = False) -> str:
+    if rainfall_flag:
+        return "Low"
+    if risk == "Low":
+        return "High"
+    if risk == "High":
+        return "Medium"
+    return "Medium"
+
+
+def _strategy_risk_reason(
+    old_tyre_count: int,
+    old_tyre_risk: str,
+    rainfall_flag: bool,
+) -> str:
+    if rainfall_flag:
+        return (
+            "Weather/rain flag is active, so dry tyre strategy is uncertain. "
+            "Tyre availability remains estimated rather than official FIA/Pirelli data."
+        )
+
+    if old_tyre_count > 0:
+        return (
+            f"Strategy likely uses {old_tyre_count} old/unknown dry set(s). "
+            "Tyre availability is estimated from FastF1 lap/stint data, not official FIA/Pirelli allocation data."
+        )
+
+    if old_tyre_risk == "Low":
+        return (
+            "Model found enough estimated fresh dry tyre availability for the selected strategy. "
+            "Confidence is still capped because inventory is not official FIA/Pirelli barcode data."
+        )
+
+    return (
+        "Strategy depends on estimated tyre inventory and modelled degradation assumptions. "
+        "It is not based on official FIA/Pirelli tyre allocation data."
+    )
+
+
+
 def _ensure_outputs() -> None:
     Path("outputs/strategy").mkdir(parents=True, exist_ok=True)
 
@@ -80,6 +120,10 @@ def _get_driver_compound_inventory(
             "observed_laps": 0,
             "likely_new_sets_used": 0,
             "max_tyre_life_seen": np.nan,
+            "tyre_data_source": "unknown",
+            "tyre_confidence": "Low",
+            "inventory_confidence": "Low",
+            "tyre_confidence_reason": "No tyre inventory row was available for this driver/compound.",
         }
 
     row = rows.iloc[0]
@@ -92,6 +136,13 @@ def _get_driver_compound_inventory(
         "observed_laps": int(max(_to_float_or_none(row.get("observed_laps")) or 0, 0)),
         "likely_new_sets_used": int(max(_to_float_or_none(row.get("likely_new_sets_used")) or 0, 0)),
         "max_tyre_life_seen": row.get("max_tyre_life_seen"),
+        "tyre_data_source": row.get("tyre_data_source", "fastf1_lap_stint_data"),
+        "tyre_confidence": row.get("tyre_confidence", "Medium"),
+        "inventory_confidence": row.get("inventory_confidence", row.get("tyre_confidence", "Medium")),
+        "tyre_confidence_reason": row.get(
+            "tyre_confidence_reason",
+            "Estimated from FastF1 lap/stint data, not official FIA/Pirelli allocation data.",
+        ),
     }
 
 
@@ -254,6 +305,23 @@ def predict_driver_strategy(
         for compound in DRY_COMPOUNDS
     }
 
+    inventory_confidences = [
+        str(compound_inventory[compound].get("inventory_confidence", "Medium"))
+        for compound in DRY_COMPOUNDS
+    ]
+
+    if "Low" in inventory_confidences:
+        inventory_confidence = "Low"
+    elif "Medium" in inventory_confidences:
+        inventory_confidence = "Medium"
+    else:
+        inventory_confidence = "High"
+
+    tyre_data_source = "fastf1_lap_stint_data"
+    tyre_confidence_reason = (
+        "Tyre inventory is estimated from FastF1 lap/stint data, not official FIA/Pirelli allocation data."
+    )
+
     degradation = _driver_long_run_degradation(long_run_summary, driver)
 
     if degradation is None:
@@ -342,6 +410,18 @@ def predict_driver_strategy(
         if fresh_soft <= 1:
             notes += " Low fresh-soft buffer for quali/late race."
 
+    strategy_risk_reason = _strategy_risk_reason(
+        old_tyre_count=old_tyre_count,
+        old_tyre_risk=old_tyre_risk,
+        rainfall_flag=rainfall_flag,
+    )
+
+    confidence_reason = (
+        f"Strategy confidence is {confidence}. "
+        f"Inventory confidence is {inventory_confidence}. "
+        f"{strategy_risk_reason}"
+    )
+
     return {
         "Driver": driver,
         "Team": team,
@@ -363,6 +443,24 @@ def predict_driver_strategy(
         "AvgRacePoints": avg_race_points,
         "WinChance": win_chance,
         "PodiumChance": podium_chance,
+        "strategy_source": "model_estimate",
+        "StrategySource": "model_estimate",
+        "tyre_data_source": tyre_data_source,
+        "TyreDataSource": tyre_data_source,
+        "inventory_confidence": inventory_confidence,
+        "InventoryConfidence": inventory_confidence,
+        "strategy_confidence": confidence,
+        "StrategyConfidenceLabel": confidence,
+        "confidence_reason": confidence_reason,
+        "ConfidenceReason": confidence_reason,
+        "strategy_risk_level": old_tyre_risk,
+        "StrategyRiskLevel": old_tyre_risk,
+        "strategy_risk_reason": strategy_risk_reason,
+        "StrategyRiskReason": strategy_risk_reason,
+        "tyre_availability_risk": old_tyre_risk,
+        "TyreAvailabilityRisk": old_tyre_risk,
+        "tyre_confidence_reason": tyre_confidence_reason,
+        "TyreConfidenceReason": tyre_confidence_reason,
         "Notes": notes,
     }
 
@@ -430,7 +528,7 @@ def make_strategy_table_image(
 
     title = "Predicted tyre strategy and old-tyre risk"
     subtitle_1 = "H/M/S = estimated fresh dry sets remaining."
-    subtitle_2 = "Tyre availability is estimated, not official barcode data."
+    subtitle_2 = "Tyre availability/confidence is estimated, not official FIA/Pirelli barcode data."
 
     header = (
         f"{'DR':<4} "

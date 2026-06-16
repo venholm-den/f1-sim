@@ -126,6 +126,34 @@ def _load_strategy_df(strategy_csv_path: str | None) -> pd.DataFrame:
     return strategies
 
 
+
+def _strategy_confidence_value(row: pd.Series) -> str:
+    for column in ["strategy_confidence", "StrategyConfidenceLabel", "StrategyConfidence"]:
+        if column in row.index and pd.notna(row.get(column)):
+            text = str(row.get(column)).strip()
+            if text:
+                return text
+    return "N/A"
+
+
+def _strategy_source_value(row: pd.Series) -> str:
+    for column in ["strategy_source", "StrategySource"]:
+        if column in row.index and pd.notna(row.get(column)):
+            text = str(row.get(column)).strip()
+            if text:
+                return text
+    return "model_estimate"
+
+
+def _strategy_risk_reason_value(row: pd.Series) -> str:
+    for column in ["strategy_risk_reason", "StrategyRiskReason", "confidence_reason", "ConfidenceReason"]:
+        if column in row.index and pd.notna(row.get(column)):
+            text = str(row.get(column)).strip()
+            if text:
+                return text
+    return "Tyre availability is estimated, not official FIA/Pirelli allocation data."
+
+
 def _strategy_compound(segment: str) -> str:
     text = str(segment).strip().upper()
 
@@ -204,7 +232,8 @@ def _headline_notes(
         high_risk = strategies.sort_values("OldTyreRiskScore", ascending=False).iloc[0]
         notes.append(
             f"Highest tyre risk: {high_risk['Driver']} — "
-            f"{high_risk.get('OldTyreRisk', 'N/A')}"
+            f"{high_risk.get('OldTyreRisk', 'N/A')} "
+            f"(confidence {_strategy_confidence_value(high_risk)})"
         )
 
     return notes
@@ -360,7 +389,8 @@ def _build_strategy_rows(
         f"{'DR':<4} "
         f"{'Grid':<5} "
         f"{'Risk':<6} "
-        f"{'Strategy':<42}"
+        f"{'Conf':<6} "
+        f"{'Strategy':<36}"
     )
 
     if strategies.empty:
@@ -384,13 +414,15 @@ def _build_strategy_rows(
         team = str(row.get("Team", ""))
         grid = str(row.get("Grid", _fmt_grid(row.get("GridPosition"))))
         risk = str(row.get("OldTyreRisk", "N/A"))
+        confidence = _strategy_confidence_value(row)
         strategy = str(row.get("PredictedStrategy", "N/A"))
 
         line = (
             f"{str(row.get('Driver', '')):<4} "
             f"{grid:<5} "
             f"{risk:<6} "
-            f"{strategy:<42.42}"
+            f"{confidence:<6} "
+            f"{strategy:<36.36}"
         )
 
         rows.append((line, team))
@@ -537,7 +569,7 @@ def make_race_dashboard(
     ax_strategy.text(
         0.01,
         0.10,
-        "Tyre strategy is estimated from observed stint/lap data.",
+        "Tyre strategy and tyre availability are estimated from FastF1 stint/lap data, not official FIA/Pirelli allocation data.",
         va="top",
         ha="left",
         family="DejaVu Sans Mono",

@@ -49,6 +49,63 @@ def _boolish(value: Any) -> bool:
     return str(value).strip().lower() in {"true", "1", "yes", "y"}
 
 
+
+def _confidence_label(score: float) -> str:
+    if score >= 0.75:
+        return "High"
+    if score >= 0.45:
+        return "Medium"
+    return "Low"
+
+
+def _tyre_confidence_score(
+    fresh_flag: bool,
+    start_tyre_life: float,
+    end_tyre_life: float,
+    observed_laps: int,
+) -> float:
+    """
+    Confidence score for inferred tyre-set status.
+
+    This is intentionally capped below 1.0 because FastF1 stint/lap data is not
+    official FIA/Pirelli barcode-level tyre allocation data.
+    """
+    score = 0.45
+
+    if fresh_flag:
+        score += 0.20
+
+    if np.isfinite(start_tyre_life):
+        score += 0.12
+
+    if np.isfinite(end_tyre_life):
+        score += 0.08
+
+    if observed_laps >= 3:
+        score += 0.08
+
+    return float(min(score, 0.85))
+
+
+def _tyre_confidence_reason(source: str, confidence: str) -> str:
+    if source == "observed_fastf1_fresh_tyre":
+        return (
+            f"{confidence} confidence from FastF1 FreshTyre/lap-stint data. "
+            "Not official FIA/Pirelli tyre allocation data."
+        )
+
+    if source == "inferred_from_tyre_life":
+        return (
+            f"{confidence} confidence inferred from low TyreLife at stint start. "
+            "Not official FIA/Pirelli tyre allocation data."
+        )
+
+    return (
+        f"{confidence} confidence estimate from FastF1 lap/stint data. "
+        "Set status is not official FIA/Pirelli tyre allocation data."
+    )
+
+
 def infer_tyre_usage(
     lap_details: pd.DataFrame,
     sprint_weekend: bool = False,
@@ -104,6 +161,22 @@ def infer_tyre_usage(
         if np.isfinite(start_tyre_life) and start_tyre_life <= 2:
             likely_new_set = True
 
+        observed_laps = int(len(group))
+        confidence_score = _tyre_confidence_score(
+            fresh_flag=fresh_flag,
+            start_tyre_life=start_tyre_life,
+            end_tyre_life=end_tyre_life,
+            observed_laps=observed_laps,
+        )
+        confidence = _confidence_label(confidence_score)
+
+        if fresh_flag:
+            set_status_source = "observed_fastf1_fresh_tyre"
+        elif likely_new_set:
+            set_status_source = "inferred_from_tyre_life"
+        else:
+            set_status_source = "estimated_from_lap_stint_data"
+
         rows.append(
             {
                 "Driver": driver,
@@ -111,10 +184,10 @@ def infer_tyre_usage(
                 "Session": session,
                 "Stint": stint,
                 "Compound": compound,
-                "observed_laps": int(len(group)),
+                "observed_laps": observed_laps,
                 "clean_push_laps": int(group["CleanPushLap"].fillna(False).astype(bool).sum())
                 if "CleanPushLap" in group.columns
-                else int(len(group)),
+                else observed_laps,
                 "first_lap_number": group["LapNumber"].min(),
                 "last_lap_number": group["LapNumber"].max(),
                 "start_tyre_life": start_tyre_life,
@@ -122,6 +195,15 @@ def infer_tyre_usage(
                 "fresh_tyre_flag": fresh_flag,
                 "likely_new_set": likely_new_set,
                 "set_status_estimate": "new" if likely_new_set else "reused/unknown",
+                "tyre_data_source": "fastf1_lap_stint_data",
+                "set_status_source": set_status_source,
+                "tyre_confidence_score": confidence_score,
+                "tyre_confidence": confidence,
+                "inventory_confidence": confidence,
+                "tyre_confidence_reason": _tyre_confidence_reason(
+                    set_status_source,
+                    confidence,
+                ),
             }
         )
 
@@ -186,6 +268,15 @@ def infer_tyre_usage(
                     "clean_push_laps": clean_laps,
                     "max_tyre_life_seen": max_tyre_life,
                     "note": "Estimated from FastF1 laps, not official tyre barcode data.",
+                    "tyre_data_source": "fastf1_lap_stint_data",
+                    "set_status_source": "estimated_inventory_from_lap_stints",
+                    "tyre_confidence_score": 0.65 if observed_stints > 0 else 0.40,
+                    "tyre_confidence": _confidence_label(0.65 if observed_stints > 0 else 0.40),
+                    "inventory_confidence": _confidence_label(0.65 if observed_stints > 0 else 0.40),
+                    "tyre_confidence_reason": (
+                        "Inventory is estimated from FastF1 lap/stint data and assumed dry allocation. "
+                        "It is not official FIA/Pirelli tyre barcode data."
+                    ),
                 }
             )
 
