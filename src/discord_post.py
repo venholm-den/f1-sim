@@ -1,211 +1,179 @@
 from __future__ import annotations
 
 import json
+import mimetypes
 import os
-from contextlib import ExitStack
+import uuid
 from pathlib import Path
 from typing import Any
-
-import requests
-
-
-DISCORD_MESSAGE_LIMIT = 2000
-SAFE_MESSAGE_LIMIT = 1850
-MAX_FILES_PER_MESSAGE = 10
+from urllib.error import HTTPError, URLError
+from urllib.request import Request, urlopen
 
 
-def _get_webhook_url(webhook_url: str | None = None) -> str:
-    url = webhook_url or os.getenv("DISCORD_WEBHOOK_URL", "")
-    url = url.strip()
-
-    if not url:
-        raise ValueError(
-            "No Discord webhook URL found. Add DISCORD_WEBHOOK_URL to your .env file."
-        )
-
-    return url
+def _guess_content_type(path: Path) -> str:
+    guessed, _ = mimetypes.guess_type(str(path))
+    return guessed or "application/octet-stream"
 
 
-def _chunk_message(message: str) -> list[str]:
-    text = str(message or "").strip()
+def _multipart_body(
+    fields: dict[str, str],
+    file_paths: list[str | Path],
+) -> tuple[bytes, str]:
+    boundary = f"----f1-sim-{uuid.uuid4().hex}"
+    chunks: list[bytes] = []
 
-    if not text:
-        return []
+    for name, value in fields.items():
+        chunks.append(f"--{boundary}\r\n".encode("utf-8"))
+        chunks.append(f'Content-Disposition: form-data; name="{name}"\r\n\r\n'.encode("utf-8"))
+        chunks.append(str(value).encode("utf-8"))
+        chunks.append(b"\r\n")
 
-    chunks: list[str] = []
-    current = ""
-
-    for line in text.splitlines():
-        candidate = f"{current}\n{line}" if current else line
-
-        if len(candidate) <= SAFE_MESSAGE_LIMIT:
-            current = candidate
-            continue
-
-        if current:
-            chunks.append(current)
-
-        if len(line) <= SAFE_MESSAGE_LIMIT:
-            current = line
-        else:
-            for i in range(0, len(line), SAFE_MESSAGE_LIMIT):
-                chunks.append(line[i : i + SAFE_MESSAGE_LIMIT])
-            current = ""
-
-    if current:
-        chunks.append(current)
-
-    return chunks
-
-
-def _existing_files(files: list[str] | tuple[str, ...] | None) -> list[str]:
-    if not files:
-        return []
-
-    valid_files: list[str] = []
-
-    for file_path in files:
+    for index, file_path in enumerate(file_paths):
         path = Path(file_path)
+        filename = path.name
+        content_type = _guess_content_type(path)
 
-        if path.exists() and path.is_file():
-            valid_files.append(str(path))
-        else:
-            print(f"Discord attachment skipped, file not found: {file_path}")
+        chunks.append(f"--{boundary}\r\n".encode("utf-8"))
+        chunks.append(
+            (
+                f'Content-Disposition: form-data; name="files[{index}]"; '
+                f'filename="{filename}"\r\n'
+            ).encode("utf-8")
+        )
+        chunks.append(f"Content-Type: {content_type}\r\n\r\n".encode("utf-8"))
+        chunks.append(path.read_bytes())
+        chunks.append(b"\r\n")
 
-    return valid_files
-
-
-def _raise_for_discord_error(response: requests.Response) -> None:
-    if response.status_code in {200, 204}:
-        return
-
-    try:
-        detail: Any = response.json()
-    except Exception:
-        detail = response.text
-
-    raise RuntimeError(
-        "Discord webhook failed "
-        f"with status {response.status_code}: {detail}"
-    )
+    chunks.append(f"--{boundary}--\r\n".encode("utf-8"))
+    return b"".join(chunks), boundary
 
 
-def _post_text(
+def post_files_to_discord(
     webhook_url: str,
     content: str,
-) -> None:
-    if not content.strip():
-        return
+    file_paths: list[str | Path],
+    username: str | None = None,
+    timeout_seconds: int = 30,
+) -> dict[str, Any]:
+    """Post one message with file attachments to a Discord webhook."""
 
-    response = requests.post(
+    if not webhook_url:
+        return {"ok": False, "status": "missing_webhook_url"}
+
+    existing_files = [str(Path(path)) for path in file_paths if path and Path(path).exists()]
+
+    if not existing_files:
+        return {"ok": False, "status": "no_files_to_post"}
+
+    fields = {"content": content}
+
+    if username:
+        fields["username"] = username
+
+    body, boundary = _multipart_body(fields, existing_files)
+
+    request = Request(
         webhook_url,
-        json={"content": content[:DISCORD_MESSAGE_LIMIT]},
-        timeout=30,
+        data=body,
+        headers={
+            "Content-Type": f"multipart/form-data; boundary={boundary}",
+            "User-Agent": "f1-sim-backtest/1.0",
+        },
+        method="POST",
     )
 
-    _raise_for_discord_error(response)
+    try:
+        with urlopen(request, timeout=timeout_seconds) as response:
+            response_body = response.read().decode("utf-8", errors="replace")
+            return {
+                "ok": 200 <= response.status < 300,
+                "status": response.status,
+                "response": response_body,
+                "posted_files": existing_files,
+            }
+    except HTTPError as exc:
+        response_body = exc.read().decode("utf-8", errors="replace")
+        return {
+            "ok": False,
+            "status": exc.code,
+            "response": response_body,
+            "posted_files": existing_files,
+        }
+    except URLError as exc:
+        return {
+            "ok": False,
+            "status": "url_error",
+            "response": str(exc),
+            "posted_files": existing_files,
+        }
 
 
-def _post_file_batch(
-    webhook_url: str,
-    files: list[str],
-    content: str | None = None,
-) -> None:
-    if not files:
-        return
+def _metric_value(metrics_path: str | Path | None, key: str) -> str | None:
+    if not metrics_path or not Path(metrics_path).exists():
+        return None
 
-    payload = {}
+    try:
+        import pandas as pd
 
-    if content and content.strip():
-        payload["content"] = content[:DISCORD_MESSAGE_LIMIT]
+        df = pd.read_csv(metrics_path)
+    except Exception:
+        return None
 
-    with ExitStack() as stack:
-        multipart_files = {}
+    if df.empty or key not in df.columns:
+        return None
 
-        for index, file_path in enumerate(files):
-            path = Path(file_path)
-            handle = stack.enter_context(path.open("rb"))
+    value = df.iloc[0][key]
 
-            multipart_files[f"files[{index}]"] = (
-                path.name,
-                handle,
-                "application/octet-stream",
-            )
+    try:
+        number = float(value)
+    except (TypeError, ValueError):
+        return str(value)
 
-        response = requests.post(
-            webhook_url,
-            data={"payload_json": json.dumps(payload)},
-            files=multipart_files,
-            timeout=120,
-        )
+    if key.endswith("accuracy") or key.endswith("score") or key.endswith("overlap"):
+        return f"{number:.0%}"
 
-    _raise_for_discord_error(response)
+    return f"{number:.2f}"
 
 
-def post_to_discord(
-    content: str | None = None,
-    files: list[str] | tuple[str, ...] | None = None,
+def post_backtest_to_discord(
+    paths: dict[str, str],
     webhook_url: str | None = None,
-    message: str | None = None,
-) -> None:
-    """
-    Posts a message and optional files to a Discord webhook.
+    event_title: str | None = None,
+) -> dict[str, Any]:
+    webhook_url = webhook_url or os.getenv("BACKTEST_DISCORD_WEBHOOK_URL") or os.getenv("DISCORD_WEBHOOK_URL")
 
-    Supports both:
-    - post_to_discord(content="...", files=[...])
-    - post_to_discord(message="...", files=[...])
-    """
-
-    url = _get_webhook_url(webhook_url)
-
-    final_message = content if content is not None else message
-    message_chunks = _chunk_message(final_message or "")
-    valid_files = _existing_files(files)
-
-    if not message_chunks and not valid_files:
-        print("Discord post skipped: no message or files supplied.")
-        return
-
-    if not valid_files:
-        for chunk in message_chunks:
-            _post_text(url, chunk)
-        return
-
-    file_batches = [
-        valid_files[i : i + MAX_FILES_PER_MESSAGE]
-        for i in range(0, len(valid_files), MAX_FILES_PER_MESSAGE)
+    pngs = [
+        paths.get("strategy_comparison_png"),
+        paths.get("backtest_metrics_png"),
+        paths.get("finish_comparison_png"),
     ]
+    pngs = [path for path in pngs if path and Path(path).exists()]
 
-    if len(message_chunks) <= 1:
-        first_content = message_chunks[0] if message_chunks else None
+    strategy_accuracy = _metric_value(paths.get("strategy_metrics"), "stop_count_accuracy")
+    exact_accuracy = _metric_value(paths.get("strategy_metrics"), "exact_strategy_accuracy")
+    finish_mae = _metric_value(paths.get("metrics"), "finish_mae")
 
-        _post_file_batch(
-            webhook_url=url,
-            files=file_batches[0],
-            content=first_content,
-        )
+    lines = [f"Backtest complete{f' for {event_title}' if event_title else ''}."]
 
-        for batch in file_batches[1:]:
-            _post_file_batch(
-                webhook_url=url,
-                files=batch,
-                content=None,
-            )
+    if finish_mae:
+        lines.append(f"Finish MAE: {finish_mae}")
+    if strategy_accuracy:
+        lines.append(f"Strategy stop accuracy: {strategy_accuracy}")
+    if exact_accuracy:
+        lines.append(f"Exact strategy accuracy: {exact_accuracy}")
 
-        return
+    lines.append("See attached PNG summaries.")
 
-    for chunk in message_chunks:
-        _post_text(url, chunk)
+    return post_files_to_discord(
+        webhook_url=webhook_url or "",
+        content="\n".join(lines),
+        file_paths=pngs,
+        username="F1 Sim Backtest",
+    )
 
-    for index, batch in enumerate(file_batches, start=1):
-        batch_message = (
-            f"Report images batch {index}/{len(file_batches)}"
-            if len(file_batches) > 1
-            else "Report images"
-        )
 
-        _post_file_batch(
-            webhook_url=url,
-            files=batch,
-            content=batch_message,
-        )
+def write_discord_post_result(result: dict[str, Any], output_path: str | Path) -> str:
+    path = Path(output_path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(result, indent=2), encoding="utf-8")
+    return str(path)

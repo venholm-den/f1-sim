@@ -18,28 +18,21 @@ _COMPOUND_ALIASES = {
     "HN": "HARD",
     "HU": "HARD",
     "HARD": "HARD",
-    "HARDS": "HARD",
     "M": "MEDIUM",
     "MN": "MEDIUM",
     "MU": "MEDIUM",
-    "MED": "MEDIUM",
     "MEDIUM": "MEDIUM",
-    "MEDIUMS": "MEDIUM",
     "S": "SOFT",
     "SN": "SOFT",
     "SU": "SOFT",
     "SOFT": "SOFT",
-    "SOFTS": "SOFT",
     "I": "INTERMEDIATE",
     "IN": "INTERMEDIATE",
     "INTER": "INTERMEDIATE",
-    "INTERS": "INTERMEDIATE",
     "INTERMEDIATE": "INTERMEDIATE",
-    "INTERMEDIATES": "INTERMEDIATE",
     "W": "WET",
     "WN": "WET",
     "WET": "WET",
-    "WETS": "WET",
 }
 
 
@@ -49,74 +42,28 @@ def normalise_driver(value: Any) -> str:
 
 def normalise_compound(value: Any) -> str:
     text = str(value or "").strip().upper()
-    text = re.sub(r"\([^)]*\)", " ", text)
-    text = re.sub(r"[^A-Z0-9]+", " ", text).strip()
-
-    if not text or text in {"NAN", "NONE", "UNKNOWN"}:
-        return "UNKNOWN"
-
-    parts = text.split()
-
-    for part in parts:
-        if part in _COMPOUND_ALIASES:
-            return _COMPOUND_ALIASES[part]
-
-    for compound in ALL_COMPOUNDS:
-        if compound in text:
-            return compound
-
-    return "UNKNOWN"
-
-
-def format_strategy_sequence(compounds: list[str]) -> str:
-    return " → ".join(compound.title() for compound in compounds if compound in ALL_COMPOUNDS)
-
-
-def parse_strategy_sequence(value: Any) -> list[str]:
-    """Parses model or FastF1 strategy strings into normalised compound names."""
-
-    if value is None:
-        return []
-
-    if isinstance(value, float) and not np.isfinite(value):
-        return []
-
-    text = str(value).strip()
-
-    if not text or text.lower() in {"nan", "none"}:
-        return []
-
-    # Keep stint separators while removing status labels such as (new) and
-    # (used/unknown). The CSV normally uses arrows, but older outputs sometimes
-    # use hyphens or abbreviated visual labels.
-    cleaned = re.sub(r"\([^)]*\)", "", text)
-    cleaned = cleaned.replace("→", "|").replace("->", "|").replace("—", "|")
-
-    # Treat hyphens as separators only when they appear between compound words,
-    # not inside arbitrary text.
-    cleaned = re.sub(r"\s+-\s+", "|", cleaned)
-
-    raw_parts = [part.strip() for part in cleaned.split("|") if part.strip()]
-
-    if len(raw_parts) <= 1:
-        # Fallback for compact labels such as "Mn Hn Hn".
-        raw_parts = re.split(r"[,;/\s]+", cleaned)
-
-    compounds: list[str] = []
-
-    for part in raw_parts:
-        compound = normalise_compound(part)
-        if compound in ALL_COMPOUNDS:
-            compounds.append(compound)
-
-    return compounds
+    text = text.replace("(NEW)", "").replace("(USED)", "").replace("(UNKNOWN)", "")
+    text = text.replace("USED/UNKNOWN", "").replace("UNKNOWN", "")
+    text = "".join(char for char in text if char.isalpha())
+    return _COMPOUND_ALIASES.get(text, text if text in ALL_COMPOUNDS else "UNKNOWN")
 
 
 def _dominant_compound(stint: pd.DataFrame) -> str:
-    if "Compound" not in stint.columns:
+    """Return the most common compound for a stint.
+
+    Prefer the pre-normalised CompoundNormalised column when available. Do not
+    rename CompoundNormalised to Compound before calling this helper because
+    that can create duplicate Compound columns in pandas, which makes
+    stint["Compound"] return a DataFrame instead of a Series.
+    """
+
+    if "CompoundNormalised" in stint.columns:
+        compounds = stint["CompoundNormalised"].map(normalise_compound)
+    elif "Compound" in stint.columns:
+        compounds = stint["Compound"].map(normalise_compound)
+    else:
         return "UNKNOWN"
 
-    compounds = stint["Compound"].map(normalise_compound)
     compounds = compounds[compounds.isin(ALL_COMPOUNDS)]
 
     if compounds.empty:
@@ -125,60 +72,116 @@ def _dominant_compound(stint: pd.DataFrame) -> str:
     return str(compounds.value_counts().index[0])
 
 
-def _prepare_laps(laps: pd.DataFrame) -> pd.DataFrame:
-    required = {"Driver", "LapNumber", "Compound"}
-    missing = required.difference(laps.columns)
+def _strategy_string(sequence: list[str]) -> str:
+    return "-".join(compound for compound in sequence if compound in ALL_COMPOUNDS)
 
-    if missing:
-        raise ValueError(
-            "FastF1 race lap data is missing required columns for actual tyre "
-            f"strategy extraction: {sorted(missing)}"
-        )
 
-    df = laps.copy()
-    df["Driver"] = df["Driver"].map(normalise_driver)
-    df["Team"] = df["Team"].astype(str) if "Team" in df.columns else ""
-    df["LapNumber"] = pd.to_numeric(df["LapNumber"], errors="coerce")
-    df["Compound"] = df["Compound"].map(normalise_compound)
+def parse_strategy_sequence(value: Any) -> list[str]:
+    """
+    Parse the strategy formats used around the project into a list of compounds.
 
-    df = df.dropna(subset=["Driver", "LapNumber"]).copy()
-    df = df[df["Compound"].isin(ALL_COMPOUNDS)].copy()
+    Supported examples:
+    - "Medium(new) → Hard(new) → Soft(used/unknown)"
+    - "MEDIUM-HARD-MEDIUM"
+    - "Mn Hn Sn"
+    - "Soft -> Medium -> Hard"
 
-    if df.empty:
-        return df
+    Important: do not split on the slash inside "used/unknown" before the
+    compound has been extracted. Otherwise "Soft(used/unknown)" becomes two
+    broken tokens and the soft stint is lost.
+    """
 
-    df = df.sort_values(["Driver", "LapNumber"]).reset_index(drop=True)
+    text = str(value or "").strip()
 
-    if "Stint" in df.columns:
-        df["Stint"] = pd.to_numeric(df["Stint"], errors="coerce")
+    if not text:
+        return []
 
-        # Fill missing stint numbers by compound changes so partial FastF1 data
-        # can still be used.
-        if df["Stint"].isna().any():
-            inferred = (
-                df.groupby("Driver")["Compound"]
-                .transform(lambda series: series.ne(series.shift()).cumsum())
-            )
-            df["Stint"] = df["Stint"].fillna(inferred)
+    # Remove project status suffixes before replacing separators. This keeps
+    # Soft(used/unknown) as Soft instead of splitting on the slash.
+    text = re.sub(
+        r"\((?:new|used|unknown|used\s*/\s*unknown)\)",
+        "",
+        text,
+        flags=re.IGNORECASE,
+    )
+
+    replacements = {
+        "→": "-",
+        "->": "-",
+        ">": "-",
+        ",": "-",
+        "|": "-",
+    }
+
+    for old, new in replacements.items():
+        text = text.replace(old, new)
+
+    # If a visual code string is space-separated, e.g. "Mn Hn Sn", split on spaces too.
+    if "-" not in text and " " in text:
+        parts = text.split()
     else:
-        df["Stint"] = (
-            df.groupby("Driver")["Compound"]
-            .transform(lambda series: series.ne(series.shift()).cumsum())
-        )
+        parts = text.split("-")
 
-    return df
+    sequence: list[str] = []
+
+    for part in parts:
+        compound = normalise_compound(part)
+        if compound in ALL_COMPOUNDS:
+            sequence.append(compound)
+
+    return sequence
 
 
-def extract_actual_tyre_strategy_from_session(
+def strategy_stops(strategy: Any) -> int:
+    sequence = parse_strategy_sequence(strategy)
+    return max(len(sequence) - 1, 0) if sequence else 0
+
+
+def strategy_first_compound(strategy: Any) -> str:
+    sequence = parse_strategy_sequence(strategy)
+    return sequence[0] if sequence else ""
+
+
+def strategy_same_compounds_any_order(predicted: Any, actual: Any) -> bool:
+    predicted_sequence = parse_strategy_sequence(predicted)
+    actual_sequence = parse_strategy_sequence(actual)
+    return bool(predicted_sequence and actual_sequence and Counter(predicted_sequence) == Counter(actual_sequence))
+
+
+def strategy_overlap_score(predicted: Any, actual: Any) -> float:
+    predicted_sequence = parse_strategy_sequence(predicted)
+    actual_sequence = parse_strategy_sequence(actual)
+
+    if not predicted_sequence or not actual_sequence:
+        return 0.0
+
+    if predicted_sequence == actual_sequence:
+        return 1.0
+
+    predicted_stops = max(len(predicted_sequence) - 1, 0)
+    actual_stops = max(len(actual_sequence) - 1, 0)
+    stops_match = predicted_stops == actual_stops
+    first_match = predicted_sequence[0] == actual_sequence[0]
+
+    predicted_counter = Counter(predicted_sequence)
+    actual_counter = Counter(actual_sequence)
+    overlap = sum((predicted_counter & actual_counter).values())
+    denominator = max(len(predicted_sequence), len(actual_sequence), 1)
+    compound_overlap = overlap / denominator
+
+    score = 0.45 * float(stops_match) + 0.20 * float(first_match) + 0.35 * compound_overlap
+    return float(np.clip(score, 0.0, 1.0))
+
+
+def extract_actual_strategy_from_session(
     race_session: Any,
     metadata: dict[str, Any] | None = None,
 ) -> pd.DataFrame:
     """
-    Extracts actual race tyre strategy from completed FastF1 race laps.
+    Reconstruct the completed race tyre strategy from FastF1 lap/stint data.
 
-    This is not FIA/Pirelli barcode allocation data. It is the actual compound
-    sequence observed in FastF1 race lap/stint data and is intended for
-    post-race backtesting.
+    This is actual race strategy inferred from FastF1 lap compound data. It is not
+    FIA/Pirelli barcode-level tyre set allocation data.
     """
 
     metadata = metadata or {}
@@ -187,16 +190,41 @@ def extract_actual_tyre_strategy_from_session(
     if laps is None or laps.empty:
         return pd.DataFrame()
 
-    df = _prepare_laps(laps)
+    required = {"Driver", "LapNumber", "Compound"}
+    if not required.issubset(set(laps.columns)):
+        return pd.DataFrame()
+
+    df = laps.copy()
+
+    if "Stint" not in df.columns:
+        # FastF1 race laps normally include Stint. If it is missing, infer a new
+        # stint when the compound changes for a driver.
+        df = df.sort_values(["Driver", "LapNumber"]).copy()
+        df["CompoundNormalised"] = df["Compound"].map(normalise_compound)
+        df["Stint"] = (
+            df.groupby("Driver")["CompoundNormalised"]
+            .transform(lambda s: s.ne(s.shift()).cumsum())
+            .astype(int)
+        )
+    else:
+        df["CompoundNormalised"] = df["Compound"].map(normalise_compound)
+
+    df["Driver"] = df["Driver"].map(normalise_driver)
+    df["Team"] = df["Team"].astype(str) if "Team" in df.columns else ""
+    df["LapNumber"] = pd.to_numeric(df["LapNumber"], errors="coerce")
+    df["Stint"] = pd.to_numeric(df["Stint"], errors="coerce")
+
+    df = df.dropna(subset=["Driver", "LapNumber"])
+    df = df[df["CompoundNormalised"].isin(ALL_COMPOUNDS)].copy()
 
     if df.empty:
         return pd.DataFrame()
 
-    race_lap_count = int(pd.to_numeric(df["LapNumber"], errors="coerce").max())
+    race_lap_count = int(df["LapNumber"].max())
     rows: list[dict[str, Any]] = []
 
     for driver, driver_laps in df.groupby("Driver"):
-        driver_laps = driver_laps.sort_values(["LapNumber"]).copy()
+        driver_laps = driver_laps.sort_values("LapNumber").copy()
 
         if driver_laps.empty:
             continue
@@ -236,8 +264,7 @@ def extract_actual_tyre_strategy_from_session(
 
         stint_df = pd.DataFrame(stint_rows).sort_values("FirstLap").reset_index(drop=True)
 
-        # Remove isolated 1-lap compound anomalies if the driver has other real
-        # stints. This avoids a single in/out lap distorting the stop count.
+        # Remove tiny one-lap anomaly stints where there are enough other stints.
         if len(stint_df) > 1:
             filtered = stint_df[stint_df["Laps"] >= 2].copy()
             if not filtered.empty:
@@ -250,268 +277,250 @@ def extract_actual_tyre_strategy_from_session(
         if not sequence:
             continue
 
+        actual_strategy = _strategy_string(dry_sequence or sequence)
+        actual_stops = max(len(dry_sequence or sequence) - 1, 0)
+
         rows.append(
             {
-                "year": metadata.get("year", ""),
-                "event": metadata.get("event", ""),
-                "round": metadata.get("round", ""),
+                "year": metadata.get("year"),
+                "event": metadata.get("event"),
+                "round": metadata.get("round"),
                 "Driver": driver,
                 "Team": team,
-                "race_laps": race_lap_count,
-                "driver_max_lap": max_driver_lap,
-                "completed_likely": bool(completed_likely),
-                "had_wet_compound": bool(had_wet),
-                "actual_stint_count": int(len(sequence)),
-                "actual_stops": int(max(len(sequence) - 1, 0)),
-                "actual_strategy_sequence": "-".join(sequence),
-                "actual_strategy": format_strategy_sequence(sequence),
-                "actual_first_compound": sequence[0] if sequence else "",
-                "actual_dry_stint_count": int(len(dry_sequence)),
-                "actual_dry_stops": int(max(len(dry_sequence) - 1, 0)),
-                "actual_dry_strategy_sequence": "-".join(dry_sequence),
-                "actual_dry_strategy": format_strategy_sequence(dry_sequence),
+                "actual_strategy": actual_strategy,
+                "actual_strategy_sequence": actual_strategy,
+                "actual_stops": int(actual_stops),
+                "actual_stint_count": int(len(dry_sequence or sequence)),
+                "actual_first_compound": (dry_sequence or sequence)[0] if (dry_sequence or sequence) else "",
+                "actual_had_wet_compound": bool(had_wet),
+                "actual_completed_likely": bool(completed_likely),
+                "actual_race_laps": race_lap_count,
+                "actual_driver_max_lap": max_driver_lap,
                 "actual_strategy_source": "fastf1_race_lap_stint_data",
             }
         )
 
-    return pd.DataFrame(rows)
+    if not rows:
+        return pd.DataFrame()
+
+    return pd.DataFrame(rows).sort_values("Driver").reset_index(drop=True)
 
 
-def _first_existing_column(df: pd.DataFrame, candidates: list[str]) -> str | None:
-    for candidate in candidates:
-        if candidate in df.columns:
-            return candidate
+def _find_predicted_strategy_column(df: pd.DataFrame) -> str | None:
+    candidates = [
+        "PredictedStrategy",
+        "predicted_strategy",
+        "history_adjusted_strategy",
+        "HistoryAdjustedStrategy",
+        "primary_strategy",
+        "PrimaryStrategy",
+        "strategy",
+    ]
+
+    for col in candidates:
+        if col in df.columns:
+            return col
+
     return None
 
 
-def _counter_match(left: list[str], right: list[str]) -> bool:
-    if not left or not right:
-        return False
-    return Counter(left) == Counter(right)
-
-
-def compare_predicted_to_actual_strategy(
-    predicted: pd.DataFrame,
-    actual: pd.DataFrame,
+def build_strategy_comparison(
+    predictions: pd.DataFrame,
+    actual_strategy: pd.DataFrame,
 ) -> pd.DataFrame:
-    """Compares predicted strategy CSV output against actual FastF1 strategy."""
+    if predictions is None or predictions.empty:
+        raise ValueError("No prediction rows supplied for strategy comparison.")
 
-    if predicted.empty or actual.empty:
-        return pd.DataFrame()
+    if actual_strategy is None or actual_strategy.empty:
+        raise ValueError("No actual strategy rows supplied for strategy comparison.")
 
-    predicted_strategy_col = _first_existing_column(
-        predicted,
-        [
-            "PredictedStrategy",
-            "predicted_strategy",
-            "history_adjusted_strategy",
-            "HistoryAdjustedStrategy",
-            "primary_strategy",
-            "PrimaryStrategy",
-        ],
-    )
+    predicted = predictions.copy()
+    actual = actual_strategy.copy()
 
-    if predicted_strategy_col is None:
-        return pd.DataFrame()
+    if "Driver" not in predicted.columns:
+        raise ValueError("Prediction dataframe must include a Driver column.")
 
-    pred = predicted.copy()
-    act = actual.copy()
+    predicted["Driver"] = predicted["Driver"].map(normalise_driver)
+    actual["Driver"] = actual["Driver"].map(normalise_driver)
 
-    pred["Driver"] = pred["Driver"].map(normalise_driver)
-    act["Driver"] = act["Driver"].map(normalise_driver)
+    strategy_col = _find_predicted_strategy_column(predicted)
 
-    pred["predicted_strategy"] = pred[predicted_strategy_col].astype(str)
-    pred["predicted_strategy_source_column"] = predicted_strategy_col
-    pred["predicted_compounds"] = pred["predicted_strategy"].map(parse_strategy_sequence)
-    pred["predicted_strategy_compact"] = pred["predicted_compounds"].map(lambda seq: "-".join(seq))
-    pred["predicted_stops"] = pred["predicted_compounds"].map(lambda seq: max(len(seq) - 1, 0) if seq else np.nan)
-    pred["predicted_first_compound"] = pred["predicted_compounds"].map(lambda seq: seq[0] if seq else "")
+    if strategy_col is None:
+        predicted["predicted_strategy"] = ""
+    else:
+        predicted["predicted_strategy"] = predicted[strategy_col].astype(str)
 
-    if "actual_strategy" not in act.columns and "actual_strategy_sequence" in act.columns:
-        act["actual_strategy"] = act["actual_strategy_sequence"].map(
-            lambda value: format_strategy_sequence(parse_strategy_sequence(value))
-        )
+    if "Team" not in predicted.columns:
+        predicted["Team"] = ""
 
-    act["actual_compounds"] = act["actual_strategy"].map(parse_strategy_sequence)
-    act["actual_strategy_compact"] = act["actual_compounds"].map(lambda seq: "-".join(seq))
+    predicted["predicted_strategy_source_column"] = strategy_col or "missing"
 
-    if "actual_stops" not in act.columns:
-        act["actual_stops"] = act["actual_compounds"].map(lambda seq: max(len(seq) - 1, 0) if seq else np.nan)
-
-    if "actual_first_compound" not in act.columns:
-        act["actual_first_compound"] = act["actual_compounds"].map(lambda seq: seq[0] if seq else "")
-
-    keep_pred_cols = [
+    predicted_cols = [
         "Driver",
-        "Team" if "Team" in pred.columns else None,
+        "Team",
         "predicted_strategy",
         "predicted_strategy_source_column",
-        "predicted_strategy_compact",
-        "predicted_stops",
-        "predicted_first_compound",
     ]
-    keep_pred_cols = [col for col in keep_pred_cols if col is not None and col in pred.columns]
 
-    keep_actual_cols = [
-        "Driver",
-        "Team" if "Team" in act.columns else None,
-        "actual_strategy",
-        "actual_strategy_compact",
-        "actual_stops",
-        "actual_first_compound",
-        "actual_dry_strategy",
-        "actual_dry_stops",
-        "completed_likely",
-        "had_wet_compound",
-        "actual_strategy_source",
-    ]
-    keep_actual_cols = [col for col in keep_actual_cols if col is not None and col in act.columns]
+    if "Grid" in predicted.columns:
+        predicted_cols.append("Grid")
+    if "GridPosition" in predicted.columns:
+        predicted_cols.append("GridPosition")
+    if "grid_position" in predicted.columns:
+        predicted_cols.append("grid_position")
 
-    comparison = pred[keep_pred_cols].merge(
-        act[keep_actual_cols],
+    comparison = predicted[predicted_cols].merge(
+        actual[
+            [
+                "Driver",
+                "actual_strategy",
+                "actual_stops",
+                "actual_stint_count",
+                "actual_first_compound",
+                "actual_completed_likely",
+                "actual_had_wet_compound",
+                "actual_strategy_source",
+            ]
+        ],
         on="Driver",
         how="left",
-        suffixes=("_predicted", "_actual"),
     )
 
-    def _pred_seq(row: pd.Series) -> list[str]:
-        return parse_strategy_sequence(row.get("predicted_strategy_compact", ""))
-
-    def _actual_seq(row: pd.Series) -> list[str]:
-        return parse_strategy_sequence(row.get("actual_strategy_compact", ""))
-
-    predicted_sequences = comparison.apply(_pred_seq, axis=1)
-    actual_sequences = comparison.apply(_actual_seq, axis=1)
-
-    comparison["exact_strategy_match"] = [
-        bool(pred_seq and act_seq and pred_seq == act_seq)
-        for pred_seq, act_seq in zip(predicted_sequences, actual_sequences)
-    ]
-    comparison["stop_count_match"] = (
-        pd.to_numeric(comparison["predicted_stops"], errors="coerce")
-        == pd.to_numeric(comparison["actual_stops"], errors="coerce")
+    comparison["predicted_strategy_sequence"] = comparison["predicted_strategy"].map(
+        lambda value: _strategy_string(parse_strategy_sequence(value))
     )
+    comparison["actual_strategy_sequence"] = comparison["actual_strategy"].fillna("").map(
+        lambda value: _strategy_string(parse_strategy_sequence(value))
+    )
+    comparison["predicted_stops"] = comparison["predicted_strategy_sequence"].map(strategy_stops)
+    comparison["actual_stops"] = pd.to_numeric(comparison["actual_stops"], errors="coerce")
+    comparison["strategy_stop_error"] = comparison["predicted_stops"] - comparison["actual_stops"]
+    comparison["strategy_stop_abs_error"] = comparison["strategy_stop_error"].abs()
+    comparison["stops_match"] = comparison["strategy_stop_error"].fillna(999).eq(0)
+    comparison["exact_strategy_match"] = (
+        comparison["predicted_strategy_sequence"].astype(str)
+        == comparison["actual_strategy_sequence"].astype(str)
+    ) & comparison["actual_strategy_sequence"].astype(str).ne("")
+    comparison["predicted_first_compound"] = comparison["predicted_strategy_sequence"].map(strategy_first_compound)
     comparison["first_compound_match"] = (
         comparison["predicted_first_compound"].astype(str)
         == comparison["actual_first_compound"].astype(str)
     ) & comparison["actual_first_compound"].astype(str).ne("")
-    comparison["same_compounds_any_order"] = [
-        _counter_match(pred_seq, act_seq)
-        for pred_seq, act_seq in zip(predicted_sequences, actual_sequences)
+    comparison["same_compounds_any_order"] = comparison.apply(
+        lambda row: strategy_same_compounds_any_order(
+            row.get("predicted_strategy_sequence", ""),
+            row.get("actual_strategy_sequence", ""),
+        ),
+        axis=1,
+    )
+    comparison["strategy_score"] = comparison.apply(
+        lambda row: strategy_overlap_score(
+            row.get("predicted_strategy_sequence", ""),
+            row.get("actual_strategy_sequence", ""),
+        ),
+        axis=1,
+    )
+
+    output_cols = [
+        "Driver",
+        "Team",
+        "predicted_strategy_sequence",
+        "actual_strategy_sequence",
+        "predicted_stops",
+        "actual_stops",
+        "stops_match",
+        "exact_strategy_match",
+        "first_compound_match",
+        "same_compounds_any_order",
+        "strategy_score",
+        "strategy_stop_error",
+        "strategy_stop_abs_error",
+        "predicted_strategy_source_column",
+        "actual_strategy_source",
+        "actual_completed_likely",
+        "actual_had_wet_compound",
     ]
-    comparison["strategy_stop_error"] = (
-        pd.to_numeric(comparison["predicted_stops"], errors="coerce")
-        - pd.to_numeric(comparison["actual_stops"], errors="coerce")
-    )
-    comparison["strategy_abs_stop_error"] = comparison["strategy_stop_error"].abs()
 
-    comparison["strategy_match_score"] = (
-        comparison["stop_count_match"].astype(float) * 0.45
-        + comparison["first_compound_match"].astype(float) * 0.20
-        + comparison["same_compounds_any_order"].astype(float) * 0.20
-        + comparison["exact_strategy_match"].astype(float) * 0.15
-    )
-
-    return comparison
+    extra = [col for col in comparison.columns if col not in output_cols]
+    return comparison[output_cols + extra].reset_index(drop=True)
 
 
-def summarise_strategy_comparison(comparison: pd.DataFrame) -> pd.DataFrame:
-    if comparison.empty:
-        return pd.DataFrame()
+def build_strategy_metrics(
+    strategy_comparison: pd.DataFrame,
+    year: int | None = None,
+    event: str | None = None,
+) -> pd.DataFrame:
+    if strategy_comparison is None or strategy_comparison.empty:
+        return pd.DataFrame(
+            [
+                {
+                    "year": year,
+                    "event": event,
+                    "drivers_compared": 0,
+                    "exact_strategy_accuracy": np.nan,
+                    "stop_count_accuracy": np.nan,
+                    "first_compound_accuracy": np.nan,
+                    "same_compounds_any_order_accuracy": np.nan,
+                    "average_strategy_score": np.nan,
+                    "average_stop_error": np.nan,
+                    "average_abs_stop_error": np.nan,
+                    "actual_strategy_source": "fastf1_race_lap_stint_data",
+                }
+            ]
+        )
 
-    valid = comparison.dropna(subset=["actual_strategy"]).copy()
+    valid = strategy_comparison.dropna(subset=["actual_strategy_sequence"]).copy()
+    valid = valid[valid["actual_strategy_sequence"].astype(str).ne("")]
 
     if valid.empty:
-        return pd.DataFrame()
+        drivers_compared = 0
+    else:
+        drivers_compared = int(len(valid))
+
+    def mean_bool(column: str) -> float:
+        if drivers_compared == 0 or column not in valid.columns:
+            return float("nan")
+        return float(valid[column].astype(bool).mean())
 
     metrics = {
-        "drivers_compared": int(len(valid)),
-        "exact_strategy_match_rate": float(valid["exact_strategy_match"].mean()),
-        "stop_count_match_rate": float(valid["stop_count_match"].mean()),
-        "first_compound_match_rate": float(valid["first_compound_match"].mean()),
-        "same_compounds_any_order_rate": float(valid["same_compounds_any_order"].mean()),
-        "average_abs_stop_error": float(pd.to_numeric(valid["strategy_abs_stop_error"], errors="coerce").mean()),
-        "average_strategy_match_score": float(pd.to_numeric(valid["strategy_match_score"], errors="coerce").mean()),
-        "actual_strategy_source": str(valid["actual_strategy_source"].dropna().iloc[0]) if "actual_strategy_source" in valid.columns and not valid["actual_strategy_source"].dropna().empty else "fastf1_race_lap_stint_data",
+        "year": year,
+        "event": event,
+        "drivers_compared": drivers_compared,
+        "exact_strategy_matches": int(valid["exact_strategy_match"].astype(bool).sum()) if drivers_compared else 0,
+        "stop_count_matches": int(valid["stops_match"].astype(bool).sum()) if drivers_compared else 0,
+        "exact_strategy_accuracy": mean_bool("exact_strategy_match"),
+        "stop_count_accuracy": mean_bool("stops_match"),
+        "first_compound_accuracy": mean_bool("first_compound_match"),
+        "same_compounds_any_order_accuracy": mean_bool("same_compounds_any_order"),
+        "average_strategy_score": float(pd.to_numeric(valid.get("strategy_score"), errors="coerce").mean()) if drivers_compared else float("nan"),
+        "average_stop_error": float(pd.to_numeric(valid.get("strategy_stop_error"), errors="coerce").mean()) if drivers_compared else float("nan"),
+        "average_abs_stop_error": float(pd.to_numeric(valid.get("strategy_stop_abs_error"), errors="coerce").mean()) if drivers_compared else float("nan"),
+        "actual_strategy_source": "fastf1_race_lap_stint_data",
     }
 
     return pd.DataFrame([metrics])
 
 
-def make_strategy_comparison_image(
-    comparison: pd.DataFrame,
-    output_path: str | Path,
-    title: str = "Predicted vs Actual Tyre Strategy",
-) -> str:
-    """Creates a compact PNG table for backtest strategy comparison."""
+def save_strategy_outputs(
+    actual_strategy: pd.DataFrame,
+    strategy_comparison: pd.DataFrame,
+    strategy_metrics: pd.DataFrame,
+    output_dir: str | Path,
+    stem: str,
+) -> dict[str, str]:
+    output_path = Path(output_dir)
+    output_path.mkdir(parents=True, exist_ok=True)
 
-    if comparison.empty:
-        return ""
+    actual_path = output_path / f"{stem}_actual_strategy.csv"
+    comparison_path = output_path / f"{stem}_strategy_comparison.csv"
+    metrics_path = output_path / f"{stem}_strategy_metrics.csv"
 
-    try:
-        import matplotlib.pyplot as plt
-    except Exception:
-        return ""
+    actual_strategy.to_csv(actual_path, index=False)
+    strategy_comparison.to_csv(comparison_path, index=False)
+    strategy_metrics.to_csv(metrics_path, index=False)
 
-    output_path = Path(output_path)
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-
-    display = comparison.copy().head(24)
-
-    cols = [
-        "Driver",
-        "predicted_strategy_compact",
-        "actual_strategy_compact",
-        "predicted_stops",
-        "actual_stops",
-        "stop_count_match",
-        "exact_strategy_match",
-        "strategy_match_score",
-    ]
-
-    for col in cols:
-        if col not in display.columns:
-            display[col] = ""
-
-    display = display[cols].copy()
-    display.columns = ["Driver", "Predicted", "Actual", "Pred stops", "Actual stops", "Stops OK", "Exact", "Score"]
-
-    display["Stops OK"] = display["Stops OK"].map(lambda value: "Yes" if bool(value) else "No")
-    display["Exact"] = display["Exact"].map(lambda value: "Yes" if bool(value) else "No")
-    display["Score"] = pd.to_numeric(display["Score"], errors="coerce").map(lambda value: f"{value:.0%}" if pd.notna(value) else "")
-
-    fig_height = max(4.0, min(14.0, 1.2 + 0.34 * len(display)))
-    fig, ax = plt.subplots(figsize=(16, fig_height))
-    ax.axis("off")
-    ax.set_title(title, fontsize=16, fontweight="bold", loc="left", pad=14)
-
-    table = ax.table(
-        cellText=display.values,
-        colLabels=display.columns,
-        cellLoc="left",
-        colLoc="left",
-        loc="center",
-    )
-    table.auto_set_font_size(False)
-    table.set_fontsize(9)
-    table.scale(1, 1.35)
-
-    for (row, col), cell in table.get_celld().items():
-        if row == 0:
-            cell.set_text_props(weight="bold")
-            cell.set_facecolor("#e5e7eb")
-        elif row % 2 == 0:
-            cell.set_facecolor("#f8fafc")
-
-        if row > 0 and col in {5, 6}:
-            text = cell.get_text().get_text()
-            if text == "Yes":
-                cell.set_facecolor("#dcfce7")
-            elif text == "No":
-                cell.set_facecolor("#fee2e2")
-
-    fig.tight_layout()
-    fig.savefig(output_path, dpi=160, bbox_inches="tight")
-    plt.close(fig)
-
-    return str(output_path)
+    return {
+        "actual_strategy": str(actual_path),
+        "strategy_comparison": str(comparison_path),
+        "strategy_metrics": str(metrics_path),
+    }
