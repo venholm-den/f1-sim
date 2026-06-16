@@ -238,7 +238,7 @@ Formatting is controlled in code (matplotlib styles, table labels, color maps, o
 - Strategy files are missing
 	- Check that lap detail and tyre inventory outputs were created; strategy generation is skipped when upstream data is empty.
 - Fantasy value chart is skipped
-	- Fill numeric `Price` values in `data/fantasy_prices.csv`.
+	- Fill numeric `fantasy_prices` values in `data/fantasy_prices.csv`.
 
 ## Documentation guard
 

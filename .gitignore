@@ -22,11 +22,16 @@ cache/
 fastf1_cache/
 
 # Generated outputs
+outputs/reviews/
 outputs/report/
 outputs/backtest/
 outputs/debug/
 outputs/raw_simulation_results.csv
 outputs/fantasy_results.csv
+outputs/raw_*.csv
+outputs/*.pkl
+assets/images-jpg/
+*.sqlite3
 
 # Generated simulation outputs
 outputs/
