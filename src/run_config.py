@@ -45,6 +45,7 @@ class ModelSettings:
     use_fastf1_weather: bool
     use_race_control_context: bool
     use_track_red_flag_base_chance: bool
+    use_weather_forecast: bool = True
 
 
 @dataclass(frozen=True)
@@ -233,6 +234,7 @@ def load_app_config(
             use_track_red_flag_base_chance=bool(
                 model.get("use_track_red_flag_base_chance", True)
             ),
+            use_weather_forecast=bool(model.get("use_weather_forecast", True)),
         ),
         source_path=str(config_path),
     )
@@ -267,6 +269,7 @@ def config_to_dict(config: AppConfig) -> dict[str, Any]:
             "use_fastf1_weather": config.model.use_fastf1_weather,
             "use_race_control_context": config.model.use_race_control_context,
             "use_track_red_flag_base_chance": config.model.use_track_red_flag_base_chance,
+            "use_weather_forecast": config.model.use_weather_forecast,
         },
         "source_path": config.source_path,
     }

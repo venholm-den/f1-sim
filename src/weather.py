@@ -1,11 +1,13 @@
 from __future__ import annotations
 
+from datetime import datetime
 from typing import Any
 
 from src.race_control import merge_race_control_into_weather_modifiers, summarise_race_control
 
 import numpy as np
 import pandas as pd
+import requests
 
 
 DEFAULT_WEATHER_SUMMARY = {
@@ -20,6 +22,10 @@ DEFAULT_WEATHER_SUMMARY = {
     "dnf_factor": 1.00,
     "degradation_factor": 1.00,
     "uncertainty_factor": 1.00,
+    "weather_source": "neutral_default",
+    "forecast_provider": None,
+    "rain_probability": None,
+    "forecast_time": None,
     "notes": "No weather data available; neutral weather modifiers used.",
 }
 
@@ -63,6 +69,21 @@ def _safe_bool_any(df: pd.DataFrame, column: str) -> bool:
     text = series.astype(str).str.strip().str.lower()
 
     return bool(text.isin({"true", "1", "yes", "y"}).any())
+
+
+def _session_datetime(session: Any) -> datetime | None:
+    for attribute in ["date", "session_date", "session_start_time", "start_time"]:
+        value = getattr(session, attribute, None)
+
+        if value is None:
+            continue
+
+        timestamp = pd.to_datetime(value, errors="coerce")
+
+        if pd.notna(timestamp):
+            return timestamp.to_pydatetime()
+
+    return None
 
 
 def _get_weather_dataframe(session: Any) -> pd.DataFrame:
@@ -191,11 +212,175 @@ def _build_notes(
     return " ".join(notes)
 
 
-def summarize_weather(session: Any) -> dict[str, Any]:
+def _track_coordinate(track_profile: dict[str, Any] | None, *keys: str) -> float | None:
+    if not track_profile:
+        return None
+
+    for key in keys:
+        value = _to_float_or_none(track_profile.get(key))
+
+        if value is not None:
+            return value
+
+    return None
+
+
+def _fetch_open_meteo_forecast(
+    latitude: float,
+    longitude: float,
+    target_time: datetime | None,
+) -> dict[str, Any] | None:
+    params: dict[str, Any] = {
+        "latitude": latitude,
+        "longitude": longitude,
+        "hourly": ",".join(
+            [
+                "temperature_2m",
+                "relative_humidity_2m",
+                "surface_pressure",
+                "precipitation_probability",
+                "precipitation",
+                "wind_speed_10m",
+            ]
+        ),
+        "forecast_days": 7,
+        "timezone": "auto",
+        "wind_speed_unit": "ms",
+    }
+
+    response = requests.get(
+        "https://api.open-meteo.com/v1/forecast",
+        params=params,
+        timeout=10,
+    )
+    response.raise_for_status()
+
+    payload = response.json()
+    hourly = payload.get("hourly", {})
+    times = hourly.get("time") or []
+
+    if not times:
+        return None
+
+    forecast = pd.DataFrame(hourly)
+
+    if forecast.empty or "time" not in forecast.columns:
+        return None
+
+    forecast["time"] = pd.to_datetime(forecast["time"], errors="coerce")
+    forecast = forecast.dropna(subset=["time"]).reset_index(drop=True)
+
+    if forecast.empty:
+        return None
+
+    if target_time is None:
+        index = 0
+    else:
+        target = pd.Timestamp(target_time).tz_localize(None)
+        forecast["time_delta"] = (forecast["time"] - target).abs()
+        index = int(forecast["time_delta"].idxmin())
+
+    row = forecast.iloc[index]
+    rain_probability = _to_float_or_none(row.get("precipitation_probability"))
+    precipitation = _to_float_or_none(row.get("precipitation"))
+    rainfall = bool(
+        (rain_probability is not None and rain_probability >= 35)
+        or (precipitation is not None and precipitation > 0.2)
+    )
+
+    return {
+        "air_temp_avg": _to_float_or_none(row.get("temperature_2m")),
+        "track_temp_avg": None,
+        "humidity_avg": _to_float_or_none(row.get("relative_humidity_2m")),
+        "pressure_avg": _to_float_or_none(row.get("surface_pressure")),
+        "wind_speed_avg": _to_float_or_none(row.get("wind_speed_10m")),
+        "rainfall_flag": rainfall,
+        "rain_probability": rain_probability,
+        "forecast_time": row.get("time").isoformat() if pd.notna(row.get("time")) else None,
+        "forecast_provider": "open-meteo",
+        "weather_source": "open_meteo_forecast",
+    }
+
+
+def _forecast_weather_summary(
+    session: Any,
+    track_profile: dict[str, Any] | None,
+) -> dict[str, Any]:
+    latitude = _track_coordinate(track_profile, "latitude", "Latitude")
+    longitude = _track_coordinate(track_profile, "longitude", "Longitude")
+
+    if latitude is None or longitude is None:
+        summary = DEFAULT_WEATHER_SUMMARY.copy()
+        summary["notes"] = (
+            "No session weather data available and no track coordinates were configured; "
+            "neutral weather modifiers used."
+        )
+        return summary
+
+    try:
+        forecast = _fetch_open_meteo_forecast(
+            latitude=latitude,
+            longitude=longitude,
+            target_time=_session_datetime(session),
+        )
+    except Exception as exc:
+        summary = DEFAULT_WEATHER_SUMMARY.copy()
+        summary["weather_source"] = "forecast_unavailable"
+        summary["forecast_provider"] = "open-meteo"
+        summary["notes"] = (
+            f"Open-Meteo forecast unavailable ({exc}); neutral weather modifiers used."
+        )
+        return summary
+
+    if forecast is None:
+        summary = DEFAULT_WEATHER_SUMMARY.copy()
+        summary["weather_source"] = "forecast_unavailable"
+        summary["forecast_provider"] = "open-meteo"
+        summary["notes"] = "Open-Meteo forecast returned no usable hourly data; neutral weather modifiers used."
+        return summary
+
+    modifiers = _calculate_modifiers(
+        air_temp=forecast["air_temp_avg"],
+        track_temp=forecast["track_temp_avg"],
+        humidity=forecast["humidity_avg"],
+        wind_speed=forecast["wind_speed_avg"],
+        rainfall=forecast["rainfall_flag"],
+    )
+
+    notes = _build_notes(
+        air_temp=forecast["air_temp_avg"],
+        track_temp=forecast["track_temp_avg"],
+        humidity=forecast["humidity_avg"],
+        wind_speed=forecast["wind_speed_avg"],
+        rainfall=forecast["rainfall_flag"],
+    )
+
+    rain_probability = forecast.get("rain_probability")
+
+    if rain_probability is not None:
+        notes = f"Forecast rain probability {rain_probability:.0f}%. {notes}"
+
+    forecast["notes"] = notes
+    forecast.update(modifiers)
+
+    return forecast
+
+
+def summarize_weather(
+    session: Any,
+    track_profile: dict[str, Any] | None = None,
+    use_forecast: bool = True,
+) -> dict[str, Any]:
     weather_df = _get_weather_dataframe(session)
 
     if weather_df.empty:
-        return DEFAULT_WEATHER_SUMMARY.copy()
+        summary = (
+            _forecast_weather_summary(session, track_profile)
+            if use_forecast
+            else DEFAULT_WEATHER_SUMMARY.copy()
+        )
+        race_control_summary = summarise_race_control(session)
+        return merge_race_control_into_weather_modifiers(summary, race_control_summary)
 
     air_temp = _safe_mean(weather_df, "AirTemp")
     track_temp = _safe_mean(weather_df, "TrackTemp")
@@ -227,6 +412,10 @@ def summarize_weather(session: Any) -> dict[str, Any]:
         "pressure_avg": pressure,
         "wind_speed_avg": wind_speed,
         "rainfall_flag": rainfall,
+        "rain_probability": None,
+        "forecast_provider": None,
+        "forecast_time": None,
+        "weather_source": "fastf1_session_weather",
         "notes": notes,
     }
 
@@ -239,5 +428,13 @@ def summarize_weather(session: Any) -> dict[str, Any]:
 
 
 # UK spelling alias, so either import style works.
-def summarise_weather(session: Any) -> dict[str, Any]:
-    return summarize_weather(session)
+def summarise_weather(
+    session: Any,
+    track_profile: dict[str, Any] | None = None,
+    use_forecast: bool = True,
+) -> dict[str, Any]:
+    return summarize_weather(
+        session,
+        track_profile=track_profile,
+        use_forecast=use_forecast,
+    )

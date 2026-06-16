@@ -759,13 +759,21 @@ def main() -> None:
     print()
     print("Summarising weather...")
 
-    weather_summary = summarize_weather(current_session)
+    try:
+        weather_summary = summarize_weather(
+            current_session,
+            track_profile=track_profile,
+            use_forecast=app_config.model.use_weather_forecast,
+        )
+    except TypeError:
+        weather_summary = summarize_weather(current_session)
 
     print(
         "- weather: "
         f"air {_fmt_weather_value(weather_summary.get('air_temp_avg'), 1, '°C')}, "
         f"track {_fmt_weather_value(weather_summary.get('track_temp_avg'), 1, '°C')}, "
-        f"rain {'yes' if weather_summary.get('rainfall_flag') else 'no'}"
+        f"rain {'yes' if weather_summary.get('rainfall_flag') else 'no'}, "
+        f"source {weather_summary.get('weather_source', 'unknown')}"
     )
 
     print()

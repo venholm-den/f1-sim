@@ -100,6 +100,12 @@ Useful flags:
 - `--default-overtaking-difficulty`, `--strategy-lookback-years`.
 - `--post-to-discord` / `--no-discord`.
 
+Weather handling:
+
+- FastF1 session weather is used when available.
+- If session weather is missing, the app can fall back to Open-Meteo forecast data using `Latitude` and `Longitude` from `data/track_profiles.csv`.
+- Forecast fallback is controlled by `model.use_weather_forecast` in `config/default_run_config.json`.
+
 Environment overrides are also supported for:
 
 - `F1_SIM_YEAR`
@@ -322,7 +328,7 @@ Formatting is controlled in code (matplotlib styles, table labels, color maps, o
 - Tyre inventory is estimated from lap data and tyre-life heuristics, not official FIA/Pirelli barcode set tracking.
 - Historical strategy adjustment depends on event matching and available historical race data quality.
 - If current session is practice, grid is estimated and uncertainty is intentionally increased.
-- Rainfall and weather modifiers are conservative heuristics, not a full meteorological or circuit-specific calibration model.
+- Rainfall, forecast, and weather modifiers are conservative heuristics, not a full meteorological or circuit-specific calibration model.
 - Fantasy value (`xPPM`) requires valid prices in `data/fantasy_prices.csv`.
 
 ## Troubleshooting
