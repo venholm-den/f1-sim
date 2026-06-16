@@ -105,6 +105,33 @@ Environment overrides are also supported for:
 - `F1_SIM_RANDOM_SEED`
 - `POST_TO_DISCORD`
 
+### Race weekend workflow
+
+Use `--event latest` when you want the app to choose the best available predictor session automatically.
+The automatic priority is qualifying first, then sprint sessions, then practice: `Q`, `SQ`, `S`, `FP3`, `FP2`, `FP1`.
+
+Use a specific event name or round number when you want to force a particular session:
+
+```powershell
+python main.py --year 2026 --event "Barcelona Grand Prix" --session FP2 --n-sims 5000 --no-discord
+```
+
+Recommended weekend rhythm:
+
+| Weekend point | What to run | Why |
+| --- | --- | --- |
+| Before FP1 | `python main.py --event latest --n-sims 1000 --no-discord` | Smoke-test dependencies, cache, config, prices, and output folders before useful session data exists. |
+| After FP1 | `python main.py --event latest --n-sims 5000 --no-discord` | Create an early, low-confidence read and catch missing data issues. |
+| After FP2 | `python main.py --event latest --n-sims 10000 --no-discord` | First useful long-run/fantasy direction; review tyre and pace outputs. |
+| After FP3 | `python main.py --event latest --n-sims 20000 --no-discord` | Final practice-based check before qualifying changes the grid signal. |
+| After Q or SQ | `python main.py --event latest --n-sims 50000 --no-discord` | Main pre-race prediction using the strongest available predictor session. |
+| Final pre-race post | `python main.py --event latest --n-sims 50000 --post-to-discord` | Publish the report bundle once prices, grid assumptions, and outputs look right. |
+| After the race | `python -m src.backtest` | Compare the saved prediction snapshot against actual results. |
+| After backtest | `python -m src.calibration` | Generate advisory model-parameter tuning recommendations. |
+
+For sprint weekends, run the same flow after `SQ` and again after `S` if sprint data should influence the race read.
+Do not run `python -m src.backtest` until FastF1 race results are available.
+
 ### Generate data-source roadmap artifacts
 
 ```powershell
