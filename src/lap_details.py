@@ -281,11 +281,13 @@ def export_weekend_lap_details(
     year: int,
     event_identifier: int | str,
     sessions: list[str] | None = None,
+    output_dir: str | Path = "outputs/lap_details",
 ) -> dict[str, str]:
     if sessions is None:
         sessions = DETAIL_SESSIONS
 
-    Path("outputs/lap_details").mkdir(parents=True, exist_ok=True)
+    output_path = Path(output_dir)
+    output_path.mkdir(parents=True, exist_ok=True)
 
     detail_frames = []
     quali_results_frames = []
@@ -300,8 +302,8 @@ def export_weekend_lap_details(
         lap_details = extract_lap_details(session, metadata)
         detail_frames.append(lap_details)
 
-        session_file = f"outputs/lap_details/{metadata['event']}_{session_type}_laps.csv"
-        safe_session_file = session_file.replace(" ", "_").replace("/", "_")
+        safe_event = str(metadata["event"]).replace(" ", "_").replace("/", "_").replace("\\", "_")
+        safe_session_file = str(output_path / f"{safe_event}_{session_type}_laps.csv")
         lap_details.to_csv(safe_session_file, index=False)
 
         if session_type == "Q":
@@ -315,11 +317,11 @@ def export_weekend_lap_details(
 
     all_laps = pd.concat(detail_frames, ignore_index=True)
 
-    all_laps_path = "outputs/lap_details/weekend_lap_details.csv"
-    practice_summary_path = "outputs/lap_details/practice_lap_summary.csv"
-    long_run_summary_path = "outputs/lap_details/practice_long_run_summary.csv"
-    quali_summary_path = "outputs/lap_details/quali_lap_summary.csv"
-    quali_results_path = "outputs/lap_details/quali_results_segments.csv"
+    all_laps_path = str(output_path / "weekend_lap_details.csv")
+    practice_summary_path = str(output_path / "practice_lap_summary.csv")
+    long_run_summary_path = str(output_path / "practice_long_run_summary.csv")
+    quali_summary_path = str(output_path / "quali_lap_summary.csv")
+    quali_results_path = str(output_path / "quali_results_segments.csv")
 
     all_laps.to_csv(all_laps_path, index=False)
 

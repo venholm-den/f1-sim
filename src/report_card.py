@@ -1049,8 +1049,10 @@ def build_report_outputs(
     overtaking_difficulty: float,
     strategy_csv_path: str | None = None,
     session: Any | None = None,
+    output_dir: str | Path = "outputs",
 ) -> dict[str, str]:
-    _ensure_outputs()
+    report_dir = Path(output_dir, "report")
+    report_dir.mkdir(parents=True, exist_ok=True)
 
     outputs: dict[str, str] = {}
 
@@ -1062,12 +1064,14 @@ def build_report_outputs(
         overtaking_difficulty=overtaking_difficulty,
         strategy_csv_path=strategy_csv_path,
         session=session,
+        output_path=str(report_dir / "race_dashboard.png"),
     )
 
     outputs["risk_reward"] = make_fantasy_risk_reward_chart(
         summary=summary,
         strategy_csv_path=strategy_csv_path,
         session=session,
+        output_path=str(report_dir / "fantasy_risk_reward.png"),
     )
 
     strategies = _load_strategy_df(strategy_csv_path)
@@ -1076,6 +1080,7 @@ def build_report_outputs(
         outputs["tyre_timeline"] = make_tyre_strategy_timeline(
             strategy_csv_path,
             session=session,
+            output_path=str(report_dir / "tyre_strategy_timeline.png"),
         )
 
     return outputs

@@ -67,10 +67,10 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-### 3) Optional: scaffold missing folders/files
+### 3) Optional: install development dependencies
 
 ```powershell
-python setup_project.py
+pip install -r requirements-dev.txt
 ```
 
 ## Development and run commands
@@ -81,20 +81,34 @@ python setup_project.py
 python main.py
 ```
 
-Runtime parameters are currently edited as constants in `main.py`:
-
-- `YEAR`
-- `TARGET_EVENT` (`"latest"` loads the latest usable predictor session)
-- `TARGET_SESSION`
-- `N_BASELINE_RACES`
-- `N_SIMS`
-- `SAVE_RAW_RESULTS`
-- `HISTORICAL_STRATEGY_LOOKBACK_YEARS`
-
-### Generate report card artifacts from existing outputs
+Runtime parameters are loaded from `config/default_run_config.json`.
+You can override common settings with CLI flags:
 
 ```powershell
-python test_report_card.py
+python main.py --year 2026 --event latest --session Q --n-sims 50000
+```
+
+Useful flags:
+
+- `--config` for a custom JSON config file.
+- `--year`, `--event`, `--session`.
+- `--n-sims`, `--seed`, `--baseline-races`.
+- `--default-overtaking-difficulty`, `--strategy-lookback-years`.
+- `--post-to-discord` / `--no-discord`.
+
+Environment overrides are also supported for:
+
+- `F1_SIM_YEAR`
+- `F1_SIM_EVENT`
+- `F1_SIM_SESSION`
+- `F1_SIM_N_SIMS`
+- `F1_SIM_RANDOM_SEED`
+- `POST_TO_DISCORD`
+
+### Generate data-source roadmap artifacts
+
+```powershell
+python scripts/build_data_source_roadmap.py
 ```
 
 ### Inspect one driver in debug output

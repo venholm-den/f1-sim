@@ -23,8 +23,8 @@ from src.performance import add_performance_profile
 from src.fantasy import ensure_price_template, calculate_fantasy_summary
 from src.fantasy_charts import make_fantasy_points_chart, make_fantasy_value_chart
 from src.charts import make_probability_chart, make_text_report_image
-from src.run_config import config_to_dict, load_app_config, parse_config_args
-from src.discord_post import post_to_discord
+from src.run_config import load_app_config, parse_config_args
+from src.discord_post import post_files_to_discord
 from src.track import load_track_profile
 from src.lap_details import export_weekend_lap_details
 from src.tyres import infer_tyre_usage
@@ -43,16 +43,21 @@ except Exception:
 # Module-level fallback for helper function defaults
 DEFAULT_OVERTAKING_DIFFICULTY = 0.55
 
-def _ensure_output_dirs() -> None:
+def _output_path(output_dir: str | Path, *parts: str) -> str:
+    return str(Path(output_dir, *parts))
+
+
+def _ensure_output_dirs(output_dir: str | Path = "outputs") -> None:
+    root = Path(output_dir)
     folders = [
-        "outputs",
-        "outputs/report",
-        "outputs/strategy",
-        "outputs/tyres",
-        "outputs/lap_details",
-        "outputs/history",
-        "outputs/debug",
-        "outputs/backtest",
+        root,
+        root / "report",
+        root / "strategy",
+        root / "tyres",
+        root / "lap_details",
+        root / "history",
+        root / "debug",
+        root / "backtest",
     ]
 
     for folder in folders:
@@ -149,7 +154,10 @@ def _safe_read_csv(path: str | None) -> pd.DataFrame:
         return pd.DataFrame()
 
 
-def _get_lap_detail_path(lap_detail_files: dict[str, str]) -> str | None:
+def _get_lap_detail_path(
+    lap_detail_files: dict[str, str],
+    output_dir: str | Path = "outputs",
+) -> str | None:
     # Support older/newer lap export key names so downstream tyre logic can run
     # across partial refactors without requiring every module to change at once.
     candidates = [
@@ -162,7 +170,7 @@ def _get_lap_detail_path(lap_detail_files: dict[str, str]) -> str | None:
         if key in lap_detail_files:
             return lap_detail_files[key]
 
-    fallback = Path("outputs/lap_details/weekend_lap_details.csv")
+    fallback = Path(output_dir, "lap_details", "weekend_lap_details.csv")
 
     if fallback.exists():
         # Reuse the latest generated lap file when this run skipped export; this
@@ -172,7 +180,10 @@ def _get_lap_detail_path(lap_detail_files: dict[str, str]) -> str | None:
     return None
 
 
-def _get_long_run_summary_path(lap_detail_files: dict[str, str]) -> str | None:
+def _get_long_run_summary_path(
+    lap_detail_files: dict[str, str],
+    output_dir: str | Path = "outputs",
+) -> str | None:
     # Keep strategy generation tolerant of historical lap-detail return shapes.
     candidates = [
         "long_run_summary",
@@ -183,7 +194,7 @@ def _get_long_run_summary_path(lap_detail_files: dict[str, str]) -> str | None:
         if key in lap_detail_files:
             return lap_detail_files[key]
 
-    fallback = Path("outputs/lap_details/practice_long_run_summary.csv")
+    fallback = Path(output_dir, "lap_details", "practice_long_run_summary.csv")
 
     if fallback.exists():
         return str(fallback)
@@ -191,8 +202,11 @@ def _get_long_run_summary_path(lap_detail_files: dict[str, str]) -> str | None:
     return None
 
 
-def _detect_sprint_weekend(lap_detail_files: dict[str, str]) -> bool:
-    lap_details_path = _get_lap_detail_path(lap_detail_files)
+def _detect_sprint_weekend(
+    lap_detail_files: dict[str, str],
+    output_dir: str | Path = "outputs",
+) -> bool:
+    lap_details_path = _get_lap_detail_path(lap_detail_files, output_dir=output_dir)
     laps = _safe_read_csv(lap_details_path)
 
     if laps.empty or "Session" not in laps.columns:
@@ -246,10 +260,11 @@ def _build_baseline_features(
 def build_tyre_csv_outputs(
     lap_detail_files: dict[str, str],
     sprint_weekend: bool,
+    output_dir: str | Path = "outputs",
 ) -> dict[str, str]:
     output_files: dict[str, str] = {}
 
-    lap_details_path = _get_lap_detail_path(lap_detail_files)
+    lap_details_path = _get_lap_detail_path(lap_detail_files, output_dir=output_dir)
     lap_details = _safe_read_csv(lap_details_path)
 
     if lap_details.empty:
@@ -266,10 +281,11 @@ def build_tyre_csv_outputs(
     except TypeError:
         set_ledger, inventory = infer_tyre_usage(lap_details)
 
-    Path("outputs/tyres").mkdir(parents=True, exist_ok=True)
+    tyre_dir = Path(output_dir, "tyres")
+    tyre_dir.mkdir(parents=True, exist_ok=True)
 
-    ledger_path = "outputs/tyres/tyre_set_ledger_estimated.csv"
-    inventory_path = "outputs/tyres/tyre_inventory_estimated.csv"
+    ledger_path = str(tyre_dir / "tyre_set_ledger_estimated.csv")
+    inventory_path = str(tyre_dir / "tyre_inventory_estimated.csv")
 
     set_ledger.to_csv(ledger_path, index=False)
     inventory.to_csv(inventory_path, index=False)
@@ -333,6 +349,7 @@ def build_clean_strategy_outputs(
     weather_summary: dict,
     track_profile: dict,
     session: Any | None = None,
+    output_dir: str | Path = "outputs",
 ) -> dict[str, str]:
     output_files: dict[str, str] = {}
 
@@ -361,10 +378,11 @@ def build_clean_strategy_outputs(
         print("Strategy outputs skipped: no strategy rows generated.")
         return output_files
 
-    Path("outputs/strategy").mkdir(parents=True, exist_ok=True)
+    strategy_dir = Path(output_dir, "strategy")
+    strategy_dir.mkdir(parents=True, exist_ok=True)
 
-    strategy_csv = "outputs/strategy/predicted_tyre_strategy.csv"
-    strategy_image = "outputs/strategy/predicted_tyre_strategy.png"
+    strategy_csv = str(strategy_dir / "predicted_tyre_strategy.csv")
+    strategy_image = str(strategy_dir / "predicted_tyre_strategy.png")
 
     strategies.to_csv(strategy_csv, index=False)
 
@@ -482,14 +500,18 @@ def build_model_commentary(
     return lines
 
 
-def save_model_commentary(lines: list[str]) -> str:
-    Path("outputs/report").mkdir(parents=True, exist_ok=True)
+def save_model_commentary(
+    lines: list[str],
+    output_dir: str | Path = "outputs",
+) -> str:
+    report_dir = Path(output_dir, "report")
+    report_dir.mkdir(parents=True, exist_ok=True)
 
-    output_path = "outputs/report/model_commentary.txt"
+    output_path = report_dir / "model_commentary.txt"
 
-    Path(output_path).write_text("\n".join(lines), encoding="utf-8")
+    output_path.write_text("\n".join(lines), encoding="utf-8")
 
-    return output_path
+    return str(output_path)
 
 
 def build_discord_summary(
@@ -581,6 +603,7 @@ def _call_build_report_outputs(
     overtaking_difficulty: float,
     strategy_csv_path: str | None,
     current_session: Any | None,
+    output_dir: str | Path = "outputs",
 ) -> dict[str, str]:
     # Prefer session-aware report colours when available, but preserve compatibility
     # with older report_card implementations that only accept static inputs.
@@ -593,6 +616,7 @@ def _call_build_report_outputs(
             overtaking_difficulty=overtaking_difficulty,
             strategy_csv_path=strategy_csv_path,
             session=current_session,
+            output_dir=output_dir,
         )
     except TypeError as exc:
         print(
@@ -614,30 +638,26 @@ def _call_build_report_outputs(
 def _post_to_discord_safe(
     message: str,
     files: list[str],
+    webhook_url: str | None = None,
 ) -> None:
-    # Discord helper signatures have varied; this wrapper keeps the main pipeline
-    # independent from minor posting API changes.
-    try:
-        post_to_discord(content=message, files=files)
-        return
-    except TypeError:
-        pass
+    result = post_files_to_discord(
+        webhook_url=webhook_url or os.getenv("DISCORD_WEBHOOK_URL", ""),
+        content=message,
+        file_paths=files,
+        username="F1 Sim",
+    )
 
-    try:
-        post_to_discord(message=message, files=files)
-        return
-    except TypeError:
-        pass
-
-    post_to_discord(message, files)
+    if not result.get("ok"):
+        raise RuntimeError(f"Discord post failed: {result}")
 
 
 def main() -> None:
     load_dotenv()
-    _ensure_output_dirs()
 
     args = parse_config_args()
     app_config = load_app_config(config_path=args.config, args=args)
+    output_dir = app_config.outputs.output_dir
+    _ensure_output_dirs(output_dir)
 
     year = app_config.run.year
     target_event: str | int = app_config.run.event
@@ -645,6 +665,7 @@ def main() -> None:
 
     n_baseline_races = app_config.run.n_baseline_races
     n_sims = app_config.run.n_sims
+    random_seed = app_config.run.random_seed
     default_overtaking_difficulty = app_config.run.default_overtaking_difficulty
     save_raw_results = app_config.outputs.save_raw_results
     historical_strategy_lookback_years = app_config.run.historical_strategy_lookback_years
@@ -682,6 +703,7 @@ def main() -> None:
             year=metadata["year"],
             event_identifier=metadata["event"],
             sessions=["FP1", "FP2", "FP3", "Q", "SQ", "S"],
+            output_dir=_output_path(output_dir, "lap_details"),
         )
     except TypeError:
         lap_detail_files = export_weekend_lap_details(
@@ -695,18 +717,22 @@ def main() -> None:
     for name, path in lap_detail_files.items():
         print(f"- {name}: {path}")
 
-    sprint_weekend = _detect_sprint_weekend(lap_detail_files)
+    sprint_weekend = _detect_sprint_weekend(lap_detail_files, output_dir=output_dir)
     print(f"- sprint weekend detected: {sprint_weekend}")
 
     tyre_output_files = build_tyre_csv_outputs(
         lap_detail_files=lap_detail_files,
         sprint_weekend=sprint_weekend,
+        output_dir=output_dir,
     )
 
     print()
     print("Loading track profile...")
 
-    track_profile = load_track_profile(metadata["event"])
+    track_profile = load_track_profile(
+        metadata["event"],
+        path=app_config.data.track_profiles_path,
+    )
     overtaking_difficulty = float(
         track_profile.get(
             "overtaking_difficulty",
@@ -733,10 +759,11 @@ def main() -> None:
     print("Building current session driver features...")
 
     current_features = build_driver_features(current_session.laps)
-    current_features.to_csv("outputs/current_session_features.csv", index=False)
+    current_features_path = _output_path(output_dir, "current_session_features.csv")
+    current_features.to_csv(current_features_path, index=False)
 
     print(f"- current feature rows: {len(current_features)}")
-    print("- saved: outputs/current_session_features.csv")
+    print(f"- saved: {current_features_path}")
 
     print()
     print("Loading recent race baseline sessions...")
@@ -750,10 +777,11 @@ def main() -> None:
     print(f"- recent races loaded: {len(recent_races)}")
 
     baseline_features = _build_baseline_features(recent_races)
-    baseline_features.to_csv("outputs/baseline_race_features.csv", index=False)
+    baseline_features_path = _output_path(output_dir, "baseline_race_features.csv")
+    baseline_features.to_csv(baseline_features_path, index=False)
 
     print(f"- baseline feature rows: {len(baseline_features)}")
-    print("- saved: outputs/baseline_race_features.csv")
+    print(f"- saved: {baseline_features_path}")
 
     print()
     print("Blending model features...")
@@ -792,16 +820,20 @@ def main() -> None:
         metadata=metadata,
     )
 
-    model_features.to_csv("outputs/driver_model_features.csv", index=False)
+    model_features_path = _output_path(output_dir, "driver_model_features.csv")
+    model_features.to_csv(model_features_path, index=False)
 
     print(f"- model feature rows: {len(model_features)}")
-    print("- saved: outputs/driver_model_features.csv")
+    print(f"- saved: {model_features_path}")
 
     print()
     print("Ensuring fantasy price template...")
 
     try:
-        price_template_path = ensure_price_template(model_features)
+        price_template_path = ensure_price_template(
+            model_features,
+            prices_path=app_config.data.fantasy_prices_path,
+        )
         print(f"- price template: {price_template_path}")
     except Exception as exc:
         print(f"Fantasy price template warning: {exc}")
@@ -812,7 +844,7 @@ def main() -> None:
     race_summary, position_matrix, results = simulate_races(
         features=model_features,
         n_sims=n_sims,
-        seed=42,
+        seed=random_seed,
         overtaking_difficulty=overtaking_difficulty,
         weather_modifiers=weather_summary,
     )
@@ -825,23 +857,29 @@ def main() -> None:
     summary, fantasy_results = calculate_fantasy_summary(
         results=results,
         race_summary=race_summary,
+        prices_path=app_config.data.fantasy_prices_path,
     )
 
-    summary.to_csv("outputs/simulation_summary.csv", index=False)
-    position_matrix.to_csv("outputs/position_matrix.csv", index=False)
+    summary_path = _output_path(output_dir, "simulation_summary.csv")
+    position_matrix_path = _output_path(output_dir, "position_matrix.csv")
+
+    summary.to_csv(summary_path, index=False)
+    position_matrix.to_csv(position_matrix_path, index=False)
 
     if save_raw_results:
-        results.to_csv("outputs/raw_simulation_results.csv", index=False)
-        fantasy_results.to_csv("outputs/raw_fantasy_results.csv", index=False)
+        raw_results_path = _output_path(output_dir, "raw_simulation_results.csv")
+        raw_fantasy_path = _output_path(output_dir, "raw_fantasy_results.csv")
+        results.to_csv(raw_results_path, index=False)
+        fantasy_results.to_csv(raw_fantasy_path, index=False)
 
-    print("- saved: outputs/simulation_summary.csv")
-    print("- saved: outputs/position_matrix.csv")
+    print(f"- saved: {summary_path}")
+    print(f"- saved: {position_matrix_path}")
 
     if save_raw_results:
-        print("- saved: outputs/raw_simulation_results.csv")
-        print("- saved: outputs/raw_fantasy_results.csv")
+        print(f"- saved: {raw_results_path}")
+        print(f"- saved: {raw_fantasy_path}")
 
-    if save_prediction_snapshot is not None:
+    if app_config.outputs.save_prediction_snapshot and save_prediction_snapshot is not None:
         print()
         print("Saving prediction snapshot for future backtesting...")
 
@@ -851,10 +889,12 @@ def main() -> None:
             prediction_snapshot_path = save_prediction_snapshot(
                 race_summary=summary,
                 metadata=metadata,
+                output_dir=_output_path(output_dir, "history"),
                 weather_summary=weather_summary,
                 track_profile=track_profile,
                 model_parameters={
                     "n_sims": n_sims,
+                    "random_seed": random_seed,
                     "n_baseline_races": n_baseline_races,
                     "overtaking_difficulty": overtaking_difficulty,
                     "target_event": target_event,
@@ -873,10 +913,14 @@ def main() -> None:
     strategy_output_files = build_clean_strategy_outputs(
         summary=summary,
         tyre_inventory_path=tyre_output_files.get("tyre_inventory"),
-        long_run_summary_path=_get_long_run_summary_path(lap_detail_files),
+        long_run_summary_path=_get_long_run_summary_path(
+            lap_detail_files,
+            output_dir=output_dir,
+        ),
         weather_summary=weather_summary,
         track_profile=track_profile,
         session=current_session,
+        output_dir=output_dir,
     )
 
     historical_strategy_files: dict[str, str] = {}
@@ -892,6 +936,7 @@ def main() -> None:
                 event_name=metadata["event"],
                 lookback_years=historical_strategy_lookback_years,
                 session=current_session,
+                output_dir=output_dir,
             )
         except TypeError:
             historical_strategy_files = apply_historical_strategy_adjustment_to_outputs(
@@ -917,96 +962,113 @@ def main() -> None:
         track_profile=track_profile,
     )
 
-    commentary_path = save_model_commentary(commentary_lines)
+    commentary_path = save_model_commentary(commentary_lines, output_dir=output_dir)
 
     print(f"- commentary: {commentary_path}")
 
-    print()
-    print("Building polished report images...")
-
-    report_output_files = _call_build_report_outputs(
-        summary=summary,
-        metadata=metadata,
-        weather_summary=weather_summary,
-        track_profile=track_profile,
-        overtaking_difficulty=overtaking_difficulty,
-        strategy_csv_path=strategy_output_files.get("predicted_tyre_strategy_csv"),
-        current_session=current_session,
-    )
-
-    for name, path in report_output_files.items():
-        print(f"- {name}: {path}")
-
-    print()
-    print("Creating clean Discord chart bundle...")
-
     files: list[str] = []
+    report_output_files: dict[str, str] = {}
 
-    print("Creating simulated race time distribution chart...")
+    if app_config.outputs.save_report_images:
+        print()
+        print("Building polished report images...")
 
-    sim_race_time_chart: str | None = None
-
-    try:
-        # The chart can derive race-time curves from explicit race-time columns,
-        # performance scores, or finishing positions depending on simulator output.
-        sim_race_time_chart = make_simulated_race_time_chart(
-            results=results,
-            session=current_session,
+        report_output_files = _call_build_report_outputs(
+            summary=summary,
             metadata=metadata,
+            weather_summary=weather_summary,
+            track_profile=track_profile,
+            overtaking_difficulty=overtaking_difficulty,
+            strategy_csv_path=strategy_output_files.get("predicted_tyre_strategy_csv"),
+            current_session=current_session,
+            output_dir=output_dir,
         )
 
-        print(f"- simulated_race_times: {sim_race_time_chart}")
-    except Exception as exc:
-        print(f"Simulated race time chart skipped: {exc}")
+        for name, path in report_output_files.items():
+            print(f"- {name}: {path}")
 
-    for key in ["dashboard", "tyre_timeline", "risk_reward"]:
-        if key in report_output_files:
-            files.append(report_output_files[key])
+        print()
+        print("Creating clean Discord chart bundle...")
 
-    if sim_race_time_chart:
-        files.append(sim_race_time_chart)
+        print("Creating simulated race time distribution chart...")
 
-    try:
-        fantasy_points_chart = make_fantasy_points_chart(summary)
-        files.append(fantasy_points_chart)
-        print(f"- fantasy_points: {fantasy_points_chart}")
-    except Exception as exc:
-        print(f"Fantasy points chart skipped: {exc}")
+        sim_race_time_chart: str | None = None
 
-    if "fantasy_xppm" in summary.columns and summary["fantasy_xppm"].notna().any():
         try:
-            fantasy_value_chart = make_fantasy_value_chart(summary)
-            files.append(fantasy_value_chart)
-            print(f"- fantasy_value: {fantasy_value_chart}")
+            # The chart can derive race-time curves from explicit race-time columns,
+            # performance scores, or finishing positions depending on simulator output.
+            sim_race_time_chart = make_simulated_race_time_chart(
+                results=results,
+                session=current_session,
+                metadata=metadata,
+                output_path=_output_path(output_dir, "report", "simulated_race_times.png"),
+            )
+
+            print(f"- simulated_race_times: {sim_race_time_chart}")
         except Exception as exc:
-            print(f"Fantasy value chart skipped: {exc}")
+            print(f"Simulated race time chart skipped: {exc}")
+
+        for key in ["dashboard", "tyre_timeline", "risk_reward"]:
+            if key in report_output_files:
+                files.append(report_output_files[key])
+
+        if sim_race_time_chart:
+            files.append(sim_race_time_chart)
+
+        try:
+            fantasy_points_chart = make_fantasy_points_chart(
+                summary,
+                output_path=_output_path(output_dir, "fantasy_expected_points.png"),
+            )
+            files.append(fantasy_points_chart)
+            print(f"- fantasy_points: {fantasy_points_chart}")
+        except Exception as exc:
+            print(f"Fantasy points chart skipped: {exc}")
+
+        if "fantasy_xppm" in summary.columns and summary["fantasy_xppm"].notna().any():
+            try:
+                fantasy_value_chart = make_fantasy_value_chart(
+                    summary,
+                    output_path=_output_path(output_dir, "fantasy_value.png"),
+                )
+                files.append(fantasy_value_chart)
+                print(f"- fantasy_value: {fantasy_value_chart}")
+            except Exception as exc:
+                print(f"Fantasy value chart skipped: {exc}")
+        else:
+            print("Fantasy value chart skipped: no fantasy_xppm values available.")
+
+        try:
+            probability_chart = make_probability_chart(
+                summary,
+                output_path=_output_path(output_dir, "probabilities.png"),
+            )
+            files.append(probability_chart)
+            print(f"- probability_chart: {probability_chart}")
+        except Exception as exc:
+            print(f"Probability chart skipped: {exc}")
+
+        try:
+            text_report_image = make_text_report_image(
+                summary,
+                position_matrix,
+                metadata,
+                weather_summary,
+                output_path=_output_path(output_dir, "detailed_report.png"),
+            )
+            files.append(text_report_image)
+            print(f"- text_report: {text_report_image}")
+        except Exception as exc:
+            print(f"Text report image skipped: {exc}")
+
+        if "predicted_tyre_strategy_chart" in strategy_output_files:
+            strategy_chart = strategy_output_files["predicted_tyre_strategy_chart"]
+
+            if strategy_chart not in files:
+                files.append(strategy_chart)
     else:
-        print("Fantasy value chart skipped: no fantasy_xppm values available.")
-
-    try:
-        probability_chart = make_probability_chart(summary)
-        files.append(probability_chart)
-        print(f"- probability_chart: {probability_chart}")
-    except Exception as exc:
-        print(f"Probability chart skipped: {exc}")
-
-    try:
-        text_report_image = make_text_report_image(
-            summary,
-            position_matrix,
-            metadata,
-            weather_summary,
-        )
-        files.append(text_report_image)
-        print(f"- text_report: {text_report_image}")
-    except Exception as exc:
-        print(f"Text report image skipped: {exc}")
-
-    if "predicted_tyre_strategy_chart" in strategy_output_files:
-        strategy_chart = strategy_output_files["predicted_tyre_strategy_chart"]
-
-        if strategy_chart not in files:
-            files.append(strategy_chart)
+        print()
+        print("Report image generation disabled by config.")
 
     print()
     print("Final image bundle:")
@@ -1022,9 +1084,7 @@ def main() -> None:
         commentary_lines=commentary_lines,
     )
 
-    post_to_discord_flag = os.getenv("POST_TO_DISCORD", "false").strip().lower()
-
-    if post_to_discord_flag in {"1", "true", "yes", "y"}:
+    if app_config.outputs.post_to_discord:
         print()
         print("Posting to Discord...")
 
@@ -1035,7 +1095,7 @@ def main() -> None:
             print(f"Discord post failed: {exc}")
     else:
         print()
-        print("POST_TO_DISCORD is false, so Discord posting was skipped.")
+        print("Discord posting disabled by config.")
 
     print()
     print("Done.")
