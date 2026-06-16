@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import os
 import re
 import shutil
 from datetime import datetime
@@ -12,6 +13,17 @@ from typing import Any
 import numpy as np
 import pandas as pd
 
+from src.actual_strategy import (
+    build_strategy_comparison,
+    build_strategy_metrics,
+    extract_actual_strategy_from_session,
+    save_strategy_outputs,
+)
+from src.backtest_visuals import (
+    make_backtest_metrics_png,
+    make_finish_comparison_png,
+    make_strategy_comparison_png,
+)
 from src.collect import load_session
 from src.model_config import FANTASY_SCORING, SIMULATION_PARAMETERS
 
@@ -23,15 +35,16 @@ def _safe_slug(value: Any) -> str:
     return text or "unknown"
 
 
-def _first_existing_column(df: pd.DataFrame, candidates: list[str]) -> str | None:
-    for col in candidates:
-        if col in df.columns:
-            return col
-    return None
+def _to_float_or_none(value: Any) -> float | None:
+    try:
+        number = float(value)
+    except (TypeError, ValueError):
+        return None
 
+    if not np.isfinite(number):
+        return None
 
-def _to_numeric(series: pd.Series, default: float = np.nan) -> pd.Series:
-    return pd.to_numeric(series, errors="coerce").fillna(default)
+    return float(number)
 
 
 def _prob(series: pd.Series) -> pd.Series:
@@ -44,7 +57,7 @@ def _prob(series: pd.Series) -> pd.Series:
 
 
 def _normalise_driver(value: Any) -> str:
-    return str(value).strip().upper()
+    return str(value or "").strip().upper()
 
 
 def _mapping_to_float(mapping: dict[Any, Any]) -> dict[int, float]:
@@ -124,9 +137,10 @@ def save_prediction_snapshot(
     **kwargs: Any,
 ) -> str:
     """
-    Saves a pre-race prediction snapshot for later backtesting.
+    Save a pre-race prediction snapshot for later backtesting.
 
     This should be called after fantasy scoring has been added to the race summary.
+    Extra columns are preserved, so strategy columns can be backtested later.
     """
 
     if race_summary is None:
@@ -178,6 +192,8 @@ def save_prediction_snapshot(
         "Driver",
         "Team",
         "grid_position",
+        "GridPosition",
+        "Grid",
         "avg_finish",
         "finish_p25",
         "finish_p75",
@@ -216,6 +232,17 @@ def save_prediction_snapshot(
         "grid_source",
         "grid_confidence",
         "performance_model_version",
+        "PredictedStrategy",
+        "history_adjusted_strategy",
+        "HistoryAdjustedStrategy",
+        "primary_strategy",
+        "PrimaryStrategy",
+        "expected_stops",
+        "ExpectedStops",
+        "strategy_confidence",
+        "StrategyConfidence",
+        "strategy_source",
+        "StrategySource",
     ]
 
     existing_cols = [col for col in useful_cols if col in snapshot.columns]
@@ -251,7 +278,7 @@ def save_prediction_snapshot(
     return str(full_path)
 
 
-def _extract_actual_results_from_session(year: int, event: str) -> pd.DataFrame:
+def _load_race_session(year: int, event: str) -> Any:
     loaded = load_session(year, event, "R")
 
     if isinstance(loaded, tuple):
@@ -262,6 +289,10 @@ def _extract_actual_results_from_session(year: int, event: str) -> pd.DataFrame:
     if hasattr(race_session, "load"):
         race_session.load()
 
+    return race_session
+
+
+def _extract_actual_results_from_race_session(race_session: Any) -> pd.DataFrame:
     results = getattr(race_session, "results", pd.DataFrame())
 
     if results is not None and not results.empty:
@@ -274,14 +305,10 @@ def _extract_actual_results_from_session(year: int, event: str) -> pd.DataFrame:
                 break
 
         if driver_col is None:
-            raise ValueError(
-                "FastF1 race results are available, but no usable driver column was found."
-            )
+            raise ValueError("FastF1 race results are available, but no usable driver column was found.")
 
         if "Position" not in actual.columns:
-            raise ValueError(
-                "FastF1 race results are available, but no Position column was found."
-            )
+            raise ValueError("FastF1 race results are available, but no Position column was found.")
 
         actual["Driver"] = actual[driver_col].astype(str).str.strip().str.upper()
 
@@ -290,30 +317,10 @@ def _extract_actual_results_from_session(year: int, event: str) -> pd.DataFrame:
         elif "Team" not in actual.columns:
             actual["Team"] = ""
 
-        actual["actual_position"] = pd.to_numeric(
-            actual["Position"],
-            errors="coerce",
-        )
-
+        actual["actual_position"] = pd.to_numeric(actual["Position"], errors="coerce")
         actual = actual.dropna(subset=["Driver", "actual_position"]).copy()
         actual["actual_position"] = actual["actual_position"].astype(int)
-
-        points_map = {
-            1: 25,
-            2: 18,
-            3: 15,
-            4: 12,
-            5: 10,
-            6: 8,
-            7: 6,
-            8: 4,
-            9: 2,
-            10: 1,
-        }
-
-        actual["actual_points"] = (
-            actual["actual_position"].map(points_map).fillna(0.0)
-        )
+        actual["actual_points"] = actual["actual_position"].map(_finish_points_for_position).fillna(0.0)
 
         if "Status" in actual.columns:
             actual["actual_status"] = actual["Status"].fillna("").astype(str)
@@ -349,7 +356,6 @@ def _extract_actual_results_from_session(year: int, event: str) -> pd.DataFrame:
         )
 
     provisional = laps.copy()
-
     required_cols = {"Driver", "LapNumber", "Position"}
     missing_cols = required_cols.difference(provisional.columns)
 
@@ -374,29 +380,12 @@ def _extract_actual_results_from_session(year: int, event: str) -> pd.DataFrame:
         final_laps["Team"] = ""
 
     final_laps["Driver"] = final_laps["Driver"].astype(str).str.strip().str.upper()
-
     final_laps["actual_position"] = (
         pd.to_numeric(final_laps["Position"], errors="coerce")
         .rank(method="first")
         .astype(int)
     )
-
-    points_map = {
-        1: 25,
-        2: 18,
-        3: 15,
-        4: 12,
-        5: 10,
-        6: 8,
-        7: 6,
-        8: 4,
-        9: 2,
-        10: 1,
-    }
-
-    final_laps["actual_points"] = (
-        final_laps["actual_position"].map(points_map).fillna(0.0)
-    )
+    final_laps["actual_points"] = final_laps["actual_position"].map(_finish_points_for_position).fillna(0.0)
     final_laps["actual_dnf"] = False
     final_laps["actual_status"] = "provisional_from_final_lap"
     final_laps["actual_result_source"] = "fastf1_laps_fallback"
@@ -413,42 +402,16 @@ def _extract_actual_results_from_session(year: int, event: str) -> pd.DataFrame:
         ]
     ].sort_values("actual_position").reset_index(drop=True)
 
-    if driver_col is None or position_col is None:
-        raise ValueError("Could not identify driver/position columns in FastF1 race results.")
 
-    actual = pd.DataFrame()
-    actual["Driver"] = df[driver_col].map(_normalise_driver)
+def _extract_actual_results_from_session(year: int, event: str) -> pd.DataFrame:
+    """Compatibility wrapper for older callers/tests."""
 
-    if team_col is not None:
-        actual["actual_team"] = df[team_col].astype(str)
-    else:
-        actual["actual_team"] = ""
-
-    actual["actual_position"] = pd.to_numeric(df[position_col], errors="coerce")
-
-    if points_col is not None:
-        actual["actual_points"] = pd.to_numeric(df[points_col], errors="coerce").fillna(0.0)
-    else:
-        actual["actual_points"] = actual["actual_position"].map(_finish_points_for_position)
-
-    if status_col is not None:
-        status_text = df[status_col].astype(str).str.lower()
-        actual["actual_status"] = df[status_col].astype(str)
-        actual["actual_dnf"] = ~status_text.str.contains("finished|lap|\\+", regex=True, na=False)
-    else:
-        actual["actual_status"] = ""
-        actual["actual_dnf"] = False
-
-    actual = actual.dropna(subset=["Driver", "actual_position"]).copy()
-    actual["actual_position"] = actual["actual_position"].astype(int)
-
-    actual = actual.sort_values("actual_position").reset_index(drop=True)
-
-    return actual
+    race_session = _load_race_session(year, event)
+    return _extract_actual_results_from_race_session(race_session)
 
 
 def _calculate_basic_actual_fantasy(row: pd.Series) -> float:
-    grid_position = row.get("grid_position", np.nan)
+    grid_position = row.get("grid_position", row.get("GridPosition", np.nan))
     actual_position = row.get("actual_position", np.nan)
     actual_dnf = bool(row.get("actual_dnf", False))
 
@@ -483,7 +446,6 @@ def _calculate_basic_actual_fantasy(row: pd.Series) -> float:
 def _brier(predicted_probability: pd.Series, actual_outcome: pd.Series) -> float:
     predicted = _prob(predicted_probability)
     actual = pd.to_numeric(actual_outcome, errors="coerce").fillna(0.0).clip(0.0, 1.0)
-
     return float(((predicted - actual) ** 2).mean())
 
 
@@ -502,175 +464,97 @@ def _overlap_score(predicted: list[str], actual: list[str], n: int) -> float:
 
     return len(set(predicted[:n]) & set(actual[:n])) / n
 
-def _extract_actual_results_from_session(year: int, event: str) -> pd.DataFrame:
-    loaded = load_session(year, event, "R")
 
-    if isinstance(loaded, tuple):
-        race_session = loaded[0]
-    else:
-        race_session = loaded
+def _read_strategy_predictions_fallback(predictions: pd.DataFrame) -> pd.DataFrame:
+    strategy_columns = [
+        "PredictedStrategy",
+        "predicted_strategy",
+        "history_adjusted_strategy",
+        "HistoryAdjustedStrategy",
+        "primary_strategy",
+        "PrimaryStrategy",
+    ]
 
-    # Your load_session helper may already return a loaded session.
-    # Only call .load() if this is a real FastF1 session object.
-    if hasattr(race_session, "load"):
-        race_session.load()
+    if any(column in predictions.columns for column in strategy_columns):
+        return predictions
 
-    results = getattr(race_session, "results", pd.DataFrame())
+    fallback_paths = [
+        Path("outputs/strategy/predicted_tyre_strategy_history_adjusted.csv"),
+        Path("outputs/strategy/predicted_tyre_strategy.csv"),
+    ]
 
-    if results is not None and not results.empty:
-        actual = results.copy()
+    for path in fallback_paths:
+        if not path.exists() or path.stat().st_size == 0:
+            continue
 
-        driver_col = None
-        for candidate in ["Abbreviation", "Driver", "BroadcastName"]:
-            if candidate in actual.columns:
-                driver_col = candidate
-                break
+        try:
+            fallback = pd.read_csv(path)
+        except Exception:
+            continue
 
-        if driver_col is None:
-            raise ValueError(
-                "FastF1 race results are available, but no usable driver column was found."
-            )
+        if fallback.empty or "Driver" not in fallback.columns:
+            continue
 
-        if "Position" not in actual.columns:
-            raise ValueError(
-                "FastF1 race results are available, but no Position column was found."
-            )
+        fallback["Driver"] = fallback["Driver"].map(_normalise_driver)
+        prediction_keys = predictions[["Driver"]].copy()
+        strategy_cols = [column for column in fallback.columns if column != "Driver"]
 
-        actual["Driver"] = actual[driver_col].astype(str).str.strip().str.upper()
-
-        if "TeamName" in actual.columns:
-            actual["Team"] = actual["TeamName"]
-        elif "Team" not in actual.columns:
-            actual["Team"] = ""
-
-        actual["actual_position"] = pd.to_numeric(
-            actual["Position"],
-            errors="coerce",
+        return prediction_keys.merge(
+            fallback[["Driver"] + strategy_cols],
+            on="Driver",
+            how="left",
         )
 
-        actual = actual.dropna(subset=["Driver", "actual_position"]).copy()
-        actual["actual_position"] = actual["actual_position"].astype(int)
+    return predictions
 
-        points_map = {
-            1: 25,
-            2: 18,
-            3: 15,
-            4: 12,
-            5: 10,
-            6: 8,
-            7: 6,
-            8: 4,
-            9: 2,
-            10: 1,
-        }
 
-        actual["actual_points"] = (
-            actual["actual_position"].map(points_map).fillna(0.0)
-        )
+def _build_png_outputs(
+    output_path: Path,
+    stem: str,
+    year: int,
+    event: str,
+    comparison: pd.DataFrame,
+    metrics_df: pd.DataFrame,
+    strategy_comparison: pd.DataFrame | None,
+    strategy_metrics: pd.DataFrame | None,
+) -> dict[str, str]:
+    png_paths: dict[str, str] = {}
 
-        if "Status" in actual.columns:
-            actual["actual_status"] = actual["Status"].fillna("").astype(str)
-            actual["actual_dnf"] = actual["actual_status"].str.contains(
-                "accident|collision|retired|dnf|engine|gearbox|brakes|hydraulics",
-                case=False,
-                na=False,
-            )
-        else:
-            actual["actual_status"] = "classified"
-            actual["actual_dnf"] = False
+    finish_png = output_path / f"{stem}_finish_comparison.png"
+    metrics_png = output_path / f"{stem}_metrics.png"
 
-        actual["actual_result_source"] = "fastf1_results"
-
-        return actual[
-            [
-                "Driver",
-                "Team",
-                "actual_position",
-                "actual_points",
-                "actual_dnf",
-                "actual_status",
-                "actual_result_source",
-            ]
-        ].sort_values("actual_position").reset_index(drop=True)
-
-    laps = getattr(race_session, "laps", pd.DataFrame())
-
-    if laps is None or laps.empty:
-        raise ValueError(
-            "Race results are not available yet from FastF1, and no lap data "
-            "was available to build a provisional classification."
-        )
-
-    provisional = laps.copy()
-
-    required_cols = {"Driver", "LapNumber", "Position"}
-    missing_cols = required_cols.difference(provisional.columns)
-
-    if missing_cols:
-        raise ValueError(
-            "Race results are not available yet from FastF1, and lap data is "
-            f"missing required columns for provisional classification: {sorted(missing_cols)}"
-        )
-
-    provisional = provisional.dropna(subset=["Driver", "LapNumber", "Position"])
-    provisional = provisional.sort_values(["Driver", "LapNumber"])
-
-    final_laps = (
-        provisional.groupby("Driver", as_index=False)
-        .tail(1)
-        .copy()
-        .sort_values("Position")
-        .reset_index(drop=True)
+    png_paths["finish_comparison_png"] = make_finish_comparison_png(
+        comparison=comparison,
+        output_path=finish_png,
+        title=f"{year} {event}: Predicted vs Actual Finish",
     )
 
-    if "Team" not in final_laps.columns:
-        final_laps["Team"] = ""
-
-    final_laps["Driver"] = final_laps["Driver"].astype(str).str.strip().str.upper()
-
-    final_laps["actual_position"] = (
-        pd.to_numeric(final_laps["Position"], errors="coerce")
-        .rank(method="first")
-        .astype(int)
+    png_paths["backtest_metrics_png"] = make_backtest_metrics_png(
+        metrics=metrics_df,
+        strategy_metrics=strategy_metrics,
+        output_path=metrics_png,
+        title=f"{year} {event}: Backtest Metrics Summary",
     )
 
-    points_map = {
-        1: 25,
-        2: 18,
-        3: 15,
-        4: 12,
-        5: 10,
-        6: 8,
-        7: 6,
-        8: 4,
-        9: 2,
-        10: 1,
-    }
+    if strategy_comparison is not None and not strategy_comparison.empty:
+        strategy_png = output_path / f"{stem}_strategy_comparison.png"
+        png_paths["strategy_comparison_png"] = make_strategy_comparison_png(
+            comparison=strategy_comparison,
+            output_path=strategy_png,
+            title=f"{year} {event}: Predicted vs Actual Tyre Strategy",
+        )
 
-    final_laps["actual_points"] = (
-        final_laps["actual_position"].map(points_map).fillna(0.0)
-    )
-    final_laps["actual_dnf"] = False
-    final_laps["actual_status"] = "provisional_from_final_lap"
-    final_laps["actual_result_source"] = "fastf1_laps_fallback"
+    return png_paths
 
-    return final_laps[
-        [
-            "Driver",
-            "Team",
-            "actual_position",
-            "actual_points",
-            "actual_dnf",
-            "actual_status",
-            "actual_result_source",
-        ]
-    ].sort_values("actual_position").reset_index(drop=True)
 
 def backtest_prediction_snapshot(
     snapshot_path: str = "outputs/history/latest_prediction_snapshot.csv",
     output_dir: str = "outputs/backtest",
     year: int | None = None,
     event: str | None = None,
+    generate_pngs: bool = True,
+    post_discord: bool = False,
+    discord_webhook_url: str | None = None,
 ) -> dict[str, str]:
     snapshot_file = Path(snapshot_path)
 
@@ -690,7 +574,12 @@ def backtest_prediction_snapshot(
     if event is None:
         event = str(predictions["event"].dropna().iloc[0])
 
-    actual = _extract_actual_results_from_session(year=year, event=event)
+    race_session = _load_race_session(year=year, event=event)
+    actual = _extract_actual_results_from_race_session(race_session)
+    actual_strategy = extract_actual_strategy_from_session(
+        race_session,
+        metadata={"year": year, "event": event},
+    )
 
     output_path = Path(output_dir)
     output_path.mkdir(parents=True, exist_ok=True)
@@ -707,6 +596,7 @@ def backtest_prediction_snapshot(
         actual,
         on="Driver",
         how="left",
+        suffixes=("", "_actual"),
     )
 
     comparison["predicted_finish"] = pd.to_numeric(comparison.get("avg_finish"), errors="coerce")
@@ -733,10 +623,8 @@ def backtest_prediction_snapshot(
     )
 
     comparison["fantasy_basic_error"] = (
-        comparison["predicted_fantasy_points"]
-        - comparison["actual_fantasy_points_basic"]
+        comparison["predicted_fantasy_points"] - comparison["actual_fantasy_points_basic"]
     )
-
     comparison["fantasy_basic_abs_error"] = comparison["fantasy_basic_error"].abs()
 
     comparison = comparison.sort_values("actual_position").reset_index(drop=True)
@@ -744,24 +632,14 @@ def backtest_prediction_snapshot(
 
     valid = comparison.dropna(subset=["actual_position", "predicted_finish"]).copy()
 
-    predicted_order = (
-        valid.sort_values("predicted_finish")["Driver"]
-        .astype(str)
-        .tolist()
-    )
-
-    actual_order = (
-        valid.sort_values("actual_position")["Driver"]
-        .astype(str)
-        .tolist()
-    )
+    predicted_order = valid.sort_values("predicted_finish")["Driver"].astype(str).tolist()
+    actual_order = valid.sort_values("actual_position")["Driver"].astype(str).tolist()
 
     predicted_winner = (
         valid.sort_values("win_chance", ascending=False)["Driver"].iloc[0]
-        if "win_chance" in valid.columns
+        if "win_chance" in valid.columns and not valid.empty
         else predicted_order[0]
     )
-
     actual_winner = actual_order[0]
 
     metrics = {
@@ -792,12 +670,62 @@ def backtest_prediction_snapshot(
     recommendations = _build_recommendations(metrics, valid)
     recommendations_path.write_text(recommendations, encoding="utf-8")
 
-    return {
+    paths: dict[str, str] = {
         "actual_results": str(actual_path),
         "comparison": str(comparison_path),
         "metrics": str(metrics_path),
         "recommendations": str(recommendations_path),
     }
+
+    strategy_comparison = pd.DataFrame()
+    strategy_metrics = pd.DataFrame()
+
+    if not actual_strategy.empty:
+        strategy_prediction_frame = _read_strategy_predictions_fallback(predictions)
+        strategy_comparison = build_strategy_comparison(strategy_prediction_frame, actual_strategy)
+        strategy_metrics = build_strategy_metrics(strategy_comparison, year=year, event=event)
+        paths.update(
+            save_strategy_outputs(
+                actual_strategy=actual_strategy,
+                strategy_comparison=strategy_comparison,
+                strategy_metrics=strategy_metrics,
+                output_dir=output_path,
+                stem=stem,
+            )
+        )
+    else:
+        print("Actual tyre strategy comparison skipped: no FastF1 lap/stint compound data available.")
+
+    if generate_pngs:
+        png_paths = _build_png_outputs(
+            output_path=output_path,
+            stem=stem,
+            year=year,
+            event=event,
+            comparison=comparison,
+            metrics_df=metrics_df,
+            strategy_comparison=strategy_comparison,
+            strategy_metrics=strategy_metrics,
+        )
+        paths.update(png_paths)
+
+    if post_discord:
+        from src.discord_post import post_backtest_to_discord, write_discord_post_result
+
+        result = post_backtest_to_discord(
+            paths=paths,
+            webhook_url=discord_webhook_url,
+            event_title=f"{year} {event}",
+        )
+        discord_result_path = output_path / f"{stem}_discord_post_result.json"
+        paths["discord_post_result"] = write_discord_post_result(result, discord_result_path)
+
+        if result.get("ok"):
+            print("Posted backtest PNGs to Discord.")
+        else:
+            print(f"Discord post skipped/failed: {result}")
+
+    return paths
 
 
 def _build_recommendations(metrics: dict[str, Any], comparison: pd.DataFrame) -> str:
@@ -860,23 +788,30 @@ def _build_recommendations(metrics: dict[str, Any], comparison: pd.DataFrame) ->
     podium_brier = float(metrics.get("podium_brier", np.nan))
     points_brier = float(metrics.get("points_finish_brier", np.nan))
 
+    suggestions_added = 0
+
     if np.isfinite(finish_mae) and finish_mae > 3.0:
         lines.append("- Finish MAE is high. Check race_pace_seconds_multiplier, grid_loss_multiplier, and race_noise_multiplier.")
+        suggestions_added += 1
 
     if np.isfinite(spearman) and spearman < 0.65:
         lines.append("- Finishing-order correlation is weak. Check whether current weekend data is overpowering recent race baseline.")
+        suggestions_added += 1
 
     if np.isfinite(podium_brier) and podium_brier > 0.18:
         lines.append("- Podium probability calibration looks poor. Check top-driver race noise and pace spread.")
+        suggestions_added += 1
 
     if np.isfinite(points_brier) and points_brier > 0.18:
         lines.append("- Points probability calibration looks poor. Check midfield variance, DNF rate, and overtaking difficulty.")
+        suggestions_added += 1
 
     if metrics.get("predicted_winner_hit") == 0:
         lines.append("- Predicted winner missed. Do not tune from one race alone, but inspect whether grid or race pace was overweighted.")
+        suggestions_added += 1
 
-    if len(lines) == 0:
-        lines.append("- No recommendations generated.")
+    if suggestions_added == 0:
+        lines.append("- No major tuning flags from the headline metrics.")
 
     return "\n".join(lines) + "\n"
 
@@ -899,13 +834,43 @@ def main() -> None:
         default=None,
         help="Override event name.",
     )
+    parser.add_argument(
+        "--output-dir",
+        default="outputs/backtest",
+        help="Directory for backtest outputs.",
+    )
+    parser.add_argument(
+        "--no-pngs",
+        action="store_true",
+        help="Skip Discord-friendly PNG generation.",
+    )
+    parser.add_argument(
+        "--post-discord",
+        action="store_true",
+        help="Post generated PNG outputs to Discord.",
+    )
+    parser.add_argument(
+        "--discord-webhook-url",
+        default=None,
+        help="Discord webhook URL. Defaults to BACKTEST_DISCORD_WEBHOOK_URL or DISCORD_WEBHOOK_URL.",
+    )
 
     args = parser.parse_args()
 
+    webhook_url = (
+        args.discord_webhook_url
+        or os.getenv("BACKTEST_DISCORD_WEBHOOK_URL")
+        or os.getenv("DISCORD_WEBHOOK_URL")
+    )
+
     paths = backtest_prediction_snapshot(
         snapshot_path=args.snapshot,
+        output_dir=args.output_dir,
         year=args.year,
         event=args.event,
+        generate_pngs=not args.no_pngs,
+        post_discord=args.post_discord,
+        discord_webhook_url=webhook_url,
     )
 
     print("Backtest complete:")
