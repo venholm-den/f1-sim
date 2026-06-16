@@ -214,6 +214,163 @@ def _select_tyre_leg(
     return f"{display}(used/unknown)", True
 
 
+def _strategy_type_from_reason(
+    base_reason: str,
+    grid_position: float | None,
+    degradation_signal: float,
+    rainfall_flag: bool,
+) -> str:
+    reason = str(base_reason).lower()
+    grid = grid_position if grid_position is not None else 12
+
+    if rainfall_flag or "weather" in reason:
+        return "weather_dependent"
+    if "aggressive" in reason or "recovery" in reason:
+        return "aggressive_recovery"
+    if "alternate" in reason or grid >= 13:
+        return "alternate"
+    if "conservative" in reason or "track position" in reason:
+        return "conservative"
+    if "2-stop" in reason or degradation_signal >= 0.085:
+        return "high_degradation_two_stop"
+    if "limited" in reason or "tyre-limited" in reason:
+        return "tyre_limited"
+    if grid <= 10:
+        return "front_field_standard"
+    return "balanced"
+
+
+def _allocate_compound_sequence(
+    compounds: list[str],
+    fresh_hard: int,
+    fresh_medium: int,
+    fresh_soft: int,
+    observed_stints: dict[str, int],
+) -> tuple[str, int]:
+    available_new_sets = {
+        "HARD": int(max(fresh_hard, 0)),
+        "MEDIUM": int(max(fresh_medium, 0)),
+        "SOFT": int(max(fresh_soft, 0)),
+    }
+
+    legs: list[str] = []
+    old_flags: list[bool] = []
+
+    for compound in compounds:
+        leg, is_old = _select_tyre_leg(
+            compound=compound,
+            available_new_sets=available_new_sets,
+            observed_stints=observed_stints,
+        )
+        legs.append(leg)
+        old_flags.append(is_old)
+
+    return " → ".join(legs), int(sum(old_flags))
+
+
+def _alternative_compounds(
+    primary_compounds: list[str],
+    grid_position: float | None,
+    degradation_signal: float,
+    fresh_hard: int,
+    fresh_medium: int,
+    fresh_soft: int,
+    overtaking_difficulty: float,
+    rainfall_flag: bool,
+) -> list[str]:
+    if rainfall_flag:
+        return []
+
+    primary = [compound.upper() for compound in primary_compounds]
+    grid = grid_position if grid_position is not None else 12
+
+    if len(primary) >= 3:
+        if fresh_medium > 0 and fresh_hard > 0:
+            return ["MEDIUM", "HARD"]
+        return ["HARD", "MEDIUM"]
+
+    if degradation_signal >= 0.075:
+        if fresh_soft > 0 and fresh_medium > 0 and fresh_hard > 0:
+            return ["SOFT", "MEDIUM", "HARD"]
+        if fresh_medium >= 2 and fresh_hard > 0:
+            return ["MEDIUM", "HARD", "MEDIUM"]
+
+    if primary == ["MEDIUM", "HARD"]:
+        if grid >= 13 and fresh_hard > 0:
+            return ["HARD", "MEDIUM"]
+        if fresh_soft > 0 and fresh_hard > 0 and overtaking_difficulty <= 0.55:
+            return ["SOFT", "HARD"]
+        return ["HARD", "MEDIUM"]
+
+    if primary == ["HARD", "MEDIUM"]:
+        if fresh_medium > 0 and fresh_hard > 0:
+            return ["MEDIUM", "HARD"]
+        if fresh_soft > 0 and fresh_hard > 0:
+            return ["SOFT", "HARD"]
+
+    if fresh_medium > 0 and fresh_hard > 0:
+        return ["MEDIUM", "HARD"]
+
+    if fresh_soft > 0 and fresh_hard > 0:
+        return ["SOFT", "HARD"]
+
+    return ["HARD", "MEDIUM"]
+
+
+def _expected_stops(compounds: list[str], rainfall_flag: bool) -> int | None:
+    if rainfall_flag:
+        return None
+    return int(max(len(compounds) - 1, 0))
+
+
+def _order_strategy_columns(strategies: pd.DataFrame) -> pd.DataFrame:
+    if strategies is None or strategies.empty:
+        return strategies
+
+    preferred = [
+        "Driver",
+        "Team",
+        "Grid",
+        "GridPosition",
+        "PredictedStrategy",
+        "primary_strategy",
+        "alternative_strategy",
+        "expected_stops",
+        "strategy_type",
+        "strategy_source",
+        "strategy_confidence",
+        "confidence_reason",
+        "risk_level",
+        "strategy_risk_level",
+        "strategy_risk_reason",
+        "tyre_availability_risk",
+        "strategy_reason",
+        "LikelyOldTyreUse",
+        "OldTyreRiskScore",
+        "OldTyreRisk",
+        "FreshHardRemaining",
+        "FreshMediumRemaining",
+        "FreshSoftRemaining",
+        "ObservedHardStints",
+        "ObservedMediumStints",
+        "ObservedSoftStints",
+        "EstimatedDegPerLap",
+        "inventory_confidence",
+        "tyre_data_source",
+        "tyre_confidence_reason",
+        "AvgFantasyPoints",
+        "AvgRacePoints",
+        "WinChance",
+        "PodiumChance",
+        "Notes",
+    ]
+
+    ordered = [column for column in preferred if column in strategies.columns]
+    remaining = [column for column in strategies.columns if column not in ordered]
+
+    return strategies[ordered + remaining].copy()
+
+
 def _choose_base_strategy(
     grid_position: float | None,
     overtaking_difficulty: float,
@@ -341,6 +498,14 @@ def predict_driver_strategy(
         rainfall_flag=rainfall_flag,
     )
 
+    strategy_type = _strategy_type_from_reason(
+        base_reason=base_reason,
+        grid_position=grid_position,
+        degradation_signal=degradation_signal,
+        rainfall_flag=rainfall_flag,
+    )
+    expected_stops = _expected_stops(compounds, rainfall_flag=rainfall_flag)
+
     if rainfall_flag:
         predicted_strategy = "Weather-dependent: Intermediate/Wet as required"
         old_tyre_count = 0
@@ -348,28 +513,34 @@ def predict_driver_strategy(
         old_tyre_risk = "Low"
         confidence = "Low"
         notes = "Wet or rain-affected session. Dry tyre strategy is less reliable."
+        alternative_strategy = "Dry fallback unavailable until weather is clearer"
+        strategy_reason = notes
     else:
-        available_new_sets = {
-            "HARD": fresh_hard,
-            "MEDIUM": fresh_medium,
-            "SOFT": fresh_soft,
-        }
+        predicted_strategy, old_tyre_count = _allocate_compound_sequence(
+            compounds=compounds,
+            fresh_hard=fresh_hard,
+            fresh_medium=fresh_medium,
+            fresh_soft=fresh_soft,
+            observed_stints=observed_stints,
+        )
 
-        legs: list[str] = []
-        old_flags: list[bool] = []
-
-        for compound in compounds:
-            leg, is_old = _select_tyre_leg(
-                compound=compound,
-                available_new_sets=available_new_sets,
-                observed_stints=observed_stints,
-            )
-            legs.append(leg)
-            old_flags.append(is_old)
-
-        predicted_strategy = " → ".join(legs)
-
-        old_tyre_count = int(sum(old_flags))
+        alternative_compounds = _alternative_compounds(
+            primary_compounds=compounds,
+            grid_position=grid_position,
+            degradation_signal=degradation_signal,
+            fresh_hard=fresh_hard,
+            fresh_medium=fresh_medium,
+            fresh_soft=fresh_soft,
+            overtaking_difficulty=overtaking_difficulty,
+            rainfall_flag=rainfall_flag,
+        )
+        alternative_strategy, _ = _allocate_compound_sequence(
+            compounds=alternative_compounds,
+            fresh_hard=fresh_hard,
+            fresh_medium=fresh_medium,
+            fresh_soft=fresh_soft,
+            observed_stints=observed_stints,
+        )
 
         soft_quali_pressure = 0
 
@@ -410,6 +581,11 @@ def predict_driver_strategy(
         if fresh_soft <= 1:
             notes += " Low fresh-soft buffer for quali/late race."
 
+        strategy_reason = (
+            f"{base_reason}. {degradation_note}. "
+            f"Estimated fresh sets remaining: H{fresh_hard}/M{fresh_medium}/S{fresh_soft}."
+        )
+
     strategy_risk_reason = _strategy_risk_reason(
         old_tyre_count=old_tyre_count,
         old_tyre_risk=old_tyre_risk,
@@ -428,6 +604,16 @@ def predict_driver_strategy(
         "Grid": _fmt_grid(grid_position),
         "GridPosition": grid_position,
         "PredictedStrategy": predicted_strategy,
+        "primary_strategy": predicted_strategy,
+        "PrimaryStrategy": predicted_strategy,
+        "alternative_strategy": alternative_strategy,
+        "AlternativeStrategy": alternative_strategy,
+        "expected_stops": expected_stops,
+        "ExpectedStops": expected_stops,
+        "strategy_type": strategy_type,
+        "StrategyType": strategy_type,
+        "strategy_reason": strategy_reason,
+        "StrategyReason": strategy_reason,
         "LikelyOldTyreUse": old_tyre_count,
         "OldTyreRiskScore": old_tyre_risk_score,
         "OldTyreRisk": old_tyre_risk,
@@ -453,6 +639,8 @@ def predict_driver_strategy(
         "StrategyConfidenceLabel": confidence,
         "confidence_reason": confidence_reason,
         "ConfidenceReason": confidence_reason,
+        "risk_level": old_tyre_risk,
+        "RiskLevel": old_tyre_risk,
         "strategy_risk_level": old_tyre_risk,
         "StrategyRiskLevel": old_tyre_risk,
         "strategy_risk_reason": strategy_risk_reason,
@@ -502,7 +690,7 @@ def predict_tyre_strategies(
         ascending=[False, True],
     ).drop(columns=["RiskOrder"])
 
-    return output.reset_index(drop=True)
+    return _order_strategy_columns(output.reset_index(drop=True))
 
 
 def make_strategy_table_image(
@@ -734,6 +922,8 @@ def build_strategy_outputs(
     if strategies.empty:
         print("Strategy skipped: no strategy rows were generated.")
         return {}
+
+    strategies = _order_strategy_columns(strategies)
 
     strategy_csv = "outputs/strategy/predicted_tyre_strategy.csv"
     strategies.to_csv(strategy_csv, index=False)

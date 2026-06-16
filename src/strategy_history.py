@@ -612,31 +612,118 @@ def _history_adjustment_reason(history: dict[str, Any], sequence: list[str] | No
     )
 
 
-def _apply_history_to_strategies(
-    strategies: pd.DataFrame,
-    history: dict[str, Any],
-) -> pd.DataFrame:
-    output = strategies.copy()
+def _history_strategy_type(sequence: list[str] | None) -> str:
+    if not sequence:
+        return "model_estimate"
 
-    if output.empty:
+    stops = max(len(sequence) - 1, 0)
+
+    if stops >= 3:
+        return "history_adjusted_three_stop"
+    if stops == 2:
+        return "history_adjusted_two_stop"
+    if stops == 1:
+        return "history_adjusted_one_stop"
+    return "history_adjusted"
+
+
+def _ensure_history_comparison_columns(output: pd.DataFrame) -> pd.DataFrame:
+    if output is None or output.empty:
         return output
 
-    if "OriginalPredictedStrategy" not in output.columns:
-        output["OriginalPredictedStrategy"] = output.get("PredictedStrategy", "")
+    output = output.copy()
+
+    predicted = output.get("PredictedStrategy", "")
 
     if "original_predicted_strategy" not in output.columns:
-        output["original_predicted_strategy"] = output.get("PredictedStrategy", "")
+        output["original_predicted_strategy"] = predicted
 
-    output["history_adjustment_applied"] = False
-    output["HistoryAdjustmentApplied"] = False
-    output["history_adjustment_reason"] = "No historical adjustment applied."
-    output["HistoryAdjustmentReason"] = "No historical adjustment applied."
+    if "OriginalPredictedStrategy" not in output.columns:
+        output["OriginalPredictedStrategy"] = output["original_predicted_strategy"]
+
+    if "history_adjusted_strategy" not in output.columns:
+        output["history_adjusted_strategy"] = output.get("PredictedStrategy", "")
+
+    if "HistoryAdjustedStrategy" not in output.columns:
+        output["HistoryAdjustedStrategy"] = output["history_adjusted_strategy"]
+
+    if "history_adjustment_applied" not in output.columns:
+        output["history_adjustment_applied"] = False
+
+    if "HistoryAdjustmentApplied" not in output.columns:
+        output["HistoryAdjustmentApplied"] = output["history_adjustment_applied"]
+
+    if "history_adjustment_reason" not in output.columns:
+        output["history_adjustment_reason"] = "No historical adjustment applied."
+
+    if "HistoryAdjustmentReason" not in output.columns:
+        output["HistoryAdjustmentReason"] = output["history_adjustment_reason"]
+
+    if "strategy_changed_by_history" not in output.columns:
+        output["strategy_changed_by_history"] = False
+
+    if "StrategyChangedByHistory" not in output.columns:
+        output["StrategyChangedByHistory"] = output["strategy_changed_by_history"]
+
+    if "original_strategy_confidence" not in output.columns:
+        output["original_strategy_confidence"] = output.get(
+            "strategy_confidence",
+            output.get("StrategyConfidence", "Medium"),
+        )
+
+    if "OriginalStrategyConfidence" not in output.columns:
+        output["OriginalStrategyConfidence"] = output["original_strategy_confidence"]
+
+    if "original_strategy_risk_level" not in output.columns:
+        output["original_strategy_risk_level"] = output.get(
+            "strategy_risk_level",
+            output.get("OldTyreRisk", "Medium"),
+        )
+
+    if "OriginalStrategyRiskLevel" not in output.columns:
+        output["OriginalStrategyRiskLevel"] = output["original_strategy_risk_level"]
 
     if "strategy_source" not in output.columns:
         output["strategy_source"] = "model_estimate"
 
     if "StrategySource" not in output.columns:
-        output["StrategySource"] = "model_estimate"
+        output["StrategySource"] = output["strategy_source"]
+
+    if "primary_strategy" not in output.columns:
+        output["primary_strategy"] = output.get("PredictedStrategy", "")
+
+    if "PrimaryStrategy" not in output.columns:
+        output["PrimaryStrategy"] = output["primary_strategy"]
+
+    if "alternative_strategy" not in output.columns:
+        output["alternative_strategy"] = output.get("original_predicted_strategy", "")
+
+    if "AlternativeStrategy" not in output.columns:
+        output["AlternativeStrategy"] = output["alternative_strategy"]
+
+    if "expected_stops" not in output.columns:
+        output["expected_stops"] = output.get("PredictedStrategy", "").map(_strategy_stint_count) - 1
+
+    if "ExpectedStops" not in output.columns:
+        output["ExpectedStops"] = output["expected_stops"]
+
+    if "strategy_type" not in output.columns:
+        output["strategy_type"] = "model_estimate"
+
+    if "StrategyType" not in output.columns:
+        output["StrategyType"] = output["strategy_type"]
+
+    if "risk_level" not in output.columns and "OldTyreRisk" in output.columns:
+        output["risk_level"] = output["OldTyreRisk"]
+
+    if "RiskLevel" not in output.columns and "risk_level" in output.columns:
+        output["RiskLevel"] = output["risk_level"]
+
+    if "strategy_risk_level" not in output.columns and "OldTyreRisk" in output.columns:
+        output["strategy_risk_level"] = output["OldTyreRisk"]
+
+    if "StrategyRiskLevel" not in output.columns and "strategy_risk_level" in output.columns:
+        output["StrategyRiskLevel"] = output["strategy_risk_level"]
 
     if "strategy_risk_reason" not in output.columns:
         output["strategy_risk_reason"] = (
@@ -649,18 +736,83 @@ def _apply_history_to_strategies(
     if "tyre_availability_risk" not in output.columns and "OldTyreRisk" in output.columns:
         output["tyre_availability_risk"] = output["OldTyreRisk"]
 
-    if "TyreAvailabilityRisk" not in output.columns and "OldTyreRisk" in output.columns:
-        output["TyreAvailabilityRisk"] = output["OldTyreRisk"]
+    if "TyreAvailabilityRisk" not in output.columns and "tyre_availability_risk" in output.columns:
+        output["TyreAvailabilityRisk"] = output["tyre_availability_risk"]
+
+    if "confidence_reason" not in output.columns:
+        output["confidence_reason"] = output["strategy_risk_reason"]
+
+    if "ConfidenceReason" not in output.columns:
+        output["ConfidenceReason"] = output["confidence_reason"]
+
+    return output
+
+
+def _order_history_strategy_columns(output: pd.DataFrame) -> pd.DataFrame:
+    if output is None or output.empty:
+        return output
+
+    preferred = [
+        "Driver",
+        "Team",
+        "Grid",
+        "GridPosition",
+        "original_predicted_strategy",
+        "history_adjusted_strategy",
+        "PredictedStrategy",
+        "history_adjustment_applied",
+        "strategy_changed_by_history",
+        "history_adjustment_reason",
+        "primary_strategy",
+        "alternative_strategy",
+        "expected_stops",
+        "strategy_type",
+        "strategy_source",
+        "strategy_confidence",
+        "confidence_reason",
+        "risk_level",
+        "strategy_risk_level",
+        "strategy_risk_reason",
+        "tyre_availability_risk",
+        "LikelyOldTyreUse",
+        "OldTyreRiskScore",
+        "OldTyreRisk",
+        "FreshHardRemaining",
+        "FreshMediumRemaining",
+        "FreshSoftRemaining",
+        "EstimatedDegPerLap",
+        "inventory_confidence",
+        "tyre_data_source",
+        "Notes",
+    ]
+
+    ordered = [column for column in preferred if column in output.columns]
+    remaining = [column for column in output.columns if column not in ordered]
+
+    return output[ordered + remaining].copy()
+
+
+def _apply_history_to_strategies(
+    strategies: pd.DataFrame,
+    history: dict[str, Any],
+) -> pd.DataFrame:
+    output = _ensure_history_comparison_columns(strategies)
+
+    if output.empty:
+        return output
 
     if not history:
-        return output
+        return _order_history_strategy_columns(output)
 
     for index, row in output.iterrows():
         sequence = _target_sequence_for_row(row, history)
 
         if sequence is None:
+            output.at[index, "history_adjusted_strategy"] = row.get("PredictedStrategy", "")
+            output.at[index, "HistoryAdjustedStrategy"] = row.get("PredictedStrategy", "")
             continue
 
+        original_strategy = str(row.get("original_predicted_strategy", row.get("PredictedStrategy", "")))
         strategy_text, old_count = _allocate_sequence(sequence, row)
 
         soft_remaining = int(_to_float_or_none(row.get("FreshSoftRemaining")) or 0)
@@ -701,8 +853,21 @@ def _apply_history_to_strategies(
             f"{adjustment_reason} Tyre availability is still estimated from FastF1 lap/stint data, "
             "not official FIA/Pirelli allocation data."
         )
+        changed = strategy_text != original_strategy
+        expected_stops = int(max(len(sequence) - 1, 0))
+        strategy_type = _history_strategy_type(sequence)
 
         output.at[index, "PredictedStrategy"] = strategy_text
+        output.at[index, "history_adjusted_strategy"] = strategy_text
+        output.at[index, "HistoryAdjustedStrategy"] = strategy_text
+        output.at[index, "primary_strategy"] = strategy_text
+        output.at[index, "PrimaryStrategy"] = strategy_text
+        output.at[index, "alternative_strategy"] = original_strategy
+        output.at[index, "AlternativeStrategy"] = original_strategy
+        output.at[index, "expected_stops"] = expected_stops
+        output.at[index, "ExpectedStops"] = expected_stops
+        output.at[index, "strategy_type"] = strategy_type
+        output.at[index, "StrategyType"] = strategy_type
         output.at[index, "LikelyOldTyreUse"] = old_count
         output.at[index, "OldTyreRiskScore"] = risk_score
         output.at[index, "OldTyreRisk"] = risk
@@ -711,6 +876,8 @@ def _apply_history_to_strategies(
         output.at[index, "StrategyConfidenceLabel"] = confidence
         output.at[index, "strategy_source"] = "history_adjusted_model_estimate"
         output.at[index, "StrategySource"] = "history_adjusted_model_estimate"
+        output.at[index, "risk_level"] = risk
+        output.at[index, "RiskLevel"] = risk
         output.at[index, "strategy_risk_level"] = risk
         output.at[index, "StrategyRiskLevel"] = risk
         output.at[index, "strategy_risk_reason"] = risk_reason
@@ -721,11 +888,13 @@ def _apply_history_to_strategies(
         output.at[index, "ConfidenceReason"] = risk_reason
         output.at[index, "history_adjustment_applied"] = True
         output.at[index, "HistoryAdjustmentApplied"] = True
+        output.at[index, "strategy_changed_by_history"] = changed
+        output.at[index, "StrategyChangedByHistory"] = changed
         output.at[index, "history_adjustment_reason"] = adjustment_reason
         output.at[index, "HistoryAdjustmentReason"] = adjustment_reason
         output.at[index, "Notes"] = notes
 
-    return output
+    return _order_history_strategy_columns(output)
 
 
 def apply_historical_strategy_adjustment_to_outputs(
@@ -764,6 +933,7 @@ def apply_historical_strategy_adjustment_to_outputs(
         }
 
     adjusted = _apply_history_to_strategies(strategies, history_data)
+    adjusted = _order_history_strategy_columns(adjusted)
 
     adjusted_csv = "outputs/strategy/predicted_tyre_strategy_history_adjusted.csv"
     adjusted.to_csv(adjusted_csv, index=False)
