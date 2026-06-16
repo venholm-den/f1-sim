@@ -46,6 +46,10 @@ Pulled at runtime via FastF1:
 - `data/track_profiles.csv`
 	- Created automatically if missing.
 	- Used fields: `Event`, `OvertakingDifficulty`, `SafetyCarChance`, `RedFlagBaseChance`, `Notes`
+- `data/fia_documents/fia_document_index.csv`
+	- Optional local index for official FIA context.
+	- Official starting grid rows override qualifying/model grid assumptions when available.
+	- Penalty rows are carried into grid outputs as FIA penalty notes.
 - `.env`
 	- `POST_TO_DISCORD=true` enables Discord posting.
 	- `DISCORD_WEBHOOK_URL=...` required when posting is enabled.
@@ -125,6 +129,7 @@ Recommended weekend rhythm:
 | After FP2 | `python main.py --event latest --n-sims 10000 --no-discord` | First useful long-run/fantasy direction; review tyre and pace outputs. |
 | After FP3 | `python main.py --event latest --n-sims 20000 --no-discord` | Final practice-based check before qualifying changes the grid signal. |
 | After Q or SQ | `python main.py --event latest --n-sims 50000 --no-discord` | Main pre-race prediction using the strongest available predictor session. |
+| After official grid/penalties | Update `data/fia_documents/fia_document_index.csv`, then rerun `python main.py --event latest --n-sims 50000 --no-discord` | Apply FIA-confirmed grid and penalty context before publishing. |
 | Final pre-race post | `python main.py --event latest --n-sims 50000 --post-to-discord` | Publish the report bundle once prices, grid assumptions, and outputs look right. |
 | After the race | `python -m src.backtest` | Compare the saved prediction snapshot against actual results. |
 | After backtest | `python -m src.calibration` | Generate advisory model-parameter tuning recommendations. |
