@@ -50,6 +50,32 @@ from src.app_services.run_service import run_pipeline_with_config
 
 
 SESSION_OPTIONS = ["Q", "SQ", "S", "FP3", "FP2", "FP1", "R"]
+TRACK_LAYOUT_CACHE: dict[tuple[int, str, str], list[tuple[float, float, float]]] = {}
+
+
+def season_options(default_year: int) -> list[str]:
+    current_year = pd.Timestamp.now().year
+    first_year = min(2018, default_year)
+    final_year = max(current_year + 1, default_year)
+    return [str(year) for year in range(final_year, first_year - 1, -1)]
+
+
+def available_event_names(year: int) -> list[str]:
+    try:
+        import fastf1
+
+        fastf1.Cache.enable_cache(str(project_root() / "data" / "cache"))
+        schedule = fastf1.get_event_schedule(year)
+    except Exception:
+        return []
+
+    if schedule.empty or "EventName" not in schedule.columns:
+        return []
+
+    if "RoundNumber" in schedule.columns:
+        schedule = schedule[pd.to_numeric(schedule["RoundNumber"], errors="coerce").fillna(0).gt(0)]
+
+    return [str(name) for name in schedule["EventName"].dropna().unique().tolist()]
 
 
 def read_first_output_table(
@@ -143,6 +169,74 @@ def sector_leaders(output_dir: str | Path) -> dict[str, tuple[str, float]]:
             leaders[label] = (str(sector.iloc[0]["Driver"]), float(sector.iloc[0][column]))
 
     return leaders
+
+
+def track_layout_points(
+    output_dir: str | Path,
+    year: int | None = None,
+    event_name: str | None = None,
+    session_name: str | None = None,
+) -> list[tuple[float, float, float]]:
+    laps = read_output_table(output_dir, "lap_details/weekend_lap_details.csv", max_rows=5_000)
+
+    if laps.empty and (year is None or not event_name):
+        return []
+
+    year_value = pd.to_numeric(laps.get("Year", pd.Series(dtype="float64")), errors="coerce").dropna()
+    event_value = laps.get("Event", pd.Series(dtype="object")).dropna()
+    session_value = laps.get("Session", pd.Series(dtype="object")).dropna()
+
+    if year is None and not year_value.empty:
+        year = int(year_value.iloc[0])
+    if not event_name and not event_value.empty:
+        event_name = str(event_value.iloc[0])
+    if not session_name and not session_value.empty:
+        session_name = str(session_value.iloc[0])
+
+    if year is None or not event_name or event_name == "latest":
+        return []
+
+    session_name = session_name or "Q"
+    cache_key = (year, event_name, session_name)
+
+    if cache_key in TRACK_LAYOUT_CACHE:
+        return TRACK_LAYOUT_CACHE[cache_key]
+
+    try:
+        import fastf1
+
+        fastf1.Cache.enable_cache(str(project_root() / "data" / "cache"))
+        session = fastf1.get_session(year, event_name, session_name)
+        session.load(laps=True, telemetry=True, weather=False, messages=False)
+        telemetry = session.laps.pick_fastest().get_telemetry().add_distance()
+    except Exception:
+        TRACK_LAYOUT_CACHE[cache_key] = []
+        return []
+
+    required = {"X", "Y", "Distance"}
+    if telemetry.empty or not required.issubset(set(telemetry.columns)):
+        TRACK_LAYOUT_CACHE[cache_key] = []
+        return []
+
+    frame = telemetry[["X", "Y", "Distance"]].dropna().copy()
+
+    if frame.empty:
+        TRACK_LAYOUT_CACHE[cache_key] = []
+        return []
+
+    max_distance = pd.to_numeric(frame["Distance"], errors="coerce").max()
+    if not pd.notna(max_distance) or float(max_distance) <= 0:
+        TRACK_LAYOUT_CACHE[cache_key] = []
+        return []
+
+    step = max(1, len(frame) // 420)
+    sampled = frame.iloc[::step].copy()
+    points = [
+        (float(row["X"]), float(row["Y"]), float(row["Distance"]) / float(max_distance))
+        for _, row in sampled.iterrows()
+    ]
+    TRACK_LAYOUT_CACHE[cache_key] = points
+    return points
 
 
 def weather_risk_summary(output_dir: str | Path) -> dict[str, float | str]:
@@ -315,10 +409,12 @@ class TrackSectorWidget(QWidget):
     def __init__(self) -> None:
         super().__init__()
         self.sectors: dict[str, tuple[str, float]] = {}
+        self.layout_points: list[tuple[float, float, float]] = []
         self.setMinimumHeight(260)
 
-    def set_sectors(self, sectors: dict[str, tuple[str, float]]) -> None:
+    def set_track(self, sectors: dict[str, tuple[str, float]], layout_points: list[tuple[float, float, float]]) -> None:
         self.sectors = sectors
+        self.layout_points = layout_points
         self.update()
 
     def paintEvent(self, event) -> None:  # type: ignore[override]
@@ -328,36 +424,53 @@ class TrackSectorWidget(QWidget):
         painter.setPen(QColor("#f5f7fb"))
         painter.drawText(18, 26, "Track sector dominance")
 
-        if not self.sectors:
+        if not self.sectors and not self.layout_points:
             painter.setPen(QColor("#aab3c2"))
             painter.drawText(18, 72, "No sector timing data found yet.")
             return
 
-        w = self.width()
-        h = self.height()
-        points = [
-            (int(w * 0.18), int(h * 0.64)),
-            (int(w * 0.30), int(h * 0.30)),
-            (int(w * 0.56), int(h * 0.25)),
-            (int(w * 0.78), int(h * 0.48)),
-            (int(w * 0.68), int(h * 0.72)),
-            (int(w * 0.38), int(h * 0.78)),
-            (int(w * 0.18), int(h * 0.64)),
-        ]
         colors = {"S1": "#ef233c", "S2": "#f59e0b", "S3": "#38bdf8"}
 
-        for index, sector in enumerate(["S1", "S2", "S3"]):
-            start = points[index * 2]
-            mid = points[index * 2 + 1]
-            end = points[index * 2 + 2]
-            painter.setPen(QPen(QColor(colors[sector]), 8))
-            painter.drawLine(start[0], start[1], mid[0], mid[1])
-            painter.drawLine(mid[0], mid[1], end[0], end[1])
-            driver, seconds = self.sectors.get(sector, ("n/a", 0.0))
-            painter.setPen(QColor("#f5f7fb"))
-            painter.drawText(mid[0] - 38, mid[1] - 14, f"{sector}: {driver}")
+        if self.layout_points:
+            xs = [point[0] for point in self.layout_points]
+            ys = [point[1] for point in self.layout_points]
+            min_x, max_x = min(xs), max(xs)
+            min_y, max_y = min(ys), max(ys)
+            span_x = max(max_x - min_x, 1.0)
+            span_y = max(max_y - min_y, 1.0)
+            pad_x = 44
+            pad_top = 46
+            pad_bottom = 88
+            draw_width = max(120, self.width() - pad_x * 2)
+            draw_height = max(120, self.height() - pad_top - pad_bottom)
+
+            def scale(point: tuple[float, float, float]) -> tuple[int, int]:
+                x, y, _ = point
+                sx = pad_x + int((x - min_x) / span_x * draw_width)
+                sy = pad_top + int((max_y - y) / span_y * draw_height)
+                return sx, sy
+
+            for start, end in zip(self.layout_points, self.layout_points[1:]):
+                sector = "S1" if start[2] < 1 / 3 else "S2" if start[2] < 2 / 3 else "S3"
+                x1, y1 = scale(start)
+                x2, y2 = scale(end)
+                painter.setPen(QPen(QColor(colors[sector]), 6))
+                painter.drawLine(x1, y1, x2, y2)
+        else:
             painter.setPen(QColor("#aab3c2"))
-            painter.drawText(mid[0] - 38, mid[1] + 4, f"{seconds:.3f}s")
+            painter.drawText(18, 56, "Real circuit layout unavailable; showing sector winners only.")
+
+        legend_y = self.height() - 54
+        for index, sector in enumerate(["S1", "S2", "S3"]):
+            x = 22 + index * max(170, (self.width() - 44) // 3)
+            driver, seconds = self.sectors.get(sector, ("n/a", 0.0))
+            painter.setPen(QPen(QColor(colors[sector]), 8))
+            painter.drawLine(x, legend_y, x + 36, legend_y)
+            painter.setPen(QColor("#f5f7fb"))
+            painter.drawText(x, legend_y + 24, f"{sector}: {driver}")
+            painter.setPen(QColor("#aab3c2"))
+            label = f"{seconds:.3f}s" if seconds else "no time"
+            painter.drawText(x, legend_y + 42, label)
 
 
 class WeatherForecastWidget(QWidget):
@@ -484,11 +597,14 @@ class RaceSetupScreen(QWidget):
     def __init__(self, settings: PortableRunSettings) -> None:
         super().__init__()
 
-        self.year = QSpinBox()
-        self.year.setRange(1950, 2100)
-        self.year.setValue(settings.year)
+        self.year = QComboBox()
+        self.year.addItems(season_options(settings.year))
+        self.year.setCurrentText(str(settings.year))
 
-        self.event_field = QLineEdit(settings.event)
+        self.event_field = QComboBox()
+        self.event_field.setEditable(True)
+        self._refresh_event_options(settings.event)
+        self.year.currentTextChanged.connect(lambda: self._refresh_event_options(self.event_field.currentText()))
 
         self.session_combo = QComboBox()
         self.session_combo.addItems(SESSION_OPTIONS)
@@ -620,10 +736,29 @@ class RaceSetupScreen(QWidget):
         if selected:
             self.output_dir.setText(selected)
 
+    def _refresh_event_options(self, preferred_event: str = "") -> None:
+        current = str(preferred_event or "").strip()
+        try:
+            year = int(self.year.currentText())
+        except ValueError:
+            year = pd.Timestamp.now().year
+
+        event_names = available_event_names(year)
+        options = ["latest", *event_names]
+
+        if current and current not in options:
+            options.insert(1, current)
+
+        self.event_field.blockSignals(True)
+        self.event_field.clear()
+        self.event_field.addItems(options)
+        self.event_field.setCurrentText(current or "latest")
+        self.event_field.blockSignals(False)
+
     def settings(self) -> PortableRunSettings:
         return PortableRunSettings(
-            year=int(self.year.value()),
-            event=self.event_field.text().strip() or "latest",
+            year=int(self.year.currentText()),
+            event=self.event_field.currentText().strip() or "latest",
             session=self.session_combo.currentText().strip() or "Q",
             n_sims=int(self.n_sims.value()),
             random_seed=int(self.random_seed.value()),
@@ -815,9 +950,12 @@ class ResultsScreen(QWidget):
 
 
 class ModelSignalsScreen(QWidget):
-    def __init__(self, output_dir: str) -> None:
+    def __init__(self, output_dir: str, settings: PortableRunSettings) -> None:
         super().__init__()
         self.output_dir = output_dir
+        self.year = settings.year
+        self.event_name = settings.event
+        self.session_name = settings.session
 
         self.status_label = QLabel()
         self.status_label.setObjectName("mutedText")
@@ -867,15 +1005,22 @@ class ModelSignalsScreen(QWidget):
         layout.addWidget(commentary_box)
         self.refresh()
 
-    def set_output_dir(self, output_dir: str) -> None:
+    def set_output_dir(self, output_dir: str, settings: PortableRunSettings | None = None) -> None:
         self.output_dir = output_dir
+        if settings is not None:
+            self.year = settings.year
+            self.event_name = settings.event
+            self.session_name = settings.session
         self.refresh()
 
     def refresh(self) -> None:
         signals = load_model_signals(self.output_dir)
         status = "found" if signals.features_exist else "missing"
         self.status_label.setText(f"driver_model_features.csv is {status}: {signals.features_path}")
-        self.track_sector.set_sectors(sector_leaders(self.output_dir))
+        self.track_sector.set_track(
+            sector_leaders(self.output_dir),
+            track_layout_points(self.output_dir, self.year, self.event_name, self.session_name),
+        )
         set_table_frame(self.overview_table, signals.overview)
         set_table_frame(self.driver_table, signals.driver_signals, max_rows=50)
         self.commentary.setPlainText(signals.commentary or "No model commentary file found yet.")
@@ -1432,7 +1577,7 @@ class MainWindow(QMainWindow):
 
         self.race_setup = RaceSetupScreen(settings)
         self.data_sources = DataSourcesScreen(self.base_config)
-        self.model_signals = ModelSignalsScreen(settings.output_dir)
+        self.model_signals = ModelSignalsScreen(settings.output_dir, settings)
         self.weather_reliability = WeatherReliabilityScreen(settings.output_dir)
         self.tyre_strategy = TyreStrategyScreen(settings.output_dir)
         self.fantasy = FantasyScreen(settings.output_dir)
@@ -1518,7 +1663,7 @@ class MainWindow(QMainWindow):
         return build_run_config(self.base_config, self.race_setup.settings())
 
     def _set_output_dir_for_screens(self, output_dir: str) -> None:
-        self.model_signals.set_output_dir(output_dir)
+        self.model_signals.set_output_dir(output_dir, self.race_setup.settings())
         self.weather_reliability.set_output_dir(output_dir)
         self.tyre_strategy.set_output_dir(output_dir)
         self.fantasy.set_output_dir(output_dir)
