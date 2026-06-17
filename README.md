@@ -120,6 +120,175 @@ Environment overrides are also supported for:
 - `F1_SIM_RANDOM_SEED`
 - `POST_TO_DISCORD`
 
+### Parameter reference
+
+The project uses a mix of JSON config, editable CSV data, and code-level model constants.
+This section groups the main parameters by purpose so changes are easier to reason about.
+
+#### Run selection and simulation volume
+
+Defined in `config/default_run_config.json` under `run`.
+
+| Parameter | Purpose |
+| --- | --- |
+| `year` | F1 season to load. |
+| `event` | Event name, round number, or `latest` for automatic session selection. |
+| `session` | Preferred session code such as `FP2`, `FP3`, `Q`, `SQ`, `S`, or `R`. |
+| `n_sims` | Monte Carlo race count. Higher values are slower but smoother. |
+| `random_seed` | Reproducibility seed for simulation randomness. |
+| `n_baseline_races` | Number of recent races used for pace and reliability baselines. |
+| `default_overtaking_difficulty` | Fallback track-position difficulty if no track profile is found. |
+| `historical_strategy_lookback_years` | Same-event history window used by tyre strategy adjustment. |
+
+#### Output toggles
+
+Defined in `config/default_run_config.json` under `outputs`.
+
+| Parameter | Purpose |
+| --- | --- |
+| `output_dir` | Root folder for generated CSVs, images, debug files, and reports. |
+| `save_prediction_snapshot` | Writes a prediction snapshot for future backtesting. |
+| `save_report_images` | Enables polished report image generation. |
+| `save_raw_results` | Saves raw simulation and fantasy rows. |
+| `post_to_discord` | Sends the report bundle when Discord webhook settings are available. |
+
+#### Data source paths
+
+Defined in `config/default_run_config.json` under `data`.
+
+| Parameter | Purpose |
+| --- | --- |
+| `fantasy_prices_path` | Driver/team fantasy price input. |
+| `track_profiles_path` | Track overtaking, safety-car, red-flag, coordinate, and note assumptions. |
+| `fia_document_index_path` | FIA grid, penalty, summons, and classification context. |
+| `team_power_units_path` | Team-to-power-unit mapping for inferred engine/car reliability. |
+
+#### Model feature switches
+
+Defined in `config/default_run_config.json` under `model`.
+
+| Parameter | Purpose |
+| --- | --- |
+| `model_version` | Label written into model outputs. |
+| `use_fastf1_weather` | Keeps FastF1 weather enabled where supported. |
+| `use_weather_forecast` | Allows Open-Meteo fallback when session weather is missing. |
+| `use_race_control_context` | Allows race-control signals to influence weather/chaos modifiers. |
+| `use_track_red_flag_base_chance` | Uses track-specific red-flag baseline chance in simulation. |
+
+#### Editable data tables
+
+| File | Main parameters |
+| --- | --- |
+| `data/track_profiles.csv` | `OvertakingDifficulty`, `SafetyCarChance`, `RedFlagBaseChance`, `Latitude`, `Longitude`. |
+| `data/team_power_units.csv` | `Year`, `Team`, `PowerUnitSupplier`; used for team and engine reliability inference. |
+| `data/fantasy_prices.csv` | Fantasy prices used for value/xPPM outputs. |
+| `data/fia_documents/fia_document_index.csv` | Official grid, penalty, classification, summons, and note fields. |
+
+#### Session weighting and pace blending
+
+Defined mainly in `src/model.py`, `src/performance.py`, and `src/model_config.py`.
+
+| Parameter/group | Purpose |
+| --- | --- |
+| `CURRENT_SESSION_WEIGHTS` | Controls how much current session data affects the blended model by session type. |
+| `SESSION_WEIGHTS` | Splits current-session influence across quali, race, and strategy scores. |
+| `baseline_weight = 1 / (1 + baseline_age * 0.45)` | Downweights older baseline races. |
+| `current_signal_quality` | Scales current-session influence using clean laps, lap variance, and outlier checks. |
+| Practice pace cap | Limits bad practice runs to reduce overreaction to fuel, traffic, and run plans. |
+| Qualifying pace cap | Keeps quali signals strong but bounded. |
+| `model_uncertainty` | Built from baseline spread, low baseline coverage, session type, and current signal quality. |
+
+#### Weather and race-control modifiers
+
+Defined mainly in `src/weather.py` and `src/race_control.py`.
+
+| Parameter/group | Purpose |
+| --- | --- |
+| `chaos_factor` | Increases race noise, safety-car/red-flag risk, and variance. |
+| `strategy_factor` | Increases strategy loss/noise when conditions are uncertain. |
+| `dnf_factor` | Scales simulated DNF probability. |
+| `degradation_factor` | Scales tyre degradation loss and strategy assumptions. |
+| `uncertainty_factor` | Scales race noise. |
+| Rainfall flag | Adds chaos, strategy variance, DNF risk, and uncertainty. |
+| Track temperature thresholds | Increase or reduce tyre degradation and uncertainty. |
+| Wind thresholds | Increase chaos and uncertainty for moderate/high wind. |
+| Race-control context | Raises chaos, strategy, DNF, and uncertainty factors from incidents/messages. |
+
+#### Reliability and DNF parameters
+
+Defined mainly in `src/features.py`, `src/reliability.py`, `src/performance.py`, and `src/simulate.py`.
+
+| Parameter/group | Purpose |
+| --- | --- |
+| Feature `dnf_prob` | Starts from lap-data quality: base risk plus low-clean-lap and noisy-lap penalties. |
+| `DEFAULT_MECHANICAL_DNF_RATE = 0.045` | Reliability prior when recent result status data is sparse. |
+| `DEFAULT_PRIOR_WEIGHT = 8.0` | Smoothing weight for team and power-unit DNF rates. |
+| Mechanical status keywords | Classify statuses like engine, gearbox, hydraulics, brakes, and power unit as mechanical DNFs. |
+| Non-mechanical status keywords | Classify accidents, collisions, crashes, and similar statuses separately. |
+| Reliability blend | Combines base `dnf_prob`, team mechanical DNF rate, and power-unit mechanical DNF rate. |
+| `reliability_score` | Final DNF probability signal passed into the simulation engine. |
+| `effective_dnf_prob` | Simulation DNF probability after weather/race-control `dnf_factor`, clipped to a safe range. |
+| DNF time penalty | Adds a large classified-time penalty for simulated DNFs. |
+
+#### Race simulation engine
+
+Defined in `src/model_config.py` under `SIMULATION_PARAMETERS`.
+
+| Parameter | Purpose |
+| --- | --- |
+| `race_pace_seconds_multiplier` | Converts race pace score into time loss. |
+| `long_run_penalty_multiplier` | Penalizes weak long-run pace versus race pace. |
+| `tyre_deg_multiplier` | Converts tyre degradation score into race time loss. |
+| `grid_loss_multiplier` | Converts grid position and overtaking difficulty into time loss. |
+| `strategy_loss_multiplier` | Converts strategy score into time loss. |
+| `race_noise_multiplier` | Driver/race stochastic pace noise. |
+| `start_noise_seconds` | Start phase randomness. |
+| `strategy_noise_seconds` | Strategy randomness. |
+| `chaos_noise_seconds` | Incident/weather chaos randomness. |
+| `red_flag_field_compression` | Compresses field spread under simulated red flags. |
+| `red_flag_noise_seconds` | Adds noise after red-flag compression. |
+
+#### Fantasy scoring
+
+Defined in `src/model_config.py` under `FANTASY_SCORING`.
+
+| Parameter/group | Purpose |
+| --- | --- |
+| `finish_points` | Points by classified race finish. |
+| `quali_points` | Points by qualifying position. |
+| `position_gain_points_per_place` | Reward for race positions gained. |
+| `position_loss_points_per_place` | Penalty for positions lost. |
+| `position_change_min` / `position_change_max` | Caps position-change scoring. |
+| `fastest_lap_bonus` | Fastest lap fantasy bonus. |
+| `dotd_bonus` | Driver of the day fantasy bonus. |
+| `dnf_penalty` | Fantasy DNF penalty. |
+
+#### Tyre strategy parameters
+
+Defined mainly in `src/tyres.py`, `src/strategy.py`, and `src/strategy_history.py`.
+
+| Parameter/group | Purpose |
+| --- | --- |
+| Assumed dry tyre allocation | Starting hard/medium/soft sets by weekend format. |
+| Tyre status classification | Estimates new, scrubbed, used, or unknown sets from FreshTyre and TyreLife. |
+| Inventory risk score | Combines shortage pressure, unknown stints, and confidence penalties. |
+| Degradation source fallback | Driver long-run, team long-run, field long-run, then weather-adjusted default. |
+| Candidate strategy scoring | Ranks dry plans such as medium-hard, hard-medium, soft-hard, and two-stop variants. |
+| High degradation threshold | Pushes strategy selection toward two-stop candidates. |
+| Overtaking difficulty thresholds | Reward track-position preservation or recovery strategies depending on circuit. |
+| Old/unknown tyre penalty | Penalizes strategies that likely need used or unknown dry sets. |
+| Historical adjustment thresholds | Uses same-event history only when sample size and signal strength are high enough. |
+
+#### Backtest and calibration
+
+Defined mainly in `src/model_config.py`, `src/backtest.py`, and `src/calibration.py`.
+
+| Parameter/group | Purpose |
+| --- | --- |
+| `BACKTEST_METRIC_WEIGHTS` | Weights finish MAE, Brier scores, and fantasy MAE in backtest review. |
+| Backtest snapshots | Saved predictions later compared against actual results. |
+| Calibration recommendations | Reads backtest metrics and suggests model-parameter tuning changes. |
+
 ### Race weekend workflow
 
 Use `--event latest` when you want the app to choose the best available predictor session automatically.
