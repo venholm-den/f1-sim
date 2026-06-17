@@ -13,6 +13,7 @@ from src.app_services.config_service import (
     write_temp_run_config,
 )
 from src.app_services.data_health import read_csv_preview, validate_data_sources
+from src.app_services.model_signals import load_model_signals
 from src.app_services.output_index import list_core_outputs, read_output_table
 
 
@@ -145,3 +146,32 @@ def test_output_index_reads_known_files(tmp_path) -> None:
 
     assert any(file.label == "Simulation Summary" and file.exists for file in files)
     assert table.iloc[0]["Driver"] == "RUS"
+
+
+def test_load_model_signals_summarises_feature_outputs(tmp_path) -> None:
+    output_dir = tmp_path / "outputs"
+    report_dir = output_dir / "report"
+    report_dir.mkdir(parents=True)
+    pd.DataFrame(
+        {
+            "Driver": ["RUS", "HAM"],
+            "Team": ["Mercedes", "Ferrari"],
+            "grid_position": [1, 2],
+            "grid_source": ["actual_session_results", "fia_document_index"],
+            "current_signal_quality": [0.8, 0.6],
+            "effective_current_weight": [0.4, 0.3],
+            "model_uncertainty": [0.2, 0.4],
+            "performance_uncertainty": [0.3, 0.5],
+            "current_pace_outlier_flag": [False, True],
+            "quali_pace_score": [0.9, 0.8],
+            "projected_lap_time": [80.1, 80.4],
+        }
+    ).to_csv(output_dir / "driver_model_features.csv", index=False)
+    (report_dir / "model_commentary.txt").write_text("Model read: test.", encoding="utf-8")
+
+    signals = load_model_signals(output_dir)
+
+    assert signals.features_exist is True
+    assert signals.commentary == "Model read: test."
+    assert signals.overview.loc[signals.overview["Metric"].eq("Drivers"), "Value"].iloc[0] == "2"
+    assert list(signals.driver_signals["Driver"]) == ["RUS", "HAM"]

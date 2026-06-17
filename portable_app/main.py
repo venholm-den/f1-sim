@@ -42,6 +42,7 @@ from src.app_services.config_service import (
     write_temp_run_config,
 )
 from src.app_services.data_health import DataSourceStatus, read_csv_preview, validate_data_sources
+from src.app_services.model_signals import load_model_signals
 from src.app_services.output_index import list_core_outputs, read_output_table
 from src.app_services.run_service import run_pipeline_with_config
 
@@ -377,6 +378,70 @@ class ResultsScreen(QWidget):
         set_table_frame(self.strategy_table, strategy)
 
 
+class ModelSignalsScreen(QWidget):
+    def __init__(self, output_dir: str) -> None:
+        super().__init__()
+        self.output_dir = output_dir
+
+        self.status_label = QLabel()
+        self.status_label.setObjectName("mutedText")
+        self.status_label.setWordWrap(True)
+        self.overview_table = QTableWidget()
+        self.driver_table = QTableWidget()
+        self.driver_table.setMinimumHeight(280)
+        self.commentary = QTextEdit()
+        self.commentary.setReadOnly(True)
+        self.commentary.setMinimumHeight(140)
+
+        refresh = QPushButton("Refresh Signals")
+        refresh.clicked.connect(self.refresh)
+        open_output = QPushButton("Open Output Folder")
+        open_output.clicked.connect(lambda: open_path(self.output_dir))
+
+        actions = QHBoxLayout()
+        actions.addWidget(refresh)
+        actions.addWidget(open_output)
+        actions.addStretch()
+
+        overview_box = QGroupBox("Signal Health")
+        overview_layout = QVBoxLayout(overview_box)
+        overview_layout.addWidget(self.status_label)
+        overview_layout.addWidget(self.overview_table)
+
+        driver_box = QGroupBox("Driver Signal Blend")
+        driver_layout = QVBoxLayout(driver_box)
+        driver_layout.addWidget(self.driver_table)
+
+        commentary_box = QGroupBox("Model Commentary")
+        commentary_layout = QVBoxLayout(commentary_box)
+        commentary_layout.addWidget(self.commentary)
+
+        layout = QVBoxLayout(self)
+        layout.addWidget(
+            title_label(
+                "Model Signals",
+                "Inspect the inputs and confidence signals behind the latest prediction.",
+            )
+        )
+        layout.addLayout(actions)
+        layout.addWidget(overview_box)
+        layout.addWidget(driver_box)
+        layout.addWidget(commentary_box)
+        self.refresh()
+
+    def set_output_dir(self, output_dir: str) -> None:
+        self.output_dir = output_dir
+        self.refresh()
+
+    def refresh(self) -> None:
+        signals = load_model_signals(self.output_dir)
+        status = "found" if signals.features_exist else "missing"
+        self.status_label.setText(f"driver_model_features.csv is {status}: {signals.features_path}")
+        set_table_frame(self.overview_table, signals.overview)
+        set_table_frame(self.driver_table, signals.driver_signals, max_rows=50)
+        self.commentary.setPlainText(signals.commentary or "No model commentary file found yet.")
+
+
 class PlaceholderScreen(QWidget):
     def __init__(self, title: str, body: str) -> None:
         super().__init__()
@@ -408,19 +473,13 @@ class MainWindow(QMainWindow):
 
         self.race_setup = RaceSetupScreen(settings)
         self.data_sources = DataSourcesScreen(self.base_config)
+        self.model_signals = ModelSignalsScreen(settings.output_dir)
         self.results = ResultsScreen(settings.output_dir)
 
         self.screens = [
             ("Race Setup", self.race_setup),
             ("Data Sources", self.data_sources),
-            (
-                "Model Signals",
-                PlaceholderScreen(
-                    "Model Signals",
-                    "MVP placeholder. The service layer is ready for this screen to read model "
-                    "weights, session quality, and generated driver_model_features.csv.",
-                ),
-            ),
+            ("Model Signals", self.model_signals),
             (
                 "Weather & Reliability",
                 PlaceholderScreen(
@@ -526,6 +585,7 @@ class MainWindow(QMainWindow):
 
         config = self._current_config()
         self.data_sources.set_config(config)
+        self.model_signals.set_output_dir(self.race_setup.settings().output_dir)
         self.results.set_output_dir(self.race_setup.settings().output_dir)
         config_path = write_temp_run_config(config)
         self._append_log(f"\nStarting run with config: {config_path}\n")
@@ -544,6 +604,7 @@ class MainWindow(QMainWindow):
 
     def _run_finished(self, exit_code: int) -> None:
         self._append_log(f"\nRun finished with exit code {exit_code}.\n")
+        self.model_signals.set_output_dir(self.race_setup.settings().output_dir)
         self.results.set_output_dir(self.race_setup.settings().output_dir)
         self._select_screen(6)
 
