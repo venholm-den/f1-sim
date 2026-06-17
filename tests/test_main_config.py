@@ -36,6 +36,7 @@ def _app_config(
             fantasy_prices_path=fantasy_prices_path,
             track_profiles_path="unused_track_profiles.csv",
             fia_document_index_path=fia_index_path,
+            team_power_units_path="unused_team_power_units.csv",
         ),
         model=ModelSettings(
             model_version="test",

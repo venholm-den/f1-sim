@@ -37,6 +37,7 @@ class DataSettings:
     fantasy_prices_path: str
     track_profiles_path: str
     fia_document_index_path: str
+    team_power_units_path: str
 
 
 @dataclass(frozen=True)
@@ -226,6 +227,9 @@ def load_app_config(
             fia_document_index_path=str(
                 data.get("fia_document_index_path", "data/fia_documents/fia_document_index.csv")
             ),
+            team_power_units_path=str(
+                data.get("team_power_units_path", "data/team_power_units.csv")
+            ),
         ),
         model=ModelSettings(
             model_version=str(model.get("model_version", "phase_1_performance_profile")),
@@ -263,6 +267,7 @@ def config_to_dict(config: AppConfig) -> dict[str, Any]:
             "fantasy_prices_path": config.data.fantasy_prices_path,
             "track_profiles_path": config.data.track_profiles_path,
             "fia_document_index_path": config.data.fia_document_index_path,
+            "team_power_units_path": config.data.team_power_units_path,
         },
         "model": {
             "model_version": config.model.model_version,

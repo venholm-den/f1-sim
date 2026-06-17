@@ -19,13 +19,14 @@ Main workflow in `main.py`:
 5. Build weather modifiers from session weather data.
 6. Build current-session driver features and baseline race features.
 7. Blend features into model features and add grid position logic.
-8. Add separated performance profile columns for quali, race, strategy, reliability, and projected lap-time signals.
-9. Run Monte Carlo race simulations.
-10. Compute fantasy scoring and optional value metrics (`xPPM`) if prices are provided.
-11. Predict tyre strategies and optionally adjust them with historical same-event race baselines.
-12. Save prediction snapshots for later backtesting.
-13. Generate report charts, simulated race-time visualization, and commentary.
-14. Optionally post a report bundle to Discord.
+8. Infer team/power-unit reliability from recent race result statuses.
+9. Add separated performance profile columns for quali, race, strategy, reliability, and projected lap-time signals.
+10. Run Monte Carlo race simulations.
+11. Compute fantasy scoring and optional value metrics (`xPPM`) if prices are provided.
+12. Predict tyre strategies and optionally adjust them with historical same-event race baselines.
+13. Save prediction snapshots for later backtesting.
+14. Generate report charts, simulated race-time visualization, and commentary.
+15. Optionally post a report bundle to Discord.
 
 ## Data fields and inputs
 
@@ -37,6 +38,10 @@ Pulled at runtime via FastF1:
 - Session weather (`session.weather_data`)
 - Session classification/results (`session.results` when available)
 - Event schedule
+
+### Local model inputs
+
+- Team/power-unit mapping (`data/team_power_units.csv`) for reliability inference.
 
 ### Local input files
 
@@ -235,6 +240,7 @@ Primary generated files (non-exhaustive):
 	- `outputs/current_session_features.csv`
 	- `outputs/baseline_race_features.csv`
 	- `outputs/driver_model_features.csv`
+	- `outputs/debug/reliability_profile.csv`
 	- `outputs/simulation_summary.csv`
 	- `outputs/position_matrix.csv`
 	- `outputs/weather_summary.csv`
@@ -330,6 +336,7 @@ Formatting is controlled in code (matplotlib styles, table labels, color maps, o
 - Historical strategy adjustment depends on event matching and available historical race data quality.
 - If current session is practice, grid is estimated and uncertainty is intentionally increased.
 - Rainfall, forecast, and weather modifiers are conservative heuristics, not a full meteorological or circuit-specific calibration model.
+- Engine/car reliability is inferred from recent result statuses and editable team/power-unit mappings, not an official manufacturer reliability feed.
 - Fantasy value (`xPPM`) requires valid prices in `data/fantasy_prices.csv`.
 
 ## Troubleshooting

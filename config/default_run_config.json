@@ -19,7 +19,8 @@
   "data": {
     "fantasy_prices_path": "data/fantasy_prices.csv",
     "track_profiles_path": "data/track_profiles.csv",
-    "fia_document_index_path": "data/fia_documents/fia_document_index.csv"
+    "fia_document_index_path": "data/fia_documents/fia_document_index.csv",
+    "team_power_units_path": "data/team_power_units.csv"
   },
   "model": {
     "model_version": "phase_1_performance_profile",
