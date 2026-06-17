@@ -20,6 +20,11 @@ from src.grid import build_grid_features
 from src.weather import summarize_weather
 from src.simulate import simulate_races
 from src.performance import add_performance_profile
+from src.reliability import (
+    apply_reliability_profile,
+    infer_reliability_profile,
+    load_team_power_units,
+)
 from src.fantasy import ensure_price_template, calculate_fantasy_summary
 from src.fantasy_charts import make_fantasy_points_chart, make_fantasy_value_chart
 from src.charts import make_probability_chart, make_text_report_image
@@ -829,6 +834,25 @@ def main() -> None:
             current_features,
             metadata["session"],
         )
+
+    print("Adding inferred team/power-unit reliability profile...")
+
+    try:
+        team_power_units = load_team_power_units(app_config.data.team_power_units_path)
+        reliability_profile = infer_reliability_profile(
+            recent_races=recent_races,
+            team_power_units=team_power_units,
+        )
+        reliability_profile_path = _output_path(output_dir, "debug", "reliability_profile.csv")
+        reliability_profile.to_csv(reliability_profile_path, index=False)
+        model_features = apply_reliability_profile(
+            model_features=model_features,
+            reliability_profile=reliability_profile,
+        )
+        print(f"- reliability profile rows: {len(reliability_profile)}")
+        print(f"- saved: {reliability_profile_path}")
+    except Exception as exc:
+        print(f"Reliability profile warning: {exc}")
 
     print("Adding separated performance profile...")
 
