@@ -212,9 +212,9 @@ class SidebarButton(QPushButton):
 class SummaryStrip(QWidget):
     def __init__(self, config: dict[str, Any], settings: PortableRunSettings) -> None:
         super().__init__()
-        self.cards: dict[str, QLabel] = {}
+        self.values: dict[str, QLabel] = {}
         layout = QHBoxLayout(self)
-        layout.setContentsMargins(0, 0, 0, 10)
+        layout.setContentsMargins(0, 0, 0, 8)
 
         for key, label in [
             ("event", "EVENT"),
@@ -222,36 +222,30 @@ class SummaryStrip(QWidget):
             ("model", "MODEL VERSION"),
             ("weather", "WEATHER SOURCE"),
         ]:
-            card, value_label = self._card(label)
-            self.cards[key] = value_label
+            card = QFrame()
+            card.setObjectName("summaryCard")
+            card_layout = QVBoxLayout(card)
+            card_layout.setContentsMargins(12, 8, 12, 8)
+            label_widget = QLabel(label)
+            label_widget.setObjectName("summaryLabel")
+            value_widget = QLabel()
+            value_widget.setObjectName("summaryValue")
+            value_widget.setWordWrap(True)
+            card_layout.addWidget(label_widget)
+            card_layout.addWidget(value_widget)
+            self.values[key] = value_widget
             layout.addWidget(card)
 
         layout.addStretch()
         self.update_context(config, settings)
 
-    def _card(self, label: str) -> tuple[QFrame, QLabel]:
-        card = QFrame()
-        card.setObjectName("summaryCard")
-        card.setMinimumWidth(160)
-        layout = QVBoxLayout(card)
-        layout.setContentsMargins(12, 8, 12, 8)
-        title = QLabel(label)
-        title.setObjectName("summaryLabel")
-        value = QLabel()
-        value.setObjectName("summaryValue")
-        value.setWordWrap(True)
-        layout.addWidget(title)
-        layout.addWidget(value)
-
-        return card, value
-
     def update_context(self, config: dict[str, Any], settings: PortableRunSettings) -> None:
         model = config.get("model", {})
-        weather_source = "Forecast + FastF1" if model.get("use_weather_forecast", True) else "FastF1 only"
-        self.cards["event"].setText(settings.event)
-        self.cards["session"].setText(settings.session)
-        self.cards["model"].setText(str(model.get("model_version", "unknown")))
-        self.cards["weather"].setText(weather_source)
+        weather_source = "Forecast + FastF1" if model.get("use_weather_forecast", True) else "FastF1"
+        self.values["event"].setText(settings.event)
+        self.values["session"].setText(settings.session)
+        self.values["model"].setText(str(model.get("model_version", "unknown")))
+        self.values["weather"].setText(weather_source)
 
 
 class RaceSetupScreen(QWidget):
@@ -364,19 +358,19 @@ class RaceSetupScreen(QWidget):
 
         status_box = QGroupBox("Ready to Run")
         status_layout = QGridLayout(status_box)
-        self.ready_label = QLabel("All required parameters are set.")
-        self.ready_label.setObjectName("statusReady")
-        status_layout.addWidget(self.ready_label, 0, 0, 1, 3)
+        ready = QLabel("All required parameters are set.")
+        ready.setObjectName("statusReady")
+        status_layout.addWidget(ready, 0, 0, 1, 3)
         status_layout.addWidget(QLabel("Estimated Duration"), 1, 0)
-        status_layout.addWidget(QLabel("Depends on FastF1 cache"), 2, 0)
+        status_layout.addWidget(QLabel("Depends on cache/network"), 2, 0)
         status_layout.addWidget(QLabel("Simulations"), 1, 1)
         status_layout.addWidget(QLabel(f"{settings.n_sims:,}"), 2, 1)
         status_layout.addWidget(QLabel("Storage"), 1, 2)
-        status_layout.addWidget(QLabel("CSV + report outputs"), 2, 2)
+        status_layout.addWidget(QLabel("CSV + dashboard data"), 2, 2)
 
         help_box = QLabel(
-            "About this setup: higher simulation counts improve result stability but increase "
-            "run time. Use a fixed random seed for reproducibility."
+            "About this setup: higher simulation counts improve stability but increase run time. "
+            "Use a fixed random seed for reproducible results."
         )
         help_box.setWordWrap(True)
         help_box.setObjectName("mutedText")
@@ -1027,7 +1021,6 @@ class BacktestingScreen(QWidget):
         snapshots = sorted((root / "history").glob("*prediction_snapshot*.csv")) if (root / "history").exists() else []
 
         chart_frame = comparison.copy()
-
         error_column = ""
 
         for candidate in ["finish_abs_error", "prediction_error", "finish_error"]:
