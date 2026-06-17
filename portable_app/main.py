@@ -7,7 +7,7 @@ from typing import Any
 
 import pandas as pd
 from PySide6.QtCore import QObject, Qt, QThread, Signal
-from PySide6.QtGui import QAction, QDesktopServices, QIcon, QPixmap, QTextCursor
+from PySide6.QtGui import QAction, QColor, QDesktopServices, QIcon, QPainter, QPen, QTextCursor
 from PySide6.QtWidgets import (
     QApplication,
     QCheckBox,
@@ -24,7 +24,6 @@ from PySide6.QtWidgets import (
     QMainWindow,
     QMessageBox,
     QPushButton,
-    QScrollArea,
     QSpinBox,
     QStackedWidget,
     QTabWidget,
@@ -45,11 +44,78 @@ from src.app_services.config_service import (
 )
 from src.app_services.data_health import DataSourceStatus, read_csv_preview, validate_data_sources
 from src.app_services.model_signals import load_model_signals
-from src.app_services.output_index import OutputFile, list_core_outputs, list_visual_outputs, read_output_table
+from src.app_services.output_index import list_core_outputs, read_output_table
 from src.app_services.run_service import run_pipeline_with_config
 
 
 SESSION_OPTIONS = ["Q", "SQ", "S", "FP3", "FP2", "FP1", "R"]
+
+
+def read_first_output_table(
+    output_dir: str | Path,
+    relative_paths: list[str],
+    max_rows: int = 200,
+) -> pd.DataFrame:
+    for relative_path in relative_paths:
+        frame = read_output_table(output_dir, relative_path, max_rows=max_rows)
+
+        if not frame.empty:
+            return frame
+
+    return pd.DataFrame()
+
+
+def select_columns(frame: pd.DataFrame, columns: list[str], max_rows: int = 100) -> pd.DataFrame:
+    if frame.empty:
+        return pd.DataFrame()
+
+    selected = [column for column in columns if column in frame.columns]
+
+    if not selected:
+        return frame.head(max_rows)
+
+    return frame[selected].head(max_rows)
+
+
+def sorted_view(
+    frame: pd.DataFrame,
+    columns: list[str],
+    sort_by: str,
+    ascending: bool = False,
+    max_rows: int = 20,
+) -> pd.DataFrame:
+    if frame.empty:
+        return pd.DataFrame()
+
+    output = frame.copy()
+
+    if sort_by in output.columns:
+        output["_sort_value"] = pd.to_numeric(output[sort_by], errors="coerce")
+        output = output.sort_values("_sort_value", ascending=ascending, na_position="last")
+        output = output.drop(columns=["_sort_value"])
+
+    return select_columns(output, columns, max_rows=max_rows)
+
+
+def chart_points(
+    frame: pd.DataFrame,
+    label_column: str,
+    value_column: str,
+    max_items: int = 8,
+    multiplier: float = 1.0,
+) -> list[tuple[str, float]]:
+    if frame.empty or label_column not in frame.columns or value_column not in frame.columns:
+        return []
+
+    values = frame[[label_column, value_column]].copy()
+    values[value_column] = pd.to_numeric(values[value_column], errors="coerce") * multiplier
+    values = values.dropna(subset=[value_column])
+    values = values.sort_values(value_column, ascending=False).head(max_items)
+
+    return [
+        (str(row[label_column]), float(row[value_column]))
+        for _, row in values.iterrows()
+    ]
 
 
 def project_root() -> Path:
@@ -77,6 +143,48 @@ def set_table_frame(table: QTableWidget, frame: pd.DataFrame, max_rows: int = 10
             table.setItem(row_index, column_index, QTableWidgetItem(str(value)))
 
     table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
+
+
+class BarChartWidget(QWidget):
+    def __init__(self, title: str) -> None:
+        super().__init__()
+        self.title = title
+        self.points: list[tuple[str, float]] = []
+        self.setMinimumHeight(230)
+
+    def set_points(self, points: list[tuple[str, float]]) -> None:
+        self.points = points
+        self.update()
+
+    def paintEvent(self, event) -> None:  # type: ignore[override]
+        painter = QPainter(self)
+        painter.setRenderHint(QPainter.RenderHint.Antialiasing)
+        painter.fillRect(self.rect(), QColor("#0d131c"))
+        painter.setPen(QColor("#f5f7fb"))
+        painter.drawText(18, 26, self.title)
+
+        if not self.points:
+            painter.setPen(QColor("#aab3c2"))
+            painter.drawText(18, 72, "No data available yet.")
+            return
+
+        max_value = max(value for _, value in self.points) or 1.0
+        left = 130
+        right_pad = 70
+        top = 48
+        row_height = max(20, min(30, (self.height() - top - 20) // max(1, len(self.points))))
+        bar_max = max(80, self.width() - left - right_pad)
+
+        for index, (label, value) in enumerate(self.points):
+            y = top + index * row_height
+            width = int(bar_max * max(0.0, value) / max_value)
+            painter.setPen(QColor("#aab3c2"))
+            painter.drawText(18, y + 16, label[:14])
+            painter.setPen(QPen(QColor("#ef233c"), 1))
+            painter.setBrush(QColor("#ef233c"))
+            painter.drawRoundedRect(left, y + 4, width, row_height - 9, 3, 3)
+            painter.setPen(QColor("#f5f7fb"))
+            painter.drawText(left + width + 8, y + 16, f"{value:.1f}")
 
 
 class RunWorker(QObject):
@@ -318,10 +426,12 @@ class ResultsScreen(QWidget):
         super().__init__()
         self.output_dir = output_dir
 
-        self.visual_tabs = QTabWidget()
-        self.visual_labels: dict[str, QLabel] = {}
+        self.win_chart = BarChartWidget("Win chance %")
+        self.podium_chart = BarChartWidget("Podium chance %")
+        self.fantasy_chart = BarChartWidget("Fantasy points")
         self.files_table = QTableWidget()
         self.summary_table = QTableWidget()
+        self.position_table = QTableWidget()
         self.strategy_table = QTableWidget()
 
         refresh = QPushButton("Refresh Outputs")
@@ -334,23 +444,24 @@ class ResultsScreen(QWidget):
         actions.addWidget(open_output)
         actions.addStretch()
 
-        tables = QWidget()
-        tables_layout = QVBoxLayout(tables)
-        tables_layout.setContentsMargins(0, 0, 0, 0)
-        tables_layout.addWidget(QLabel("Simulation Summary"))
-        tables_layout.addWidget(self.summary_table)
-        tables_layout.addWidget(QLabel("Strategy Recommendations"))
-        tables_layout.addWidget(self.strategy_table)
+        charts = QWidget()
+        charts_layout = QGridLayout(charts)
+        charts_layout.setContentsMargins(0, 0, 0, 0)
+        charts_layout.addWidget(self.win_chart, 0, 0)
+        charts_layout.addWidget(self.podium_chart, 0, 1)
+        charts_layout.addWidget(self.fantasy_chart, 1, 0, 1, 2)
+
+        tabs = QTabWidget()
+        tabs.addTab(self.summary_table, "Summary")
+        tabs.addTab(self.position_table, "Position Matrix")
+        tabs.addTab(self.strategy_table, "Strategy")
+        tabs.addTab(self.files_table, "Files")
 
         layout = QVBoxLayout(self)
-        layout.addWidget(title_label("Results", "Review generated visual reports and output tables."))
+        layout.addWidget(title_label("Results", "Review native dashboards and output tables."))
         layout.addLayout(actions)
-        layout.addWidget(QLabel("Visual Outputs"))
-        layout.addWidget(self.visual_tabs, stretch=3)
-        layout.addWidget(QLabel("Tables"))
-        layout.addWidget(tables, stretch=2)
-        layout.addWidget(QLabel("Output Files"))
-        layout.addWidget(self.files_table)
+        layout.addWidget(charts, stretch=2)
+        layout.addWidget(tabs, stretch=3)
         self.refresh()
 
     def set_output_dir(self, output_dir: str) -> None:
@@ -359,8 +470,6 @@ class ResultsScreen(QWidget):
 
     def refresh(self) -> None:
         files = list_core_outputs(self.output_dir)
-        visuals = list_visual_outputs(self.output_dir)
-        self._refresh_visuals(visuals)
         self.files_table.clear()
         self.files_table.setRowCount(len(files))
         self.files_table.setColumnCount(4)
@@ -379,6 +488,8 @@ class ResultsScreen(QWidget):
         self.files_table.horizontalHeader().setSectionResizeMode(QHeaderView.ResizeMode.Stretch)
 
         summary = read_output_table(self.output_dir, "simulation_summary.csv", max_rows=20)
+        full_summary = read_output_table(self.output_dir, "simulation_summary.csv", max_rows=100)
+        position_matrix = read_output_table(self.output_dir, "position_matrix.csv", max_rows=30)
         strategy = read_output_table(
             self.output_dir,
             "strategy/predicted_tyre_strategy_history_adjusted.csv",
@@ -388,45 +499,29 @@ class ResultsScreen(QWidget):
         if strategy.empty:
             strategy = read_output_table(self.output_dir, "strategy/predicted_tyre_strategy.csv", max_rows=20)
 
-        set_table_frame(self.summary_table, summary)
+        self.win_chart.set_points(chart_points(full_summary, "Driver", "win_chance", multiplier=100))
+        self.podium_chart.set_points(chart_points(full_summary, "Driver", "podium_chance", multiplier=100))
+        self.fantasy_chart.set_points(chart_points(full_summary, "Driver", "avg_fantasy_points"))
+        set_table_frame(
+            self.summary_table,
+            select_columns(
+                summary,
+                [
+                    "Driver",
+                    "Team",
+                    "avg_finish",
+                    "win_chance",
+                    "podium_chance",
+                    "dnf_chance",
+                    "avg_points",
+                    "avg_fantasy_points",
+                    "fantasy_xppm",
+                ],
+                max_rows=20,
+            ),
+        )
+        set_table_frame(self.position_table, position_matrix)
         set_table_frame(self.strategy_table, strategy)
-
-    def _refresh_visuals(self, visuals: list[OutputFile]) -> None:
-        self.visual_tabs.clear()
-        self.visual_labels.clear()
-
-        found = [visual for visual in visuals if visual.exists]
-
-        if not found:
-            empty = QLabel("No report images found yet. Run a simulation with report images enabled.")
-            empty.setObjectName("mutedText")
-            empty.setAlignment(Qt.AlignmentFlag.AlignCenter)
-            self.visual_tabs.addTab(empty, "No Images")
-            return
-
-        for visual in found:
-            label = QLabel()
-            label.setAlignment(Qt.AlignmentFlag.AlignCenter)
-            label.setObjectName("imagePreview")
-            label.setMinimumHeight(360)
-
-            pixmap = QPixmap(visual.path)
-            if pixmap.isNull():
-                label.setText(f"Could not load image: {visual.path}")
-                label.setObjectName("mutedText")
-            else:
-                label.setPixmap(
-                    pixmap.scaledToWidth(
-                        1050,
-                        Qt.TransformationMode.SmoothTransformation,
-                    )
-                )
-
-            scroll = QScrollArea()
-            scroll.setWidgetResizable(True)
-            scroll.setWidget(label)
-            self.visual_tabs.addTab(scroll, visual.label)
-            self.visual_labels[visual.label] = label
 
 
 class ModelSignalsScreen(QWidget):
@@ -493,6 +588,374 @@ class ModelSignalsScreen(QWidget):
         self.commentary.setPlainText(signals.commentary or "No model commentary file found yet.")
 
 
+class WeatherReliabilityScreen(QWidget):
+    def __init__(self, output_dir: str) -> None:
+        super().__init__()
+        self.output_dir = output_dir
+        self.dnf_chart = BarChartWidget("Driver DNF chance %")
+        self.engine_chart = BarChartWidget("Engine reliability risk %")
+        self.reliability_table = QTableWidget()
+        self.summary_table = QTableWidget()
+
+        refresh = QPushButton("Refresh")
+        refresh.clicked.connect(self.refresh)
+        actions = QHBoxLayout()
+        actions.addWidget(refresh)
+        actions.addStretch()
+
+        charts = QWidget()
+        charts_layout = QGridLayout(charts)
+        charts_layout.setContentsMargins(0, 0, 0, 0)
+        charts_layout.addWidget(self.dnf_chart, 0, 0)
+        charts_layout.addWidget(self.engine_chart, 0, 1)
+
+        tabs = QTabWidget()
+        tabs.addTab(self.summary_table, "Race Risk")
+        tabs.addTab(self.reliability_table, "Reliability Profile")
+
+        layout = QVBoxLayout(self)
+        layout.addWidget(
+            title_label(
+                "Weather & Reliability",
+                "Review DNF, red-flag, team, and power-unit risk signals.",
+            )
+        )
+        layout.addLayout(actions)
+        layout.addWidget(charts, stretch=2)
+        layout.addWidget(tabs, stretch=3)
+        self.refresh()
+
+    def set_output_dir(self, output_dir: str) -> None:
+        self.output_dir = output_dir
+        self.refresh()
+
+    def refresh(self) -> None:
+        summary = read_output_table(self.output_dir, "simulation_summary.csv", max_rows=100)
+        reliability = read_output_table(self.output_dir, "debug/reliability_profile.csv", max_rows=100)
+        self.dnf_chart.set_points(chart_points(summary, "Driver", "dnf_chance", multiplier=100))
+        self.engine_chart.set_points(
+            chart_points(reliability, "Team", "engine_reliability_score", multiplier=100)
+        )
+        set_table_frame(
+            self.summary_table,
+            sorted_view(
+                summary,
+                [
+                    "Driver",
+                    "Team",
+                    "dnf_chance",
+                    "red_flag_chance",
+                    "reliability_score",
+                    "engine_reliability_score",
+                    "PowerUnitSupplier",
+                    "reliability_profile_source",
+                ],
+                sort_by="dnf_chance",
+                max_rows=30,
+            ),
+        )
+        set_table_frame(
+            self.reliability_table,
+            select_columns(
+                reliability,
+                [
+                    "Team",
+                    "PowerUnitSupplier",
+                    "team_mechanical_dnf_rate",
+                    "power_unit_mechanical_dnf_rate",
+                    "engine_reliability_score",
+                    "reliability_observations",
+                    "reliability_profile_source",
+                ],
+            ),
+        )
+
+
+class TyreStrategyScreen(QWidget):
+    def __init__(self, output_dir: str) -> None:
+        super().__init__()
+        self.output_dir = output_dir
+        self.stop_chart = BarChartWidget("Expected stops")
+        self.risk_chart = BarChartWidget("Old tyre risk")
+        self.strategy_table = QTableWidget()
+        self.candidates_table = QTableWidget()
+
+        refresh = QPushButton("Refresh")
+        refresh.clicked.connect(self.refresh)
+        actions = QHBoxLayout()
+        actions.addWidget(refresh)
+        actions.addStretch()
+
+        charts = QWidget()
+        charts_layout = QGridLayout(charts)
+        charts_layout.setContentsMargins(0, 0, 0, 0)
+        charts_layout.addWidget(self.stop_chart, 0, 0)
+        charts_layout.addWidget(self.risk_chart, 0, 1)
+
+        tabs = QTabWidget()
+        tabs.addTab(self.strategy_table, "Strategy Picks")
+        tabs.addTab(self.candidates_table, "Candidates & Reasons")
+
+        layout = QVBoxLayout(self)
+        layout.addWidget(title_label("Tyre Strategy", "Review predicted stint plans and strategy risk."))
+        layout.addLayout(actions)
+        layout.addWidget(charts, stretch=2)
+        layout.addWidget(tabs, stretch=3)
+        self.refresh()
+
+    def set_output_dir(self, output_dir: str) -> None:
+        self.output_dir = output_dir
+        self.refresh()
+
+    def refresh(self) -> None:
+        strategy = read_first_output_table(
+            self.output_dir,
+            [
+                "strategy/predicted_tyre_strategy_history_adjusted.csv",
+                "strategy/predicted_tyre_strategy.csv",
+            ],
+        )
+        self.stop_chart.set_points(chart_points(strategy, "Driver", "expected_stops"))
+        self.risk_chart.set_points(chart_points(strategy, "Driver", "OldTyreRiskScore"))
+        set_table_frame(
+            self.strategy_table,
+            select_columns(
+                strategy,
+                [
+                    "Driver",
+                    "Team",
+                    "GridPosition",
+                    "PredictedStrategy",
+                    "expected_stops",
+                    "strategy_confidence",
+                    "risk_level",
+                    "EstimatedDegPerLap",
+                    "tyre_data_source",
+                ],
+            ),
+        )
+        set_table_frame(
+            self.candidates_table,
+            select_columns(
+                strategy,
+                [
+                    "Driver",
+                    "candidate_strategy_summary",
+                    "strategy_reason",
+                    "history_adjustment_reason",
+                    "history_adjustment_blocked_reason",
+                    "strategy_risk_reason",
+                    "tyre_confidence_reason",
+                ],
+            ),
+        )
+
+
+class FantasyScreen(QWidget):
+    def __init__(self, output_dir: str) -> None:
+        super().__init__()
+        self.output_dir = output_dir
+        self.points_chart = BarChartWidget("Expected fantasy points")
+        self.value_chart = BarChartWidget("Fantasy value xPPM")
+        self.fantasy_table = QTableWidget()
+        self.breakdown_table = QTableWidget()
+
+        refresh = QPushButton("Refresh")
+        refresh.clicked.connect(self.refresh)
+        actions = QHBoxLayout()
+        actions.addWidget(refresh)
+        actions.addStretch()
+
+        charts = QWidget()
+        charts_layout = QGridLayout(charts)
+        charts_layout.setContentsMargins(0, 0, 0, 0)
+        charts_layout.addWidget(self.points_chart, 0, 0)
+        charts_layout.addWidget(self.value_chart, 0, 1)
+
+        tabs = QTabWidget()
+        tabs.addTab(self.fantasy_table, "Rankings")
+        tabs.addTab(self.breakdown_table, "Points Breakdown")
+
+        layout = QVBoxLayout(self)
+        layout.addWidget(title_label("Fantasy", "Review expected fantasy output, floor, ceiling, and value."))
+        layout.addLayout(actions)
+        layout.addWidget(charts, stretch=2)
+        layout.addWidget(tabs, stretch=3)
+        self.refresh()
+
+    def set_output_dir(self, output_dir: str) -> None:
+        self.output_dir = output_dir
+        self.refresh()
+
+    def refresh(self) -> None:
+        summary = read_output_table(self.output_dir, "simulation_summary.csv", max_rows=100)
+        self.points_chart.set_points(chart_points(summary, "Driver", "avg_fantasy_points"))
+        self.value_chart.set_points(chart_points(summary, "Driver", "fantasy_xppm"))
+        set_table_frame(
+            self.fantasy_table,
+            sorted_view(
+                summary,
+                [
+                    "Driver",
+                    "Team",
+                    "avg_fantasy_points",
+                    "fantasy_floor_p10",
+                    "fantasy_ceiling_p90",
+                    "fantasy_price",
+                    "fantasy_xppm",
+                ],
+                sort_by="avg_fantasy_points",
+            ),
+        )
+        set_table_frame(
+            self.breakdown_table,
+            select_columns(
+                summary,
+                [
+                    "Driver",
+                    "avg_quali_points",
+                    "avg_finish_fantasy_points",
+                    "avg_position_change_points",
+                    "avg_fastest_lap_points",
+                    "avg_dotd_points",
+                    "avg_dnf_penalty",
+                ],
+            ),
+        )
+
+
+class CompareScreen(QWidget):
+    def __init__(self, output_dir: str) -> None:
+        super().__init__()
+        self.output_dir = output_dir
+        self.delta_chart = BarChartWidget("Finish delta vs latest snapshot")
+        self.compare_table = QTableWidget()
+        self.snapshot_table = QTableWidget()
+
+        refresh = QPushButton("Refresh")
+        refresh.clicked.connect(self.refresh)
+        actions = QHBoxLayout()
+        actions.addWidget(refresh)
+        actions.addStretch()
+
+        tabs = QTabWidget()
+        tabs.addTab(self.compare_table, "Current vs Snapshot")
+        tabs.addTab(self.snapshot_table, "Snapshots")
+
+        layout = QVBoxLayout(self)
+        layout.addWidget(title_label("Compare", "Compare the current output to saved prediction snapshots."))
+        layout.addLayout(actions)
+        layout.addWidget(self.delta_chart, stretch=2)
+        layout.addWidget(tabs, stretch=3)
+        self.refresh()
+
+    def set_output_dir(self, output_dir: str) -> None:
+        self.output_dir = output_dir
+        self.refresh()
+
+    def refresh(self) -> None:
+        root = Path(self.output_dir)
+        current = read_output_table(root, "simulation_summary.csv", max_rows=100)
+        snapshot = read_output_table(root, "history/latest_prediction_snapshot.csv", max_rows=100)
+        snapshots = sorted((root / "history").glob("*prediction_snapshot*.csv")) if (root / "history").exists() else []
+
+        if current.empty or snapshot.empty or "Driver" not in current.columns or "Driver" not in snapshot.columns:
+            comparison = pd.DataFrame()
+        else:
+            merged = current.merge(
+                snapshot,
+                on="Driver",
+                suffixes=("_current", "_snapshot"),
+            )
+            comparison = pd.DataFrame(
+                {
+                    "Driver": merged["Driver"],
+                    "Team": merged.get("Team_current", merged.get("Team_snapshot", "")),
+                    "avg_finish_current": merged.get("avg_finish_current", ""),
+                    "avg_finish_snapshot": merged.get("avg_finish_snapshot", ""),
+                    "finish_delta": pd.to_numeric(
+                        merged.get("avg_finish_current", pd.Series(dtype=float)),
+                        errors="coerce",
+                    )
+                    - pd.to_numeric(
+                        merged.get("avg_finish_snapshot", pd.Series(dtype=float)),
+                        errors="coerce",
+                    ),
+                    "win_chance_current": merged.get("win_chance_current", ""),
+                    "win_chance_snapshot": merged.get("win_chance_snapshot", ""),
+                }
+            )
+
+        chart_frame = comparison.copy()
+
+        if not chart_frame.empty and "finish_delta" in chart_frame.columns:
+            chart_frame["finish_delta_abs"] = pd.to_numeric(
+                chart_frame["finish_delta"],
+                errors="coerce",
+            ).abs()
+
+        self.delta_chart.set_points(chart_points(chart_frame, "Driver", "finish_delta_abs"))
+        set_table_frame(self.compare_table, comparison)
+        set_table_frame(
+            self.snapshot_table,
+            pd.DataFrame(
+                [
+                    {
+                        "Snapshot": path.name,
+                        "Modified": pd.Timestamp(path.stat().st_mtime, unit="s").strftime("%Y-%m-%d %H:%M"),
+                        "Path": str(path),
+                    }
+                    for path in snapshots[-30:]
+                ]
+            ),
+        )
+
+
+class SettingsScreen(QWidget):
+    def __init__(self, config: dict[str, Any], settings: PortableRunSettings) -> None:
+        super().__init__()
+        self.config = config
+        self.settings = settings
+        self.config_text = QTextEdit()
+        self.config_text.setReadOnly(True)
+        self.paths_table = QTableWidget()
+
+        refresh = QPushButton("Refresh")
+        refresh.clicked.connect(self.refresh)
+        actions = QHBoxLayout()
+        actions.addWidget(refresh)
+        actions.addStretch()
+
+        tabs = QTabWidget()
+        tabs.addTab(self.config_text, "Current Config")
+        tabs.addTab(self.paths_table, "Paths")
+
+        layout = QVBoxLayout(self)
+        layout.addWidget(title_label("Settings", "Inspect the active app configuration and bundled data paths."))
+        layout.addLayout(actions)
+        layout.addWidget(tabs)
+        self.refresh()
+
+    def set_config(self, config: dict[str, Any], settings: PortableRunSettings) -> None:
+        self.config = config
+        self.settings = settings
+        self.refresh()
+
+    def refresh(self) -> None:
+        import json
+
+        self.config_text.setPlainText(json.dumps(self.config, indent=2))
+        data = self.config.get("data", {})
+        rows = [
+            {"Setting": "output_dir", "Value": self.settings.output_dir},
+            {"Setting": "fantasy_prices_path", "Value": str(data.get("fantasy_prices_path", ""))},
+            {"Setting": "track_profiles_path", "Value": str(data.get("track_profiles_path", ""))},
+            {"Setting": "fia_document_index_path", "Value": str(data.get("fia_document_index_path", ""))},
+            {"Setting": "team_power_units_path", "Value": str(data.get("team_power_units_path", ""))},
+        ]
+        set_table_frame(self.paths_table, pd.DataFrame(rows))
+
+
 class PlaceholderScreen(QWidget):
     def __init__(self, title: str, body: str) -> None:
         super().__init__()
@@ -525,49 +988,23 @@ class MainWindow(QMainWindow):
         self.race_setup = RaceSetupScreen(settings)
         self.data_sources = DataSourcesScreen(self.base_config)
         self.model_signals = ModelSignalsScreen(settings.output_dir)
+        self.weather_reliability = WeatherReliabilityScreen(settings.output_dir)
+        self.tyre_strategy = TyreStrategyScreen(settings.output_dir)
+        self.fantasy = FantasyScreen(settings.output_dir)
         self.results = ResultsScreen(settings.output_dir)
+        self.compare = CompareScreen(settings.output_dir)
+        self.settings_screen = SettingsScreen(self.base_config, settings)
 
         self.screens = [
             ("Race Setup", self.race_setup),
             ("Data Sources", self.data_sources),
             ("Model Signals", self.model_signals),
-            (
-                "Weather & Reliability",
-                PlaceholderScreen(
-                    "Weather & Reliability",
-                    "MVP placeholder. The Results screen already reads the generated reliability "
-                    "profile; a dedicated dashboard can be layered on next.",
-                ),
-            ),
-            (
-                "Tyre Strategy",
-                PlaceholderScreen(
-                    "Tyre Strategy",
-                    "MVP placeholder. Candidate strategy scores are available in the strategy CSV.",
-                ),
-            ),
-            (
-                "Fantasy",
-                PlaceholderScreen(
-                    "Fantasy",
-                    "MVP placeholder. Fantasy tables can be read from simulation_summary.csv.",
-                ),
-            ),
+            ("Weather & Reliability", self.weather_reliability),
+            ("Tyre Strategy", self.tyre_strategy),
+            ("Fantasy", self.fantasy),
             ("Results", self.results),
-            (
-                "Compare",
-                PlaceholderScreen(
-                    "Compare",
-                    "MVP placeholder. Scenario presets and run queues belong in phase two.",
-                ),
-            ),
-            (
-                "Settings",
-                PlaceholderScreen(
-                    "Settings",
-                    "MVP placeholder. App settings should live in app_settings.json.",
-                ),
-            ),
+            ("Compare", self.compare),
+            ("Settings", self.settings_screen),
         ]
 
         for _, screen in self.screens:
@@ -629,15 +1066,24 @@ class MainWindow(QMainWindow):
     def _current_config(self) -> dict[str, Any]:
         return build_run_config(self.base_config, self.race_setup.settings())
 
+    def _set_output_dir_for_screens(self, output_dir: str) -> None:
+        self.model_signals.set_output_dir(output_dir)
+        self.weather_reliability.set_output_dir(output_dir)
+        self.tyre_strategy.set_output_dir(output_dir)
+        self.fantasy.set_output_dir(output_dir)
+        self.results.set_output_dir(output_dir)
+        self.compare.set_output_dir(output_dir)
+
     def _start_run(self) -> None:
         if self.thread is not None:
             QMessageBox.warning(self, "Run in progress", "A simulation is already running.")
             return
 
         config = self._current_config()
+        settings = self.race_setup.settings()
         self.data_sources.set_config(config)
-        self.model_signals.set_output_dir(self.race_setup.settings().output_dir)
-        self.results.set_output_dir(self.race_setup.settings().output_dir)
+        self.settings_screen.set_config(config, settings)
+        self._set_output_dir_for_screens(settings.output_dir)
         config_path = write_temp_run_config(config)
         self._append_log(f"\nStarting run with config: {config_path}\n")
 
@@ -655,8 +1101,7 @@ class MainWindow(QMainWindow):
 
     def _run_finished(self, exit_code: int) -> None:
         self._append_log(f"\nRun finished with exit code {exit_code}.\n")
-        self.model_signals.set_output_dir(self.race_setup.settings().output_dir)
-        self.results.set_output_dir(self.race_setup.settings().output_dir)
+        self._set_output_dir_for_screens(self.race_setup.settings().output_dir)
         self._select_screen(6)
 
     def _thread_finished(self) -> None:
