@@ -24,6 +24,7 @@ from PySide6.QtWidgets import (
     QMainWindow,
     QMessageBox,
     QPushButton,
+    QSlider,
     QSpinBox,
     QStackedWidget,
     QTabWidget,
@@ -208,6 +209,51 @@ class SidebarButton(QPushButton):
         self.setCursor(Qt.CursorShape.PointingHandCursor)
 
 
+class SummaryStrip(QWidget):
+    def __init__(self, config: dict[str, Any], settings: PortableRunSettings) -> None:
+        super().__init__()
+        self.cards: dict[str, QLabel] = {}
+        layout = QHBoxLayout(self)
+        layout.setContentsMargins(0, 0, 0, 10)
+
+        for key, label in [
+            ("event", "EVENT"),
+            ("session", "SESSION"),
+            ("model", "MODEL VERSION"),
+            ("weather", "WEATHER SOURCE"),
+        ]:
+            card, value_label = self._card(label)
+            self.cards[key] = value_label
+            layout.addWidget(card)
+
+        layout.addStretch()
+        self.update_context(config, settings)
+
+    def _card(self, label: str) -> tuple[QFrame, QLabel]:
+        card = QFrame()
+        card.setObjectName("summaryCard")
+        card.setMinimumWidth(160)
+        layout = QVBoxLayout(card)
+        layout.setContentsMargins(12, 8, 12, 8)
+        title = QLabel(label)
+        title.setObjectName("summaryLabel")
+        value = QLabel()
+        value.setObjectName("summaryValue")
+        value.setWordWrap(True)
+        layout.addWidget(title)
+        layout.addWidget(value)
+
+        return card, value
+
+    def update_context(self, config: dict[str, Any], settings: PortableRunSettings) -> None:
+        model = config.get("model", {})
+        weather_source = "Forecast + FastF1" if model.get("use_weather_forecast", True) else "FastF1 only"
+        self.cards["event"].setText(settings.event)
+        self.cards["session"].setText(settings.session)
+        self.cards["model"].setText(str(model.get("model_version", "unknown")))
+        self.cards["weather"].setText(weather_source)
+
+
 class RaceSetupScreen(QWidget):
     run_requested = Signal()
 
@@ -241,10 +287,12 @@ class RaceSetupScreen(QWidget):
         self.strategy_lookback.setRange(0, 20)
         self.strategy_lookback.setValue(settings.historical_strategy_lookback_years)
 
-        self.overtaking = QSpinBox()
+        self.overtaking = QSlider(Qt.Orientation.Horizontal)
         self.overtaking.setRange(0, 100)
-        self.overtaking.setSuffix("%")
         self.overtaking.setValue(int(settings.default_overtaking_difficulty * 100))
+        self.overtaking_value = QLabel(f"{self.overtaking.value()}%")
+        self.overtaking_value.setMinimumWidth(44)
+        self.overtaking.valueChanged.connect(lambda value: self.overtaking_value.setText(f"{value}%"))
 
         self.output_dir = QLineEdit(settings.output_dir)
         browse = QPushButton("Browse")
@@ -282,7 +330,12 @@ class RaceSetupScreen(QWidget):
         form.addRow("Random seed", self.random_seed)
         form.addRow("Baseline races", self.baseline_races)
         form.addRow("Historical strategy lookback", self.strategy_lookback)
-        form.addRow("Default overtaking difficulty", self.overtaking)
+        overtaking_row = QHBoxLayout()
+        overtaking_row.addWidget(QLabel("Easier"))
+        overtaking_row.addWidget(self.overtaking)
+        overtaking_row.addWidget(QLabel("Harder"))
+        overtaking_row.addWidget(self.overtaking_value)
+        form.addRow("Default overtaking difficulty", overtaking_row)
 
         output_row = QHBoxLayout()
         output_row.addWidget(self.output_dir)
@@ -309,9 +362,21 @@ class RaceSetupScreen(QWidget):
         actions.addWidget(open_output)
         actions.addStretch()
 
+        status_box = QGroupBox("Ready to Run")
+        status_layout = QGridLayout(status_box)
+        self.ready_label = QLabel("All required parameters are set.")
+        self.ready_label.setObjectName("statusReady")
+        status_layout.addWidget(self.ready_label, 0, 0, 1, 3)
+        status_layout.addWidget(QLabel("Estimated Duration"), 1, 0)
+        status_layout.addWidget(QLabel("Depends on FastF1 cache"), 2, 0)
+        status_layout.addWidget(QLabel("Simulations"), 1, 1)
+        status_layout.addWidget(QLabel(f"{settings.n_sims:,}"), 2, 1)
+        status_layout.addWidget(QLabel("Storage"), 1, 2)
+        status_layout.addWidget(QLabel("CSV + report outputs"), 2, 2)
+
         help_box = QLabel(
-            "MVP note: this screen writes a temporary run config and executes the existing "
-            "simulation pipeline in the background."
+            "About this setup: higher simulation counts improve result stability but increase "
+            "run time. Use a fixed random seed for reproducibility."
         )
         help_box.setWordWrap(True)
         help_box.setObjectName("mutedText")
@@ -321,6 +386,7 @@ class RaceSetupScreen(QWidget):
         layout.addWidget(form_box)
         layout.addWidget(options_box)
         layout.addLayout(actions)
+        layout.addWidget(status_box)
         layout.addWidget(help_box)
         layout.addStretch()
 
@@ -911,6 +977,97 @@ class CompareScreen(QWidget):
         )
 
 
+class BacktestingScreen(QWidget):
+    def __init__(self, output_dir: str) -> None:
+        super().__init__()
+        self.output_dir = output_dir
+        self.error_chart = BarChartWidget("Largest finish prediction errors")
+        self.metrics_table = QTableWidget()
+        self.comparison_table = QTableWidget()
+        self.strategy_table = QTableWidget()
+        self.snapshot_table = QTableWidget()
+        self.recommendations = QTextEdit()
+        self.recommendations.setReadOnly(True)
+
+        refresh = QPushButton("Refresh")
+        refresh.clicked.connect(self.refresh)
+        actions = QHBoxLayout()
+        actions.addWidget(refresh)
+        actions.addStretch()
+
+        tabs = QTabWidget()
+        tabs.addTab(self.metrics_table, "Accuracy Metrics")
+        tabs.addTab(self.comparison_table, "Prediction vs Actual")
+        tabs.addTab(self.strategy_table, "Strategy Backtest")
+        tabs.addTab(self.snapshot_table, "Snapshots")
+        tabs.addTab(self.recommendations, "Insights")
+
+        layout = QVBoxLayout(self)
+        layout.addWidget(
+            title_label(
+                "Backtesting",
+                "Compare saved predictions against actual race results and calibration reports.",
+            )
+        )
+        layout.addLayout(actions)
+        layout.addWidget(self.error_chart, stretch=2)
+        layout.addWidget(tabs, stretch=3)
+        self.refresh()
+
+    def set_output_dir(self, output_dir: str) -> None:
+        self.output_dir = output_dir
+        self.refresh()
+
+    def refresh(self) -> None:
+        root = Path(self.output_dir)
+        metrics = read_output_table(root, "backtest/latest_prediction_snapshot_metrics.csv", max_rows=100)
+        comparison = read_output_table(root, "backtest/latest_prediction_snapshot_comparison.csv", max_rows=100)
+        strategy = read_output_table(root, "backtest/latest_prediction_snapshot_strategy_metrics.csv", max_rows=100)
+        recommendation_path = root / "backtest" / "latest_prediction_snapshot_recommendations.txt"
+        snapshots = sorted((root / "history").glob("*prediction_snapshot*.csv")) if (root / "history").exists() else []
+
+        chart_frame = comparison.copy()
+
+        error_column = ""
+
+        for candidate in ["finish_abs_error", "prediction_error", "finish_error"]:
+            if candidate in chart_frame.columns:
+                error_column = candidate
+                break
+
+        if error_column:
+            chart_frame["prediction_error_abs"] = pd.to_numeric(
+                chart_frame[error_column],
+                errors="coerce",
+            ).abs()
+
+        self.error_chart.set_points(chart_points(chart_frame, "Driver", "prediction_error_abs"))
+        set_table_frame(self.metrics_table, metrics)
+        set_table_frame(self.comparison_table, comparison)
+        set_table_frame(self.strategy_table, strategy)
+        set_table_frame(
+            self.snapshot_table,
+            pd.DataFrame(
+                [
+                    {
+                        "Snapshot": path.name,
+                        "Modified": pd.Timestamp(path.stat().st_mtime, unit="s").strftime("%Y-%m-%d %H:%M"),
+                        "Path": str(path),
+                    }
+                    for path in snapshots[-40:]
+                ]
+            ),
+        )
+
+        if recommendation_path.exists():
+            try:
+                self.recommendations.setPlainText(recommendation_path.read_text(encoding="utf-8"))
+            except Exception:
+                self.recommendations.setPlainText("Could not read backtest recommendations.")
+        else:
+            self.recommendations.setPlainText("No backtest recommendations found yet.")
+
+
 class SettingsScreen(QWidget):
     def __init__(self, config: dict[str, Any], settings: PortableRunSettings) -> None:
         super().__init__()
@@ -956,22 +1113,10 @@ class SettingsScreen(QWidget):
         set_table_frame(self.paths_table, pd.DataFrame(rows))
 
 
-class PlaceholderScreen(QWidget):
-    def __init__(self, title: str, body: str) -> None:
-        super().__init__()
-        label = QLabel(body)
-        label.setWordWrap(True)
-        label.setObjectName("mutedText")
-        layout = QVBoxLayout(self)
-        layout.addWidget(title_label(title, "Planned for the next build phase."))
-        layout.addWidget(label)
-        layout.addStretch()
-
-
 class MainWindow(QMainWindow):
     def __init__(self) -> None:
         super().__init__()
-        self.setWindowTitle("Race Simulator Portable MVP")
+        self.setWindowTitle("F1 Race Simulator Portable")
         self.resize(1280, 820)
         self.thread: QThread | None = None
         self.worker: RunWorker | None = None
@@ -981,6 +1126,7 @@ class MainWindow(QMainWindow):
 
         self.stack = QStackedWidget()
         self.sidebar_buttons: list[SidebarButton] = []
+        self.summary_strip = SummaryStrip(self.base_config, settings)
         self.log = QTextEdit()
         self.log.setReadOnly(True)
         self.log.setMinimumHeight(150)
@@ -993,6 +1139,7 @@ class MainWindow(QMainWindow):
         self.fantasy = FantasyScreen(settings.output_dir)
         self.results = ResultsScreen(settings.output_dir)
         self.compare = CompareScreen(settings.output_dir)
+        self.backtesting = BacktestingScreen(settings.output_dir)
         self.settings_screen = SettingsScreen(self.base_config, settings)
 
         self.screens = [
@@ -1004,6 +1151,7 @@ class MainWindow(QMainWindow):
             ("Fantasy", self.fantasy),
             ("Results", self.results),
             ("Compare", self.compare),
+            ("Backtesting", self.backtesting),
             ("Settings", self.settings_screen),
         ]
 
@@ -1039,6 +1187,7 @@ class MainWindow(QMainWindow):
         sidebar_layout.addStretch()
 
         content = QVBoxLayout()
+        content.addWidget(self.summary_strip)
         content.addWidget(self.stack, stretch=1)
         content.addWidget(QLabel("Run Log"))
         content.addWidget(self.log)
@@ -1053,6 +1202,7 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(root)
 
     def _select_screen(self, index: int) -> None:
+        self.summary_strip.update_context(self._current_config(), self.race_setup.settings())
         self.stack.setCurrentIndex(index)
 
         for button_index, button in enumerate(self.sidebar_buttons):
@@ -1073,6 +1223,7 @@ class MainWindow(QMainWindow):
         self.fantasy.set_output_dir(output_dir)
         self.results.set_output_dir(output_dir)
         self.compare.set_output_dir(output_dir)
+        self.backtesting.set_output_dir(output_dir)
 
     def _start_run(self) -> None:
         if self.thread is not None:
@@ -1081,6 +1232,7 @@ class MainWindow(QMainWindow):
 
         config = self._current_config()
         settings = self.race_setup.settings()
+        self.summary_strip.update_context(config, settings)
         self.data_sources.set_config(config)
         self.settings_screen.set_config(config, settings)
         self._set_output_dir_for_screens(settings.output_dir)
@@ -1102,7 +1254,19 @@ class MainWindow(QMainWindow):
     def _run_finished(self, exit_code: int) -> None:
         self._append_log(f"\nRun finished with exit code {exit_code}.\n")
         self._set_output_dir_for_screens(self.race_setup.settings().output_dir)
-        self._select_screen(6)
+
+        if exit_code == 0:
+            self._append_log("Simulation completed. Outputs are ready in the Results screen.\n")
+            self._select_screen(6)
+        else:
+            self._append_log(
+                "Simulation failed. Check the log above, then validate Data Sources and Settings.\n"
+            )
+            QMessageBox.critical(
+                self,
+                "Simulation failed",
+                "The simulation did not complete. Check the run log for the detailed error.",
+            )
 
     def _thread_finished(self) -> None:
         self.thread = None
@@ -1150,6 +1314,26 @@ def apply_theme(app: QApplication) -> None:
         }
         QLabel#mutedText {
             color: #aab3c2;
+        }
+        QLabel#statusReady {
+            color: #4ade80;
+            font-weight: 700;
+        }
+        QFrame#summaryCard {
+            background: #0d131c;
+            border: 1px solid #253142;
+            border-left: 3px solid #ef233c;
+            border-radius: 6px;
+        }
+        QLabel#summaryLabel {
+            color: #7f8b9d;
+            font-size: 8.5pt;
+            font-weight: 700;
+        }
+        QLabel#summaryValue {
+            color: #ffffff;
+            font-size: 10.5pt;
+            font-weight: 700;
         }
         QPushButton {
             background: #111821;
@@ -1199,6 +1383,22 @@ def apply_theme(app: QApplication) -> None:
         }
         QCheckBox {
             spacing: 8px;
+        }
+        QSlider::groove:horizontal {
+            height: 6px;
+            background: #263242;
+            border-radius: 3px;
+        }
+        QSlider::sub-page:horizontal {
+            background: #ef233c;
+            border-radius: 3px;
+        }
+        QSlider::handle:horizontal {
+            background: #f5f7fb;
+            border: 1px solid #ef233c;
+            width: 14px;
+            margin: -5px 0;
+            border-radius: 7px;
         }
         """
     )
