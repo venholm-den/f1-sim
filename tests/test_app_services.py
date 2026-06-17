@@ -1,0 +1,115 @@
+from __future__ import annotations
+
+import json
+
+import pandas as pd
+
+from src.app_services.config_service import (
+    PortableRunSettings,
+    build_run_config,
+    settings_from_config,
+    write_temp_run_config,
+)
+from src.app_services.data_health import read_csv_preview, validate_data_sources
+from src.app_services.output_index import list_core_outputs, read_output_table
+
+
+def _settings() -> PortableRunSettings:
+    return PortableRunSettings(
+        year=2026,
+        event="Barcelona Grand Prix",
+        session="Q",
+        n_sims=100,
+        random_seed=7,
+        n_baseline_races=3,
+        historical_strategy_lookback_years=5,
+        default_overtaking_difficulty=0.55,
+        output_dir="outputs-test",
+        save_prediction_snapshot=True,
+        save_report_images=False,
+        save_raw_results=False,
+        post_to_discord=False,
+        use_weather_forecast=True,
+        use_race_control_context=True,
+        use_track_red_flag_base_chance=True,
+    )
+
+
+def test_build_run_config_and_temp_write() -> None:
+    config = build_run_config(
+        {
+            "run": {},
+            "outputs": {},
+            "model": {},
+        },
+        _settings(),
+    )
+    config_path = write_temp_run_config(config)
+    saved = json.loads(config_path.read_text(encoding="utf-8"))
+
+    assert saved["run"]["year"] == 2026
+    assert saved["run"]["event"] == "Barcelona Grand Prix"
+    assert saved["outputs"]["output_dir"] == "outputs-test"
+    assert saved["model"]["use_weather_forecast"] is True
+
+
+def test_settings_from_config_reads_defaults() -> None:
+    settings = settings_from_config(
+        {
+            "run": {"year": 2025, "event": "latest"},
+            "outputs": {"output_dir": "custom"},
+            "model": {"use_weather_forecast": False},
+        }
+    )
+
+    assert settings.year == 2025
+    assert settings.event == "latest"
+    assert settings.output_dir == "custom"
+    assert settings.use_weather_forecast is False
+
+
+def test_validate_data_sources_and_preview(tmp_path) -> None:
+    fantasy = tmp_path / "fantasy.csv"
+    track = tmp_path / "track.csv"
+    fia = tmp_path / "fia.csv"
+    power_units = tmp_path / "power.csv"
+
+    pd.DataFrame({"Driver": ["RUS"], "fantasy_price": [25.0]}).to_csv(fantasy, index=False)
+    pd.DataFrame({"Event": ["Barcelona"], "OvertakingDifficulty": [0.72]}).to_csv(track, index=False)
+    pd.DataFrame({"year": [2026], "event": ["Barcelona"], "document_type": ["grid"]}).to_csv(
+        fia,
+        index=False,
+    )
+    pd.DataFrame({"Year": [2026], "Team": ["Mercedes"], "PowerUnitSupplier": ["Mercedes"]}).to_csv(
+        power_units,
+        index=False,
+    )
+
+    config = {
+        "data": {
+            "fantasy_prices_path": str(fantasy),
+            "track_profiles_path": str(track),
+            "fia_document_index_path": str(fia),
+            "team_power_units_path": str(power_units),
+        }
+    }
+    statuses = validate_data_sources(config)
+    preview = read_csv_preview(fantasy)
+
+    assert {status.status for status in statuses} == {"valid"}
+    assert preview.iloc[0]["Driver"] == "RUS"
+
+
+def test_output_index_reads_known_files(tmp_path) -> None:
+    output_dir = tmp_path / "outputs"
+    output_dir.mkdir()
+    pd.DataFrame({"Driver": ["RUS"], "win_chance": [0.5]}).to_csv(
+        output_dir / "simulation_summary.csv",
+        index=False,
+    )
+
+    files = list_core_outputs(output_dir)
+    table = read_output_table(output_dir, "simulation_summary.csv")
+
+    assert any(file.label == "Simulation Summary" and file.exists for file in files)
+    assert table.iloc[0]["Driver"] == "RUS"

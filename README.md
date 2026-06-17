@@ -327,6 +327,26 @@ The GUI wraps the same simulation pipeline as `main.py`.
 It lets you set the year, event, session, simulation count, output folder, output toggles, and Discord posting before starting a run.
 The run log is streamed into the app window.
 
+### Run the portable app MVP
+
+The portable app MVP is a richer dashboard shell based on the mockups in `docs/mockups/portable-app/`.
+It currently includes:
+
+- Race setup and run controls.
+- Data-source validation and CSV preview.
+- Background simulation execution with a run log.
+- Results/output browser for generated CSVs and report files.
+- Placeholders for Model Signals, Weather & Reliability, Tyre Strategy, Fantasy, Compare, and Settings.
+
+Install runtime dependencies, then launch:
+
+```powershell
+pip install -r requirements.txt
+python -m portable_app.main
+```
+
+This app is intentionally separate from `app_gui.py`, which remains the lightweight Tkinter runner.
+
 ### Build a Windows GUI executable
 
 Install development dependencies first:
@@ -349,6 +369,27 @@ dist\F1SimGUI\F1SimGUI.exe
 
 The first packaged version is a folder-style app, not a single-file installer.
 Keep the generated `dist\F1SimGUI` folder together when sharing it.
+
+### Build the portable app executable
+
+Install runtime and development dependencies first:
+
+```powershell
+pip install -r requirements.txt
+pip install -r requirements-dev.txt
+```
+
+Then build the portable dashboard app:
+
+```powershell
+.\scripts\build_portable_app.ps1
+```
+
+The build output is written to:
+
+```text
+dist\F1RaceSimulatorPortable\F1RaceSimulatorPortable.exe
+```
 
 ### Generate data-source roadmap artifacts
 
