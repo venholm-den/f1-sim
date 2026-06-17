@@ -1,12 +1,14 @@
 from __future__ import annotations
 
 import json
+from pathlib import Path
 
 import pandas as pd
 
 from src.app_services.config_service import (
     PortableRunSettings,
     build_run_config,
+    load_json_config,
     settings_from_config,
     write_temp_run_config,
 )
@@ -66,6 +68,36 @@ def test_settings_from_config_reads_defaults() -> None:
     assert settings.event == "latest"
     assert settings.output_dir == "custom"
     assert settings.use_weather_forecast is False
+
+
+def test_load_json_config_resolves_bundled_paths(tmp_path, monkeypatch) -> None:
+    bundle_root = tmp_path / "bundle"
+    config_dir = bundle_root / "config"
+    data_dir = bundle_root / "data"
+    config_dir.mkdir(parents=True)
+    data_dir.mkdir()
+    (data_dir / "fantasy_prices.csv").write_text("Driver\nRUS\n", encoding="utf-8")
+    (config_dir / "default_run_config.json").write_text(
+        json.dumps(
+            {
+                "run": {},
+                "outputs": {},
+                "model": {},
+                "data": {"fantasy_prices_path": "data/fantasy_prices.csv"},
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    empty_dir = tmp_path / "empty"
+    empty_dir.mkdir()
+    monkeypatch.chdir(empty_dir)
+    monkeypatch.setattr("sys.frozen", True, raising=False)
+    monkeypatch.setattr("sys._MEIPASS", str(bundle_root), raising=False)
+
+    config = load_json_config("config/default_run_config.json")
+
+    assert config["data"]["fantasy_prices_path"] == str(data_dir / "fantasy_prices.csv")
 
 
 def test_validate_data_sources_and_preview(tmp_path) -> None:

@@ -6,6 +6,8 @@ from typing import Any
 
 import pandas as pd
 
+from src.app_services.app_paths import resource_path
+
 
 DATA_SOURCE_REQUIREMENTS = {
     "fantasy_prices": {
@@ -59,14 +61,14 @@ def validate_data_sources(config: dict[str, Any]) -> list[DataSourceStatus]:
 
     for key, path_text in paths.items():
         requirement = DATA_SOURCE_REQUIREMENTS[key]
-        file_path = Path(path_text)
+        file_path = resource_path(path_text) if path_text else Path(path_text)
 
         if not path_text or not file_path.exists():
             statuses.append(
                 DataSourceStatus(
                     key=key,
                     label=str(requirement["label"]),
-                    path=path_text,
+                    path=str(file_path) if path_text else path_text,
                     exists=False,
                     status="missing",
                     row_count=0,
@@ -102,7 +104,7 @@ def validate_data_sources(config: dict[str, Any]) -> list[DataSourceStatus]:
             DataSourceStatus(
                 key=key,
                 label=str(requirement["label"]),
-                path=path_text,
+                path=str(file_path),
                 exists=True,
                 status=status,
                 row_count=len(frame),
@@ -116,7 +118,7 @@ def validate_data_sources(config: dict[str, Any]) -> list[DataSourceStatus]:
 
 
 def read_csv_preview(path: str | Path, max_rows: int = 50) -> pd.DataFrame:
-    file_path = Path(path)
+    file_path = resource_path(path)
 
     if not file_path.exists():
         return pd.DataFrame()
@@ -125,4 +127,3 @@ def read_csv_preview(path: str | Path, max_rows: int = 50) -> pd.DataFrame:
         return pd.read_csv(file_path, nrows=max_rows)
     except Exception:
         return pd.DataFrame()
-

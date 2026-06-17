@@ -7,8 +7,15 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+from src.app_services.app_paths import resource_path
 
 DEFAULT_CONFIG_PATH = Path("config/default_run_config.json")
+DATA_PATH_KEYS = [
+    "fantasy_prices_path",
+    "track_profiles_path",
+    "fia_document_index_path",
+    "team_power_units_path",
+]
 
 
 @dataclass(frozen=True)
@@ -32,10 +39,26 @@ class PortableRunSettings:
 
 
 def load_json_config(path: str | Path = DEFAULT_CONFIG_PATH) -> dict[str, Any]:
-    config_path = Path(path)
+    config_path = resource_path(path)
 
     with config_path.open("r", encoding="utf-8") as file:
-        return json.load(file)
+        return normalize_data_paths(json.load(file))
+
+
+def normalize_data_paths(config: dict[str, Any]) -> dict[str, Any]:
+    config = copy.deepcopy(config)
+    data = config.get("data")
+
+    if not isinstance(data, dict):
+        return config
+
+    for key in DATA_PATH_KEYS:
+        path_text = data.get(key)
+
+        if path_text:
+            data[key] = str(resource_path(str(path_text)))
+
+    return config
 
 
 def build_run_config(
@@ -104,4 +127,3 @@ def settings_from_config(config: dict[str, Any]) -> PortableRunSettings:
             model.get("use_track_red_flag_base_chance", True)
         ),
     )
-
