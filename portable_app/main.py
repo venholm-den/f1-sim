@@ -119,6 +119,129 @@ def chart_points(
     ]
 
 
+def sector_leaders(output_dir: str | Path) -> dict[str, tuple[str, float]]:
+    laps = read_output_table(output_dir, "lap_details/weekend_lap_details.csv", max_rows=20_000)
+
+    if laps.empty:
+        return {}
+
+    if "CleanPushLap" in laps.columns:
+        clean = laps["CleanPushLap"].astype(str).str.lower().isin(["true", "1"])
+        laps = laps[clean]
+
+    leaders: dict[str, tuple[str, float]] = {}
+
+    for label, column in [("S1", "Sector1Seconds"), ("S2", "Sector2Seconds"), ("S3", "Sector3Seconds")]:
+        if column not in laps.columns or "Driver" not in laps.columns:
+            continue
+
+        sector = laps[["Driver", column]].copy()
+        sector[column] = pd.to_numeric(sector[column], errors="coerce")
+        sector = sector.dropna(subset=[column]).sort_values(column)
+
+        if not sector.empty:
+            leaders[label] = (str(sector.iloc[0]["Driver"]), float(sector.iloc[0][column]))
+
+    return leaders
+
+
+def weather_risk_summary(output_dir: str | Path) -> dict[str, float | str]:
+    summary = read_output_table(output_dir, "simulation_summary.csv", max_rows=100)
+    commentary_path = Path(output_dir) / "report" / "model_commentary.txt"
+    text = commentary_path.read_text(encoding="utf-8") if commentary_path.exists() else ""
+    values: dict[str, float | str] = {
+        "rain": 0.0,
+        "chaos": 0.0,
+        "dnf": 0.0,
+        "degradation": 0.0,
+        "uncertainty": 0.0,
+        "source": "No forecast output saved",
+    }
+
+    if not summary.empty:
+        if "red_flag_chance" in summary.columns:
+            values["chaos"] = float(pd.to_numeric(summary["red_flag_chance"], errors="coerce").mean() * 100)
+        if "dnf_chance" in summary.columns:
+            values["dnf"] = float(pd.to_numeric(summary["dnf_chance"], errors="coerce").mean() * 100)
+        if "performance_uncertainty" in summary.columns:
+            values["uncertainty"] = float(pd.to_numeric(summary["performance_uncertainty"], errors="coerce").mean() * 100)
+        if "tyre_deg_score" in summary.columns:
+            values["degradation"] = float(pd.to_numeric(summary["tyre_deg_score"], errors="coerce").mean() * 100)
+
+    for line in text.splitlines():
+        if line.lower().startswith("weather modifiers:"):
+            values["source"] = line
+            break
+
+    if "rain" in text.lower() or "wet" in text.lower():
+        values["rain"] = max(float(values["rain"]), 55.0)
+
+    return values
+
+
+def completed_race_review(output_dir: str | Path) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    root = Path(output_dir)
+    actual = read_output_table(root, "backtest/latest_prediction_snapshot_actual_results.csv", max_rows=100)
+    strategy = read_output_table(root, "backtest/latest_prediction_snapshot_actual_strategy.csv", max_rows=100)
+    comparison = read_output_table(root, "backtest/latest_prediction_snapshot_comparison.csv", max_rows=100)
+    laps = read_output_table(root, "lap_details/weekend_lap_details.csv", max_rows=20_000)
+    rows: list[dict[str, str]] = []
+
+    if not actual.empty and "actual_position" in actual.columns:
+        winner = actual.copy()
+        winner["actual_position"] = pd.to_numeric(winner["actual_position"], errors="coerce")
+        winner = winner.sort_values("actual_position")
+
+        if not winner.empty:
+            rows.append({"Metric": "Race winner", "Value": str(winner.iloc[0].get("Driver", "")), "Source": "actual results"})
+
+    lap_scope = laps[laps["Session"].astype(str).eq("R")] if "Session" in laps.columns else laps
+
+    if lap_scope.empty:
+        lap_scope = laps
+
+    for metric, column in [
+        ("Fastest lap", "LapTimeSeconds"),
+        ("Best sector 1", "Sector1Seconds"),
+        ("Best sector 2", "Sector2Seconds"),
+        ("Best sector 3", "Sector3Seconds"),
+    ]:
+        if column in lap_scope.columns and "Driver" in lap_scope.columns:
+            values = lap_scope[["Driver", column]].copy()
+            values[column] = pd.to_numeric(values[column], errors="coerce")
+            values = values.dropna(subset=[column]).sort_values(column)
+
+            if not values.empty:
+                rows.append(
+                    {
+                        "Metric": metric,
+                        "Value": f"{values.iloc[0]['Driver']} ({float(values.iloc[0][column]):.3f}s)",
+                        "Source": "lap details",
+                    }
+                )
+
+    if comparison.empty:
+        outliers = pd.DataFrame()
+    else:
+        outliers = sorted_view(
+            comparison,
+            [
+                "Driver",
+                "Team",
+                "predicted_finish",
+                "actual_position",
+                "finish_error",
+                "finish_abs_error",
+                "actual_status",
+                "dnf_chance",
+            ],
+            sort_by="finish_abs_error",
+            max_rows=20,
+        )
+
+    return pd.DataFrame(rows), select_columns(strategy, ["Driver", "Team", "actual_strategy", "actual_stops", "actual_race_laps"]), outliers
+
+
 def project_root() -> Path:
     return Path(__file__).resolve().parents[1]
 
@@ -186,6 +309,113 @@ class BarChartWidget(QWidget):
             painter.drawRoundedRect(left, y + 4, width, row_height - 9, 3, 3)
             painter.setPen(QColor("#f5f7fb"))
             painter.drawText(left + width + 8, y + 16, f"{value:.1f}")
+
+
+class TrackSectorWidget(QWidget):
+    def __init__(self) -> None:
+        super().__init__()
+        self.sectors: dict[str, tuple[str, float]] = {}
+        self.setMinimumHeight(260)
+
+    def set_sectors(self, sectors: dict[str, tuple[str, float]]) -> None:
+        self.sectors = sectors
+        self.update()
+
+    def paintEvent(self, event) -> None:  # type: ignore[override]
+        painter = QPainter(self)
+        painter.setRenderHint(QPainter.RenderHint.Antialiasing)
+        painter.fillRect(self.rect(), QColor("#0d131c"))
+        painter.setPen(QColor("#f5f7fb"))
+        painter.drawText(18, 26, "Track sector dominance")
+
+        if not self.sectors:
+            painter.setPen(QColor("#aab3c2"))
+            painter.drawText(18, 72, "No sector timing data found yet.")
+            return
+
+        w = self.width()
+        h = self.height()
+        points = [
+            (int(w * 0.18), int(h * 0.64)),
+            (int(w * 0.30), int(h * 0.30)),
+            (int(w * 0.56), int(h * 0.25)),
+            (int(w * 0.78), int(h * 0.48)),
+            (int(w * 0.68), int(h * 0.72)),
+            (int(w * 0.38), int(h * 0.78)),
+            (int(w * 0.18), int(h * 0.64)),
+        ]
+        colors = {"S1": "#ef233c", "S2": "#f59e0b", "S3": "#38bdf8"}
+
+        for index, sector in enumerate(["S1", "S2", "S3"]):
+            start = points[index * 2]
+            mid = points[index * 2 + 1]
+            end = points[index * 2 + 2]
+            painter.setPen(QPen(QColor(colors[sector]), 8))
+            painter.drawLine(start[0], start[1], mid[0], mid[1])
+            painter.drawLine(mid[0], mid[1], end[0], end[1])
+            driver, seconds = self.sectors.get(sector, ("n/a", 0.0))
+            painter.setPen(QColor("#f5f7fb"))
+            painter.drawText(mid[0] - 38, mid[1] - 14, f"{sector}: {driver}")
+            painter.setPen(QColor("#aab3c2"))
+            painter.drawText(mid[0] - 38, mid[1] + 4, f"{seconds:.3f}s")
+
+
+class WeatherForecastWidget(QWidget):
+    def __init__(self) -> None:
+        super().__init__()
+        self.values: dict[str, float | str] = {}
+        self.setMinimumHeight(260)
+
+    def set_values(self, values: dict[str, float | str]) -> None:
+        self.values = values
+        self.update()
+
+    def _value(self, key: str) -> float:
+        value = self.values.get(key, 0.0)
+
+        try:
+            number = float(value)
+            if not pd.notna(number):
+                return 0.0
+            return max(0.0, min(100.0, number))
+        except Exception:
+            return 0.0
+
+    def paintEvent(self, event) -> None:  # type: ignore[override]
+        painter = QPainter(self)
+        painter.setRenderHint(QPainter.RenderHint.Antialiasing)
+        painter.fillRect(self.rect(), QColor("#0d131c"))
+        painter.setPen(QColor("#f5f7fb"))
+        painter.drawText(18, 26, "Forecast and weather-risk graphic")
+
+        rows = [
+            ("Rain/Wet signal", "rain", "#38bdf8"),
+            ("Chaos/red flag", "chaos", "#ef233c"),
+            ("DNF pressure", "dnf", "#f97316"),
+            ("Tyre degradation", "degradation", "#f59e0b"),
+            ("Uncertainty", "uncertainty", "#818cf8"),
+        ]
+        left = 150
+        top = 54
+        bar_width = max(80, self.width() - left - 80)
+
+        for index, (label, key, color) in enumerate(rows):
+            value = self._value(key)
+            y = top + index * 32
+            painter.setPen(QColor("#aab3c2"))
+            painter.drawText(18, y + 16, label)
+            painter.setPen(QPen(QColor("#263242"), 1))
+            painter.setBrush(QColor("#111821"))
+            painter.drawRoundedRect(left, y + 4, bar_width, 14, 3, 3)
+            painter.setPen(QPen(QColor(color), 1))
+            painter.setBrush(QColor(color))
+            painter.drawRoundedRect(left, y + 4, int(bar_width * value / 100), 14, 3, 3)
+            painter.setPen(QColor("#f5f7fb"))
+            painter.drawText(left + bar_width + 10, y + 16, f"{value:.0f}%")
+
+        painter.setPen(QColor("#aab3c2"))
+        source = str(self.values.get("source", "No forecast output saved"))
+        painter.drawText(18, self.height() - 24, source[:145])
 
 
 class RunWorker(QObject):
@@ -595,6 +825,7 @@ class ModelSignalsScreen(QWidget):
         self.overview_table = QTableWidget()
         self.driver_table = QTableWidget()
         self.driver_table.setMinimumHeight(280)
+        self.track_sector = TrackSectorWidget()
         self.commentary = QTextEdit()
         self.commentary.setReadOnly(True)
         self.commentary.setMinimumHeight(140)
@@ -630,6 +861,7 @@ class ModelSignalsScreen(QWidget):
             )
         )
         layout.addLayout(actions)
+        layout.addWidget(self.track_sector, stretch=1)
         layout.addWidget(overview_box)
         layout.addWidget(driver_box)
         layout.addWidget(commentary_box)
@@ -643,6 +875,7 @@ class ModelSignalsScreen(QWidget):
         signals = load_model_signals(self.output_dir)
         status = "found" if signals.features_exist else "missing"
         self.status_label.setText(f"driver_model_features.csv is {status}: {signals.features_path}")
+        self.track_sector.set_sectors(sector_leaders(self.output_dir))
         set_table_frame(self.overview_table, signals.overview)
         set_table_frame(self.driver_table, signals.driver_signals, max_rows=50)
         self.commentary.setPlainText(signals.commentary or "No model commentary file found yet.")
@@ -654,6 +887,7 @@ class WeatherReliabilityScreen(QWidget):
         self.output_dir = output_dir
         self.dnf_chart = BarChartWidget("Driver DNF chance %")
         self.engine_chart = BarChartWidget("Engine reliability risk %")
+        self.weather_forecast = WeatherForecastWidget()
         self.reliability_table = QTableWidget()
         self.summary_table = QTableWidget()
 
@@ -682,6 +916,7 @@ class WeatherReliabilityScreen(QWidget):
         )
         layout.addLayout(actions)
         layout.addWidget(charts, stretch=2)
+        layout.addWidget(self.weather_forecast, stretch=2)
         layout.addWidget(tabs, stretch=3)
         self.refresh()
 
@@ -696,6 +931,7 @@ class WeatherReliabilityScreen(QWidget):
         self.engine_chart.set_points(
             chart_points(reliability, "Team", "engine_reliability_score", multiplier=100)
         )
+        self.weather_forecast.set_values(weather_risk_summary(self.output_dir))
         set_table_frame(
             self.summary_table,
             sorted_view(
@@ -1061,6 +1297,76 @@ class BacktestingScreen(QWidget):
             self.recommendations.setPlainText("No backtest recommendations found yet.")
 
 
+class RaceReviewScreen(QWidget):
+    def __init__(self, output_dir: str) -> None:
+        super().__init__()
+        self.output_dir = output_dir
+        self.status_label = QLabel()
+        self.status_label.setObjectName("mutedText")
+        self.status_label.setWordWrap(True)
+        self.outlier_chart = BarChartWidget("Largest future-predictor outliers")
+        self.overview_table = QTableWidget()
+        self.strategy_table = QTableWidget()
+        self.outlier_table = QTableWidget()
+
+        refresh = QPushButton("Refresh")
+        refresh.clicked.connect(self.refresh)
+        actions = QHBoxLayout()
+        actions.addWidget(refresh)
+        actions.addStretch()
+
+        tabs = QTabWidget()
+        tabs.addTab(self.overview_table, "Race Overview")
+        tabs.addTab(self.strategy_table, "Actual Strategy")
+        tabs.addTab(self.outlier_table, "Predictor Outliers")
+
+        layout = QVBoxLayout(self)
+        layout.addWidget(
+            title_label(
+                "Race Review",
+                "Review completed-race facts, fastest sectors, actual strategy, and model miss signals.",
+            )
+        )
+        layout.addLayout(actions)
+        layout.addWidget(self.status_label)
+        layout.addWidget(self.outlier_chart, stretch=2)
+        layout.addWidget(tabs, stretch=3)
+        self.refresh()
+
+    def set_output_dir(self, output_dir: str) -> None:
+        self.output_dir = output_dir
+        self.refresh()
+
+    def refresh(self) -> None:
+        overview, strategy, outliers = completed_race_review(self.output_dir)
+
+        if overview.empty and strategy.empty and outliers.empty:
+            self.status_label.setText(
+                "No completed-race review data found yet. Run or import a completed race/backtest snapshot to populate this screen."
+            )
+        else:
+            self.status_label.setText(
+                "Completed-race review is using actual results, lap details, strategy, and backtest comparison outputs where available."
+            )
+
+        chart_frame = outliers.copy()
+        if "finish_abs_error" in chart_frame.columns:
+            chart_frame["future_predictor_outlier"] = pd.to_numeric(
+                chart_frame["finish_abs_error"],
+                errors="coerce",
+            ).abs()
+        elif "finish_error" in chart_frame.columns:
+            chart_frame["future_predictor_outlier"] = pd.to_numeric(
+                chart_frame["finish_error"],
+                errors="coerce",
+            ).abs()
+
+        self.outlier_chart.set_points(chart_points(chart_frame, "Driver", "future_predictor_outlier"))
+        set_table_frame(self.overview_table, overview)
+        set_table_frame(self.strategy_table, strategy)
+        set_table_frame(self.outlier_table, outliers)
+
+
 class SettingsScreen(QWidget):
     def __init__(self, config: dict[str, Any], settings: PortableRunSettings) -> None:
         super().__init__()
@@ -1133,6 +1439,7 @@ class MainWindow(QMainWindow):
         self.results = ResultsScreen(settings.output_dir)
         self.compare = CompareScreen(settings.output_dir)
         self.backtesting = BacktestingScreen(settings.output_dir)
+        self.race_review = RaceReviewScreen(settings.output_dir)
         self.settings_screen = SettingsScreen(self.base_config, settings)
 
         self.screens = [
@@ -1145,6 +1452,7 @@ class MainWindow(QMainWindow):
             ("Results", self.results),
             ("Compare", self.compare),
             ("Backtesting", self.backtesting),
+            ("Race Review", self.race_review),
             ("Settings", self.settings_screen),
         ]
 
@@ -1217,6 +1525,7 @@ class MainWindow(QMainWindow):
         self.results.set_output_dir(output_dir)
         self.compare.set_output_dir(output_dir)
         self.backtesting.set_output_dir(output_dir)
+        self.race_review.set_output_dir(output_dir)
 
     def _start_run(self) -> None:
         if self.thread is not None:
