@@ -7,7 +7,7 @@ from typing import Any
 
 import pandas as pd
 from PySide6.QtCore import QObject, Qt, QThread, Signal
-from PySide6.QtGui import QAction, QDesktopServices, QIcon, QTextCursor
+from PySide6.QtGui import QAction, QDesktopServices, QIcon, QPixmap, QTextCursor
 from PySide6.QtWidgets import (
     QApplication,
     QCheckBox,
@@ -24,8 +24,10 @@ from PySide6.QtWidgets import (
     QMainWindow,
     QMessageBox,
     QPushButton,
+    QScrollArea,
     QSpinBox,
     QStackedWidget,
+    QTabWidget,
     QTableWidget,
     QTableWidgetItem,
     QTextEdit,
@@ -43,7 +45,7 @@ from src.app_services.config_service import (
 )
 from src.app_services.data_health import DataSourceStatus, read_csv_preview, validate_data_sources
 from src.app_services.model_signals import load_model_signals
-from src.app_services.output_index import list_core_outputs, read_output_table
+from src.app_services.output_index import OutputFile, list_core_outputs, list_visual_outputs, read_output_table
 from src.app_services.run_service import run_pipeline_with_config
 
 
@@ -316,6 +318,8 @@ class ResultsScreen(QWidget):
         super().__init__()
         self.output_dir = output_dir
 
+        self.visual_tabs = QTabWidget()
+        self.visual_labels: dict[str, QLabel] = {}
         self.files_table = QTableWidget()
         self.summary_table = QTableWidget()
         self.strategy_table = QTableWidget()
@@ -330,15 +334,23 @@ class ResultsScreen(QWidget):
         actions.addWidget(open_output)
         actions.addStretch()
 
+        tables = QWidget()
+        tables_layout = QVBoxLayout(tables)
+        tables_layout.setContentsMargins(0, 0, 0, 0)
+        tables_layout.addWidget(QLabel("Simulation Summary"))
+        tables_layout.addWidget(self.summary_table)
+        tables_layout.addWidget(QLabel("Strategy Recommendations"))
+        tables_layout.addWidget(self.strategy_table)
+
         layout = QVBoxLayout(self)
-        layout.addWidget(title_label("Results", "Inspect generated outputs after a run."))
+        layout.addWidget(title_label("Results", "Review generated visual reports and output tables."))
         layout.addLayout(actions)
+        layout.addWidget(QLabel("Visual Outputs"))
+        layout.addWidget(self.visual_tabs, stretch=3)
+        layout.addWidget(QLabel("Tables"))
+        layout.addWidget(tables, stretch=2)
         layout.addWidget(QLabel("Output Files"))
         layout.addWidget(self.files_table)
-        layout.addWidget(QLabel("Simulation Summary"))
-        layout.addWidget(self.summary_table)
-        layout.addWidget(QLabel("Strategy Recommendations"))
-        layout.addWidget(self.strategy_table)
         self.refresh()
 
     def set_output_dir(self, output_dir: str) -> None:
@@ -347,6 +359,8 @@ class ResultsScreen(QWidget):
 
     def refresh(self) -> None:
         files = list_core_outputs(self.output_dir)
+        visuals = list_visual_outputs(self.output_dir)
+        self._refresh_visuals(visuals)
         self.files_table.clear()
         self.files_table.setRowCount(len(files))
         self.files_table.setColumnCount(4)
@@ -376,6 +390,43 @@ class ResultsScreen(QWidget):
 
         set_table_frame(self.summary_table, summary)
         set_table_frame(self.strategy_table, strategy)
+
+    def _refresh_visuals(self, visuals: list[OutputFile]) -> None:
+        self.visual_tabs.clear()
+        self.visual_labels.clear()
+
+        found = [visual for visual in visuals if visual.exists]
+
+        if not found:
+            empty = QLabel("No report images found yet. Run a simulation with report images enabled.")
+            empty.setObjectName("mutedText")
+            empty.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            self.visual_tabs.addTab(empty, "No Images")
+            return
+
+        for visual in found:
+            label = QLabel()
+            label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            label.setObjectName("imagePreview")
+            label.setMinimumHeight(360)
+
+            pixmap = QPixmap(visual.path)
+            if pixmap.isNull():
+                label.setText(f"Could not load image: {visual.path}")
+                label.setObjectName("mutedText")
+            else:
+                label.setPixmap(
+                    pixmap.scaledToWidth(
+                        1050,
+                        Qt.TransformationMode.SmoothTransformation,
+                    )
+                )
+
+            scroll = QScrollArea()
+            scroll.setWidgetResizable(True)
+            scroll.setWidget(label)
+            self.visual_tabs.addTab(scroll, visual.label)
+            self.visual_labels[visual.label] = label
 
 
 class ModelSignalsScreen(QWidget):

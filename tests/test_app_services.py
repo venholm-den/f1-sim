@@ -14,7 +14,7 @@ from src.app_services.config_service import (
 )
 from src.app_services.data_health import read_csv_preview, validate_data_sources
 from src.app_services.model_signals import load_model_signals
-from src.app_services.output_index import list_core_outputs, read_output_table
+from src.app_services.output_index import list_core_outputs, list_visual_outputs, read_output_table
 
 
 def _settings() -> PortableRunSettings:
@@ -146,6 +146,17 @@ def test_output_index_reads_known_files(tmp_path) -> None:
 
     assert any(file.label == "Simulation Summary" and file.exists for file in files)
     assert table.iloc[0]["Driver"] == "RUS"
+
+
+def test_visual_output_index_finds_report_images(tmp_path) -> None:
+    output_dir = tmp_path / "outputs"
+    report_dir = output_dir / "report"
+    report_dir.mkdir(parents=True)
+    (report_dir / "race_dashboard.png").write_bytes(b"fake-png")
+
+    visuals = list_visual_outputs(output_dir)
+
+    assert any(file.label == "Race Dashboard" and file.exists for file in visuals)
 
 
 def test_load_model_signals_summarises_feature_outputs(tmp_path) -> None:

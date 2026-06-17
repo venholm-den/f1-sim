@@ -21,6 +21,7 @@ if (-not (Test-Path $Python)) {
     --name $Name `
     --add-data "config;config" `
     --add-data "data;data" `
+    --collect-data fastf1 `
     app_gui.py
 
 Write-Host ""

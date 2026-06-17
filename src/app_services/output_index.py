@@ -27,12 +27,30 @@ CORE_OUTPUTS = [
     ("Model Commentary", "report/model_commentary.txt"),
 ]
 
+VISUAL_OUTPUTS = [
+    ("Race Dashboard", "report/race_dashboard.png"),
+    ("Tyre Strategy Timeline", "report/tyre_strategy_timeline.png"),
+    ("Fantasy Risk Reward", "report/fantasy_risk_reward.png"),
+    ("Detailed Report", "detailed_report.png"),
+    ("Position Probabilities", "probabilities.png"),
+    ("Fantasy Expected Points", "fantasy_expected_points.png"),
+    ("Fantasy Value", "fantasy_value.png"),
+]
+
 
 def list_core_outputs(output_dir: str | Path) -> list[OutputFile]:
+    return _list_outputs(output_dir, CORE_OUTPUTS)
+
+
+def list_visual_outputs(output_dir: str | Path) -> list[OutputFile]:
+    return _list_outputs(output_dir, VISUAL_OUTPUTS)
+
+
+def _list_outputs(output_dir: str | Path, outputs: list[tuple[str, str]]) -> list[OutputFile]:
     root = Path(output_dir)
     files: list[OutputFile] = []
 
-    for label, relative_path in CORE_OUTPUTS:
+    for label, relative_path in outputs:
         path = root / relative_path
         files.append(
             OutputFile(
@@ -56,4 +74,3 @@ def read_output_table(output_dir: str | Path, relative_path: str, max_rows: int 
         return pd.read_csv(path, nrows=max_rows)
     except Exception:
         return pd.DataFrame()
-

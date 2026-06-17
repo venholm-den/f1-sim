@@ -22,6 +22,7 @@ if (-not (Test-Path $Python)) {
     --add-data "config;config" `
     --add-data "data;data" `
     --add-data "assets;assets" `
+    --collect-data fastf1 `
     --collect-all PySide6 `
     portable_app\main.py
 
