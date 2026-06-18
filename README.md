@@ -511,8 +511,6 @@ Primary generated files (non-exhaustive):
 - Backtest outputs
 ### Fantasy value
 
-<img src="assets/images/fantasy_value.png" alt="Fantasy value chart" width="900">
-
 	- `outputs/history/*prediction_snapshot*.csv`
 	- `outputs/history/latest_prediction_snapshot.csv`
 	- `outputs/history/*prediction_snapshot*.config.json`
