@@ -125,3 +125,41 @@ def test_build_historical_dataset_stops_on_rate_limit(tmp_path, monkeypatch) -> 
 
     assert len(calls) == 1
     assert manifest.loc[0, "status"] == "rate_limited"
+
+
+def test_no_skip_existing_preserves_manifest_rows(tmp_path, monkeypatch) -> None:
+    events = [{"year": 2026, "round": 1, "event": "One Grand Prix"}]
+    monkeypatch.setattr("src.historical_data._event_candidates", lambda *args, **kwargs: events)
+    monkeypatch.setattr(
+        "src.historical_data.load_session",
+        lambda year, event, session: (
+            FakeSession(),
+            {"year": year, "event": "One Grand Prix", "round": event, "session": session},
+        ),
+    )
+
+    build_historical_dataset(
+        HistoricalBuildConfig(
+            start_year=2026,
+            end_year=2026,
+            output_dir=str(tmp_path),
+            sessions=("R",),
+            include_openf1=False,
+        )
+    )
+
+    events[:] = [{"year": 2026, "round": 2, "event": "Two Grand Prix"}]
+    outputs = build_historical_dataset(
+        HistoricalBuildConfig(
+            start_year=2026,
+            end_year=2026,
+            output_dir=str(tmp_path),
+            sessions=("R",),
+            include_openf1=False,
+            skip_existing=False,
+        )
+    )
+
+    manifest = pd.read_csv(outputs["manifest"])
+
+    assert set(manifest["event"]) == {"One Grand Prix", "Two Grand Prix"}

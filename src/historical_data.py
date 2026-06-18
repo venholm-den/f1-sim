@@ -268,13 +268,14 @@ def build_historical_dataset(config: HistoricalBuildConfig) -> dict[str, str]:
     manifest_path = output_dir / "manifest.csv"
     openf1_client = OpenF1Client() if config.include_openf1 else None
 
-    if config.skip_existing and manifest_path.exists():
+    if manifest_path.exists():
         manifest = pd.read_csv(manifest_path)
-        completed_keys = set(
-            manifest[manifest["status"].eq("ok")]["dataset_key"].astype(str)
-        )
     else:
         manifest = pd.DataFrame()
+
+    if config.skip_existing and not manifest.empty and "status" in manifest.columns:
+        completed_keys = set(manifest[manifest["status"].eq("ok")]["dataset_key"].astype(str))
+    else:
         completed_keys = set()
 
     lap_frames: list[pd.DataFrame] = []
