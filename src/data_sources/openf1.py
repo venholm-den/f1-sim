@@ -53,6 +53,11 @@ OPENF1_ENDPOINTS = {
         path="/race_control",
         purpose="Race control messages, flags, safety cars, red flags and incidents.",
     ),
+    "weather": OpenF1Endpoint(
+        name="weather",
+        path="/weather",
+        purpose="Actual weather observations for a session.",
+    ),
 }
 
 
@@ -176,6 +181,20 @@ class OpenF1Client:
             "pit": self.get_dataframe("pit", params=params),
             "stints": self.get_dataframe("stints", params=params),
             "race_control": self.get_dataframe("race_control", params=params),
+            "weather": self.get_dataframe("weather", params=params),
+        }
+
+    def session_snapshot(
+        self,
+        session_key: int | str,
+        endpoints: list[str] | None = None,
+    ) -> dict[str, pd.DataFrame]:
+        params = {"session_key": session_key}
+        selected = endpoints or ["weather", "stints", "race_control", "pit"]
+
+        return {
+            endpoint: self.get_dataframe(endpoint, params=params)
+            for endpoint in selected
         }
 
 
