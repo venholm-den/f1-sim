@@ -22,9 +22,12 @@ if (-not (Test-Path $Python)) {
     --add-data "config;config" `
     --add-data "data;data" `
     --add-data "assets;assets" `
+    --add-data "portable_app\web;portable_app\web" `
     --collect-data fastf1 `
-    --collect-all PySide6 `
-    portable_app\main.py
+    --collect-all webview `
+    --collect-all pythonnet `
+    --collect-all clr_loader `
+    portable_app\web_main.py
 
 Write-Host ""
 Write-Host "Build complete: dist\$Name\$Name.exe"

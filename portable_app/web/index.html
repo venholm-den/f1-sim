@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>F1 Race Simulator</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">F1</div>
+          <div>
+            <div class="brand-title">Race Simulator</div>
+            <div class="brand-subtitle">Portable analysis suite</div>
+          </div>
+        </div>
+        <nav class="nav">
+          <button class="nav-item active" data-view="dashboard">Dashboard</button>
+          <button class="nav-item" data-view="setup">Race Setup</button>
+          <button class="nav-item" data-view="signals">Model Signals</button>
+          <button class="nav-item" data-view="track">Track Map</button>
+          <button class="nav-item" data-view="weather">Weather</button>
+          <button class="nav-item" data-view="strategy">Strategy</button>
+          <button class="nav-item" data-view="review">Race Review</button>
+          <button class="nav-item" data-view="data">Data Sources</button>
+        </nav>
+        <div class="sidebar-footer">
+          <div class="status-dot" id="runDot"></div>
+          <span id="runState">Ready</span>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <div class="eyebrow">Current context</div>
+            <h1 id="contextTitle">Loading simulator</h1>
+          </div>
+          <div class="top-actions">
+            <button id="refreshButton" class="ghost">Refresh outputs</button>
+            <button id="openOutputButton" class="ghost">Open output</button>
+            <button id="runButton" class="primary">Run simulation</button>
+          </div>
+        </header>
+
+        <section class="summary-grid">
+          <div class="metric">
+            <span>Session</span>
+            <strong id="metricSession">-</strong>
+          </div>
+          <div class="metric">
+            <span>Sim count</span>
+            <strong id="metricSims">-</strong>
+          </div>
+          <div class="metric">
+            <span>Output files</span>
+            <strong id="metricFiles">-</strong>
+          </div>
+          <div class="metric">
+            <span>Weather signal</span>
+            <strong id="metricWeather">-</strong>
+          </div>
+        </section>
+
+        <section class="view active" id="view-dashboard">
+          <div class="two-column wide-left">
+            <section class="panel">
+              <div class="panel-header">
+                <div>
+                  <h2>Race Outlook</h2>
+                  <p>Win, podium, DNF and fantasy outcome distribution.</p>
+                </div>
+              </div>
+              <div class="chart-grid">
+                <div class="chart-card"><h3>Win chance</h3><div id="winChart" class="bar-chart"></div></div>
+                <div class="chart-card"><h3>Podium chance</h3><div id="podiumChart" class="bar-chart"></div></div>
+                <div class="chart-card"><h3>DNF pressure</h3><div id="dnfChart" class="bar-chart"></div></div>
+                <div class="chart-card"><h3>Fantasy points</h3><div id="fantasyChart" class="bar-chart"></div></div>
+              </div>
+            </section>
+            <section class="panel">
+              <div class="panel-header"><h2>Top Simulation Summary</h2></div>
+              <div id="summaryTable" class="table-wrap"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="view-setup">
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <h2>Race Setup</h2>
+                <p>Choose the season, event and model run parameters.</p>
+              </div>
+            </div>
+            <form class="setup-grid" id="setupForm">
+              <label>Season<select id="yearInput"></select></label>
+              <label>Event<select id="eventInput"></select></label>
+              <label>Session<select id="sessionInput"></select></label>
+              <label>Simulation count<input id="nSimsInput" type="number" min="1" step="1000" /></label>
+              <label>Random seed<input id="seedInput" type="number" min="0" /></label>
+              <label>Baseline races<input id="baselineInput" type="number" min="0" /></label>
+              <label>Strategy lookback<input id="lookbackInput" type="number" min="0" /></label>
+              <label>Overtaking difficulty<input id="overtakingInput" type="range" min="0" max="100" /></label>
+              <label class="wide">Output directory<input id="outputInput" type="text" /></label>
+              <label class="check"><input id="forecastInput" type="checkbox" /> Weather forecast fallback</label>
+              <label class="check"><input id="raceControlInput" type="checkbox" /> Race-control context</label>
+              <label class="check"><input id="trackFlagInput" type="checkbox" /> Track red-flag baseline</label>
+            </form>
+          </section>
+          <section class="panel">
+            <div class="panel-header"><h2>Run Log</h2></div>
+            <pre id="runLog" class="run-log">No run started.</pre>
+          </section>
+        </section>
+
+        <section class="view" id="view-signals">
+          <div class="two-column">
+            <section class="panel">
+              <div class="panel-header"><h2>Signal Health</h2></div>
+              <div id="signalOverviewTable" class="table-wrap"></div>
+            </section>
+            <section class="panel">
+              <div class="panel-header"><h2>Model Commentary</h2></div>
+              <p id="modelCommentary" class="commentary"></p>
+            </section>
+          </div>
+          <section class="panel">
+            <div class="panel-header"><h2>Driver Signal Blend</h2></div>
+            <div id="driverSignalsTable" class="table-wrap"></div>
+          </section>
+        </section>
+
+        <section class="view" id="view-track">
+          <section class="panel tall">
+            <div class="panel-header">
+              <div>
+                <h2>Track Sector Dominance</h2>
+                <p>Real FastF1 telemetry layout with sector winners from latest lap detail outputs.</p>
+              </div>
+            </div>
+            <canvas id="trackCanvas" width="1100" height="520"></canvas>
+            <div id="sectorLegend" class="sector-legend"></div>
+          </section>
+        </section>
+
+        <section class="view" id="view-weather">
+          <div class="two-column">
+            <section class="panel tall">
+              <div class="panel-header">
+                <div>
+                  <h2>Weather Graphic</h2>
+                  <p>Current forecast and risk modifiers available to the model.</p>
+                </div>
+              </div>
+              <canvas id="weatherCanvas" width="780" height="420"></canvas>
+            </section>
+            <section class="panel">
+              <div class="panel-header"><h2>Reliability Profile</h2></div>
+              <div id="engineChart" class="bar-chart"></div>
+              <div id="reliabilityTable" class="table-wrap compact"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="view-strategy">
+          <section class="panel">
+            <div class="panel-header"><h2>Tyre Strategy</h2></div>
+            <div id="strategyTable" class="table-wrap"></div>
+          </section>
+        </section>
+
+        <section class="view" id="view-review">
+          <div class="two-column">
+            <section class="panel">
+              <div class="panel-header"><h2>Completed Race Overview</h2></div>
+              <div id="raceOverviewTable" class="table-wrap"></div>
+            </section>
+            <section class="panel">
+              <div class="panel-header"><h2>Future Predictor Outliers</h2></div>
+              <div id="outlierChart" class="bar-chart"></div>
+            </section>
+          </div>
+          <section class="panel">
+            <div class="panel-header"><h2>Actual Strategy and Outlier Data</h2></div>
+            <div class="split-tables">
+              <div id="actualStrategyTable" class="table-wrap"></div>
+              <div id="outlierTable" class="table-wrap"></div>
+            </div>
+          </section>
+        </section>
+
+        <section class="view" id="view-data">
+          <section class="panel">
+            <div class="panel-header"><h2>Data Source Health</h2></div>
+            <div id="dataHealthTable" class="table-wrap"></div>
+          </section>
+          <section class="panel">
+            <div class="panel-header"><h2>Core Outputs</h2></div>
+            <div id="filesTable" class="table-wrap"></div>
+          </section>
+        </section>
+      </main>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
