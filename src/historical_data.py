@@ -29,6 +29,7 @@ class HistoricalBuildConfig:
     max_events: int | None = None
     skip_existing: bool = True
     sleep_seconds: float = 0.0
+    stop_on_rate_limit: bool = True
 
 
 def _safe_slug(value: Any) -> str:
@@ -256,6 +257,11 @@ def _concat_or_empty(frames: Iterable[pd.DataFrame]) -> pd.DataFrame:
     return pd.concat(usable, ignore_index=True) if usable else pd.DataFrame()
 
 
+def _is_rate_limit_error(exc: Exception) -> bool:
+    text = f"{type(exc).__name__}: {exc}".lower()
+    return "ratelimit" in text or "rate limit" in text or "500 calls/h" in text
+
+
 def build_historical_dataset(config: HistoricalBuildConfig) -> dict[str, str]:
     output_dir = Path(config.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -280,6 +286,7 @@ def build_historical_dataset(config: HistoricalBuildConfig) -> dict[str, str]:
         {endpoint: [] for endpoint in OPENF1_ENDPOINTS} if config.include_openf1 else {}
     )
     manifest_rows: list[dict[str, Any]] = []
+    stop_requested = False
 
     for event in _event_candidates(config.start_year, config.end_year, config.max_events):
         for session_name in config.sessions:
@@ -315,13 +322,20 @@ def build_historical_dataset(config: HistoricalBuildConfig) -> dict[str, str]:
                         openf1_frames.setdefault(endpoint, []).append(frame)
 
             except Exception as exc:
-                row["status"] = "error"
+                row["status"] = "rate_limited" if _is_rate_limit_error(exc) else "error"
                 row["message"] = str(exc)
+                stop_requested = bool(config.stop_on_rate_limit and _is_rate_limit_error(exc))
 
             manifest_rows.append(row)
 
             if config.sleep_seconds > 0:
                 sleep(config.sleep_seconds)
+
+            if stop_requested:
+                break
+
+        if stop_requested:
+            break
 
     outputs = {
         "laps": output_dir / "fastf1_laps.csv",

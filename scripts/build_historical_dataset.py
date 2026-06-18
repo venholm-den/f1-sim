@@ -31,6 +31,11 @@ def parse_args() -> argparse.Namespace:
         default=0.0,
         help="Pause between session loads to reduce API pressure.",
     )
+    parser.add_argument(
+        "--continue-on-rate-limit",
+        action="store_true",
+        help="Keep trying remaining sessions after FastF1 reports its hourly API limit.",
+    )
     return parser.parse_args()
 
 
@@ -45,6 +50,7 @@ def main() -> None:
         max_events=args.max_events,
         skip_existing=not args.no_skip_existing,
         sleep_seconds=args.sleep_seconds,
+        stop_on_rate_limit=not args.continue_on_rate_limit,
     )
     outputs = build_historical_dataset(config)
 

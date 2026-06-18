@@ -92,3 +92,36 @@ def test_build_historical_dataset_writes_normalized_outputs(tmp_path, monkeypatc
     assert laps.loc[0, "Event"] == "Test Grand Prix"
     assert results.loc[0, "Status"] == "Finished"
     assert manifest.loc[0, "status"] == "ok"
+
+
+def test_build_historical_dataset_stops_on_rate_limit(tmp_path, monkeypatch) -> None:
+    monkeypatch.setattr(
+        "src.historical_data._event_candidates",
+        lambda *args, **kwargs: [
+            {"year": 2026, "round": 1, "event": "One Grand Prix"},
+            {"year": 2026, "round": 2, "event": "Two Grand Prix"},
+        ],
+    )
+
+    calls = []
+
+    def fake_load_session(year, event, session):
+        calls.append((year, event, session))
+        raise RuntimeError("any API: 500 calls/h")
+
+    monkeypatch.setattr("src.historical_data.load_session", fake_load_session)
+
+    outputs = build_historical_dataset(
+        HistoricalBuildConfig(
+            start_year=2026,
+            end_year=2026,
+            output_dir=str(tmp_path),
+            sessions=("R",),
+            include_openf1=False,
+        )
+    )
+
+    manifest = pd.read_csv(outputs["manifest"])
+
+    assert len(calls) == 1
+    assert manifest.loc[0, "status"] == "rate_limited"
