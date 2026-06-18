@@ -36,6 +36,9 @@ class PortableRunSettings:
     use_weather_forecast: bool
     use_race_control_context: bool
     use_track_red_flag_base_chance: bool
+    use_historical_model_calibration: bool
+    historical_finish_weight: float
+    historical_dnf_weight: float
 
 
 def load_json_config(path: str | Path = DEFAULT_CONFIG_PATH) -> dict[str, Any]:
@@ -88,6 +91,9 @@ def build_run_config(
     model["use_weather_forecast"] = settings.use_weather_forecast
     model["use_race_control_context"] = settings.use_race_control_context
     model["use_track_red_flag_base_chance"] = settings.use_track_red_flag_base_chance
+    model["use_historical_model_calibration"] = settings.use_historical_model_calibration
+    model["historical_finish_weight"] = settings.historical_finish_weight
+    model["historical_dnf_weight"] = settings.historical_dnf_weight
 
     return config
 
@@ -126,4 +132,9 @@ def settings_from_config(config: dict[str, Any]) -> PortableRunSettings:
         use_track_red_flag_base_chance=bool(
             model.get("use_track_red_flag_base_chance", True)
         ),
+        use_historical_model_calibration=bool(
+            model.get("use_historical_model_calibration", True)
+        ),
+        historical_finish_weight=float(model.get("historical_finish_weight", 0.15)),
+        historical_dnf_weight=float(model.get("historical_dnf_weight", 0.30)),
     )

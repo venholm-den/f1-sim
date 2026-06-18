@@ -35,6 +35,9 @@ def _settings() -> PortableRunSettings:
         use_weather_forecast=True,
         use_race_control_context=True,
         use_track_red_flag_base_chance=True,
+        use_historical_model_calibration=True,
+        historical_finish_weight=0.15,
+        historical_dnf_weight=0.30,
     )
 
 
@@ -54,6 +57,8 @@ def test_build_run_config_and_temp_write() -> None:
     assert saved["run"]["event"] == "Barcelona Grand Prix"
     assert saved["outputs"]["output_dir"] == "outputs-test"
     assert saved["model"]["use_weather_forecast"] is True
+    assert saved["model"]["use_historical_model_calibration"] is True
+    assert saved["model"]["historical_finish_weight"] == 0.15
 
 
 def test_settings_from_config_reads_defaults() -> None:
@@ -69,6 +74,8 @@ def test_settings_from_config_reads_defaults() -> None:
     assert settings.event == "latest"
     assert settings.output_dir == "custom"
     assert settings.use_weather_forecast is False
+    assert settings.use_historical_model_calibration is True
+    assert settings.historical_finish_weight == 0.15
 
 
 def test_load_json_config_resolves_bundled_paths(tmp_path, monkeypatch) -> None:
@@ -165,6 +172,9 @@ def test_load_model_signals_summarises_feature_outputs(tmp_path) -> None:
             "current_pace_outlier_flag": [False, True],
             "quali_pace_score": [0.9, 0.8],
             "projected_lap_time": [80.1, 80.4],
+            "historical_model_available": [True, True],
+            "historical_predicted_finish": [1.7, 4.2],
+            "historical_dnf_probability": [0.04, 0.08],
         }
     ).to_csv(output_dir / "driver_model_features.csv", index=False)
     (report_dir / "model_commentary.txt").write_text("Model read: test.", encoding="utf-8")
@@ -174,4 +184,9 @@ def test_load_model_signals_summarises_feature_outputs(tmp_path) -> None:
     assert signals.features_exist is True
     assert signals.commentary == "Model read: test."
     assert signals.overview.loc[signals.overview["Metric"].eq("Drivers"), "Value"].iloc[0] == "2"
+    assert signals.overview.loc[
+        signals.overview["Metric"].eq("Historical model rows"),
+        "Value",
+    ].iloc[0] == "2"
     assert list(signals.driver_signals["Driver"]) == ["RUS", "HAM"]
+    assert "historical_predicted_finish" in signals.driver_signals.columns

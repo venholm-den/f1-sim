@@ -127,6 +127,9 @@ def settings_to_dict(settings: PortableRunSettings) -> dict[str, Any]:
         "use_weather_forecast": settings.use_weather_forecast,
         "use_race_control_context": settings.use_race_control_context,
         "use_track_red_flag_base_chance": settings.use_track_red_flag_base_chance,
+        "use_historical_model_calibration": settings.use_historical_model_calibration,
+        "historical_finish_weight": settings.historical_finish_weight,
+        "historical_dnf_weight": settings.historical_dnf_weight,
     }
 
 
@@ -153,6 +156,18 @@ def settings_from_payload(payload: dict[str, Any], defaults: PortableRunSettings
         use_race_control_context=bool(payload.get("use_race_control_context", defaults.use_race_control_context)),
         use_track_red_flag_base_chance=bool(
             payload.get("use_track_red_flag_base_chance", defaults.use_track_red_flag_base_chance)
+        ),
+        use_historical_model_calibration=bool(
+            payload.get(
+                "use_historical_model_calibration",
+                defaults.use_historical_model_calibration,
+            )
+        ),
+        historical_finish_weight=float(
+            payload.get("historical_finish_weight", defaults.historical_finish_weight)
+        ),
+        historical_dnf_weight=float(
+            payload.get("historical_dnf_weight", defaults.historical_dnf_weight)
         ),
     )
 

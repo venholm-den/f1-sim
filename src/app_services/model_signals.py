@@ -23,6 +23,9 @@ DISPLAY_COLUMNS = [
     "strategy_score",
     "reliability_score",
     "engine_reliability_score",
+    "historical_model_available",
+    "historical_predicted_finish",
+    "historical_dnf_probability",
     "projected_lap_time",
 ]
 
@@ -85,6 +88,16 @@ def _build_overview(frame: pd.DataFrame, features_path: Path) -> pd.DataFrame:
             frame["current_pace_outlier_flag"].astype(str).str.lower().isin(["true", "1"]).sum()
         )
 
+    historical_rows = 0
+    if "historical_model_available" in frame.columns:
+        historical_rows = int(
+            frame["historical_model_available"]
+            .astype(str)
+            .str.lower()
+            .isin(["true", "1"])
+            .sum()
+        )
+
     rows = [
         {"Metric": "Drivers", "Value": str(len(frame)), "Note": "Rows in model feature file"},
         {
@@ -111,6 +124,16 @@ def _build_overview(frame: pd.DataFrame, features_path: Path) -> pd.DataFrame:
             "Metric": "Current pace outliers",
             "Value": str(outliers),
             "Note": "Drivers whose current-session pace was treated cautiously",
+        },
+        {
+            "Metric": "Historical model rows",
+            "Value": str(historical_rows),
+            "Note": "Drivers calibrated with the trained five-year finish/DNF model",
+        },
+        {
+            "Metric": "Avg historical DNF probability",
+            "Value": _mean(frame, "historical_dnf_probability"),
+            "Note": "DNF risk from the trained historical model before blending",
         },
         {
             "Metric": "Actual grid rows",
@@ -152,6 +175,8 @@ def _driver_signal_view(frame: pd.DataFrame) -> pd.DataFrame:
         "strategy_score",
         "reliability_score",
         "engine_reliability_score",
+        "historical_predicted_finish",
+        "historical_dnf_probability",
         "projected_lap_time",
     ]
 

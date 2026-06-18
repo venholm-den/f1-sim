@@ -53,6 +53,9 @@ function readSettings() {
     use_weather_forecast: $("forecastInput").checked,
     use_race_control_context: $("raceControlInput").checked,
     use_track_red_flag_base_chance: $("trackFlagInput").checked,
+    use_historical_model_calibration: $("historicalModelInput").checked,
+    historical_finish_weight: Number($("historicalFinishWeightInput").value || 0),
+    historical_dnf_weight: Number($("historicalDnfWeightInput").value || 0),
   };
 }
 
@@ -70,6 +73,9 @@ function writeSettings(settings) {
   $("forecastInput").checked = settings.use_weather_forecast;
   $("raceControlInput").checked = settings.use_race_control_context;
   $("trackFlagInput").checked = settings.use_track_red_flag_base_chance;
+  $("historicalModelInput").checked = settings.use_historical_model_calibration;
+  $("historicalFinishWeightInput").value = settings.historical_finish_weight;
+  $("historicalDnfWeightInput").value = settings.historical_dnf_weight;
   updateContext();
 }
 
