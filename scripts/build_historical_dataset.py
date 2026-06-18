@@ -25,6 +25,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--max-events", type=int, default=None)
     parser.add_argument("--no-openf1", action="store_true")
     parser.add_argument("--no-skip-existing", action="store_true")
+    parser.add_argument(
+        "--sleep-seconds",
+        type=float,
+        default=0.0,
+        help="Pause between session loads to reduce API pressure.",
+    )
     return parser.parse_args()
 
 
@@ -38,6 +44,7 @@ def main() -> None:
         include_openf1=not args.no_openf1,
         max_events=args.max_events,
         skip_existing=not args.no_skip_existing,
+        sleep_seconds=args.sleep_seconds,
     )
     outputs = build_historical_dataset(config)
 

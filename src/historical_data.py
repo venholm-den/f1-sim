@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from pathlib import Path
+from time import sleep
 from typing import Any, Iterable
 
 import pandas as pd
@@ -27,6 +28,7 @@ class HistoricalBuildConfig:
     include_openf1: bool = True
     max_events: int | None = None
     skip_existing: bool = True
+    sleep_seconds: float = 0.0
 
 
 def _safe_slug(value: Any) -> str:
@@ -45,6 +47,31 @@ def _safe_slug(value: Any) -> str:
 def _write_frame(path: Path, frame: pd.DataFrame) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     frame.to_csv(path, index=False)
+
+
+def _merge_and_write_frame(
+    path: Path,
+    frame: pd.DataFrame,
+    subset: list[str] | None = None,
+) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+
+    if path.exists() and path.stat().st_size > 0:
+        try:
+            existing = pd.read_csv(path)
+        except Exception:
+            existing = pd.DataFrame()
+    else:
+        existing = pd.DataFrame()
+
+    combined = _concat_or_empty([existing, frame])
+
+    if subset and not combined.empty and all(column in combined.columns for column in subset):
+        combined = combined.drop_duplicates(subset=subset, keep="last")
+    elif not combined.empty:
+        combined = combined.drop_duplicates(keep="last")
+
+    _write_frame(path, combined)
 
 
 def _metadata_columns(metadata: dict[str, Any]) -> dict[str, Any]:
@@ -293,6 +320,9 @@ def build_historical_dataset(config: HistoricalBuildConfig) -> dict[str, str]:
 
             manifest_rows.append(row)
 
+            if config.sleep_seconds > 0:
+                sleep(config.sleep_seconds)
+
     outputs = {
         "laps": output_dir / "fastf1_laps.csv",
         "race_results": output_dir / "fastf1_race_results.csv",
@@ -305,16 +335,36 @@ def build_historical_dataset(config: HistoricalBuildConfig) -> dict[str, str]:
     merged_manifest = pd.concat([manifest, pd.DataFrame(manifest_rows)], ignore_index=True)
     merged_manifest = merged_manifest.drop_duplicates(subset=["dataset_key"], keep="last")
 
-    _write_frame(outputs["laps"], _concat_or_empty(lap_frames))
-    _write_frame(outputs["race_results"], _concat_or_empty(result_frames))
-    _write_frame(outputs["actual_strategy"], _concat_or_empty(strategy_frames))
-    _write_frame(outputs["weather"], _concat_or_empty(weather_frames))
-    _write_frame(outputs["race_control"], _concat_or_empty(race_control_frames))
+    _merge_and_write_frame(
+        outputs["laps"],
+        _concat_or_empty(lap_frames),
+        subset=["Year", "Event", "Session", "Driver", "LapNumber"],
+    )
+    _merge_and_write_frame(
+        outputs["race_results"],
+        _concat_or_empty(result_frames),
+        subset=["Year", "Event", "Session", "DriverNumber"],
+    )
+    _merge_and_write_frame(
+        outputs["actual_strategy"],
+        _concat_or_empty(strategy_frames),
+        subset=["year", "event", "Driver"],
+    )
+    _merge_and_write_frame(
+        outputs["weather"],
+        _concat_or_empty(weather_frames),
+        subset=["Year", "Event", "Session"],
+    )
+    _merge_and_write_frame(
+        outputs["race_control"],
+        _concat_or_empty(race_control_frames),
+        subset=["Year", "Event", "Session"],
+    )
     _write_frame(outputs["manifest"], merged_manifest)
 
     for endpoint, frames in openf1_frames.items():
         path = output_dir / f"openf1_{endpoint}.csv"
-        _write_frame(path, _concat_or_empty(frames))
+        _merge_and_write_frame(path, _concat_or_empty(frames))
         outputs[f"openf1_{endpoint}"] = path
 
     return {key: str(path) for key, path in outputs.items()}
