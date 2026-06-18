@@ -20,6 +20,10 @@ from src.grid import build_grid_features
 from src.weather import summarize_weather
 from src.simulate import simulate_races
 from src.performance import add_performance_profile
+from src.historical_calibration import (
+    HistoricalCalibrationConfig,
+    apply_historical_calibration,
+)
 from src.reliability import (
     apply_reliability_profile,
     infer_reliability_profile,
@@ -865,6 +869,30 @@ def main() -> None:
         current_session_type=metadata["session"],
         metadata=metadata,
     )
+
+    if app_config.model.use_historical_model_calibration:
+        print("Applying historical model calibration...")
+
+        model_features = apply_historical_calibration(
+            model_features=model_features,
+            metadata=metadata,
+            weather_summary=weather_summary,
+            config=HistoricalCalibrationConfig(
+                model_dir=app_config.model.historical_model_dir,
+                finish_weight=app_config.model.historical_finish_weight,
+                dnf_weight=app_config.model.historical_dnf_weight,
+            ),
+        )
+
+        if bool(model_features.get("historical_model_available", False).any()):
+            print(
+                "- historical calibration applied: "
+                f"finish weight {app_config.model.historical_finish_weight:.2f}, "
+                f"DNF weight {app_config.model.historical_dnf_weight:.2f}"
+            )
+        else:
+            note = str(model_features["historical_calibration_note"].iloc[0])
+            print(f"- historical calibration skipped: {note}")
 
     model_features_path = _output_path(output_dir, "driver_model_features.csv")
     model_features.to_csv(model_features_path, index=False)

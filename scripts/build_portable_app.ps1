@@ -1,5 +1,5 @@
 param(
-    [string]$Name = "F1SimGUI"
+    [string]$Name = "F1RaceSimulatorPortable"
 )
 
 $ErrorActionPreference = "Stop"
@@ -21,8 +21,13 @@ if (-not (Test-Path $Python)) {
     --name $Name `
     --add-data "config;config" `
     --add-data "data;data" `
+    --add-data "assets;assets" `
+    --add-data "portable_app\web;portable_app\web" `
     --collect-data fastf1 `
-    app_gui.py
+    --collect-all webview `
+    --collect-all pythonnet `
+    --collect-all clr_loader `
+    portable_app\web_main.py
 
 Write-Host ""
 Write-Host "Build complete: dist\$Name\$Name.exe"

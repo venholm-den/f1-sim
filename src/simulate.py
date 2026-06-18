@@ -598,6 +598,13 @@ def simulate_races(
             "estimated_race_laps",
             "base_winner_race_time_seconds",
             "performance_model_version",
+            "historical_model_available",
+            "historical_predicted_finish",
+            "historical_finish_score",
+            "historical_dnf_probability",
+            "historical_finish_weight",
+            "historical_dnf_weight",
+            "historical_calibration_note",
         ]:
             if col in base.columns:
                 row[col] = driver_feature.get(col)

@@ -41,7 +41,7 @@ def _safe_col(df: pd.DataFrame, col: str, default: Any = None) -> pd.Series:
 def extract_lap_details(session: Any, metadata: dict) -> pd.DataFrame:
     laps = session.laps.copy()
 
-    detail = pd.DataFrame()
+    detail = pd.DataFrame(index=laps.index)
 
     detail["Year"] = metadata["year"]
     detail["Event"] = metadata["event"]
