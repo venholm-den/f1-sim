@@ -47,6 +47,10 @@ class ModelSettings:
     use_race_control_context: bool
     use_track_red_flag_base_chance: bool
     use_weather_forecast: bool = True
+    use_historical_model_calibration: bool = True
+    historical_model_dir: str = "data/models"
+    historical_finish_weight: float = 0.15
+    historical_dnf_weight: float = 0.30
 
 
 @dataclass(frozen=True)
@@ -239,6 +243,12 @@ def load_app_config(
                 model.get("use_track_red_flag_base_chance", True)
             ),
             use_weather_forecast=bool(model.get("use_weather_forecast", True)),
+            use_historical_model_calibration=bool(
+                model.get("use_historical_model_calibration", True)
+            ),
+            historical_model_dir=str(model.get("historical_model_dir", "data/models")),
+            historical_finish_weight=float(model.get("historical_finish_weight", 0.15)),
+            historical_dnf_weight=float(model.get("historical_dnf_weight", 0.30)),
         ),
         source_path=str(config_path),
     )
@@ -275,6 +285,10 @@ def config_to_dict(config: AppConfig) -> dict[str, Any]:
             "use_race_control_context": config.model.use_race_control_context,
             "use_track_red_flag_base_chance": config.model.use_track_red_flag_base_chance,
             "use_weather_forecast": config.model.use_weather_forecast,
+            "use_historical_model_calibration": config.model.use_historical_model_calibration,
+            "historical_model_dir": config.model.historical_model_dir,
+            "historical_finish_weight": config.model.historical_finish_weight,
+            "historical_dnf_weight": config.model.historical_dnf_weight,
         },
         "source_path": config.source_path,
     }
