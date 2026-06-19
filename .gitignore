@@ -21,6 +21,10 @@ cache/
 .fastf1/
 fastf1_cache/
 
+# Generated historical training data and local model artifacts
+data/historical_model/
+data/models/
+
 # Generated outputs
 outputs/reviews/
 outputs/report/

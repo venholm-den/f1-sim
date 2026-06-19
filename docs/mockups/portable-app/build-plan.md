@@ -2,23 +2,22 @@
 
 ## Recommendation
 
-Build the mockup as a new portable desktop app shell rather than stretching the current `app_gui.py`.
+Build the mockup as a local web UI wrapped by pywebview, backed by Python service functions.
 
-The existing Tkinter GUI is useful as a lightweight runner, but the mockups describe a richer dashboard with navigation, cards, validation panels, editable tables, charts, scenario tabs, and post-run results. That kind of interface will be cleaner if the app has a small UI layer on top of reusable simulator services.
+The earlier Tkinter/PySide prototypes have been retired. The active portable app is `portable_app/web_main.py` plus the static web assets in `portable_app/web/`.
 
 Best path:
 
 1. Keep `main.py` as the command-line pipeline.
-2. Keep `app_gui.py` as the simple runner for now.
-3. Add a new portable app package that calls shared services instead of duplicating simulation logic.
+2. Keep reusable app behavior in `src/app_services/`.
+3. Keep the portable UI thin: JavaScript calls the pywebview API, and Python services own config, validation, running, and output loading.
 
-Recommended UI stack:
+Current UI stack:
 
-- **PySide6 / Qt** for the full mockup experience.
+- **pywebview** for the local desktop shell.
+- **HTML/CSS/JavaScript** for the interface.
 - Keep **PyInstaller onedir** packaging for Windows portability.
-- Use the existing `matplotlib` image outputs initially, then add native embedded charts later.
-
-PySide6 is heavier than Tkinter, but it fits this design better: sidebar navigation, cards, tables, tabs, progress views, file pickers, theme control, and richer state handling are all much easier.
+- Render key visuals directly in the app where practical; keep matplotlib/image report outputs as export artifacts.
 
 ## Target App Shape
 
@@ -104,20 +103,12 @@ src/app_services/
 
 portable_app/
   __init__.py
-  main.py
-  theme.py
-  state.py
-  widgets/
-  screens/
-    race_setup.py
-    data_sources.py
-    model_signals.py
-    weather_reliability.py
-    tyre_strategy.py
-    fantasy.py
-    results.py
-    compare.py
-    settings.py
+  web_main.py
+  web_backend.py
+  web/
+    index.html
+    app.js
+    styles.css
 ```
 
 The UI should not call random project internals directly. It should use service functions such as:
@@ -165,7 +156,7 @@ Goal: make the simulator controllable by a GUI without duplicating logic.
 
 Tasks:
 
-- Extract config read/write helpers from `app_gui.py` into `src/app_services/config_service.py`.
+- Keep config read/write helpers in `src/app_services/config_service.py`.
 - Add data health checks:
   - file exists
   - row count
@@ -188,7 +179,7 @@ Goal: replace the current simple GUI with the first two mockup screens.
 
 Build:
 
-- PySide6 app shell.
+- pywebview app shell.
 - Left sidebar navigation.
 - Race Setup screen.
 - Data Sources screen.

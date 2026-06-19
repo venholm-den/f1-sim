@@ -24,7 +24,6 @@ pydantic==2.13.4
 pydantic_core==2.46.4
 PyJWT==2.13.0
 pywebview==6.2.1
-PySide6==6.10.1
 pyparsing==3.3.2
 python-dateutil==2.9.0.post0
 python-dotenv==1.2.2
