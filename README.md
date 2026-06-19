@@ -93,9 +93,70 @@ python scripts/train_historical_model.py --historical-dir data\historical_model 
 
 ## Tests
 
-```powershell
-python -m pytest
-```
+	- `outputs/fantasy_expected_points.png`
+    ### Fantasy expected points
+
+<img src="assets/images/fantasy_expected_points.png" alt="Fantasy expected points" width="900">
+
+	- `outputs/fantasy_value.png` (only when prices are available)
+- Backtest outputs
+### Fantasy value
+
+	- `outputs/history/*prediction_snapshot*.csv`
+	- `outputs/history/latest_prediction_snapshot.csv`
+	- `outputs/history/*prediction_snapshot*.config.json`
+	- `outputs/backtest/*_actual_results.csv`
+	- `outputs/backtest/*_comparison.csv`
+	- `outputs/backtest/*_metrics.csv`
+	- `outputs/backtest/*_recommendations.txt`
+
+## Visual behavior and interactions
+
+Report/plot behavior currently implemented:
+
+- Team-colored bars and dark-theme chart/report styling across chart modules.
+- Simulation summary + strategy risk are rendered into report-card images.
+- Tyre strategy output ranks multiple candidate plans and exposes score, score gap, and candidate summary columns.
+- Historical strategy adjustment can overwrite default tyre strategy output when same-event history indicates likely higher stop counts.
+- Discord posting sends:
+	- One long summary message (auto-split to respect Discord length limits)
+	- Then report files as attachments.
+
+There is no interactive UI/field-well behavior in this repository; outputs are static images and CSV files.
+
+## Formatting options
+
+No user-facing formatting pane exists in the current implementation.
+Formatting is controlled in code (matplotlib styles, table labels, color maps, output paths).
+
+## Known limitations
+
+- Tyre inventory is estimated from lap data and tyre-life heuristics, not official FIA/Pirelli barcode set tracking.
+- Historical strategy adjustment depends on event matching and available historical race data quality.
+- If current session is practice, grid is estimated and uncertainty is intentionally increased.
+- Rainfall, forecast, and weather modifiers are conservative heuristics, not a full meteorological or circuit-specific calibration model.
+- Engine/car reliability is inferred from recent result statuses and editable team/power-unit mappings, not an official manufacturer reliability feed.
+- Fantasy value (`xPPM`) requires valid prices in `data/fantasy_prices.csv`.
+
+## Troubleshooting
+
+- `DISCORD_WEBHOOK_URL is missing. Add it to your .env file.`
+	- Set `DISCORD_WEBHOOK_URL` in `.env`, or keep `POST_TO_DISCORD` disabled.
+- `Snapshot not found: outputs/history/latest_prediction_snapshot.csv`
+	- Run `python main.py` first to create a snapshot, then run backtest.
+- `No laps found for ...`
+	- FastF1 may not have that session yet, or the event/session identifier is unavailable.
+- Strategy files are missing
+	- Check that lap detail and tyre inventory outputs were created; strategy generation is skipped when upstream data is empty.
+- Fantasy value chart is skipped
+	- Fill numeric `fantasy_prices` values in `data/fantasy_prices.csv`.
+
+## Documentation guard
+
+`scripts/check-docs-updated.ps1` is a pre-commit helper that warns when staged code/config files changed but `README.md` was not staged.
+It prompts for explicit override (`y`) before allowing the commit to continue.
+
+## Recent implementation changes
 
 ## Known Limitations
 
