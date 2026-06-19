@@ -6,6 +6,16 @@ The project loads FastF1 session data, builds driver pace and reliability featur
 
 There is no Power BI custom visual implementation in this repository.
 
+## Architecture Direction
+
+`f1-sim` uses a hybrid architecture:
+
+- Python owns FastF1 data collection, ML model training, race simulation prototyping, CSV/JSON generation, data reports, and Power BI prep.
+- Rust owns the high-speed simulation engine, packaged backend, and portable desktop runtime.
+- React/Tauri owns the future user interface, charts, race setup screens, export buttons, and desktop wrapper.
+
+See [Architecture](docs/architecture.md).
+
 ## Quick Start
 
 ```powershell
@@ -37,6 +47,7 @@ dist\F1RaceSimulatorPortable\F1RaceSimulatorPortable.exe
 ## Documentation
 
 - [Setup](docs/setup.md)
+- [Architecture](docs/architecture.md)
 - [Development and run commands](docs/development-and-run-commands.md)
 - [Run the portable app](docs/portable-app.md)
 - [Data fields and inputs](docs/data-fields-and-inputs.md)
