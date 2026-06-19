@@ -112,6 +112,20 @@ python explain_driver.py
 
 `explain_driver.py` expects existing `outputs\simulation_summary.csv` and `outputs\driver_model_features.csv`.
 
+## Export Rust Model Inputs
+
+After `main.py` has produced `outputs\driver_model_features.csv`, export the typed JSON consumed by the Rust simulation engine:
+
+```powershell
+python scripts/export_rust_model_inputs.py --year 2026 --event Monaco --session Q --output outputs\rust\model_inputs.json
+```
+
+The Rust repo validates this payload against its `schemas\model_inputs.schema.json` contract and can run:
+
+```powershell
+cargo run -- simulate --config config/default_run_config.json --model-inputs ..\f1-sim\outputs\rust\model_inputs.json
+```
+
 ## Tests
 
 ```powershell
