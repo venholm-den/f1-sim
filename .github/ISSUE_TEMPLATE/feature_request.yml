@@ -1,0 +1,45 @@
+name: Feature request
+description: Suggest an improvement to the simulator, model, app, data sources, outputs, or docs.
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or opportunity
+      description: What are you trying to improve or make possible?
+      placeholder: I want to compare race strategy outputs across...
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Describe the change you would like to see.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      multiple: true
+      options:
+        - CLI simulation
+        - Portable app
+        - Packaging/build
+        - Data sources
+        - Historical calibration
+        - Tyre strategy
+        - Fantasy scoring
+        - Documentation
+        - Other
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Any workaround or different approach you have considered?
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Screenshots, examples, links, or notes that help explain the request.
