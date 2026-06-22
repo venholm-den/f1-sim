@@ -24,7 +24,7 @@ from src.app_services.output_index import list_core_outputs, read_output_table
 from src.app_services.run_service import run_pipeline_with_config
 
 
-SESSION_OPTIONS = ["Q", "SQ", "S", "FP3", "FP2", "FP1", "R"]
+SESSION_OPTIONS = ["PRE", "Q", "SQ", "S", "FP3", "FP2", "FP1", "R"]
 TRACK_LAYOUT_CACHE: dict[tuple[int, str, str], list[dict[str, float]]] = {}
 PRACTICE_SESSIONS = {"FP1", "FP2", "FP3"}
 QUALI_SESSIONS = {"Q", "SQ"}

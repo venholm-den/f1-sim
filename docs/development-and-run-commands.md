@@ -47,7 +47,7 @@ Recommended rhythm:
 
 | Weekend point | Command | Purpose |
 | --- | --- | --- |
-| Before FP1 | `python main.py --event latest --n-sims 1000 --no-discord` | Smoke-test dependencies, cache, config, prices, and outputs. |
+| Before FP1 | `python main.py --event latest --session PRE --n-sims 1000 --no-discord` | Simulate from recent race baselines, track profile, forecast weather, FIA context, and fantasy prices before weekend laps exist. |
 | After FP1 | `python main.py --event latest --n-sims 5000 --no-discord` | Early low-confidence read. |
 | After FP2 | `python main.py --event latest --n-sims 10000 --no-discord` | First useful long-run and fantasy direction. |
 | After FP3 | `python main.py --event latest --n-sims 20000 --no-discord` | Final practice-based check before qualifying. |

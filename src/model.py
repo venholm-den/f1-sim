@@ -7,6 +7,7 @@ import pandas as pd
 
 
 CURRENT_SESSION_WEIGHTS = {
+    "PRE": 0.0,
     "Q": 0.35,
     "SQ": 0.30,
     "S": 0.28,
@@ -17,6 +18,7 @@ CURRENT_SESSION_WEIGHTS = {
 }
 
 PRACTICE_SESSIONS = {"FP1", "FP2", "FP3"}
+PRE_FP1_SESSIONS = {"PRE"}
 
 
 def _to_numeric(series: pd.Series, default: float = np.nan) -> pd.Series:
@@ -374,7 +376,9 @@ def build_model_features(
     low_baseline_penalty = ((5 - baseline_rounds).clip(lower=0) / 5) * 0.35
     practice_quality_penalty = (1 - model["current_signal_quality"]) * 0.65
 
-    if session in PRACTICE_SESSIONS:
+    if session in PRE_FP1_SESSIONS:
+        practice_session_penalty = 0.45
+    elif session in PRACTICE_SESSIONS:
         practice_session_penalty = 0.30
     else:
         practice_session_penalty = 0.05

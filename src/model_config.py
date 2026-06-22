@@ -6,6 +6,11 @@ MODEL_VERSION = "phase_1_performance_profile"
 
 # Session influence controls how much current weekend data affects the model.
 SESSION_WEIGHTS = {
+    "PRE": {
+        "quali": 0.00,
+        "race": 0.00,
+        "strategy": 0.00,
+    },
     "FP1": {
         "quali": 0.10,
         "race": 0.12,

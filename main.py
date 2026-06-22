@@ -10,7 +10,9 @@ from dotenv import load_dotenv
 
 from src.collect import (
     enable_fastf1_cache,
+    is_pre_fp1_session,
     load_latest_predictor_session,
+    load_pre_fp1_session,
     load_recent_race_sessions,
     load_session,
 )
@@ -52,6 +54,18 @@ except Exception:
 
 # Module-level fallback for helper function defaults
 DEFAULT_OVERTAKING_DIFFICULTY = 0.55
+CURRENT_FEATURE_COLUMNS = [
+    "Driver",
+    "Team",
+    "relative_pace",
+    "race_pace",
+    "best_lap",
+    "lap_std",
+    "deg_per_lap",
+    "clean_laps",
+    "raw_laps",
+    "dnf_prob",
+]
 
 def _output_path(output_dir: str | Path, *parts: str) -> str:
     return str(Path(output_dir, *parts))
@@ -72,6 +86,10 @@ def _ensure_output_dirs(output_dir: str | Path = "outputs") -> None:
 
     for folder in folders:
         Path(folder).mkdir(parents=True, exist_ok=True)
+
+
+def _empty_current_features() -> pd.DataFrame:
+    return pd.DataFrame(columns=CURRENT_FEATURE_COLUMNS)
 
 
 def _to_float_or_none(value: Any) -> float | None:
@@ -689,7 +707,11 @@ def main() -> None:
     print()
     print("Loading target session...")
 
-    if str(target_event).lower() == "latest":
+    pre_fp1_run = is_pre_fp1_session(target_session)
+
+    if pre_fp1_run:
+        current_session, metadata = load_pre_fp1_session(year, target_event)
+    elif str(target_event).lower() == "latest":
         current_session, metadata = load_latest_predictor_session(year)
     else:
         current_session, metadata = load_session(
@@ -786,16 +808,6 @@ def main() -> None:
     )
 
     print()
-    print("Building current session driver features...")
-
-    current_features = build_driver_features(current_session.laps)
-    current_features_path = _output_path(output_dir, "current_session_features.csv")
-    current_features.to_csv(current_features_path, index=False)
-
-    print(f"- current feature rows: {len(current_features)}")
-    print(f"- saved: {current_features_path}")
-
-    print()
     print("Loading recent race baseline sessions...")
 
     recent_races = load_recent_race_sessions(
@@ -812,6 +824,21 @@ def main() -> None:
 
     print(f"- baseline feature rows: {len(baseline_features)}")
     print(f"- saved: {baseline_features_path}")
+
+    print()
+    print("Building current session driver features...")
+
+    if pre_fp1_run:
+        current_features = _empty_current_features()
+        print("- pre-FP1 mode: no target session laps loaded; using baselines only")
+    else:
+        current_features = build_driver_features(current_session.laps)
+
+    current_features_path = _output_path(output_dir, "current_session_features.csv")
+    current_features.to_csv(current_features_path, index=False)
+
+    print(f"- current feature rows: {len(current_features)}")
+    print(f"- saved: {current_features_path}")
 
     print()
     print("Blending model features...")
