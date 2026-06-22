@@ -248,6 +248,38 @@ button.ghost {
   min-height: 560px;
 }
 
+.session-banner {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 14px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  background: #0f1722;
+}
+
+.session-banner.practice {
+  border-left: 4px solid var(--green);
+}
+
+.session-banner.quali {
+  border-left: 4px solid var(--amber);
+}
+
+.session-banner.race {
+  border-left: 4px solid var(--red);
+}
+
+.session-banner span {
+  border: 1px solid #334155;
+  background: #151d2a;
+  color: #dbe6f6;
+  padding: 7px 10px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
 .panel-header {
   display: flex;
   justify-content: space-between;
@@ -397,7 +429,7 @@ canvas {
 
 .sector-legend {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 10px;
   margin-top: 12px;
 }
@@ -417,6 +449,11 @@ canvas {
 .sector-pill strong {
   display: block;
   margin-top: 3px;
+}
+
+.sector-pill.fastest-lap {
+  border-color: #475569;
+  background: #151d2a;
 }
 
 .run-log {

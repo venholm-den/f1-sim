@@ -89,6 +89,16 @@ function updateContext() {
   $("metricWeather").textContent = `${Math.round(weather.chaos || 0)}% chaos`;
 }
 
+function sessionModeLabel(mode) {
+  if (mode === "practice") {
+    return "Practice run";
+  }
+  if (mode === "quali") {
+    return "Quali run";
+  }
+  return "Race run";
+}
+
 function renderTable(targetId, payload) {
   const target = $(targetId);
   const columns = payload?.columns || [];
@@ -143,6 +153,8 @@ function renderTrack(track) {
   const context = canvas.getContext("2d");
   const points = track?.points || [];
   const sectors = track?.sectors || {};
+  const fastestLap = track?.fastestLap || {};
+  const selectedSession = track?.session || readSettings().session;
   context.clearRect(0, 0, canvas.width, canvas.height);
   context.fillStyle = "#090d14";
   context.fillRect(0, 0, canvas.width, canvas.height);
@@ -150,7 +162,7 @@ function renderTrack(track) {
   if (!points.length) {
     context.fillStyle = colors.muted;
     context.font = "18px Segoe UI";
-    context.fillText("Real track telemetry is not available yet for this event/session.", 32, 58);
+    context.fillText(`Real track telemetry is not available yet for ${selectedSession}.`, 32, 58);
   } else {
     const xs = points.map((point) => point.x);
     const ys = points.map((point) => point.y);
@@ -185,13 +197,18 @@ function renderTrack(track) {
     }
   }
 
-  $("sectorLegend").innerHTML = ["S1", "S2", "S3"]
+  const sectorCards = ["S1", "S2", "S3"]
     .map((sector) => {
       const leader = sectors[sector] || {};
       const seconds = leader.seconds ? `${Number(leader.seconds).toFixed(3)}s` : "No time";
       return `<div class="sector-pill"><span>${sector} leader</span><strong>${escapeHtml(leader.driver || "n/a")}</strong><span>${seconds}</span></div>`;
     })
     .join("");
+  const fastestSeconds = fastestLap.seconds ? `${Number(fastestLap.seconds).toFixed(3)}s` : "No time";
+  const lapText = fastestLap.lap ? `Lap ${escapeHtml(fastestLap.lap)}` : selectedSession;
+  $("sectorLegend").innerHTML = `${sectorCards}<div class="sector-pill fastest-lap"><span>Fastest lap</span><strong>${escapeHtml(
+    fastestLap.driver || "n/a",
+  )}</strong><span>${fastestSeconds} - ${lapText}</span></div>`;
 }
 
 function renderWeather(weather) {
@@ -231,11 +248,22 @@ function renderWeather(weather) {
 function renderOutputs(outputs) {
   state.outputs = outputs || {};
   const charts = state.outputs.resultsCharts || {};
+  const screens = state.outputs.sessionScreens || {};
   renderBarChart("winChart", charts.win, colors.red);
   renderBarChart("podiumChart", charts.podium, colors.amber);
   renderBarChart("dnfChart", charts.dnf, "#f97316");
   renderBarChart("fantasyChart", charts.fantasy, colors.blue);
   renderTable("summaryTable", state.outputs.summaryTable);
+  $("practiceModeBadge").textContent = sessionModeLabel(state.outputs.sessionMode);
+  $("qualiModeBadge").textContent = sessionModeLabel(state.outputs.sessionMode);
+  $("raceModeBadge").textContent = sessionModeLabel(state.outputs.sessionMode);
+  renderTable("practiceSectorTable", screens.practice?.sectors);
+  renderTable("practicePaceTable", screens.practice?.pace);
+  renderTable("practiceLongRunTable", screens.practice?.longRun);
+  renderTable("qualiSectorTable", screens.quali?.sectors);
+  renderTable("qualiPaceTable", screens.quali?.pace);
+  renderTable("raceScreenSummaryTable", screens.race?.summary);
+  renderTable("raceScreenStrategyTable", screens.race?.strategy);
   renderTable("signalOverviewTable", state.outputs.signals?.overview);
   renderTable("driverSignalsTable", state.outputs.signals?.drivers);
   $("modelCommentary").textContent = state.outputs.signals?.commentary || "No model commentary found yet.";

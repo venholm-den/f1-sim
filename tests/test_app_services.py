@@ -15,6 +15,15 @@ from src.app_services.config_service import (
 from src.app_services.data_health import read_csv_preview, validate_data_sources
 from src.app_services.model_signals import load_model_signals
 from src.app_services.output_index import list_core_outputs, read_output_table
+from portable_app.web_backend import (
+    QUALI_SESSIONS,
+    PRACTICE_SESSIONS,
+    fastest_lap,
+    sector_times_table,
+    sector_leaders,
+    session_mode,
+    session_screen_payloads,
+)
 
 
 def _settings() -> PortableRunSettings:
@@ -190,3 +199,115 @@ def test_load_model_signals_summarises_feature_outputs(tmp_path) -> None:
     ].iloc[0] == "2"
     assert list(signals.driver_signals["Driver"]) == ["RUS", "HAM"]
     assert "historical_predicted_finish" in signals.driver_signals.columns
+
+
+def test_session_mode_groups_f1_session_types() -> None:
+    assert session_mode("FP2") == "practice"
+    assert session_mode("SQ") == "quali"
+    assert session_mode("R") == "race"
+    assert session_mode("unknown") == "race"
+
+
+def test_sector_times_table_splits_practice_and_quali() -> None:
+    laps = pd.DataFrame(
+        {
+            "Session": ["FP1", "FP2", "Q", "Q", "R"],
+            "Driver": ["RUS", "HAM", "LEC", "VER", "NOR"],
+            "Team": ["Mercedes", "Ferrari", "Ferrari", "Red Bull", "McLaren"],
+            "LapNumber": [4, 7, 10, 11, 22],
+            "CleanPushLap": [True, True, True, False, True],
+            "Sector1Seconds": [30.2, 29.8, 28.9, 28.1, 31.0],
+            "Sector2Seconds": [34.0, 33.6, 33.2, 32.8, 35.1],
+            "Sector3Seconds": [22.5, 22.2, 21.9, 21.4, 23.0],
+        }
+    )
+
+    practice = sector_times_table(laps, PRACTICE_SESSIONS)
+    quali = sector_times_table(laps, QUALI_SESSIONS)
+
+    assert practice.loc[practice["Sector"].eq("S1"), "Driver"].iloc[0] == "HAM"
+    assert quali.loc[quali["Sector"].eq("S1"), "Driver"].iloc[0] == "LEC"
+    assert "VER" not in set(quali["Driver"])
+
+
+def test_session_screen_payloads_include_best_sector_tables(tmp_path) -> None:
+    output_dir = tmp_path / "outputs"
+    lap_dir = output_dir / "lap_details"
+    strategy_dir = output_dir / "strategy"
+    lap_dir.mkdir(parents=True)
+    strategy_dir.mkdir()
+
+    pd.DataFrame(
+        {
+            "Session": ["FP1", "Q"],
+            "Driver": ["RUS", "LEC"],
+            "Team": ["Mercedes", "Ferrari"],
+            "LapNumber": [5, 9],
+            "CleanPushLap": [True, True],
+            "Sector1Seconds": [29.7, 28.8],
+            "Sector2Seconds": [33.8, 33.1],
+            "Sector3Seconds": [22.3, 21.8],
+        }
+    ).to_csv(lap_dir / "weekend_lap_details.csv", index=False)
+    pd.DataFrame(
+        {
+            "Session": ["FP1"],
+            "Driver": ["RUS"],
+            "Team": ["Mercedes"],
+            "Compound": ["SOFT"],
+            "clean_laps": [4],
+            "best_lap": [86.0],
+            "median_lap": [86.4],
+            "ideal_lap": [85.8],
+        }
+    ).to_csv(lap_dir / "practice_lap_summary.csv", index=False)
+    pd.DataFrame(
+        {
+            "Driver": ["LEC"],
+            "Team": ["Ferrari"],
+            "quali_rank_from_laps": [1],
+            "clean_laps": [3],
+            "best_lap": [83.7],
+            "gap_to_fastest": [0.0],
+            "ideal_lap": [83.5],
+            "ideal_gap_to_fastest": [-0.2],
+        }
+    ).to_csv(lap_dir / "quali_lap_summary.csv", index=False)
+
+    payload = session_screen_payloads(
+        output_dir,
+        pd.DataFrame({"Driver": ["LEC"], "avg_finish": [1.8]}),
+        pd.DataFrame({"Driver": ["LEC"], "predicted_strategy": ["S-M"]}),
+    )
+
+    assert payload["practice"]["sectors"]["rows"][0]["Driver"] == "RUS"
+    assert payload["quali"]["sectors"]["rows"][0]["Driver"] == "LEC"
+    assert payload["race"]["summary"]["rows"][0]["Driver"] == "LEC"
+
+
+def test_track_cards_are_filtered_to_selected_session(tmp_path) -> None:
+    output_dir = tmp_path / "outputs"
+    lap_dir = output_dir / "lap_details"
+    lap_dir.mkdir(parents=True)
+
+    pd.DataFrame(
+        {
+            "Session": ["FP1", "Q", "Q"],
+            "Driver": ["RUS", "LEC", "NOR"],
+            "Team": ["Mercedes", "Ferrari", "McLaren"],
+            "LapNumber": [4, 8, 9],
+            "CleanPushLap": [True, True, True],
+            "LapTimeSeconds": [84.1, 80.5, 80.1],
+            "Sector1Seconds": [29.4, 28.4, 28.6],
+            "Sector2Seconds": [33.2, 32.2, 32.0],
+            "Sector3Seconds": [21.5, 20.7, 20.9],
+        }
+    ).to_csv(lap_dir / "weekend_lap_details.csv", index=False)
+
+    quali_fastest = fastest_lap(output_dir, "Q")
+    quali_sectors = sector_leaders(output_dir, "Q")
+    practice_fastest = fastest_lap(output_dir, "FP1")
+
+    assert quali_fastest["driver"] == "NOR"
+    assert quali_sectors["S1"]["driver"] == "LEC"
+    assert practice_fastest["driver"] == "RUS"

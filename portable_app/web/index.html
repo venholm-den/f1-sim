@@ -19,6 +19,9 @@
         <nav class="nav">
           <button class="nav-item active" data-view="dashboard">Dashboard</button>
           <button class="nav-item" data-view="setup">Race Setup</button>
+          <button class="nav-item" data-view="practice">Practice</button>
+          <button class="nav-item" data-view="quali">Quali</button>
+          <button class="nav-item" data-view="race">Full Race</button>
           <button class="nav-item" data-view="signals">Model Signals</button>
           <button class="nav-item" data-view="track">Track Map</button>
           <button class="nav-item" data-view="weather">Weather</button>
@@ -117,6 +120,90 @@
             <div class="panel-header"><h2>Run Log</h2></div>
             <pre id="runLog" class="run-log">No run started.</pre>
           </section>
+        </section>
+
+        <section class="view" id="view-practice">
+          <div class="session-banner practice">
+            <div>
+              <div class="eyebrow">Practice screen</div>
+              <h2>Free Practice Pace</h2>
+            </div>
+            <span id="practiceModeBadge">FP sessions</span>
+          </div>
+          <div class="two-column">
+            <section class="panel">
+              <div class="panel-header">
+                <div>
+                  <h2>Best Practice Sectors</h2>
+                  <p>Fastest clean sector times across FP1, FP2 and FP3.</p>
+                </div>
+              </div>
+              <div id="practiceSectorTable" class="table-wrap"></div>
+            </section>
+            <section class="panel">
+              <div class="panel-header">
+                <div>
+                  <h2>Long Run Read</h2>
+                  <p>Practice stint pace where long-run data is available.</p>
+                </div>
+              </div>
+              <div id="practiceLongRunTable" class="table-wrap"></div>
+            </section>
+          </div>
+          <section class="panel">
+            <div class="panel-header"><h2>Practice Lap Summary</h2></div>
+            <div id="practicePaceTable" class="table-wrap"></div>
+          </section>
+        </section>
+
+        <section class="view" id="view-quali">
+          <div class="session-banner quali">
+            <div>
+              <div class="eyebrow">Quali screen</div>
+              <h2>Qualifying Pace</h2>
+            </div>
+            <span id="qualiModeBadge">Q/SQ sessions</span>
+          </div>
+          <div class="two-column">
+            <section class="panel">
+              <div class="panel-header">
+                <div>
+                  <h2>Best Quali Sectors</h2>
+                  <p>Fastest clean sector times from Q or sprint qualifying.</p>
+                </div>
+              </div>
+              <div id="qualiSectorTable" class="table-wrap"></div>
+            </section>
+            <section class="panel">
+              <div class="panel-header">
+                <div>
+                  <h2>Quali Lap Summary</h2>
+                  <p>Best and ideal lap signals used to judge one-lap pace.</p>
+                </div>
+              </div>
+              <div id="qualiPaceTable" class="table-wrap"></div>
+            </section>
+          </div>
+        </section>
+
+        <section class="view" id="view-race">
+          <div class="session-banner race">
+            <div>
+              <div class="eyebrow">Full race screen</div>
+              <h2>Race Simulation</h2>
+            </div>
+            <span id="raceModeBadge">R/S sessions</span>
+          </div>
+          <div class="two-column">
+            <section class="panel">
+              <div class="panel-header"><h2>Race Result Outlook</h2></div>
+              <div id="raceScreenSummaryTable" class="table-wrap"></div>
+            </section>
+            <section class="panel">
+              <div class="panel-header"><h2>Race Strategy</h2></div>
+              <div id="raceScreenStrategyTable" class="table-wrap"></div>
+            </section>
+          </div>
         </section>
 
         <section class="view" id="view-signals">

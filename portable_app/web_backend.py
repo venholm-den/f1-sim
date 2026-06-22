@@ -26,6 +26,9 @@ from src.app_services.run_service import run_pipeline_with_config
 
 SESSION_OPTIONS = ["Q", "SQ", "S", "FP3", "FP2", "FP1", "R"]
 TRACK_LAYOUT_CACHE: dict[tuple[int, str, str], list[dict[str, float]]] = {}
+PRACTICE_SESSIONS = {"FP1", "FP2", "FP3"}
+QUALI_SESSIONS = {"Q", "SQ"}
+RACE_SESSIONS = {"R", "S"}
 
 
 def project_root() -> Path:
@@ -172,15 +175,207 @@ def settings_from_payload(payload: dict[str, Any], defaults: PortableRunSettings
     )
 
 
-def sector_leaders(output_dir: str | Path) -> dict[str, dict[str, float | str]]:
+def session_mode(session: str | None) -> str:
+    code = str(session or "").upper()
+    if code in PRACTICE_SESSIONS:
+        return "practice"
+    if code in QUALI_SESSIONS:
+        return "quali"
+    if code in RACE_SESSIONS:
+        return "race"
+    return "race"
+
+
+def _clean_push_laps(laps: pd.DataFrame) -> pd.DataFrame:
+    if laps.empty:
+        return laps
+
+    if "CleanPushLap" not in laps.columns:
+        return laps.copy()
+
+    clean = laps["CleanPushLap"].astype(str).str.lower().isin(["true", "1"])
+    return laps[clean].copy()
+
+
+def _session_laps(laps: pd.DataFrame, session: str | None) -> pd.DataFrame:
+    if laps.empty or not session or "Session" not in laps.columns:
+        return laps.copy()
+
+    code = str(session).upper()
+    return laps[laps["Session"].astype(str).str.upper().eq(code)].copy()
+
+
+def sector_times_table(laps: pd.DataFrame, sessions: set[str]) -> pd.DataFrame:
+    if laps.empty or "Driver" not in laps.columns:
+        return pd.DataFrame()
+
+    scope = _clean_push_laps(laps)
+    if "Session" in scope.columns:
+        scope = scope[scope["Session"].astype(str).str.upper().isin(sessions)]
+
+    rows: list[dict[str, Any]] = []
+    base_columns = ["Driver", "Team", "Session", "LapNumber"]
+    available_base = [column for column in base_columns if column in scope.columns]
+
+    for label, column in [("S1", "Sector1Seconds"), ("S2", "Sector2Seconds"), ("S3", "Sector3Seconds")]:
+        if column not in scope.columns:
+            continue
+
+        sector = scope[[*available_base, column]].copy()
+        sector[column] = pd.to_numeric(sector[column], errors="coerce")
+        sector = sector.dropna(subset=[column]).sort_values(column)
+
+        if sector.empty:
+            continue
+
+        leader = sector.iloc[0]
+        rows.append(
+            {
+                "Sector": label,
+                "Driver": str(leader.get("Driver", "")),
+                "Team": str(leader.get("Team", "")),
+                "Session": str(leader.get("Session", "")),
+                "Lap": "" if pd.isna(leader.get("LapNumber", "")) else str(leader.get("LapNumber", "")),
+                "Best time": f"{float(leader[column]):.3f}s",
+            }
+        )
+
+    return pd.DataFrame(rows)
+
+
+def fastest_lap(output_dir: str | Path, session: str | None = None) -> dict[str, float | str]:
+    laps = read_output_table(output_dir, "lap_details/weekend_lap_details.csv", max_rows=20_000)
+
+    if laps.empty or "Driver" not in laps.columns or "LapTimeSeconds" not in laps.columns:
+        return {}
+
+    laps = _session_laps(_clean_push_laps(laps), session)
+    lap_columns = [
+        column
+        for column in ["Driver", "Team", "Session", "LapNumber", "LapTimeSeconds"]
+        if column in laps.columns
+    ]
+    values = laps[lap_columns].copy()
+    values["LapTimeSeconds"] = pd.to_numeric(values["LapTimeSeconds"], errors="coerce")
+    values = values.dropna(subset=["LapTimeSeconds"]).sort_values("LapTimeSeconds")
+
+    if values.empty:
+        return {}
+
+    lap = values.iloc[0]
+    return {
+        "driver": str(lap.get("Driver", "")),
+        "team": str(lap.get("Team", "")),
+        "session": str(lap.get("Session", session or "")),
+        "lap": "" if pd.isna(lap.get("LapNumber", "")) else str(lap.get("LapNumber", "")),
+        "seconds": float(lap["LapTimeSeconds"]),
+    }
+
+
+def session_screen_payloads(output_dir: str | Path, summary: pd.DataFrame, strategy: pd.DataFrame) -> dict[str, Any]:
+    laps = read_output_table(output_dir, "lap_details/weekend_lap_details.csv", max_rows=20_000)
+    practice_summary = read_output_table(output_dir, "lap_details/practice_lap_summary.csv", max_rows=5_000)
+    long_run_summary = read_output_table(output_dir, "lap_details/practice_long_run_summary.csv", max_rows=5_000)
+    quali_summary = read_output_table(output_dir, "lap_details/quali_lap_summary.csv", max_rows=5_000)
+
+    return {
+        "practice": {
+            "sectors": table_payload(sector_times_table(laps, PRACTICE_SESSIONS)),
+            "pace": table_payload(
+                sorted_view(
+                    practice_summary,
+                    [
+                        "Session",
+                        "Driver",
+                        "Team",
+                        "Compound",
+                        "clean_laps",
+                        "best_lap",
+                        "median_lap",
+                        "ideal_lap",
+                        "avg_speed_trap",
+                    ],
+                    sort_by="best_lap",
+                    ascending=True,
+                    max_rows=30,
+                )
+            ),
+            "longRun": table_payload(
+                sorted_view(
+                    long_run_summary,
+                    [
+                        "Session",
+                        "Driver",
+                        "Team",
+                        "Compound",
+                        "laps_in_run",
+                        "run_start_lap",
+                        "run_end_lap",
+                        "avg_lap",
+                        "median_lap",
+                        "degradation_per_lap",
+                    ],
+                    sort_by="avg_lap",
+                    ascending=True,
+                    max_rows=30,
+                )
+            ),
+        },
+        "quali": {
+            "sectors": table_payload(sector_times_table(laps, QUALI_SESSIONS)),
+            "pace": table_payload(
+                sorted_view(
+                    quali_summary,
+                    [
+                        "Session",
+                        "Driver",
+                        "Team",
+                        "quali_rank_from_laps",
+                        "clean_laps",
+                        "best_lap",
+                        "gap_to_fastest",
+                        "ideal_lap",
+                        "ideal_gap_to_fastest",
+                        "best_s1",
+                        "best_s2",
+                        "best_s3",
+                    ],
+                    sort_by="best_lap",
+                    ascending=True,
+                    max_rows=30,
+                )
+            ),
+        },
+        "race": {
+            "summary": table_payload(
+                sorted_view(
+                    summary,
+                    [
+                        "Driver",
+                        "Team",
+                        "avg_finish",
+                        "win_chance",
+                        "podium_chance",
+                        "dnf_chance",
+                        "avg_points",
+                    ],
+                    sort_by="avg_finish",
+                    ascending=True,
+                    max_rows=30,
+                )
+            ),
+            "strategy": table_payload(strategy),
+        },
+    }
+
+
+def sector_leaders(output_dir: str | Path, session: str | None = None) -> dict[str, dict[str, float | str]]:
     laps = read_output_table(output_dir, "lap_details/weekend_lap_details.csv", max_rows=20_000)
 
     if laps.empty:
         return {}
 
-    if "CleanPushLap" in laps.columns:
-        clean = laps["CleanPushLap"].astype(str).str.lower().isin(["true", "1"])
-        laps = laps[clean]
+    laps = _session_laps(_clean_push_laps(laps), session)
 
     leaders: dict[str, dict[str, float | str]] = {}
 
@@ -420,6 +615,7 @@ class PortableWebApi:
 
         return {
             "outputDir": output_dir,
+            "sessionMode": session_mode(settings.session),
             "files": [item.__dict__ for item in files],
             "dataHealth": [item.__dict__ for item in health],
             "summaryTable": table_payload(
@@ -455,8 +651,11 @@ class PortableWebApi:
             },
             "track": {
                 "points": track_layout_points(output_dir, settings.year, settings.event, settings.session),
-                "sectors": sector_leaders(output_dir),
+                "sectors": sector_leaders(output_dir, settings.session),
+                "fastestLap": fastest_lap(output_dir, settings.session),
+                "session": settings.session,
             },
+            "sessionScreens": session_screen_payloads(output_dir, summary, strategy),
             "weather": weather_summary(output_dir),
             "reliability": {
                 "table": table_payload(reliability),
