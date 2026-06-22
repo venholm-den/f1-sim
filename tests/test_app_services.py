@@ -19,6 +19,7 @@ from portable_app.web_backend import (
     QUALI_SESSIONS,
     PRACTICE_SESSIONS,
     available_sessions_for_event,
+    available_event_names,
     fastest_lap,
     sector_times_table,
     sector_leaders,
@@ -240,6 +241,38 @@ def test_available_sessions_for_specific_event_follow_weekend_format(monkeypatch
         "FP2",
         "FP1",
     ]
+
+
+def test_event_names_fall_back_to_track_profiles_when_schedule_unavailable(monkeypatch, tmp_path) -> None:
+    track_profiles = tmp_path / "track_profiles.csv"
+    pd.DataFrame(
+        {
+            "Event": ["Monaco Grand Prix", "Canadian Grand Prix"],
+            "OvertakingDifficulty": [0.88, 0.48],
+        }
+    ).to_csv(track_profiles, index=False)
+
+    monkeypatch.setattr("portable_app.web_backend._event_schedule", lambda year: pd.DataFrame())
+
+    assert available_event_names(2026, track_profiles_path=str(track_profiles)) == [
+        "Monaco Grand Prix",
+        "Canadian Grand Prix",
+    ]
+
+
+def test_specific_event_sessions_fall_back_to_race_weekend_when_schedule_unavailable(monkeypatch) -> None:
+    monkeypatch.setattr("portable_app.web_backend._event_schedule", lambda year: pd.DataFrame())
+
+    assert available_sessions_for_event(2026, "Monaco Grand Prix") == [
+        "R",
+        "Q",
+        "SQ",
+        "S",
+        "FP3",
+        "FP2",
+        "FP1",
+    ]
+    assert available_sessions_for_event(2026, "latest") == ["PRE"]
 
 
 def test_latest_available_sessions_are_time_gated(monkeypatch) -> None:

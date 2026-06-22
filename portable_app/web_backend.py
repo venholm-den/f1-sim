@@ -110,11 +110,30 @@ def chart_points(
     ]
 
 
-def available_event_names(year: int) -> list[str]:
+def _track_profile_event_names(track_profiles_path: str | Path | None) -> list[str]:
+    if not track_profiles_path:
+        return []
+
+    try:
+        profiles = pd.read_csv(track_profiles_path)
+    except Exception:
+        return []
+
+    if "Event" not in profiles.columns:
+        return []
+
+    return [
+        str(name)
+        for name in profiles["Event"].dropna().astype(str).drop_duplicates().tolist()
+        if str(name).strip()
+    ]
+
+
+def available_event_names(year: int, track_profiles_path: str | Path | None = None) -> list[str]:
     schedule = _event_schedule(year)
 
     if schedule.empty or "EventName" not in schedule.columns:
-        return []
+        return _track_profile_event_names(track_profiles_path)
 
     return [str(name) for name in schedule["EventName"].dropna().unique().tolist()]
 
@@ -221,7 +240,9 @@ def available_sessions_for_event(
     row = _event_row(schedule, event_text)
 
     if row is None:
-        return SESSION_OPTIONS.copy()
+        if event_text.lower() == "latest":
+            return ["PRE"]
+        return SESSION_PRIORITY.copy()
 
     scheduled: set[str] = set()
 
@@ -756,6 +777,7 @@ class PortableWebApi:
         settings = settings_to_dict(self.default_settings)
         setup_options = self.setup_options(settings["year"], settings["event"])
         sessions = setup_options["sessions"]
+        event_names = self.events_for_year(self.default_settings.year)
 
         if settings["session"] not in sessions:
             settings["session"] = sessions[0] if sessions else "PRE"
@@ -763,14 +785,16 @@ class PortableWebApi:
         return {
             "settings": settings,
             "seasons": season_options(self.default_settings.year),
-            "events": ["latest", *available_event_names(self.default_settings.year)],
+            "events": event_names,
             "sessions": sessions,
             "setupOptions": setup_options,
             "outputs": self.outputs(settings),
         }
 
     def events_for_year(self, year: int) -> list[str]:
-        return ["latest", *available_event_names(int(year))]
+        data_config = self.base_config.get("data", {})
+        track_profiles_path = str(data_config.get("track_profiles_path", "data/track_profiles.csv"))
+        return ["latest", *available_event_names(int(year), track_profiles_path=track_profiles_path)]
 
     def setup_options(self, year: int, event: str) -> dict[str, Any]:
         data_config = self.base_config.get("data", {})
