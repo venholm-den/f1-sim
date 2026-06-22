@@ -22,10 +22,26 @@ from src.app_services.data_health import validate_data_sources
 from src.app_services.model_signals import load_model_signals
 from src.app_services.output_index import list_core_outputs, read_output_table
 from src.app_services.run_service import run_pipeline_with_config
+from src.track import load_track_profile
 
 
 SESSION_OPTIONS = ["PRE", "Q", "SQ", "S", "FP3", "FP2", "FP1", "R"]
+SESSION_PRIORITY = ["R", "Q", "SQ", "S", "FP3", "FP2", "FP1"]
+SESSION_NAME_TO_CODE = {
+    "PRACTICE 1": "FP1",
+    "FREE PRACTICE 1": "FP1",
+    "PRACTICE 2": "FP2",
+    "FREE PRACTICE 2": "FP2",
+    "PRACTICE 3": "FP3",
+    "FREE PRACTICE 3": "FP3",
+    "QUALIFYING": "Q",
+    "SPRINT QUALIFYING": "SQ",
+    "SPRINT SHOOTOUT": "SQ",
+    "SPRINT": "S",
+    "RACE": "R",
+}
 TRACK_LAYOUT_CACHE: dict[tuple[int, str, str], list[dict[str, float]]] = {}
+PRE_SESSIONS = {"PRE"}
 PRACTICE_SESSIONS = {"FP1", "FP2", "FP3"}
 QUALI_SESSIONS = {"Q", "SQ"}
 RACE_SESSIONS = {"R", "S"}
@@ -95,21 +111,151 @@ def chart_points(
 
 
 def available_event_names(year: int) -> list[str]:
-    try:
-        import fastf1
-
-        fastf1.Cache.enable_cache(str(project_root() / "data" / "cache"))
-        schedule = fastf1.get_event_schedule(year)
-    except Exception:
-        return []
+    schedule = _event_schedule(year)
 
     if schedule.empty or "EventName" not in schedule.columns:
         return []
 
-    if "RoundNumber" in schedule.columns:
-        schedule = schedule[pd.to_numeric(schedule["RoundNumber"], errors="coerce").fillna(0).gt(0)]
-
     return [str(name) for name in schedule["EventName"].dropna().unique().tolist()]
+
+
+def _event_schedule(year: int) -> pd.DataFrame:
+    try:
+        import fastf1
+
+        fastf1.Cache.enable_cache(str(project_root() / "data" / "cache"))
+        schedule = fastf1.get_event_schedule(year).copy()
+    except Exception:
+        return pd.DataFrame()
+
+    if schedule.empty:
+        return pd.DataFrame()
+
+    if "EventDate" in schedule.columns:
+        schedule["EventDateParsed"] = pd.to_datetime(
+            schedule["EventDate"],
+            errors="coerce",
+            utc=True,
+        ).dt.tz_convert(None)
+
+    if "RoundNumber" in schedule.columns:
+        schedule = schedule[
+            pd.to_numeric(schedule["RoundNumber"], errors="coerce").fillna(0).gt(0)
+        ].copy()
+
+    return schedule
+
+
+def _event_row(schedule: pd.DataFrame, event: str) -> pd.Series | None:
+    if schedule.empty or "EventName" not in schedule.columns:
+        return None
+
+    event_text = str(event or "latest").strip()
+
+    if event_text.lower() == "latest":
+        if "EventDateParsed" not in schedule.columns:
+            return schedule.iloc[-1]
+
+        now = pd.Timestamp.now(tz="UTC").tz_convert(None)
+        upcoming = schedule[
+            schedule["EventDateParsed"].notna()
+            & (schedule["EventDateParsed"] >= now - pd.Timedelta(days=2))
+        ].copy()
+
+        if not upcoming.empty:
+            return upcoming.sort_values("EventDateParsed", ascending=True).iloc[0]
+
+        past = schedule[schedule["EventDateParsed"].notna()].copy()
+
+        if not past.empty:
+            return past.sort_values("EventDateParsed", ascending=False).iloc[0]
+
+        return schedule.iloc[-1]
+
+    event_key = event_text.lower()
+    event_match = schedule["EventName"].astype(str).str.strip().str.lower().eq(event_key)
+
+    if "OfficialEventName" in schedule.columns:
+        official_match = (
+            schedule["OfficialEventName"]
+            .astype(str)
+            .str.lower()
+            .str.contains(event_key, regex=False, na=False)
+        )
+    else:
+        official_match = pd.Series(False, index=schedule.index)
+
+    matches = schedule[event_match | official_match]
+
+    if matches.empty:
+        return None
+
+    return matches.iloc[0]
+
+
+def _session_code(session_name: Any) -> str | None:
+    name = str(session_name or "").strip().upper()
+
+    if not name:
+        return None
+
+    return SESSION_NAME_TO_CODE.get(name)
+
+
+def _session_date(value: Any) -> pd.Timestamp | None:
+    date = pd.to_datetime(value, errors="coerce", utc=True)
+
+    if pd.isna(date):
+        return None
+
+    return date.tz_convert(None)
+
+
+def available_sessions_for_event(
+    year: int,
+    event: str,
+    now: pd.Timestamp | None = None,
+) -> list[str]:
+    schedule = _event_schedule(year)
+    row = _event_row(schedule, event)
+
+    if row is None:
+        return SESSION_OPTIONS.copy()
+
+    now = now or pd.Timestamp.now(tz="UTC").tz_convert(None)
+    available: set[str] = set()
+
+    for index in range(1, 6):
+        session_code = _session_code(row.get(f"Session{index}"))
+
+        if session_code is None:
+            continue
+
+        session_date = _session_date(row.get(f"Session{index}Date"))
+
+        if session_date is not None and session_date <= now:
+            available.add(session_code)
+
+    if not available:
+        return ["PRE"]
+
+    return [session for session in SESSION_PRIORITY if session in available]
+
+
+def setup_options_payload(
+    year: int,
+    event: str,
+    track_profiles_path: str,
+) -> dict[str, Any]:
+    schedule = _event_schedule(year)
+    row = _event_row(schedule, event)
+    event_name = str(row.get("EventName", event)) if row is not None else str(event)
+    track_profile = load_track_profile(event_name, path=track_profiles_path)
+
+    return {
+        "sessions": available_sessions_for_event(year, event),
+        "trackProfile": track_profile,
+    }
 
 
 def settings_to_dict(settings: PortableRunSettings) -> dict[str, Any]:
@@ -177,6 +323,8 @@ def settings_from_payload(payload: dict[str, Any], defaults: PortableRunSettings
 
 def session_mode(session: str | None) -> str:
     code = str(session or "").upper()
+    if code in PRE_SESSIONS:
+        return "pre"
     if code in PRACTICE_SESSIONS:
         return "practice"
     if code in QUALI_SESSIONS:
@@ -591,16 +739,33 @@ class PortableWebApi:
 
     def initial_state(self) -> dict[str, Any]:
         settings = settings_to_dict(self.default_settings)
+        setup_options = self.setup_options(settings["year"], settings["event"])
+        sessions = setup_options["sessions"]
+
+        if settings["session"] not in sessions:
+            settings["session"] = sessions[0] if sessions else "PRE"
+
         return {
             "settings": settings,
             "seasons": season_options(self.default_settings.year),
             "events": ["latest", *available_event_names(self.default_settings.year)],
-            "sessions": SESSION_OPTIONS,
+            "sessions": sessions,
+            "setupOptions": setup_options,
             "outputs": self.outputs(settings),
         }
 
     def events_for_year(self, year: int) -> list[str]:
         return ["latest", *available_event_names(int(year))]
+
+    def setup_options(self, year: int, event: str) -> dict[str, Any]:
+        data_config = self.base_config.get("data", {})
+        track_profiles_path = str(data_config.get("track_profiles_path", "data/track_profiles.csv"))
+
+        return setup_options_payload(
+            year=int(year),
+            event=str(event or "latest"),
+            track_profiles_path=track_profiles_path,
+        )
 
     def outputs(self, settings_payload: dict[str, Any] | None = None) -> dict[str, Any]:
         settings = settings_from_payload(settings_payload or {}, self.default_settings)

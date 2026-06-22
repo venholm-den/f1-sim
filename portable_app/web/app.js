@@ -35,6 +35,18 @@ function setOptions(select, values, selected) {
   select.value = selected;
 }
 
+function applySetupOptions(setupOptions, preferredSession) {
+  const options = setupOptions || {};
+  const sessions = options.sessions || [];
+  const selectedSession = sessions.includes(preferredSession) ? preferredSession : sessions[0] || "PRE";
+  setOptions($("sessionInput"), sessions, selectedSession);
+
+  const overtakingDifficulty = Number(options.trackProfile?.overtaking_difficulty);
+  if (Number.isFinite(overtakingDifficulty)) {
+    $("overtakingInput").value = Math.round(overtakingDifficulty * 100);
+  }
+}
+
 function readSettings() {
   return {
     year: Number($("yearInput").value),
@@ -90,6 +102,9 @@ function updateContext() {
 }
 
 function sessionModeLabel(mode) {
+  if (mode === "pre") {
+    return "Pre-FP1 run";
+  }
   if (mode === "practice") {
     return "Practice run";
   }
@@ -325,10 +340,18 @@ function setupEvents() {
   $("yearInput").addEventListener("change", async () => {
     const events = await api().events_for_year(Number($("yearInput").value));
     setOptions($("eventInput"), events, events.includes(state.settings.event) ? state.settings.event : "latest");
+    const setupOptions = await api().setup_options(Number($("yearInput").value), $("eventInput").value);
+    applySetupOptions(setupOptions, readSettings().session);
     updateContext();
   });
 
-  ["eventInput", "sessionInput", "nSimsInput", "outputInput"].forEach((id) => {
+  $("eventInput").addEventListener("change", async () => {
+    const setupOptions = await api().setup_options(Number($("yearInput").value), $("eventInput").value);
+    applySetupOptions(setupOptions, readSettings().session);
+    updateContext();
+  });
+
+  ["sessionInput", "nSimsInput", "outputInput", "overtakingInput"].forEach((id) => {
     $(id).addEventListener("change", updateContext);
   });
 
@@ -343,8 +366,8 @@ async function boot() {
   const initial = await api().initial_state();
   setOptions($("yearInput"), initial.seasons, initial.settings.year);
   setOptions($("eventInput"), initial.events, initial.settings.event);
-  setOptions($("sessionInput"), initial.sessions, initial.settings.session);
   writeSettings(initial.settings);
+  applySetupOptions(initial.setupOptions || { sessions: initial.sessions }, initial.settings.session);
   renderOutputs(initial.outputs);
 }
 

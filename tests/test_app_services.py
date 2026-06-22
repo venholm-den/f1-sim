@@ -18,9 +18,11 @@ from src.app_services.output_index import list_core_outputs, read_output_table
 from portable_app.web_backend import (
     QUALI_SESSIONS,
     PRACTICE_SESSIONS,
+    available_sessions_for_event,
     fastest_lap,
     sector_times_table,
     sector_leaders,
+    setup_options_payload,
     session_mode,
     session_screen_payloads,
 )
@@ -202,10 +204,78 @@ def test_load_model_signals_summarises_feature_outputs(tmp_path) -> None:
 
 
 def test_session_mode_groups_f1_session_types() -> None:
+    assert session_mode("PRE") == "pre"
     assert session_mode("FP2") == "practice"
     assert session_mode("SQ") == "quali"
     assert session_mode("R") == "race"
     assert session_mode("unknown") == "race"
+
+
+def test_available_sessions_follow_event_session_times(monkeypatch) -> None:
+    now = pd.Timestamp("2026-06-22T12:00:00")
+    schedule = pd.DataFrame(
+        {
+            "RoundNumber": [1],
+            "EventName": ["Canadian Grand Prix"],
+            "EventDate": [pd.Timestamp("2026-06-23T20:00:00")],
+            "Session1": ["Practice 1"],
+            "Session1Date": [pd.Timestamp("2026-06-21T12:00:00")],
+            "Session2": ["Practice 2"],
+            "Session2Date": [pd.Timestamp("2026-06-22T10:00:00")],
+            "Session3": ["Practice 3"],
+            "Session3Date": [pd.Timestamp("2026-06-22T15:00:00")],
+            "Session4": ["Qualifying"],
+            "Session4Date": [pd.Timestamp("2026-06-22T18:00:00")],
+            "Session5": ["Race"],
+            "Session5Date": [pd.Timestamp("2026-06-23T20:00:00")],
+        }
+    )
+
+    monkeypatch.setattr("portable_app.web_backend._event_schedule", lambda year: schedule)
+
+    assert available_sessions_for_event(2026, "Canadian Grand Prix", now=now) == ["FP2", "FP1"]
+    assert available_sessions_for_event(
+        2026,
+        "Canadian Grand Prix",
+        now=pd.Timestamp("2026-06-20T12:00:00"),
+    ) == ["PRE"]
+
+
+def test_setup_options_payload_uses_selected_track_profile(monkeypatch, tmp_path) -> None:
+    track_profiles = tmp_path / "track_profiles.csv"
+    pd.DataFrame(
+        {
+            "Event": ["Monaco Grand Prix"],
+            "OvertakingDifficulty": [0.88],
+            "SafetyCarChance": [0.55],
+            "RedFlagBaseChance": [0.08],
+            "Latitude": [43.7347],
+            "Longitude": [7.4206],
+            "Notes": ["Very hard to overtake"],
+        }
+    ).to_csv(track_profiles, index=False)
+
+    schedule = pd.DataFrame(
+        {
+            "RoundNumber": [1],
+            "EventName": ["Monaco Grand Prix"],
+            "EventDate": [pd.Timestamp("2099-06-23T20:00:00")],
+            "Session1": ["Practice 1"],
+            "Session1Date": [pd.Timestamp("2099-06-21T12:00:00")],
+        }
+    )
+
+    monkeypatch.setattr("portable_app.web_backend._event_schedule", lambda year: schedule)
+
+    payload = setup_options_payload(
+        year=2026,
+        event="Monaco Grand Prix",
+        track_profiles_path=str(track_profiles),
+    )
+
+    assert payload["trackProfile"]["event"] == "Monaco Grand Prix"
+    assert payload["trackProfile"]["overtaking_difficulty"] == 0.88
+    assert payload["sessions"] == ["PRE"]
 
 
 def test_sector_times_table_splits_practice_and_quali() -> None:
