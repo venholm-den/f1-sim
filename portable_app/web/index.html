@@ -106,7 +106,10 @@
               <label>Random seed<input id="seedInput" type="number" min="0" /></label>
               <label>Baseline races<input id="baselineInput" type="number" min="0" /></label>
               <label>Strategy lookback<input id="lookbackInput" type="number" min="0" /></label>
-              <label>Overtaking difficulty<input id="overtakingInput" type="range" min="0" max="100" /></label>
+              <label>
+                <span class="label-row"><span>Overtaking difficulty</span><strong id="overtakingValue">55%</strong></span>
+                <input id="overtakingInput" type="range" min="0" max="100" />
+              </label>
               <label class="wide">Output directory<input id="outputInput" type="text" /></label>
               <label class="check"><input id="forecastInput" type="checkbox" /> Weather forecast fallback</label>
               <label class="check"><input id="raceControlInput" type="checkbox" /> Race-control context</label>

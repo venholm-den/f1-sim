@@ -216,11 +216,26 @@ def available_sessions_for_event(
     event: str,
     now: pd.Timestamp | None = None,
 ) -> list[str]:
+    event_text = str(event or "latest").strip()
     schedule = _event_schedule(year)
-    row = _event_row(schedule, event)
+    row = _event_row(schedule, event_text)
 
     if row is None:
         return SESSION_OPTIONS.copy()
+
+    scheduled: set[str] = set()
+
+    for index in range(1, 6):
+        session_code = _session_code(row.get(f"Session{index}"))
+
+        if session_code is None:
+            continue
+
+        scheduled.add(session_code)
+
+    if event_text.lower() != "latest":
+        sessions = [session for session in SESSION_PRIORITY if session in scheduled]
+        return sessions or SESSION_OPTIONS.copy()
 
     now = now or pd.Timestamp.now(tz="UTC").tz_convert(None)
     available: set[str] = set()

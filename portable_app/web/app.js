@@ -35,6 +35,16 @@ function setOptions(select, values, selected) {
   select.value = selected;
 }
 
+function setOvertakingPercent(percent) {
+  const value = Math.max(0, Math.min(100, Math.round(Number(percent) || 0)));
+  $("overtakingInput").value = value;
+  $("overtakingValue").textContent = `${value}%`;
+}
+
+function updateOvertakingValue() {
+  setOvertakingPercent($("overtakingInput").value);
+}
+
 function applySetupOptions(setupOptions, preferredSession) {
   const options = setupOptions || {};
   const sessions = options.sessions || [];
@@ -43,7 +53,7 @@ function applySetupOptions(setupOptions, preferredSession) {
 
   const overtakingDifficulty = Number(options.trackProfile?.overtaking_difficulty);
   if (Number.isFinite(overtakingDifficulty)) {
-    $("overtakingInput").value = Math.round(overtakingDifficulty * 100);
+    setOvertakingPercent(overtakingDifficulty * 100);
   }
 }
 
@@ -88,11 +98,13 @@ function writeSettings(settings) {
   $("historicalModelInput").checked = settings.use_historical_model_calibration;
   $("historicalFinishWeightInput").value = settings.historical_finish_weight;
   $("historicalDnfWeightInput").value = settings.historical_dnf_weight;
+  updateOvertakingValue();
   updateContext();
 }
 
 function updateContext() {
   const settings = readSettings();
+  updateOvertakingValue();
   $("contextTitle").textContent = `${settings.year} ${settings.event} - ${settings.session}`;
   $("metricSession").textContent = settings.session;
   $("metricSims").textContent = Number(settings.n_sims).toLocaleString();
@@ -351,9 +363,11 @@ function setupEvents() {
     updateContext();
   });
 
-  ["sessionInput", "nSimsInput", "outputInput", "overtakingInput"].forEach((id) => {
+  ["sessionInput", "nSimsInput", "outputInput"].forEach((id) => {
     $(id).addEventListener("change", updateContext);
   });
+  $("overtakingInput").addEventListener("input", updateContext);
+  $("overtakingInput").addEventListener("change", updateContext);
 
   $("refreshButton").addEventListener("click", refreshOutputs);
   $("runButton").addEventListener("click", startRun);

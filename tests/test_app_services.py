@@ -211,7 +211,7 @@ def test_session_mode_groups_f1_session_types() -> None:
     assert session_mode("unknown") == "race"
 
 
-def test_available_sessions_follow_event_session_times(monkeypatch) -> None:
+def test_available_sessions_for_specific_event_follow_weekend_format(monkeypatch) -> None:
     now = pd.Timestamp("2026-06-22T12:00:00")
     schedule = pd.DataFrame(
         {
@@ -233,12 +233,46 @@ def test_available_sessions_follow_event_session_times(monkeypatch) -> None:
 
     monkeypatch.setattr("portable_app.web_backend._event_schedule", lambda year: schedule)
 
-    assert available_sessions_for_event(2026, "Canadian Grand Prix", now=now) == ["FP2", "FP1"]
+    assert available_sessions_for_event(2026, "Canadian Grand Prix", now=now) == [
+        "R",
+        "Q",
+        "FP3",
+        "FP2",
+        "FP1",
+    ]
+
+
+def test_latest_available_sessions_are_time_gated(monkeypatch) -> None:
+    schedule = pd.DataFrame(
+        {
+            "RoundNumber": [1],
+            "EventName": ["Future Grand Prix"],
+            "EventDate": [pd.Timestamp("2099-06-23T20:00:00")],
+            "Session1": ["Practice 1"],
+            "Session1Date": [pd.Timestamp("2099-06-21T12:00:00")],
+            "Session2": ["Practice 2"],
+            "Session2Date": [pd.Timestamp("2099-06-22T10:00:00")],
+            "Session3": ["Practice 3"],
+            "Session3Date": [pd.Timestamp("2099-06-22T15:00:00")],
+            "Session4": ["Qualifying"],
+            "Session4Date": [pd.Timestamp("2099-06-22T18:00:00")],
+            "Session5": ["Race"],
+            "Session5Date": [pd.Timestamp("2099-06-23T20:00:00")],
+        }
+    )
+
+    monkeypatch.setattr("portable_app.web_backend._event_schedule", lambda year: schedule)
+
     assert available_sessions_for_event(
-        2026,
-        "Canadian Grand Prix",
-        now=pd.Timestamp("2026-06-20T12:00:00"),
+        2099,
+        "latest",
+        now=pd.Timestamp("2099-06-20T12:00:00"),
     ) == ["PRE"]
+    assert available_sessions_for_event(
+        2099,
+        "latest",
+        now=pd.Timestamp("2099-06-22T12:00:00"),
+    ) == ["FP2", "FP1"]
 
 
 def test_setup_options_payload_uses_selected_track_profile(monkeypatch, tmp_path) -> None:
@@ -275,7 +309,7 @@ def test_setup_options_payload_uses_selected_track_profile(monkeypatch, tmp_path
 
     assert payload["trackProfile"]["event"] == "Monaco Grand Prix"
     assert payload["trackProfile"]["overtaking_difficulty"] == 0.88
-    assert payload["sessions"] == ["PRE"]
+    assert payload["sessions"] == ["FP1"]
 
 
 def test_sector_times_table_splits_practice_and_quali() -> None:
