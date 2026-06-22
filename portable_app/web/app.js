@@ -35,6 +35,11 @@ function setOptions(select, values, selected) {
   select.value = selected;
 }
 
+function selectedOption(select) {
+  const option = select.options[select.selectedIndex];
+  return (option && option.value) || select.value || "";
+}
+
 function setOvertakingPercent(percent) {
   const value = Math.max(0, Math.min(100, Math.round(Number(percent) || 0)));
   $("overtakingInput").value = value;
@@ -51,16 +56,24 @@ function applySetupOptions(setupOptions, preferredSession) {
   const selectedSession = sessions.includes(preferredSession) ? preferredSession : sessions[0] || "PRE";
   setOptions($("sessionInput"), sessions, selectedSession);
 
-  const overtakingDifficulty = Number(options.trackProfile?.overtaking_difficulty);
+  const trackProfile = options.trackProfile || {};
+  const overtakingDifficulty = Number(trackProfile.overtaking_difficulty);
   if (Number.isFinite(overtakingDifficulty)) {
     setOvertakingPercent(overtakingDifficulty * 100);
   }
 }
 
+async function refreshSetupOptions(preferredSession) {
+  const setupOptions = await api().setup_options(Number($("yearInput").value), selectedOption($("eventInput")));
+  applySetupOptions(setupOptions, preferredSession);
+  state.settings = readSettings();
+  updateContext();
+}
+
 function readSettings() {
   return {
     year: Number($("yearInput").value),
-    event: $("eventInput").value || "latest",
+    event: selectedOption($("eventInput")) || "latest",
     session: $("sessionInput").value || "Q",
     n_sims: Number($("nSimsInput").value || 1),
     random_seed: Number($("seedInput").value || 0),
@@ -352,15 +365,11 @@ function setupEvents() {
   $("yearInput").addEventListener("change", async () => {
     const events = await api().events_for_year(Number($("yearInput").value));
     setOptions($("eventInput"), events, events.includes(state.settings.event) ? state.settings.event : "latest");
-    const setupOptions = await api().setup_options(Number($("yearInput").value), $("eventInput").value);
-    applySetupOptions(setupOptions, readSettings().session);
-    updateContext();
+    await refreshSetupOptions(readSettings().session);
   });
 
   $("eventInput").addEventListener("change", async () => {
-    const setupOptions = await api().setup_options(Number($("yearInput").value), $("eventInput").value);
-    applySetupOptions(setupOptions, readSettings().session);
-    updateContext();
+    await refreshSetupOptions(readSettings().session);
   });
 
   ["sessionInput", "nSimsInput", "outputInput"].forEach((id) => {
