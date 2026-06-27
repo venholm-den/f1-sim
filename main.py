@@ -22,6 +22,7 @@ from src.grid import build_grid_features
 from src.weather import summarize_weather
 from src.simulate import simulate_races
 from src.performance import add_performance_profile
+from src.prediction_reasoning import save_prediction_reasoning_csv
 from src.historical_calibration import (
     HistoricalCalibrationConfig,
     apply_historical_calibration,
@@ -966,6 +967,13 @@ def main() -> None:
 
     summary.to_csv(summary_path, index=False)
     position_matrix.to_csv(position_matrix_path, index=False)
+    prediction_reasoning_path = save_prediction_reasoning_csv(
+        race_summary=summary,
+        model_features=model_features,
+        output_dir=output_dir,
+        overtaking_difficulty=overtaking_difficulty,
+        weather_summary=weather_summary,
+    )
 
     if save_raw_results:
         raw_results_path = _output_path(output_dir, "raw_simulation_results.csv")
@@ -975,6 +983,7 @@ def main() -> None:
 
     print(f"- saved: {summary_path}")
     print(f"- saved: {position_matrix_path}")
+    print(f"- saved: {prediction_reasoning_path}")
 
     if save_raw_results:
         print(f"- saved: {raw_results_path}")

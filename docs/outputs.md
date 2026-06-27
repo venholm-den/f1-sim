@@ -8,6 +8,7 @@ Generated files are written under `outputs\` by default.
 - `outputs\baseline_race_features.csv`
 - `outputs\driver_model_features.csv`
 - `outputs\simulation_summary.csv`
+- `outputs\prediction_reasoning.csv` - driver-level explanation of grid source, model inputs, estimated time-loss components, and race simulation probabilities.
 - `outputs\position_matrix.csv`
 - `outputs\weather_summary.csv`
 - `outputs\debug\reliability_profile.csv`

@@ -164,6 +164,7 @@ def test_output_index_reads_known_files(tmp_path) -> None:
     table = read_output_table(output_dir, "simulation_summary.csv")
 
     assert any(file.label == "Simulation Summary" and file.exists for file in files)
+    assert any(file.label == "Prediction Reasoning" for file in files)
     assert table.iloc[0]["Driver"] == "RUS"
 
 

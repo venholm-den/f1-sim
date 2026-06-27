@@ -16,6 +16,7 @@ class OutputFile:
 
 CORE_OUTPUTS = [
     ("Simulation Summary", "simulation_summary.csv"),
+    ("Prediction Reasoning", "prediction_reasoning.csv"),
     ("Position Matrix", "position_matrix.csv"),
     ("Driver Model Features", "driver_model_features.csv"),
     ("Reliability Profile", "debug/reliability_profile.csv"),
