@@ -106,3 +106,36 @@ def test_fia_official_grid_overrides_qualifying_results() -> None:
     assert rows.loc["RUS", "grid_source"] == "fia_official_grid"
     assert rows.loc["RUS", "fia_penalty_count"] == 1
     assert "3 places" in rows.loc["RUS", "fia_penalty_notes"]
+
+
+def test_estimated_grid_does_not_mix_raw_lap_time_with_model_gap_scale() -> None:
+    model_features = pd.DataFrame(
+        {
+            "Driver": ["PER", "ANT", "NOR", "HAM"],
+            "Team": ["Cadillac", "Mercedes", "McLaren", "Ferrari"],
+            "model_pace": [3.0, 0.0, 0.9, 0.5],
+        }
+    )
+
+    current_features = pd.DataFrame(
+        {
+            "Driver": ["ANT", "NOR", "HAM"],
+            "true_pace": [65.8, 67.2, 68.7],
+            "relative_pace": [0.0, 1.4, 2.9],
+            "clean_laps": [5, 7, 8],
+        }
+    )
+
+    output = build_grid_features(
+        model_features=model_features,
+        current_features=current_features,
+        current_session_type="FP2",
+    )
+
+    grid = output.set_index("Driver")["grid_position"].to_dict()
+    current_pace = output.set_index("Driver")["grid_current_pace"].to_dict()
+
+    assert current_pace["ANT"] == 0.0
+    assert current_pace["NOR"] == 1.4
+    assert grid["ANT"] == 1
+    assert grid["PER"] > grid["NOR"]

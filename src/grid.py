@@ -378,11 +378,11 @@ def _estimate_grid_from_features(
         current_score_col = _first_existing_column(
             current,
             [
-                "true_pace",
                 "relative_pace",
                 "model_pace",
-                "best_lap",
                 "race_pace",
+                "best_lap",
+                "true_pace",
             ],
         )
 
