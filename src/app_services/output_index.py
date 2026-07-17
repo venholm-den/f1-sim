@@ -25,6 +25,8 @@ CORE_OUTPUTS = [
     ("Race Dashboard", "report/race_dashboard.png"),
     ("Tyre Strategy Timeline", "report/tyre_strategy_timeline.png"),
     ("Fantasy Risk Reward", "report/fantasy_risk_reward.png"),
+    ("Season Points Projection", "season/latest_season_projection.png"),
+    ("Season Projection Data", "season/latest_season_projection.csv"),
     ("Model Commentary", "report/model_commentary.txt"),
 ]
 

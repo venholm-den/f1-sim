@@ -127,6 +127,7 @@ def test_main_uses_config_seed_and_output_dir(monkeypatch, tmp_path) -> None:
     monkeypatch.setattr(main, "simulate_races", fake_simulate_races)
     monkeypatch.setattr(main, "calculate_fantasy_summary", lambda **kwargs: (race_summary, results))
     monkeypatch.setattr(main, "save_prediction_snapshot", fake_snapshot)
+    monkeypatch.setattr(main, "build_season_projection_outputs", lambda **kwargs: {})
     monkeypatch.setattr(main, "build_clean_strategy_outputs", lambda **kwargs: {})
     monkeypatch.setattr(main, "build_model_commentary", lambda **kwargs: ["test commentary"])
 

@@ -40,6 +40,13 @@ Generated files are written under `outputs\` by default.
 - `outputs\history\*prediction_snapshot*.csv`
 - `outputs\history\*prediction_snapshot*.config.json`
 
+## Season Projection Outputs
+
+- `outputs\season\latest_season_projection.csv`
+- `outputs\season\latest_season_projection.png`
+- `outputs\season\*_season_projection_after_R*.csv`
+- `outputs\season\*_season_projection_after_R*.png`
+
 ## Report Assets
 
 - `outputs\report\race_dashboard.png`

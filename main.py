@@ -44,6 +44,7 @@ from src.strategy import predict_tyre_strategies, make_strategy_table_image
 from src.strategy_history import apply_historical_strategy_adjustment_to_outputs
 from src.report_card import build_report_outputs
 from src.simulation_viz import make_simulated_race_time_chart
+from src.season_projection import build_season_projection_outputs
 from src.data_sources.fia_documents import build_fia_context
 
 try:
@@ -81,6 +82,7 @@ def _ensure_output_dirs(output_dir: str | Path = "outputs") -> None:
         root / "tyres",
         root / "lap_details",
         root / "history",
+        root / "season",
         root / "debug",
         root / "backtest",
     ]
@@ -988,6 +990,21 @@ def main() -> None:
     if save_raw_results:
         print(f"- saved: {raw_results_path}")
         print(f"- saved: {raw_fantasy_path}")
+
+    print()
+    print("Building season points projection...")
+
+    try:
+        season_projection_files = build_season_projection_outputs(
+            summary=summary,
+            metadata=metadata,
+            output_dir=output_dir,
+        )
+
+        for name, path in season_projection_files.items():
+            print(f"- {name}: {path}")
+    except Exception as exc:
+        print(f"Season points projection skipped: {exc}")
 
     if app_config.outputs.save_prediction_snapshot and save_prediction_snapshot is not None:
         print()
