@@ -1,12 +1,13 @@
 # Architecture
 
-`f1-sim` uses a hybrid architecture. Python remains the source of truth for data science and reporting, while Rust owns the fast runtime engine and future packaged desktop backend. React/Tauri will own the user-facing app experience.
+`f1-sim` uses a hybrid architecture. Python remains the source of truth for data science and reporting, MATLAB/Simulink is an optional engineering-validation workbench, Rust owns the fast runtime engine and future packaged desktop backend, and React/Tauri will own the user-facing app experience.
 
 ## Ownership
 
 | Layer | Owns |
 | --- | --- |
 | Python | FastF1 data collection, ML model training, race simulation prototype, CSV/JSON generation, data reports, Power BI prep |
+| MATLAB/Simulink | optional lap-level dynamics, strategy experiments, assumption inspection, engineering validation |
 | Rust | high-speed simulation engine, packaged backend, portable desktop app runtime |
 | React/Tauri | user interface, charts, race setup screens, export buttons, desktop wrapper |
 
@@ -55,6 +56,10 @@ FastF1/OpenF1 + local CSV data
         v
 Python feature engineering, model training, calibration, reports
         |
+        +---------------------> MATLAB/Simulink lap-dynamics validation
+        |                              |
+        |                              v
+        |                     lap detail, strategy comparison, plots
         v
 outputs/rust/model_inputs.json
         |
@@ -83,3 +88,8 @@ scripts/export_rust_model_inputs.py
 ```
 
 The contract keeps the boundary simple: Python creates model-ready inputs, Rust runs fast simulations, and either side can consume the resulting CSV/JSON outputs.
+
+The optional Simulink boundary follows the same rule. Python exports
+`outputs/matlab/lap_dynamics_inputs.csv`; Simulink consumes it without owning
+FastF1 collection or feature engineering. See [MATLAB and Simulink
+validation](matlab-simulink.md).

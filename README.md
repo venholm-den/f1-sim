@@ -11,6 +11,7 @@ There is no Power BI custom visual implementation in this repository.
 `f1-sim` uses a hybrid architecture:
 
 - Python owns FastF1 data collection, ML model training, race simulation prototyping, CSV/JSON generation, data reports, and Power BI prep.
+- MATLAB/Simulink provides an optional lap-dynamics and strategy-validation workbench; it does not replace the production simulator.
 - Rust owns the high-speed simulation engine, packaged backend, and portable desktop runtime.
 - React/Tauri owns the future user interface, charts, race setup screens, export buttons, and desktop wrapper.
 
@@ -55,6 +56,7 @@ dist\F1RaceSimulatorPortable\F1RaceSimulatorPortable.exe
 - [Outputs](docs/outputs.md)
 - [Data sources](docs/data-sources.md)
 - [Model design](docs/model-design.md)
+- [MATLAB and Simulink validation](docs/matlab-simulink.md)
 - [Data-source roadmap](docs/data-source-roadmap.md)
 - [Output hygiene](docs/output-hygiene.md)
 - [Backtest Discord output](docs/backtest-discord-output.md)

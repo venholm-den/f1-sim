@@ -71,6 +71,16 @@ Generated files are written under `outputs\` by default.
 - `outputs\calibration\calibration_report.json`
 - `outputs\calibration\calibration_report.txt`
 
+## MATLAB/Simulink Validation Outputs
+
+- `outputs\matlab\lap_dynamics_inputs.csv`
+- `outputs\matlab\lap_dynamics_results.csv`
+- `outputs\matlab\lap_dynamics_summary.csv`
+- `outputs\matlab\lap_dynamics.png`
+
+These are deterministic engineering-validation outputs, not replacements for
+the Monte Carlo simulation summary.
+
 ## Preview Images
 
 Committed README/report preview images live under:

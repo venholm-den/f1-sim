@@ -20,6 +20,7 @@ data/cache/
 cache/
 .fastf1/
 fastf1_cache/
+data/fia_documents/cache/
 
 # Generated historical training data and local model artifacts
 data/historical_model/
@@ -36,6 +37,12 @@ outputs/raw_*.csv
 outputs/*.pkl
 assets/images-jpg/
 *.sqlite3
+
+# MATLAB / Simulink generated caches
+slprj/
+*.slxc
+*.autosave
+*.asv
 
 # Generated simulation outputs
 outputs/

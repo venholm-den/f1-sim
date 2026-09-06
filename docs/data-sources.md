@@ -49,11 +49,43 @@ python scripts/build_historical_dataset.py --no-openf1
 
 ## FIA Document Index
 
-The project does not scrape FIA documents automatically. Instead, it reads a local index:
+The project reads a local index of FIA documents:
 
 ```text
 data\fia_documents\fia_document_index.csv
 ```
+
+Populate or refresh it from the official FIA Formula 1 decision-documents page:
+
+```powershell
+python scripts/update_fia_document_index.py --year 2026
+```
+
+To refresh one event only:
+
+```powershell
+python scripts/update_fia_document_index.py --year 2026 --event "Hungarian Grand Prix"
+```
+
+The default updater fetches document metadata such as event, FIA document number,
+title, published time, URL, and coarse document type. Add `--enrich-pdfs` to
+download selected PDFs and parse grid, classification, summons, and steward rows
+where the PDF text is structured enough:
+
+```powershell
+python scripts/update_fia_document_index.py --year 2026 --event "Hungarian Grand Prix" --enrich-pdfs
+```
+
+PDF enrichment can use an optional driver map CSV with `car_number`, `driver`,
+and `team` columns when FIA PDFs contain car numbers/full names instead of the
+three-letter driver codes used by the simulator:
+
+```powershell
+python scripts/update_fia_document_index.py --year 2026 --enrich-pdfs --driver-map data\fia_documents\driver_map.csv
+```
+
+Downloaded PDFs are cached under `data\fia_documents\cache\`, which is ignored by
+Git. Commit the CSV facts and source URLs, not the cached FIA PDFs.
 
 Used for:
 

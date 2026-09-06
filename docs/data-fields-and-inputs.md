@@ -57,12 +57,19 @@ Common fields:
 - `year`
 - `event`
 - `document_type`
+- `doc_number`
+- `document_title`
+- `document_url`
+- `published_at`
 - `driver`
 - `team`
-- `position`
-- `penalty`
+- `grid_position`
+- `classification_position`
+- `penalty_type`
+- `penalty_value`
+- `summons_reason`
+- `status`
 - `notes`
-- `source_url`
 
 Official starting grid rows override qualifying/model grid assumptions when available. Penalty rows are carried into grid outputs as FIA penalty notes.
 
