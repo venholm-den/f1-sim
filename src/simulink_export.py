@@ -41,6 +41,10 @@ def build_simulink_inputs(
     if missing:
         raise ValueError(f"Simulink features missing columns: {sorted(missing)}")
 
+    parameters = [initial_fuel_penalty_seconds, fuel_gain_per_lap_seconds,
+                  pit_loss_seconds, max_tyre_degradation_seconds_per_lap]
+    if not all(np.isfinite(value) for value in parameters):
+        raise ValueError("Simulink parameters must be finite.")
     if initial_fuel_penalty_seconds < 0:
         raise ValueError("initial_fuel_penalty_seconds must be non-negative.")
     if fuel_gain_per_lap_seconds < 0:
@@ -51,12 +55,18 @@ def build_simulink_inputs(
         raise ValueError("max_tyre_degradation_seconds_per_lap must be positive.")
 
     frame = features.copy()
+    if frame['Driver'].isna().any() or frame['Driver'].astype(str).str.strip().eq('').any():
+        raise ValueError("Driver identifiers must be non-empty.")
+    if frame['Driver'].duplicated().any():
+        raise ValueError("Driver identifiers must be unique.")
     frame["Driver"] = frame["Driver"].astype(str)
     frame["Team"] = frame["Team"].astype(str)
 
     race_laps = _numeric_column(frame, "estimated_race_laps")
     race_laps = race_laps.fillna(_finite_median(race_laps, DEFAULT_RACE_LAPS))
     race_laps = race_laps.round().clip(1, 100).astype(int)
+    if race_laps.nunique() != 1:
+        raise ValueError("All drivers must have the same race distance.")
 
     projected_lap_time = _projected_lap_time(frame, race_laps)
     reference_lap_time = _finite_quantile(
@@ -67,7 +77,7 @@ def build_simulink_inputs(
 
     raw_degradation = _first_numeric_column(
         frame,
-        ["tyre_deg_score", "deg_per_lap"],
+        ["deg_per_lap", "tyre_deg_score"],
         default=0.0,
     )
     degradation = raw_degradation.clip(
@@ -79,6 +89,7 @@ def build_simulink_inputs(
     expected_stops = frame["Driver"].map(strategy_lookup).fillna(1)
     expected_stops = pd.to_numeric(expected_stops, errors="coerce").fillna(1)
     expected_stops = expected_stops.round().clip(0, 3).astype(int)
+    expected_stops = expected_stops.clip(upper=race_laps - 1)
 
     output = pd.DataFrame(
         {
@@ -92,6 +103,11 @@ def build_simulink_inputs(
             "degradation_was_capped": raw_degradation.gt(
                 max_tyre_degradation_seconds_per_lap
             ),
+            "degradation_was_floored": raw_degradation.lt(0),
+            "degradation_source": np.where(
+                _numeric_column(frame, 'deg_per_lap').notna(), 'deg_per_lap',
+                np.where(_numeric_column(frame, 'tyre_deg_score').notna(),
+                         'tyre_deg_score', 'default_zero')),
             "initial_tyre_age_laps": 0,
             "initial_fuel_penalty_seconds": float(initial_fuel_penalty_seconds),
             "fuel_gain_per_lap_seconds": float(fuel_gain_per_lap_seconds),
@@ -140,7 +156,7 @@ def export_simulink_inputs(
 def _numeric_column(frame: pd.DataFrame, column: str) -> pd.Series:
     if column not in frame.columns:
         return pd.Series(np.nan, index=frame.index, dtype="float64")
-    return pd.to_numeric(frame[column], errors="coerce")
+    return pd.to_numeric(frame[column], errors="coerce").replace([np.inf, -np.inf], np.nan)
 
 
 def _first_numeric_column(
@@ -200,18 +216,21 @@ def _strategy_lookup(strategies: pd.DataFrame | None) -> pd.Series:
         return pd.Series(dtype="float64")
 
     lookup = strategies[["Driver", stops_column]].copy()
+    if lookup['Driver'].duplicated().any():
+        raise ValueError("Strategy driver identifiers must be unique.")
     lookup["Driver"] = lookup["Driver"].astype(str)
-    lookup[stops_column] = pd.to_numeric(lookup[stops_column], errors="coerce")
+    lookup[stops_column] = pd.to_numeric(lookup[stops_column], errors="coerce").replace(
+        [np.inf, -np.inf], np.nan)
     return lookup.drop_duplicates("Driver").set_index("Driver")[stops_column]
 
 
 def _evenly_spaced_pit_laps(race_laps: int, expected_stops: int) -> str:
-    if expected_stops <= 0:
+    if expected_stops <= 0 or race_laps <= 1:
         return ""
 
     laps = [
         int(round(stop_number * race_laps / (expected_stops + 1)))
         for stop_number in range(1, expected_stops + 1)
     ]
-    laps = [min(max(lap, 2), race_laps - 1) for lap in laps]
+    laps = [min(max(lap, 1), race_laps - 1) for lap in laps]
     return ";".join(str(lap) for lap in sorted(set(laps)))

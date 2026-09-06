@@ -1,9 +1,10 @@
-function [detailPath, summaryPath, figurePath] = run_lap_dynamics(inputCsv, outputDir)
+function [detailPath, summaryPath, figurePath] = run_lap_dynamics(inputCsv, outputDir, makePlot)
 %RUN_LAP_DYNAMICS Simulate each exported driver using the lap dynamics model.
 
 arguments
     inputCsv (1,1) string = fullfile(repoRoot(), "outputs", "matlab", "lap_dynamics_inputs.csv")
     outputDir (1,1) string = fullfile(repoRoot(), "outputs", "matlab")
+    makePlot (1,1) logical = true
 end
 
 if ~isfile(inputCsv)
@@ -25,10 +26,7 @@ if ~isfile(modelPath)
     build_lap_dynamics_model(modelDir);
 end
 
-importOptions = detectImportOptions(inputCsv, "VariableNamingRule", "preserve");
-importOptions = setvartype(importOptions, ["Driver", "Team", "pit_laps"], "string");
-cases = readtable(inputCsv, importOptions);
-validateInputTable(cases);
+cases = read_lap_cases(inputCsv);
 
 caseCount = height(cases);
 simulationInputs = repmat(Simulink.SimulationInput(modelName), caseCount, 1);
@@ -42,6 +40,7 @@ for caseIndex = 1:caseCount
 
     pitSignal = timeseries(pitStop, time);
     pitSignal.Name = "pit_stop";
+    pitSignal = setinterpmethod(pitSignal, 'zoh');
     externalInputs = Simulink.SimulationData.Dataset;
     externalInputs{1} = pitSignal;
 
@@ -68,13 +67,25 @@ simulationOutputs = sim(simulationInputs);
 detail = table;
 summary = table;
 for caseIndex = 1:caseCount
+    if strlength(string(simulationOutputs(caseIndex).ErrorMessage)) > 0
+        error('f1sim:SimulationFailed', 'Case %s: %s', cases.case_id(caseIndex), ...
+            simulationOutputs(caseIndex).ErrorMessage);
+    end
     logs = simulationOutputs(caseIndex).logsout;
+    requiredSignals = ["lap_time", "cumulative_time", "tyre_age", "fuel_penalty", "pit_penalty"];
+    if ~all(ismember(requiredSignals, string(logs.getElementNames)))
+        error('f1sim:MissingSignals', 'Model is missing required logged signals.');
+    end
     lapTime = loggedData(logs, "lap_time");
     cumulativeTime = loggedData(logs, "cumulative_time");
     tyreAge = loggedData(logs, "tyre_age");
     fuelPenalty = loggedData(logs, "fuel_penalty");
     pitPenalty = loggedData(logs, "pit_penalty");
     sampleCount = numel(lapTime);
+    if sampleCount ~= cases.race_laps(caseIndex) || ...
+            any(~isfinite([lapTime; cumulativeTime; tyreAge; fuelPenalty; pitPenalty]))
+        error('f1sim:InvalidOutput', 'Invalid samples for %s.', cases.case_id(caseIndex));
+    end
 
     driverDetail = table( ...
         repmat(cases.Driver(caseIndex), sampleCount, 1), ...
@@ -84,27 +95,39 @@ for caseIndex = 1:caseCount
         'VariableNames', {'Driver', 'Team', 'lap', 'lap_time_seconds', ...
         'cumulative_time_seconds', 'tyre_age_laps', 'fuel_penalty_seconds', ...
         'pit_penalty_seconds'});
+    driverDetail.case_id = repmat(cases.case_id(caseIndex), sampleCount, 1);
+    driverDetail.scenario = repmat(cases.scenario(caseIndex), sampleCount, 1);
     detail = [detail; driverDetail]; %#ok<AGROW>
 
     driverSummary = table( ...
         cases.Driver(caseIndex), cases.Team(caseIndex), sampleCount, ...
         cumulativeTime(end), mean(lapTime), min(lapTime), max(lapTime), ...
-        sum(pitPenalty > 0), ...
+        numel(parsePitLaps(cases.pit_laps(caseIndex), cases.race_laps(caseIndex))), ...
         'VariableNames', {'Driver', 'Team', 'race_laps', ...
         'simulated_race_time_seconds', 'mean_lap_time_seconds', ...
         'fastest_lap_time_seconds', 'slowest_lap_time_seconds', 'pit_stops'});
+    driverSummary.case_id = cases.case_id(caseIndex);
+    driverSummary.scenario = cases.scenario(caseIndex);
     summary = [summary; driverSummary]; %#ok<AGROW>
 end
 
 summary = sortrows(summary, "simulated_race_time_seconds");
-summary.simulated_rank = (1:height(summary))';
+summary.simulated_rank = zeros(height(summary), 1);
+for scenario = unique(summary.scenario)'
+    rows = summary.scenario == scenario;
+    summary.simulated_rank(rows) = (1:sum(rows))';
+end
 
 detailPath = fullfile(outputDir, "lap_dynamics_results.csv");
 summaryPath = fullfile(outputDir, "lap_dynamics_summary.csv");
 figurePath = fullfile(outputDir, "lap_dynamics.png");
 writetable(detail, detailPath);
 writetable(summary, summaryPath);
-plotResults(detail, figurePath);
+if makePlot
+    plotResults(detail(detail.scenario == cases.scenario(1), :), figurePath);
+else
+    figurePath = "";
+end
 
 fprintf("Wrote lap detail: %s\n", detailPath);
 fprintf("Wrote race summary: %s\n", summaryPath);
@@ -134,27 +157,7 @@ if strlength(strtrim(textValue)) == 0
 end
 
 parts = split(textValue, ";");
-pitLaps = round(str2double(parts));
-pitLaps = unique(pitLaps(isfinite(pitLaps) & pitLaps >= 1 & pitLaps <= lapCount));
-end
-
-
-function validateInputTable(cases)
-required = ["Driver", "Team", "race_laps", "base_lap_time_seconds", ...
-    "pace_offset_seconds", "tyre_degradation_seconds_per_lap", ...
-    "initial_tyre_age_laps", "initial_fuel_penalty_seconds", ...
-    "fuel_gain_per_lap_seconds", "pit_laps", "pit_loss_seconds"];
-missing = setdiff(required, string(cases.Properties.VariableNames));
-if ~isempty(missing)
-    error("f1sim:InvalidInputContract", ...
-        "Simulink input CSV is missing columns: %s", strjoin(missing, ", "));
-end
-if isempty(cases)
-    error("f1sim:InvalidInputContract", "Simulink input CSV contains no driver rows.");
-end
-if any(cases.race_laps < 1 | cases.race_laps > 100)
-    error("f1sim:InvalidInputContract", "race_laps must be between 1 and 100.");
-end
+pitLaps = str2double(parts); % Already checked by read_lap_cases.
 end
 
 

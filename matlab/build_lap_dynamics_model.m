@@ -15,6 +15,9 @@ end
 modelPath = fullfile(outputDir, modelName + ".slx");
 
 if bdIsLoaded(modelName)
+    if strcmp(get_param(modelName, 'Dirty'), 'on')
+        error('f1sim:UnsavedModel', 'Save or close the edited model before rebuilding.');
+    end
     close_system(modelName, 0);
 end
 

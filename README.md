@@ -57,6 +57,7 @@ dist\F1RaceSimulatorPortable\F1RaceSimulatorPortable.exe
 - [Data sources](docs/data-sources.md)
 - [Model design](docs/model-design.md)
 - [MATLAB and Simulink validation](docs/matlab-simulink.md)
+- [First Simulink experiment review](docs/matlab-first-review.md)
 - [Data-source roadmap](docs/data-source-roadmap.md)
 - [Output hygiene](docs/output-hygiene.md)
 - [Backtest Discord output](docs/backtest-discord-output.md)
