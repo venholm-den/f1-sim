@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>F1 Simulation Centre</title><link rel="stylesheet" href="centre.css"></head>
+<body>
+<aside class="sidebar">
+  <a class="brand" href="centre.html"><b>F1<span> / </span></b><div>SIMULATION CENTRE<small>Race engineering workspace</small></div></a>
+  <div class="sidebar-heading">RUN HISTORY <button id="refreshHistory" title="Refresh run history">↻</button></div>
+  <div id="history" class="history"><p class="muted">Loading saved runs…</p></div>
+  <a class="legacy" href="index.html">Race setup &amp; full dashboard ↗</a>
+  <p class="sidebar-note">Runs are saved locally. Close the app to stop an active simulation.</p>
+</aside>
+<main>
+  <header><div><div class="eyebrow">WORKSPACE / SIMULATIONS</div><h1>From assumptions to results.</h1>
+  <p class="muted">Launch a simulation, follow its progress, and inspect what changed.</p></div><span id="connection" class="badge">Connecting</span></header>
+  <section class="source-strip"><div><span class="eyebrow">SAVED INPUTS</span><strong id="sourceContext">Checking source snapshot…</strong><small id="sourceDetail"></small></div>
+    <label>Source output folder<input id="sourceDir" value="outputs" spellcheck="false"></label><button id="checkSource" class="secondary">Check inputs</button>
+  </section>
+  <div id="error" role="alert" hidden></div>
+  <section aria-labelledby="launchTitle"><div class="section-heading"><h2 id="launchTitle">Start a simulation</h2><span class="muted">A separate folder for every run</span></div>
+  <div class="modes" role="radiogroup" aria-label="Simulation type">
+    <button class="mode selected" data-kind="monte_carlo" role="radio" aria-checked="true"><span class="mode-number">01 / PROBABILITIES</span><h3>Monte Carlo</h3><p>Resample race outcomes using your saved driver features.</p><span class="mode-footer">Python <span>Win · podium · points</span></span></button>
+    <button class="mode" data-kind="lap_dynamics" role="radio" aria-checked="false"><span class="mode-number">02 / LAP BY LAP</span><h3>Lap dynamics</h3><p>Inspect tyre age, fuel effects and stops across a full race.</p><span class="mode-footer">Simulink <span id="matlabLabel">Checking installation</span></span></button>
+    <button class="mode" data-kind="experiments" role="radio" aria-checked="false"><span class="mode-number">03 / WHAT CHANGES</span><h3>Scenario experiments</h3><p>Compare pit windows and model assumptions against a baseline.</p><span class="mode-footer">Simulink <span>Independent verification</span></span></button>
+  </div>
+  <div class="launch-bar"><div id="monteSettings" class="settings">
+    <label>Simulated races<input id="nSims" type="number" min="100" max="100000" step="100" value="5000"></label>
+    <label>Random seed<input id="seed" type="number" min="0" max="4294967295" value="42"></label>
+    <label>Overtaking difficulty<input id="difficulty" type="number" min="0" max="1" step="0.05" value="0.55"></label></div>
+    <div id="experimentSettings" class="settings" hidden><label>Scenario to run<select id="experimentScenario"><option value="all">All 11 scenarios</option></select></label><p class="muted">Individual scenarios include the baseline for comparison.</p></div>
+    <p id="lapSettings" class="muted" hidden>Runs each driver with the exported stop count and evenly spaced pit laps.</p>
+    <button id="launch" class="primary" disabled>Start Monte Carlo <span>→</span></button>
+  </div><p id="assumptions" class="footnote">Uses saved features with neutral weather modifiers. For fresh event data and the complete forecast pipeline, use Race Setup.</p>
+  </section>
+  <section class="monitor"><div class="monitor-top"><div><span id="statusDot" class="dot"></span><strong id="jobTitle">Ready when you are</strong><span id="jobStatus" class="badge">Idle</span></div><button id="cancel" class="secondary" disabled>Cancel active run</button></div>
+    <progress id="progress" max="100" value="0" aria-label="Simulation progress"></progress>
+    <div class="monitor-bottom"><span id="progressText">Select a simulation above or open a saved run.</span><details><summary>Live run log</summary><pre id="log">No run selected.</pre></details></div>
+  </section>
+  <section class="review"><div class="section-heading"><div><div class="eyebrow">RESULTS EXPLORER</div><h2 id="reviewTitle">Review your runs</h2></div><button id="openFolder" class="secondary" disabled>Open results folder ↗</button></div>
+  <div class="filter-bar"><label>Driver<select id="driverFilter"><option value="">All drivers</option></select></label><label>Scenario<select id="scenarioFilter"><option value="">All scenarios</option></select></label><span id="verification" class="muted"></span></div>
+  <div class="chart-panel"><div class="chart-heading"><strong id="chartTitle">Lap-time trace</strong><span id="chartLegend" class="muted">Select a saved run</span></div><canvas id="lapChart" aria-label="Simulation result chart"></canvas><p id="chartEmpty">Your results will appear here after the first run.</p></div>
+  <div class="table-toolbar"><span id="rowCount">No results loaded</span><button id="exportCsv" class="text-button" disabled>Export visible table ↓</button></div>
+  <p id="exportStatus" class="muted" role="status" hidden></p>
+  <div id="resultTable" class="table-wrap"><div class="empty">Select a run in the history to review its results.</div></div>
+  </section>
+</main>
+<script src="bridge.js"></script><script src="centre.js"></script>
+</body></html>

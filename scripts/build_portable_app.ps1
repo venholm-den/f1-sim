@@ -32,6 +32,7 @@ if (Test-Path $WorkPath) {
     --add-data "data\fia_documents;data\fia_documents" `
     --add-data "assets;assets" `
     --add-data "portable_app\web;portable_app\web" `
+    --add-data "matlab;matlab" `
     --collect-data fastf1 `
     --collect-all webview `
     --collect-all pythonnet `

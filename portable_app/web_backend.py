@@ -23,6 +23,7 @@ from src.app_services.model_signals import load_model_signals
 from src.app_services.output_index import list_core_outputs, read_output_table
 from src.app_services.run_service import run_pipeline_with_config
 from src.track import load_track_profile
+from src.app_services.simulation_jobs import SimulationJobs
 
 
 SESSION_OPTIONS = ["PRE", "Q", "SQ", "S", "FP3", "FP2", "FP1", "R"]
@@ -766,12 +767,37 @@ class PortableWebApi:
     def __init__(self) -> None:
         self.base_config = load_json_config(DEFAULT_CONFIG_PATH)
         self.default_settings = settings_from_config(self.base_config)
-        self.window = None
+        self._window = None
         self.run_lock = threading.Lock()
         self.run_state: dict[str, Any] = {"running": False, "exitCode": None, "log": ""}
+        self._jobs = SimulationJobs(Path.cwd() if getattr(sys, 'frozen', False) else project_root())
+
+    def lab_state(self, source_dir='outputs'):
+        return self._jobs.state(source_dir)
+
+    def lab_start(self, payload):
+        with self.run_lock:
+            if self.run_state.get('running'):
+                raise ValueError('Race Setup is already running. Wait for it to finish first.')
+            return self._jobs.start(payload)
+
+    def lab_status(self, job_id):
+        return self._jobs.status(job_id)
+
+    def lab_results(self, job_id, driver='', scenario=''):
+        return self._jobs.results(job_id, driver, scenario)
+
+    def lab_cancel(self):
+        return self._jobs.cancel()
+
+    def lab_open_folder(self, job_id):
+        return self._jobs.open_folder(job_id)
+
+    def lab_export(self, job_id, driver='', scenario=''):
+        return self._jobs.export(job_id, driver, scenario)
 
     def set_window(self, window: Any) -> None:
-        self.window = window
+        self._window = window
 
     def initial_state(self) -> dict[str, Any]:
         settings = settings_to_dict(self.default_settings)
@@ -871,6 +897,8 @@ class PortableWebApi:
 
     def start_run(self, settings_payload: dict[str, Any]) -> dict[str, Any]:
         with self.run_lock:
+            if self._jobs.process and self._jobs.process.poll() is None:
+                return {'ok': False, 'message': 'A Simulation Centre job is running. Wait or cancel it first.'}
             if self.run_state.get("running"):
                 return {"ok": False, "message": "A simulation is already running."}
 

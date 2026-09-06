@@ -28,6 +28,10 @@ python main.py --year 2026 --event latest --session Q --n-sims 5000 --no-discord
 
 For the portable desktop app:
 
+Double-click **Launch F1 Sim.cmd** to open the Simulation Centre: launch Monte Carlo,
+Simulink lap dynamics or scenario experiments, follow logs, and review saved runs.
+See [Simulation Centre guide](docs/simulation-centre.md) for requirements and interpretation.
+
 ```powershell
 python -m portable_app.web_main
 ```

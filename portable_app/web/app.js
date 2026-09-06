@@ -17,6 +17,7 @@ function api() {
   if (window.pywebview && window.pywebview.api) {
     return window.pywebview.api;
   }
+  if (window.f1Api) return window.f1Api;
   throw new Error("pywebview API is not available");
 }
 
@@ -351,7 +352,7 @@ async function pollRunStatus() {
 }
 
 function setupNavigation() {
-  document.querySelectorAll(".nav-item").forEach((button) => {
+  document.querySelectorAll("button.nav-item").forEach((button) => {
     button.addEventListener("click", () => {
       document.querySelectorAll(".nav-item").forEach((item) => item.classList.remove("active"));
       document.querySelectorAll(".view").forEach((view) => view.classList.remove("active"));
@@ -395,3 +396,4 @@ async function boot() {
 }
 
 window.addEventListener("pywebviewready", boot);
+if (window.f1Api) boot();
