@@ -3,6 +3,8 @@ const client = () => window.pywebview?.api || window.f1Api;
 const labels = {monte_carlo:'Monte Carlo',lap_dynamics:'Lap dynamics',experiments:'Scenario experiments'};
 const scenarioNames = {all:'All 11 scenarios',baseline:'Baseline',stops_0:'Zero stops (diagnostic)',stops_1:'One stop',stops_2:'Two stops',stops_3:'Three stops',pit_early_5:'Pit 5 laps earlier',pit_late_5:'Pit 5 laps later',degradation_low:'Degradation −25%',degradation_high:'Degradation +25%',pit_loss_low:'Pit loss −5 seconds',pit_loss_high:'Pit loss +5 seconds'};
 let kind='monte_carlo', selected=null, appState={}, currentRows=[], lastStatus='', booted=false, loading=0;
+let historicalEvents=[], historicalLoading=false, historicalRequest=0;
+let reusableSource=null;
 const escape = value => String(value??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
 function error(message){el('error').textContent=message;el('error').hidden=!message;}
 async function safely(action){try{await action();}catch(e){error(e.message||String(e));}}
@@ -13,11 +15,35 @@ function options(id, values, allLabel, previous){
 }
 function controls(){
   const busy=Boolean(appState.active_id);
-  el('launch').disabled=busy||!appState.features||(kind!=='monte_carlo'&&!appState.matlab)||(kind==='experiments'&&!appState.strategies);
+  const historical=el('inputSource').value==='historical';
+  el('savedSource').hidden=historical;el('historicalSource').hidden=!historical;
+  const ready=historical?!historicalLoading&&Boolean(el('historicalEvent').value&&el('historicalSession').value):appState.features&&(kind!=='experiments'||appState.strategies);
+  el('launch').disabled=busy||!ready||(kind!=='monte_carlo'&&!appState.matlab);
   el('launch').innerHTML=`Start ${labels[kind]} <span>→</span>`;
   el('cancel').disabled=!busy;
   el('monteSettings').hidden=kind!=='monte_carlo';el('experimentSettings').hidden=kind!=='experiments';el('lapSettings').hidden=kind!=='lap_dynamics';
   el('assumptions').textContent=kind==='monte_carlo'?'Uses saved features with neutral weather modifiers. For fresh event data and the complete forecast pipeline, use Race Setup.':'Exploratory dynamics with assumed fuel and tyre parameters. Scenario results verify model arithmetic; they are not calibrated race predictions.';
+  if(historical)el('assumptions').textContent='Builds historical inputs first, then runs the selected simulation. The preparation uses two prior baseline races and one prior season for strategy. Monte Carlo uses neutral weather modifiers.';
+}
+function historicalSessions(){
+  const event=historicalEvents.find(e=>e.event===el('historicalEvent').value);
+  const codes=event?.sessions||[];
+  const names={FP1:'Practice 1',FP2:'Practice 2',FP3:'Practice 3',Q:'Qualifying',SQ:'Sprint qualifying',S:'Sprint',R:'Race (retrospective)'};
+  el('historicalSession').replaceChildren(...codes.map(code=>new Option(names[code]||code,code)));
+  if(codes.includes('Q'))el('historicalSession').value='Q';controls();
+}
+async function loadHistorical(){
+  const request=++historicalRequest;historicalLoading=true;historicalEvents=[];
+  el('historicalEvent').replaceChildren(new Option('Loading calendar…',''));historicalSessions();
+  el('historicalNote').textContent='Loading the historical calendar…';error('');
+  try{
+    const events=await client().lab_historical_events(Number(el('historicalYear').value));
+    if(request!==historicalRequest)return;
+    historicalEvents=events;el('historicalEvent').replaceChildren(...events.map(e=>new Option(e.event,e.event)));
+    el('historicalNote').textContent=`${events.length} events available. Select a session, then start any simulation below. First-time preparation may take several minutes.`;
+    historicalSessions();
+  }catch(e){if(request===historicalRequest){el('historicalEvent').replaceChildren(new Option('Calendar unavailable',''));el('historicalNote').textContent='Calendar could not be loaded. Check your connection and try Load races again.';}throw e;}
+  finally{if(request===historicalRequest){historicalLoading=false;controls();}}
 }
 function history(){
   el('history').innerHTML=(appState.history||[]).map(run=>`<button class="${run.id===selected?'active':''}" data-id="${escape(run.id)}"><span class="state">${escape(run.status)}</span><strong>${escape(run.label)}</strong><small>${new Date(run.created_at).toLocaleString([], {month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'})}${run.scenario&&run.kind==='experiments'?' · '+escape(scenarioNames[run.scenario]||run.scenario):''}</small></button>`).join('')||'<p class="muted">No saved runs yet.</p>';
@@ -33,6 +59,7 @@ async function selectRun(id){selected=id;lastStatus='';el('driverFilter').value=
 async function status(){
   if(!selected)return;
   const id=selected, data=await client().lab_status(id);if(selected!==id)return;
+  reusableSource=data.reusable_source;el('reuseInputs').hidden=!reusableSource;
   el('jobTitle').textContent=data.label||appState.history?.find(r=>r.id===id)?.label||'Saved run';
   el('jobStatus').textContent=data.status;el('reviewTitle').textContent=el('jobTitle').textContent;
   const running=['running','cancelling'].includes(data.status);
@@ -41,6 +68,7 @@ async function status(){
   else el('progress').value=data.progress?100*data.progress[0]/data.progress[1]:['completed','existing'].includes(data.status)?100:0;
   el('progressText').textContent=running?(data.progress?`${data.progress[0]} / ${data.progress[1]} simulations complete`:data.kind==='monte_carlo'?'Running Monte Carlo simulation…':'Starting simulation. MATLAB startup may take a minute.'):(data.status==='failed'?'Run failed. Open the log for the error.':data.status==='cancelled'?'Cancelled. Partial outputs may be available.':data.status==='interrupted'?'Previous app session ended unexpectedly. Partial outputs may be available.':'Saved results available below.');
   el('log').textContent=data.log||'No log was recorded for this earlier run.';
+  if(running&&data.historical&&!data.log.includes('Historical inputs ready.'))el('progressText').textContent='Preparing historical inputs. First-time downloads can take several minutes.';
   if(data.status==='failed'){el('log').parentElement.open=true;}
   if(lastStatus&&lastStatus!==data.status&&!running){await refresh();await results();}
   lastStatus=data.status;
@@ -84,12 +112,18 @@ function draw(data){
 }
 async function boot(){
   if(booted||!client())return;booted=true;
+  const year=new Date().getFullYear();for(let y=year;y>=2018;y--)el('historicalYear').add(new Option(String(y),String(y)));el('historicalYear').value=String(year-1);
+  el('inputSource').onchange=controls;
+  el('loadHistorical').onclick=()=>safely(loadHistorical);
+  el('historicalEvent').onchange=historicalSessions;
+  el('historicalYear').onchange=()=>{historicalRequest++;historicalLoading=false;historicalEvents=[];el('historicalEvent').replaceChildren(new Option('Click Load races',''));historicalSessions();el('historicalNote').textContent='Click Load races for the selected year.';};
   Object.entries(scenarioNames).filter(([v])=>!['baseline','all'].includes(v)).forEach(([v,label])=>el('experimentScenario').add(new Option(label,v)));
   document.querySelectorAll('.mode').forEach(button=>button.onclick=()=>{kind=button.dataset.kind;document.querySelectorAll('.mode').forEach(b=>{b.classList.toggle('selected',b===button);b.setAttribute('aria-checked',String(b===button));});controls();});
   el('checkSource').onclick=()=>safely(async()=>{error('');await refresh();});el('refreshHistory').onclick=()=>safely(refresh);
-  el('launch').onclick=()=>safely(async()=>{error('');el('launch').disabled=true;try{const job=await client().lab_start({kind,source_dir:el('sourceDir').value,n_sims:Number(el('nSims').value),seed:Number(el('seed').value),overtaking_difficulty:Number(el('difficulty').value),scenario:el('experimentScenario').value});await refresh();await selectRun(job.id);}finally{controls();}});
+  el('launch').onclick=()=>safely(async()=>{error('');el('launch').disabled=true;try{const job=await client().lab_start({kind,source_dir:el('sourceDir').value,input_source:el('inputSource').value,historical:{year:Number(el('historicalYear').value),event:el('historicalEvent').value,session:el('historicalSession').value},n_sims:Number(el('nSims').value),seed:Number(el('seed').value),overtaking_difficulty:Number(el('difficulty').value),scenario:el('experimentScenario').value});await refresh();await selectRun(job.id);}finally{controls();}});
   el('cancel').onclick=()=>safely(async()=>{await client().lab_cancel();await refresh();await status();});
   el('openFolder').onclick=()=>safely(()=>client().lab_open_folder(selected));
+  el('reuseInputs').onclick=()=>safely(async()=>{el('sourceDir').value=reusableSource;el('inputSource').value='saved';await refresh();el('inputSource').focus();});
   el('driverFilter').onchange=()=>safely(results);el('scenarioFilter').onchange=()=>safely(results);
   el('exportCsv').onclick=()=>safely(async()=>{const saved=await client().lab_export(selected,el('driverFilter').value,el('scenarioFilter').value);el('exportStatus').textContent=`Saved ${saved.rows} rows to exports/${saved.filename}. Use Open results folder to access the CSV.`;el('exportStatus').hidden=false;});
   await safely(async()=>{await refresh();const recent=appState.history.find(r=>['completed','existing'].includes(r.status))||appState.history[0];if(appState.active_id||recent)await selectRun(appState.active_id||recent.id);});

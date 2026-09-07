@@ -15,6 +15,7 @@ from pathlib import Path
 from uuid import uuid4
 
 import pandas as pd
+from src.app_services.historical_runs import validate_selection
 
 SCENARIOS = ['all', 'stops_0', 'stops_1', 'stops_2', 'stops_3', 'pit_early_5',
              'pit_late_5', 'degradation_low', 'degradation_high', 'pit_loss_low', 'pit_loss_high']
@@ -122,24 +123,41 @@ class SimulationJobs:
             if not math.isfinite(difficulty) or not 0 <= difficulty <= 1:
                 raise ValueError('Overtaking difficulty must be between 0 and 1.')
             source = self._source(payload.get('source_dir', 'outputs'))
-            if not (source/'driver_model_features.csv').is_file():
+            input_source = payload.get('input_source', 'saved')
+            if input_source not in ('saved', 'historical'):
+                raise ValueError('Unknown input source.')
+            historical = validate_selection(payload.get('historical', {})) if input_source == 'historical' else None
+            if not historical and not (source/'driver_model_features.csv').is_file():
                 raise ValueError('No driver features found. Run Race Setup first or select another output folder.')
             matlab = matlab_executable()
             if kind != 'monte_carlo' and not matlab:
                 raise ValueError('MATLAB was not found. Install MATLAB with Simulink to run this simulation.')
-            if kind == 'experiments' and not (source/'strategy/predicted_tyre_strategy.csv').is_file():
+            if not historical and kind == 'experiments' and not (source/'strategy/predicted_tyre_strategy.csv').is_file():
                 raise ValueError('Scenario experiments need predicted_tyre_strategy.csv. Run Race Setup first.')
             job_id = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')+'_'+uuid4().hex[:8]
             folder = self.run_root/job_id
             folder.mkdir()
-            shutil.copy2(source/'driver_model_features.csv', folder/'features.csv')
-            if (source/'strategy/predicted_tyre_strategy.csv').is_file():
-                shutil.copy2(source/'strategy/predicted_tyre_strategy.csv', folder/'strategies.csv')
+            if not historical:
+                shutil.copy2(source/'driver_model_features.csv', folder/'features.csv')
+                if (source/'strategy/predicted_tyre_strategy.csv').is_file():
+                    shutil.copy2(source/'strategy/predicted_tyre_strategy.csv', folder/'strategies.csv')
             data = {'id': job_id, 'label': KINDS[kind], 'kind': kind, 'scenario': scenario,
+                    'input_source':input_source, 'historical':historical,
                     'status': 'running', 'created_at': datetime.now(timezone.utc).isoformat(),
                     'source_dir': str(source), 'n_sims': n_sims, 'seed': seed,
                     'overtaking_difficulty': difficulty, 'matlab': matlab,
                     'note': 'Uses saved features. Monte Carlo uses neutral weather modifiers; Simulink uses exploratory fuel/tyre assumptions.'}
+            if historical:
+                data['label'] += f" · {historical['year']} {historical['event']} · {historical['session']}"
+                data['source_dir'] = str(folder/'source')
+                data['note'] = 'Historical replay, not an out-of-sample backtest. Live forecasts and trained calibration disabled; other model assumptions and reference tables remain current.'
+            else:
+                snapshot = source/'history/latest_prediction_snapshot.csv'
+                if snapshot.is_file():
+                    context = pd.read_csv(snapshot, nrows=1)
+                    if not context.empty:
+                        row = context.iloc[0]
+                        data['label'] += f" · {row.get('year', '')} {row.get('event', '')} · {row.get('session', '')}"
             write_json(folder/'job.json', data)
             command = [sys.executable, '-u', '-m', 'portable_app.job_worker', str(folder)]
             if getattr(sys, 'frozen', False):
@@ -194,6 +212,8 @@ class SimulationJobs:
                 data['log'] = stream.read().decode('utf-8', errors='replace')
         progress = re.findall(r'Completed (\d+) of (\d+) simulation runs', data['log'])
         data['progress'] = list(map(int, progress[-1])) if progress else None
+        source = folder/'source'
+        data['reusable_source'] = str(source.relative_to(self.root)) if data.get('status') == 'completed' and (source/'driver_model_features.csv').is_file() else None
         return data
 
     def results(self, job_id, driver='', scenario=''):

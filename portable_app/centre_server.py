@@ -8,7 +8,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlparse
 
-METHODS = {'lab_state','lab_start','lab_status','lab_results','lab_cancel','lab_open_folder','lab_export',
+METHODS = {'lab_state','lab_start','lab_status','lab_results','lab_cancel','lab_open_folder','lab_export','lab_historical_events',
            'initial_state','events_for_year','setup_options','outputs','start_run','run_status','open_output_dir'}
 
 

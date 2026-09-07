@@ -775,6 +775,10 @@ class PortableWebApi:
     def lab_state(self, source_dir='outputs'):
         return self._jobs.state(source_dir)
 
+    def lab_historical_events(self, year):
+        from src.app_services.historical_runs import historical_events
+        return historical_events(year, self._jobs.root)
+
     def lab_start(self, payload):
         with self.run_lock:
             if self.run_state.get('running'):
