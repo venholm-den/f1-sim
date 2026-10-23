@@ -156,6 +156,11 @@ candidate. The profiles average a 42% SC chance against 54% observed in those
 races, and six of the 13 used generic placeholders, so calibrating track SC rates
 (`scripts.calibrate_circuits`) is the obvious next step.
 
+Set `model.track_profile_model` to `calibrated_v1` to use calibrated SC chances
+and overtaking difficulties for the 13 placeholder circuits instead. Method,
+values and benchmark are in
+[circuit-calibration.md](circuit-calibration.md#calibrated-track-factors-candidate-calibrated_v1).
+
 ## Shared team luck, sampled grids, grid penalties and sprints
 
 Four more local-only candidates, each `off` by default. Each uses its own random

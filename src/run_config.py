@@ -69,6 +69,7 @@ class ModelSettings:
     grid_sampling_model: str = 'off'
     grid_penalty_model: str = 'off'
     sprint_model: str = 'off'
+    track_profile_model: str = 'active'
 
     def __post_init__(self):
         if self.pace_blend not in {'legacy', 'single_pace_blend_v1', 'qualifying_partial_pooling_v1'}:
@@ -102,6 +103,8 @@ class ModelSettings:
         if self.race_engine == 'agent_laps_v1' and (self.shared_noise_model != 'off'
                                                      or self.grid_sampling_model != 'off'):
             raise ValueError('Shared noise and grid sampling apply to the aggregate engine only.')
+        if self.track_profile_model not in {'active', 'calibrated_v1'}:
+            raise ValueError('Unknown track_profile_model; choose active or calibrated_v1.')
         if self.weather_model not in {'session_legacy', 'race_window_v1'}:
             raise ValueError('Unknown weather_model.')
         if self.weather_model == 'race_window_v1' and not self.use_weather_forecast:
@@ -126,7 +129,8 @@ class AppConfig:
             or self.model.shared_noise_model != 'off'
             or self.model.grid_sampling_model != 'off'
             or self.model.grid_penalty_model != 'off'
-            or self.model.sprint_model != 'off')
+            or self.model.sprint_model != 'off'
+            or self.model.track_profile_model != 'active')
         if next_candidate and self.outputs.post_to_discord:
             raise ValueError('Unpromoted simulation candidates support local output only.')
 
@@ -337,6 +341,7 @@ def load_app_config(
             grid_sampling_model=str(model.get('grid_sampling_model', 'off')),
             grid_penalty_model=str(model.get('grid_penalty_model', 'off')),
             sprint_model=str(model.get('sprint_model', 'off')),
+            track_profile_model=str(model.get('track_profile_model', 'active')),
         ),
         source_path=str(config_path),
     )
@@ -395,6 +400,7 @@ def config_to_dict(config: AppConfig) -> dict[str, Any]:
             "grid_sampling_model": config.model.grid_sampling_model,
             "grid_penalty_model": config.model.grid_penalty_model,
             "sprint_model": config.model.sprint_model,
+            "track_profile_model": config.model.track_profile_model,
         },
         "source_path": config.source_path,
     }
