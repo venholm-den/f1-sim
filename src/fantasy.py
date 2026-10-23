@@ -277,7 +277,14 @@ def add_simulated_fantasy_points(results: pd.DataFrame) -> pd.DataFrame:
         _series_or_default(df, "dnf", False)
     )
 
-    quali_points = grid_position.map(
+    # Qualifying points follow the qualifying order; a grid penalty moves the
+    # start position only. Older results have grid_position alone.
+    qualifying_position = pd.to_numeric(
+        _series_or_default(df, "qualifying_position", np.nan),
+        errors="coerce",
+    ).fillna(grid_position)
+
+    quali_points = qualifying_position.map(
         lambda value: _points_from_position(value, quali_points_map)
     ).fillna(0.0)
 
@@ -309,6 +316,28 @@ def add_simulated_fantasy_points(results: pd.DataFrame) -> pd.DataFrame:
     df["dotd_points"] = dotd_points
     df["dnf_penalty_points"] = dnf_points
 
+    # Sprint weekends (sprint_v1): sprint result points, the same per-place
+    # change rules and a DNF penalty. Absent columns score nothing.
+    sprint_fantasy_points = 0.0
+    if "sprint_position" in df.columns:
+        sprint_dnf = _to_bool_series(_series_or_default(df, "sprint_dnf", False))
+        sprint_gained = pd.to_numeric(df["sprint_positions_gained"], errors="coerce").fillna(0.0)
+        sprint_change = pd.Series(
+            np.where(
+                sprint_gained >= 0,
+                sprint_gained * position_gain_points_per_place,
+                sprint_gained.abs() * position_loss_points_per_place,
+            ),
+            index=df.index,
+            dtype="float64",
+        ).clip(position_change_min, position_change_max).where(~sprint_dnf, 0.0)
+        sprint_fantasy_points = (
+            pd.to_numeric(df["sprint_points"], errors="coerce").fillna(0.0)
+            + sprint_change
+            + sprint_dnf.astype(float) * _scoring_value("sprint_dnf_penalty", dnf_penalty)
+        ).where(df["sprint_position"].notna(), 0.0)
+        df["sprint_fantasy_points"] = sprint_fantasy_points
+
     df["fantasy_points"] = (
         df["finish_fantasy_points"]
         + df["quali_fantasy_points"]
@@ -316,6 +345,7 @@ def add_simulated_fantasy_points(results: pd.DataFrame) -> pd.DataFrame:
         + df["fastest_lap_points"]
         + df["dotd_points"]
         + df["dnf_penalty_points"]
+        + sprint_fantasy_points
     )
 
     df["avg_positions_gained_input"] = positions_gained
@@ -363,6 +393,7 @@ def calculate_fantasy_summary(
     fantasy_results = add_simulated_fantasy_points(results)
 
     grouped = fantasy_results.groupby(["Driver", "Team"], dropna=False)
+    has_sprint = "sprint_fantasy_points" in fantasy_results.columns
 
     fantasy_summary = grouped.agg(
         avg_fantasy_points=("fantasy_points", "mean"),
@@ -380,6 +411,8 @@ def calculate_fantasy_summary(
         avg_fastest_lap_points=("fastest_lap_points", "mean"),
         avg_dotd_points=("dotd_points", "mean"),
         avg_dnf_penalty=("dnf_penalty_points", "mean"),
+        **({"avg_sprint_fantasy_points": ("sprint_fantasy_points", "mean")}
+           if has_sprint else {}),
     ).reset_index()
 
     fantasy_summary["fantasy_std"] = fantasy_summary["fantasy_std"].fillna(0.0)
@@ -433,6 +466,8 @@ def calculate_fantasy_summary(
         "fantasy_price",
         "fantasy_xppm",
     ]
+    if has_sprint:
+        fantasy_merge_cols.append("avg_sprint_fantasy_points")
 
     summary = summary.merge(
         fantasy_summary[fantasy_merge_cols],

@@ -101,8 +101,9 @@
       const changes = (freshness.changes || []).slice().sort((a,b)=>Math.abs(b.latest_position-b.saved_position)-Math.abs(a.latest_position-a.saved_position));
       notice.textContent = `Newer FIA grid available: ${changes.slice(0,3).map(row=>`${row.Driver} P${row.saved_position} → ${row.pit_lane_start ? 'pit lane' : `P${row.latest_position}`}`).join('; ')}${changes.length>3 ? `; ${changes.length-3} other changes` : ''}. Saved probabilities and strategies still use the previous grid. A fresh forecast is required.`;
     }
-    el('tyreEvent').textContent = [context.year, context.event, context.session ? `${context.session} cutoff` : ''].filter(Boolean).join(' · ') || 'Saved race';
-    el('tyreCircuit').textContent = venue.circuit_name || context.event || 'Tyre strategy';
+    const eventName = typeof displayEventName === 'function' ? displayEventName(context.event) : context.event;
+    el('tyreEvent').textContent = [context.year, eventName, context.session ? `${context.session} cutoff` : ''].filter(Boolean).join(' · ') || 'Saved race';
+    el('tyreCircuit').textContent = venue.circuit_name || eventName || 'Tyre strategy';
     el('tyreDistance').textContent = number(venue.race_laps) > 0 ? `${venue.race_laps} race laps` : 'Race distance not recorded';
     draw();
   }

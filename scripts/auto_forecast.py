@@ -19,8 +19,9 @@ def project_root() -> Path:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run one forecast when a new F1 session is eligible.")
-    parser.add_argument("--n-sims", type=int, default=10_000)
-    parser.add_argument("--seed", type=int, default=42)
+    from src.app_services.forecast_automation import FORECAST_DEFAULTS
+    parser.add_argument("--n-sims", type=int, default=FORECAST_DEFAULTS['n_sims'])
+    parser.add_argument("--seed", type=int, default=FORECAST_DEFAULTS['seed'])
     parser.add_argument('--post-race', action='store_true',
                         help='Evaluate completed races and post analysis when --discord is enabled.')
     parser.add_argument('--post-race-only', action='store_true',

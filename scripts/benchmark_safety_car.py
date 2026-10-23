@@ -1,10 +1,12 @@
-"""Offline A/B of the track_sc_v1 safety-car candidate on a recent-baseline packet.
+"""Offline A/B of aggregate-engine candidates on a recent-baseline packet.
 
 Uses only files already in data/recent_baselines: each target race is
 forecast from earlier races' race pace plus the actual starting grid, once
-with the established engine and once with track-rate safety cars. Both arms
-share features and seeds, so the difference isolates the SC model. This is a
-diagnostic on inspected races, not a promotion test.
+with the established engine and once per candidate arm (--arms). Arms share
+features and seeds, so each difference isolates one candidate. The
+estimated_grid arms replace the actual grid with a pace-ranked estimate, which
+is what a pre-qualifying forecast sees. This is a diagnostic on inspected
+races, not a promotion test.
 """
 from __future__ import annotations
 
@@ -44,6 +46,21 @@ def _features(history, results, race_laps):
                         estimated_race_laps=race_laps, base_winner_race_time_seconds=90. * race_laps)
 
 
+def _estimated(features):
+    frame = features.copy()
+    frame['grid_position'] = frame.race_pace_score.rank(method='first').astype(int)
+    return frame.assign(grid_source='estimated_model_grid', grid_confidence=0.38)
+
+
+ARMS = {
+    'established': (lambda f, p: f, lambda p: {}),
+    'track_sc_v1': (lambda f, p: f, lambda p: {'safety_car_probability': p['safety_car_chance']}),
+    'team_noise_v1': (lambda f, p: f, lambda p: {'team_noise_seconds': 3.0}),
+    'estimated_grid': (lambda f, p: _estimated(f), lambda p: {}),
+    'estimated_grid_v1': (lambda f, p: _estimated(f), lambda p: {'sample_estimated_grid': True}),
+}
+
+
 def _score(summary, actual):
     merged = summary.merge(actual, on='Driver')
     finish = merged.Position
@@ -53,7 +70,7 @@ def _score(summary, actual):
             'top10_brier': float(((merged.top10_chance - (finish <= 10)) ** 2).mean())}
 
 
-def run(packet, history_races, n_sims, seeds):
+def run(packet, history_races, n_sims, seeds, arms=('established', 'track_sc_v1')):
     packet = Path(packet)
     pace = pd.read_csv(packet / 'baseline_race_features.csv')
     results = pd.read_csv(packet / 'fastf1_race_results.csv')
@@ -68,10 +85,11 @@ def run(packet, history_races, n_sims, seeds):
         features = _features(history, race, laps)
         actual = race.rename(columns={'Abbreviation': 'Driver'})[['Driver', 'Position']]
         for seed in seeds:
-            for arm, probability in [('established', None), ('track_sc_v1', profile['safety_car_chance'])]:
-                summary, _, _ = simulate_races(features, n_sims=n_sims, seed=seed,
+            for arm in arms:
+                transform, options = ARMS[arm]
+                summary, _, _ = simulate_races(transform(features, profile), n_sims=n_sims, seed=seed,
                                                overtaking_difficulty=profile['overtaking_difficulty'],
-                                               safety_car_probability=probability)
+                                               **options(profile))
                 rows.append({'round': int(round_), 'event': event, 'seed': seed, 'arm': arm,
                              'sc_chance': profile['safety_car_chance'], 'profile_status': profile['profile_status'],
                              'actual_sc': bool(control.loc[round_, 'safety_car_flag']), **_score(summary, actual)})
@@ -84,9 +102,10 @@ def main():
     parser.add_argument('--history-races', type=int, default=3)
     parser.add_argument('--n-sims', type=int, default=5000)
     parser.add_argument('--seeds', type=int, nargs='+', default=[42, 123, 777])
+    parser.add_argument('--arms', nargs='+', choices=sorted(ARMS), default=['established', 'track_sc_v1'])
     parser.add_argument('--output')
     args = parser.parse_args()
-    frame = run(args.packet, args.history_races, args.n_sims, args.seeds)
+    frame = run(args.packet, args.history_races, args.n_sims, args.seeds, args.arms)
     metrics = ['finish_mae', 'win_brier', 'podium_brier', 'top10_brier']
     print(frame.groupby('arm')[metrics].mean().round(4).to_string())
     print()

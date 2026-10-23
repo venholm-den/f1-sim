@@ -58,6 +58,8 @@ function navigate(view) {
   $('workflowRun').classList.toggle('active',Boolean(state.manualRunning));
   updateContext();
   document.querySelector('.context-strip').hidden = ['historical','training'].includes(view);
+  // PC following only changes what Setup and Results show; Settings has the full controls.
+  document.querySelector('.automation-strip').hidden = !['setup','dashboard'].includes(view);
   clearTimeout(trainingState.timer);
   clearTimeout(fantasyArchive.timer);
   if(view==='fantasy')safeAction(()=>refreshFantasyArchive());
@@ -186,7 +188,7 @@ function renderResultsDetails() {
   const details=state.outputs.details || {}, run=details.run || {}, saved=state.outputs.savedContext || {};
   $('resultSims').textContent=run.settings?.n_sims ? Number(run.settings.n_sims).toLocaleString() : details.forecastRun?.n_sims ? Number(details.forecastRun.n_sims).toLocaleString() : 'Not recorded';
   $('resultRuntime').textContent=run.elapsed_seconds == null ? 'Not recorded' : `${Number(run.elapsed_seconds).toFixed(1)} s`;
-  $('savedResultLabel').textContent=(state.outputs.summaryTable?.rows || []).length ? `${saved.year || ''} ${saved.event || 'Saved run'} · ${saved.session || ''}` : 'NO SAVED RUN';
+  $('savedResultLabel').textContent=(state.outputs.summaryTable?.rows || []).length ? `${saved.year || ''} ${displayEventName(saved.event) || 'Saved run'} · ${saved.session || ''}` : 'NO SAVED RUN';
   const rows=(state.outputs.summaryTable?.rows || []).slice().sort((a,b)=>Number(b.win_chance)-Number(a.win_chance));
   const notes=[];
   if (rows[0]) notes.push(`${rows[0].Driver} leads the modelled win probabilities at ${pct(rows[0].win_chance)}.`);
@@ -214,7 +216,7 @@ function renderRaceForecast() {
   const report=state.setupWeather || state.outputs.details?.raceWeather;
   const scenarios=report?.scenarios || [], scheduled=scenarios[0], air=scheduled?.best_match?.air_temp_avg;
   const unavailable='<strong>Not captured</strong><p>Fetch a forecast for a future selected race. Historical session observations are shown separately.</p>';
-  const content=scheduled ? `<strong>${air==null?'Temperature unknown':fmt(air,1)+' °C'}</strong><p>${escapeHtml(report.event || readSettings().event)} · race window ${escapeHtml(scheduled.start_utc || '')}<br>Captured ${escapeHtml(report.retrieved_at_utc || 'unknown')}<br>Ensemble wet-hour frequency: ${pct(scheduled.wet_hour_frequency)}</p>` : unavailable;
+  const content=scheduled ? `<strong>${air==null?'Temperature unknown':fmt(air,1)+' °C'}</strong><p>${escapeHtml(report.event || displayEventName(readSettings().event))} · race window ${escapeHtml(scheduled.start_utc || '')}<br>Captured ${escapeHtml(report.retrieved_at_utc || 'unknown')}<br>Ensemble wet-hour frequency: ${pct(scheduled.wet_hour_frequency)}</p>` : unavailable;
   $('raceForecast').innerHTML=content;$('setupWeatherPreview').innerHTML=state.setupWeather?content:unavailable;
   renderTable('delayTable',{columns:scenarios.length?['start','wet_hour_members','complete_members','start_delay_probability']:[],rows:scenarios.map(s=>({start:s.delay_minutes?`Start +${s.delay_minutes} min`:'Scheduled',wet_hour_members:pct(s.wet_hour_frequency),complete_members:`${s.complete_member_count}/${s.member_count}`,start_delay_probability:'Unavailable'}))});
   $('forecastStatus').textContent=report?.status ? `Status: ${report.status}. Target forecast is informational and is not applied to driver probabilities. Delay weights remain uncalibrated.`:'No target-race forecast captured. Missing forecast data remains unknown.';
@@ -228,8 +230,24 @@ function renderSourceCards() {
   $('dataDirectoryDisplay').textContent=path ? path.slice(0,Math.max(path.lastIndexOf('/'),path.lastIndexOf('\\'))) : 'No directory configured';
   if (!$('dataDirectoryInput').value) $('dataDirectoryInput').value=$('dataDirectoryDisplay').textContent;
 }
+// One empty state per analysis view instead of a wall of "Unknown" cards.
+function renderRunEmptyStates() {
+  const hasRun=(state.outputs.summaryTable?.rows || []).length>0;
+  document.body.classList.toggle('no-run',!hasRun);
+  ['dashboard','signals','weather','reliability','strategy'].forEach(view=>{
+    const section=$(`view-${view}`);if(!section)return;
+    let note=section.querySelector(':scope > .run-empty');
+    if(!note){
+      note=document.createElement('div');note.className='run-empty';note.setAttribute('role','status');
+      note.innerHTML='<div><b>No saved run yet</b><p>Run a simulation from Race setup, or turn on Follow PC runs there to load the latest automated forecast.</p></div><button type="button" class="primary">Go to Race setup</button>';
+      note.querySelector('button').addEventListener('click',()=>navigate('setup'));
+      section.prepend(note);
+    }
+    note.hidden=hasRun;
+  });
+}
 function renderWorkbench() {
-  renderSourceCards();renderSignals();renderResultsDetails();renderWeatherPanels();updateWorkbenchContext();
+  renderSourceCards();renderSignals();renderResultsDetails();renderWeatherPanels();updateWorkbenchContext();renderRunEmptyStates();
   $('discordConfiguration').innerHTML='';
   definitions('discordConfiguration',[['Webhook',state.initial?.discordConfigured?'Configured locally':'Not configured'],['Automatic uploads','Off for manual simulations'],['Upload target','Verified frozen forecast in Simulation Centre']]);
 }

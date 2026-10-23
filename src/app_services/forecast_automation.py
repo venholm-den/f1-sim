@@ -223,12 +223,17 @@ def drain_discord_queue(root: Path) -> list[dict]:
     return deliveries
 
 
+# The frozen-forecast protocol shared by PC automation and the Centre's
+# "Forecast next race" button, so both produce comparable snapshots.
+FORECAST_DEFAULTS = {'n_sims': 10_000, 'seed': 42, 'overtaking_difficulty': 0.55}
+
+
 def run_automated_forecast(
     root: Path,
     *,
-    n_sims: int = 10_000,
-    seed: int = 42,
-    overtaking_difficulty: float = 0.55,
+    n_sims: int = FORECAST_DEFAULTS['n_sims'],
+    seed: int = FORECAST_DEFAULTS['seed'],
+    overtaking_difficulty: float = FORECAST_DEFAULTS['overtaking_difficulty'],
     discord_enabled: bool = False,
     post_race_enabled: bool = False,
 ) -> dict:

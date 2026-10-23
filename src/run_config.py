@@ -65,6 +65,10 @@ class ModelSettings:
     race_weather_report_path: str | None = None
     agent_settings: dict | None = None
     safety_car_model: str = 'off'
+    shared_noise_model: str = 'off'
+    grid_sampling_model: str = 'off'
+    grid_penalty_model: str = 'off'
+    sprint_model: str = 'off'
 
     def __post_init__(self):
         if self.pace_blend not in {'legacy', 'single_pace_blend_v1', 'qualifying_partial_pooling_v1'}:
@@ -89,6 +93,15 @@ class ModelSettings:
             raise ValueError('Unknown safety_car_model; choose off or track_sc_v1.')
         if self.safety_car_model != 'off' and self.race_engine == 'agent_laps_v1':
             raise ValueError('The agent engine has its own SC/VSC neutralisation.')
+        for key, allowed in [('shared_noise_model', 'team_noise_v1'),
+                             ('grid_sampling_model', 'estimated_grid_v1'),
+                             ('grid_penalty_model', 'announced_v1'),
+                             ('sprint_model', 'sprint_v1')]:
+            if getattr(self, key) not in {'off', allowed}:
+                raise ValueError(f'Unknown {key}; choose off or {allowed}.')
+        if self.race_engine == 'agent_laps_v1' and (self.shared_noise_model != 'off'
+                                                     or self.grid_sampling_model != 'off'):
+            raise ValueError('Shared noise and grid sampling apply to the aggregate engine only.')
         if self.weather_model not in {'session_legacy', 'race_window_v1'}:
             raise ValueError('Unknown weather_model.')
         if self.weather_model == 'race_window_v1' and not self.use_weather_forecast:
@@ -109,7 +122,11 @@ class AppConfig:
             or self.model.race_engine != 'aggregate_legacy'
             or self.model.weather_model != 'session_legacy'
             or self.model.retirement_model == 'survival_dnf_v1'
-            or self.model.safety_car_model != 'off')
+            or self.model.safety_car_model != 'off'
+            or self.model.shared_noise_model != 'off'
+            or self.model.grid_sampling_model != 'off'
+            or self.model.grid_penalty_model != 'off'
+            or self.model.sprint_model != 'off')
         if next_candidate and self.outputs.post_to_discord:
             raise ValueError('Unpromoted simulation candidates support local output only.')
 
@@ -316,6 +333,10 @@ def load_app_config(
             race_weather_report_path=model.get('race_weather_report_path'),
             agent_settings=model.get('agent_settings'),
             safety_car_model=str(model.get('safety_car_model', 'off')),
+            shared_noise_model=str(model.get('shared_noise_model', 'off')),
+            grid_sampling_model=str(model.get('grid_sampling_model', 'off')),
+            grid_penalty_model=str(model.get('grid_penalty_model', 'off')),
+            sprint_model=str(model.get('sprint_model', 'off')),
         ),
         source_path=str(config_path),
     )
@@ -370,6 +391,10 @@ def config_to_dict(config: AppConfig) -> dict[str, Any]:
             "race_weather_report_path": config.model.race_weather_report_path,
             "agent_settings": config.model.agent_settings,
             "safety_car_model": config.model.safety_car_model,
+            "shared_noise_model": config.model.shared_noise_model,
+            "grid_sampling_model": config.model.grid_sampling_model,
+            "grid_penalty_model": config.model.grid_penalty_model,
+            "sprint_model": config.model.sprint_model,
         },
         "source_path": config.source_path,
     }

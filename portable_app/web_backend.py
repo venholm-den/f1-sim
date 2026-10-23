@@ -827,7 +827,13 @@ class PortableWebApi:
 
     def lab_state(self, source_dir='outputs'):
         from src.app_services.discord_settings import local_webhook
-        return {**self._jobs.state(source_dir), 'discord_configured': bool(local_webhook(self._jobs.root))}
+        from src.app_services.forecast_automation import FORECAST_DEFAULTS
+        defaults = self.default_settings
+        return {**self._jobs.state(source_dir), 'discord_configured': bool(local_webhook(self._jobs.root)),
+                # Same Race Setup defaults in both windows; frozen forecasts keep their own protocol.
+                'run_defaults': {'n_sims': defaults.n_sims, 'seed': defaults.random_seed,
+                                 'overtaking_difficulty': defaults.default_overtaking_difficulty},
+                'forecast_defaults': dict(FORECAST_DEFAULTS)}
 
     def lab_historical_events(self, year):
         from src.app_services.historical_runs import historical_events
