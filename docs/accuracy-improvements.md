@@ -1,5 +1,8 @@
 # Accuracy improvements and validation
 
+The [single degradation candidate](single-degradation.md) counts tyre wear
+once instead of four times and is compared offline against the live engine.
+
 The [23 October cohort and qualifying-pace follow-up](qualifying-pace-followup.md)
 preserves the four-arm prospective suite, independently investigates the nine
 Q exclusions and defines the next isolated pace comparison.
