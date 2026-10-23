@@ -12,7 +12,8 @@ FEATURE_VARIANTS = ('legacy', 'decoupled_dnf_v1', 'normalised_history_v1')
 AUDIT_VARIANTS = ('legacy', 'all_cause_dnf_v2', 'single_pace_blend_v1', 'q_grid_3_3_v1')
 REVISION_VARIANTS = ('legacy', 'single_pace_blend_v1', 'all_cause_dnf_v2',
                      'retirement_progress_v1', 'single_pace_retirement_v1')
-NEXT_VARIANTS = ('qualifying_partial_pooling_v1', 'pit_scenarios_v1', 'survival_dnf_v1', 'agent_laps_v1')
+NEXT_VARIANTS = ('qualifying_partial_pooling_v1', 'pit_scenarios_v1', 'survival_dnf_v1', 'agent_laps_v1',
+                 'agent_pair_overtaking_v1')
 DEGRADATION_VARIANTS = ('legacy', 'single_degradation_v1')
 SUPPORTED_VARIANTS = tuple(dict.fromkeys(FEATURE_VARIANTS + AUDIT_VARIANTS + REVISION_VARIANTS
                                          + NEXT_VARIANTS + DEGRADATION_VARIANTS))
@@ -39,6 +40,8 @@ def candidate_simulation_options(variant, features):
         options['pit_plans'] = assumed_plans(features, features.estimated_race_laps.median())
     if variant == 'agent_laps_v1':
         options['agent_settings'] = {}  # track difficulty supplies an explicit passability proxy
+    if variant == 'agent_pair_overtaking_v1':
+        options['agent_settings'] = {'pair_pass_model': 'pair_overtaking_v1'}
     if variant == 'single_degradation_v1':
         options['single_degradation_multiplier'] = SINGLE_DEGRADATION_MULTIPLIER
     return options

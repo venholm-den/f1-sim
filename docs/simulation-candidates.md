@@ -125,6 +125,11 @@ penalties with fuel/tyre state, physical traffic, explicit pit delays, passing
 and lapping. Its assumptions and dry-race limitations are explicit; all live
 defaults and promotion gates remain unchanged.
 
+Set `model.agent_settings.pair_pass_model` to `pair_overtaking_v1` to replace
+the agent engine's single passability factor with a per-pair pass probability
+fitted on 2026 timing data (pace, tyre age, compound and track difficulty). See
+[pair-overtaking.md](pair-overtaking.md).
+
 ## Track-rate safety cars
 
 Set `model.safety_car_model` to `track_sc_v1` to add safety cars to the

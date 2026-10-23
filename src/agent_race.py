@@ -55,11 +55,22 @@ class AgentSettings:
     sc_pit_loss_fraction: float = .6
     vsc_pit_loss_fraction: float = .8
     pit_stationary_seconds: float = 2.5
+    # Fitted per-pair pass model (src/pair_overtaking.py); replaces passability
+    # and the pass logistic when set. The version name loads the saved fit.
+    pair_pass_model: dict | str | None = None
 
     def __post_init__(self):
+        if self.pair_pass_model is not None:
+            from src.pair_overtaking import VERSION as PAIR_VERSION, load_model, validate_model
+            model = self.pair_pass_model
+            if isinstance(model, str):
+                if model != PAIR_VERSION:
+                    raise ValueError('Unknown pair pass model.')
+                model = load_model()
+            object.__setattr__(self, 'pair_pass_model', dict(validate_model(model)))
         for key, value in asdict(self).items():
             if key in {'overtaking_aid', 'season_year', 'neutralised_windows',
-                       'neutralisation_model', 'neutralisation_events'}:
+                       'neutralisation_model', 'neutralisation_events', 'pair_pass_model'}:
                 continue
             if isinstance(value, bool) or not np.isfinite(value):
                 raise ValueError(f'Invalid agent setting: {key}.')
@@ -130,6 +141,18 @@ def _plan_tables(plans, race_laps):
     return tuple(np.asarray(x) for x in (offset, slope, ages, stops))
 
 
+def _plan_softness(plans, race_laps):
+    """Compound softness [plan, lap] for the pair pass model (HARD 0 .. SOFT 2)."""
+    from src.pair_overtaking import SOFTNESS
+    table = np.ones((len(plans), race_laps + 1))
+    for row, plan in zip(table, plans):
+        for start, end, compound in zip([0, *plan['pit_laps']], [*plan['pit_laps'], race_laps],
+                                        plan['compounds']):
+            row[start:end] = SOFTNESS.get(compound, 1)
+        row[-1] = row[-2]
+    return table
+
+
 def run_agents(lap_pace, grid, race_laps, plans, plan_ids, retirement_laps, *,
                settings=None, seed=42, record_trace=False):
     """Vectorised independent races with synchronous, two-phase position updates.
@@ -156,6 +179,7 @@ def run_agents(lap_pace, grid, race_laps, plans, plan_ids, retirement_laps, *,
     if record_trace and pace.shape[0] != 1:
         raise ValueError('Record a trace for one race at a time.')
     offset, slope, ages, pit_after = _plan_tables(plans, race_laps)
+    softness = _plan_softness(plans, race_laps) if cfg.pair_pass_model is not None else None
     rng = np.random.default_rng(np.random.SeedSequence([seed, 6183]))
     shape = pace.shape
     from src.neutralisation import sample_schedules
@@ -246,8 +270,16 @@ def run_agents(lap_pace, grid, race_laps, plans, plan_ids, retirement_laps, *,
         contact = on_track & (movement > gap_laps + ahead_move - cfg.minimum_gap_seconds / ahead_clean)
         lapping = progress - np.take_along_axis(progress, ahead, axis=1) > .5
         # Per-lap probability converted to the step's time exposure (no timestep lottery).
-        advantage = ahead_clean - clean
-        p_lap = cfg.passability / (1 + np.exp(-np.clip(cfg.pass_intercept + cfg.pass_pace_slope * advantage, -50, 50)))
+        if cfg.pair_pass_model is None:
+            advantage = ahead_clean - clean
+            p_lap = cfg.passability / (1 + np.exp(-np.clip(cfg.pass_intercept + cfg.pass_pace_slope * advantage, -50, 50)))
+        else:
+            from src.pair_overtaking import lap_probability
+            # Same follower-advantage deltas the model was fitted on.
+            soft = softness[plan_ids, completed]
+            p_lap = lap_probability(cfg.pair_pass_model, np.take_along_axis(pace, ahead, axis=1) - pace,
+                                    np.take_along_axis(age, ahead, axis=1) - age,
+                                    soft - np.take_along_axis(soft, ahead, axis=1))
         p_step = -np.expm1(np.log1p(-np.minimum(p_lap, 1 - 1e-12)) * available / clean)
         approve = close & ~neutralised & ((pass_target == ahead) | (contact &
             (lapping | ((follow >= cfg.following_laps * clean) & (rng.random(shape) < p_step)))))
@@ -335,6 +367,13 @@ def simulate_agent_races(base, n_sims, seed, *, pit_plans=None, settings=None,
     from src.simulate import _points_for_positions, summarise_results
     values = dict(settings or {})
     values.setdefault('passability', 1. - float(overtaking_difficulty))
+    if values.get('pair_pass_model') is not None:
+        from src.pair_overtaking import VERSION as PAIR_VERSION, load_model
+        model = values['pair_pass_model']
+        model = dict(load_model() if model == PAIR_VERSION else model)
+        # The track term uses this race's difficulty unless the caller fixed one.
+        model.setdefault('track_difficulty', float(overtaking_difficulty))
+        values['pair_pass_model'] = model
     cfg = AgentSettings(**values)
     if not isinstance(n_sims, int) or isinstance(n_sims, bool) or n_sims < 1:
         raise ValueError('n_sims must be a positive integer.')
