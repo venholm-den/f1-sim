@@ -108,6 +108,23 @@ def test_pit_scenarios_change_race_time_and_avoid_double_degradation_penalty():
         simulate_races(features, n_sims=10, pit_plans=[{**p, 'weight': .5} for p in plans])
 
 
+def test_pit_scenarios_weight_pace_like_the_established_engine():
+    features = _minimal_features()
+    plans = [p for p in assumed_plans(features, 66) if len(p['pit_laps']) == 1]
+    for plan in plans:
+        plan['weight'] = 1.
+    slower = features.copy()
+    slower.loc[0, 'race_pace_score'] += .5
+    driver = features.Driver.iloc[0]
+    for kwargs in ({}, {'pit_plans': plans}):
+        _, _, first = simulate_races(features, n_sims=50, seed=42, **kwargs)
+        _, _, second = simulate_races(slower, n_sims=50, seed=42, **kwargs)
+        rows = first.Driver.eq(driver) & ~first.red_flag
+        gap = (second.projected_race_time_seconds - first.projected_race_time_seconds)[rows]
+        # 0.5 s/lap over 66 laps at race_pace_seconds_multiplier 0.20.
+        assert gap.to_numpy() == pytest.approx(.5 * 66 * .20)
+
+
 def test_survival_uses_censoring_and_preserves_unspecified_cause():
     features = _minimal_features()
     results = pd.DataFrame({'Abbreviation': ['RUS', 'HAM', 'ANT', 'LEC', 'UNK', 'DNS'],
