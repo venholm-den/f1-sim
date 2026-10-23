@@ -783,7 +783,12 @@ def main() -> None:
         path=app_config.data.track_profiles_path,
         metadata=metadata,
     )
+    if app_config.model.track_profile_model == 'calibrated_v1':
+        from src.track_calibration import apply_track_calibration
+        track_profile = apply_track_calibration(track_profile)
+        print(f"- track factors: {track_profile['calibration_status']}")
     metadata['venue'].update(profile_status=track_profile['profile_status'],
+        calibration_status=track_profile.get('calibration_status', 'active_profile'),
         track_factors={key: track_profile[key] for key in
                       ('overtaking_difficulty', 'safety_car_chance', 'red_flag_base_chance')})
     Path(_output_path(output_dir, 'venue_context.json')).write_text(

@@ -20,6 +20,7 @@ import pandas as pd
 from src.pit_scenarios import assumed_plans
 from src.simulate import simulate_races
 from src.track import load_track_profile
+from src.track_calibration import apply_track_calibration
 
 DEFAULT_PACKET = 'data/recent_baselines/singapore-20261005-v4-venues'
 
@@ -61,6 +62,11 @@ ARMS = {
     'estimated_grid_v1': (lambda f, p: _estimated(f), lambda f, p: {'sample_estimated_grid': True}),
     'pit_scenarios_v1': (lambda f, p: f, lambda f, p: {'pit_plans': assumed_plans(f, f.estimated_race_laps.iloc[0])}),
 }
+# Same engines with track_profile_model calibrated_v1 factors.
+CALIBRATED = {'calibrated_sc': 'track_sc_v1', 'calibrated_overtaking': 'established',
+              'calibrated_v1': 'track_sc_v1'}
+for _arm, _base in CALIBRATED.items():
+    ARMS[_arm] = ARMS[_base]
 
 
 def _score(summary, actual):
@@ -86,15 +92,23 @@ def run(packet, history_races, n_sims, seeds, arms=('established', 'track_sc_v1'
         history = pace[pace.source_round.between(round_ - history_races, round_ - 1)]
         features = _features(history, race, laps)
         actual = race.rename(columns={'Abbreviation': 'Driver'})[['Driver', 'Position']]
+        calibrated = apply_track_calibration(profile)
         for seed in seeds:
             for arm in arms:
                 transform, options = ARMS[arm]
-                arm_features = transform(features, profile)
+                arm_profile = dict(profile)
+                if arm in ('calibrated_sc', 'calibrated_v1'):
+                    arm_profile['safety_car_chance'] = calibrated['safety_car_chance']
+                if arm in ('calibrated_overtaking', 'calibrated_v1'):
+                    arm_profile['overtaking_difficulty'] = calibrated['overtaking_difficulty']
+                arm_features = transform(features, arm_profile)
                 summary, _, _ = simulate_races(arm_features, n_sims=n_sims, seed=seed,
-                                               overtaking_difficulty=profile['overtaking_difficulty'],
-                                               **options(arm_features, profile))
+                                               overtaking_difficulty=arm_profile['overtaking_difficulty'],
+                                               **options(arm_features, arm_profile))
                 rows.append({'round': int(round_), 'event': event, 'seed': seed, 'arm': arm,
-                             'sc_chance': profile['safety_car_chance'], 'profile_status': profile['profile_status'],
+                             'sc_chance': arm_profile['safety_car_chance'],
+                             'overtaking_difficulty': arm_profile['overtaking_difficulty'],
+                             'profile_status': profile['profile_status'],
                              'actual_sc': bool(control.loc[round_, 'safety_car_flag']), **_score(summary, actual)})
     return pd.DataFrame(rows)
 
