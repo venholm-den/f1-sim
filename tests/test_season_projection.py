@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from datetime import datetime
+import os
 from pathlib import Path
 
 import pandas as pd
@@ -112,8 +113,9 @@ def test_load_latest_snapshot_projection_reads_newest_matching_round(tmp_path) -
         }
     ).to_csv(new_path, index=False)
 
-    old_path.touch()
-    new_path.touch()
+    # Explicit times: two quick writes can share an mtime on coarse filesystems.
+    os.utime(old_path, (1_700_000_000, 1_700_000_000))
+    os.utime(new_path, (1_700_000_100, 1_700_000_100))
 
     projection = load_latest_snapshot_projection(2, tmp_path)
 
