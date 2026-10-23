@@ -46,7 +46,8 @@ def prepare_historical(job, folder):
     output_stream = sys.stdout
     code = run_pipeline_with_config(config_path, lambda text: print(text, end='', flush=True, file=output_stream))
     if code:
-        raise RuntimeError('Historical input preparation failed. See the pipeline error above.')
+        from src.app_services import run_service
+        raise RuntimeError('Historical input preparation failed. See the pipeline error above.') from run_service.last_failure
     shutil.copy2(source/'driver_model_features.csv', folder/'features.csv')
     strategy = source/'strategy/predicted_tyre_strategy.csv'
     if strategy.is_file():
@@ -55,6 +56,27 @@ def prepare_historical(job, folder):
 
 
 def run(folder: Path):
+    try:
+        _run(folder)
+    except Exception as exc:
+        record_failure(folder, exc)
+        raise
+
+
+def record_failure(folder: Path, exc: BaseException):
+    """Leave one plain-language reason beside the log for the app to show."""
+    from src.app_services.load_errors import session_load_message
+    message = session_load_message(exc)
+    if message:
+        print(f'\n{message}\n', flush=True)
+    try:
+        write_json(folder/'failure.json', {'message': message or str(exc) or type(exc).__name__,
+                                           'session_load': bool(message)})
+    except OSError:
+        pass
+
+
+def _run(folder: Path):
     from src.app_services.f1_account import configure_worker_auth
     configure_worker_auth()
     job = json.loads((folder/'job.json').read_text(encoding='utf-8'))
@@ -69,7 +91,8 @@ def run(folder: Path):
         code = run_pipeline_with_config(config_path,
             lambda text: print(text, end='', file=output_stream, flush=True))
         if code:
-            raise RuntimeError('Race Setup failed. See the pipeline error above.')
+            from src.app_services import run_service
+            raise RuntimeError('Race Setup failed. See the pipeline error above.') from run_service.last_failure
         output = Path(config['outputs']['output_dir'])
         write_json(output/'ui_run.json', {'settings': config['run'],
             'completed_at_utc': datetime.now(timezone.utc).isoformat(),

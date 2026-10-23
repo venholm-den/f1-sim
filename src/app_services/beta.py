@@ -206,7 +206,8 @@ def run_forecast(folder, job, context=None):
     code = run_pipeline_with_config(folder/'forecast_config.json',
         lambda text: print(text, end='', file=output_stream, flush=True))
     if code:
-        raise RuntimeError('Forecast preparation failed; no frozen prediction was created.')
+        from src.app_services import run_service
+        raise RuntimeError('Forecast preparation failed; no frozen prediction was created.') from run_service.last_failure
     # Archive the physical identity actually used by the pipeline, including
     # any disagreement with the calendar. It controls every downstream input.
     if not (source/'venue_context.json').is_file():

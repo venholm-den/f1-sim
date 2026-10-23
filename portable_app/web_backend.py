@@ -55,7 +55,13 @@ QUALI_SESSIONS = {"Q", "SQ"}
 RACE_SESSIONS = {"R", "S"}
 
 
+WORKSPACE_ENV = 'RACEWORKBENCH_WORKSPACE'
+
+
 def project_root() -> Path:
+    # web_main records the chosen workspace so caches and archives follow it.
+    if os.environ.get(WORKSPACE_ENV):
+        return Path(os.environ[WORKSPACE_ENV])
     if getattr(sys, 'frozen', False):
         return Path.cwd()
     return Path(__file__).resolve().parents[1]
@@ -1113,7 +1119,7 @@ class PortableWebApi:
         data = self._jobs.status(self._manual_job)
         running = data['status'] in {'running', 'cancelling'}
         self.run_state.update(running=running, log=data['log'], status=data['status'],
-                              exitCode=data.get('exit_code'))
+                              exitCode=data.get('exit_code'), error=data.get('error'))
         if not running:
             self.run_state['elapsedSeconds'] = round(time.monotonic()-self.run_state['started'], 2)
             if data['status'] == 'completed':

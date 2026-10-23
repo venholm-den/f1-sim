@@ -267,6 +267,12 @@ class SimulationJobs:
             if context_path.is_file():
                 context = json.loads(context_path.read_text(encoding='utf-8'))
                 data['label'] = f"Next race · {context['year']} {context['event']} · {context['session']}"
+            failure = path.parent/'failure.json'
+            if data['status'] == 'failed' and failure.is_file():
+                try:
+                    data['error'] = json.loads(failure.read_text(encoding='utf-8'))['message']
+                except (OSError, ValueError, KeyError):
+                    pass
             data.update(exit_code=code, finished_at=datetime.now(timezone.utc).isoformat())
             write_json(path, data)
 
