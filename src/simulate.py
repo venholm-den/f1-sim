@@ -265,6 +265,7 @@ def simulate_races(
     pit_plans: list[dict] | None = None,
     agent_settings: dict | None = None,
     safety_car_probability: float | None = None,
+    multi_safety_car_probability: float | None = None,
     single_degradation_multiplier: float | None = None,
     team_noise_seconds: float | None = None,
     sample_estimated_grid: bool = False,
@@ -281,6 +282,8 @@ def simulate_races(
 
     safety_car_probability enables the opt-in track_sc_v1 candidate
     (src/safety_car.py); None keeps the established engine unchanged.
+    multi_safety_car_probability enables multi_sc_v1 instead: up to three SCs
+    and three VSCs per race, more likely in sims with more retirements.
     team_noise_seconds enables team_noise_v1 (src/shared_noise.py) and
     sample_estimated_grid enables estimated_grid_v1 (src/grid_penalties.py);
     both use their own random streams.
@@ -288,13 +291,15 @@ def simulate_races(
 
     if retirement_classification not in {'legacy', 'completed_laps_v1'}:
         raise ValueError('Unknown retirement classification.')
+    if safety_car_probability is not None and multi_safety_car_probability is not None:
+        raise ValueError('Choose one safety-car candidate.')
     base = _prepare_features(features)
 
     if agent_settings is not None:
         from src.agent_race import simulate_agent_races
         if grid_loss_multiplier is not None:
             raise ValueError('Agent traffic replaces aggregate grid loss.')
-        if safety_car_probability is not None:
+        if safety_car_probability is not None or multi_safety_car_probability is not None:
             raise ValueError('The agent engine has its own SC/VSC neutralisation.')
         if team_noise_seconds is not None or sample_estimated_grid:
             raise ValueError('Shared noise and grid sampling apply to the aggregate engine only.')
@@ -522,6 +527,14 @@ def simulate_races(
 
     dnf_penalty = rng.uniform(600.0, 1600.0, size=(n_sims, n_drivers))
 
+    vsc_counts = None
+    if multi_safety_car_probability is not None:
+        from src.safety_car import apply_neutralisations
+        # Applied once retirements are drawn so neutralisations follow them;
+        # its own stream leaves the draws above and below unchanged.
+        projected_times, safety_cars, vsc_counts = apply_neutralisations(
+            projected_times, dnf_matrix, multi_safety_car_probability, race_laps, seed)
+
     classified_times = np.where(
         dnf_matrix,
         projected_times + dnf_penalty,
@@ -638,7 +651,13 @@ def simulate_races(
             driver_records['grid_sampling_model'] = 'estimated_grid_v1'
         if team_noise_seconds is not None:
             driver_records['shared_noise_model'] = 'team_noise_v1'
-        if safety_cars is not None:
+        if vsc_counts is not None:
+            driver_records['safety_car'] = safety_cars > 0
+            driver_records['safety_car_count'] = safety_cars
+            driver_records['vsc_count'] = vsc_counts
+            driver_records['safety_car_probability'] = float(multi_safety_car_probability)
+            driver_records['safety_car_model'] = 'multi_sc_v1'
+        elif safety_cars is not None:
             driver_records['safety_car'] = safety_cars
             driver_records['safety_car_probability'] = float(safety_car_probability)
         if completed_laps is not None:
@@ -693,6 +712,9 @@ def summarise_results(base, results, grid_loss_multiplier):
             "red_flag_chance": float(group["red_flag"].mean()),
             **({"safety_car_chance": float(group["safety_car"].mean())}
                if "safety_car" in group else {}),
+            **({"avg_safety_cars": float(group["safety_car_count"].mean()),
+                "vsc_chance": float(group["vsc_count"].gt(0).mean())}
+               if "vsc_count" in group else {}),
             "avg_projected_race_time_seconds": float(
                 group["projected_race_time_seconds"].mean()
             ),

@@ -1086,6 +1086,8 @@ def main() -> None:
         retirement_options['agent_settings'] = asdict(AgentSettings(**settings))
     if app_config.model.safety_car_model == 'track_sc_v1':
         retirement_options['safety_car_probability'] = float(track_profile['safety_car_chance'])
+    elif app_config.model.safety_car_model == 'multi_sc_v1':
+        retirement_options['multi_safety_car_probability'] = float(track_profile['safety_car_chance'])
     if app_config.model.shared_noise_model == 'team_noise_v1':
         retirement_options['team_noise_seconds'] = 3.0
     if app_config.model.grid_sampling_model == 'estimated_grid_v1':

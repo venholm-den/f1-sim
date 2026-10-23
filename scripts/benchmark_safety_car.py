@@ -57,6 +57,7 @@ def _estimated(features):
 ARMS = {
     'established': (lambda f, p: f, lambda f, p: {}),
     'track_sc_v1': (lambda f, p: f, lambda f, p: {'safety_car_probability': p['safety_car_chance']}),
+    'multi_sc_v1': (lambda f, p: f, lambda f, p: {'multi_safety_car_probability': p['safety_car_chance']}),
     'team_noise_v1': (lambda f, p: f, lambda f, p: {'team_noise_seconds': 3.0}),
     'estimated_grid': (lambda f, p: _estimated(f), lambda f, p: {}),
     'estimated_grid_v1': (lambda f, p: _estimated(f), lambda f, p: {'sample_estimated_grid': True}),
@@ -64,7 +65,7 @@ ARMS = {
 }
 # Same engines with track_profile_model calibrated_v1 factors.
 CALIBRATED = {'calibrated_sc': 'track_sc_v1', 'calibrated_overtaking': 'established',
-              'calibrated_v1': 'track_sc_v1'}
+              'calibrated_v1': 'track_sc_v1', 'calibrated_multi_sc': 'multi_sc_v1'}
 for _arm, _base in CALIBRATED.items():
     ARMS[_arm] = ARMS[_base]
 
@@ -97,7 +98,7 @@ def run(packet, history_races, n_sims, seeds, arms=('established', 'track_sc_v1'
             for arm in arms:
                 transform, options = ARMS[arm]
                 arm_profile = dict(profile)
-                if arm in ('calibrated_sc', 'calibrated_v1'):
+                if arm in ('calibrated_sc', 'calibrated_v1', 'calibrated_multi_sc'):
                     arm_profile['safety_car_chance'] = calibrated['safety_car_chance']
                 if arm in ('calibrated_overtaking', 'calibrated_v1'):
                     arm_profile['overtaking_difficulty'] = calibrated['overtaking_difficulty']

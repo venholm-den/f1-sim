@@ -178,3 +178,23 @@ def test_safety_car_rejects_invalid_probability_and_agent_engine() -> None:
     with pytest.raises(ValueError, match="neutralisation"):
         simulate_races(_minimal_features(), n_sims=10, safety_car_probability=0.4,
                        agent_settings={})
+
+
+def test_multi_safety_car_candidate_keeps_default_draws_and_reports_counts() -> None:
+    default = simulate_races(_minimal_features(), n_sims=2000, seed=42)
+    multi = simulate_races(_minimal_features(), n_sims=2000, seed=42,
+                           multi_safety_car_probability=0.5)
+    again = simulate_races(_minimal_features(), n_sims=2000, seed=42,
+                           multi_safety_car_probability=0.5)
+    pd.testing.assert_frame_equal(multi[0], again[0])
+    assert (default[2]["dnf"].to_numpy() == multi[2]["dnf"].to_numpy()).all()
+    assert 0.45 < multi[0]["safety_car_chance"].iloc[0] < 0.55
+    assert 0.35 < multi[0]["vsc_chance"].iloc[0] < 0.45
+    assert multi[2]["safety_car_model"].eq("multi_sc_v1").all()
+    assert multi[2]["safety_car_count"].max() <= 3
+    with pytest.raises(ValueError, match="one safety-car"):
+        simulate_races(_minimal_features(), n_sims=10, safety_car_probability=0.4,
+                       multi_safety_car_probability=0.4)
+    with pytest.raises(ValueError, match="neutralisation"):
+        simulate_races(_minimal_features(), n_sims=10, multi_safety_car_probability=0.4,
+                       agent_settings={})

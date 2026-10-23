@@ -156,6 +156,58 @@ candidate. The profiles average a 42% SC chance against 54% observed in those
 races, and six of the 13 used generic placeholders, so calibrating track SC rates
 (`scripts.calibrate_circuits`) is the obvious next step.
 
+### Multiple safety cars and VSCs (`multi_sc_v1`)
+
+Set `model.safety_car_model` to `multi_sc_v1` instead of `track_sc_v1` to let
+a race have up to three SCs and, separately, up to three VSCs
+(`apply_neutralisations` in `src/safety_car.py`). The structure follows the
+probabilistic race simulation published by TU Munich (Heilmeier et al., 2020):
+a count of each phase per race, a start lap with the race start weighted on its
+own, and a length in laps. It was re-implemented from that description; no code
+was copied. The numbers come from 131 archived races (2021-2026, TrackStatus 4
+for SC and 6/7 for VSC, a VSC upgraded to an SC counted once):
+
+| Assumption | SC | VSC |
+| --- | --- | --- |
+| Races with at least one | track `SafetyCarChance` | 40% (52 of 131) |
+| Count when there is one (1 / 2 / 3) | 71% / 22% / 7% | 63% / 27% / 10% |
+| Start lap | 21% on lap 1, else uniform | uniform |
+| Length in leader laps | 1-8, mostly 2-4 | 1 (74%), 2 (23%), 3 |
+| Retirement weight `w` | 1.40 | 1.30 |
+
+Retirements tie the phases to the race: the chance of any phase in a simulated
+race is `1 - exp(-m (1 + w x retirements))`, with `w` from a Poisson fit on the
+archive and `m` solved per run so the average SC chance still equals the track's.
+In the archive a race with no retirements had 0.07 SCs and one with five had 1.18.
+The candidate therefore runs after retirements are drawn, on its own random
+stream, so every established draw is unchanged.
+
+Gaps accrue only on green laps. Each SC cuts the gap built before it to the 10%
+queue residual, so two SCs erase more than one and a lap-1 SC erases almost
+nothing. A VSC keeps time gaps. Each driver takes at most one discounted stop,
+at the first phase that starts between 15% and 80% distance, with 60%
+probability: 10 seconds under an SC, 5 under a VSC. Restarts add 1.5 seconds of
+noise per SC and 0.5 per VSC. Raw results gain `safety_car_count` and
+`vsc_count`; the summary gains `avg_safety_cars` and `vsc_chance`. Phases are not
+placed on the lap a car retires, and overlapping phases are not merged.
+
+`python -m scripts.benchmark_safety_car --arms established track_sc_v1
+multi_sc_v1 calibrated_sc calibrated_multi_sc` on the same packet and seeds:
+
+| Arm | Finish MAE | Win Brier | Podium Brier | Top-10 Brier |
+| --- | ---: | ---: | ---: | ---: |
+| Established engine | 3.664 | 0.0307 | 0.0730 | 0.1846 |
+| `track_sc_v1` | 3.671 | 0.0303 | 0.0722 | 0.1791 |
+| `multi_sc_v1` | 3.671 | 0.0304 | 0.0721 | 0.1779 |
+| `track_sc_v1`, calibrated SC chances | 3.676 | 0.0300 | 0.0722 | 0.1776 |
+| `multi_sc_v1`, calibrated SC chances | 3.678 | 0.0300 | 0.0720 | 0.1764 |
+
+Against `track_sc_v1`, top-10 Brier improved in 9 of 13 races and podium Brier
+in 8; finish MAE is flat. The gain over the established engine (3.6% on top-10
+Brier) is still below the 5% promotion gate, the races were already inspected,
+and 17 of the archive races used for the assumptions are 2026 races, including
+these. It stays a local-only candidate.
+
 Set `model.track_profile_model` to `calibrated_v1` to use calibrated SC chances
 and overtaking difficulties for the 13 placeholder circuits instead. Method,
 values and benchmark are in
