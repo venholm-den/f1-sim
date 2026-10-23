@@ -1,0 +1,74 @@
+/* Session replay and telemetry review. Colours come from the app.css tokens. */
+.replay-picker{margin-bottom:14px}
+.replay-picker-row{display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap}
+.replay-session-field{flex:1;min-width:280px}
+.replay-picker-row button{min-height:38px}
+.replay-layout{display:grid;grid-template-columns:minmax(0,2.1fr) minmax(300px,1fr);gap:14px;margin-bottom:14px}
+.replay-layout>.panel{margin:0}
+.replay-stage .panel-header{justify-content:space-between;gap:12px}
+.replay-track{position:relative;aspect-ratio:16/10;margin-top:12px}
+.replay-outline{fill:none;stroke:var(--line);stroke-width:9;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.replay-car{cursor:pointer;transition:opacity .2s}
+.replay-car circle{fill:var(--car);stroke:var(--bg);stroke-width:1.5;vector-effect:non-scaling-stroke}
+.replay-car text{fill:var(--text);font-weight:600;paint-order:stroke;stroke:var(--bg);stroke-width:3px;stroke-linejoin:round}
+.replay-car.focused circle{stroke:var(--text);stroke-width:3}
+.replay-car.dimmed{opacity:.35}
+.replay-overlay{position:absolute;bottom:10px;left:10px;padding:5px 9px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--muted);font-size:12px}
+.replay-flag{padding:5px 10px;border-radius:6px;font-size:12px;font-weight:600;border:1px solid currentColor;white-space:nowrap}
+.replay-flag[data-tone=amber],.replay-flag[data-tone=yellow]{color:var(--amber)}
+.replay-flag[data-tone=red]{color:var(--red)}
+.replay-controls{display:flex;align-items:center;gap:8px;margin-top:12px}
+.replay-controls input[type=range]{flex:1;min-width:120px}
+.replay-controls select{width:auto;min-height:32px;padding:4px 10px}
+.replay-play{min-width:44px;min-height:36px;font-size:14px}
+.replay-controls .mini-button{min-height:36px;min-width:36px}
+.replay-clock{min-width:140px;text-align:right;font-variant-numeric:tabular-nums;color:var(--text-2);font-size:12px}
+.replay-order{max-height:620px;overflow:auto;margin-top:10px}
+.replay-order td{font-variant-numeric:tabular-nums}
+.replay-order tr.focused td{background:var(--red-tint)}
+.replay-team{display:block;color:var(--subtle);font-size:10px;margin-top:2px;max-width:150px;overflow:hidden;text-overflow:ellipsis}
+.driver-swatch{display:inline-block;width:4px;height:22px;margin-right:8px;vertical-align:middle;border-radius:2px;background:var(--car)}
+.driver-swatch.dashed{background:repeating-linear-gradient(var(--car) 0 4px,transparent 4px 7px)}
+.pit-tag{color:var(--amber);font-size:10px;font-weight:600}
+.tyre-dot{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;border:2px solid var(--subtle);font-size:10px;font-weight:700;color:var(--text)}
+.tyre-dot.soft{border-color:var(--red)}.tyre-dot.medium{border-color:var(--amber)}.tyre-dot.hard{border-color:var(--text)}
+.tyre-dot.intermediate{border-color:var(--green)}.tyre-dot.wet{border-color:var(--blue)}
+.replay-chart{overflow-x:auto;margin-top:10px}
+.replay-chart svg,.telemetry-charts svg{display:block;max-width:100%;height:auto}
+.replay-chart .grid{stroke:var(--line-subtle)}
+.replay-chart .axis,.telemetry-charts .axis{fill:var(--subtle);font-size:11px}
+.lap-line{cursor:pointer}
+.lap-line polyline{fill:none;stroke:var(--car);stroke-width:2;stroke-linejoin:round}
+.lap-line text{fill:var(--car);font-size:11px;font-weight:600}
+.lap-line.focused polyline{stroke-width:4}
+.lap-line.dimmed{opacity:.2}
+.lap-cursor{stroke:var(--text-2);stroke-dasharray:3 3}
+.telemetry-controls{display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap;margin-top:12px}
+.telemetry-pick{display:flex;gap:6px;margin:0;padding:8px 10px 10px;border:1px solid var(--line);border-radius:8px;min-width:280px}
+.telemetry-pick legend{padding:0 4px;font-size:11px;font-weight:700}
+.telemetry-pick.a legend,.tel-lap.a span,.telemetry-readout .a b{color:var(--blue)}
+.telemetry-pick.b legend,.tel-lap.b span,.telemetry-readout .b b{color:var(--orange)}
+.telemetry-controls button{min-height:38px}
+.telemetry-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,320px);gap:14px;margin-top:12px}
+.telemetry-chart{border-bottom:1px solid var(--line-subtle)}
+.telemetry-charts .plot{fill:transparent}
+.telemetry-charts .channel-label{fill:var(--text);font-size:12px;font-weight:600}
+.telemetry-charts .trace{fill:none;stroke-width:1.6;stroke-linejoin:round}
+.telemetry-charts .trace.a{stroke:var(--blue)}
+.telemetry-charts .trace.b{stroke:var(--orange);stroke-dasharray:5 3}
+.telemetry-charts .trace.delta{stroke:var(--text-2)}
+.telemetry-charts .zero{stroke:var(--line)}
+.telemetry-charts .hover-line{stroke:var(--text-2);stroke-width:1}
+.telemetry-track{aspect-ratio:1/1}
+.telemetry-track path{stroke-width:4}
+.tel-marker{stroke:var(--bg);stroke-width:2;vector-effect:non-scaling-stroke}
+.tel-marker.a{fill:var(--blue)}.tel-marker.b{fill:var(--orange)}
+.telemetry-summary{display:grid;gap:8px;margin-top:12px}
+.tel-lap{padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+.tel-lap span{display:block;font-size:11px;font-weight:700}
+.tel-lap strong{display:block;font-size:18px;margin:3px 0;font-variant-numeric:tabular-nums}
+.tel-lap small{color:var(--muted);font-size:11px}
+.tel-gap{color:var(--text-2);font-size:12px}
+.tel-gap .tel-a{color:var(--blue)}.tel-gap .tel-b{color:var(--orange)}
+.telemetry-readout{display:grid;gap:4px;margin-top:10px;font-size:12px;color:var(--text-2);font-variant-numeric:tabular-nums}
+@media (max-width:1180px){.replay-layout,.telemetry-layout{grid-template-columns:1fr}}

@@ -15,6 +15,7 @@ METHODS = {'lab_state','lab_start','lab_status','lab_results','lab_cancel','lab_
            'workbench_compare','workbench_weather','workbench_history',
            'historical_state','historical_start','historical_preview','historical_export','historical_open',
            'historical_auth_state','historical_auth_start','historical_auth_cancel',
+           'replay_sessions','replay_load','replay_lap',
            'training_state','training_start', 'automation_state','automation_load','automation_preferences',
            'fantasy_state','fantasy_refresh','fantasy_open'}
 
@@ -45,7 +46,7 @@ def make_server(api, assets: Path, port=0):
             if name == 'bridge.js':
                 script = "window.f1Api=new Proxy({}, {get:(_,method)=>(...args)=>fetch('/api/'+method,{method:'POST',headers:{'Content-Type':'application/json','X-F1-Token':TOKEN},body:JSON.stringify(args)}).then(async r=>{const b=await r.json();if(!r.ok)throw Error(b.error);return b;})});".replace('TOKEN',json.dumps(token))
                 self.respond(200,script.encode(),'text/javascript'); return
-            if '/' in name or name not in {'centre.html','centre.css','centre.js','index.html','app.css','workbench.js','historical.js','training.js','fantasy.js','app.js','pc-runs.js','centre-nocturne.css','tyre-strategy.js','tyre-strategy.css'}:
+            if '/' in name or name not in {'centre.html','centre.css','centre.js','index.html','app.css','workbench.js','historical.js','training.js','fantasy.js','app.js','pc-runs.js','centre-nocturne.css','tyre-strategy.js','tyre-strategy.css','replay.js','replay.css'}:
                 self.respond(404,b'{}'); return
             path = assets/name
             types = {'.html':'text/html; charset=utf-8','.js':'text/javascript','.css':'text/css'}

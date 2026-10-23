@@ -1,11 +1,11 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"><title>F1 Race Simulator — Workbench</title>
-<link rel="stylesheet" href="app.css"><link rel="stylesheet" href="tyre-strategy.css"></head><body>
+<link rel="stylesheet" href="app.css"><link rel="stylesheet" href="tyre-strategy.css"><link rel="stylesheet" href="replay.css"></head><body>
 <div class="app-shell">
 <aside class="sidebar">
 <div class="brand"><span class="brand-emblem" data-icon="flag"></span><div><b>Race Simulator</b><small>Monte Carlo workbench</small></div></div>
 <nav class="nav" aria-label="Main navigation">
-<div class="nav-group"><div class="nav-stage"><span>1</span>Data</div><button class="nav-item " data-view="data"><span data-icon="sliders"></span>Data Sources</button><button class="nav-item " data-view="historical"><span data-icon="folder"></span>Historical Data</button><button class="nav-item " data-view="training"><span data-icon="trend"></span>Model Training</button></div><div class="nav-group"><div class="nav-stage"><span>2</span>Setup</div><button class="nav-item active" data-view="setup"><span data-icon="calendar"></span>Race Setup</button></div><div class="nav-group"><div class="nav-stage"><span>3</span>Analyse</div><button class="nav-item " data-view="dashboard"><span data-icon="table"></span>Results</button><button class="nav-item " data-view="signals"><span data-icon="network"></span>Model Signals</button><button class="nav-item " data-view="weather"><span data-icon="sun"></span>Weather &amp; Chaos</button><button class="nav-item " data-view="reliability"><span data-icon="gauge"></span>Reliability</button><button class="nav-item " data-view="strategy"><span data-icon="wheel"></span>Tyre Strategy</button><button class="nav-item " data-view="fantasy"><span data-icon="shirt"></span>Fantasy</button><button class="nav-item " data-view="compare"><span data-icon="trend"></span>Compare</button></div><button class="nav-item " data-view="settings"><span data-icon="gear"></span>Settings</button></nav>
+<div class="nav-group"><div class="nav-stage"><span>1</span>Data</div><button class="nav-item " data-view="data"><span data-icon="sliders"></span>Data Sources</button><button class="nav-item " data-view="historical"><span data-icon="folder"></span>Historical Data</button><button class="nav-item " data-view="training"><span data-icon="trend"></span>Model Training</button></div><div class="nav-group"><div class="nav-stage"><span>2</span>Setup</div><button class="nav-item active" data-view="setup"><span data-icon="calendar"></span>Race Setup</button></div><div class="nav-group"><div class="nav-stage"><span>3</span>Analyse</div><button class="nav-item " data-view="dashboard"><span data-icon="table"></span>Results</button><button class="nav-item " data-view="signals"><span data-icon="network"></span>Model Signals</button><button class="nav-item " data-view="weather"><span data-icon="sun"></span>Weather &amp; Chaos</button><button class="nav-item " data-view="reliability"><span data-icon="gauge"></span>Reliability</button><button class="nav-item " data-view="strategy"><span data-icon="wheel"></span>Tyre Strategy</button><button class="nav-item " data-view="fantasy"><span data-icon="shirt"></span>Fantasy</button><button class="nav-item " data-view="compare"><span data-icon="trend"></span>Compare</button><button class="nav-item " data-view="replay"><span data-icon="track"></span>Session Replay</button></div><button class="nav-item " data-view="settings"><span data-icon="gear"></span>Settings</button></nav>
 <a class="centre-link" href="centre.html"><span data-icon="cube"></span>Simulation Centre <small>Forecasts · scoring · Simulink ↗</small></a>
 <div class="sidebar-footer"><span class="workspace-mark" data-icon="wheel"></span><div><b>Local Workspace</b><small id="sidebarSeason">Loading season</small></div><span class="status-dot" id="runDot"></span></div>
 </aside>
@@ -240,6 +240,21 @@
             <div id="sectorLegend" class="sector-legend"></div>
           </section>
         </section>
+<section class="view" id="view-replay">
+<section class="panel replay-picker"><div class="replay-picker-row"><label class="replay-session-field">Saved session<select id="replaySession" aria-label="Saved session"></select></label><button id="replayLoad" class="primary" disabled>LOAD SESSION</button><button id="replayRefresh" class="ghost">↻ REFRESH LIST</button></div><p id="replayStatus" class="commentary" role="status">Loading saved sessions…</p></section>
+<div class="replay-layout">
+<section class="panel replay-stage"><div class="panel-header"><div><h2 id="replayTitle">Replay</h2><p id="replaySubtitle">Choose a saved session and load it.</p></div><span id="replayFlag" class="replay-flag" role="status" hidden></span></div><div id="replayTrack" class="track-map large replay-track"><div class="track-empty"><strong>No session loaded</strong></div></div>
+<div class="replay-controls"><button id="replayBack" class="ghost mini-button" aria-label="Previous lap" title="Previous lap">⏮</button><button id="replayPlay" class="primary replay-play" aria-label="Play">▶</button><button id="replayForward" class="ghost mini-button" aria-label="Next lap" title="Next lap">⏭</button><input id="replayScrub" type="range" min="0" max="1" step="0.1" value="0" aria-label="Session time"><span id="replayClock" class="replay-clock">—</span><select id="replaySpeed" aria-label="Playback speed"><option value="1">1×</option><option value="4">4×</option><option value="16" selected>16×</option><option value="64">64×</option></select></div>
+<p id="replayNote" class="footnote"></p></section>
+<section class="panel replay-order-panel"><div class="panel-header"><div><h2>Running order</h2><p>At the replay time. Click a driver to highlight them.</p></div></div><div id="replayOrder" class="table-wrap replay-order"><div class="empty">No session loaded.</div></div></section>
+</div>
+<section class="panel"><div class="panel-header"><div><h2 id="lapChartTitle">Lap chart</h2><p id="lapChartNote">Position at the end of each lap.</p></div></div><div id="replayLapChart" class="replay-chart"></div></section>
+<section class="panel"><div class="panel-header"><div><h2>Telemetry review</h2><p>Compare two laps against distance. Hover a trace to read both cars and follow them on the map.</p></div></div>
+<div class="telemetry-controls"><fieldset class="telemetry-pick a"><legend>Lap A</legend><select id="telADriver" aria-label="Lap A driver"></select><select id="telALap" aria-label="Lap A lap"></select></fieldset><fieldset class="telemetry-pick b"><legend>Lap B</legend><select id="telBDriver" aria-label="Lap B driver"></select><select id="telBLap" aria-label="Lap B lap"></select></fieldset><button id="telCompare" class="ghost" disabled>COMPARE LAPS</button></div>
+<p id="telStatus" class="commentary" role="status"></p>
+<div class="telemetry-layout"><div id="telCharts" class="telemetry-charts"></div><div class="telemetry-side"><div id="telTrack" class="track-map telemetry-track"></div><div id="telSummary" class="telemetry-summary"></div><div id="telReadout" class="telemetry-readout" aria-live="polite"></div></div></div>
+<p class="footnote">Distance is integrated from speed, so lap B is scaled to lap A's length before comparing. The delta is lap B's time minus lap A's at the same distance: above zero means B is behind.</p></section>
+</section>
         <section class="view" id="view-review">
           <div class="two-column">
             <section class="panel">
@@ -259,4 +274,4 @@
             </div>
           </section>
         </section>
-</main></div><script src="bridge.js"></script><script src="tyre-strategy.js"></script><script src="app.js?v=20261023"></script><script src="historical.js"></script><script src="training.js"></script><script src="pc-runs.js"></script><script src="fantasy.js"></script><script src="workbench.js"></script></body></html>
+</main></div><script src="bridge.js"></script><script src="tyre-strategy.js"></script><script src="app.js?v=20261023"></script><script src="historical.js"></script><script src="replay.js"></script><script src="training.js"></script><script src="pc-runs.js"></script><script src="fantasy.js"></script><script src="workbench.js"></script></body></html>
