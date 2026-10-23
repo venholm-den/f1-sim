@@ -195,6 +195,28 @@ in Fantasy qualifying points, which this packet does not score. Both gains are
 below the 5% promotion gate on already inspected races, so they stay candidates.
 Grid penalties and sprints cannot be scored from this packet.
 
+`python -m scripts.benchmark_sprint --library <historical_library>` scores
+`sprint_v1` on saved sprints. Pace is the median clean race lap gap from the
+three previous Grands Prix and the grid is the actual sprint grid. The reference
+is the sprint grid order, since the established run has no sprint forecast. On
+the 30 sprints from 2021 to 2026 (5,000 sims, seeds 42/123/777), loss is finish
+MAE + points-finish Brier:
+
+| Split | Arm | Finish MAE | Win Brier | Podium Brier | Points Brier | Points MAE | Loss |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Development (18) | Grid order | 2.494 | 0.0444 | 0.0611 | 0.1333 | 0.783 | 2.628 |
+| Development (18) | `sprint_v1` | 2.516 | 0.0326 | 0.0571 | 0.0934 | 0.922 | 2.610 |
+| Holdout (12) | Grid order | 2.842 | 0.0242 | 0.0712 | 0.1364 | 0.746 | 2.978 |
+| Holdout (12) | `sprint_v1` | 2.811 | 0.0271 | 0.0591 | 0.1101 | 0.915 | 2.921 |
+
+Loss is 0.7% and 1.9% lower, below the 5% gate, and holdout win Brier regresses,
+so this stays a candidate. Its probabilities beat the grid, but its expected
+sprint points are further from the actual points than the grid order's.
+
+Grid penalties have verified stewards' decisions for only two 2026 events in
+`fia_document_index.csv`, too few to reach the six-race gates, so no benchmark
+was added for them.
+
 ## Retirement survival, separately
 
 Set `model.retirement_model` to `survival_dnf_v1`. Ten distance intervals estimate
