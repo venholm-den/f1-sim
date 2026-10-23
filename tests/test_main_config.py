@@ -50,7 +50,7 @@ def _app_config(
     )
 
 
-@pytest.mark.parametrize('experimental', [False, True, 'next', 'agent', 'agent_full'])
+@pytest.mark.parametrize('experimental', [False, True, 'next', 'agent', 'agent_full', 'safety_car'])
 def test_main_uses_config_seed_and_output_dir(monkeypatch, tmp_path, experimental) -> None:
     output_dir = tmp_path / "custom_outputs"
     fantasy_prices_path = tmp_path / "data" / "fantasy_prices.csv"
@@ -109,6 +109,10 @@ def test_main_uses_config_seed_and_output_dir(monkeypatch, tmp_path, experimenta
             assert kwargs['agent_settings']['season_year'] == 2026
             assert kwargs['agent_settings']['passability'] == pytest.approx(.45)
             assert kwargs['agent_settings']['initial_fuel_kg'] == 70.
+        if experimental == 'safety_car':
+            assert kwargs['safety_car_probability'] == pytest.approx(.4)
+        else:
+            assert 'safety_car_probability' not in kwargs
         return race_summary, position_matrix, results
 
     def fake_snapshot(**kwargs):
@@ -127,6 +131,8 @@ def test_main_uses_config_seed_and_output_dir(monkeypatch, tmp_path, experimenta
         from src.agent_race import AgentSettings
         settings = asdict(AgentSettings()) if experimental == 'agent_full' else None
         config = replace(config, model=replace(config.model, race_engine='agent_laps_v1', agent_settings=settings))
+    elif experimental == 'safety_car':
+        config = replace(config, model=replace(config.model, safety_car_model='track_sc_v1'))
     elif experimental == 'next':
         from src.qualifying_pace import fit_qualifying_pace
         from tests.test_accuracy_benchmark import races

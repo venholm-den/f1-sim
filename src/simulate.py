@@ -264,6 +264,7 @@ def simulate_races(
     sample_pace_posterior: bool = False,
     pit_plans: list[dict] | None = None,
     agent_settings: dict | None = None,
+    safety_car_probability: float | None = None,
 ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     """
     Simulates races by estimating total projected race time per driver.
@@ -274,6 +275,9 @@ def simulate_races(
     - summary
     - position_matrix
     - raw results
+
+    safety_car_probability enables the opt-in track_sc_v1 candidate
+    (src/safety_car.py); None keeps the established engine unchanged.
     """
 
     if retirement_classification not in {'legacy', 'completed_laps_v1'}:
@@ -284,6 +288,8 @@ def simulate_races(
         from src.agent_race import simulate_agent_races
         if grid_loss_multiplier is not None:
             raise ValueError('Agent traffic replaces aggregate grid loss.')
+        if safety_car_probability is not None:
+            raise ValueError('The agent engine has its own SC/VSC neutralisation.')
         return simulate_agent_races(base, n_sims, seed, pit_plans=pit_plans,
             settings=agent_settings, sample_pace_posterior=sample_pace_posterior,
             weather_modifiers=weather_modifiers, overtaking_difficulty=overtaking_difficulty)
@@ -443,6 +449,12 @@ def simulate_races(
         projected_times = (base_winner_time - DEFAULT_PIT_AND_RACE_ALLOWANCE + pace_samples * race_laps + grid_loss
                            + pit_costs + race_noise + start_noise + chaos_noise)
 
+    safety_cars = None
+    if safety_car_probability is not None:
+        from src.safety_car import apply_safety_cars
+        projected_times, safety_cars, _ = apply_safety_cars(
+            projected_times, safety_car_probability, seed)
+
     if red_flags.any():
         red_flag_rows = red_flags.reshape(n_sims, 1)
 
@@ -579,6 +591,9 @@ def simulate_races(
             }
         )
 
+        if safety_cars is not None:
+            driver_records['safety_car'] = safety_cars
+            driver_records['safety_car_probability'] = float(safety_car_probability)
         if completed_laps is not None:
             driver_records['completed_laps'] = completed_laps[:, driver_idx]
             driver_records['classified'] = classified[:, driver_idx]
@@ -629,6 +644,8 @@ def summarise_results(base, results, grid_loss_multiplier):
             "points_scoring_chance": float((pts > 0).mean()),
             "dnf_chance": float(group["dnf"].mean()),
             "red_flag_chance": float(group["red_flag"].mean()),
+            **({"safety_car_chance": float(group["safety_car"].mean())}
+               if "safety_car" in group else {}),
             "avg_projected_race_time_seconds": float(
                 group["projected_race_time_seconds"].mean()
             ),

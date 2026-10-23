@@ -2,7 +2,7 @@
 
 Main local checkout: `C:\code_project\f1-sim`. See [Local workspace and automation](docs/local-workspace.md) for checkout provenance, backups and preserved Discord settings.
 
-New local experiments: [race-window weather, qualifying pace, pit scenarios and survival modelling](docs/simulation-candidates.md). These candidates are unpromoted; live defaults remain unchanged.
+New local experiments: [race-window weather, qualifying pace, pit scenarios, track-rate safety cars and survival modelling](docs/simulation-candidates.md). These candidates are unpromoted; live defaults remain unchanged.
 
 End-to-end Formula 1 race simulation and fantasy projection tooling.
 
