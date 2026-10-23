@@ -235,13 +235,13 @@ function renderWorkbench() {
 }
 async function loadDataPreview(key=state.previewKey || 'track_profiles',page=1) {
   const preview=await api().workbench_data(key,page);state.previewKey=key;state.previewPage=preview.page;state.previewPages=preview.pages;
-  $('previewTitle').textContent=`DATA PREVIEW: ${preview.source.label.toUpperCase()}${preview.sort?.direction==='desc'?' · NEWEST FIRST':''}`;
+  $('previewTitle').textContent=`Data preview: ${preview.source.label.toLowerCase()}${preview.sort?.direction==='desc'?' · newest first':''}`;
   $('previewPath').textContent=preview.source.path;
   const keys={track_profiles:['Event','CircuitName','RaceLaps','OvertakingDifficulty','SafetyCarChance','RedFlagBaseChance','ProfileStatus'],team_power_units:['Year','Team','PowerUnitSupplier','EngineBadge','OfficialTeamLabel'],fantasy_prices:['Driver','Team','fantasy_price'],fia_document_index:['published_at','year','event','session','doc_number','document_title']};
   if(key==='fia_document_index' && preview.columns.includes('published_at'))preview.columns=['published_at',...preview.columns.filter(column=>column!=='published_at')];
   state.outputs.dataHealth=(state.outputs.dataHealth || []).map(source=>source.key===key?preview.source:source);
   const columns=(keys[key] || []).filter(column=>preview.columns.includes(column));
-  renderTable('dataPreviewTable',state.showAllColumns || columns.length<2?preview:{...preview,columns});
+  renderTable('dataPreviewTable',state.showAllColumns || columns.length<2?preview:{...preview,columns},{sortable:false});
   $('previewCount').textContent=preview.source.status!=='valid'?preview.source.message:`Showing ${preview.rows.length ? (preview.page-1)*10+1 : 0}–${Math.min(preview.page*10,preview.source.row_count)} of ${preview.source.row_count} rows`;
   $('previewPage').textContent=`${preview.page} / ${preview.pages}`;$('previewPrevious').disabled=preview.page<=1;$('previewNext').disabled=preview.page>=preview.pages;
   $('validationTime').textContent=new Date(preview.checked_at_utc).toLocaleString();renderSourceCards();

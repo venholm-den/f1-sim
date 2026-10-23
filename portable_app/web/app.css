@@ -499,6 +499,7 @@ summary{font-size:13px;color:var(--text-2);text-transform:none}
 .table-wrap{border:0;border-radius:0;margin-top:14px;max-height:440px}
 .table-wrap table{font-size:12px}
 .table-wrap th{background:var(--panel);color:var(--subtle);border-bottom:1px solid var(--line);font-size:11px;padding:11px 12px;font-weight:400}
+.table-wrap th.num,.table-wrap td.num{text-align:right;font-variant-numeric:tabular-nums}.table-wrap .sort-button{display:inline-flex;align-items:center;gap:4px;min-height:0;padding:0;border:0;border-radius:0;background:none;font:inherit;color:inherit;text-align:inherit;cursor:pointer}.table-wrap .sort-button:hover{background:none;color:var(--text)}.table-wrap th.num .sort-button{flex-direction:row-reverse}.table-wrap th[aria-sort=ascending] .sort-button:after{content:"▲";font-size:9px}.table-wrap th[aria-sort=descending] .sort-button:after{content:"▼";font-size:9px}.table-wrap th[aria-sort=ascending],.table-wrap th[aria-sort=descending]{color:var(--accent-text)}
 .table-wrap td{padding:10px 12px;color:var(--text-2);border-bottom:1px solid var(--line-soft)}
 .table-wrap td:first-child{color:var(--text)}
 .table-wrap tbody tr:nth-child(2n){background:transparent}

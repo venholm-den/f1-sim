@@ -162,7 +162,63 @@ function sessionModeLabel(mode) {
   return "Race run";
 }
 
-function renderTable(targetId, payload) {
+// Readable headers for the snake_case columns written by the simulation outputs.
+const columnLabels = {
+  avg_finish: "Avg finish", win_chance: "Win", podium_chance: "Podium", dnf_chance: "DNF",
+  points_chance: "Points finish", points_scoring_chance: "Points finish", top5_chance: "Top 5", top10_chance: "Top 10",
+  avg_points: "Avg points", avg_grid: "Avg grid", finish_p25: "Finish P25", finish_p75: "Finish P75",
+  avg_fantasy_points: "Fantasy pts", fantasy_points: "Fantasy pts", fantasy_ceiling_p90: "Ceiling (P90)",
+  fantasy_floor_p10: "Floor (P10)", fantasy_price: "Price", fantasy_xppm: "Pts per $m",
+  primary_strategy: "Strategy", alternative_strategy: "Alternative", expected_stops: "Stops",
+  strategy_confidence: "Confidence", risk_level: "Risk", primary_score: "Strategy score",
+  quali_pace_score: "Quali pace", race_pace_score: "Race pace", long_run_pace_score: "Long-run pace",
+  strategy_score: "Strategy score", reliability_score: "Reliability", tyre_deg_score: "Tyre deg",
+  current_weight: "Session weight", model_uncertainty: "Model uncertainty", performance_uncertainty: "Performance uncertainty",
+  engine_reliability_score: "PU reliability", team_dnf_rate: "Team DNF", driver_dnf_rate: "Driver DNF",
+  quali_rank_from_laps: "Rank", clean_laps: "Clean laps", best_lap: "Best lap (s)", median_lap: "Median lap (s)",
+  ideal_lap: "Ideal lap (s)", avg_lap: "Avg lap (s)", gap_to_fastest: "Gap (s)", ideal_gap_to_fastest: "Ideal gap (s)",
+  best_s1: "Best S1 (s)", best_s2: "Best S2 (s)", best_s3: "Best S3 (s)", avg_speed_trap: "Speed trap (km/h)",
+  laps_in_run: "Run laps", run_start_lap: "From lap", run_end_lap: "To lap", degradation_per_lap: "Deg / lap (s)",
+  row_count: "Rows", size_bytes: "Size (bytes)", modified_at: "Modified",
+};
+
+function columnLabel(column) {
+  if (columnLabels[column]) return columnLabels[column];
+  if (!/^[a-z0-9]+(_[a-z0-9]+)+$|^[a-z]+$/.test(column)) return column;
+  const words = column.split("_").map((word) => (/^(dnf|pu|fia|sc|vsc|p\d+|s\d)$/.test(word) ? word.toUpperCase() : word));
+  return words.join(" ").replace(/^./, (c) => c.toUpperCase());
+}
+
+function sortValue(value) {
+  if (value == null || value === "") return null;
+  const number = Number(value);
+  return Number.isFinite(number) ? number : String(value).toLowerCase();
+}
+
+// Reorders rendered rows by the saved sort, moving the existing <tr> nodes so their listeners survive.
+function applyTableSort(target) {
+  const sort = state.tableSort?.[target.id];
+  const table = target.querySelector("table");
+  if (!table) return;
+  table.querySelectorAll("th[data-column]").forEach((th) => {
+    th.setAttribute("aria-sort", th.dataset.column === sort?.column ? (sort.direction > 0 ? "ascending" : "descending") : "none");
+  });
+  const body = table.tBodies[0];
+  const rows = Array.from(body.rows);
+  const index = sort ? Array.from(table.querySelectorAll("th[data-column]")).findIndex((th) => th.dataset.column === sort.column) : -1;
+  const key = (row) => (index < 0 ? null : sortValue(row.cells[index]?.dataset.value));
+  rows.sort((a, b) => {
+    const x = key(a), y = key(b);
+    if (index < 0 || x === y) return Number(a.dataset.row) - Number(b.dataset.row);
+    if (x == null) return 1;
+    if (y == null) return -1;
+    if (typeof x !== typeof y) return typeof x === "number" ? -1 : 1;
+    return (x < y ? -1 : 1) * sort.direction;
+  });
+  body.append(...rows);
+}
+
+function renderTable(targetId, payload, { sortable = true } = {}) {
   const target = $(targetId);
   const columns = payload?.columns || [];
   const rows = payload?.rows || [];
@@ -172,11 +228,35 @@ function renderTable(targetId, payload) {
     return;
   }
 
-  const head = columns.map((column) => `<th>${escapeHtml(column)}</th>`).join("");
+  // A column is numeric when every filled cell parses as a number; those align right.
+  const numericColumns = new Set(columns.filter((column) => {
+    const values = rows.map((row) => row[column]).filter((value) => value != null && value !== "");
+    return values.length > 0 && values.every((value) => Number.isFinite(Number(value)));
+  }));
+  const cellClass = (column) => (numericColumns.has(column) ? ' class="num"' : "");
+  const head = columns.map((column) => {
+    const label = escapeHtml(columnLabel(column));
+    const title = columnLabel(column) === column ? "" : ` title="${escapeHtml(column)}"`;
+    return sortable
+      ? `<th${cellClass(column)} data-column="${escapeHtml(column)}" aria-sort="none"${title}><button type="button" class="sort-button">${label}</button></th>`
+      : `<th${cellClass(column)}${title}>${label}</th>`;
+  }).join("");
   const body = rows
-    .map((row) => `<tr>${columns.map((column) => `<td title="${escapeHtml(row[column] ?? '')}">${escapeHtml(typeof formatCell === 'function' ? formatCell(column, row[column]) : row[column] ?? "")}</td>`).join("")}</tr>`)
+    .map((row, index) => `<tr data-row="${index}">${columns.map((column) => `<td${cellClass(column)} data-value="${escapeHtml(row[column] ?? '')}" title="${escapeHtml(row[column] ?? '')}">${escapeHtml(typeof formatCell === 'function' ? formatCell(column, row[column]) : row[column] ?? "")}</td>`).join("")}</tr>`)
     .join("");
-  target.innerHTML = `<table><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`;
+  target.innerHTML = `<table${sortable ? ' class="sortable"' : ""}><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`;
+  if (!sortable) return;
+  target.querySelectorAll("th[data-column] button").forEach((button) => button.addEventListener("click", () => {
+    const column = button.parentElement.dataset.column;
+    const current = state.tableSort?.[targetId];
+    // Numbers start high-to-low, text A-Z; a third click restores the original order.
+    const first = numericColumns.has(column) ? -1 : 1;
+    const next = current?.column !== column ? { column, direction: first }
+      : current.direction === first ? { column, direction: -first } : null;
+    state.tableSort = { ...state.tableSort, [targetId]: next };
+    applyTableSort(target);
+  }));
+  applyTableSort(target);
 }
 
 function escapeHtml(value) {
@@ -184,7 +264,8 @@ function escapeHtml(value) {
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;");
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
 }
 
 function renderBarChart(targetId, points, fill = colors.red, { max = null, unit = "" } = {}) {
