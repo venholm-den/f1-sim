@@ -64,6 +64,7 @@ class ModelSettings:
     weather_model: str = 'session_legacy'
     race_weather_report_path: str | None = None
     agent_settings: dict | None = None
+    safety_car_model: str = 'off'
 
     def __post_init__(self):
         if self.pace_blend not in {'legacy', 'single_pace_blend_v1', 'qualifying_partial_pooling_v1'}:
@@ -84,6 +85,10 @@ class ModelSettings:
                 raise ValueError('Agent settings require the agent race engine.')
             from src.agent_race import AgentSettings
             AgentSettings(**self.agent_settings)
+        if self.safety_car_model not in {'off', 'track_sc_v1'}:
+            raise ValueError('Unknown safety_car_model; choose off or track_sc_v1.')
+        if self.safety_car_model != 'off' and self.race_engine == 'agent_laps_v1':
+            raise ValueError('The agent engine has its own SC/VSC neutralisation.')
         if self.weather_model not in {'session_legacy', 'race_window_v1'}:
             raise ValueError('Unknown weather_model.')
         if self.weather_model == 'race_window_v1' and not self.use_weather_forecast:
@@ -103,7 +108,8 @@ class AppConfig:
             or bool(self.model.qualifying_classifications_path)
             or self.model.race_engine != 'aggregate_legacy'
             or self.model.weather_model != 'session_legacy'
-            or self.model.retirement_model == 'survival_dnf_v1')
+            or self.model.retirement_model == 'survival_dnf_v1'
+            or self.model.safety_car_model != 'off')
         if next_candidate and self.outputs.post_to_discord:
             raise ValueError('Unpromoted simulation candidates support local output only.')
 
@@ -309,6 +315,7 @@ def load_app_config(
             weather_model=str(model.get('weather_model', 'session_legacy')),
             race_weather_report_path=model.get('race_weather_report_path'),
             agent_settings=model.get('agent_settings'),
+            safety_car_model=str(model.get('safety_car_model', 'off')),
         ),
         source_path=str(config_path),
     )
@@ -362,6 +369,7 @@ def config_to_dict(config: AppConfig) -> dict[str, Any]:
             "weather_model": config.model.weather_model,
             "race_weather_report_path": config.model.race_weather_report_path,
             "agent_settings": config.model.agent_settings,
+            "safety_car_model": config.model.safety_car_model,
         },
         "source_path": config.source_path,
     }

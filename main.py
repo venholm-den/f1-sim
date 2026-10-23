@@ -1076,6 +1076,8 @@ def main() -> None:
         if settings['season_year'] != year:
             raise ValueError('Agent season year must match the forecast year.')
         retirement_options['agent_settings'] = asdict(AgentSettings(**settings))
+    if app_config.model.safety_car_model == 'track_sc_v1':
+        retirement_options['safety_car_probability'] = float(track_profile['safety_car_chance'])
     pd.Series({'overtaking_difficulty': overtaking_difficulty,
                'weather_modifiers': weather_summary, **retirement_options}).to_json(
         _output_path(output_dir, 'simulation_inputs.json'), indent=2)

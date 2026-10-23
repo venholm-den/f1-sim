@@ -130,3 +130,51 @@ def test_top10_and_scoring_probabilities_have_distinct_targets():
         assert row.top10_chance == row.points_chance == 1.0
         assert row.points_scoring_chance == actual.points.gt(0).mean()
         assert row.points_scoring_chance < row.top10_chance
+
+
+def test_safety_car_candidate_is_off_by_default_and_reproducible() -> None:
+    default = simulate_races(_minimal_features(), n_sims=300, seed=42)
+    disabled = simulate_races(_minimal_features(), n_sims=300, seed=42,
+                              safety_car_probability=None)
+    pd.testing.assert_frame_equal(default[0], disabled[0])
+    assert "safety_car" not in default[2]
+
+    first = simulate_races(_minimal_features(), n_sims=300, seed=42,
+                           safety_car_probability=0.5)
+    second = simulate_races(_minimal_features(), n_sims=300, seed=42,
+                            safety_car_probability=0.5)
+    pd.testing.assert_frame_equal(first[0], second[0])
+    assert 0.4 < first[0]["safety_car_chance"].iloc[0] < 0.6
+
+
+def test_safety_car_never_deployed_leaves_engine_unchanged() -> None:
+    default = simulate_races(_minimal_features(), n_sims=300, seed=7)
+    never = simulate_races(_minimal_features(), n_sims=300, seed=7,
+                           safety_car_probability=0.0)
+    for column in ("finish_position", "projected_race_time_seconds", "dnf", "fastest_lap"):
+        assert (default[2][column].to_numpy() == never[2][column].to_numpy()).all()
+
+
+def test_safety_car_compresses_gaps_and_mixes_order() -> None:
+    features = _minimal_features()
+    no_sc = simulate_races(features, n_sims=3000, seed=11, safety_car_probability=0.0)
+    always = simulate_races(features, n_sims=3000, seed=11, safety_car_probability=1.0)
+
+    def spread(results):
+        times = results.pivot(index="sim_id", columns="Driver",
+                              values="projected_race_time_seconds")
+        return (times.max(axis=1) - times.min(axis=1)).mean()
+
+    assert spread(always[2]) < spread(no_sc[2])
+    favourite_win = lambda summary: summary.set_index("Driver").loc["ANT", "win_chance"]
+    assert favourite_win(always[0]) < favourite_win(no_sc[0])
+
+
+def test_safety_car_rejects_invalid_probability_and_agent_engine() -> None:
+    for probability in (-0.1, 1.5, float("nan")):
+        with pytest.raises(ValueError):
+            simulate_races(_minimal_features(), n_sims=10,
+                           safety_car_probability=probability)
+    with pytest.raises(ValueError, match="neutralisation"):
+        simulate_races(_minimal_features(), n_sims=10, safety_car_probability=0.4,
+                       agent_settings={})

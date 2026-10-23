@@ -104,6 +104,37 @@ penalties with fuel/tyre state, physical traffic, explicit pit delays, passing
 and lapping. Its assumptions and dry-race limitations are explicit; all live
 defaults and promotion gates remain unchanged.
 
+## Track-rate safety cars
+
+Set `model.safety_car_model` to `track_sc_v1` to add safety cars to the
+aggregate engine (`src/safety_car.py`). The default `off` leaves the random
+sequence and every output unchanged. Each simulated race deploys an SC with the
+track profile's `SafetyCarChance` (TrackStatus 4 only; VSC is not modelled) at
+a uniformly drawn race fraction. Gaps built before deployment shrink to 10% (the
+queue residual), and the rest accrue after the restart, so the effect matches
+the existing red-flag compression but depends on timing. Drivers take a stop
+10 seconds cheaper with 60% probability when the SC falls between 15% and 80%
+distance, and restarts add 1.5-second noise. These are stated assumptions, not
+fitted values. It also applies to `pit_scenarios_v1`; the agent engine is
+rejected because it has its own SC/VSC schedules. Raw results gain
+`safety_car` and the summary gains `safety_car_chance`. Output is local-only.
+
+`python -m scripts.benchmark_safety_car` replays a recent-baseline packet
+(earlier races' pace plus the actual grid) with and without the candidate on
+matched seeds. On the 23 October packet (rounds 4-16 of 2026, three-race history,
+5,000 sims, seeds 42/123/777) it gave:
+
+| Arm | Finish MAE | Win Brier | Podium Brier | Top-10 Brier |
+| --- | ---: | ---: | ---: | ---: |
+| Established engine | 3.664 | 0.0307 | 0.0730 | 0.1846 |
+| `track_sc_v1` | 3.671 | 0.0303 | 0.0722 | 0.1791 |
+
+Top-10 Brier improved in 11 of 13 races; finish MAE is flat. These races were
+already inspected and the gain is below the 5% promotion gate, so this stays a
+candidate. The profiles average a 42% SC chance against 54% observed in those
+races, and six of the 13 used generic placeholders, so calibrating track SC rates
+(`scripts.calibrate_circuits`) is the obvious next step.
+
 ## Retirement survival, separately
 
 Set `model.retirement_model` to `survival_dnf_v1`. Ten distance intervals estimate
