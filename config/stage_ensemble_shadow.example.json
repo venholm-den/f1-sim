@@ -1,0 +1,7 @@
+{
+  "enabled": false,
+  "candidate_path": "outputs/stage_ensemble/EXPERIMENT/candidate.json",
+  "candidate_sha256": "COPY_THE_CANDIDATE_SHA256",
+  "results_path": "outputs/prediction_data/DATASET/retirement_records.csv",
+  "practice_path": "outputs/prediction_data/DATASET/practice_features.csv"
+}

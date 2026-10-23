@@ -1,0 +1,23 @@
+Year,Event,Round,Session,DriverNumber,BroadcastName,Abbreviation,TeamName,Position,ClassifiedPosition,Status,Points,GridPosition,Time,source_circuit_id,source_layout_id,source_venue_status
+2026,Barcelona Grand Prix,7,R,44,L HAMILTON,HAM,Ferrari,1.0,1,Finished,25.0,2.0,0 days 01:32:28.105000,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,63,G RUSSELL,RUS,Mercedes,2.0,2,Finished,18.0,1.0,0 days 00:00:19.561000,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,1,L NORRIS,NOR,McLaren,3.0,3,Finished,15.0,4.0,0 days 00:00:23.719000,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,3,M VERSTAPPEN,VER,Red Bull Racing,4.0,4,Finished,12.0,5.0,0 days 00:00:40.497000,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,81,O PIASTRI,PIA,McLaren,5.0,5,Finished,10.0,7.0,0 days 00:00:58.661000,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,6,I HADJAR,HAD,Red Bull Racing,6.0,6,Lapped,8.0,6.0,0 days 00:00:24.627000,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,10,P GASLY,GAS,Alpine,7.0,7,Lapped,6.0,14.0,0 days 00:00:55.789000,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,30,L LAWSON,LAW,Racing Bulls,8.0,8,Lapped,4.0,8.0,0 days 00:01:12.224000,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,41,A LINDBLAD,LIN,Racing Bulls,9.0,9,Lapped,2.0,11.0,0 days 00:01:18.074000,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,43,F COLAPINTO,COL,Alpine,10.0,10,Lapped,1.0,13.0,0 days 00:01:19.867000,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,5,G BORTOLETO,BOR,Audi,11.0,11,Lapped,0.0,12.0,0 days 00:00:26.687000,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,55,C SAINZ,SAI,Williams,12.0,12,Lapped,0.0,16.0,0 days 00:00:27.866000,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,31,E OCON,OCO,Haas F1 Team,13.0,13,Lapped,0.0,17.0,0 days 00:00:59.149000,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,11,S PEREZ,PER,Cadillac,14.0,14,Lapped,0.0,19.0,0 days 00:00:07.769000,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,16,C LECLERC,LEC,Ferrari,15.0,15,Retired,0.0,10.0,,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,12,K ANTONELLI,ANT,Mercedes,16.0,16,Retired,0.0,3.0,,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,87,O BEARMAN,BEA,Haas F1 Team,17.0,17,Retired,0.0,15.0,,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,23,A ALBON,ALB,Williams,18.0,R,Lapped,0.0,18.0,,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,14,F ALONSO,ALO,Aston Martin,19.0,R,Retired,0.0,22.0,,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,27,N HULKENBERG,HUL,Audi,20.0,R,Retired,0.0,9.0,,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,77,V BOTTAS,BOT,Cadillac,21.0,R,Retired,0.0,20.0,,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,18,L STROLL,STR,Aston Martin,22.0,R,Retired,0.0,21.0,,catalunya,catalunya_since_2023,resolved

@@ -1,0 +1,23 @@
+year,event,round,Driver,Team,actual_strategy,actual_strategy_sequence,actual_stops,actual_stint_count,actual_first_compound,actual_had_wet_compound,actual_completed_likely,actual_race_laps,actual_driver_max_lap,actual_strategy_source
+2026,Italian Grand Prix,13,ALB,Williams,MEDIUM-HARD-SOFT,MEDIUM-HARD-SOFT,2,3,MEDIUM,False,True,53,52,fastf1_race_lap_stint_data
+2026,Italian Grand Prix,13,ALO,Aston Martin,HARD-SOFT,HARD-SOFT,1,2,HARD,False,False,53,23,fastf1_race_lap_stint_data
+2026,Italian Grand Prix,13,ANT,Mercedes,HARD-MEDIUM-MEDIUM,HARD-MEDIUM-MEDIUM,2,3,HARD,False,True,53,53,fastf1_race_lap_stint_data
+2026,Italian Grand Prix,13,BEA,Haas F1 Team,SOFT-HARD,SOFT-HARD,1,2,SOFT,False,True,53,53,fastf1_race_lap_stint_data
+2026,Italian Grand Prix,13,BOR,Audi,SOFT-MEDIUM,SOFT-MEDIUM,1,2,SOFT,False,True,53,53,fastf1_race_lap_stint_data
+2026,Italian Grand Prix,13,BOT,Cadillac,SOFT-MEDIUM-SOFT,SOFT-MEDIUM-SOFT,2,3,SOFT,False,True,53,51,fastf1_race_lap_stint_data
+2026,Italian Grand Prix,13,COL,Alpine,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data
+2026,Italian Grand Prix,13,GAS,Alpine,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data
+2026,Italian Grand Prix,13,HAM,Ferrari,SOFT-MEDIUM,SOFT-MEDIUM,1,2,SOFT,False,True,53,53,fastf1_race_lap_stint_data
+2026,Italian Grand Prix,13,HUL,Audi,MEDIUM-HARD-MEDIUM,MEDIUM-HARD-MEDIUM,2,3,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data
+2026,Italian Grand Prix,13,LAW,Red Bull Racing,MEDIUM-HARD-MEDIUM,MEDIUM-HARD-MEDIUM,2,3,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data
+2026,Italian Grand Prix,13,LEC,Ferrari,SOFT,SOFT,0,1,SOFT,False,False,53,2,fastf1_race_lap_stint_data
+2026,Italian Grand Prix,13,LIN,Racing Bulls,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data
+2026,Italian Grand Prix,13,NOR,McLaren,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data
+2026,Italian Grand Prix,13,OCO,Haas F1 Team,SOFT-HARD-MEDIUM,SOFT-HARD-MEDIUM,2,3,SOFT,False,True,53,52,fastf1_race_lap_stint_data
+2026,Italian Grand Prix,13,PER,Cadillac,SOFT-SOFT-MEDIUM,SOFT-SOFT-MEDIUM,2,3,SOFT,False,True,53,52,fastf1_race_lap_stint_data
+2026,Italian Grand Prix,13,PIA,McLaren,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data
+2026,Italian Grand Prix,13,RUS,Mercedes,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data
+2026,Italian Grand Prix,13,SAI,Williams,SOFT-HARD-MEDIUM,SOFT-HARD-MEDIUM,2,3,SOFT,False,True,53,53,fastf1_race_lap_stint_data
+2026,Italian Grand Prix,13,STR,Aston Martin,SOFT-HARD,SOFT-HARD,1,2,SOFT,False,False,53,27,fastf1_race_lap_stint_data
+2026,Italian Grand Prix,13,TSU,Racing Bulls,HARD-MEDIUM,HARD-MEDIUM,1,2,HARD,False,True,53,53,fastf1_race_lap_stint_data
+2026,Italian Grand Prix,13,VER,Red Bull Racing,SOFT-MEDIUM-HARD,SOFT-MEDIUM-HARD,2,3,SOFT,False,True,53,53,fastf1_race_lap_stint_data

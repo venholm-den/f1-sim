@@ -12,8 +12,12 @@ permissions:
 
 jobs:
   test:
-    name: Test Python project
-    runs-on: ubuntu-latest
+    name: Test Python and JavaScript (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
 
     steps:
       - name: Check out repository
@@ -32,8 +36,10 @@ jobs:
 
       - name: Syntax check
         run: |
-          python -m compileall src tests
+          python -m compileall -q main.py src scripts portable_app tests
 
       - name: Run tests
         run: |
           pytest -q
+      - name: JavaScript regression tests
+        run: node --test tests/tyre_strategy.test.cjs

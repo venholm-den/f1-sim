@@ -1,0 +1,329 @@
+// Presentation for the mockup-based dashboard; all data comes from the Python API.
+const pages = {
+  setup: ['RACE SETUP', 'Configure your race simulation parameters and output preferences.'],
+  data: ['DATA SOURCES', 'Manage connected data files, configuration paths and data health.'],
+  historical: ['HISTORICAL DATA', 'Build your own season-by-season archive of race data.'],
+  training: ['MODEL TRAINING', 'Train and evaluate candidate models from your downloaded session archive.'],
+  signals: ['MODEL SIGNALS', 'Inspect how the model blends baseline knowledge with session data.'],
+  weather: ['WEATHER & RELIABILITY', 'Review environmental conditions, disruption and retirement risk.'],
+  reliability: ['RELIABILITY', 'Inspect historical mechanical failures and simulated retirement risk.'],
+  strategy: ['TYRE STRATEGY', 'Inspect tyre recommendations, candidate scores and inventory assumptions.'],
+  fantasy: ['FANTASY', 'Weekly market prices, actual Fantasy scores and separate simulation projections.'],
+  dashboard: ['RESULTS & STRATEGY', 'Post-simulation results, insights and strategy recommendations.'],
+  compare: ['COMPARE RUNS', 'Compare probabilities and expected finishes on matched driver coverage.'],
+  settings: ['SETTINGS', 'Local workspace preferences, data paths and integration status.'],
+  practice: ['PRACTICE ANALYSIS', 'Clean sectors, lap summaries and long-run pace.'],
+  quali: ['QUALIFYING ANALYSIS', 'One-lap pace and sector performance from saved sessions.'],
+  race: ['FULL RACE', 'Driver outlook and strategy estimates from saved outputs.'],
+  review: ['RACE REVIEW', 'Completed race observations and diagnostic outliers.'],
+  track: ['TRACK MAP', 'Real saved-session telemetry and sector leaders.'],
+};
+const iconPaths = {
+  calendar:'M4 5h16v16H4z M4 10h16 M8 3v4 M16 3v4 M8 14h2 M14 14h2 M8 18h2',
+  track:'M3 17c2-5 5 1 7-3s-4-3-1-7 7-3 8 0-3 7 0 8 5-6 3-9 M3 17v3h5',
+  flag:'M6 22V3 M6 4c4-3 8 3 12 0v9c-4 3-8-3-12 0 M10 4v8 M14 5v8 M18 8H6',
+  network:'M12 3l8 6-3 10H7L4 9z M12 3v9 M4 9l8 3 8-3 M7 19l5-7 5 7',
+  sun:'M8 18a4 4 0 1 1 1-8 5 5 0 0 1 8 4 3 3 0 0 1 0 6H8 M15 3v2 M21 7l-2 1 M9 4l1 2 M18 5a4 4 0 0 1 3 6',
+  sliders:'M5 3v18 M12 3v18 M19 3v18 M2 8h6 M9 15h6 M16 6h6',
+  gauge:'M4 19a10 10 0 1 1 16 0 M12 12l5-5 M5 6l2 2 M12 2v3 M20 6l-2 2 M2 13h3 M19 13h3 M8 20h8',
+  wheel:'M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0 M4 9h16 M5 13h5l2 7 2-7h5 M10 11h4v3h-4z',
+  shirt:'M8 3l-5 4 3 5 2-2v11h8V10l2 2 3-5-5-4 M8 3c0 4 8 4 8 0',
+  table:'M5 3h14v18H5z M8 7h8 M8 11h2 M13 11h3 M8 15h2 M13 15h3 M8 18h8',
+  gear:'M9 3h6l1 3 3 1 2 5-2 5-3 1-1 3H9l-1-3-3-1-2-5 2-5 3-1z M16 12a4 4 0 1 1-8 0 4 4 0 0 1 8 0',
+  folder:'M3 6h7l2 3h9v12H3z',
+  cube:'M12 2l10 6v9l-10 5L2 17V8z M2 8l10 5 10-5 M12 13v9 M7 5l10 5v9',
+  hash:'M9 2L7 22 M17 2l-2 20 M3 8h19 M2 16h19',
+  trophy:'M8 3h8v9c0 5-8 5-8 0z M8 6H3v4c0 3 5 3 5 3 M16 6h5v4c0 3-5 3-5 3 M12 16v5 M7 22h10',
+  trend:'M3 19l6-6 4 3 8-12 M16 4h5v5',
+  file:'M6 2h8l5 5v15H6z M14 2v6h5 M9 13h7 M9 17h7',
+  image:'M3 3h18v18H3z M3 18l7-7 4 4 3-3 4 4 M9 7h1',
+  chat:'M5 4h14l3 12-4 4-3-3H9l-3 3-4-4z M8 11h1 M15 11h1',
+  play:'M5 3l16 9-16 9z',
+  check:'M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0 M7 12l4 4 6-8',
+  clock:'M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0 M12 5v7l5 3',
+  info:'M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0 M12 11v7 M12 7v1',
+  car:'M3 14l3-6h12l3 6v5h-3v-2H6v2H3z M4 13h16 M7 8l1-4h8l1 4 M6 15h2 M16 15h2',
+};
+function icon(name) { return `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="${iconPaths[name] || iconPaths.info}"></path></svg>`; }
+function renderIcons() { document.querySelectorAll('[data-icon]').forEach(el => el.innerHTML = icon(el.dataset.icon)); }
+function navigate(view) {
+  if (!$(`view-${view}`)) return;
+  state.view = view;
+  document.querySelectorAll('.nav-item').forEach(el => { el.classList.toggle('active', el.dataset.view === view); if (el.dataset.view) el.setAttribute('aria-current', el.dataset.view === view ? 'page' : 'false'); });
+  document.querySelectorAll('.view').forEach(el => el.classList.toggle('active', el.id === `view-${view}`));
+  $('viewTitle').textContent = pages[view]?.[0] || view.toUpperCase();
+  $('viewTitle').textContent = $('viewTitle').textContent.toLowerCase().replace(/^./, c=>c.toUpperCase()).replace(' & strategy','');
+  $('viewSubtitle').textContent = pages[view]?.[1] || '';
+  document.querySelector('.main').scrollTop = 0;
+  document.querySelectorAll('.workflow-steps [data-open-view]').forEach(el=>el.classList.toggle('active',el.dataset.openView===view || (el.dataset.openView==='dashboard' && !['data','historical','training','setup','settings'].includes(view))));
+  $('workflowRun').classList.toggle('active',Boolean(state.manualRunning));
+  updateContext();
+  document.querySelector('.context-strip').hidden = ['historical','training'].includes(view);
+  clearTimeout(trainingState.timer);
+  clearTimeout(fantasyArchive.timer);
+  if(view==='fantasy')safeAction(()=>refreshFantasyArchive());
+  if(view==='training')safeAction(refreshModelTraining);
+  if (typeof refreshHistoricalLibrary === 'function') {
+    clearTimeout(state.archiveTimer);
+    if (view === 'historical') safeAction(refreshHistoricalLibrary);
+  }
+  if (view === 'compare') safeAction(loadComparisonHistory);
+  if (view === 'track') renderTrack(displayedTrack());
+}
+function notify(message, error=false) {
+  const target = $(error ? 'appError' : 'appNotice'); target.textContent = message; target.hidden = false;
+  if (!error) $('appError').hidden = true;
+}
+async function safeAction(action) {
+  $('appError').hidden = true;
+  try { return await action(); } catch (error) { notify(error.message || String(error), true); return null; }
+}
+function numeric(value) { return value == null || value === '' || !Number.isFinite(Number(value)) ? null : Number(value); }
+function fmt(value, digits=2) { const n=numeric(value); return n == null ? 'Unknown' : n.toFixed(digits); }
+function pct(value, digits=1) { const n=numeric(value); return n == null ? 'Unknown' : `${(n*100).toFixed(digits)}%`; }
+function formatCell(column, value) {
+  if (value == null || value === '') return '—';
+  const n=numeric(value);
+  if (n == null) return value;
+  if (/chance$|_dnf_rate$/.test(column)) return pct(n);
+  if (/^P\d+$/.test(column)) return pct(n);
+  if (/price/i.test(column)) return `$${n.toFixed(1)}m`;
+  if (/_delta_pp$/.test(column)) return `${n > 0 ? '+' : ''}${n.toFixed(2)} pp`;
+  return Number.isInteger(n) ? String(n) : n.toFixed(3).replace(/0+$/, '').replace(/\.$/, '');
+}
+function definitions(target, pairs) {
+  $(target).innerHTML = pairs.map(([label,value])=>`<div><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value ?? 'Unknown')}</dd></div>`).join('');
+}
+function overviewMetric(name) { return numeric((state.outputs.signals?.overview?.rows || []).find(row=>row.Metric === name)?.Value); }
+function meanScore(column) {
+  const values=(state.outputs.signals?.drivers?.rows || []).map(row=>numeric(row[column])).filter(v=>v!=null);
+  return values.length ? values.reduce((a,b)=>a+b,0)/values.length : null;
+}
+function compact(payload, columns, limit=22) { return {columns: columns.filter(key=>(payload?.columns || []).includes(key)), rows: (payload?.rows || []).slice(0,limit)}; }
+function updateWorkbenchContext() {
+  $('sidebarSeason').textContent = `${readSettings().year} Season · local data`;
+  $('modelVersion').textContent = state.reference?.version === 'phase_1_performance_profile' ? 'Performance v1' : state.reference?.version || 'Not recorded';
+  $('modelVersion').title = state.reference?.version || '';
+  const isSetup=['setup','data','settings'].includes(state.view);
+  $('weatherSource').textContent = isSetup ? (state.setupWeather ? 'Open-Meteo ensemble' : 'Not captured') :
+    state.outputs.weather?.source === 'fastf1_session_weather' ? 'Session observations' : state.outputs.details?.raceWeather?.scenarios?.length ? 'Open-Meteo ensemble' : 'Not recorded';
+  const profile=state.setupOptions?.trackProfile || {};
+  definitions('venueOverview', [['Circuit', profile.circuit_name || 'Unresolved'], ['Venue country', profile.venue_country],
+    ['Race distance', profile.race_laps ? `${profile.race_laps} laps` : 'Generic assumption'],
+    ['Circuit identity', profile.venue_status || 'Unknown'], ['Track factors', (profile.profile_status || 'unknown').replaceAll('_',' ')]]);
+  const bad=(state.outputs.dataHealth || []).filter(row=>row.status !== 'valid');
+  const values=readSettings();
+  const valid=values.n_sims>=1 && values.n_sims<=100000 && values.n_baseline_races>=0 && values.n_baseline_races<=24 && values.historical_strategy_lookback_years>=0 && values.historical_strategy_lookback_years<=20;
+  if (!$('runButton').disabled) $('runState').textContent = !valid ? 'Review parameters' : bad.length ? 'Review data warnings' : 'Ready to run';
+  $('readinessMessage').textContent = !valid ? 'Some values are outside supported bounds.' : bad.length ? `${bad.length} source warnings; review Data Sources.` : values.session==='R' ? 'Race data produces a retrospective simulation.' : 'Parameters are set. Input downloads may require internet.';
+  const elapsed=state.outputs.details?.run?.elapsed_seconds;
+  $('lastRuntime').textContent = elapsed == null ? 'Not recorded' : `${Number(elapsed).toFixed(1)} s`;
+  drawSetupTrack(profile);
+}
+function drawSetupTrack(profile) {
+  const canvas=$('setupTrackCanvas'), ctx=canvas.getContext('2d');
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  const track=setupDisplayTrack(), points=track?.points || [];
+  $('setupTrackSource').textContent=track?.message || 'Select a race to inspect downloaded telemetry.';
+  if (!points.length) {
+    ctx.fillStyle='#8494a8'; ctx.font='18px Segoe UI'; ctx.textAlign='center';
+    ctx.fillText(track?.status==='loading'?'Loading downloaded telemetry…':'No downloaded track outline', canvas.width/2,canvas.height/2);
+    ctx.font='15px Segoe UI'; ctx.fillText('Select detailed sessions with position telemetry',canvas.width/2,canvas.height/2+28); return;
+  }
+  const xs=points.map(p=>p.x),ys=points.map(p=>p.y),minX=Math.min(...xs),minY=Math.min(...ys),spanX=Math.max(...xs)-minX,spanY=Math.max(...ys)-minY;
+  const scale=Math.min((canvas.width-70)/Math.max(spanX,1),(canvas.height-50)/Math.max(spanY,1));
+  const dx=(canvas.width-spanX*scale)/2,dy=(canvas.height-spanY*scale)/2;
+  ctx.lineWidth=3;ctx.strokeStyle='#d5dde9';ctx.beginPath();
+  points.forEach((p,i)=>{const x=dx+(p.x-minX)*scale,y=canvas.height-dy-(p.y-minY)*scale;i?ctx.lineTo(x,y):ctx.moveTo(x,y);});ctx.stroke();
+}
+function setupDisplayTrack() {
+  const selected=readSettings(), event=state.setupOptions?.trackProfile?.event;
+  if(selected.event!=='latest' && selected.event!==event)return null;
+  const track=state.setupTrack;
+  if(track?.year===selected.year && track?.event===event && track?.points?.length)return track;
+  if(track?.status==='loading')return track;
+  const saved=state.outputs.savedContext || {};
+  if(saved.year===selected.year && saved.event===event && state.outputs.track?.points?.length)return state.outputs.track;
+  return track?.year===selected.year && track?.event===event?track:null;
+}
+function displayedTrack(){return state.trackViewSource==='setup'?setupDisplayTrack():state.outputs.track;}
+async function refreshSetupTrack() {
+  const selected=readSettings(), request=state.setupTrackRequest=(state.setupTrackRequest || 0)+1;
+  const key=`${selected.year}|${selected.event}|${selected.session}`;
+  state.setupTrack={year:selected.year,event:state.setupOptions?.trackProfile?.event,status:'loading',points:[],message:'Loading geometry from the downloaded historical library…'};
+  drawSetupTrack(state.setupOptions?.trackProfile || {});
+  try {
+    const track=await api().setup_track(selected.year,selected.event,selected.session);
+    const current=readSettings();
+    if(request!==state.setupTrackRequest || key!==`${current.year}|${current.event}|${current.session}`)return;
+    state.setupTrack=track;
+  } catch(error) {
+    if(request!==state.setupTrackRequest)return;
+    state.setupTrack={...state.setupTrack,status:'load_failed',message:error.message || 'Downloaded telemetry could not be read.'};
+  }
+  drawSetupTrack(state.setupOptions?.trackProfile || {});
+  if(state.view==='track' && state.trackViewSource==='setup')renderTrack(displayedTrack());
+}
+function renderSignals() {
+  const current=overviewMetric('Avg current-session weight');
+  $('blendChart').innerHTML=current == null ? '<div class="empty">No saved model weights.</div>' :
+    `<div class="blend-bars"><span style="width:${Math.max(0,1-current)*100}%">${pct(1-current,0)}</span><span style="width:${Math.max(0,current)*100}%">${pct(current,0)}</span></div><div class="legend"><span>■ Baseline</span><span class="red">■ Current session</span></div>`;
+  const session=state.outputs.savedContext?.session || readSettings().session;
+  const weights=state.reference?.signal_weights?.[session] || {};
+  $('sessionWeights').innerHTML=Object.entries(weights).map(([key,value])=>`<div class="weight-row"><span>${escapeHtml(key)} signal</span><div class="weight-track"><span style="width:${value*100}%"></span></div><b>${pct(value,0)}</b></div>`).join('');
+  const metrics=[['CURRENT SIGNAL QUALITY',overviewMetric('Avg current signal quality'),'Heuristic quality; higher is cleaner data.'],
+    ['MODEL UNCERTAINTY',overviewMetric('Avg model uncertainty'),'Spread score; not an error probability.'],
+    ['PERFORMANCE UNCERTAINTY',overviewMetric('Avg performance uncertainty'),'Spread in projected performance.']];
+  $('signalMetrics').innerHTML=metrics.map(([title,value,note])=>`<div class="signal-metric"><h3>${title}</h3><strong>${fmt(value,3)}</strong><small>${note}</small></div>`).join('');
+  renderBarChart('signalScoreChart',[['Qualifying pace','quali_pace_score'],['Race pace','race_pace_score'],['Strategy','strategy_score'],['Reliability','reliability_score']].map(([label,column])=>({label,value:meanScore(column)})).filter(p=>p.value!=null),'#e5111a');
+}
+function renderProbabilityChart() {
+  const rows=(state.outputs.summaryTable?.rows || []).slice().sort((a,b)=>Number(b.win_chance)-Number(a.win_chance)).slice(0,Number($('resultTop').value));
+  const maxima=Math.max(...rows.flatMap(row=>[Number(row.win_chance)||0,Number(row.podium_chance)||0]),.01);
+  $('probabilityChart').innerHTML=rows.length?rows.map(row=>`<div class="probability-row"><b>${escapeHtml(row.Driver)}</b><div class="probability-bars">${['win_chance','podium_chance'].map(key=>`<div class="probability-bar ${key==='podium_chance'?'podium':''}"><span style="width:${Math.max(0,(Number(row[key])||0)/maxima*80)}%"></span><small>${pct(row[key])}</small></div>`).join('')}</div></div>`).join(''):'<div class="empty">Run a simulation to see outcome probabilities.</div>';
+}
+function renderHeatmap() {
+  const matrix=state.outputs.details?.positionMatrix || {}, fields=(matrix.columns || []).filter(key=>/^P\d+$/.test(key)).slice(0,10);
+  const drivers=(state.outputs.summaryTable?.rows || []).slice(0,10).map(row=>row.Driver);
+  const rows=(matrix.rows || []).filter(row=>drivers.includes(row.Driver)).sort((a,b)=>drivers.indexOf(a.Driver)-drivers.indexOf(b.Driver));
+  $('finishHeatmap').innerHTML=rows.length?`<table><thead><tr><th>Driver</th>${fields.map(key=>`<th>${key.slice(1)}</th>`).join('')}</tr></thead><tbody>${rows.map(row=>`<tr><td>${escapeHtml(row.Driver)}</td>${fields.map(key=>{const value=numeric(row[key]);return `<td style="background:rgba(229,14,24,${value==null?0:Math.min(.95,.08+value*2)})" title="${key}: ${pct(value)}">${value==null?'—':pct(value,0)}</td>`;}).join('')}</tr>`).join('')}</tbody></table>`:'<div class="empty">Finish distribution has not been saved.</div>';
+}
+function renderResultsDetails() {
+  renderProbabilityChart();renderHeatmap();
+  const strategyColumn=state.outputs.strategy?.columns?.includes('primary_strategy')?'primary_strategy':'PredictedStrategy';
+  renderTable('resultStrategy',compact(state.outputs.strategy,['Driver',strategyColumn,'expected_stops','strategy_confidence','risk_level'],10));
+  renderTable('fantasyTable',state.outputs.details?.fantasyTable);
+  renderTable('resultFantasyTable',state.outputs.details?.fantasyTable);
+  const details=state.outputs.details || {}, run=details.run || {}, saved=state.outputs.savedContext || {};
+  $('resultSims').textContent=run.settings?.n_sims ? Number(run.settings.n_sims).toLocaleString() : details.forecastRun?.n_sims ? Number(details.forecastRun.n_sims).toLocaleString() : 'Not recorded';
+  $('resultRuntime').textContent=run.elapsed_seconds == null ? 'Not recorded' : `${Number(run.elapsed_seconds).toFixed(1)} s`;
+  $('savedResultLabel').textContent=(state.outputs.summaryTable?.rows || []).length ? `${saved.year || ''} ${saved.event || 'Saved run'} · ${saved.session || ''}` : 'NO SAVED RUN';
+  const rows=(state.outputs.summaryTable?.rows || []).slice().sort((a,b)=>Number(b.win_chance)-Number(a.win_chance));
+  const notes=[];
+  if (rows[0]) notes.push(`${rows[0].Driver} leads the modelled win probabilities at ${pct(rows[0].win_chance)}.`);
+  if (details.venue?.circuit_name) notes.push(`This run used ${details.venue.circuit_name}, ${details.venue.race_laps || 'unknown'} laps.`);
+  if (details.venue?.profile_status === 'generic_uncalibrated') notes.push('Circuit-specific calibration is unavailable; this run used generic track factors.');
+  notes.push('Strategy candidate scores are heuristic. They do not isolate the effect of a tyre strategy on winning.');
+  $('resultInsights').innerHTML=notes.map(note=>`<p>${escapeHtml(note)}</p>`).join('');
+  const rules=state.reference?.fantasy_scoring || {};
+  definitions('fantasyRules',[['Fastest lap bonus',rules.fastest_lap_bonus],['Driver of the day bonus',rules.dotd_bonus],['DNF penalty',rules.dnf_penalty],['Position gain / place',rules.position_gain_points_per_place],['Position loss / place',rules.position_loss_points_per_place]]);
+}
+function renderWeatherPanels() {
+  const weather=state.outputs.weather || {}, modifiers=weather.modifiers || {}, observed=weather.observed || {};
+  const descriptions={chaos_factor:'Disruption multiplier',strategy_factor:'Strategy variance multiplier',dnf_factor:'Retirement risk multiplier',degradation_factor:'Tyre degradation multiplier',uncertainty_factor:'Forecast spread multiplier'};
+  $('modifierCards').innerHTML=Object.entries(descriptions).map(([key,description])=>`<div class="modifier-card"><h3>${key.replace('_factor','').toUpperCase()}</h3><strong>${numeric(modifiers[key])==null?'Unknown':fmt(modifiers[key])+'×'}</strong><small>${description}<br>Read-only model output</small></div>`).join('');
+  definitions('observedWeather',[['Air temperature',observed.air_temp_avg==null?'Not recorded':`${fmt(observed.air_temp_avg,1)} °C`],['Track temperature',observed.track_temp_avg==null?'Not recorded':`${fmt(observed.track_temp_avg,1)} °C`],['Rainfall',observed.rainfall_flag==null?'Unknown':observed.rainfall_flag?'Observed':'Not observed'],['Source',weather.source || 'Unknown']]);
+  renderTable('weatherReliabilityTable',state.outputs.reliability?.table);
+  const items=[['car','Safety Car Probability','Unavailable','A track prior is not a calibrated simulation probability.'],
+    ['flag','Red Flag Probability',pct(state.outputs.details?.risk?.red_flag_chance),'Estimated from simulated event outcomes.'],
+    ['sun','Wet Race Probability','Unavailable','Regional wet-hour ensemble frequency is separate.'],
+    ['gauge','Mean Driver DNF',pct(state.outputs.details?.risk?.dnf_chance),'Mean retirement chance across modelled drivers.']];
+  $('riskCards').innerHTML=items.map(([symbol,title,value,note])=>`<div class="risk-item"><span>${icon(symbol)}</span><div><b>${title}</b><strong>${escapeHtml(value)}</strong><p>${note}</p></div></div>`).join('');
+  renderRaceForecast();
+}
+function renderRaceForecast() {
+  const report=state.setupWeather || state.outputs.details?.raceWeather;
+  const scenarios=report?.scenarios || [], scheduled=scenarios[0], air=scheduled?.best_match?.air_temp_avg;
+  const unavailable='<strong>Not captured</strong><p>Fetch a forecast for a future selected race. Historical session observations are shown separately.</p>';
+  const content=scheduled ? `<strong>${air==null?'Temperature unknown':fmt(air,1)+' °C'}</strong><p>${escapeHtml(report.event || readSettings().event)} · race window ${escapeHtml(scheduled.start_utc || '')}<br>Captured ${escapeHtml(report.retrieved_at_utc || 'unknown')}<br>Ensemble wet-hour frequency: ${pct(scheduled.wet_hour_frequency)}</p>` : unavailable;
+  $('raceForecast').innerHTML=content;$('setupWeatherPreview').innerHTML=state.setupWeather?content:unavailable;
+  renderTable('delayTable',{columns:scenarios.length?['start','wet_hour_members','complete_members','start_delay_probability']:[],rows:scenarios.map(s=>({start:s.delay_minutes?`Start +${s.delay_minutes} min`:'Scheduled',wet_hour_members:pct(s.wet_hour_frequency),complete_members:`${s.complete_member_count}/${s.member_count}`,start_delay_probability:'Unavailable'}))});
+  $('forecastStatus').textContent=report?.status ? `Status: ${report.status}. Target forecast is informational and is not applied to driver probabilities. Delay weights remain uncalibrated.`:'No target-race forecast captured. Missing forecast data remains unknown.';
+}
+function renderSourceCards() {
+  const data=state.outputs.dataHealth || [], symbols={fantasy_prices:'shirt',track_profiles:'track',fia_document_index:'file',team_power_units:'gear'};
+  $('sourceCards').innerHTML=data.map(item=>`<button class="source-card ${item.key === (state.previewKey || 'track_profiles')?'selected':''}" data-source="${escapeHtml(item.key)}"><span class="source-title">${icon(symbols[item.key])}${escapeHtml(item.label)}</span><span class="file-name">${escapeHtml(item.path.split(/[\\/]/).pop() || 'No file configured')}</span><span class="source-path" title="${escapeHtml(item.path)}">${escapeHtml(item.path)}</span><span class="source-stat">Rows Loaded<strong>${Number(item.row_count).toLocaleString()}</strong></span><span class="source-stat">Last Updated<strong>${escapeHtml(item.modified_at || 'Unknown')}</strong></span><span class="source-stat">Validation<strong class="${item.status==='valid'?'green':item.status==='missing'?'red':'amber'}">${escapeHtml(item.status)}</strong></span><span class="source-footer"><span>CSV rows</span><b>${Number(item.row_count).toLocaleString()}</b></span></button>`).join('');
+  $('sourceCards').querySelectorAll('[data-source]').forEach(el=>el.addEventListener('click',()=>safeAction(()=>loadDataPreview(el.dataset.source,1))));
+  definitions('dataHealthCounts',[['Files found',data.filter(x=>x.exists).length],['Valid CSVs',data.filter(x=>x.status==='valid').length],['Invalid CSVs',data.filter(x=>x.status==='invalid').length],['Missing files',data.filter(x=>x.status==='missing').length],['Upstream freshness','Not attested']]);
+  const track=data.find(x=>x.key==='track_profiles'), path=track?.path || '';
+  $('dataDirectoryDisplay').textContent=path ? path.slice(0,Math.max(path.lastIndexOf('/'),path.lastIndexOf('\\'))) : 'No directory configured';
+  if (!$('dataDirectoryInput').value) $('dataDirectoryInput').value=$('dataDirectoryDisplay').textContent;
+}
+function renderWorkbench() {
+  renderSourceCards();renderSignals();renderResultsDetails();renderWeatherPanels();updateWorkbenchContext();
+  $('discordConfiguration').innerHTML='';
+  definitions('discordConfiguration',[['Webhook',state.initial?.discordConfigured?'Configured locally':'Not configured'],['Automatic uploads','Off for manual simulations'],['Upload target','Verified frozen forecast in Simulation Centre']]);
+}
+async function loadDataPreview(key=state.previewKey || 'track_profiles',page=1) {
+  const preview=await api().workbench_data(key,page);state.previewKey=key;state.previewPage=preview.page;state.previewPages=preview.pages;
+  $('previewTitle').textContent=`DATA PREVIEW: ${preview.source.label.toUpperCase()}${preview.sort?.direction==='desc'?' · NEWEST FIRST':''}`;
+  $('previewPath').textContent=preview.source.path;
+  const keys={track_profiles:['Event','CircuitName','RaceLaps','OvertakingDifficulty','SafetyCarChance','RedFlagBaseChance','ProfileStatus'],team_power_units:['Year','Team','PowerUnitSupplier','EngineBadge','OfficialTeamLabel'],fantasy_prices:['Driver','Team','fantasy_price'],fia_document_index:['published_at','year','event','session','doc_number','document_title']};
+  if(key==='fia_document_index' && preview.columns.includes('published_at'))preview.columns=['published_at',...preview.columns.filter(column=>column!=='published_at')];
+  state.outputs.dataHealth=(state.outputs.dataHealth || []).map(source=>source.key===key?preview.source:source);
+  const columns=(keys[key] || []).filter(column=>preview.columns.includes(column));
+  renderTable('dataPreviewTable',state.showAllColumns || columns.length<2?preview:{...preview,columns});
+  $('previewCount').textContent=preview.source.status!=='valid'?preview.source.message:`Showing ${preview.rows.length ? (preview.page-1)*10+1 : 0}–${Math.min(preview.page*10,preview.source.row_count)} of ${preview.source.row_count} rows`;
+  $('previewPage').textContent=`${preview.page} / ${preview.pages}`;$('previewPrevious').disabled=preview.page<=1;$('previewNext').disabled=preview.page>=preview.pages;
+  $('validationTime').textContent=new Date(preview.checked_at_utc).toLocaleString();renderSourceCards();
+}
+async function reloadData(announce=true,resetPreview=announce) {
+  const status=await api().workbench_status();state.outputs.dataHealth=status.dataHealth;state.initial.discordConfigured=status.discordConfigured;
+  renderSourceCards();renderTable('dataHealthTable',{columns:['label','status','row_count','modified_at','message','path'],rows:status.dataHealth});
+  await loadDataPreview(state.previewKey,resetPreview && state.previewKey==='fia_document_index'?1:state.previewPage || 1);updateWorkbenchContext();if(announce)notify('Data sources reloaded and validated.');
+}
+async function fetchRaceWeather() {
+  const selected=readSettings(); notify('Fetching an informational race forecast…');
+  const report=await api().workbench_weather(selected.year, selected.event);
+  state.setupWeather={...report,event:state.setupOptions?.trackProfile?.event || selected.event};
+  renderRaceForecast();updateWorkbenchContext();notify('Race forecast captured locally. Driver probabilities are unchanged.');
+}
+async function loadComparisonHistory() {
+  const history=(await api().workbench_history()).history || [];
+  const runs=history.filter(r=>['monte_carlo','forecast'].includes(r.kind) && ['completed','existing'].includes(r.status));
+  ['compareA','compareB'].forEach((id,index)=>{const selected=$(id).value;$(id).innerHTML=runs.map(r=>`<option value="${escapeHtml(r.id)}">${escapeHtml(r.label)} · ${escapeHtml(r.created_at?.slice(0,16)||'')}</option>`).join('');if(runs.some(r=>r.id===selected))$(id).value=selected;else if(runs[index])$(id).value=runs[index].id;});
+  $('compareRuns').disabled=runs.length<2;
+  if(runs.length<2)renderTable('comparisonTable',{columns:[],rows:[]});
+}
+function applyPreferences(preferences) {
+  $('autoReloadInput').checked=Boolean(preferences.auto_reload);updateAutoReload();
+  if(preferences.settings_error)notify(preferences.settings_error,true);
+}
+function updateAutoReload() {
+  clearInterval(state.dataTimer);
+  if($('autoReloadInput').checked)state.dataTimer=setInterval(()=>safeAction(()=>reloadData(false)),15000);
+}
+async function savePreferences(dataDirectory=false) {
+  const result=await api().workbench_save(readSettings(),dataDirectory?$('dataDirectoryInput').value:'',$('autoReloadInput').checked);
+  state.outputs.dataHealth=result.dataHealth;state.initial.discordConfigured=result.discordConfigured;renderSourceCards();
+  updateAutoReload();notify('App settings saved locally. Discord uploads remain opt-in.');
+}
+async function resetForm() {
+  const defaults={...(state.projectDefaults || state.initial.settings),...(state.automation?.latest?.context || {})};
+  setOptions($('yearInput'),state.initial.seasons,defaults.year);
+  const events=await api().events_for_year(defaults.year);setOptions($('eventInput'),events,defaults.event);
+  writeSettings(defaults);await refreshSetupOptions(defaults.session);renderSessionPills();notify('Setup restored to defaults for the latest PC forecast. Saved results are unchanged.');
+}
+function initWorkbench() {
+  renderIcons();
+  initFantasyArchive();
+  document.querySelectorAll('[data-open-view]').forEach(el=>el.addEventListener('click',()=>{
+    if(el.dataset.openView==='track')state.trackViewSource=el.dataset.trackSource || 'saved';
+    navigate(el.dataset.openView);
+  }));
+  document.querySelectorAll('[data-open-data]').forEach(el=>el.addEventListener('click',()=>safeAction(()=>api().workbench_open_data(el.dataset.openData))));
+  document.querySelectorAll('[data-export]').forEach(el=>el.addEventListener('click',()=>safeAction(async()=>{const result=await api().workbench_export(state.outputs.outputDir || readSettings().output_dir,el.dataset.export);notify(`Exported ${result.files.length} file(s) to ${result.folder}. Nothing was uploaded.`);})));
+  $('previewPrevious').addEventListener('click',()=>safeAction(()=>loadDataPreview(state.previewKey,state.previewPage-1)));
+  $('previewNext').addEventListener('click',()=>safeAction(()=>loadDataPreview(state.previewKey,state.previewPage+1)));
+  $('openDataEditor').addEventListener('click',()=>safeAction(()=>api().workbench_open_data(state.previewKey || 'track_profiles')));
+  ['reloadData','validateData'].forEach(id=>$(id).addEventListener('click',()=>safeAction(()=>reloadData())));
+  $('validationLog').addEventListener('click',()=>{const details=$('dataValidationDetails');details.open=true;details.scrollIntoView({behavior:'smooth'});});
+  ['fetchSetupWeather','fetchWeather'].forEach(id=>$(id).addEventListener('click',()=>safeAction(fetchRaceWeather)));
+  $('autoReloadInput').addEventListener('change',()=>safeAction(()=>savePreferences(false)));
+  $('saveSettings').addEventListener('click',()=>safeAction(()=>savePreferences(true)));
+  ['resetSetup','resetSettings'].forEach(id=>$(id).addEventListener('click',()=>safeAction(resetForm)));
+  $('discordSetup').addEventListener('click',()=>window.location.href='centre.html');
+  $('refreshComparisons').addEventListener('click',()=>safeAction(loadComparisonHistory));
+  $('compareRuns').addEventListener('click',()=>safeAction(async()=>renderTable('comparisonTable',await api().workbench_compare($('compareA').value,$('compareB').value))));
+  $('resultTop').addEventListener('change',renderProbabilityChart);
+  $('outputInput').addEventListener('change',()=>{state.activeOutputDir=null;safeAction(refreshOutputs);});
+  ['baselineInput','lookbackInput','seedInput'].forEach(id=>$(id).addEventListener('change',updateContext));
+  $('sessionInput').addEventListener('change',()=>safeAction(refreshSetupTrack));
+  $('refreshButton').addEventListener('click',()=>safeAction(refreshSetupTrack));
+  $('yearInput').addEventListener('change',()=>{state.setupWeather=null;renderRaceForecast();});
+  $('eventInput').addEventListener('change',()=>{state.setupWeather=null;renderRaceForecast();});
+  document.querySelectorAll('form').forEach(form=>form.addEventListener('submit',event=>event.preventDefault()));
+  api().workbench_status().then(status=>$('workspacePath').textContent=status.workspace).catch(error=>notify(error.message,true));
+}
+window.addEventListener('pywebviewready',()=>safeAction(boot));
+if(window.f1Api)safeAction(boot);

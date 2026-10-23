@@ -19,7 +19,9 @@ from src.app_services.historical_runs import validate_selection
 
 SCENARIOS = ['all', 'stops_0', 'stops_1', 'stops_2', 'stops_3', 'pit_early_5',
              'pit_late_5', 'degradation_low', 'degradation_high', 'pit_loss_low', 'pit_loss_high']
-KINDS = {'monte_carlo': 'Monte Carlo', 'lap_dynamics': 'Lap dynamics', 'experiments': 'Scenario experiments'}
+KINDS = {'monte_carlo': 'Monte Carlo', 'lap_dynamics': 'Lap dynamics', 'experiments': 'Scenario experiments',
+         'forecast':'Next race forecast', 'score':'Post-race evaluation', 'discord':'Discord report upload',
+         'historical_download': 'Historical data download', 'historical_training': 'Historical model training'}
 
 
 def records(frame):
@@ -48,12 +50,26 @@ class SimulationJobs:
         self.lock = threading.RLock()
         self.process = None
         self.active_id = None
-        # A previous application instance cannot report a running job as complete.
+        # Preserve malformed records and surface them instead of blocking startup.
         for path in self.run_root.glob('*/job.json'):
-            data = json.loads(path.read_text(encoding='utf-8'))
+            data = self._read_job(path)
             if data['status'] in ('running', 'cancelling'):
                 data['status'] = 'interrupted'
                 write_json(path, data)
+
+    def _read_job(self, path):
+        try:
+            data = json.loads(path.read_text(encoding='utf-8'))
+            if not isinstance(data, dict) or not all(key in data for key in ('id', 'status', 'created_at')):
+                raise ValueError('Job metadata is incomplete.')
+            if (not all(isinstance(data[key], str) for key in ('id', 'status', 'created_at'))
+                    or data['id'] != path.parent.name):
+                raise ValueError('Job identifier differs from its folder.')
+            return data
+        except (OSError, ValueError, TypeError):
+            return {'id': path.parent.name, 'status': 'unreadable', 'created_at': '',
+                    'label': 'Unreadable run record', 'metadata_error':
+                    'Saved job metadata could not be read. Original files have been preserved.'}
 
     def _source(self, value):
         path = (self.root / str(value or 'outputs')).resolve()
@@ -93,7 +109,7 @@ class SimulationJobs:
 
     def history(self):
         with self.lock:
-            rows = [json.loads(p.read_text(encoding='utf-8')) for p in self.run_root.glob('*/job.json')]
+            rows = [self._read_job(p) for p in self.run_root.glob('*/job.json')]
         rows.sort(key=lambda row: row['created_at'], reverse=True)
         for key, label, relative, kind in [
             ('existing-experiments','Previous scenario experiments','outputs/matlab/experiments/scenario_comparison.csv','experiments'),
@@ -127,17 +143,35 @@ class SimulationJobs:
             if input_source not in ('saved', 'historical'):
                 raise ValueError('Unknown input source.')
             historical = validate_selection(payload.get('historical', {})) if input_source == 'historical' else None
-            if not historical and not (source/'driver_model_features.csv').is_file():
+            special = kind in ('forecast','score','discord','historical_download','historical_training')
+            training = None
+            if kind == 'historical_training':
+                from src.app_services.model_training import prepare
+                training = prepare(self.root, payload.get('training', {}))
+            archive = None
+            if kind == 'historical_download':
+                from src.app_services.historical_library import options
+                archive = options(payload.get('archive', {}))
+            forecast_folder = None
+            if kind in ('score','discord'):
+                from src.app_services.beta import verified_snapshot
+                forecast_folder = self._folder(payload.get('forecast_id'))
+                verified_snapshot(forecast_folder)
+                if kind == 'discord':
+                    from src.app_services.discord_settings import local_webhook
+                    if not local_webhook(self.root):
+                        raise ValueError('Discord is not configured. Add DISCORD_WEBHOOK_URL to the local .env.discord file.')
+            if not special and not historical and not (source/'driver_model_features.csv').is_file():
                 raise ValueError('No driver features found. Run Race Setup first or select another output folder.')
             matlab = matlab_executable()
-            if kind != 'monte_carlo' and not matlab:
+            if kind in ('lap_dynamics','experiments') and not matlab:
                 raise ValueError('MATLAB was not found. Install MATLAB with Simulink to run this simulation.')
             if not historical and kind == 'experiments' and not (source/'strategy/predicted_tyre_strategy.csv').is_file():
                 raise ValueError('Scenario experiments need predicted_tyre_strategy.csv. Run Race Setup first.')
             job_id = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')+'_'+uuid4().hex[:8]
             folder = self.run_root/job_id
             folder.mkdir()
-            if not historical:
+            if not historical and not special:
                 shutil.copy2(source/'driver_model_features.csv', folder/'features.csv')
                 if (source/'strategy/predicted_tyre_strategy.csv').is_file():
                     shutil.copy2(source/'strategy/predicted_tyre_strategy.csv', folder/'strategies.csv')
@@ -147,7 +181,20 @@ class SimulationJobs:
                     'source_dir': str(source), 'n_sims': n_sims, 'seed': seed,
                     'overtaking_difficulty': difficulty, 'matlab': matlab,
                     'note': 'Uses saved features. Monte Carlo uses neutral weather modifiers; Simulink uses exploratory fuel/tyre assumptions.'}
-            if historical:
+            if special:
+                data['historical'] = None
+                data['source_dir'] = str(folder/'source')
+                data['forecast_folder'] = str(forecast_folder) if forecast_folder else None
+                if archive:
+                    data['archive'] = archive
+                    data['label'] += ' · ' + ', '.join(map(str, archive['years']))
+                    data['note'] = 'Downloads and checkpoints historical data locally. Does not train or change the prediction model.'
+                if training:
+                    write_json(folder/'training_selection.json', training)
+                    data['training'] = {'years': training['years'], 'races': len(training['races'])}
+                    data['label'] += ' · ' + ', '.join(map(str, training['years']))
+                    data['note'] = 'Offline candidate training with chronological validation. Live model artifacts and forecast settings are unchanged.'
+            elif historical:
                 data['label'] += f" · {historical['year']} {historical['event']} · {historical['session']}"
                 data['source_dir'] = str(folder/'source')
                 data['note'] = 'Historical replay, not an out-of-sample backtest. Live forecasts and trained calibration disabled; other model assumptions and reference tables remain current.'
@@ -159,28 +206,67 @@ class SimulationJobs:
                         row = context.iloc[0]
                         data['label'] += f" · {row.get('year', '')} {row.get('event', '')} · {row.get('session', '')}"
             write_json(folder/'job.json', data)
-            command = [sys.executable, '-u', '-m', 'portable_app.job_worker', str(folder)]
-            if getattr(sys, 'frozen', False):
-                command = [sys.executable, '--job-worker', str(folder)]
-            try:
-                with (folder/'run.log').open('w', encoding='utf-8') as log:
-                    self.process = subprocess.Popen(command, cwd=self.root, stdout=log, stderr=subprocess.STDOUT,
-                        env={**os.environ, 'PYTHONIOENCODING': 'utf-8'},
-                        creationflags=subprocess.CREATE_NO_WINDOW if os.name == 'nt' else 0)
-            except Exception as exc:
-                data.update(status='failed', error=str(exc))
-                write_json(folder/'job.json', data)
-                raise
-            self.active_id = job_id
-            threading.Thread(target=self._wait, args=(job_id, self.process), daemon=True).start()
+            self._launch(folder, job_id)
             return {'id': job_id}
+
+    def start_manual(self, config):
+        """Internal Race Setup entry point, using the same cancellable worker."""
+        with self.lock:
+            if self.process and self.process.poll() is None:
+                raise ValueError('A simulation is already running. Wait or cancel it first.')
+            if config['outputs'].get('post_to_discord'):
+                raise ValueError('Manual runs cannot publish to Discord.')
+            output = Path(config['outputs']['output_dir']).resolve()
+            if output.is_relative_to(self.run_root) or 'frozen' in {p.lower() for p in output.parts}:
+                raise ValueError('Choose a separate output directory.')
+            job_id = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')+'_'+uuid4().hex[:8]
+            folder = self.run_root/job_id
+            folder.mkdir()
+            write_json(folder/'manual_config.json', config)
+            write_json(folder/'job.json', {'id': job_id, 'kind': 'manual_run',
+                'label': 'Race Setup', 'status': 'running',
+                'created_at': datetime.now(timezone.utc).isoformat(),
+                'output_dir': str(output), 'source_dir': str(output),
+                'note': 'Manual run in a managed, cancellable worker.'})
+            self._launch(folder, job_id)
+            return {'id': job_id, 'configPath': str(folder/'manual_config.json')}
+
+    def _launch(self, folder, job_id):
+        command = [sys.executable, '-u', '-m', 'portable_app.job_worker', str(folder)]
+        if getattr(sys, 'frozen', False):
+            command = [sys.executable, '--job-worker', str(folder)]
+        try:
+            worker_env = {**os.environ, 'PYTHONIOENCODING': 'utf-8'}
+            if not getattr(sys, 'frozen', False):
+                # Source --workspace launches still import code from this
+                # checkout, while writing downloads into the chosen workspace.
+                worker_env['PYTHONPATH'] = os.pathsep.join(filter(None,
+                    [str(Path(__file__).resolve().parents[2]), os.environ.get('PYTHONPATH')]))
+            with (folder/'run.log').open('w', encoding='utf-8') as log:
+                self.process = subprocess.Popen(command, cwd=self.root, stdout=log, stderr=subprocess.STDOUT,
+                    env=worker_env,
+                    creationflags=subprocess.CREATE_NO_WINDOW if os.name == 'nt' else 0)
+        except Exception as exc:
+            data = self._read_job(folder/'job.json')
+            data.update(status='failed', error=str(exc))
+            write_json(folder/'job.json', data)
+            raise
+        self.active_id = job_id
+        threading.Thread(target=self._wait, args=(job_id, self.process), daemon=True).start()
 
     def _wait(self, job_id, process):
         code = process.wait()
         with self.lock:
             path = self._folder(job_id)/'job.json'
             data = json.loads(path.read_text(encoding='utf-8'))
-            data['status'] = 'cancelled' if data['status'] == 'cancelling' else ('completed' if code == 0 else 'failed')
+            data['status'] = 'cancelled' if data['status'] in {'cancelling', 'cancelled'} else ('completed' if code == 0 else 'failed')
+            download_result = path.parent/'download_result.json'
+            if data.get('kind') == 'historical_download' and code == 0 and data['status'] != 'cancelled' and download_result.is_file():
+                data['status'] = json.loads(download_result.read_text(encoding='utf-8'))['status']
+            context_path = path.parent/'forecast_context.json'
+            if context_path.is_file():
+                context = json.loads(context_path.read_text(encoding='utf-8'))
+                data['label'] = f"Next race · {context['year']} {context['event']} · {context['session']}"
             data.update(exit_code=code, finished_at=datetime.now(timezone.utc).isoformat())
             write_json(path, data)
 
@@ -192,18 +278,26 @@ class SimulationJobs:
             data = json.loads(path.read_text(encoding='utf-8'))
             data['status'] = 'cancelling'
             write_json(path, data)
+            if data.get('kind') == 'historical_download':
+                (path.parent/'stop_requested').write_text('Stop after the current session.', encoding='utf-8')
+                return True
             if os.name == 'nt':
                 subprocess.run(['taskkill', '/PID', str(self.process.pid), '/T', '/F'],
                     capture_output=True, creationflags=subprocess.CREATE_NO_WINDOW, check=True)
             else:
                 self.process.terminate()
+            # Persist cancellation before a window-close callback lets the app exit.
+            code = self.process.wait(timeout=10)
+            data.update(status='cancelled', exit_code=code,
+                        finished_at=datetime.now(timezone.utc).isoformat())
+            write_json(path, data)
             return True
 
     def status(self, job_id):
         folder = self._folder(job_id)
         with self.lock:
             path = folder/'job.json'
-            data = json.loads(path.read_text(encoding='utf-8')) if path.is_file() else {'id': job_id, 'status': 'existing'}
+            data = self._read_job(path) if path.is_file() else {'id': job_id, 'status': 'existing'}
         log = folder/'run.log'
         data['log'] = ''
         if log.is_file():
@@ -214,11 +308,42 @@ class SimulationJobs:
         data['progress'] = list(map(int, progress[-1])) if progress else None
         source = folder/'source'
         data['reusable_source'] = str(source.relative_to(self.root)) if data.get('status') == 'completed' and (source/'driver_model_features.csv').is_file() else None
+        context = folder/'forecast_context.json'
+        if context.is_file():
+            forecast = json.loads(context.read_text(encoding='utf-8'))
+            data['label'] = f"Next race · {forecast['year']} {forecast['event']} · {forecast['session']}"
+            data['forecast_context'] = forecast
+        data['frozen'] = (folder/'frozen/manifest.json').is_file()
+        if data['frozen']:
+            from src.app_services.beta import verified_snapshot
+            try:
+                verified_snapshot(folder)
+            except (ValueError, KeyError, OSError) as exc:
+                data['frozen'] = False
+                data['snapshot_error'] = str(exc)
+        data['score'] = json.loads((folder/'score.json').read_text(encoding='utf-8')) if (folder/'score.json').is_file() else None
+        progress = folder/'download_progress.json'
+        if data.get('kind') == 'historical_download' and progress.is_file():
+            data['archive_progress'] = json.loads(progress.read_text(encoding='utf-8'))
+        if data.get('kind') == 'historical_download':
+            from src.app_services.request_meter import request_usage
+            try:
+                data['request_usage'] = request_usage(self.root, folder)
+            except (OSError, ValueError, KeyError, TypeError):
+                data['request_usage'] = {'status': 'unavailable', 'reason': 'Request monitoring data is unavailable.',
+                                         'providers': [], 'guards': []}
+        progress = folder/'training_progress.json'
+        if data.get('kind') == 'historical_training':
+            if progress.is_file():
+                data['training_progress'] = json.loads(progress.read_text(encoding='utf-8'))
+            if data['status'] == 'completed':
+                from src.app_services.model_training import result
+                data['training_result'] = result(folder)
         return data
 
     def results(self, job_id, driver='', scenario=''):
         folder = self._folder(job_id)
-        name = next((n for n in ['scenario_comparison.csv','lap_dynamics_summary.csv','simulation_summary.csv'] if (folder/n).is_file()), None)
+        name = next((n for n in ['score_comparison.csv','scenario_comparison.csv','lap_dynamics_summary.csv','simulation_summary.csv'] if (folder/n).is_file()), None)
         if name is None:
             return {'rows': [], 'drivers': [], 'scenarios': [], 'laps': [], 'verification': {}}
         frame = pd.read_csv(folder/name)
@@ -229,7 +354,7 @@ class SimulationJobs:
         if scenario and 'scenario' in frame:
             frame = frame[frame.scenario.eq(scenario)]
         desired = ['Driver','Team','scenario','simulated_rank','avg_finish','win_chance','podium_chance',
-                   'dnf_chance','avg_points','simulated_race_time_seconds','delta_vs_baseline_seconds','pit_stops']
+                   'dnf_chance','avg_points','simulated_race_time_seconds','delta_vs_baseline_seconds','pit_stops','actual_position','finish_error']
         rows = records(frame[[c for c in desired if c in frame]])
         laps = []
         detail = folder/'lap_dynamics_results.csv'

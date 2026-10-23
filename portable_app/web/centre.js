@@ -5,6 +5,7 @@ const scenarioNames = {all:'All 11 scenarios',baseline:'Baseline',stops_0:'Zero 
 let kind='monte_carlo', selected=null, appState={}, currentRows=[], lastStatus='', booted=false, loading=0;
 let historicalEvents=[], historicalLoading=false, historicalRequest=0;
 let reusableSource=null;
+let sharingMessage='';
 const escape = value => String(value??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
 function error(message){el('error').textContent=message;el('error').hidden=!message;}
 async function safely(action){try{await action();}catch(e){error(e.message||String(e));}}
@@ -15,6 +16,9 @@ function options(id, values, allLabel, previous){
 }
 function controls(){
   const busy=Boolean(appState.active_id);
+  el('forecastNext').disabled=busy;el('scoreForecast').disabled=busy;
+  el('uploadDiscord').disabled=busy||!appState.discord_configured;
+  el('discordStatus').textContent=appState.discord_configured?'Discord configured locally':'Discord not configured: add a local .env.discord file';
   const historical=el('inputSource').value==='historical';
   el('savedSource').hidden=historical;el('historicalSource').hidden=!historical;
   const ready=historical?!historicalLoading&&Boolean(el('historicalEvent').value&&el('historicalSession').value):appState.features&&(kind!=='experiments'||appState.strategies);
@@ -55,11 +59,17 @@ async function refresh(){
   el('sourceDetail').textContent=`${appState.context.drivers} drivers · ${appState.features?'Features available':'Features missing'} · ${appState.strategies?'Strategy available':'Strategy missing'}${appState.context.modified?' · Updated '+new Date(appState.context.modified).toLocaleDateString():''}`;
   el('matlabLabel').textContent=appState.matlab?'Installed':'Not found';controls();history();
 }
-async function selectRun(id){selected=id;lastStatus='';el('driverFilter').value='';el('scenarioFilter').value='';el('openFolder').disabled=false;history();await status();await results();}
+async function selectRun(id){selected=id;lastStatus='';sharingMessage='';el('driverFilter').value='';el('scenarioFilter').value='';el('openFolder').disabled=false;history();await status();await results();}
 async function status(){
   if(!selected)return;
   const id=selected, data=await client().lab_status(id);if(selected!==id)return;
   reusableSource=data.reusable_source;el('reuseInputs').hidden=!reusableSource;
+  el('frozenActions').hidden=!data.frozen||data.status!=='completed';
+  el('betaMessage').hidden=!data.score&&!data.snapshot_error&&!sharingMessage;
+  if(data.snapshot_error)el('betaMessage').textContent=data.snapshot_error;
+  else if(data.score)el('betaMessage').textContent=`${data.score.category} evaluation · ${data.score.drivers} drivers · Finish MAE ${data.score.finish_mae.toFixed(2)} positions · Win Brier ${data.score.win_chance_brier?.toFixed(4)} · Podium Brier ${data.score.podium_chance_brier?.toFixed(4)}. Lower is better; one race is not proof of calibration.`;
+  else if(sharingMessage)el('betaMessage').textContent=sharingMessage;
+  if(data.forecast_context){const f=data.forecast_context;el('nextRaceInfo').textContent=`${f.year} ${f.event} · ${f.session} inputs · cutoff ${new Date(f.data_cutoff_utc).toLocaleString()} · Race ${new Date(f.race_start_utc).toLocaleString()}`;}
   el('jobTitle').textContent=data.label||appState.history?.find(r=>r.id===id)?.label||'Saved run';
   el('jobStatus').textContent=data.status;el('reviewTitle').textContent=el('jobTitle').textContent;
   const running=['running','cancelling'].includes(data.status);
@@ -69,11 +79,13 @@ async function status(){
   el('progressText').textContent=running?(data.progress?`${data.progress[0]} / ${data.progress[1]} simulations complete`:data.kind==='monte_carlo'?'Running Monte Carlo simulation…':'Starting simulation. MATLAB startup may take a minute.'):(data.status==='failed'?'Run failed. Open the log for the error.':data.status==='cancelled'?'Cancelled. Partial outputs may be available.':data.status==='interrupted'?'Previous app session ended unexpectedly. Partial outputs may be available.':'Saved results available below.');
   el('log').textContent=data.log||'No log was recorded for this earlier run.';
   if(running&&data.historical&&!data.log.includes('Historical inputs ready.'))el('progressText').textContent='Preparing historical inputs. First-time downloads can take several minutes.';
+  if(running&&data.kind==='forecast')el('progressText').textContent='Preparing the next-race forecast and frozen snapshot. Follow the live log.';
+  if(running&&data.kind==='score')el('progressText').textContent='Loading race classification and scoring the frozen forecast…';
   if(data.status==='failed'){el('log').parentElement.open=true;}
   if(lastStatus&&lastStatus!==data.status&&!running){await refresh();await results();}
   lastStatus=data.status;
 }
-const headings={Driver:'Driver',Team:'Team',scenario:'Scenario',simulated_rank:'Rank',avg_finish:'Avg. finish',win_chance:'Win %',podium_chance:'Podium %',dnf_chance:'DNF %',avg_points:'Avg. points',simulated_race_time_seconds:'Race time (s)',delta_vs_baseline_seconds:'Δ baseline (s)',pit_stops:'Stops'};
+const headings={Driver:'Driver',Team:'Team',scenario:'Scenario',simulated_rank:'Rank',avg_finish:'Avg. finish',win_chance:'Win %',podium_chance:'Podium %',dnf_chance:'DNF %',points_chance:'Top 10 % (legacy)',top10_chance:'Top 10 %',points_scoring_chance:'Scores points %',avg_points:'Avg. points',simulated_race_time_seconds:'Race time (s)',delta_vs_baseline_seconds:'Δ baseline (s)',pit_stops:'Stops'};
 function format(value,key){if(value===null||value===undefined)return '—';if(typeof value!=='number')return scenarioNames[value]||value;return ['win_chance','podium_chance','dnf_chance'].includes(key)?(value*100).toFixed(2):Number.isInteger(value)?String(value):value.toFixed(3);}
 async function results(){
   if(!selected)return;const ticket=++loading;
@@ -113,6 +125,11 @@ function draw(data){
 async function boot(){
   if(booted||!client())return;booted=true;
   const year=new Date().getFullYear();for(let y=year;y>=2018;y--)el('historicalYear').add(new Option(String(y),String(y)));el('historicalYear').value=String(year-1);
+  el('checkNext').onclick=()=>safely(async()=>{error('');el('checkNext').disabled=true;try{const f=await client().lab_next_race();el('nextRaceInfo').textContent=`${f.year} ${f.event} · ${f.session} inputs · Race ${new Date(f.race_start_utc).toLocaleString()}. Session availability is checked again when you run.`;}finally{el('checkNext').disabled=false;}});
+  el('forecastNext').onclick=()=>safely(async()=>{error('');el('forecastNext').disabled=true;try{const job=await client().lab_start({kind:'forecast',n_sims:10000,seed:42,overtaking_difficulty:.55});await refresh();await selectRun(job.id);}finally{controls();}});
+  el('scoreForecast').onclick=()=>safely(async()=>{error('');const job=await client().lab_start({kind:'score',forecast_id:selected});await refresh();await selectRun(job.id);});
+  el('uploadDiscord').onclick=()=>safely(async()=>{if(!window.confirm('Upload this frozen forecast CSV and all available report charts to your configured Discord channel? Successful deliveries will not be sent again.'))return;error('');const job=await client().lab_start({kind:'discord',forecast_id:selected});await refresh();await selectRun(job.id);});
+  el('sharePreview').onclick=()=>safely(async()=>{const result=await client().lab_share_export(selected);sharingMessage=`Saved exports/${result.filename}. Review it using Open results folder. Nothing was uploaded.`;el('betaMessage').textContent=sharingMessage;el('betaMessage').hidden=false;});
   el('inputSource').onchange=controls;
   el('loadHistorical').onclick=()=>safely(loadHistorical);
   el('historicalEvent').onchange=historicalSessions;

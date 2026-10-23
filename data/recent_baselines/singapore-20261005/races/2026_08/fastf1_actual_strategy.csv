@@ -1,0 +1,23 @@
+year,event,round,Driver,Team,actual_strategy,actual_strategy_sequence,actual_stops,actual_stint_count,actual_first_compound,actual_had_wet_compound,actual_completed_likely,actual_race_laps,actual_driver_max_lap,actual_strategy_source
+2026,Austrian Grand Prix,8,ALB,Williams,MEDIUM-MEDIUM-HARD,MEDIUM-MEDIUM-HARD,2,3,MEDIUM,False,True,71,69,fastf1_race_lap_stint_data
+2026,Austrian Grand Prix,8,ALO,Aston Martin,MEDIUM-SOFT-SOFT,MEDIUM-SOFT-SOFT,2,3,MEDIUM,False,True,71,68,fastf1_race_lap_stint_data
+2026,Austrian Grand Prix,8,ANT,Mercedes,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,True,71,71,fastf1_race_lap_stint_data
+2026,Austrian Grand Prix,8,BEA,Haas F1 Team,MEDIUM-HARD-MEDIUM,MEDIUM-HARD-MEDIUM,2,3,MEDIUM,False,True,71,70,fastf1_race_lap_stint_data
+2026,Austrian Grand Prix,8,BOR,Audi,SOFT-MEDIUM-HARD,SOFT-MEDIUM-HARD,2,3,SOFT,False,True,71,70,fastf1_race_lap_stint_data
+2026,Austrian Grand Prix,8,BOT,Cadillac,MEDIUM,MEDIUM,0,1,MEDIUM,False,False,71,2,fastf1_race_lap_stint_data
+2026,Austrian Grand Prix,8,COL,Alpine,MEDIUM-HARD-MEDIUM,MEDIUM-HARD-MEDIUM,2,3,MEDIUM,False,True,71,70,fastf1_race_lap_stint_data
+2026,Austrian Grand Prix,8,GAS,Alpine,MEDIUM-HARD-MEDIUM-SOFT,MEDIUM-HARD-MEDIUM-SOFT,3,4,MEDIUM,False,True,71,70,fastf1_race_lap_stint_data
+2026,Austrian Grand Prix,8,HAD,Red Bull Racing,MEDIUM-MEDIUM-HARD,MEDIUM-MEDIUM-HARD,2,3,MEDIUM,False,True,71,71,fastf1_race_lap_stint_data
+2026,Austrian Grand Prix,8,HAM,Ferrari,MEDIUM-HARD-SOFT-HARD,MEDIUM-HARD-SOFT-HARD,3,4,MEDIUM,False,True,71,71,fastf1_race_lap_stint_data
+2026,Austrian Grand Prix,8,HUL,Audi,MEDIUM-MEDIUM-HARD,MEDIUM-MEDIUM-HARD,2,3,MEDIUM,False,True,71,70,fastf1_race_lap_stint_data
+2026,Austrian Grand Prix,8,LAW,Racing Bulls,MEDIUM-HARD-MEDIUM,MEDIUM-HARD-MEDIUM,2,3,MEDIUM,False,True,71,70,fastf1_race_lap_stint_data
+2026,Austrian Grand Prix,8,LEC,Ferrari,MEDIUM-HARD-HARD-SOFT,MEDIUM-HARD-HARD-SOFT,3,4,MEDIUM,False,True,71,71,fastf1_race_lap_stint_data
+2026,Austrian Grand Prix,8,LIN,Racing Bulls,MEDIUM-HARD-MEDIUM,MEDIUM-HARD-MEDIUM,2,3,MEDIUM,False,True,71,70,fastf1_race_lap_stint_data
+2026,Austrian Grand Prix,8,NOR,McLaren,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,True,71,71,fastf1_race_lap_stint_data
+2026,Austrian Grand Prix,8,OCO,Haas F1 Team,MEDIUM-MEDIUM-HARD,MEDIUM-MEDIUM-HARD,2,3,MEDIUM,False,True,71,69,fastf1_race_lap_stint_data
+2026,Austrian Grand Prix,8,PER,Cadillac,MEDIUM,MEDIUM,0,1,MEDIUM,False,False,71,4,fastf1_race_lap_stint_data
+2026,Austrian Grand Prix,8,PIA,McLaren,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,True,71,71,fastf1_race_lap_stint_data
+2026,Austrian Grand Prix,8,RUS,Mercedes,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,True,71,71,fastf1_race_lap_stint_data
+2026,Austrian Grand Prix,8,SAI,Williams,SOFT-MEDIUM,SOFT-MEDIUM,1,2,SOFT,False,False,71,24,fastf1_race_lap_stint_data
+2026,Austrian Grand Prix,8,STR,Aston Martin,MEDIUM-SOFT,MEDIUM-SOFT,1,2,MEDIUM,False,False,71,45,fastf1_race_lap_stint_data
+2026,Austrian Grand Prix,8,VER,Red Bull Racing,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,True,71,71,fastf1_race_lap_stint_data

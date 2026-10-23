@@ -1,0 +1,921 @@
+Year,Event,Round,Session,Driver,DriverNumber,Team,LapNumber,Stint,Compound,TyreLife,FreshTyre,LapTimeSeconds,Sector1Seconds,Sector2Seconds,Sector3Seconds,SpeedI1,SpeedI2,SpeedFL,SpeedST,IsPersonalBest,IsAccurate,TrackStatus,Deleted,PitOut,PitIn,LapStartTimeSeconds,CleanPushLap
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,1.0,1.0,MEDIUM,1.0,True,102.591,,30.332,42.559,283.0,265.0,272.0,337.0,False,False,12,False,False,False,3384.05,False
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,2.0,1.0,MEDIUM,2.0,True,98.917,26.232,30.273,42.412,275.0,261.0,268.0,320.0,True,True,1,False,False,False,3486.903,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,3.0,1.0,MEDIUM,3.0,True,98.923,26.327,30.046,42.55,272.0,261.0,265.0,314.0,False,True,1,False,False,False,3585.82,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,4.0,1.0,MEDIUM,4.0,True,98.717,26.278,29.879,42.56,274.0,260.0,269.0,314.0,True,True,1,False,False,False,3684.743,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,5.0,1.0,MEDIUM,5.0,True,98.474,26.142,29.826,42.506,272.0,259.0,269.0,312.0,True,True,1,False,False,False,3783.46,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,6.0,1.0,MEDIUM,6.0,True,98.298,26.134,29.798,42.366,272.0,262.0,271.0,314.0,True,True,1,False,False,False,3881.934,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,7.0,1.0,MEDIUM,7.0,True,98.635,26.039,30.089,42.507,272.0,258.0,268.0,313.0,False,True,1,False,False,False,3980.232,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,8.0,1.0,MEDIUM,8.0,True,98.427,26.03,29.874,42.523,272.0,258.0,267.0,312.0,False,True,1,False,False,False,4078.867,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,9.0,1.0,MEDIUM,9.0,True,98.609,26.192,29.903,42.514,272.0,257.0,268.0,311.0,False,True,1,False,False,False,4177.294,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,10.0,1.0,MEDIUM,10.0,True,112.994,26.099,29.86,57.035,271.0,258.0,,215.0,False,False,124,False,False,True,4275.903,False
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,11.0,2.0,HARD,1.0,True,,54.68,40.781,63.178,238.0,221.0,203.0,257.0,False,False,4,False,True,False,4388.897,False
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,12.0,2.0,HARD,2.0,True,,42.739,44.215,63.121,207.0,200.0,157.0,154.0,False,False,4,False,False,False,4547.651,False
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,13.0,2.0,HARD,3.0,True,145.559,36.457,45.437,63.665,207.0,183.0,250.0,184.0,False,False,41,False,False,False,4697.634,False
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,14.0,2.0,HARD,4.0,True,100.408,27.047,30.627,42.734,279.0,264.0,266.0,328.0,False,True,1,False,False,False,4843.193,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,15.0,2.0,HARD,5.0,True,98.883,26.131,30.252,42.5,282.0,272.0,268.0,353.0,False,True,1,False,False,False,4943.601,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,16.0,2.0,HARD,6.0,True,98.644,26.058,30.253,42.333,287.0,270.0,274.0,338.0,False,True,1,False,False,False,5042.484,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,17.0,2.0,HARD,7.0,True,98.238,25.803,30.3,42.135,286.0,269.0,271.0,337.0,True,True,1,False,False,False,5141.128,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,18.0,2.0,HARD,8.0,True,97.593,25.714,29.545,42.334,282.0,263.0,255.0,343.0,True,True,12,False,False,False,5239.366,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,19.0,2.0,HARD,9.0,True,99.325,26.154,30.545,42.626,280.0,259.0,271.0,327.0,False,True,1,False,False,False,5336.959,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,20.0,2.0,HARD,10.0,True,99.504,27.158,30.103,42.243,280.0,266.0,273.0,332.0,False,True,1,False,False,False,5436.284,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,21.0,2.0,HARD,11.0,True,99.208,26.059,30.115,43.034,284.0,272.0,248.0,343.0,False,True,1,False,False,False,5535.788,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,22.0,2.0,HARD,12.0,True,99.338,26.564,30.393,42.381,277.0,268.0,274.0,333.0,False,True,1,False,False,False,5634.996,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,23.0,2.0,HARD,13.0,True,98.067,25.759,30.001,42.307,291.0,269.0,273.0,328.0,False,True,1,False,False,False,5734.334,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,24.0,2.0,HARD,14.0,True,98.373,25.781,29.894,42.698,283.0,269.0,267.0,336.0,False,True,1,False,False,False,5832.401,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,25.0,2.0,HARD,15.0,True,98.568,26.28,30.069,42.219,280.0,265.0,276.0,335.0,False,True,1,False,False,False,5930.774,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,26.0,2.0,HARD,16.0,True,97.82,25.953,29.802,42.065,280.0,270.0,274.0,333.0,False,True,1,False,False,False,6029.342,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,27.0,2.0,HARD,17.0,True,98.163,25.744,29.934,42.485,286.0,270.0,271.0,332.0,False,True,12,False,False,False,6127.162,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,28.0,2.0,HARD,18.0,True,98.225,25.886,29.866,42.473,284.0,269.0,268.0,335.0,False,True,21,False,False,False,6225.325,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,29.0,2.0,HARD,19.0,True,97.566,25.857,29.475,42.234,273.0,258.0,271.0,312.0,True,True,1,False,False,False,6323.55,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,30.0,2.0,HARD,20.0,True,98.132,25.679,29.518,42.935,272.0,260.0,270.0,311.0,False,True,1,False,False,False,6421.116,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,31.0,2.0,HARD,21.0,True,97.634,25.811,29.447,42.376,273.0,259.0,270.0,309.0,False,True,1,False,False,False,6519.248,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,32.0,2.0,HARD,22.0,True,97.253,25.75,29.413,42.09,273.0,260.0,273.0,313.0,True,True,1,False,False,False,6616.882,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,33.0,2.0,HARD,23.0,True,97.123,25.649,29.312,42.162,273.0,260.0,272.0,313.0,True,True,12,False,False,False,6714.135,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,34.0,2.0,HARD,24.0,True,97.193,25.703,29.32,42.17,273.0,258.0,271.0,313.0,False,True,1,False,False,False,6811.258,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,35.0,2.0,HARD,25.0,True,97.293,25.72,29.432,42.141,274.0,260.0,271.0,312.0,False,True,1,False,False,False,6908.451,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,36.0,2.0,HARD,26.0,True,97.103,25.743,29.398,41.962,273.0,261.0,273.0,313.0,True,True,1,False,False,False,7005.744,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,37.0,2.0,HARD,27.0,True,96.752,25.561,29.247,41.944,274.0,261.0,274.0,314.0,True,True,1,False,False,False,7102.847,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,38.0,2.0,HARD,28.0,True,96.672,25.579,29.221,41.872,274.0,261.0,274.0,313.0,True,True,1,False,False,False,7199.599,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,39.0,2.0,HARD,29.0,True,96.754,25.596,29.263,41.895,275.0,263.0,273.0,313.0,False,True,1,False,False,False,7296.271,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,40.0,2.0,HARD,30.0,True,96.865,25.632,29.297,41.936,275.0,261.0,273.0,314.0,False,True,1,False,False,False,7393.025,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,41.0,2.0,HARD,31.0,True,97.214,25.596,29.407,42.211,277.0,260.0,275.0,315.0,False,True,1,False,False,False,7489.89,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,42.0,2.0,HARD,32.0,True,97.026,25.53,29.337,42.159,275.0,261.0,274.0,314.0,False,True,1,False,False,False,7587.104,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,43.0,2.0,HARD,33.0,True,96.877,25.507,29.286,42.084,276.0,261.0,275.0,313.0,False,True,1,False,False,False,7684.13,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,44.0,2.0,HARD,34.0,True,96.764,25.497,29.267,42.0,276.0,265.0,274.0,315.0,False,True,1,False,False,False,7781.007,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,45.0,2.0,HARD,35.0,True,96.895,25.484,29.296,42.115,277.0,262.0,275.0,313.0,False,True,1,False,False,False,7877.771,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,46.0,2.0,HARD,36.0,True,96.748,25.528,29.293,41.927,276.0,262.0,273.0,314.0,False,True,1,False,False,False,7974.666,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,47.0,2.0,HARD,37.0,True,97.584,25.608,29.299,42.677,277.0,262.0,274.0,316.0,False,True,1,False,False,False,8071.414,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,48.0,2.0,HARD,38.0,True,97.01,25.56,29.288,42.162,275.0,261.0,275.0,312.0,False,True,1,False,False,False,8168.998,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,49.0,2.0,HARD,39.0,True,96.752,25.496,29.22,42.036,278.0,263.0,277.0,319.0,False,True,1,False,False,False,8266.008,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,50.0,2.0,HARD,40.0,True,97.04,25.51,29.456,42.074,279.0,268.0,275.0,328.0,False,True,1,False,False,False,8362.76,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,51.0,2.0,HARD,41.0,True,96.753,25.517,29.221,42.015,277.0,263.0,276.0,312.0,False,True,1,False,False,False,8459.8,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,52.0,2.0,HARD,42.0,True,96.642,25.469,29.305,41.868,278.0,264.0,277.0,315.0,True,True,1,False,False,False,8556.553,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,53.0,2.0,HARD,43.0,True,96.505,25.388,29.218,41.899,278.0,263.0,277.0,316.0,True,True,12,False,False,False,8653.195,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,54.0,2.0,HARD,44.0,True,96.682,25.356,29.236,42.09,280.0,263.0,277.0,316.0,False,True,1,False,False,False,8749.7,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,55.0,2.0,HARD,45.0,True,96.638,25.449,29.222,41.967,278.0,263.0,278.0,318.0,False,True,1,False,False,False,8846.382,True
+2026,Chinese Grand Prix,2,R,GAS,10,Alpine,56.0,2.0,HARD,46.0,True,96.569,25.321,29.355,41.893,276.0,262.0,270.0,326.0,False,True,1,False,False,False,8943.02,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,1.0,1.0,MEDIUM,1.0,True,115.089,,30.88,43.334,261.0,244.0,268.0,323.0,False,False,12,False,False,False,3384.05,False
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,2.0,1.0,MEDIUM,2.0,True,101.066,26.586,30.736,43.744,262.0,248.0,268.0,309.0,True,True,1,False,False,False,3499.401,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,3.0,1.0,MEDIUM,3.0,True,101.224,26.559,31.121,43.544,263.0,247.0,268.0,306.0,False,True,1,False,False,False,3600.467,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,4.0,1.0,MEDIUM,4.0,True,100.934,26.488,30.989,43.457,272.0,253.0,269.0,313.0,True,True,1,False,False,False,3701.691,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,5.0,1.0,MEDIUM,5.0,True,100.978,26.428,30.987,43.563,271.0,251.0,270.0,312.0,False,True,1,False,False,False,3802.625,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,6.0,1.0,MEDIUM,6.0,True,100.557,26.336,30.959,43.262,271.0,253.0,271.0,308.0,True,True,1,False,False,False,3903.603,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,7.0,1.0,MEDIUM,7.0,True,100.918,26.521,30.988,43.409,268.0,251.0,269.0,311.0,False,True,1,False,False,False,4004.16,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,8.0,1.0,MEDIUM,8.0,True,101.103,26.456,31.044,43.603,273.0,253.0,271.0,309.0,False,True,1,False,False,False,4105.078,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,9.0,1.0,MEDIUM,9.0,True,101.781,26.681,31.251,43.849,268.0,252.0,270.0,307.0,False,True,1,False,False,False,4206.181,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,10.0,1.0,MEDIUM,10.0,True,121.617,26.909,39.427,55.281,271.0,145.0,201.0,276.0,False,False,124,False,False,False,4307.962,False
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,11.0,1.0,MEDIUM,11.0,True,138.719,34.918,41.413,62.388,237.0,169.0,,243.0,False,False,4,False,False,True,4429.579,False
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,12.0,2.0,HARD,1.0,True,137.935,57.392,32.169,48.374,225.0,265.0,226.0,272.0,False,False,4,False,True,False,4568.298,False
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,13.0,2.0,HARD,2.0,True,139.666,35.216,45.492,58.958,242.0,137.0,268.0,182.0,False,False,41,False,False,False,4706.233,False
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,14.0,2.0,HARD,3.0,True,101.759,26.987,31.116,43.656,279.0,269.0,273.0,335.0,False,True,1,False,False,False,4845.899,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,15.0,2.0,HARD,4.0,True,100.004,26.319,30.887,42.798,275.0,268.0,272.0,330.0,True,True,1,False,False,False,4947.658,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,16.0,2.0,HARD,5.0,True,99.621,26.132,30.683,42.806,280.0,259.0,273.0,323.0,True,True,1,False,False,False,5047.662,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,17.0,2.0,HARD,6.0,True,102.203,26.208,30.702,45.293,279.0,257.0,273.0,298.0,False,True,12,False,False,False,5147.283,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,18.0,2.0,HARD,7.0,True,99.321,25.941,30.765,42.615,276.0,262.0,270.0,321.0,True,True,21,False,False,False,5249.486,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,19.0,2.0,HARD,8.0,True,99.731,26.312,30.675,42.744,275.0,256.0,270.0,318.0,False,True,1,False,False,False,5348.807,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,20.0,2.0,HARD,9.0,True,100.134,26.383,30.892,42.859,269.0,244.0,272.0,316.0,False,True,1,False,False,False,5448.538,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,21.0,2.0,HARD,10.0,True,99.682,26.359,30.577,42.746,272.0,254.0,272.0,313.0,False,True,1,False,False,False,5548.672,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,22.0,2.0,HARD,11.0,True,99.622,26.152,30.638,42.832,271.0,252.0,274.0,316.0,False,True,1,False,False,False,5648.354,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,23.0,2.0,HARD,12.0,True,99.75,26.358,30.59,42.802,272.0,255.0,272.0,316.0,False,True,1,False,False,False,5747.976,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,24.0,2.0,HARD,13.0,True,99.736,26.357,30.633,42.746,276.0,258.0,248.0,314.0,False,True,1,False,False,False,5847.726,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,25.0,2.0,HARD,14.0,True,100.542,26.847,30.729,42.966,275.0,255.0,272.0,315.0,False,True,1,False,False,False,5947.462,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,26.0,2.0,HARD,15.0,True,100.01,26.277,30.698,43.035,273.0,254.0,262.0,313.0,False,True,1,False,False,False,6048.004,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,27.0,2.0,HARD,16.0,True,100.307,26.514,30.639,43.154,275.0,257.0,273.0,312.0,False,True,12,False,False,False,6148.014,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,28.0,2.0,HARD,17.0,True,99.583,26.26,30.643,42.68,273.0,259.0,274.0,314.0,False,True,1,False,False,False,6248.321,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,29.0,2.0,HARD,18.0,True,100.437,26.772,30.723,42.942,274.0,254.0,272.0,313.0,False,True,1,False,False,False,6347.904,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,30.0,2.0,HARD,19.0,True,100.016,26.215,30.594,43.207,272.0,257.0,275.0,319.0,False,True,1,False,False,False,6448.341,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,31.0,2.0,HARD,20.0,True,99.977,26.262,30.789,42.926,274.0,254.0,273.0,312.0,False,True,1,False,False,False,6548.357,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,32.0,2.0,HARD,21.0,True,99.799,26.198,30.662,42.939,273.0,256.0,273.0,308.0,False,True,1,False,False,False,6648.334,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,33.0,2.0,HARD,22.0,True,100.106,26.641,30.644,42.821,270.0,254.0,274.0,313.0,False,True,12,False,False,False,6748.133,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,34.0,2.0,HARD,23.0,True,100.185,26.291,30.552,43.342,275.0,254.0,272.0,314.0,False,True,1,False,False,False,6848.239,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,35.0,2.0,HARD,24.0,True,99.48,26.407,30.29,42.783,270.0,258.0,271.0,315.0,False,True,1,False,False,False,6948.424,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,36.0,2.0,HARD,25.0,True,99.551,26.468,30.285,42.798,270.0,256.0,275.0,311.0,False,True,1,False,False,False,7047.904,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,37.0,2.0,HARD,26.0,True,99.606,26.342,30.306,42.958,274.0,260.0,275.0,308.0,False,True,1,False,False,False,7147.455,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,38.0,2.0,HARD,27.0,True,100.111,26.365,30.884,42.862,273.0,257.0,276.0,310.0,False,True,1,False,False,False,7247.061,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,39.0,2.0,HARD,28.0,True,99.616,26.153,30.091,43.372,275.0,260.0,275.0,312.0,False,True,1,False,False,False,7347.172,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,40.0,2.0,HARD,29.0,True,99.591,26.116,30.593,42.882,282.0,261.0,276.0,324.0,False,True,1,False,False,False,7446.788,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,41.0,2.0,HARD,30.0,True,100.557,26.3,31.333,42.924,279.0,258.0,276.0,320.0,False,True,1,False,False,False,7546.379,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,42.0,2.0,HARD,31.0,True,99.127,26.152,30.113,42.862,278.0,260.0,273.0,309.0,True,True,1,False,False,False,7646.936,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,43.0,2.0,HARD,32.0,True,101.151,26.347,30.691,44.113,303.0,252.0,241.0,301.0,False,True,1,False,False,False,7746.063,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,44.0,2.0,HARD,33.0,True,103.964,27.444,31.827,44.693,273.0,259.0,227.0,319.0,False,True,1,False,False,False,7847.214,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,45.0,2.0,HARD,34.0,True,108.834,27.735,32.714,48.385,259.0,235.0,222.0,283.0,False,True,1,False,False,False,7951.178,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,46.0,2.0,HARD,35.0,True,100.983,27.8,30.164,43.019,273.0,258.0,268.0,303.0,False,True,1,False,False,False,8060.012,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,47.0,2.0,HARD,36.0,True,99.88,26.586,30.248,43.046,263.0,250.0,274.0,302.0,False,True,1,False,False,False,8160.995,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,48.0,2.0,HARD,37.0,True,100.227,26.179,30.484,43.564,271.0,225.0,278.0,313.0,False,True,1,False,False,False,8260.875,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,49.0,2.0,HARD,38.0,True,99.462,25.877,29.944,43.641,283.0,259.0,275.0,292.0,False,True,1,False,False,False,8361.102,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,50.0,2.0,HARD,39.0,True,98.523,26.09,30.068,42.365,281.0,262.0,272.0,317.0,True,True,1,False,False,False,8460.564,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,51.0,2.0,HARD,40.0,True,99.014,26.099,30.095,42.82,276.0,259.0,272.0,306.0,False,True,1,False,False,False,8559.087,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,52.0,2.0,HARD,41.0,True,99.526,26.156,30.006,43.364,276.0,258.0,274.0,307.0,False,True,12,False,False,False,8658.101,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,53.0,2.0,HARD,42.0,True,98.959,26.227,30.218,42.514,283.0,265.0,271.0,314.0,False,True,1,False,False,False,8757.627,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,54.0,2.0,HARD,43.0,True,99.076,26.347,29.989,42.74,278.0,258.0,274.0,308.0,False,True,1,False,False,False,8856.586,True
+2026,Chinese Grand Prix,2,R,PER,11,Cadillac,55.0,2.0,HARD,44.0,True,98.898,26.235,29.94,42.723,275.0,257.0,276.0,307.0,False,True,1,False,False,False,8955.662,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,1.0,1.0,MEDIUM,1.0,True,100.137,,29.788,41.977,298.0,264.0,270.0,325.0,False,False,12,False,False,False,3384.05,False
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,2.0,1.0,MEDIUM,2.0,True,98.305,26.129,30.278,41.898,278.0,263.0,266.0,316.0,True,True,1,False,False,False,3484.449,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,3.0,1.0,MEDIUM,3.0,True,98.013,25.948,29.572,42.493,267.0,257.0,266.0,304.0,True,True,1,False,False,False,3582.754,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,4.0,1.0,MEDIUM,4.0,True,97.394,26.003,29.327,42.064,269.0,259.0,267.0,306.0,True,True,1,False,False,False,3680.767,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,5.0,1.0,MEDIUM,5.0,True,97.535,25.859,29.51,42.166,270.0,257.0,267.0,307.0,False,True,1,False,False,False,3778.161,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,6.0,1.0,MEDIUM,6.0,True,97.172,25.696,29.434,42.042,270.0,258.0,267.0,307.0,True,True,1,False,False,False,3875.696,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,7.0,1.0,MEDIUM,7.0,True,97.412,25.891,29.467,42.054,271.0,258.0,267.0,306.0,False,True,1,False,False,False,3972.868,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,8.0,1.0,MEDIUM,8.0,True,97.322,25.807,29.454,42.061,271.0,257.0,266.0,307.0,False,True,1,False,False,False,4070.28,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,9.0,1.0,MEDIUM,9.0,True,97.356,25.839,29.585,41.932,269.0,256.0,269.0,309.0,False,True,1,False,False,False,4167.602,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,10.0,1.0,MEDIUM,10.0,True,106.671,25.717,29.56,51.394,270.0,257.0,,307.0,False,False,124,False,False,True,4264.958,False
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,11.0,2.0,HARD,1.0,True,,57.422,45.272,64.528,174.0,158.0,204.0,210.0,False,False,4,False,True,False,4371.629,False
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,12.0,2.0,HARD,2.0,True,149.91,43.356,43.386,63.168,164.0,182.0,214.0,186.0,False,False,4,False,False,False,4538.818,False
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,13.0,2.0,HARD,3.0,True,,37.267,44.242,69.012,178.0,138.0,264.0,158.0,False,False,41,False,False,False,4688.728,False
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,14.0,2.0,HARD,4.0,True,98.957,26.203,30.021,42.733,277.0,271.0,266.0,309.0,False,True,1,False,False,False,4839.246,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,15.0,2.0,HARD,5.0,True,98.222,26.027,29.867,42.328,272.0,257.0,271.0,308.0,False,True,1,False,False,False,4938.203,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,16.0,2.0,HARD,6.0,True,96.604,25.324,29.229,42.051,269.0,255.0,268.0,305.0,True,True,1,False,False,False,5036.425,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,17.0,2.0,HARD,7.0,True,96.555,25.593,29.128,41.834,273.0,260.0,269.0,309.0,True,True,1,False,False,False,5133.029,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,18.0,2.0,HARD,8.0,True,97.059,25.595,29.513,41.951,273.0,259.0,270.0,309.0,False,True,12,False,False,False,5229.584,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,19.0,2.0,HARD,9.0,True,96.816,25.574,29.505,41.737,270.0,258.0,270.0,308.0,False,True,1,False,False,False,5326.643,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,20.0,2.0,HARD,10.0,True,96.762,25.551,29.411,41.8,272.0,258.0,271.0,308.0,False,True,1,False,False,False,5423.459,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,21.0,2.0,HARD,11.0,True,96.929,25.652,29.348,41.929,273.0,258.0,271.0,307.0,False,True,1,False,False,False,5520.221,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,22.0,2.0,HARD,12.0,True,96.612,25.668,29.194,41.75,273.0,259.0,270.0,308.0,False,True,1,False,False,False,5617.15,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,23.0,2.0,HARD,13.0,True,96.806,25.681,29.239,41.886,272.0,258.0,271.0,307.0,False,True,1,False,False,False,5713.762,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,24.0,2.0,HARD,14.0,True,96.513,25.539,29.189,41.785,272.0,258.0,271.0,308.0,True,True,1,False,False,False,5810.568,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,25.0,2.0,HARD,15.0,True,96.514,25.495,29.19,41.829,272.0,258.0,272.0,307.0,False,True,1,False,False,False,5907.081,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,26.0,2.0,HARD,16.0,True,96.588,25.55,29.207,41.831,272.0,259.0,272.0,308.0,False,True,1,False,False,False,6003.595,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,27.0,2.0,HARD,17.0,True,96.59,25.515,29.2,41.875,272.0,259.0,272.0,309.0,False,True,1,False,False,False,6100.183,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,28.0,2.0,HARD,18.0,True,96.589,25.536,29.177,41.876,272.0,259.0,272.0,308.0,False,True,12,False,False,False,6196.773,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,29.0,2.0,HARD,19.0,True,96.381,25.583,29.116,41.682,273.0,260.0,273.0,310.0,True,True,1,False,False,False,6293.362,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,30.0,2.0,HARD,20.0,True,96.166,25.389,29.103,41.674,273.0,260.0,273.0,311.0,True,True,1,False,False,False,6389.743,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,31.0,2.0,HARD,21.0,True,96.108,25.417,28.996,41.695,272.0,259.0,272.0,308.0,True,True,1,False,False,False,6485.909,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,32.0,2.0,HARD,22.0,True,95.983,25.328,28.984,41.671,273.0,260.0,271.0,311.0,True,True,1,False,False,False,6582.017,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,33.0,2.0,HARD,23.0,True,96.443,25.615,29.163,41.665,274.0,258.0,271.0,309.0,False,True,12,False,False,False,6678.0,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,34.0,2.0,HARD,24.0,True,96.021,25.454,29.002,41.565,272.0,260.0,271.0,312.0,False,True,1,False,False,False,6774.443,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,35.0,2.0,HARD,25.0,True,96.037,25.515,28.991,41.531,273.0,259.0,272.0,309.0,False,True,1,False,False,False,6870.464,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,36.0,2.0,HARD,26.0,True,96.014,25.48,28.908,41.626,274.0,261.0,273.0,311.0,False,True,1,False,False,False,6966.501,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,37.0,2.0,HARD,27.0,True,96.159,25.497,28.938,41.724,274.0,261.0,273.0,312.0,False,True,1,False,False,False,7062.515,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,38.0,2.0,HARD,28.0,True,95.526,25.283,28.807,41.436,274.0,261.0,273.0,314.0,True,True,1,False,False,False,7158.674,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,39.0,2.0,HARD,29.0,True,95.494,25.3,28.82,41.374,273.0,261.0,274.0,316.0,True,True,1,False,False,False,7254.2,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,40.0,2.0,HARD,30.0,True,96.15,25.342,29.022,41.786,275.0,267.0,273.0,332.0,False,True,1,False,False,False,7349.694,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,41.0,2.0,HARD,31.0,True,95.343,25.291,28.839,41.213,277.0,261.0,274.0,321.0,True,True,1,False,False,False,7445.844,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,42.0,2.0,HARD,32.0,True,95.93,25.261,28.909,41.76,275.0,262.0,274.0,318.0,False,True,1,False,False,False,7541.187,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,43.0,2.0,HARD,33.0,True,95.936,25.295,29.031,41.61,276.0,264.0,277.0,324.0,False,True,1,False,False,False,7637.117,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,44.0,2.0,HARD,34.0,True,95.332,25.253,28.719,41.36,278.0,261.0,274.0,314.0,True,True,1,False,False,False,7733.053,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,45.0,2.0,HARD,35.0,True,95.528,25.211,28.83,41.487,274.0,261.0,274.0,308.0,False,True,1,False,False,False,7828.385,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,46.0,2.0,HARD,36.0,True,95.282,25.14,28.694,41.448,275.0,261.0,275.0,310.0,True,True,1,False,False,False,7923.913,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,47.0,2.0,HARD,37.0,True,95.501,25.25,28.612,41.639,273.0,259.0,273.0,309.0,False,True,1,False,False,False,8019.195,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,48.0,2.0,HARD,38.0,True,95.706,25.262,28.55,41.894,274.0,260.0,271.0,308.0,False,True,1,False,False,False,8114.696,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,49.0,2.0,HARD,39.0,True,95.523,25.319,28.58,41.624,274.0,260.0,276.0,309.0,False,True,1,False,False,False,8210.402,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,50.0,2.0,HARD,40.0,True,95.659,25.223,28.659,41.777,275.0,264.0,275.0,316.0,False,True,1,False,False,False,8305.925,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,51.0,2.0,HARD,41.0,True,96.011,25.263,28.96,41.788,276.0,259.0,273.0,307.0,False,True,1,False,False,False,8401.584,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,52.0,2.0,HARD,42.0,True,95.275,25.295,28.532,41.448,274.0,260.0,273.0,306.0,True,True,1,False,False,False,8497.595,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,53.0,2.0,HARD,43.0,True,97.53,25.235,28.462,43.833,275.0,260.0,271.0,306.0,False,True,12,False,False,False,8592.87,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,54.0,2.0,HARD,44.0,True,96.176,25.478,28.787,41.911,274.0,261.0,272.0,307.0,False,True,1,False,False,False,8690.4,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,55.0,2.0,HARD,45.0,True,96.378,25.56,28.886,41.932,274.0,260.0,271.0,308.0,False,True,1,False,False,False,8786.576,True
+2026,Chinese Grand Prix,2,R,ANT,12,Mercedes,56.0,2.0,HARD,46.0,True,96.929,25.314,28.861,42.754,274.0,259.0,217.0,306.0,False,True,1,False,False,False,8882.954,True
+2026,Chinese Grand Prix,2,R,ALO,14,Aston Martin,1.0,1.0,HARD,1.0,True,107.23,,31.309,44.412,286.0,268.0,261.0,323.0,False,False,12,False,False,False,3384.05,False
+2026,Chinese Grand Prix,2,R,ALO,14,Aston Martin,2.0,1.0,HARD,2.0,True,102.291,26.719,31.646,43.926,287.0,253.0,265.0,325.0,True,True,1,False,False,False,3491.542,True
+2026,Chinese Grand Prix,2,R,ALO,14,Aston Martin,3.0,1.0,HARD,3.0,True,101.588,26.6,31.151,43.837,263.0,250.0,263.0,309.0,True,True,1,False,False,False,3593.833,True
+2026,Chinese Grand Prix,2,R,ALO,14,Aston Martin,4.0,1.0,HARD,4.0,True,100.471,26.212,30.81,43.449,274.0,251.0,263.0,312.0,True,True,1,False,False,False,3695.421,True
+2026,Chinese Grand Prix,2,R,ALO,14,Aston Martin,5.0,1.0,HARD,5.0,True,101.554,26.535,31.007,44.012,255.0,247.0,263.0,306.0,False,True,1,False,False,False,3795.892,True
+2026,Chinese Grand Prix,2,R,ALO,14,Aston Martin,6.0,1.0,HARD,6.0,True,101.824,26.393,31.047,44.384,256.0,249.0,260.0,302.0,False,True,1,False,False,False,3897.446,True
+2026,Chinese Grand Prix,2,R,ALO,14,Aston Martin,7.0,1.0,HARD,7.0,True,101.659,26.579,31.303,43.777,267.0,248.0,265.0,316.0,False,True,1,False,False,False,3999.27,True
+2026,Chinese Grand Prix,2,R,ALO,14,Aston Martin,8.0,1.0,HARD,8.0,True,101.113,26.389,31.171,43.553,258.0,250.0,263.0,315.0,False,True,1,False,False,False,4100.929,True
+2026,Chinese Grand Prix,2,R,ALO,14,Aston Martin,9.0,1.0,HARD,9.0,True,101.631,26.658,31.46,43.513,255.0,247.0,265.0,310.0,False,True,1,False,False,False,4202.042,True
+2026,Chinese Grand Prix,2,R,ALO,14,Aston Martin,10.0,1.0,HARD,10.0,True,119.919,26.504,37.346,56.069,255.0,200.0,166.0,226.0,False,False,124,False,False,False,4303.673,False
+2026,Chinese Grand Prix,2,R,ALO,14,Aston Martin,11.0,1.0,HARD,11.0,True,135.393,37.207,40.635,57.551,170.0,218.0,216.0,250.0,False,False,4,False,False,False,4423.592,False
+2026,Chinese Grand Prix,2,R,ALO,14,Aston Martin,12.0,1.0,HARD,12.0,True,140.998,36.95,40.579,63.469,238.0,180.0,124.0,124.0,False,False,4,False,False,False,4558.985,False
+2026,Chinese Grand Prix,2,R,ALO,14,Aston Martin,13.0,1.0,HARD,13.0,True,143.746,35.617,45.735,62.394,213.0,189.0,262.0,196.0,False,False,41,False,False,False,4699.983,False
+2026,Chinese Grand Prix,2,R,ALO,14,Aston Martin,14.0,1.0,HARD,14.0,True,103.5,27.411,31.734,44.355,267.0,252.0,269.0,325.0,False,True,1,False,False,False,4843.729,True
+2026,Chinese Grand Prix,2,R,ALO,14,Aston Martin,15.0,1.0,HARD,15.0,True,101.183,26.24,30.898,44.045,280.0,255.0,267.0,317.0,False,True,1,False,False,False,4947.229,True
+2026,Chinese Grand Prix,2,R,ALO,14,Aston Martin,16.0,1.0,HARD,16.0,True,100.26,26.131,30.815,43.314,276.0,250.0,266.0,313.0,True,True,1,False,False,False,5048.412,True
+2026,Chinese Grand Prix,2,R,ALO,14,Aston Martin,17.0,1.0,HARD,17.0,True,100.363,26.281,30.849,43.233,260.0,248.0,265.0,315.0,False,True,12,False,False,False,5148.672,True
+2026,Chinese Grand Prix,2,R,ALO,14,Aston Martin,18.0,1.0,HARD,18.0,True,101.241,27.183,30.854,43.204,257.0,253.0,266.0,313.0,False,True,21,False,False,False,5249.035,True
+2026,Chinese Grand Prix,2,R,ALO,14,Aston Martin,19.0,1.0,HARD,19.0,True,100.356,26.15,30.915,43.291,258.0,247.0,265.0,310.0,False,True,1,False,False,False,5350.276,True
+2026,Chinese Grand Prix,2,R,ALO,14,Aston Martin,20.0,1.0,HARD,20.0,True,100.254,26.25,30.766,43.238,256.0,252.0,266.0,307.0,True,True,1,False,False,False,5450.632,True
+2026,Chinese Grand Prix,2,R,ALO,14,Aston Martin,21.0,1.0,HARD,21.0,True,99.812,26.203,30.635,42.974,256.0,251.0,266.0,306.0,True,True,1,False,False,False,5550.886,True
+2026,Chinese Grand Prix,2,R,ALO,14,Aston Martin,22.0,1.0,HARD,22.0,True,99.938,26.218,30.615,43.105,257.0,248.0,264.0,305.0,False,True,1,False,False,False,5650.698,True
+2026,Chinese Grand Prix,2,R,ALO,14,Aston Martin,23.0,1.0,HARD,23.0,True,99.801,26.192,30.561,43.048,257.0,252.0,266.0,305.0,True,True,1,False,False,False,5750.636,True
+2026,Chinese Grand Prix,2,R,ALO,14,Aston Martin,24.0,1.0,HARD,24.0,True,99.767,26.222,30.534,43.011,256.0,249.0,268.0,304.0,True,True,1,False,False,False,5850.437,True
+2026,Chinese Grand Prix,2,R,ALO,14,Aston Martin,25.0,1.0,HARD,25.0,True,99.721,26.187,30.538,42.996,257.0,253.0,266.0,306.0,True,True,1,False,False,False,5950.204,True
+2026,Chinese Grand Prix,2,R,ALO,14,Aston Martin,26.0,1.0,HARD,26.0,True,99.755,26.207,30.556,42.992,256.0,251.0,270.0,305.0,False,True,1,False,False,False,6049.925,True
+2026,Chinese Grand Prix,2,R,ALO,14,Aston Martin,27.0,1.0,HARD,27.0,True,100.242,26.259,30.598,43.385,257.0,250.0,267.0,301.0,False,True,12,False,False,False,6149.68,True
+2026,Chinese Grand Prix,2,R,ALO,14,Aston Martin,28.0,1.0,HARD,28.0,True,99.745,26.146,30.566,43.033,257.0,253.0,267.0,308.0,False,True,1,False,False,False,6249.922,True
+2026,Chinese Grand Prix,2,R,ALO,14,Aston Martin,29.0,1.0,HARD,29.0,True,99.945,26.276,30.659,43.01,256.0,251.0,268.0,311.0,False,True,1,False,False,False,6349.667,True
+2026,Chinese Grand Prix,2,R,ALO,14,Aston Martin,30.0,1.0,HARD,30.0,True,100.349,26.136,30.955,43.258,260.0,252.0,269.0,312.0,False,True,1,False,False,False,6449.612,True
+2026,Chinese Grand Prix,2,R,ALO,14,Aston Martin,31.0,1.0,HARD,31.0,True,106.419,26.45,30.953,49.016,258.0,249.0,,308.0,False,False,1,False,False,True,6549.961,False
+2026,Chinese Grand Prix,2,R,ALO,14,Aston Martin,32.0,2.0,MEDIUM,1.0,True,127.515,45.832,31.686,49.997,255.0,251.0,,305.0,False,False,12,False,True,True,6656.38,False
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,1.0,1.0,MEDIUM,1.0,True,101.064,,30.192,42.302,292.0,256.0,271.0,320.0,False,False,12,False,False,False,3384.05,False
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,2.0,1.0,MEDIUM,2.0,True,98.558,25.954,29.998,42.606,276.0,267.0,266.0,314.0,True,True,1,False,False,False,3485.376,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,3.0,1.0,MEDIUM,3.0,True,99.148,26.669,29.902,42.577,265.0,255.0,272.0,324.0,False,True,1,False,False,False,3583.934,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,4.0,1.0,MEDIUM,4.0,True,97.835,25.914,29.661,42.26,272.0,256.0,274.0,314.0,True,True,1,False,False,False,3683.082,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,5.0,1.0,MEDIUM,5.0,True,97.863,25.914,29.632,42.317,265.0,255.0,268.0,320.0,False,True,1,False,False,False,3780.917,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,6.0,1.0,MEDIUM,6.0,True,98.136,26.144,29.86,42.132,266.0,254.0,271.0,312.0,False,True,1,False,False,False,3878.78,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,7.0,1.0,MEDIUM,7.0,True,97.994,25.894,29.733,42.367,267.0,255.0,270.0,311.0,False,True,1,False,False,False,3976.916,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,8.0,1.0,MEDIUM,8.0,True,97.794,25.841,29.734,42.219,272.0,251.0,264.0,314.0,True,True,1,False,False,False,4074.91,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,9.0,1.0,MEDIUM,9.0,True,98.13,26.108,29.872,42.15,276.0,252.0,273.0,314.0,False,True,1,False,False,False,4172.704,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,10.0,1.0,MEDIUM,10.0,True,112.397,26.115,30.067,56.215,267.0,251.0,,238.0,False,False,124,False,False,True,4270.834,False
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,11.0,2.0,HARD,1.0,True,,57.124,41.154,63.455,252.0,220.0,217.0,235.0,False,False,4,False,True,False,4383.231,False
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,12.0,2.0,HARD,2.0,True,,42.91,44.533,62.739,137.0,180.0,193.0,154.0,False,False,4,False,False,False,4545.025,False
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,13.0,2.0,HARD,3.0,True,146.486,37.128,45.067,64.291,223.0,167.0,271.0,174.0,False,False,41,False,False,False,4695.13,False
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,14.0,2.0,HARD,4.0,True,99.851,26.409,30.888,42.554,283.0,261.0,277.0,336.0,False,True,1,False,False,False,4841.616,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,15.0,2.0,HARD,5.0,True,97.205,25.671,29.86,41.674,267.0,257.0,274.0,329.0,True,True,1,False,False,False,4941.467,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,16.0,2.0,HARD,6.0,True,97.306,25.684,29.518,42.104,263.0,253.0,269.0,310.0,False,True,1,False,False,False,5038.672,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,17.0,2.0,HARD,7.0,True,96.877,25.833,29.22,41.824,262.0,251.0,273.0,306.0,True,True,1,False,False,False,5135.978,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,18.0,2.0,HARD,8.0,True,96.599,25.407,29.314,41.878,264.0,253.0,269.0,307.0,True,True,12,False,False,False,5232.855,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,19.0,2.0,HARD,9.0,True,96.861,25.435,29.322,42.104,269.0,252.0,271.0,307.0,False,True,1,False,False,False,5329.454,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,20.0,2.0,HARD,10.0,True,96.833,25.608,29.339,41.886,264.0,253.0,273.0,308.0,False,True,1,False,False,False,5426.315,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,21.0,2.0,HARD,11.0,True,96.705,25.423,29.23,42.052,267.0,253.0,269.0,308.0,False,True,1,False,False,False,5523.148,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,22.0,2.0,HARD,12.0,True,96.643,25.59,29.215,41.838,271.0,255.0,274.0,311.0,False,True,1,False,False,False,5619.853,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,23.0,2.0,HARD,13.0,True,96.813,25.616,29.24,41.957,267.0,260.0,275.0,321.0,False,True,1,False,False,False,5716.496,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,24.0,2.0,HARD,14.0,True,97.277,25.656,29.4,42.221,269.0,254.0,266.0,331.0,False,True,1,False,False,False,5813.309,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,25.0,2.0,HARD,15.0,True,97.681,26.054,29.422,42.205,262.0,249.0,269.0,299.0,False,True,1,False,False,False,5910.586,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,26.0,2.0,HARD,16.0,True,97.574,25.771,29.158,42.645,261.0,252.0,275.0,303.0,False,True,1,False,False,False,6008.267,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,27.0,2.0,HARD,17.0,True,97.872,25.711,30.036,42.125,265.0,246.0,270.0,303.0,False,True,1,False,False,False,6105.841,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,28.0,2.0,HARD,18.0,True,97.076,25.691,29.208,42.177,262.0,252.0,274.0,302.0,False,True,12,False,False,False,6203.713,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,29.0,2.0,HARD,19.0,True,97.107,25.517,29.109,42.481,261.0,252.0,275.0,300.0,False,True,1,False,False,False,6300.789,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,30.0,2.0,HARD,20.0,True,96.797,25.699,29.408,41.69,270.0,257.0,274.0,317.0,False,True,1,False,False,False,6397.896,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,31.0,2.0,HARD,21.0,True,96.409,25.405,29.148,41.856,270.0,260.0,258.0,319.0,True,True,1,False,False,False,6494.693,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,32.0,2.0,HARD,22.0,True,96.624,25.841,29.185,41.598,268.0,255.0,276.0,318.0,False,True,1,False,False,False,6591.102,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,33.0,2.0,HARD,23.0,True,96.55,25.393,29.223,41.934,266.0,254.0,271.0,307.0,False,True,12,False,False,False,6687.726,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,34.0,2.0,HARD,24.0,True,96.729,25.656,29.08,41.993,264.0,253.0,272.0,305.0,False,True,1,False,False,False,6784.276,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,35.0,2.0,HARD,25.0,True,98.511,25.494,29.203,43.814,268.0,253.0,275.0,303.0,False,True,1,False,False,False,6881.005,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,36.0,2.0,HARD,26.0,True,97.247,25.858,29.426,41.963,266.0,257.0,256.0,327.0,False,True,1,False,False,False,6979.516,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,37.0,2.0,HARD,27.0,True,96.767,25.901,29.213,41.653,273.0,260.0,278.0,310.0,False,True,1,False,False,False,7076.763,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,38.0,2.0,HARD,28.0,True,96.759,25.516,29.349,41.894,273.0,256.0,276.0,316.0,False,True,1,False,False,False,7173.53,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,39.0,2.0,HARD,29.0,True,96.993,25.561,29.25,42.182,278.0,265.0,270.0,329.0,False,True,1,False,False,False,7270.289,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,40.0,2.0,HARD,30.0,True,98.256,26.043,29.941,42.272,274.0,253.0,278.0,308.0,False,True,1,False,False,False,7367.282,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,41.0,2.0,HARD,31.0,True,96.84,25.517,29.252,42.071,273.0,260.0,273.0,311.0,False,True,1,False,False,False,7465.538,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,42.0,2.0,HARD,32.0,True,96.795,25.544,29.158,42.093,273.0,257.0,277.0,304.0,False,True,1,False,False,False,7562.378,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,43.0,2.0,HARD,33.0,True,96.584,25.335,29.135,42.114,268.0,257.0,274.0,303.0,False,True,1,False,False,False,7659.173,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,44.0,2.0,HARD,34.0,True,96.649,25.554,29.115,41.98,267.0,255.0,275.0,305.0,False,True,1,False,False,False,7755.757,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,45.0,2.0,HARD,35.0,True,97.224,25.414,29.223,42.587,268.0,268.0,276.0,304.0,False,True,1,False,False,False,7852.406,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,46.0,2.0,HARD,36.0,True,96.271,25.203,29.112,41.956,271.0,255.0,275.0,304.0,True,True,1,False,False,False,7949.63,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,47.0,2.0,HARD,37.0,True,96.204,25.441,29.151,41.612,270.0,263.0,277.0,316.0,True,True,1,False,False,False,8045.901,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,48.0,2.0,HARD,38.0,True,96.228,25.151,29.049,42.028,274.0,256.0,274.0,302.0,False,True,1,False,False,False,8142.105,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,49.0,2.0,HARD,39.0,True,96.331,25.332,28.967,42.032,271.0,257.0,276.0,302.0,False,True,1,False,False,False,8238.333,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,50.0,2.0,HARD,40.0,True,96.387,25.34,29.021,42.026,271.0,256.0,278.0,303.0,False,True,1,False,False,False,8334.664,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,51.0,2.0,HARD,41.0,True,96.744,25.22,28.931,42.593,271.0,257.0,274.0,303.0,False,True,1,False,False,False,8431.051,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,52.0,2.0,HARD,42.0,True,96.324,25.373,28.989,41.962,269.0,262.0,278.0,303.0,False,True,1,False,False,False,8527.795,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,53.0,2.0,HARD,43.0,True,96.32,25.134,29.028,42.158,271.0,255.0,276.0,302.0,False,True,12,False,False,False,8624.119,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,54.0,2.0,HARD,44.0,True,96.213,25.197,28.969,42.047,271.0,257.0,279.0,304.0,False,True,1,False,False,False,8720.439,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,55.0,2.0,HARD,45.0,True,96.134,25.047,29.019,42.068,273.0,258.0,276.0,303.0,True,True,1,False,False,False,8816.652,True
+2026,Chinese Grand Prix,2,R,LEC,16,Ferrari,56.0,2.0,HARD,46.0,True,96.011,25.129,28.862,42.02,273.0,260.0,277.0,303.0,True,True,1,False,False,False,8912.786,True
+2026,Chinese Grand Prix,2,R,STR,18,Aston Martin,1.0,1.0,HARD,1.0,True,109.471,,31.291,44.166,270.0,269.0,266.0,321.0,False,False,12,False,False,False,3384.05,False
+2026,Chinese Grand Prix,2,R,STR,18,Aston Martin,2.0,1.0,HARD,2.0,True,101.83,26.76,31.498,43.572,278.0,250.0,267.0,312.0,True,True,1,False,False,False,3493.783,True
+2026,Chinese Grand Prix,2,R,STR,18,Aston Martin,3.0,1.0,HARD,3.0,True,101.798,26.812,31.468,43.518,261.0,250.0,265.0,308.0,True,True,1,False,False,False,3595.613,True
+2026,Chinese Grand Prix,2,R,STR,18,Aston Martin,4.0,1.0,HARD,4.0,True,101.854,26.814,31.671,43.369,255.0,246.0,266.0,303.0,False,True,1,False,False,False,3697.411,True
+2026,Chinese Grand Prix,2,R,STR,18,Aston Martin,5.0,1.0,HARD,5.0,True,100.992,26.536,31.071,43.385,255.0,248.0,265.0,305.0,True,True,1,False,False,False,3799.265,True
+2026,Chinese Grand Prix,2,R,STR,18,Aston Martin,6.0,1.0,HARD,6.0,True,100.971,26.716,30.917,43.338,255.0,248.0,266.0,302.0,True,True,1,False,False,False,3900.257,True
+2026,Chinese Grand Prix,2,R,STR,18,Aston Martin,7.0,1.0,HARD,7.0,True,100.956,26.685,30.942,43.329,255.0,247.0,264.0,307.0,True,True,1,False,False,False,4001.228,True
+2026,Chinese Grand Prix,2,R,STR,18,Aston Martin,8.0,1.0,HARD,8.0,True,101.174,26.692,31.176,43.306,256.0,246.0,266.0,304.0,False,True,1,False,False,False,4102.184,True
+2026,Chinese Grand Prix,2,R,STR,18,Aston Martin,9.0,1.0,HARD,9.0,True,100.883,26.575,30.832,43.476,258.0,253.0,263.0,320.0,True,True,1,False,False,False,4203.358,True
+2026,Chinese Grand Prix,2,R,STR,18,Aston Martin,10.0,1.0,HARD,10.0,True,,,,,,,,,False,False,124,False,False,False,4304.241,False
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,1.0,1.0,HARD,1.0,True,108.719,,32.022,43.88,268.0,262.0,273.0,336.0,False,False,12,False,False,False,3384.05,False
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,2.0,1.0,HARD,2.0,True,101.634,26.751,31.478,43.405,289.0,270.0,271.0,342.0,True,True,1,False,False,False,3493.031,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,3.0,1.0,HARD,3.0,True,99.907,26.275,30.985,42.647,287.0,263.0,269.0,329.0,True,True,1,False,False,False,3594.665,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,4.0,1.0,HARD,4.0,True,99.517,26.06,30.528,42.929,273.0,263.0,268.0,312.0,True,True,1,False,False,False,3694.572,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,5.0,1.0,HARD,5.0,True,99.264,26.036,30.403,42.825,274.0,263.0,269.0,313.0,True,True,1,False,False,False,3794.089,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,6.0,1.0,HARD,6.0,True,98.775,25.939,30.17,42.666,276.0,267.0,267.0,329.0,True,True,1,False,False,False,3893.353,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,7.0,1.0,HARD,7.0,True,99.39,26.174,30.54,42.676,284.0,269.0,268.0,329.0,False,True,1,False,False,False,3992.128,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,8.0,1.0,HARD,8.0,True,99.027,26.119,30.173,42.735,272.0,263.0,270.0,314.0,False,True,1,False,False,False,4091.518,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,9.0,1.0,HARD,9.0,True,99.164,25.939,30.387,42.838,272.0,267.0,267.0,323.0,False,True,1,False,False,False,4190.545,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,10.0,1.0,HARD,10.0,True,113.809,25.977,30.406,57.426,276.0,266.0,188.0,260.0,False,False,124,False,False,False,4289.709,False
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,11.0,1.0,HARD,11.0,True,141.998,38.541,40.272,63.185,232.0,242.0,231.0,245.0,False,False,4,False,False,False,4403.518,False
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,12.0,1.0,HARD,12.0,True,,42.774,44.575,63.508,149.0,158.0,181.0,178.0,False,False,4,False,False,False,4545.516,False
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,13.0,1.0,HARD,13.0,True,145.608,36.536,45.081,63.991,207.0,128.0,270.0,186.0,False,False,41,False,False,False,4696.434,False
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,14.0,1.0,HARD,14.0,True,100.945,26.559,30.703,43.683,284.0,274.0,269.0,341.0,False,True,1,False,False,False,4842.042,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,15.0,1.0,HARD,15.0,True,99.198,26.218,30.306,42.674,280.0,272.0,266.0,344.0,False,True,1,False,False,False,4942.987,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,16.0,1.0,HARD,16.0,True,99.566,26.1,30.176,43.29,279.0,265.0,264.0,333.0,False,True,1,False,False,False,5042.185,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,17.0,1.0,HARD,17.0,True,99.235,26.467,30.212,42.556,276.0,268.0,272.0,328.0,False,True,12,False,False,False,5141.751,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,18.0,1.0,HARD,18.0,True,98.874,26.034,30.284,42.556,280.0,270.0,269.0,339.0,False,True,21,False,False,False,5240.986,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,19.0,1.0,HARD,19.0,True,98.382,26.016,30.329,42.037,278.0,268.0,268.0,336.0,True,True,1,False,False,False,5339.86,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,20.0,1.0,HARD,20.0,True,98.824,26.054,30.067,42.703,273.0,265.0,272.0,315.0,False,True,1,False,False,False,5438.242,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,21.0,1.0,HARD,21.0,True,98.394,25.954,29.926,42.514,275.0,266.0,275.0,320.0,False,True,1,False,False,False,5537.066,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,22.0,1.0,HARD,22.0,True,98.443,25.997,30.156,42.29,273.0,265.0,271.0,340.0,False,True,1,False,False,False,5635.46,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,23.0,1.0,HARD,23.0,True,99.496,26.054,30.781,42.661,288.0,267.0,271.0,321.0,False,True,1,False,False,False,5733.903,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,24.0,1.0,HARD,24.0,True,98.712,25.934,30.123,42.655,274.0,264.0,273.0,309.0,False,True,1,False,False,False,5833.399,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,25.0,1.0,HARD,25.0,True,98.588,25.959,30.15,42.479,277.0,267.0,274.0,315.0,False,True,1,False,False,False,5932.111,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,26.0,1.0,HARD,26.0,True,98.302,25.749,29.901,42.652,277.0,269.0,275.0,312.0,True,True,1,False,False,False,6030.699,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,27.0,1.0,HARD,27.0,True,97.959,25.666,29.778,42.515,278.0,269.0,274.0,312.0,True,True,12,False,False,False,6129.001,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,28.0,1.0,HARD,28.0,True,98.15,25.75,29.903,42.497,277.0,268.0,271.0,318.0,False,True,21,False,False,False,6226.96,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,29.0,1.0,HARD,29.0,True,98.677,26.029,30.152,42.496,279.0,270.0,271.0,328.0,False,True,1,False,False,False,6325.11,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,30.0,1.0,HARD,30.0,True,97.859,25.774,29.835,42.25,275.0,266.0,273.0,319.0,True,True,1,False,False,False,6423.787,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,31.0,1.0,HARD,31.0,True,97.762,25.658,29.921,42.183,277.0,268.0,271.0,327.0,True,True,1,False,False,False,6521.646,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,32.0,1.0,HARD,32.0,True,98.296,25.866,29.87,42.56,275.0,266.0,271.0,313.0,False,True,1,False,False,False,6619.408,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,33.0,1.0,HARD,33.0,True,98.663,25.833,29.84,42.99,271.0,262.0,257.0,305.0,False,True,12,False,False,False,6717.704,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,34.0,1.0,HARD,34.0,True,98.427,26.029,29.572,42.826,272.0,262.0,270.0,303.0,False,True,1,False,False,False,6816.367,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,35.0,1.0,HARD,35.0,True,104.913,25.9,30.099,48.914,272.0,261.0,,318.0,False,False,1,False,False,True,6914.794,False
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,36.0,2.0,MEDIUM,1.0,True,132.21,59.719,30.117,42.374,268.0,264.0,272.0,305.0,False,False,1,False,True,False,7019.707,False
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,37.0,2.0,MEDIUM,2.0,True,96.62,25.673,29.278,41.669,276.0,268.0,278.0,315.0,True,True,1,False,False,False,7151.917,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,38.0,2.0,MEDIUM,3.0,True,96.18,25.049,29.479,41.652,301.0,268.0,272.0,340.0,True,True,1,False,False,False,7248.537,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,39.0,2.0,MEDIUM,4.0,True,97.116,25.51,29.206,42.4,271.0,262.0,273.0,304.0,False,True,1,False,False,False,7344.717,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,40.0,2.0,MEDIUM,5.0,True,96.873,25.544,29.074,42.255,271.0,263.0,274.0,306.0,False,True,1,False,False,False,7441.833,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,41.0,2.0,MEDIUM,6.0,True,96.625,25.476,29.107,42.042,273.0,264.0,273.0,308.0,False,True,1,False,False,False,7538.706,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,42.0,2.0,MEDIUM,7.0,True,98.675,25.518,29.563,43.594,275.0,268.0,275.0,251.0,False,True,1,False,False,False,7635.331,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,43.0,2.0,MEDIUM,8.0,True,96.761,25.464,29.118,42.179,304.0,264.0,273.0,304.0,False,True,1,False,False,False,7734.006,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,44.0,2.0,MEDIUM,9.0,True,96.868,25.48,29.178,42.21,271.0,263.0,275.0,303.0,False,True,1,False,False,False,7830.767,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,45.0,2.0,MEDIUM,10.0,True,96.901,25.475,29.157,42.269,274.0,264.0,274.0,302.0,False,True,1,False,False,False,7927.635,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,46.0,2.0,MEDIUM,11.0,True,96.985,25.488,29.2,42.297,274.0,263.0,274.0,302.0,False,True,1,False,False,False,8024.536,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,47.0,2.0,MEDIUM,12.0,True,98.763,25.609,29.393,43.761,274.0,265.0,275.0,291.0,False,True,1,False,False,False,8121.521,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,48.0,2.0,MEDIUM,13.0,True,96.776,25.604,29.334,41.838,279.0,270.0,266.0,332.0,False,True,1,False,False,False,8220.284,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,49.0,2.0,MEDIUM,14.0,True,98.064,25.828,29.409,42.827,273.0,263.0,273.0,298.0,False,True,1,False,False,False,8317.06,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,50.0,2.0,MEDIUM,15.0,True,97.696,25.661,29.684,42.351,273.0,265.0,274.0,303.0,False,True,1,False,False,False,8415.124,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,51.0,2.0,MEDIUM,16.0,True,97.505,25.573,29.393,42.539,275.0,264.0,274.0,301.0,False,True,1,False,False,False,8512.82,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,52.0,2.0,MEDIUM,17.0,True,97.614,25.659,29.366,42.589,275.0,264.0,273.0,300.0,False,True,12,False,False,False,8610.325,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,53.0,2.0,MEDIUM,18.0,True,97.97,25.787,29.547,42.636,274.0,264.0,274.0,300.0,False,True,1,False,False,False,8707.939,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,54.0,2.0,MEDIUM,19.0,True,97.609,25.605,29.479,42.525,274.0,264.0,274.0,301.0,False,True,1,False,False,False,8805.909,True
+2026,Chinese Grand Prix,2,R,HUL,27,Audi,55.0,2.0,MEDIUM,20.0,True,97.571,25.677,29.426,42.468,274.0,262.0,266.0,307.0,False,True,1,False,False,False,8903.518,True
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,1.0,1.0,SOFT,4.0,False,107.91,,31.169,43.911,291.0,267.0,271.0,341.0,False,False,12,False,False,False,3384.05,False
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,2.0,1.0,SOFT,5.0,False,100.295,26.205,31.087,43.003,281.0,255.0,271.0,322.0,True,True,1,False,False,False,3492.231,True
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,3.0,1.0,SOFT,6.0,False,99.08,25.992,30.619,42.469,264.0,259.0,277.0,321.0,True,True,1,False,False,False,3592.526,True
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,4.0,1.0,SOFT,7.0,False,99.12,26.144,30.322,42.654,270.0,262.0,277.0,325.0,False,True,1,False,False,False,3691.606,True
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,5.0,1.0,SOFT,8.0,False,99.582,26.651,30.4,42.531,269.0,260.0,275.0,324.0,False,True,1,False,False,False,3790.726,True
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,6.0,1.0,SOFT,9.0,False,99.206,26.14,30.474,42.592,272.0,267.0,277.0,328.0,False,True,1,False,False,False,3890.308,True
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,7.0,1.0,SOFT,10.0,False,99.574,26.111,30.64,42.823,273.0,259.0,275.0,325.0,False,True,1,False,False,False,3989.514,True
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,8.0,1.0,SOFT,11.0,False,99.465,26.042,30.748,42.675,272.0,265.0,274.0,322.0,False,True,1,False,False,False,4089.088,True
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,9.0,1.0,SOFT,12.0,False,105.525,26.282,30.798,48.445,272.0,263.0,,323.0,False,False,1,False,False,True,4188.553,False
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,10.0,2.0,HARD,1.0,True,143.152,46.287,39.105,57.76,266.0,154.0,217.0,223.0,False,False,124,False,True,False,4294.078,False
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,11.0,2.0,HARD,2.0,True,135.068,35.451,40.422,59.195,226.0,225.0,219.0,253.0,False,False,4,False,False,False,4437.23,False
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,12.0,2.0,HARD,3.0,True,129.669,32.207,34.84,62.622,235.0,214.0,120.0,106.0,False,False,4,False,False,False,4572.298,False
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,13.0,2.0,HARD,4.0,True,142.347,35.686,45.94,60.721,225.0,204.0,270.0,205.0,False,False,41,False,False,False,4701.967,False
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,14.0,2.0,HARD,5.0,True,99.573,26.178,30.957,42.438,309.0,261.0,274.0,325.0,False,True,1,False,False,False,4844.314,True
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,15.0,2.0,HARD,6.0,True,99.068,25.966,30.709,42.393,300.0,264.0,276.0,322.0,True,True,1,False,False,False,4943.887,True
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,16.0,2.0,HARD,7.0,True,98.953,26.214,30.102,42.637,274.0,269.0,280.0,320.0,True,True,1,False,False,False,5042.955,True
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,17.0,2.0,HARD,8.0,True,98.267,25.735,30.129,42.403,274.0,263.0,279.0,328.0,True,True,12,False,False,False,5141.908,True
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,18.0,2.0,HARD,9.0,True,97.35,25.558,29.953,41.839,276.0,265.0,276.0,323.0,True,True,21,False,False,False,5240.175,True
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,19.0,2.0,HARD,10.0,True,99.035,25.661,30.788,42.586,302.0,269.0,262.0,340.0,False,True,1,False,False,False,5337.525,True
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,20.0,2.0,HARD,11.0,True,98.531,26.528,29.882,42.121,274.0,266.0,279.0,327.0,False,True,1,False,False,False,5436.56,True
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,21.0,2.0,HARD,12.0,True,98.768,25.933,30.162,42.673,306.0,264.0,269.0,323.0,False,True,1,False,False,False,5535.091,True
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,22.0,2.0,HARD,13.0,True,98.147,25.68,29.815,42.652,309.0,255.0,255.0,304.0,False,True,1,False,False,False,5633.859,True
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,23.0,2.0,HARD,14.0,True,98.039,26.181,29.738,42.12,269.0,258.0,275.0,313.0,False,True,1,False,False,False,5732.006,True
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,24.0,2.0,HARD,15.0,True,97.88,25.854,29.807,42.219,267.0,258.0,270.0,311.0,False,True,1,False,False,False,5830.045,True
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,25.0,2.0,HARD,16.0,True,97.869,25.976,29.754,42.139,269.0,262.0,276.0,312.0,False,True,1,False,False,False,5927.925,True
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,26.0,2.0,HARD,17.0,True,97.38,25.716,29.645,42.019,269.0,265.0,275.0,312.0,False,True,1,False,False,False,6025.794,True
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,27.0,2.0,HARD,18.0,True,97.645,25.876,29.73,42.039,270.0,262.0,277.0,309.0,False,True,1,False,False,False,6123.174,True
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,28.0,2.0,HARD,19.0,True,97.368,25.679,29.705,41.984,268.0,259.0,276.0,313.0,False,True,12,False,False,False,6220.819,True
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,29.0,2.0,HARD,20.0,True,97.672,25.829,29.805,42.038,268.0,261.0,277.0,313.0,False,True,1,False,False,False,6318.187,True
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,30.0,2.0,HARD,21.0,True,97.587,25.687,29.767,42.133,270.0,260.0,275.0,312.0,False,True,1,False,False,False,6415.859,True
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,31.0,2.0,HARD,22.0,True,97.518,25.758,29.78,41.98,270.0,260.0,275.0,313.0,False,True,1,False,False,False,6513.446,True
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,32.0,2.0,HARD,23.0,True,97.76,25.833,29.936,41.991,269.0,260.0,278.0,312.0,False,True,1,False,False,False,6610.964,True
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,33.0,2.0,HARD,24.0,True,97.381,25.69,29.705,41.986,269.0,263.0,274.0,312.0,False,True,12,False,False,False,6708.724,True
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,34.0,2.0,HARD,25.0,True,97.41,25.748,29.64,42.022,269.0,261.0,274.0,313.0,False,True,1,False,False,False,6806.105,True
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,35.0,2.0,HARD,26.0,True,97.49,25.741,29.682,42.067,269.0,262.0,277.0,310.0,False,True,1,False,False,False,6903.515,True
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,36.0,2.0,HARD,27.0,True,97.229,25.652,29.627,41.95,271.0,262.0,277.0,314.0,True,True,1,False,False,False,7001.005,True
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,37.0,2.0,HARD,28.0,True,97.15,25.592,29.668,41.89,273.0,262.0,276.0,315.0,True,True,1,False,False,False,7098.234,True
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,38.0,2.0,HARD,29.0,True,97.063,25.681,29.517,41.865,270.0,262.0,279.0,313.0,True,True,1,False,False,False,7195.384,True
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,39.0,2.0,HARD,30.0,True,97.046,25.612,29.585,41.849,270.0,262.0,276.0,312.0,True,True,1,False,False,False,7292.447,True
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,40.0,2.0,HARD,31.0,True,97.255,25.589,29.596,42.07,273.0,263.0,276.0,313.0,False,True,1,False,False,False,7389.493,True
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,41.0,2.0,HARD,32.0,True,97.405,25.665,29.626,42.114,275.0,262.0,278.0,315.0,False,True,1,False,False,False,7486.748,True
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,42.0,2.0,HARD,33.0,True,97.383,25.581,29.634,42.168,272.0,263.0,278.0,310.0,False,True,1,False,False,False,7584.153,True
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,43.0,2.0,HARD,34.0,True,97.123,25.642,29.518,41.963,273.0,265.0,279.0,312.0,False,True,1,False,False,False,7681.536,True
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,44.0,2.0,HARD,35.0,True,97.092,25.525,29.52,42.047,276.0,267.0,279.0,314.0,False,True,1,False,False,False,7778.659,True
+2026,Chinese Grand Prix,2,R,VER,3,Red Bull Racing,45.0,2.0,HARD,36.0,True,,25.784,54.024,75.059,277.0,129.0,,143.0,False,False,1,False,False,True,7875.751,False
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,1.0,1.0,MEDIUM,1.0,True,106.084,,31.35,43.622,285.0,260.0,269.0,345.0,False,False,12,False,False,False,3384.05,False
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,2.0,1.0,MEDIUM,2.0,True,99.798,26.269,30.557,42.972,266.0,260.0,271.0,318.0,True,True,1,False,False,False,3490.396,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,3.0,1.0,MEDIUM,3.0,True,98.947,26.007,30.129,42.811,268.0,262.0,272.0,318.0,True,True,1,False,False,False,3590.194,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,4.0,1.0,MEDIUM,4.0,True,99.114,26.045,30.283,42.786,270.0,260.0,274.0,318.0,False,True,1,False,False,False,3689.141,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,5.0,1.0,MEDIUM,5.0,True,100.055,26.168,30.359,43.528,266.0,259.0,270.0,312.0,False,True,1,False,False,False,3788.255,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,6.0,1.0,MEDIUM,6.0,True,99.51,26.2,30.544,42.766,272.0,260.0,274.0,319.0,False,True,1,False,False,False,3888.31,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,7.0,1.0,MEDIUM,7.0,True,99.709,26.055,30.472,43.182,270.0,263.0,271.0,314.0,False,True,1,False,False,False,3987.82,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,8.0,1.0,MEDIUM,8.0,True,99.878,26.311,30.4,43.167,268.0,263.0,272.0,314.0,False,True,1,False,False,False,4087.529,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,9.0,1.0,MEDIUM,9.0,True,106.179,26.345,30.669,49.165,266.0,255.0,,310.0,False,False,1,False,False,True,4187.407,False
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,10.0,2.0,HARD,1.0,True,142.138,45.558,39.863,56.717,266.0,152.0,197.0,198.0,False,False,124,False,True,False,4293.586,False
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,11.0,2.0,HARD,2.0,True,135.169,35.409,40.895,58.865,220.0,193.0,209.0,216.0,False,False,4,False,False,False,4435.724,False
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,12.0,2.0,HARD,3.0,True,130.584,33.054,34.546,62.984,231.0,177.0,121.0,111.0,False,False,4,False,False,False,4570.893,False
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,13.0,2.0,HARD,4.0,True,142.417,35.431,45.931,61.055,225.0,191.0,274.0,206.0,False,False,41,False,False,False,4701.477,False
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,14.0,2.0,HARD,5.0,True,100.779,26.543,31.232,43.004,289.0,269.0,274.0,339.0,False,True,1,False,False,False,4843.894,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,15.0,2.0,HARD,6.0,True,99.02,26.023,30.415,42.582,279.0,256.0,272.0,335.0,False,True,1,False,False,False,4944.673,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,16.0,2.0,HARD,7.0,True,99.437,26.171,30.308,42.958,266.0,260.0,272.0,319.0,False,True,1,False,False,False,5043.693,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,17.0,2.0,HARD,8.0,True,98.909,25.953,30.137,42.819,277.0,264.0,274.0,321.0,True,True,12,False,False,False,5143.13,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,18.0,2.0,HARD,9.0,True,98.709,26.021,30.077,42.611,275.0,262.0,272.0,322.0,True,True,21,False,False,False,5242.039,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,19.0,2.0,HARD,10.0,True,98.989,26.058,30.253,42.678,274.0,266.0,272.0,320.0,False,True,1,False,False,False,5340.748,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,20.0,2.0,HARD,11.0,True,99.187,26.148,30.308,42.731,271.0,267.0,273.0,322.0,False,True,1,False,False,False,5439.737,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,21.0,2.0,HARD,12.0,True,98.491,25.84,30.036,42.615,279.0,268.0,272.0,334.0,True,True,1,False,False,False,5538.924,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,22.0,2.0,HARD,13.0,True,98.8,26.023,29.99,42.787,276.0,265.0,272.0,315.0,False,True,1,False,False,False,5637.415,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,23.0,2.0,HARD,14.0,True,98.552,26.069,29.916,42.567,274.0,261.0,273.0,318.0,False,True,1,False,False,False,5736.215,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,24.0,2.0,HARD,15.0,True,98.546,25.936,30.014,42.596,274.0,265.0,271.0,318.0,False,True,1,False,False,False,5834.767,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,25.0,2.0,HARD,16.0,True,98.599,25.955,30.06,42.584,277.0,265.0,276.0,319.0,False,True,1,False,False,False,5933.313,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,26.0,2.0,HARD,17.0,True,98.445,25.844,29.994,42.607,277.0,266.0,272.0,319.0,True,True,1,False,False,False,6031.912,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,27.0,2.0,HARD,18.0,True,98.358,25.779,29.938,42.641,281.0,267.0,274.0,314.0,True,True,12,False,False,False,6130.357,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,28.0,2.0,HARD,19.0,True,98.389,25.79,29.893,42.706,278.0,262.0,270.0,315.0,False,True,21,False,False,False,6228.715,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,29.0,2.0,HARD,20.0,True,98.308,25.917,29.943,42.448,276.0,265.0,277.0,319.0,True,True,1,False,False,False,6327.104,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,30.0,2.0,HARD,21.0,True,97.894,25.74,29.884,42.27,280.0,263.0,275.0,319.0,True,True,1,False,False,False,6425.412,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,31.0,2.0,HARD,22.0,True,98.084,25.748,29.851,42.485,278.0,262.0,273.0,318.0,False,True,1,False,False,False,6523.306,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,32.0,2.0,HARD,23.0,True,97.959,25.802,29.723,42.434,278.0,264.0,276.0,318.0,False,True,1,False,False,False,6621.39,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,33.0,2.0,HARD,24.0,True,97.898,25.657,29.768,42.473,281.0,264.0,276.0,319.0,False,True,12,False,False,False,6719.349,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,34.0,2.0,HARD,25.0,True,98.224,25.826,29.894,42.504,285.0,265.0,274.0,319.0,False,True,1,False,False,False,6817.247,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,35.0,2.0,HARD,26.0,True,98.009,25.786,30.09,42.133,281.0,269.0,272.0,330.0,False,True,1,False,False,False,6915.471,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,36.0,2.0,HARD,27.0,True,97.981,25.804,29.62,42.557,277.0,262.0,270.0,309.0,False,True,1,False,False,False,7013.48,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,37.0,2.0,HARD,28.0,True,97.972,26.089,29.555,42.328,278.0,264.0,275.0,312.0,False,True,1,False,False,False,7111.461,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,38.0,2.0,HARD,29.0,True,97.568,25.79,29.497,42.281,273.0,264.0,275.0,310.0,True,True,1,False,False,False,7209.433,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,39.0,2.0,HARD,30.0,True,97.763,25.824,29.535,42.404,274.0,262.0,273.0,310.0,False,True,1,False,False,False,7307.001,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,40.0,2.0,HARD,31.0,True,97.81,26.032,29.449,42.329,275.0,262.0,273.0,311.0,False,True,1,False,False,False,7404.764,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,41.0,2.0,HARD,32.0,True,97.616,25.711,29.404,42.501,279.0,264.0,274.0,305.0,False,True,1,False,False,False,7502.574,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,42.0,2.0,HARD,33.0,True,97.556,25.758,29.421,42.377,278.0,267.0,275.0,305.0,True,True,1,False,False,False,7600.19,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,43.0,2.0,HARD,34.0,True,97.561,25.734,29.425,42.402,280.0,264.0,276.0,305.0,False,True,1,False,False,False,7697.746,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,44.0,2.0,HARD,35.0,True,97.354,25.636,29.449,42.269,278.0,265.0,275.0,308.0,True,True,1,False,False,False,7795.307,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,45.0,2.0,HARD,36.0,True,97.547,25.595,29.5,42.452,279.0,264.0,276.0,305.0,False,True,1,False,False,False,7892.661,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,46.0,2.0,HARD,37.0,True,97.369,25.556,29.476,42.337,280.0,262.0,276.0,307.0,False,True,1,False,False,False,7990.208,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,47.0,2.0,HARD,38.0,True,97.298,25.579,29.339,42.38,279.0,267.0,274.0,309.0,True,True,1,False,False,False,8087.577,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,48.0,2.0,HARD,39.0,True,97.443,25.642,29.43,42.371,283.0,268.0,275.0,308.0,False,True,1,False,False,False,8184.875,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,49.0,2.0,HARD,40.0,True,97.457,25.599,29.495,42.363,279.0,260.0,277.0,307.0,False,True,1,False,False,False,8282.318,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,50.0,2.0,HARD,41.0,True,97.201,25.469,29.437,42.295,281.0,266.0,276.0,309.0,True,True,1,False,False,False,8379.775,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,51.0,2.0,HARD,42.0,True,97.393,25.586,29.535,42.272,281.0,265.0,275.0,310.0,False,True,1,False,False,False,8476.976,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,52.0,2.0,HARD,43.0,True,97.324,25.544,29.481,42.299,282.0,265.0,275.0,307.0,False,True,1,False,False,False,8574.369,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,53.0,2.0,HARD,44.0,True,97.35,25.602,29.408,42.34,283.0,264.0,277.0,309.0,False,True,12,False,False,False,8671.693,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,54.0,2.0,HARD,45.0,True,97.202,25.555,29.431,42.216,282.0,265.0,277.0,310.0,False,True,1,False,False,False,8769.043,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,55.0,2.0,HARD,46.0,True,97.166,25.444,29.481,42.241,281.0,264.0,276.0,310.0,True,True,1,False,False,False,8866.245,True
+2026,Chinese Grand Prix,2,R,LAW,30,Racing Bulls,56.0,2.0,HARD,47.0,True,97.096,25.458,29.543,42.095,282.0,264.0,280.0,310.0,True,True,1,False,False,False,8963.411,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,1.0,1.0,HARD,1.0,True,106.693,,32.187,43.509,269.0,266.0,273.0,333.0,False,False,12,False,False,False,3384.05,False
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,2.0,1.0,HARD,2.0,True,99.736,26.498,30.518,42.72,283.0,259.0,268.0,317.0,True,True,1,False,False,False,3491.005,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,3.0,1.0,HARD,3.0,True,99.082,26.297,30.078,42.707,266.0,259.0,268.0,321.0,True,True,1,False,False,False,3590.741,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,4.0,1.0,HARD,4.0,True,99.102,26.051,30.22,42.831,270.0,261.0,268.0,325.0,False,True,1,False,False,False,3689.823,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,5.0,1.0,HARD,5.0,True,98.846,26.059,30.26,42.527,269.0,258.0,265.0,324.0,True,True,1,False,False,False,3788.925,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,6.0,1.0,HARD,6.0,True,98.758,26.082,29.95,42.726,263.0,257.0,267.0,305.0,True,True,1,False,False,False,3887.771,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,7.0,1.0,HARD,7.0,True,99.086,26.271,29.883,42.932,262.0,255.0,267.0,305.0,False,True,1,False,False,False,3986.529,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,8.0,1.0,HARD,8.0,True,99.015,26.219,30.012,42.784,262.0,251.0,265.0,307.0,False,True,1,False,False,False,4085.615,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,9.0,1.0,HARD,9.0,True,99.018,26.316,30.007,42.695,261.0,253.0,270.0,307.0,False,True,1,False,False,False,4184.63,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,10.0,1.0,HARD,10.0,True,112.375,26.103,30.048,56.224,261.0,251.0,263.0,263.0,False,False,124,False,False,False,4283.648,False
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,11.0,1.0,HARD,11.0,True,144.244,36.643,43.729,63.872,125.0,139.0,186.0,167.0,False,False,4,False,False,False,4396.023,False
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,12.0,1.0,HARD,12.0,True,149.854,43.603,43.126,63.125,162.0,176.0,198.0,161.0,False,False,4,False,False,False,4540.267,False
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,13.0,1.0,HARD,13.0,True,149.97,37.424,44.506,68.04,190.0,98.0,270.0,172.0,False,False,41,False,False,False,4690.121,False
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,14.0,1.0,HARD,14.0,True,100.325,26.252,30.75,43.323,279.0,258.0,270.0,326.0,False,True,1,False,False,False,4840.091,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,15.0,1.0,HARD,15.0,True,99.043,25.887,30.079,43.077,269.0,260.0,267.0,316.0,False,True,1,False,False,False,4940.416,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,16.0,1.0,HARD,16.0,True,99.417,26.089,30.601,42.727,264.0,262.0,272.0,322.0,False,True,1,False,False,False,5039.459,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,17.0,1.0,HARD,17.0,True,98.357,25.939,29.989,42.429,270.0,256.0,270.0,322.0,True,True,1,False,False,False,5138.876,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,18.0,1.0,HARD,18.0,True,98.671,25.991,29.847,42.833,267.0,262.0,267.0,319.0,False,True,12,False,False,False,5237.233,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,19.0,1.0,HARD,19.0,True,99.911,26.071,30.6,43.24,276.0,254.0,264.0,317.0,False,True,1,False,False,False,5335.904,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,20.0,1.0,HARD,20.0,True,98.991,26.589,29.733,42.669,265.0,262.0,270.0,316.0,False,True,1,False,False,False,5435.815,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,21.0,1.0,HARD,21.0,True,99.822,26.304,30.509,43.009,271.0,263.0,259.0,323.0,False,True,1,False,False,False,5534.806,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,22.0,1.0,HARD,22.0,True,98.7,26.286,29.867,42.547,265.0,256.0,273.0,321.0,False,True,1,False,False,False,5634.628,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,23.0,1.0,HARD,23.0,True,98.334,25.954,29.953,42.427,270.0,264.0,270.0,323.0,True,True,1,False,False,False,5733.328,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,24.0,1.0,HARD,24.0,True,98.85,26.031,29.845,42.974,269.0,263.0,251.0,328.0,False,True,1,False,False,False,5831.662,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,25.0,1.0,HARD,25.0,True,98.331,26.234,29.77,42.327,263.0,259.0,271.0,314.0,True,True,1,False,False,False,5930.512,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,26.0,1.0,HARD,26.0,True,97.825,25.759,29.811,42.255,271.0,262.0,271.0,320.0,True,True,1,False,False,False,6028.843,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,27.0,1.0,HARD,27.0,True,98.121,25.904,29.737,42.48,270.0,263.0,272.0,323.0,False,True,12,False,False,False,6126.668,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,28.0,1.0,HARD,28.0,True,98.669,25.951,29.811,42.907,269.0,262.0,241.0,323.0,False,True,21,False,False,False,6224.789,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,29.0,1.0,HARD,29.0,True,104.567,27.058,29.916,47.593,270.0,264.0,,320.0,False,False,1,False,False,True,6323.458,False
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,30.0,2.0,MEDIUM,1.0,True,118.996,47.689,29.562,41.745,276.0,268.0,276.0,313.0,False,False,1,False,True,False,6428.025,False
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,31.0,2.0,MEDIUM,2.0,True,96.926,25.094,29.333,42.499,275.0,249.0,259.0,297.0,True,True,1,False,False,False,6547.021,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,32.0,2.0,MEDIUM,3.0,True,97.104,25.872,29.248,41.984,263.0,257.0,274.0,303.0,False,True,1,False,False,False,6643.947,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,33.0,2.0,MEDIUM,4.0,True,108.417,34.889,30.987,42.541,251.0,257.0,272.0,311.0,False,True,12,False,False,False,6741.051,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,34.0,2.0,MEDIUM,5.0,True,98.474,25.942,30.017,42.515,266.0,263.0,272.0,325.0,False,True,1,False,False,False,6849.468,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,35.0,2.0,MEDIUM,6.0,True,98.037,25.818,29.735,42.484,264.0,260.0,275.0,317.0,False,True,1,False,False,False,6947.942,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,36.0,2.0,MEDIUM,7.0,True,98.817,25.999,29.994,42.824,282.0,258.0,265.0,300.0,False,True,1,False,False,False,7045.979,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,37.0,2.0,MEDIUM,8.0,True,97.83,25.984,29.561,42.285,265.0,258.0,275.0,305.0,False,True,1,False,False,False,7144.796,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,38.0,2.0,MEDIUM,9.0,True,97.694,25.625,29.522,42.547,265.0,255.0,271.0,299.0,False,True,1,False,False,False,7242.626,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,39.0,2.0,MEDIUM,10.0,True,98.017,25.887,29.533,42.597,264.0,259.0,271.0,300.0,False,True,1,False,False,False,7340.32,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,40.0,2.0,MEDIUM,11.0,True,98.068,25.942,29.628,42.498,266.0,260.0,274.0,302.0,False,True,1,False,False,False,7438.337,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,41.0,2.0,MEDIUM,12.0,True,97.901,25.756,29.555,42.59,263.0,259.0,271.0,297.0,False,True,1,False,False,False,7536.405,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,42.0,2.0,MEDIUM,13.0,True,98.014,25.948,29.502,42.564,266.0,260.0,274.0,301.0,False,True,1,False,False,False,7634.306,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,43.0,2.0,MEDIUM,14.0,True,99.758,26.982,30.053,42.723,276.0,260.0,264.0,306.0,False,True,1,False,False,False,7732.32,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,44.0,2.0,MEDIUM,15.0,True,97.846,25.92,29.585,42.341,273.0,262.0,277.0,306.0,False,True,1,False,False,False,7832.078,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,45.0,2.0,MEDIUM,16.0,True,99.146,25.615,29.622,43.909,267.0,261.0,274.0,313.0,False,True,1,False,False,False,7929.924,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,46.0,2.0,MEDIUM,17.0,True,103.55,25.845,29.62,48.085,268.0,262.0,,302.0,False,False,1,False,False,True,8029.07,False
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,47.0,3.0,SOFT,1.0,True,140.887,69.802,29.133,41.952,275.0,283.0,274.0,303.0,False,False,1,False,True,False,8132.62,False
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,48.0,3.0,SOFT,2.0,True,96.461,25.461,28.951,42.049,257.0,247.0,276.0,294.0,True,True,1,False,False,False,8273.507,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,49.0,3.0,SOFT,3.0,True,96.746,25.414,29.104,42.228,250.0,245.0,276.0,295.0,False,True,1,False,False,False,8369.968,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,50.0,3.0,SOFT,4.0,True,96.427,25.302,29.174,41.951,256.0,249.0,278.0,294.0,True,True,1,False,False,False,8466.714,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,51.0,3.0,SOFT,5.0,True,96.476,25.394,29.09,41.992,265.0,256.0,274.0,306.0,False,True,1,False,False,False,8563.141,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,52.0,3.0,SOFT,6.0,True,97.671,25.484,29.51,42.677,271.0,262.0,273.0,305.0,False,True,12,False,False,False,8659.617,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,53.0,3.0,SOFT,7.0,True,96.642,25.511,29.054,42.077,271.0,261.0,274.0,302.0,False,True,1,False,False,False,8757.288,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,54.0,3.0,SOFT,8.0,True,95.964,25.355,28.897,41.712,266.0,260.0,278.0,302.0,True,True,1,False,False,False,8853.93,True
+2026,Chinese Grand Prix,2,R,OCO,31,Haas F1 Team,55.0,3.0,SOFT,9.0,True,96.281,25.237,29.083,41.961,271.0,259.0,274.0,302.0,False,True,1,False,False,False,8949.894,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,1.0,1.0,HARD,1.0,True,106.513,,31.383,44.478,289.0,268.0,271.0,336.0,False,False,12,False,False,False,3384.05,False
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,2.0,1.0,HARD,2.0,True,101.049,26.553,31.14,43.356,275.0,264.0,273.0,323.0,True,True,1,False,False,False,3490.825,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,3.0,1.0,HARD,3.0,True,99.308,26.135,30.408,42.765,274.0,259.0,275.0,317.0,True,True,1,False,False,False,3591.874,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,4.0,1.0,HARD,4.0,True,99.298,25.808,30.252,43.238,272.0,258.0,274.0,320.0,True,True,1,False,False,False,3691.182,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,5.0,1.0,HARD,5.0,True,99.395,26.065,30.405,42.925,272.0,256.0,273.0,316.0,False,True,1,False,False,False,3790.48,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,6.0,1.0,HARD,6.0,True,99.363,26.056,30.378,42.929,271.0,260.0,274.0,320.0,False,True,1,False,False,False,3889.875,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,7.0,1.0,HARD,7.0,True,99.198,25.898,30.408,42.892,270.0,257.0,274.0,320.0,True,True,1,False,False,False,3989.238,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,8.0,1.0,HARD,8.0,True,99.45,26.064,30.44,42.946,276.0,265.0,271.0,336.0,False,True,1,False,False,False,4088.436,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,9.0,1.0,HARD,9.0,True,99.859,26.316,30.745,42.798,274.0,262.0,270.0,328.0,False,True,1,False,False,False,4187.886,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,10.0,1.0,HARD,10.0,True,113.138,26.148,30.22,56.77,268.0,256.0,218.0,260.0,False,False,124,False,False,False,4287.745,False
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,11.0,1.0,HARD,11.0,True,143.056,37.892,41.196,63.968,225.0,173.0,177.0,222.0,False,False,4,False,False,False,4400.883,False
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,12.0,1.0,HARD,12.0,True,149.824,42.835,43.447,63.542,153.0,178.0,173.0,182.0,False,False,4,False,False,False,4543.939,False
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,13.0,1.0,HARD,13.0,True,147.571,36.919,44.554,66.098,193.0,173.0,269.0,169.0,False,False,41,False,False,False,4693.763,False
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,14.0,1.0,HARD,14.0,True,100.873,26.298,30.968,43.607,286.0,262.0,270.0,339.0,False,True,1,False,False,False,4841.334,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,15.0,1.0,HARD,15.0,True,99.084,26.252,30.235,42.597,275.0,262.0,276.0,334.0,True,True,1,False,False,False,4942.207,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,16.0,1.0,HARD,16.0,True,99.328,25.876,30.217,43.235,272.0,261.0,275.0,319.0,False,True,1,False,False,False,5041.291,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,17.0,1.0,HARD,17.0,True,99.287,26.008,30.24,43.039,277.0,261.0,275.0,322.0,False,True,12,False,False,False,5140.619,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,18.0,1.0,HARD,18.0,True,99.47,26.547,30.293,42.63,276.0,263.0,274.0,322.0,False,True,21,False,False,False,5239.906,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,19.0,1.0,HARD,19.0,True,99.363,26.075,30.303,42.985,271.0,258.0,275.0,319.0,False,True,1,False,False,False,5339.376,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,20.0,1.0,HARD,20.0,True,99.466,26.213,30.418,42.835,276.0,266.0,276.0,320.0,False,True,1,False,False,False,5438.739,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,21.0,1.0,HARD,21.0,True,99.78,25.823,30.148,43.809,276.0,263.0,274.0,315.0,False,True,1,False,False,False,5538.205,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,22.0,1.0,HARD,22.0,True,99.306,26.144,30.331,42.831,278.0,266.0,275.0,323.0,False,True,1,False,False,False,5637.985,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,23.0,1.0,HARD,23.0,True,98.456,25.919,30.047,42.49,279.0,266.0,276.0,333.0,True,True,1,False,False,False,5737.291,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,24.0,1.0,HARD,24.0,True,98.975,25.96,30.206,42.809,275.0,264.0,276.0,319.0,False,True,1,False,False,False,5835.747,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,25.0,1.0,HARD,25.0,True,99.529,26.052,30.166,43.311,273.0,262.0,275.0,322.0,False,True,1,False,False,False,5934.722,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,26.0,1.0,HARD,26.0,True,99.139,26.176,30.255,42.708,276.0,267.0,277.0,318.0,False,True,1,False,False,False,6034.251,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,27.0,1.0,HARD,27.0,True,110.154,25.868,30.209,54.077,276.0,267.0,256.0,313.0,False,True,12,False,False,False,6133.39,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,28.0,1.0,HARD,28.0,True,99.843,26.661,30.116,43.066,269.0,261.0,275.0,308.0,False,True,1,False,False,False,6243.544,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,29.0,1.0,HARD,29.0,True,98.66,25.851,30.018,42.791,270.0,261.0,275.0,309.0,False,True,1,False,False,False,6343.387,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,30.0,1.0,HARD,30.0,True,98.503,25.844,29.915,42.744,270.0,260.0,275.0,308.0,False,True,1,False,False,False,6442.047,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,31.0,1.0,HARD,31.0,True,98.543,25.856,29.932,42.755,272.0,261.0,276.0,309.0,False,True,1,False,False,False,6540.55,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,32.0,1.0,HARD,32.0,True,98.387,25.793,29.936,42.658,272.0,260.0,276.0,310.0,True,True,1,False,False,False,6639.093,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,33.0,1.0,HARD,33.0,True,98.223,25.742,29.869,42.612,271.0,262.0,276.0,309.0,True,True,12,False,False,False,6737.48,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,34.0,1.0,HARD,34.0,True,98.471,25.882,29.88,42.709,273.0,261.0,277.0,308.0,False,True,1,False,False,False,6835.703,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,35.0,1.0,HARD,35.0,True,98.321,25.815,29.825,42.681,274.0,262.0,276.0,309.0,False,True,1,False,False,False,6934.174,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,36.0,1.0,HARD,36.0,True,98.052,25.75,29.838,42.464,274.0,262.0,277.0,310.0,True,True,1,False,False,False,7032.495,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,37.0,1.0,HARD,37.0,True,98.067,25.72,29.682,42.665,272.0,265.0,278.0,308.0,False,True,1,False,False,False,7130.547,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,38.0,1.0,HARD,38.0,True,97.97,25.71,29.706,42.554,272.0,263.0,278.0,308.0,True,True,1,False,False,False,7228.614,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,39.0,1.0,HARD,39.0,True,98.031,25.708,29.736,42.587,272.0,262.0,276.0,310.0,False,True,1,False,False,False,7326.584,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,40.0,1.0,HARD,40.0,True,98.037,25.666,29.573,42.798,272.0,263.0,277.0,308.0,False,True,1,False,False,False,7424.615,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,41.0,1.0,HARD,41.0,True,100.061,25.665,29.663,44.733,274.0,262.0,276.0,311.0,False,True,1,False,False,False,7522.652,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,42.0,1.0,HARD,42.0,True,103.637,25.822,29.857,47.958,278.0,266.0,,312.0,False,False,1,False,False,True,7622.713,False
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,43.0,2.0,MEDIUM,1.0,True,117.028,45.629,29.611,41.788,277.0,271.0,280.0,331.0,False,False,1,False,True,False,7726.35,False
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,44.0,2.0,MEDIUM,2.0,True,96.338,25.297,29.065,41.976,272.0,263.0,278.0,306.0,True,True,1,False,False,False,7843.378,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,45.0,2.0,MEDIUM,3.0,True,96.104,25.082,29.099,41.923,273.0,264.0,279.0,307.0,True,True,1,False,False,False,7939.716,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,46.0,2.0,MEDIUM,4.0,True,96.099,25.11,29.057,41.932,273.0,264.0,278.0,311.0,True,True,1,False,False,False,8035.82,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,47.0,2.0,MEDIUM,5.0,True,96.147,25.21,29.12,41.817,275.0,265.0,278.0,308.0,False,True,1,False,False,False,8131.919,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,48.0,2.0,MEDIUM,6.0,True,96.224,25.113,29.245,41.866,274.0,264.0,280.0,306.0,False,True,1,False,False,False,8228.066,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,49.0,2.0,MEDIUM,7.0,True,96.203,25.181,29.149,41.873,273.0,264.0,279.0,310.0,False,True,1,False,False,False,8324.29,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,50.0,2.0,MEDIUM,8.0,True,96.382,25.16,29.197,42.025,276.0,264.0,280.0,309.0,False,True,1,False,False,False,8420.493,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,51.0,2.0,MEDIUM,9.0,True,96.782,25.207,29.435,42.14,276.0,263.0,279.0,311.0,False,True,1,False,False,False,8516.875,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,52.0,2.0,MEDIUM,10.0,True,96.945,25.403,29.424,42.118,276.0,266.0,280.0,311.0,False,True,12,False,False,False,8613.657,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,53.0,2.0,MEDIUM,11.0,True,97.164,25.472,29.536,42.156,275.0,266.0,281.0,315.0,False,True,1,False,False,False,8710.602,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,54.0,2.0,MEDIUM,12.0,True,97.477,25.465,29.701,42.311,277.0,265.0,279.0,314.0,False,True,1,False,False,False,8807.766,True
+2026,Chinese Grand Prix,2,R,LIN,41,Racing Bulls,55.0,2.0,MEDIUM,13.0,True,97.504,25.575,29.659,42.27,280.0,266.0,281.0,318.0,False,True,1,False,False,False,8905.243,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,1.0,1.0,HARD,1.0,True,105.498,,31.009,44.11,273.0,266.0,269.0,319.0,False,False,12,False,False,False,3384.05,False
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,2.0,1.0,HARD,2.0,True,99.308,26.084,30.148,43.076,272.0,258.0,263.0,313.0,True,True,1,False,False,False,3489.81,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,3.0,1.0,HARD,3.0,True,98.925,26.235,29.918,42.772,272.0,259.0,263.0,314.0,True,True,1,False,False,False,3589.118,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,4.0,1.0,HARD,4.0,True,98.865,26.235,29.933,42.697,272.0,258.0,270.0,315.0,True,True,1,False,False,False,3688.043,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,5.0,1.0,HARD,5.0,True,98.91,25.834,30.107,42.969,274.0,258.0,270.0,312.0,False,True,1,False,False,False,3786.908,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,6.0,1.0,HARD,6.0,True,98.734,26.108,29.992,42.634,275.0,261.0,270.0,312.0,True,True,1,False,False,False,3885.818,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,7.0,1.0,HARD,7.0,True,98.805,26.167,30.094,42.544,275.0,261.0,269.0,313.0,False,True,1,False,False,False,3984.552,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,8.0,1.0,HARD,8.0,True,98.959,26.143,30.175,42.641,274.0,259.0,269.0,314.0,False,True,1,False,False,False,4083.357,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,9.0,1.0,HARD,9.0,True,99.036,26.118,30.268,42.65,274.0,260.0,270.0,314.0,False,True,1,False,False,False,4182.316,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,10.0,1.0,HARD,10.0,True,111.471,26.157,30.235,55.079,273.0,260.0,255.0,246.0,False,False,124,False,False,False,4281.352,False
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,11.0,1.0,HARD,11.0,True,146.642,38.41,44.254,63.978,129.0,162.0,203.0,214.0,False,False,4,False,False,False,4392.823,False
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,12.0,1.0,HARD,12.0,True,149.978,43.532,43.109,63.337,155.0,190.0,205.0,182.0,False,False,4,False,False,False,4539.465,False
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,13.0,1.0,HARD,13.0,True,,37.203,44.278,69.011,205.0,122.0,263.0,166.0,False,False,41,False,False,False,4689.443,False
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,14.0,1.0,HARD,14.0,True,99.465,26.212,30.44,42.813,280.0,266.0,267.0,318.0,False,True,1,False,False,False,4839.995,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,15.0,1.0,HARD,15.0,True,98.829,25.952,30.192,42.685,276.0,266.0,267.0,325.0,False,True,1,False,False,False,4939.46,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,16.0,1.0,HARD,16.0,True,100.106,26.303,30.371,43.432,254.0,264.0,269.0,313.0,False,True,1,False,False,False,5038.289,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,17.0,1.0,HARD,17.0,True,98.383,25.992,29.85,42.541,284.0,266.0,270.0,315.0,True,True,1,False,False,False,5138.395,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,18.0,1.0,HARD,18.0,True,98.946,26.049,29.919,42.978,273.0,256.0,260.0,311.0,False,True,12,False,False,False,5236.778,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,19.0,1.0,HARD,19.0,True,99.566,26.179,30.34,43.047,270.0,255.0,264.0,309.0,False,True,1,False,False,False,5335.724,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,20.0,1.0,HARD,20.0,True,98.955,25.964,29.945,43.046,269.0,255.0,257.0,308.0,False,True,1,False,False,False,5435.29,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,21.0,1.0,HARD,21.0,True,99.324,26.271,29.857,43.196,270.0,257.0,268.0,308.0,False,True,1,False,False,False,5534.245,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,22.0,1.0,HARD,22.0,True,99.182,25.937,30.663,42.582,278.0,256.0,273.0,323.0,False,True,1,False,False,False,5633.569,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,23.0,1.0,HARD,23.0,True,98.493,26.102,29.982,42.409,280.0,269.0,272.0,323.0,False,True,1,False,False,False,5732.751,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,24.0,1.0,HARD,24.0,True,98.447,26.009,29.879,42.559,274.0,259.0,272.0,319.0,False,True,1,False,False,False,5831.244,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,25.0,1.0,HARD,25.0,True,98.384,26.04,29.859,42.485,276.0,262.0,273.0,316.0,False,True,1,False,False,False,5929.691,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,26.0,1.0,HARD,26.0,True,98.07,25.888,29.772,42.41,276.0,261.0,274.0,315.0,True,True,1,False,False,False,6028.075,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,27.0,1.0,HARD,27.0,True,98.288,25.839,29.841,42.608,277.0,257.0,270.0,311.0,False,True,12,False,False,False,6126.145,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,28.0,1.0,HARD,28.0,True,99.299,25.942,29.767,43.59,274.0,259.0,246.0,312.0,False,True,21,False,False,False,6224.433,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,29.0,1.0,HARD,29.0,True,98.724,26.421,29.978,42.325,281.0,264.0,269.0,320.0,False,True,1,False,False,False,6323.732,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,30.0,1.0,HARD,30.0,True,98.235,26.045,29.848,42.342,275.0,258.0,274.0,318.0,False,True,1,False,False,False,6422.456,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,31.0,1.0,HARD,31.0,True,97.802,25.862,29.79,42.15,276.0,260.0,274.0,318.0,True,True,1,False,False,False,6520.691,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,32.0,1.0,HARD,32.0,True,102.819,25.789,29.718,47.312,276.0,258.0,,321.0,False,False,1,False,False,True,6618.493,False
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,33.0,2.0,MEDIUM,1.0,True,124.117,50.491,30.246,43.38,266.0,268.0,274.0,329.0,False,False,12,False,True,False,6721.312,False
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,34.0,2.0,MEDIUM,2.0,True,97.233,25.665,29.482,42.086,276.0,260.0,272.0,311.0,True,True,1,False,False,False,6845.429,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,35.0,2.0,MEDIUM,3.0,True,96.783,25.624,29.202,41.957,276.0,258.0,273.0,310.0,True,True,1,False,False,False,6942.662,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,36.0,2.0,MEDIUM,4.0,True,97.023,25.597,29.333,42.093,276.0,260.0,273.0,312.0,False,True,1,False,False,False,7039.445,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,37.0,2.0,MEDIUM,5.0,True,96.958,25.573,29.393,41.992,275.0,259.0,274.0,314.0,False,True,1,False,False,False,7136.468,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,38.0,2.0,MEDIUM,6.0,True,96.819,25.52,29.341,41.958,276.0,260.0,274.0,314.0,False,True,1,False,False,False,7233.426,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,39.0,2.0,MEDIUM,7.0,True,97.217,25.682,29.478,42.057,275.0,263.0,273.0,315.0,False,True,1,False,False,False,7330.245,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,40.0,2.0,MEDIUM,8.0,True,96.841,25.596,29.316,41.929,276.0,260.0,274.0,318.0,False,True,1,False,False,False,7427.462,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,41.0,2.0,MEDIUM,9.0,True,97.448,25.661,29.497,42.29,277.0,262.0,272.0,327.0,False,True,1,False,False,False,7524.303,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,42.0,2.0,MEDIUM,10.0,True,97.53,25.753,29.534,42.243,275.0,261.0,275.0,309.0,False,True,1,False,False,False,7621.751,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,43.0,2.0,MEDIUM,11.0,True,97.381,25.698,29.458,42.225,276.0,262.0,275.0,309.0,False,True,1,False,False,False,7719.281,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,44.0,2.0,MEDIUM,12.0,True,97.075,25.547,29.444,42.084,278.0,260.0,275.0,311.0,False,True,1,False,False,False,7816.662,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,45.0,2.0,MEDIUM,13.0,True,97.426,25.65,29.576,42.2,278.0,262.0,276.0,313.0,False,True,1,False,False,False,7913.737,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,46.0,2.0,MEDIUM,14.0,True,97.139,25.598,29.426,42.115,278.0,261.0,275.0,315.0,False,True,1,False,False,False,8011.163,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,47.0,2.0,MEDIUM,15.0,True,97.504,25.759,29.491,42.254,278.0,263.0,275.0,315.0,False,True,1,False,False,False,8108.302,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,48.0,2.0,MEDIUM,16.0,True,97.598,25.66,29.557,42.381,278.0,263.0,275.0,315.0,False,True,1,False,False,False,8205.806,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,49.0,2.0,MEDIUM,17.0,True,99.052,25.876,29.627,43.549,280.0,264.0,278.0,304.0,False,True,1,False,False,False,8303.404,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,50.0,2.0,MEDIUM,18.0,True,97.592,25.714,29.601,42.277,286.0,270.0,277.0,321.0,False,True,1,False,False,False,8402.456,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,51.0,2.0,MEDIUM,19.0,True,97.781,25.742,29.919,42.12,279.0,263.0,279.0,319.0,False,True,1,False,False,False,8500.048,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,52.0,2.0,MEDIUM,20.0,True,98.022,25.738,29.834,42.45,280.0,264.0,280.0,321.0,False,True,12,False,False,False,8597.829,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,53.0,2.0,MEDIUM,21.0,True,99.609,25.868,30.008,43.733,284.0,266.0,277.0,309.0,False,True,1,False,False,False,8695.851,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,54.0,2.0,MEDIUM,22.0,True,98.685,26.19,30.027,42.468,288.0,267.0,279.0,323.0,False,True,1,False,False,False,8795.46,True
+2026,Chinese Grand Prix,2,R,COL,43,Alpine,55.0,2.0,MEDIUM,23.0,True,98.237,25.771,29.958,42.508,285.0,266.0,268.0,338.0,False,True,1,False,False,False,8894.145,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,1.0,1.0,MEDIUM,1.0,True,99.448,,29.4,42.279,279.0,253.0,270.0,309.0,False,False,12,False,False,False,3384.05,False
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,2.0,1.0,MEDIUM,2.0,True,99.561,26.571,30.167,42.823,259.0,251.0,268.0,306.0,True,True,1,False,False,False,3483.76,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,3.0,1.0,MEDIUM,3.0,True,98.587,26.036,29.899,42.652,267.0,257.0,238.0,301.0,True,True,1,False,False,False,3583.321,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,4.0,1.0,MEDIUM,4.0,True,98.234,26.445,29.518,42.271,267.0,258.0,270.0,317.0,True,True,1,False,False,False,3681.908,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,5.0,1.0,MEDIUM,5.0,True,97.636,25.888,29.561,42.187,266.0,252.0,256.0,316.0,True,True,1,False,False,False,3780.142,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,6.0,1.0,MEDIUM,6.0,True,97.962,26.388,29.48,42.094,265.0,259.0,245.0,316.0,False,True,1,False,False,False,3877.778,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,7.0,1.0,MEDIUM,7.0,True,98.221,26.353,29.64,42.228,268.0,252.0,271.0,308.0,False,True,1,False,False,False,3975.74,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,8.0,1.0,MEDIUM,8.0,True,97.929,25.948,29.645,42.336,262.0,248.0,263.0,304.0,False,True,1,False,False,False,4073.961,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,9.0,1.0,MEDIUM,9.0,True,98.371,26.231,29.813,42.327,264.0,252.0,271.0,304.0,False,True,1,False,False,False,4171.89,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,10.0,1.0,MEDIUM,10.0,True,109.946,26.118,29.593,54.235,260.0,255.0,,296.0,False,False,124,False,False,True,4270.261,False
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,11.0,2.0,HARD,1.0,True,,56.333,42.193,63.793,214.0,208.0,195.0,218.0,False,False,4,False,True,False,4380.207,False
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,12.0,2.0,HARD,2.0,True,,43.585,43.402,63.017,116.0,159.0,191.0,200.0,False,False,4,False,False,False,4542.546,False
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,13.0,2.0,HARD,3.0,True,148.395,37.523,43.814,67.058,188.0,157.0,268.0,166.0,False,False,41,False,False,False,4692.515,False
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,14.0,2.0,HARD,4.0,True,98.966,26.346,30.144,42.476,276.0,262.0,274.0,312.0,False,True,1,False,False,False,4840.91,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,15.0,2.0,HARD,5.0,True,97.073,25.729,29.636,41.708,275.0,254.0,276.0,322.0,True,True,1,False,False,False,4939.876,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,16.0,2.0,HARD,6.0,True,96.931,25.52,29.383,42.028,268.0,253.0,273.0,315.0,True,True,1,False,False,False,5036.949,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,17.0,2.0,HARD,7.0,True,96.697,25.604,29.185,41.908,276.0,258.0,272.0,312.0,True,True,1,False,False,False,5133.88,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,18.0,2.0,HARD,8.0,True,97.117,25.84,29.308,41.969,264.0,260.0,268.0,309.0,False,True,12,False,False,False,5230.577,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,19.0,2.0,HARD,9.0,True,97.103,25.734,29.303,42.066,270.0,260.0,265.0,308.0,False,True,1,False,False,False,5327.694,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,20.0,2.0,HARD,10.0,True,96.915,25.684,29.332,41.899,269.0,253.0,273.0,307.0,False,True,1,False,False,False,5424.797,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,21.0,2.0,HARD,11.0,True,96.972,25.719,29.177,42.076,266.0,257.0,269.0,305.0,False,True,1,False,False,False,5521.712,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,22.0,2.0,HARD,12.0,True,97.006,25.706,29.242,42.058,268.0,254.0,269.0,307.0,False,True,1,False,False,False,5618.684,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,23.0,2.0,HARD,13.0,True,97.049,25.717,29.202,42.13,264.0,258.0,271.0,304.0,False,True,1,False,False,False,5715.69,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,24.0,2.0,HARD,14.0,True,98.223,25.672,29.236,43.315,264.0,251.0,273.0,302.0,False,True,1,False,False,False,5812.739,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,25.0,2.0,HARD,15.0,True,97.893,26.039,29.707,42.147,284.0,253.0,273.0,316.0,False,True,1,False,False,False,5910.962,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,26.0,2.0,HARD,16.0,True,96.739,25.666,29.374,41.699,268.0,260.0,252.0,328.0,False,True,1,False,False,False,6008.855,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,27.0,2.0,HARD,17.0,True,99.232,26.166,30.041,43.025,289.0,266.0,248.0,317.0,False,True,1,False,False,False,6105.594,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,28.0,2.0,HARD,18.0,True,97.218,26.103,29.358,41.757,272.0,260.0,276.0,318.0,False,True,12,False,False,False,6204.826,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,29.0,2.0,HARD,19.0,True,96.771,25.725,29.304,41.742,267.0,259.0,273.0,315.0,False,True,1,False,False,False,6302.044,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,30.0,2.0,HARD,20.0,True,96.685,25.68,29.346,41.659,270.0,261.0,275.0,322.0,True,True,1,False,False,False,6398.815,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,31.0,2.0,HARD,21.0,True,96.496,25.602,29.15,41.744,272.0,262.0,272.0,317.0,True,True,1,False,False,False,6495.5,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,32.0,2.0,HARD,22.0,True,96.629,25.517,29.32,41.792,274.0,261.0,270.0,323.0,False,True,1,False,False,False,6591.996,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,33.0,2.0,HARD,23.0,True,96.496,25.616,29.26,41.62,270.0,259.0,276.0,323.0,False,True,12,False,False,False,6688.625,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,34.0,2.0,HARD,24.0,True,96.752,25.768,29.141,41.843,269.0,259.0,271.0,316.0,False,True,1,False,False,False,6785.121,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,35.0,2.0,HARD,25.0,True,97.337,25.703,29.169,42.465,272.0,261.0,272.0,316.0,False,True,1,False,False,False,6881.873,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,36.0,2.0,HARD,26.0,True,97.001,25.741,29.147,42.113,262.0,255.0,274.0,302.0,False,True,1,False,False,False,6979.21,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,37.0,2.0,HARD,27.0,True,96.649,25.572,29.135,41.942,264.0,258.0,269.0,300.0,False,True,1,False,False,False,7076.211,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,38.0,2.0,HARD,28.0,True,96.876,25.693,29.008,42.175,264.0,257.0,274.0,300.0,False,True,1,False,False,False,7172.86,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,39.0,2.0,HARD,29.0,True,98.092,25.749,29.07,43.273,263.0,254.0,273.0,302.0,False,True,1,False,False,False,7269.736,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,40.0,2.0,HARD,30.0,True,96.952,25.408,29.544,42.0,276.0,252.0,271.0,305.0,False,True,1,False,False,False,7367.828,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,41.0,2.0,HARD,31.0,True,96.471,25.703,28.94,41.828,268.0,257.0,275.0,302.0,True,True,1,False,False,False,7464.78,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,42.0,2.0,HARD,32.0,True,96.516,25.364,28.875,42.277,266.0,259.0,271.0,300.0,False,True,1,False,False,False,7561.251,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,43.0,2.0,HARD,33.0,True,96.218,25.477,28.969,41.772,270.0,259.0,275.0,301.0,True,True,1,False,False,False,7657.767,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,44.0,2.0,HARD,34.0,True,96.24,25.298,29.006,41.936,269.0,255.0,277.0,304.0,False,True,1,False,False,False,7753.985,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,45.0,2.0,HARD,35.0,True,96.396,25.274,29.21,41.912,273.0,260.0,274.0,303.0,False,True,1,False,False,False,7850.225,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,46.0,2.0,HARD,36.0,True,96.309,25.368,29.083,41.858,270.0,259.0,276.0,311.0,False,True,1,False,False,False,7946.621,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,47.0,2.0,HARD,37.0,True,96.204,25.237,28.885,42.082,273.0,262.0,272.0,301.0,True,True,1,False,False,False,8042.93,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,48.0,2.0,HARD,38.0,True,96.151,25.412,28.954,41.785,272.0,256.0,276.0,303.0,True,True,1,False,False,False,8139.134,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,49.0,2.0,HARD,39.0,True,96.385,25.273,28.918,42.194,272.0,260.0,273.0,301.0,False,True,1,False,False,False,8235.285,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,50.0,2.0,HARD,40.0,True,96.237,25.365,28.913,41.959,273.0,262.0,276.0,301.0,False,True,1,False,False,False,8331.67,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,51.0,2.0,HARD,41.0,True,96.134,25.336,28.856,41.942,270.0,262.0,273.0,301.0,True,True,1,False,False,False,8427.907,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,52.0,2.0,HARD,42.0,True,96.296,25.355,28.86,42.081,273.0,261.0,276.0,302.0,False,True,1,False,False,False,8524.041,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,53.0,2.0,HARD,43.0,True,96.199,25.203,28.889,42.107,272.0,262.0,274.0,301.0,False,True,12,False,False,False,8620.337,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,54.0,2.0,HARD,44.0,True,96.44,25.465,28.998,41.977,271.0,261.0,277.0,306.0,False,True,1,False,False,False,8716.536,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,55.0,2.0,HARD,45.0,True,96.092,25.176,28.906,42.01,272.0,262.0,276.0,304.0,True,True,1,False,False,False,8812.976,True
+2026,Chinese Grand Prix,2,R,HAM,44,Ferrari,56.0,2.0,HARD,46.0,True,96.103,25.198,28.968,41.937,273.0,262.0,278.0,306.0,False,True,1,False,False,False,8909.068,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,1.0,1.0,MEDIUM,1.0,True,107.507,,32.338,43.861,275.0,266.0,269.0,345.0,False,False,12,False,False,False,3384.05,False
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,2.0,1.0,MEDIUM,2.0,True,100.743,26.296,30.998,43.449,281.0,261.0,241.0,349.0,True,True,1,False,False,False,3491.819,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,3.0,1.0,MEDIUM,3.0,True,99.987,27.077,30.389,42.521,275.0,259.0,266.0,330.0,True,True,1,False,False,False,3592.562,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,4.0,1.0,MEDIUM,4.0,True,98.988,26.39,30.159,42.439,275.0,266.0,270.0,333.0,True,True,1,False,False,False,3692.549,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,5.0,1.0,MEDIUM,5.0,True,99.754,26.454,30.503,42.797,277.0,267.0,256.0,345.0,False,True,1,False,False,False,3791.537,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,6.0,1.0,MEDIUM,6.0,True,100.138,26.732,30.691,42.715,282.0,261.0,268.0,329.0,False,True,1,False,False,False,3891.291,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,7.0,1.0,MEDIUM,7.0,True,100.631,26.571,30.596,43.464,275.0,256.0,267.0,331.0,False,True,1,False,False,False,3991.429,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,8.0,1.0,MEDIUM,8.0,True,99.913,26.363,30.686,42.864,282.0,269.0,263.0,330.0,False,True,1,False,False,False,4092.06,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,9.0,1.0,MEDIUM,9.0,True,105.134,26.683,30.683,47.768,274.0,257.0,,323.0,False,False,1,False,False,True,4191.973,False
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,10.0,2.0,HARD,1.0,True,143.187,45.858,40.3,57.029,276.0,243.0,167.0,214.0,False,False,124,False,True,False,4297.107,False
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,11.0,2.0,HARD,2.0,True,135.222,35.932,41.674,57.616,255.0,205.0,200.0,271.0,False,False,4,False,False,False,4440.294,False
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,12.0,2.0,HARD,3.0,True,127.751,34.991,36.307,56.453,257.0,266.0,162.0,90.0,False,False,4,False,False,False,4575.516,False
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,13.0,2.0,HARD,4.0,True,141.35,35.621,45.494,60.235,248.0,212.0,271.0,179.0,False,False,41,False,False,False,4703.267,False
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,14.0,2.0,HARD,5.0,True,100.484,26.556,30.777,43.151,282.0,274.0,268.0,346.0,False,True,1,False,False,False,4844.617,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,15.0,2.0,HARD,6.0,True,99.125,26.249,30.247,42.629,288.0,271.0,271.0,348.0,False,True,1,False,False,False,4945.101,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,16.0,2.0,HARD,7.0,True,99.428,26.37,30.308,42.75,280.0,271.0,264.0,349.0,False,True,1,False,False,False,5044.226,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,17.0,2.0,HARD,8.0,True,99.029,26.094,30.295,42.64,284.0,270.0,270.0,335.0,False,True,12,False,False,False,5143.654,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,18.0,2.0,HARD,9.0,True,98.657,26.177,30.232,42.248,283.0,266.0,270.0,339.0,True,True,21,False,False,False,5242.683,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,19.0,2.0,HARD,10.0,True,99.119,26.228,30.251,42.64,283.0,272.0,269.0,339.0,False,True,1,False,False,False,5341.34,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,20.0,2.0,HARD,11.0,True,99.397,26.289,30.454,42.654,280.0,264.0,272.0,339.0,False,True,1,False,False,False,5440.459,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,21.0,2.0,HARD,12.0,True,99.144,26.375,30.111,42.658,277.0,263.0,266.0,337.0,False,True,1,False,False,False,5539.856,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,22.0,2.0,HARD,13.0,True,100.245,26.872,30.584,42.789,279.0,264.0,263.0,327.0,False,True,1,False,False,False,5639.0,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,23.0,2.0,HARD,14.0,True,99.101,26.286,30.238,42.577,278.0,268.0,269.0,323.0,False,True,1,False,False,False,5739.245,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,24.0,2.0,HARD,15.0,True,98.964,26.131,30.304,42.529,274.0,258.0,271.0,320.0,False,True,1,False,False,False,5838.346,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,25.0,2.0,HARD,16.0,True,98.754,26.161,30.131,42.462,276.0,265.0,271.0,327.0,False,True,1,False,False,False,5937.31,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,26.0,2.0,HARD,17.0,True,98.708,26.239,30.084,42.385,273.0,265.0,271.0,328.0,False,True,1,False,False,False,6036.064,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,27.0,2.0,HARD,18.0,True,99.708,26.155,30.228,43.325,275.0,264.0,263.0,327.0,False,True,12,False,False,False,6134.772,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,28.0,2.0,HARD,19.0,True,98.672,26.279,30.012,42.381,273.0,262.0,271.0,316.0,False,True,1,False,False,False,6234.48,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,29.0,2.0,HARD,20.0,True,98.814,26.226,29.98,42.608,272.0,262.0,271.0,317.0,False,True,1,False,False,False,6333.152,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,30.0,2.0,HARD,21.0,True,98.509,26.109,29.995,42.405,275.0,261.0,270.0,320.0,True,True,1,False,False,False,6431.966,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,31.0,2.0,HARD,22.0,True,98.46,26.119,30.017,42.324,274.0,261.0,270.0,319.0,True,True,1,False,False,False,6530.475,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,32.0,2.0,HARD,23.0,True,98.339,26.097,29.955,42.287,275.0,262.0,270.0,318.0,True,True,1,False,False,False,6628.935,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,33.0,2.0,HARD,24.0,True,98.462,26.147,29.889,42.426,275.0,264.0,270.0,318.0,False,True,12,False,False,False,6727.274,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,34.0,2.0,HARD,25.0,True,98.763,26.33,29.946,42.487,277.0,261.0,270.0,318.0,False,True,1,False,False,False,6825.736,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,35.0,2.0,HARD,26.0,True,98.672,26.173,29.987,42.512,279.0,262.0,270.0,315.0,False,True,1,False,False,False,6924.499,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,36.0,2.0,HARD,27.0,True,98.744,26.216,30.071,42.457,276.0,263.0,270.0,313.0,False,True,1,False,False,False,7023.171,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,37.0,2.0,HARD,28.0,True,98.48,26.157,29.955,42.368,277.0,264.0,270.0,313.0,False,True,1,False,False,False,7121.915,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,38.0,2.0,HARD,29.0,True,98.495,26.147,29.847,42.501,276.0,266.0,271.0,314.0,False,True,1,False,False,False,7220.395,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,39.0,2.0,HARD,30.0,True,98.585,26.207,29.939,42.439,277.0,264.0,271.0,315.0,False,True,1,False,False,False,7318.89,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,40.0,2.0,HARD,31.0,True,98.358,26.101,29.881,42.376,278.0,264.0,272.0,314.0,False,True,1,False,False,False,7417.475,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,41.0,2.0,HARD,32.0,True,98.421,26.08,29.834,42.507,278.0,261.0,270.0,312.0,False,True,1,False,False,False,7515.833,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,42.0,2.0,HARD,33.0,True,98.272,26.148,29.772,42.352,278.0,264.0,272.0,311.0,True,True,1,False,False,False,7614.254,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,43.0,2.0,HARD,34.0,True,98.283,26.032,29.702,42.549,277.0,265.0,272.0,312.0,False,True,1,False,False,False,7712.526,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,44.0,2.0,HARD,35.0,True,98.268,26.0,29.706,42.562,276.0,264.0,273.0,314.0,True,True,1,False,False,False,7810.809,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,45.0,2.0,HARD,36.0,True,98.104,25.973,29.728,42.403,277.0,262.0,272.0,313.0,True,True,1,False,False,False,7909.077,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,46.0,2.0,HARD,37.0,True,98.034,26.024,29.595,42.415,278.0,265.0,271.0,314.0,True,True,1,False,False,False,8007.181,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,47.0,2.0,HARD,38.0,True,98.329,26.108,29.663,42.558,276.0,267.0,272.0,316.0,False,True,1,False,False,False,8105.215,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,48.0,2.0,HARD,39.0,True,98.022,26.001,29.645,42.376,278.0,262.0,273.0,314.0,True,True,1,False,False,False,8203.544,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,49.0,2.0,HARD,40.0,True,98.022,25.964,29.624,42.434,279.0,263.0,272.0,315.0,False,True,1,False,False,False,8301.566,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,50.0,2.0,HARD,41.0,True,99.03,25.984,30.254,42.792,278.0,199.0,275.0,338.0,False,True,1,False,False,False,8399.588,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,51.0,2.0,HARD,42.0,True,97.981,25.961,29.737,42.283,282.0,269.0,270.0,321.0,True,True,1,False,False,False,8498.618,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,52.0,2.0,HARD,43.0,True,98.424,26.1,29.779,42.545,277.0,265.0,273.0,314.0,False,True,12,False,False,False,8596.599,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,53.0,2.0,HARD,44.0,True,100.087,26.026,29.873,44.188,280.0,262.0,275.0,316.0,False,True,1,False,False,False,8695.023,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,54.0,2.0,HARD,45.0,True,98.254,25.887,29.86,42.507,283.0,263.0,269.0,319.0,False,True,1,False,False,False,8795.11,True
+2026,Chinese Grand Prix,2,R,SAI,55,Williams,55.0,2.0,HARD,46.0,True,98.228,26.016,29.678,42.534,278.0,262.0,272.0,326.0,False,True,1,False,False,False,8893.364,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,1.0,1.0,SOFT,4.0,False,123.643,,30.907,62.905,284.0,280.0,,274.0,False,False,12,False,False,True,3384.05,False
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,2.0,2.0,HARD,1.0,True,120.199,46.15,30.387,43.662,260.0,259.0,261.0,306.0,False,False,1,False,True,False,3507.955,False
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,3.0,2.0,HARD,2.0,True,98.812,26.221,30.048,42.543,264.0,260.0,270.0,311.0,True,True,1,False,False,False,3628.154,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,4.0,2.0,HARD,3.0,True,99.088,26.095,30.275,42.718,263.0,257.0,270.0,307.0,False,True,1,False,False,False,3726.966,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,5.0,2.0,HARD,4.0,True,98.824,25.985,30.083,42.756,266.0,258.0,272.0,309.0,False,True,1,False,False,False,3826.054,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,6.0,2.0,HARD,5.0,True,98.261,25.948,29.935,42.378,265.0,259.0,271.0,309.0,True,True,1,False,False,False,3924.878,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,7.0,2.0,HARD,6.0,True,98.457,25.97,30.015,42.472,268.0,259.0,269.0,309.0,False,True,1,False,False,False,4023.139,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,8.0,2.0,HARD,7.0,True,98.661,26.132,30.026,42.503,264.0,258.0,271.0,308.0,False,True,1,False,False,False,4121.596,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,9.0,2.0,HARD,8.0,True,98.662,26.18,30.093,42.389,263.0,257.0,271.0,308.0,False,True,1,False,False,False,4220.257,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,10.0,2.0,HARD,9.0,True,128.038,26.322,40.743,60.973,265.0,246.0,,225.0,False,False,124,False,False,True,4318.919,False
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,11.0,3.0,HARD,1.0,True,,56.842,40.16,57.636,139.0,158.0,225.0,148.0,False,False,4,False,True,False,4446.957,False
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,12.0,3.0,HARD,2.0,True,111.211,32.169,32.463,46.579,236.0,243.0,233.0,272.0,False,False,4,False,False,False,4601.638,False
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,13.0,3.0,HARD,3.0,True,133.423,29.856,45.152,58.415,234.0,139.0,274.0,164.0,False,False,41,False,False,False,4712.849,False
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,14.0,3.0,HARD,4.0,True,99.331,25.781,30.923,42.627,304.0,273.0,272.0,332.0,False,True,1,False,False,False,4846.272,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,15.0,3.0,HARD,5.0,True,99.161,26.347,30.28,42.534,276.0,268.0,271.0,335.0,False,True,1,False,False,False,4945.603,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,16.0,3.0,HARD,6.0,True,99.689,26.493,30.629,42.567,275.0,266.0,276.0,325.0,False,True,1,False,False,False,5044.764,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,17.0,3.0,HARD,7.0,True,98.952,26.03,30.493,42.429,274.0,265.0,276.0,328.0,False,True,12,False,False,False,5144.453,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,18.0,3.0,HARD,8.0,True,98.823,26.093,30.299,42.431,276.0,268.0,276.0,335.0,False,True,21,False,False,False,5243.405,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,19.0,3.0,HARD,9.0,True,98.757,26.126,30.277,42.354,277.0,268.0,276.0,333.0,False,True,1,False,False,False,5342.228,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,20.0,3.0,HARD,10.0,True,99.269,26.351,30.424,42.494,265.0,267.0,278.0,344.0,False,True,1,False,False,False,5440.985,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,21.0,3.0,HARD,11.0,True,99.133,26.629,30.22,42.284,276.0,267.0,277.0,339.0,False,True,1,False,False,False,5540.254,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,22.0,3.0,HARD,12.0,True,98.392,26.049,30.045,42.298,266.0,268.0,276.0,328.0,False,True,1,False,False,False,5639.387,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,23.0,3.0,HARD,13.0,True,98.437,26.086,30.19,42.161,277.0,268.0,276.0,338.0,False,True,1,False,False,False,5737.779,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,24.0,3.0,HARD,14.0,True,98.88,26.12,30.186,42.574,270.0,269.0,275.0,339.0,False,True,1,False,False,False,5836.216,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,25.0,3.0,HARD,15.0,True,98.617,26.148,30.262,42.207,273.0,267.0,274.0,334.0,False,True,1,False,False,False,5935.096,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,26.0,3.0,HARD,16.0,True,98.374,26.077,30.008,42.289,265.0,262.0,275.0,312.0,False,True,1,False,False,False,6033.713,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,27.0,3.0,HARD,17.0,True,98.293,26.017,30.018,42.258,269.0,265.0,275.0,316.0,False,True,12,False,False,False,6132.087,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,28.0,3.0,HARD,18.0,True,98.359,26.171,29.952,42.236,271.0,261.0,277.0,316.0,False,True,1,False,False,False,6230.38,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,29.0,3.0,HARD,19.0,True,98.082,25.909,29.942,42.231,273.0,263.0,276.0,322.0,True,True,1,False,False,False,6328.739,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,30.0,3.0,HARD,20.0,True,97.919,25.896,29.857,42.166,271.0,263.0,277.0,322.0,True,True,1,False,False,False,6426.821,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,31.0,3.0,HARD,21.0,True,97.868,25.822,29.932,42.114,272.0,266.0,278.0,321.0,True,True,1,False,False,False,6524.74,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,32.0,3.0,HARD,22.0,True,98.089,25.935,29.982,42.172,272.0,264.0,278.0,323.0,False,True,1,False,False,False,6622.608,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,33.0,3.0,HARD,23.0,True,97.821,25.888,29.878,42.055,274.0,262.0,276.0,326.0,True,True,12,False,False,False,6720.697,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,34.0,3.0,HARD,24.0,True,98.039,26.086,29.809,42.144,272.0,266.0,276.0,326.0,False,True,1,False,False,False,6818.518,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,35.0,3.0,HARD,25.0,True,97.938,25.979,29.739,42.22,273.0,269.0,276.0,320.0,False,True,1,False,False,False,6916.557,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,36.0,3.0,HARD,26.0,True,97.754,25.797,29.839,42.118,275.0,267.0,277.0,322.0,True,True,1,False,False,False,7014.495,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,37.0,3.0,HARD,27.0,True,97.842,25.927,29.847,42.068,278.0,266.0,276.0,331.0,False,True,1,False,False,False,7112.249,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,38.0,3.0,HARD,28.0,True,97.579,25.797,29.802,41.98,278.0,268.0,278.0,322.0,True,True,1,False,False,False,7210.091,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,39.0,3.0,HARD,29.0,True,97.653,25.952,29.79,41.911,278.0,268.0,279.0,323.0,False,True,1,False,False,False,7307.67,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,40.0,3.0,HARD,30.0,True,97.935,26.096,29.716,42.123,274.0,267.0,277.0,328.0,False,True,1,False,False,False,7405.323,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,41.0,3.0,HARD,31.0,True,97.923,25.778,30.072,42.073,276.0,268.0,279.0,316.0,False,True,1,False,False,False,7503.258,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,42.0,3.0,HARD,32.0,True,97.353,25.707,29.704,41.942,280.0,266.0,279.0,319.0,True,True,1,False,False,False,7601.181,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,43.0,3.0,HARD,33.0,True,97.647,25.835,29.812,42.0,283.0,266.0,279.0,318.0,False,True,1,False,False,False,7698.534,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,44.0,3.0,HARD,34.0,True,97.359,25.8,29.701,41.858,276.0,267.0,281.0,320.0,False,True,1,False,False,False,7796.181,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,45.0,3.0,HARD,35.0,True,97.616,25.79,29.742,42.084,279.0,267.0,279.0,320.0,False,True,1,False,False,False,7893.54,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,46.0,3.0,HARD,36.0,True,97.311,25.711,29.636,41.964,276.0,291.0,272.0,320.0,True,True,1,False,False,False,7991.156,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,47.0,3.0,HARD,37.0,True,98.205,25.938,30.263,42.004,276.0,269.0,275.0,326.0,False,True,1,False,False,False,8088.467,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,48.0,3.0,HARD,38.0,True,98.006,26.038,29.769,42.199,274.0,266.0,278.0,316.0,False,True,1,False,False,False,8186.672,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,49.0,3.0,HARD,39.0,True,97.83,25.964,29.805,42.061,274.0,264.0,278.0,315.0,False,True,1,False,False,False,8284.678,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,50.0,3.0,HARD,40.0,True,97.689,25.851,29.612,42.226,276.0,266.0,278.0,315.0,False,True,1,False,False,False,8382.508,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,51.0,3.0,HARD,41.0,True,98.003,26.056,29.885,42.062,275.0,265.0,279.0,314.0,False,True,1,False,False,False,8480.197,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,52.0,3.0,HARD,42.0,True,97.805,25.92,29.761,42.124,274.0,267.0,278.0,319.0,False,True,1,False,False,False,8578.2,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,53.0,3.0,HARD,43.0,True,97.937,25.918,29.894,42.125,273.0,267.0,279.0,320.0,False,True,12,False,False,False,8676.005,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,54.0,3.0,HARD,44.0,True,97.925,25.849,29.807,42.269,275.0,265.0,276.0,323.0,False,True,1,False,False,False,8773.942,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,55.0,3.0,HARD,45.0,True,97.798,25.992,29.655,42.151,274.0,264.0,278.0,322.0,False,True,1,False,False,False,8871.867,True
+2026,Chinese Grand Prix,2,R,HAD,6,Red Bull Racing,56.0,3.0,HARD,46.0,True,97.544,25.764,29.704,42.076,273.0,266.0,278.0,320.0,False,True,1,False,False,False,8969.665,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,1.0,1.0,MEDIUM,1.0,True,101.815,,30.136,42.534,294.0,267.0,267.0,320.0,False,False,12,False,False,False,3384.05,False
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,2.0,1.0,MEDIUM,2.0,True,98.075,26.022,29.719,42.334,276.0,264.0,276.0,318.0,True,True,1,False,False,False,3486.127,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,3.0,1.0,MEDIUM,3.0,True,98.125,25.645,29.98,42.5,275.0,261.0,277.0,310.0,False,True,1,False,False,False,3584.202,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,4.0,1.0,MEDIUM,4.0,True,97.093,25.403,29.242,42.448,272.0,262.0,275.0,311.0,True,True,1,False,False,False,3682.327,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,5.0,1.0,MEDIUM,5.0,True,97.462,25.552,29.402,42.508,268.0,259.0,258.0,311.0,False,True,1,False,False,False,3779.42,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,6.0,1.0,MEDIUM,6.0,True,97.375,25.979,29.391,42.005,273.0,261.0,269.0,318.0,False,True,1,False,False,False,3876.882,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,7.0,1.0,MEDIUM,7.0,True,97.383,25.975,29.362,42.046,271.0,258.0,271.0,313.0,False,True,1,False,False,False,3974.257,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,8.0,1.0,MEDIUM,8.0,True,97.266,25.949,29.355,41.962,271.0,257.0,269.0,316.0,False,True,1,False,False,False,4071.64,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,9.0,1.0,MEDIUM,9.0,True,97.261,25.861,29.513,41.887,272.0,258.0,264.0,331.0,False,True,1,False,False,False,4168.906,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,10.0,1.0,MEDIUM,10.0,True,112.779,25.923,29.617,57.239,271.0,256.0,,317.0,False,False,124,False,False,True,4266.167,False
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,11.0,2.0,HARD,1.0,True,,55.148,43.483,64.092,135.0,197.0,224.0,232.0,False,False,4,False,True,False,4378.946,False
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,12.0,2.0,HARD,2.0,True,149.667,43.86,42.726,63.081,118.0,206.0,220.0,216.0,False,False,4,False,False,False,4541.722,False
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,13.0,2.0,HARD,3.0,True,149.28,37.664,43.955,67.661,146.0,130.0,268.0,164.0,False,False,41,False,False,False,4691.389,False
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,14.0,2.0,HARD,4.0,True,100.588,26.305,31.086,43.197,304.0,260.0,253.0,321.0,False,True,1,False,False,False,4840.669,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,15.0,2.0,HARD,5.0,True,98.91,25.968,30.345,42.597,305.0,260.0,272.0,335.0,False,True,1,False,False,False,4941.257,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,16.0,2.0,HARD,6.0,True,97.532,25.573,29.819,42.14,305.0,260.0,262.0,328.0,False,True,1,False,False,False,5040.167,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,17.0,2.0,HARD,7.0,True,96.42,25.657,29.134,41.629,278.0,263.0,273.0,320.0,True,True,1,False,False,False,5137.699,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,18.0,2.0,HARD,8.0,True,96.313,25.492,29.18,41.641,274.0,261.0,273.0,322.0,True,True,12,False,False,False,5234.119,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,19.0,2.0,HARD,9.0,True,96.668,25.565,29.149,41.954,278.0,268.0,278.0,315.0,False,True,1,False,False,False,5330.432,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,20.0,2.0,HARD,10.0,True,96.617,25.365,29.318,41.934,282.0,269.0,280.0,323.0,False,True,1,False,False,False,5427.1,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,21.0,2.0,HARD,11.0,True,96.663,25.152,29.631,41.88,307.0,262.0,267.0,333.0,False,True,1,False,False,False,5523.717,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,22.0,2.0,HARD,12.0,True,96.894,25.733,29.398,41.763,278.0,264.0,271.0,332.0,False,True,1,False,False,False,5620.38,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,23.0,2.0,HARD,13.0,True,96.561,25.608,29.286,41.667,280.0,268.0,274.0,333.0,False,True,1,False,False,False,5717.274,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,24.0,2.0,HARD,14.0,True,97.445,25.578,29.504,42.363,282.0,264.0,272.0,345.0,False,True,1,False,False,False,5813.835,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,25.0,2.0,HARD,15.0,True,98.063,25.825,30.062,42.176,278.0,262.0,279.0,316.0,False,True,1,False,False,False,5911.28,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,26.0,2.0,HARD,16.0,True,97.187,25.598,29.588,42.001,283.0,265.0,276.0,323.0,False,True,1,False,False,False,6009.343,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,27.0,2.0,HARD,17.0,True,97.771,25.857,29.554,42.36,284.0,283.0,269.0,327.0,False,True,1,False,False,False,6106.53,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,28.0,2.0,HARD,18.0,True,96.971,25.686,29.334,41.951,279.0,264.0,274.0,329.0,False,True,12,False,False,False,6204.301,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,29.0,2.0,HARD,19.0,True,96.158,25.614,29.227,41.317,276.0,262.0,272.0,326.0,True,True,1,False,False,False,6301.272,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,30.0,2.0,HARD,20.0,True,96.438,25.67,29.158,41.61,271.0,258.0,274.0,309.0,False,True,1,False,False,False,6397.43,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,31.0,2.0,HARD,21.0,True,96.207,25.564,29.099,41.544,270.0,258.0,273.0,311.0,False,True,1,False,False,False,6493.868,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,32.0,2.0,HARD,22.0,True,95.977,25.491,29.035,41.451,272.0,258.0,275.0,314.0,True,True,1,False,False,False,6590.075,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,33.0,2.0,HARD,23.0,True,96.107,25.48,29.175,41.452,271.0,258.0,273.0,313.0,False,True,12,False,False,False,6686.052,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,34.0,2.0,HARD,24.0,True,95.852,25.489,28.955,41.408,273.0,259.0,274.0,313.0,True,True,1,False,False,False,6782.159,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,35.0,2.0,HARD,25.0,True,96.162,25.461,29.197,41.504,273.0,258.0,273.0,309.0,False,True,1,False,False,False,6878.011,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,36.0,2.0,HARD,26.0,True,95.914,25.435,28.945,41.534,273.0,261.0,274.0,311.0,False,True,1,False,False,False,6974.173,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,37.0,2.0,HARD,27.0,True,95.531,25.377,28.827,41.327,273.0,261.0,275.0,313.0,True,True,1,False,False,False,7070.087,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,38.0,2.0,HARD,28.0,True,95.529,25.305,28.918,41.306,273.0,260.0,276.0,312.0,True,True,1,False,False,False,7165.618,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,39.0,2.0,HARD,29.0,True,95.497,25.323,28.804,41.37,274.0,261.0,275.0,313.0,True,True,1,False,False,False,7261.147,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,40.0,2.0,HARD,30.0,True,95.636,25.393,28.845,41.398,273.0,261.0,274.0,313.0,False,True,1,False,False,False,7356.644,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,41.0,2.0,HARD,31.0,True,95.641,25.306,28.877,41.458,277.0,261.0,278.0,321.0,False,True,1,False,False,False,7452.28,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,42.0,2.0,HARD,32.0,True,96.661,25.516,29.312,41.833,281.0,263.0,274.0,314.0,False,True,1,False,False,False,7547.921,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,43.0,2.0,HARD,33.0,True,95.644,25.363,28.902,41.379,277.0,260.0,275.0,308.0,False,True,1,False,False,False,7644.582,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,44.0,2.0,HARD,34.0,True,95.542,25.356,28.807,41.379,276.0,261.0,278.0,313.0,False,True,1,False,False,False,7740.226,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,45.0,2.0,HARD,35.0,True,95.677,25.224,29.021,41.432,276.0,262.0,277.0,325.0,False,True,1,False,False,False,7835.768,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,46.0,2.0,HARD,36.0,True,96.407,25.299,29.171,41.937,278.0,264.0,273.0,310.0,False,True,1,False,False,False,7931.445,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,47.0,2.0,HARD,37.0,True,95.668,25.292,28.779,41.597,275.0,260.0,275.0,313.0,False,True,1,False,False,False,8027.852,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,48.0,2.0,HARD,38.0,True,96.095,25.377,28.846,41.872,275.0,263.0,275.0,315.0,False,True,1,False,False,False,8123.52,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,49.0,2.0,HARD,39.0,True,95.87,25.325,28.697,41.848,275.0,258.0,275.0,308.0,False,True,1,False,False,False,8219.615,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,50.0,2.0,HARD,40.0,True,95.681,25.319,28.738,41.624,275.0,259.0,276.0,309.0,False,True,1,False,False,False,8315.485,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,51.0,2.0,HARD,41.0,True,95.531,25.125,28.642,41.764,276.0,259.0,275.0,309.0,False,True,1,False,False,False,8411.166,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,52.0,2.0,HARD,42.0,True,95.547,25.306,28.715,41.526,276.0,260.0,275.0,312.0,False,True,1,False,False,False,8506.697,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,53.0,2.0,HARD,43.0,True,95.691,25.316,28.765,41.61,275.0,261.0,277.0,315.0,False,True,12,False,False,False,8602.244,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,54.0,2.0,HARD,44.0,True,96.457,25.418,29.072,41.967,277.0,263.0,277.0,323.0,False,True,1,False,False,False,8697.935,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,55.0,2.0,HARD,45.0,True,95.695,25.261,28.708,41.726,274.0,260.0,275.0,309.0,False,True,1,False,False,False,8794.392,True
+2026,Chinese Grand Prix,2,R,RUS,63,Mercedes,56.0,2.0,HARD,46.0,True,95.4,25.226,28.71,41.464,274.0,259.0,258.0,323.0,True,True,1,False,False,False,8890.087,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,1.0,1.0,MEDIUM,1.0,True,108.335,,32.177,43.908,274.0,258.0,271.0,335.0,False,False,12,False,False,False,3384.05,False
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,2.0,1.0,MEDIUM,2.0,True,101.601,26.947,31.365,43.289,278.0,262.0,273.0,328.0,True,True,1,False,False,False,3492.647,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,3.0,1.0,MEDIUM,3.0,True,101.829,26.659,31.934,43.236,273.0,249.0,272.0,327.0,False,True,1,False,False,False,3594.248,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,4.0,1.0,MEDIUM,4.0,True,100.904,26.761,30.962,43.181,271.0,255.0,251.0,322.0,True,True,1,False,False,False,3696.077,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,5.0,1.0,MEDIUM,5.0,True,101.396,27.059,31.039,43.298,264.0,258.0,270.0,320.0,False,True,1,False,False,False,3796.981,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,6.0,1.0,MEDIUM,6.0,True,100.278,26.391,30.952,42.935,271.0,258.0,267.0,330.0,True,True,1,False,False,False,3898.377,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,7.0,1.0,MEDIUM,7.0,True,100.875,26.604,30.985,43.286,263.0,253.0,266.0,315.0,False,True,1,False,False,False,3998.655,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,8.0,1.0,MEDIUM,8.0,True,101.258,26.882,31.015,43.361,262.0,254.0,267.0,313.0,False,True,1,False,False,False,4099.53,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,9.0,1.0,MEDIUM,9.0,True,101.349,26.941,30.99,43.418,262.0,251.0,268.0,310.0,False,True,1,False,False,False,4200.788,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,10.0,1.0,MEDIUM,10.0,True,125.131,26.878,35.613,62.64,267.0,203.0,,252.0,False,False,124,False,False,True,4302.137,False
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,11.0,2.0,HARD,1.0,True,,58.486,40.93,57.367,190.0,227.0,225.0,220.0,False,False,4,False,True,False,4427.268,False
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,12.0,2.0,HARD,2.0,True,121.448,33.862,33.038,54.548,267.0,234.0,220.0,180.0,False,False,4,False,False,False,4584.05,False
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,13.0,2.0,HARD,3.0,True,139.819,35.481,45.177,59.161,230.0,179.0,271.0,181.0,False,False,41,False,False,False,4705.498,False
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,14.0,2.0,HARD,4.0,True,101.294,26.737,31.46,43.097,278.0,274.0,273.0,332.0,False,True,1,False,False,False,4845.317,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,15.0,2.0,HARD,5.0,True,100.006,26.165,30.675,43.166,285.0,260.0,271.0,320.0,True,True,1,False,False,False,4946.611,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,16.0,2.0,HARD,6.0,True,99.739,26.191,30.624,42.924,281.0,258.0,270.0,317.0,True,True,1,False,False,False,5046.617,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,17.0,2.0,HARD,7.0,True,100.23,26.489,30.745,42.996,280.0,257.0,268.0,313.0,False,True,12,False,False,False,5146.356,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,18.0,2.0,HARD,8.0,True,100.099,26.368,30.689,43.042,277.0,258.0,268.0,316.0,False,True,21,False,False,False,5246.586,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,19.0,2.0,HARD,9.0,True,100.164,26.517,30.671,42.976,276.0,255.0,267.0,313.0,False,True,1,False,False,False,5346.685,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,20.0,2.0,HARD,10.0,True,99.976,26.364,30.626,42.986,275.0,257.0,268.0,310.0,False,True,1,False,False,False,5446.849,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,21.0,2.0,HARD,11.0,True,100.045,26.449,30.593,43.003,276.0,256.0,269.0,309.0,False,True,1,False,False,False,5546.825,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,22.0,2.0,HARD,12.0,True,99.813,26.212,30.653,42.948,276.0,256.0,270.0,307.0,False,True,1,False,False,False,5646.87,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,23.0,2.0,HARD,13.0,True,99.967,26.487,30.566,42.914,271.0,258.0,271.0,305.0,False,True,1,False,False,False,5746.683,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,24.0,2.0,HARD,14.0,True,99.846,26.425,30.561,42.86,272.0,256.0,271.0,307.0,False,True,1,False,False,False,5846.65,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,25.0,2.0,HARD,15.0,True,99.813,26.2,30.699,42.914,274.0,258.0,270.0,306.0,False,True,1,False,False,False,5946.496,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,26.0,2.0,HARD,16.0,True,99.744,26.309,30.445,42.99,275.0,258.0,270.0,306.0,False,True,1,False,False,False,6046.309,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,27.0,2.0,HARD,17.0,True,100.805,26.104,30.394,44.307,278.0,258.0,268.0,301.0,False,True,12,False,False,False,6146.053,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,28.0,2.0,HARD,18.0,True,99.636,26.274,30.448,42.914,277.0,259.0,271.0,311.0,True,True,1,False,False,False,6246.858,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,29.0,2.0,HARD,19.0,True,99.566,26.098,30.501,42.967,278.0,257.0,271.0,311.0,True,True,1,False,False,False,6346.494,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,30.0,2.0,HARD,20.0,True,99.692,26.301,30.429,42.962,277.0,258.0,273.0,306.0,False,True,1,False,False,False,6446.06,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,31.0,2.0,HARD,21.0,True,99.768,26.106,30.87,42.792,278.0,260.0,275.0,312.0,False,True,1,False,False,False,6545.752,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,32.0,2.0,HARD,22.0,True,99.542,26.151,30.446,42.945,280.0,258.0,273.0,307.0,True,True,1,False,False,False,6645.52,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,33.0,2.0,HARD,23.0,True,101.146,26.832,30.937,43.377,282.0,261.0,270.0,310.0,False,True,12,False,False,False,6745.062,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,34.0,2.0,HARD,24.0,True,99.695,26.516,30.445,42.734,274.0,262.0,270.0,307.0,False,True,1,False,False,False,6846.208,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,35.0,2.0,HARD,25.0,True,99.539,26.304,30.277,42.958,279.0,260.0,271.0,305.0,True,True,1,False,False,False,6945.903,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,36.0,2.0,HARD,26.0,True,100.552,26.353,31.324,42.875,277.0,262.0,272.0,315.0,False,True,1,False,False,False,7045.442,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,37.0,2.0,HARD,27.0,True,99.444,26.253,30.429,42.762,278.0,259.0,273.0,312.0,True,True,1,False,False,False,7145.994,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,38.0,2.0,HARD,28.0,True,100.047,26.13,30.527,43.39,276.0,260.0,272.0,310.0,False,True,1,False,False,False,7245.438,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,39.0,2.0,HARD,29.0,True,99.734,26.45,30.283,43.001,270.0,260.0,269.0,319.0,False,True,1,False,False,False,7345.485,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,40.0,2.0,HARD,30.0,True,100.571,27.407,30.087,43.077,274.0,260.0,272.0,306.0,False,True,1,False,False,False,7445.219,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,41.0,2.0,HARD,31.0,True,100.077,26.195,30.027,43.855,271.0,258.0,271.0,292.0,False,True,1,False,False,False,7545.79,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,42.0,2.0,HARD,32.0,True,99.02,26.101,30.045,42.874,275.0,261.0,273.0,304.0,True,True,1,False,False,False,7645.867,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,43.0,2.0,HARD,33.0,True,99.461,26.138,29.91,43.413,273.0,258.0,273.0,302.0,False,True,1,False,False,False,7744.887,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,44.0,2.0,HARD,34.0,True,98.914,26.051,30.038,42.825,274.0,262.0,274.0,313.0,True,True,1,False,False,False,7844.348,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,45.0,2.0,HARD,35.0,True,100.379,25.99,30.076,44.313,271.0,259.0,275.0,305.0,False,True,1,False,False,False,7943.262,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,46.0,2.0,HARD,36.0,True,99.658,26.021,30.022,43.615,274.0,261.0,275.0,265.0,False,True,1,False,False,False,8043.641,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,47.0,2.0,HARD,37.0,True,98.93,26.086,30.061,42.783,272.0,261.0,274.0,313.0,False,True,1,False,False,False,8143.299,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,48.0,2.0,HARD,38.0,True,99.135,26.175,29.953,43.007,274.0,260.0,272.0,306.0,False,True,1,False,False,False,8242.229,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,49.0,2.0,HARD,39.0,True,99.212,26.108,30.008,43.096,274.0,261.0,272.0,304.0,False,True,1,False,False,False,8341.364,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,50.0,2.0,HARD,40.0,True,99.327,26.214,29.909,43.204,274.0,261.0,272.0,301.0,False,True,1,False,False,False,8440.576,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,51.0,2.0,HARD,41.0,True,99.581,26.336,30.143,43.102,266.0,260.0,273.0,307.0,False,True,1,False,False,False,8539.903,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,52.0,2.0,HARD,42.0,True,99.423,26.241,30.155,43.027,271.0,259.0,274.0,306.0,False,True,12,False,False,False,8639.484,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,53.0,2.0,HARD,43.0,True,99.353,26.181,30.107,43.065,274.0,259.0,274.0,305.0,False,True,1,False,False,False,8738.907,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,54.0,2.0,HARD,44.0,True,99.423,26.023,30.297,43.103,273.0,259.0,275.0,308.0,False,True,1,False,False,False,8838.26,True
+2026,Chinese Grand Prix,2,R,BOT,77,Cadillac,55.0,2.0,HARD,45.0,True,98.393,25.855,29.825,42.713,274.0,260.0,271.0,300.0,True,True,1,False,False,False,8937.683,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,1.0,1.0,MEDIUM,1.0,True,107.851,,30.969,47.198,298.0,251.0,254.0,340.0,False,False,12,False,False,False,3384.05,False
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,2.0,1.0,MEDIUM,2.0,True,101.136,26.995,30.997,43.144,273.0,262.0,269.0,331.0,True,True,1,False,False,False,3492.163,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,3.0,1.0,MEDIUM,3.0,True,99.715,26.962,30.362,42.391,268.0,258.0,270.0,339.0,True,True,1,False,False,False,3593.299,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,4.0,1.0,MEDIUM,4.0,True,99.18,26.545,30.225,42.41,270.0,262.0,272.0,333.0,True,True,1,False,False,False,3693.014,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,5.0,1.0,MEDIUM,5.0,True,99.504,26.485,30.442,42.577,272.0,259.0,272.0,340.0,False,True,1,False,False,False,3792.194,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,6.0,1.0,MEDIUM,6.0,True,98.61,25.953,30.169,42.488,269.0,260.0,273.0,329.0,True,True,1,False,False,False,3891.698,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,7.0,1.0,MEDIUM,7.0,True,99.323,26.1,30.476,42.747,271.0,258.0,272.0,336.0,False,True,1,False,False,False,3990.308,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,8.0,1.0,MEDIUM,8.0,True,99.436,26.217,30.611,42.608,272.0,261.0,272.0,334.0,False,True,1,False,False,False,4089.631,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,9.0,1.0,MEDIUM,9.0,True,99.71,26.329,30.76,42.621,271.0,257.0,254.0,333.0,False,True,1,False,False,False,4189.067,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,10.0,1.0,MEDIUM,10.0,True,117.43,26.336,30.168,60.926,266.0,255.0,,258.0,False,False,124,False,False,True,4288.777,False
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,11.0,2.0,HARD,1.0,True,,52.49,40.239,59.301,192.0,218.0,225.0,198.0,False,False,4,False,True,False,4406.207,False
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,12.0,2.0,HARD,2.0,True,140.475,36.414,41.154,62.907,187.0,214.0,146.0,98.0,False,False,4,False,False,False,4558.226,False
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,13.0,2.0,HARD,3.0,True,144.54,36.284,45.107,63.149,197.0,161.0,270.0,175.0,False,False,41,False,False,False,4698.701,False
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,14.0,2.0,HARD,4.0,True,99.24,26.103,30.378,42.759,284.0,272.0,269.0,342.0,False,True,1,False,False,False,4843.241,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,15.0,2.0,HARD,5.0,True,99.289,26.229,30.381,42.679,280.0,261.0,272.0,343.0,False,True,1,False,False,False,4942.481,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,16.0,2.0,HARD,6.0,True,98.269,26.064,29.975,42.23,269.0,259.0,272.0,327.0,True,True,1,False,False,False,5041.77,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,17.0,2.0,HARD,7.0,True,98.343,25.952,29.696,42.695,269.0,260.0,271.0,315.0,False,True,1,False,False,False,5140.039,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,18.0,2.0,HARD,8.0,True,98.197,25.907,29.658,42.632,274.0,259.0,256.0,327.0,True,True,12,False,False,False,5238.382,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,19.0,2.0,HARD,9.0,True,99.009,25.981,30.329,42.699,273.0,260.0,257.0,328.0,False,True,1,False,False,False,5336.579,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,20.0,2.0,HARD,10.0,True,98.618,26.152,29.786,42.68,272.0,260.0,250.0,325.0,False,True,1,False,False,False,5435.588,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,21.0,2.0,HARD,11.0,True,98.526,26.602,29.775,42.149,272.0,261.0,268.0,315.0,False,True,1,False,False,False,5534.206,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,22.0,2.0,HARD,12.0,True,97.867,25.899,29.578,42.39,267.0,252.0,269.0,301.0,True,True,1,False,False,False,5632.732,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,23.0,2.0,HARD,13.0,True,97.615,25.88,29.454,42.281,265.0,253.0,272.0,302.0,True,True,1,False,False,False,5730.599,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,24.0,2.0,HARD,14.0,True,97.86,25.753,29.62,42.487,264.0,251.0,268.0,300.0,False,True,1,False,False,False,5828.214,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,25.0,2.0,HARD,15.0,True,97.68,25.942,29.495,42.243,266.0,252.0,273.0,303.0,False,True,1,False,False,False,5926.074,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,26.0,2.0,HARD,16.0,True,97.392,25.68,29.397,42.315,264.0,254.0,271.0,300.0,True,True,1,False,False,False,6023.754,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,27.0,2.0,HARD,17.0,True,97.405,25.83,29.329,42.246,267.0,255.0,274.0,302.0,False,True,1,False,False,False,6121.146,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,28.0,2.0,HARD,18.0,True,97.638,25.728,29.416,42.494,265.0,255.0,272.0,302.0,False,True,12,False,False,False,6218.551,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,29.0,2.0,HARD,19.0,True,97.684,25.876,29.507,42.301,265.0,257.0,275.0,301.0,False,True,1,False,False,False,6316.189,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,30.0,2.0,HARD,20.0,True,97.276,25.616,29.364,42.296,267.0,253.0,273.0,302.0,True,True,1,False,False,False,6413.873,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,31.0,2.0,HARD,21.0,True,97.583,25.822,29.395,42.366,264.0,253.0,274.0,302.0,False,True,1,False,False,False,6511.149,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,32.0,2.0,HARD,22.0,True,97.496,25.749,29.516,42.231,266.0,253.0,275.0,303.0,False,True,1,False,False,False,6608.732,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,33.0,2.0,HARD,23.0,True,97.267,25.673,29.373,42.221,265.0,256.0,272.0,302.0,True,True,12,False,False,False,6706.228,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,34.0,2.0,HARD,24.0,True,97.395,25.837,29.278,42.28,268.0,252.0,274.0,303.0,False,True,1,False,False,False,6803.495,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,35.0,2.0,HARD,25.0,True,97.42,25.684,29.313,42.423,270.0,256.0,272.0,300.0,False,True,1,False,False,False,6900.89,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,36.0,2.0,HARD,26.0,True,97.48,25.802,29.289,42.389,270.0,259.0,275.0,301.0,False,True,1,False,False,False,6998.31,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,37.0,2.0,HARD,27.0,True,97.242,25.653,29.382,42.207,265.0,257.0,275.0,301.0,True,True,1,False,False,False,7095.79,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,38.0,2.0,HARD,28.0,True,97.222,25.669,29.284,42.269,264.0,254.0,275.0,302.0,True,True,1,False,False,False,7193.032,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,39.0,2.0,HARD,29.0,True,97.043,25.602,29.17,42.271,266.0,258.0,275.0,302.0,True,True,1,False,False,False,7290.254,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,40.0,2.0,HARD,30.0,True,97.153,25.551,29.284,42.318,268.0,257.0,275.0,300.0,False,True,1,False,False,False,7387.297,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,41.0,2.0,HARD,31.0,True,97.029,25.444,29.283,42.302,272.0,256.0,276.0,301.0,True,True,1,False,False,False,7484.45,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,42.0,2.0,HARD,32.0,True,97.712,25.463,29.29,42.959,270.0,258.0,266.0,299.0,False,True,1,False,False,False,7581.479,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,43.0,2.0,HARD,33.0,True,97.214,25.801,29.152,42.261,273.0,257.0,276.0,301.0,False,True,1,False,False,False,7679.191,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,44.0,2.0,HARD,34.0,True,97.416,25.505,29.32,42.591,272.0,257.0,275.0,301.0,False,True,1,False,False,False,7776.405,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,45.0,2.0,HARD,35.0,True,97.232,25.495,29.325,42.412,269.0,257.0,275.0,301.0,False,True,1,False,False,False,7873.821,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,46.0,2.0,HARD,36.0,True,97.301,25.54,29.348,42.413,267.0,258.0,276.0,302.0,False,True,1,False,False,False,7971.053,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,47.0,2.0,HARD,37.0,True,96.805,25.469,29.166,42.17,270.0,260.0,276.0,304.0,True,True,1,False,False,False,8068.354,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,48.0,2.0,HARD,38.0,True,97.238,25.443,29.293,42.502,272.0,260.0,277.0,307.0,False,True,1,False,False,False,8165.159,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,49.0,2.0,HARD,39.0,True,97.642,25.501,29.67,42.471,271.0,262.0,273.0,301.0,False,True,1,False,False,False,8262.397,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,50.0,2.0,HARD,40.0,True,96.989,25.619,29.069,42.301,273.0,259.0,277.0,300.0,False,True,1,False,False,False,8360.039,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,51.0,2.0,HARD,41.0,True,96.825,25.327,29.145,42.353,272.0,257.0,277.0,301.0,False,True,1,False,False,False,8457.028,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,52.0,2.0,HARD,42.0,True,96.778,25.448,29.198,42.132,268.0,258.0,276.0,302.0,True,True,1,False,False,False,8553.853,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,53.0,2.0,HARD,43.0,True,96.68,25.325,29.105,42.25,272.0,260.0,277.0,303.0,True,True,12,False,False,False,8650.631,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,54.0,2.0,HARD,44.0,True,96.788,25.42,29.088,42.28,271.0,261.0,277.0,303.0,False,True,1,False,False,False,8747.311,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,55.0,2.0,HARD,45.0,True,96.648,25.384,29.169,42.095,271.0,259.0,277.0,306.0,True,True,1,False,False,False,8844.099,True
+2026,Chinese Grand Prix,2,R,BEA,87,Haas F1 Team,56.0,2.0,HARD,46.0,True,96.429,25.226,29.121,42.082,275.0,270.0,254.0,327.0,True,True,1,False,False,False,8940.747,True

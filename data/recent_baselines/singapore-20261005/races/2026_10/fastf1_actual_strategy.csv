@@ -1,0 +1,23 @@
+year,event,round,Driver,Team,actual_strategy,actual_strategy_sequence,actual_stops,actual_stint_count,actual_first_compound,actual_had_wet_compound,actual_completed_likely,actual_race_laps,actual_driver_max_lap,actual_strategy_source
+2026,Belgian Grand Prix,10,ALB,Williams,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,44,44,fastf1_race_lap_stint_data
+2026,Belgian Grand Prix,10,ALO,Aston Martin,HARD-SOFT-HARD,HARD-SOFT-HARD,2,3,HARD,False,True,44,42,fastf1_race_lap_stint_data
+2026,Belgian Grand Prix,10,ANT,Mercedes,MEDIUM-SOFT,MEDIUM-SOFT,1,2,MEDIUM,False,True,44,44,fastf1_race_lap_stint_data
+2026,Belgian Grand Prix,10,BEA,Haas F1 Team,HARD-HARD,HARD-HARD,1,2,HARD,False,True,44,44,fastf1_race_lap_stint_data
+2026,Belgian Grand Prix,10,BOR,Audi,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,44,44,fastf1_race_lap_stint_data
+2026,Belgian Grand Prix,10,BOT,Cadillac,HARD-SOFT,HARD-SOFT,1,2,HARD,False,True,44,43,fastf1_race_lap_stint_data
+2026,Belgian Grand Prix,10,COL,Alpine,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,44,44,fastf1_race_lap_stint_data
+2026,Belgian Grand Prix,10,GAS,Alpine,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,44,44,fastf1_race_lap_stint_data
+2026,Belgian Grand Prix,10,HAD,Red Bull Racing,HARD-HARD,HARD-HARD,1,2,HARD,False,True,44,44,fastf1_race_lap_stint_data
+2026,Belgian Grand Prix,10,HAM,Ferrari,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,44,44,fastf1_race_lap_stint_data
+2026,Belgian Grand Prix,10,HUL,Audi,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,44,44,fastf1_race_lap_stint_data
+2026,Belgian Grand Prix,10,LAW,Racing Bulls,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,44,44,fastf1_race_lap_stint_data
+2026,Belgian Grand Prix,10,LEC,Ferrari,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,44,44,fastf1_race_lap_stint_data
+2026,Belgian Grand Prix,10,LIN,Racing Bulls,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,44,44,fastf1_race_lap_stint_data
+2026,Belgian Grand Prix,10,NOR,McLaren,HARD-MEDIUM,HARD-MEDIUM,1,2,HARD,False,True,44,44,fastf1_race_lap_stint_data
+2026,Belgian Grand Prix,10,OCO,Haas F1 Team,HARD-HARD,HARD-HARD,1,2,HARD,False,True,44,44,fastf1_race_lap_stint_data
+2026,Belgian Grand Prix,10,PER,Cadillac,SOFT,SOFT,0,1,SOFT,False,False,44,13,fastf1_race_lap_stint_data
+2026,Belgian Grand Prix,10,PIA,McLaren,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,44,44,fastf1_race_lap_stint_data
+2026,Belgian Grand Prix,10,RUS,Mercedes,MEDIUM,MEDIUM,0,1,MEDIUM,False,False,44,1,fastf1_race_lap_stint_data
+2026,Belgian Grand Prix,10,SAI,Williams,SOFT-HARD,SOFT-HARD,1,2,SOFT,False,True,44,44,fastf1_race_lap_stint_data
+2026,Belgian Grand Prix,10,STR,Aston Martin,HARD-SOFT,HARD-SOFT,1,2,HARD,False,False,44,25,fastf1_race_lap_stint_data
+2026,Belgian Grand Prix,10,VER,Red Bull Racing,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,44,44,fastf1_race_lap_stint_data

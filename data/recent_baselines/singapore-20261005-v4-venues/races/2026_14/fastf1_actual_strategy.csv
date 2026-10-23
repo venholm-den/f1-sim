@@ -1,0 +1,23 @@
+year,event,round,Driver,Team,actual_strategy,actual_strategy_sequence,actual_stops,actual_stint_count,actual_first_compound,actual_had_wet_compound,actual_completed_likely,actual_race_laps,actual_driver_max_lap,actual_strategy_source,source_circuit_id,source_layout_id,source_venue_status
+2026,Spanish Grand Prix,14,ALB,Williams,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,56,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,ALO,Aston Martin,HARD-SOFT-HARD,HARD-SOFT-HARD,2,3,HARD,False,True,57,55,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,ANT,Mercedes,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,57,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,BEA,Haas F1 Team,HARD-MEDIUM-HARD,HARD-MEDIUM-HARD,2,3,HARD,False,True,57,56,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,BOR,Audi,HARD-SOFT,HARD-SOFT,1,2,HARD,False,True,57,56,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,BOT,Cadillac,HARD-HARD-SOFT,HARD-HARD-SOFT,2,3,HARD,False,True,57,54,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,COL,Alpine,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,57,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,GAS,Alpine,HARD,HARD,0,1,HARD,False,True,57,56,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,HAM,Ferrari,SOFT,SOFT,0,1,SOFT,False,False,57,6,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,HUL,Audi,SOFT-HARD,SOFT-HARD,1,2,SOFT,False,True,57,56,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,LAW,Red Bull Racing,HARD-MEDIUM,HARD-MEDIUM,1,2,HARD,False,True,57,57,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,LEC,Ferrari,HARD-SOFT,HARD-SOFT,1,2,HARD,False,True,57,57,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,LIN,Racing Bulls,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,56,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,NOR,McLaren,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,57,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,OCO,Haas F1 Team,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,56,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,PER,Cadillac,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,False,57,31,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,PIA,McLaren,HARD-MEDIUM,HARD-MEDIUM,1,2,HARD,False,True,57,57,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,RUS,Mercedes,HARD-MEDIUM-HARD,HARD-MEDIUM-HARD,2,3,HARD,False,True,57,57,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,SAI,Williams,HARD-MEDIUM-HARD,HARD-MEDIUM-HARD,2,3,HARD,False,False,57,43,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,STR,Aston Martin,HARD,HARD,0,1,HARD,False,False,57,13,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,TSU,Racing Bulls,HARD-MEDIUM,HARD-MEDIUM,1,2,HARD,False,True,57,56,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,VER,Red Bull Racing,SOFT-HARD,SOFT-HARD,1,2,SOFT,False,True,57,57,fastf1_race_lap_stint_data,madring,madring_gp,resolved

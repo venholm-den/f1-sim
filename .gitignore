@@ -25,6 +25,7 @@ data/fia_documents/cache/
 # Generated historical training data and local model artifacts
 data/historical_model/
 data/models/
+data/fantasy_market/
 
 # Generated outputs
 outputs/reviews/
@@ -55,6 +56,12 @@ dist/
 
 # Temporary/local notes
 notes.txt
+config/stage_ensemble_shadow.json
+config/prediction_trials.json
+config/fia_sync.json
+data/fia_documents/cache/
+data/fia_documents/captures/
+data/fia_documents/sync_state.json
 *.tmp
 *.log
 
@@ -75,3 +82,4 @@ setup_project.py
 # Editor / OS
 .vscode/
 .DS_Store
+config/classification_checks.json

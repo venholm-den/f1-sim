@@ -1,0 +1,19 @@
+year,event,round,Driver,Team,actual_strategy,actual_strategy_sequence,actual_stops,actual_stint_count,actual_first_compound,actual_had_wet_compound,actual_completed_likely,actual_race_laps,actual_driver_max_lap,actual_strategy_source
+2026,Chinese Grand Prix,2,ALO,Aston Martin,HARD,HARD,0,1,HARD,False,False,56,32,fastf1_race_lap_stint_data
+2026,Chinese Grand Prix,2,ANT,Mercedes,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,56,56,fastf1_race_lap_stint_data
+2026,Chinese Grand Prix,2,BEA,Haas F1 Team,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,56,56,fastf1_race_lap_stint_data
+2026,Chinese Grand Prix,2,BOT,Cadillac,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,56,55,fastf1_race_lap_stint_data
+2026,Chinese Grand Prix,2,COL,Alpine,HARD-MEDIUM,HARD-MEDIUM,1,2,HARD,False,True,56,55,fastf1_race_lap_stint_data
+2026,Chinese Grand Prix,2,GAS,Alpine,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,56,56,fastf1_race_lap_stint_data
+2026,Chinese Grand Prix,2,HAD,Red Bull Racing,HARD-HARD,HARD-HARD,1,2,HARD,False,True,56,56,fastf1_race_lap_stint_data
+2026,Chinese Grand Prix,2,HAM,Ferrari,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,56,56,fastf1_race_lap_stint_data
+2026,Chinese Grand Prix,2,HUL,Audi,HARD-MEDIUM,HARD-MEDIUM,1,2,HARD,False,True,56,55,fastf1_race_lap_stint_data
+2026,Chinese Grand Prix,2,LAW,Racing Bulls,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,56,56,fastf1_race_lap_stint_data
+2026,Chinese Grand Prix,2,LEC,Ferrari,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,56,56,fastf1_race_lap_stint_data
+2026,Chinese Grand Prix,2,LIN,Racing Bulls,HARD-MEDIUM,HARD-MEDIUM,1,2,HARD,False,True,56,55,fastf1_race_lap_stint_data
+2026,Chinese Grand Prix,2,OCO,Haas F1 Team,HARD-MEDIUM-SOFT,HARD-MEDIUM-SOFT,2,3,HARD,False,True,56,55,fastf1_race_lap_stint_data
+2026,Chinese Grand Prix,2,PER,Cadillac,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,56,55,fastf1_race_lap_stint_data
+2026,Chinese Grand Prix,2,RUS,Mercedes,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,56,56,fastf1_race_lap_stint_data
+2026,Chinese Grand Prix,2,SAI,Williams,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,56,55,fastf1_race_lap_stint_data
+2026,Chinese Grand Prix,2,STR,Aston Martin,HARD,HARD,0,1,HARD,False,False,56,10,fastf1_race_lap_stint_data
+2026,Chinese Grand Prix,2,VER,Red Bull Racing,SOFT-HARD,SOFT-HARD,1,2,SOFT,False,False,56,45,fastf1_race_lap_stint_data

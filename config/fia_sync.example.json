@@ -1,0 +1,5 @@
+{
+  "enabled": false,
+  "refresh_seconds": 3600,
+  "pdf_python": null
+}

@@ -1,0 +1,23 @@
+year,event,round,Driver,Team,actual_strategy,actual_strategy_sequence,actual_stops,actual_stint_count,actual_first_compound,actual_had_wet_compound,actual_completed_likely,actual_race_laps,actual_driver_max_lap,actual_strategy_source
+2026,Miami Grand Prix,4,ALB,Williams,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,57,fastf1_race_lap_stint_data
+2026,Miami Grand Prix,4,ALO,Aston Martin,MEDIUM-SOFT,MEDIUM-SOFT,1,2,MEDIUM,False,True,57,56,fastf1_race_lap_stint_data
+2026,Miami Grand Prix,4,ANT,Mercedes,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,57,fastf1_race_lap_stint_data
+2026,Miami Grand Prix,4,BEA,Haas F1 Team,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,56,fastf1_race_lap_stint_data
+2026,Miami Grand Prix,4,BOR,Audi,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,56,fastf1_race_lap_stint_data
+2026,Miami Grand Prix,4,BOT,Cadillac,MEDIUM-SOFT-MEDIUM-MEDIUM,MEDIUM-SOFT-MEDIUM-MEDIUM,3,4,MEDIUM,False,True,57,55,fastf1_race_lap_stint_data
+2026,Miami Grand Prix,4,COL,Alpine,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,57,fastf1_race_lap_stint_data
+2026,Miami Grand Prix,4,GAS,Alpine,MEDIUM,MEDIUM,0,1,MEDIUM,False,False,57,5,fastf1_race_lap_stint_data
+2026,Miami Grand Prix,4,HAD,Red Bull Racing,HARD,HARD,0,1,HARD,False,False,57,5,fastf1_race_lap_stint_data
+2026,Miami Grand Prix,4,HAM,Ferrari,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,57,fastf1_race_lap_stint_data
+2026,Miami Grand Prix,4,HUL,Audi,MEDIUM,MEDIUM,0,1,MEDIUM,False,False,57,7,fastf1_race_lap_stint_data
+2026,Miami Grand Prix,4,LAW,Racing Bulls,MEDIUM,MEDIUM,0,1,MEDIUM,False,False,57,6,fastf1_race_lap_stint_data
+2026,Miami Grand Prix,4,LEC,Ferrari,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,57,fastf1_race_lap_stint_data
+2026,Miami Grand Prix,4,LIN,Racing Bulls,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,56,fastf1_race_lap_stint_data
+2026,Miami Grand Prix,4,NOR,McLaren,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,57,fastf1_race_lap_stint_data
+2026,Miami Grand Prix,4,OCO,Haas F1 Team,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,56,fastf1_race_lap_stint_data
+2026,Miami Grand Prix,4,PER,Cadillac,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,56,fastf1_race_lap_stint_data
+2026,Miami Grand Prix,4,PIA,McLaren,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,57,fastf1_race_lap_stint_data
+2026,Miami Grand Prix,4,RUS,Mercedes,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,57,fastf1_race_lap_stint_data
+2026,Miami Grand Prix,4,SAI,Williams,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,57,fastf1_race_lap_stint_data
+2026,Miami Grand Prix,4,STR,Aston Martin,MEDIUM-SOFT-SOFT,MEDIUM-SOFT-SOFT,2,3,MEDIUM,False,True,57,56,fastf1_race_lap_stint_data
+2026,Miami Grand Prix,4,VER,Red Bull Racing,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,57,fastf1_race_lap_stint_data

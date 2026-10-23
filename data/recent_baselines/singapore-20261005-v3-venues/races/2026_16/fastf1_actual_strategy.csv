@@ -1,0 +1,23 @@
+year,event,round,Driver,Team,actual_strategy,actual_strategy_sequence,actual_stops,actual_stint_count,actual_first_compound,actual_had_wet_compound,actual_completed_likely,actual_race_laps,actual_driver_max_lap,actual_strategy_source,source_circuit_id,source_layout_id,source_venue_status
+2026,Bahrain Grand Prix,16,ALB,Williams,SOFT-HARD-SOFT,SOFT-HARD-SOFT,2,3,SOFT,True,False,55,42,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,ALO,Aston Martin,MEDIUM-HARD-SOFT,MEDIUM-HARD-SOFT,2,3,MEDIUM,False,True,55,55,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,ANT,Mercedes,MEDIUM-SOFT-SOFT,MEDIUM-SOFT-SOFT,2,3,MEDIUM,True,True,55,55,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,BEA,Haas F1 Team,SOFT-MEDIUM-HARD,SOFT-MEDIUM-HARD,2,3,SOFT,False,False,55,38,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,BOR,Audi,SOFT-SOFT-HARD-SOFT-SOFT,SOFT-SOFT-HARD-SOFT-SOFT,4,5,SOFT,True,True,55,55,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,BOT,Cadillac,SOFT,SOFT,0,1,SOFT,False,False,55,8,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,COL,Alpine,SOFT-MEDIUM-HARD-MEDIUM,SOFT-MEDIUM-HARD-MEDIUM,3,4,SOFT,False,True,55,55,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,GAS,Alpine,SOFT-MEDIUM-HARD-SOFT-SOFT,SOFT-MEDIUM-HARD-SOFT-SOFT,4,5,SOFT,False,True,55,55,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,HAD,Red Bull Racing,SOFT-SOFT,SOFT-SOFT,1,2,SOFT,True,True,55,55,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,HAM,Ferrari,SOFT-MEDIUM-SOFT,SOFT-MEDIUM-SOFT,2,3,SOFT,False,True,55,55,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,HUL,Audi,SOFT-SOFT-SOFT-SOFT,SOFT-SOFT-SOFT-SOFT,3,4,SOFT,True,True,55,55,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,LAW,Racing Bulls,HARD-HARD-SOFT,HARD-HARD-SOFT,2,3,HARD,True,True,55,55,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,LEC,Ferrari,SOFT-SOFT-SOFT,SOFT-SOFT-SOFT,2,3,SOFT,True,True,55,55,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,LIN,Racing Bulls,HARD-HARD-SOFT,HARD-HARD-SOFT,2,3,HARD,True,True,55,55,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,NOR,McLaren,MEDIUM-HARD-SOFT-SOFT,MEDIUM-HARD-SOFT-SOFT,3,4,MEDIUM,False,True,55,55,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,OCO,Haas F1 Team,SOFT-HARD-SOFT,SOFT-HARD-SOFT,2,3,SOFT,True,True,55,55,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,PER,Cadillac,MEDIUM-HARD-HARD-MEDIUM-SOFT,MEDIUM-HARD-HARD-MEDIUM-SOFT,4,5,MEDIUM,True,True,55,55,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,PIA,McLaren,MEDIUM-HARD-HARD-MEDIUM,MEDIUM-HARD-HARD-MEDIUM,3,4,MEDIUM,True,True,55,55,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,RUS,Mercedes,MEDIUM-SOFT-SOFT,MEDIUM-SOFT-SOFT,2,3,MEDIUM,True,True,55,50,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,SAI,Williams,SOFT-HARD-SOFT,SOFT-HARD-SOFT,2,3,SOFT,True,True,55,55,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,STR,Aston Martin,MEDIUM-HARD-HARD-SOFT,MEDIUM-HARD-HARD-SOFT,3,4,MEDIUM,True,True,55,55,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,VER,Red Bull Racing,SOFT-SOFT-SOFT,SOFT-SOFT-SOFT,2,3,SOFT,True,True,55,55,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved

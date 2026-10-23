@@ -1,0 +1,22 @@
+{
+  "run": {
+    "year": 2026,
+    "event": "latest",
+    "session": "Q",
+    "n_sims": 5000,
+    "random_seed": 42
+  },
+  "outputs": {
+    "output_dir": "outputs/candidate_runs/CHOOSE_A_NEW_DIRECTORY",
+    "post_to_discord": false
+  },
+  "model": {
+    "weather_model": "race_window_v1",
+    "pace_blend": "legacy",
+    "qualifying_pace_model_path": null,
+    "qualifying_classifications_path": null,
+    "race_engine": "aggregate_legacy",
+    "pit_scenarios_path": null,
+    "retirement_model": "legacy"
+  }
+}

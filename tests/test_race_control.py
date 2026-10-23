@@ -2,6 +2,15 @@ from __future__ import annotations
 
 import pandas as pd
 
+
+def test_absolute_message_timestamps_preserve_keyword_counts():
+    from src.race_control import _normalise_race_control_messages
+    messages = pd.DataFrame({'Time': pd.to_datetime(['2025-03-16T04:20:00Z', '2025-03-16T04:10:00Z']),
+                             'Message': ['SAFETY CAR IN THIS LAP', 'SAFETY CAR DEPLOYED']})
+    result = _normalise_race_control_messages(messages)
+    assert result.Time.iloc[0] == pd.Timestamp('2025-03-16T04:10:00Z')
+    assert result.message_text.str.contains('safety car').sum() == 2
+
 from src.race_control import (
     merge_race_control_into_weather_modifiers,
     summarise_race_control,

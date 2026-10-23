@@ -42,6 +42,11 @@ def _estimate_race_laps(metadata: dict | None) -> int:
     if not metadata:
         return DEFAULT_RACE_LAPS
 
+    if metadata.get('year') is not None:
+        from src.venues import venue_for_context
+        venue = venue_for_context(metadata)
+        return int(venue['race_laps']) if venue.get('race_laps') else DEFAULT_RACE_LAPS
+
     event_name = str(metadata.get("event", "")).lower()
 
     for keyword, laps in RACE_LAPS_BY_EVENT_KEYWORD.items():
@@ -89,6 +94,7 @@ def add_performance_profile(
     baseline_features: pd.DataFrame | None = None,
     current_session_type: str | None = None,
     metadata: dict | None = None,
+    pace_blend: str = 'legacy',
 ) -> pd.DataFrame:
     """
     Adds the central performance profile used by the simulation engine.
@@ -98,6 +104,8 @@ def add_performance_profile(
     This does not remove any existing columns, so old reports should keep working.
     """
 
+    if pace_blend not in {'legacy', 'single_pace_blend_v1'}:
+        raise ValueError('Unknown pace blend.')
     if model_features.empty:
         return model_features.copy()
 
@@ -183,9 +191,27 @@ def add_performance_profile(
         output["race_pace_score"]
     )
 
+    matched_stints = current_features is not None and 'long_run_confidence' in current_features
+    if matched_stints:
+        practice = current_features.set_index('Driver')
+        confidence = output['Driver'].map(practice['long_run_confidence']).fillna(0.0)
+        observed = pd.to_numeric(output['Driver'].map(practice['long_run_relative_pace']), errors='coerce')
+        # A qualifying lap remains a qualifying signal; race pace receives a
+        # separate sustained-run estimate. With no matched runs, use history.
+        weight = (_session_weight('FP2', 'race', 0.24) * confidence).clip(0.0, 0.24)
+        output['race_pace_score'] = _normalise_lower_is_better(
+            weight * observed.fillna(baseline_pace) + (1 - weight) * baseline_pace
+        )
+        output['long_run_laps'] = output['Driver'].map(practice['long_run_laps']).fillna(0).astype(int)
+        output['long_run_confidence'] = confidence
+        output['matched_long_run_weight'] = weight
+
     deg_per_lap = _to_numeric_series(output, "deg_per_lap", 0.0)
     lap_std = _to_numeric_series(output, "lap_std", 1.5)
     uncertainty = _to_numeric_series(output, "model_uncertainty", 1.2)
+    if matched_stints:
+        # Sparse/unknown-fuel runs should widen uncertainty, not DNF risk.
+        uncertainty = (uncertainty + (1 - confidence) * 0.20).clip(0.7, 4.0)
 
     output["tyre_deg_score"] = deg_per_lap.clip(-0.04, 0.18)
 
@@ -232,6 +258,12 @@ def add_performance_profile(
     output["strategy_weight_used"] = strategy_weight
 
     output["estimated_race_laps"] = race_laps
+    if metadata and metadata.get('year') is not None:
+        from src.venues import venue_for_context
+        venue = venue_for_context(metadata)
+        output['circuit_id'] = venue.get('circuit_id')
+        output['circuit_layout_id'] = venue.get('layout_id')
+        output['race_laps_source'] = venue['race_laps_source'] if venue.get('race_laps') else 'generic_assumption_venue_unresolved'
     output["projected_lap_time"] = base_lap_time + output["race_pace_score"]
 
     output["base_winner_race_time_seconds"] = (
@@ -239,5 +271,13 @@ def add_performance_profile(
     )
 
     output["performance_model_version"] = MODEL_VERSION
+    if matched_stints:
+        output['performance_model_version'] = 'matched_stints_v2'
+
+    if pace_blend == 'single_pace_blend_v1':
+        if matched_stints:
+            raise ValueError('Test matched-stint and single-pass pace separately.')
+        from src.accuracy_candidates import single_pace_blend
+        output = single_pace_blend(output, str(current_session_type or 'PRE'))
 
     return output

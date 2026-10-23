@@ -1,0 +1,23 @@
+year,event,round,Driver,Team,actual_strategy,actual_strategy_sequence,actual_stops,actual_stint_count,actual_first_compound,actual_had_wet_compound,actual_completed_likely,actual_race_laps,actual_driver_max_lap,actual_strategy_source
+2026,Hungarian Grand Prix,11,ALB,Williams,MEDIUM-HARD-SOFT,MEDIUM-HARD-SOFT,2,3,MEDIUM,False,True,70,68,fastf1_race_lap_stint_data
+2026,Hungarian Grand Prix,11,ALO,Aston Martin,SOFT-MEDIUM-SOFT,SOFT-MEDIUM-SOFT,2,3,SOFT,False,True,70,69,fastf1_race_lap_stint_data
+2026,Hungarian Grand Prix,11,ANT,Mercedes,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,True,70,70,fastf1_race_lap_stint_data
+2026,Hungarian Grand Prix,11,BEA,Haas F1 Team,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,True,70,68,fastf1_race_lap_stint_data
+2026,Hungarian Grand Prix,11,BOR,Audi,SOFT-HARD,SOFT-HARD,1,2,SOFT,False,True,70,69,fastf1_race_lap_stint_data
+2026,Hungarian Grand Prix,11,BOT,Cadillac,MEDIUM,MEDIUM,0,1,MEDIUM,False,False,70,14,fastf1_race_lap_stint_data
+2026,Hungarian Grand Prix,11,COL,Alpine,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,True,70,68,fastf1_race_lap_stint_data
+2026,Hungarian Grand Prix,11,GAS,Alpine,MEDIUM-HARD-HARD-SOFT,MEDIUM-HARD-HARD-SOFT,3,4,MEDIUM,False,True,70,69,fastf1_race_lap_stint_data
+2026,Hungarian Grand Prix,11,HAD,Red Bull Racing,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,True,70,70,fastf1_race_lap_stint_data
+2026,Hungarian Grand Prix,11,HAM,Ferrari,SOFT-HARD-HARD-SOFT,SOFT-HARD-HARD-SOFT,3,4,SOFT,False,True,70,70,fastf1_race_lap_stint_data
+2026,Hungarian Grand Prix,11,HUL,Audi,MEDIUM-HARD-SOFT,MEDIUM-HARD-SOFT,2,3,MEDIUM,False,True,70,69,fastf1_race_lap_stint_data
+2026,Hungarian Grand Prix,11,LAW,Racing Bulls,MEDIUM-HARD-SOFT,MEDIUM-HARD-SOFT,2,3,MEDIUM,False,True,70,69,fastf1_race_lap_stint_data
+2026,Hungarian Grand Prix,11,LEC,Ferrari,SOFT-HARD-HARD-SOFT,SOFT-HARD-HARD-SOFT,3,4,SOFT,False,True,70,70,fastf1_race_lap_stint_data
+2026,Hungarian Grand Prix,11,LIN,Racing Bulls,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,70,69,fastf1_race_lap_stint_data
+2026,Hungarian Grand Prix,11,NOR,McLaren,MEDIUM-HARD-HARD-SOFT,MEDIUM-HARD-HARD-SOFT,3,4,MEDIUM,False,True,70,70,fastf1_race_lap_stint_data
+2026,Hungarian Grand Prix,11,OCO,Haas F1 Team,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,True,70,68,fastf1_race_lap_stint_data
+2026,Hungarian Grand Prix,11,PER,Cadillac,MEDIUM-SOFT,MEDIUM-SOFT,1,2,MEDIUM,False,False,70,48,fastf1_race_lap_stint_data
+2026,Hungarian Grand Prix,11,PIA,McLaren,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,False,70,56,fastf1_race_lap_stint_data
+2026,Hungarian Grand Prix,11,RUS,Mercedes,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,True,70,70,fastf1_race_lap_stint_data
+2026,Hungarian Grand Prix,11,SAI,Williams,SOFT-MEDIUM-SOFT-SOFT,SOFT-MEDIUM-SOFT-SOFT,3,4,SOFT,False,True,70,68,fastf1_race_lap_stint_data
+2026,Hungarian Grand Prix,11,STR,Aston Martin,SOFT-MEDIUM-SOFT,SOFT-MEDIUM-SOFT,2,3,SOFT,False,True,70,69,fastf1_race_lap_stint_data
+2026,Hungarian Grand Prix,11,VER,Red Bull Racing,MEDIUM-HARD-SOFT,MEDIUM-HARD-SOFT,2,3,MEDIUM,False,True,70,70,fastf1_race_lap_stint_data

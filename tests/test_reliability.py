@@ -17,7 +17,18 @@ def test_classify_result_status_separates_mechanical_from_crash() -> None:
     assert classify_result_status("Gearbox") == "mechanical_dnf"
     assert classify_result_status("Accident") == "non_mechanical_dnf"
     assert classify_result_status("+1 Lap") == "finished"
-    assert classify_result_status("Retired") == "unknown"
+    assert classify_result_status("Retired") == "unspecified_dnf"
+
+
+def test_unknown_causes_do_not_count_as_healthy_mechanical_observations():
+    def profile(statuses):
+        session = SimpleNamespace(results=pd.DataFrame({'Abbreviation': list('ABCDE')[:len(statuses)],
+            'TeamName': ['Team'] * len(statuses), 'Status': statuses}))
+        return infer_reliability_profile([(session, {'year': 2026})]).iloc[0]
+    known = profile(['Engine', 'Lapped'])
+    unknown = profile(['Engine', 'Lapped', 'Retired', 'Did not start', 'Disqualified'])
+    assert unknown.team_mechanical_dnf_rate == known.team_mechanical_dnf_rate
+    assert unknown.team_reliability_entries_weighted == 2
 
 
 def test_infer_reliability_profile_from_recent_race_results() -> None:

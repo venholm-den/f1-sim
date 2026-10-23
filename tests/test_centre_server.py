@@ -10,7 +10,9 @@ from portable_app.centre_server import make_server
 
 
 def test_loopback_bridge_requires_session_and_same_origin(tmp_path):
-    (tmp_path/'centre.html').write_text('<title>Test centre</title>')
+    (tmp_path/'index.html').write_text('<title>Test centre</title>')
+    (tmp_path/'tyre-strategy.js').write_text('window.TyreStrategy = {};')
+    (tmp_path/'tyre-strategy.css').write_text('.tyre-board { color: white; }')
     api = Mock()
     api.lab_state.return_value = {'features': True}
     server = make_server(api, tmp_path)
@@ -25,6 +27,10 @@ def test_loopback_bridge_requires_session_and_same_origin(tmp_path):
         with request('/') as response:
             assert 'Test centre' in response.read().decode()
             assert response.headers['Cross-Origin-Resource-Policy'] == 'same-origin'
+        for asset, content_type in [('tyre-strategy.js', 'text/javascript'), ('tyre-strategy.css', 'text/css')]:
+            with request('/'+asset) as response:
+                assert response.headers['Content-Type'] == content_type
+                assert response.read()
         with request('/bridge.js') as response:
             script = response.read().decode()
         token = script.split("'X-F1-Token':", 1)[1].split('}', 1)[0].strip('"')

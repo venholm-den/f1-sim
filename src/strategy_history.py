@@ -8,6 +8,7 @@ import pandas as pd
 
 from src.collect import load_session
 from src.strategy import make_strategy_table_image
+from src.venues import resolve_venue, venue_for_context
 
 
 DRY_COMPOUNDS = ["HARD", "MEDIUM", "SOFT"]
@@ -189,13 +190,34 @@ def _find_round_for_event(year: int, event_name: str) -> int | None:
     return int(round(round_number))
 
 
-def _load_historical_race(year: int, event_name: str) -> tuple[Any, dict] | None:
+def _load_historical_race(year: int, event_name: str, *, venue: dict | None = None) -> tuple[Any, dict] | None:
     """
     Tries to load a previous race for the same event.
 
     First tries the event name directly. If FastF1 cannot match it, it searches
     the schedule for that year and loads by round number.
     """
+
+    if venue is not None:
+        if venue.get('venue_status') != 'resolved':
+            return None
+        import fastf1
+        try:
+            schedule = fastf1.get_event_schedule(year)
+            for _, event in schedule.iterrows():
+                if int(event.get('RoundNumber', 0)) <= 0:
+                    continue
+                identity = resolve_venue(year, str(event['EventName']), location=event.get('Location'))
+                if (identity['circuit_id'], identity['layout_id']) != (venue['circuit_id'], venue['layout_id']):
+                    continue
+                session, metadata = load_session(year, int(event['RoundNumber']), 'R')
+                actual = venue_for_context(metadata, session=session)
+                if actual['venue_status'] == 'resolved' and (actual['circuit_id'], actual['layout_id']) == (venue['circuit_id'], venue['layout_id']):
+                    return session, {**metadata, 'venue': actual}
+            print(f"Historical strategy skipped {year}: no matching circuit and layout for {venue['circuit_name']}")
+        except Exception as exc:
+            print(f"Historical strategy skipped {year}: {exc}")
+        return None
 
     try:
         return load_session(year, event_name, "R")
@@ -362,8 +384,10 @@ def build_historical_strategy_baseline(
     event_name: str,
     lookback_years: int = 5,
     output_dir: str | Path = "outputs",
+    *, venue: dict | None = None,
 ) -> dict[str, Any]:
     history_dir, _ = _ensure_output_dirs(output_dir)
+    venue = venue if venue is not None else resolve_venue(current_year, event_name)
 
     frames: list[pd.DataFrame] = []
     years_used: list[int] = []
@@ -372,7 +396,7 @@ def build_historical_strategy_baseline(
     end_year = max(current_year - lookback_years, 2018)
 
     for year in range(start_year, end_year - 1, -1):
-        loaded = _load_historical_race(year, event_name)
+        loaded = _load_historical_race(year, event_name, venue=venue)
 
         if loaded is None:
             continue
@@ -1351,6 +1375,7 @@ def apply_historical_strategy_adjustment_to_outputs(
     lookback_years: int = 5,
     session: Any | None = None,
     output_dir: str | Path = "outputs",
+    *, venue: dict | None = None,
 ) -> dict[str, str]:
     """
     Builds a historical strategy baseline and rewrites predicted strategies
@@ -1370,6 +1395,7 @@ def apply_historical_strategy_adjustment_to_outputs(
         event_name=event_name,
         lookback_years=lookback_years,
         output_dir=output_dir,
+        venue=venue,
     )
 
     history_data = historical.get("summary_data", {})

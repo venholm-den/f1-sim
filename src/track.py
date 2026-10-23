@@ -147,7 +147,7 @@ def ensure_track_profiles_file(path: str = "data/track_profiles.csv") -> None:
     starter.to_csv(file_path, index=False)
 
 
-def load_track_profile(event_name: str, path: str = "data/track_profiles.csv") -> dict:
+def _load_legacy_track_profile(event_name: str, path: str = "data/track_profiles.csv") -> dict:
     ensure_track_profiles_file(path)
 
     profiles = pd.read_csv(path)
@@ -187,3 +187,32 @@ def load_track_profile(event_name: str, path: str = "data/track_profiles.csv") -
         "longitude": None if longitude is None else float(longitude),
         "notes": str(row.get("Notes", "")),
     }
+
+
+def load_track_profile(event_name: str, path: str = "data/track_profiles.csv", *, metadata: dict | None = None) -> dict:
+    if metadata is None:
+        return _load_legacy_track_profile(event_name, path)
+    from src.venues import legacy_circuit, venue_for_context
+    venue = venue_for_context(metadata)
+    base = DEFAULT_TRACK_PROFILE.copy()
+    base.update(event=event_name, **venue)
+    base['profile_status'] = 'generic_uncalibrated'
+    if venue['venue_status'] != 'resolved':
+        base['profile_status'] = 'withheld_unresolved_venue'
+        return base
+    ensure_track_profiles_file(path)
+    profiles = pd.read_csv(path)
+    candidates = profiles.apply(lambda row:
+        str(row.get('CircuitId', '')).strip() == venue['circuit_id']
+        or (pd.isna(row.get('CircuitId')) or not str(row.get('CircuitId', '')).strip())
+        and legacy_circuit(str(row.get('Event', ''))) == venue['circuit_id'], axis=1)
+    if candidates.any():
+        row = profiles.loc[candidates].iloc[0]
+        base.update(overtaking_difficulty=float(row.get('OvertakingDifficulty', .55)),
+                    safety_car_chance=float(row.get('SafetyCarChance', .40)),
+                    red_flag_base_chance=float(row.get('RedFlagBaseChance', .035)),
+                    profile_status=str(row.get('ProfileStatus', 'existing_circuit_heuristic')))
+    # Coordinates follow resolved physical identity, never an event-name row.
+    base['notes'] = venue['notes'] + (' Generic track factors; circuit calibration unavailable.'
+                                   if base['profile_status'] == 'generic_uncalibrated' else ' Existing circuit heuristic factors.')
+    return base

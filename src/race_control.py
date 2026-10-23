@@ -81,7 +81,10 @@ def _normalise_race_control_messages(messages: pd.DataFrame) -> pd.DataFrame:
             df[col] = pd.NA
 
     if "Time" in df.columns:
-        df["Time"] = pd.to_timedelta(df["Time"], errors="coerce")
+        # FastF1 messages use absolute UTC timestamps; TrackStatus uses elapsed
+        # time. Preserve the former rather than coercing datetimes to durations.
+        if not pd.api.types.is_datetime64_any_dtype(df["Time"]):
+            df["Time"] = pd.to_timedelta(df["Time"], errors="coerce")
         df = df.sort_values("Time").reset_index(drop=True)
 
     df["message_text"] = df["Message"].fillna("").astype(str).str.lower()

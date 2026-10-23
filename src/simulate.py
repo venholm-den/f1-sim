@@ -259,6 +259,11 @@ def simulate_races(
     seed: int = 42,
     overtaking_difficulty: float = 0.55,
     weather_modifiers: dict | None = None,
+    grid_loss_multiplier: float | None = None,
+    retirement_classification: str = 'legacy',
+    sample_pace_posterior: bool = False,
+    pit_plans: list[dict] | None = None,
+    agent_settings: dict | None = None,
 ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     """
     Simulates races by estimating total projected race time per driver.
@@ -271,7 +276,17 @@ def simulate_races(
     - raw results
     """
 
+    if retirement_classification not in {'legacy', 'completed_laps_v1'}:
+        raise ValueError('Unknown retirement classification.')
     base = _prepare_features(features)
+
+    if agent_settings is not None:
+        from src.agent_race import simulate_agent_races
+        if grid_loss_multiplier is not None:
+            raise ValueError('Agent traffic replaces aggregate grid loss.')
+        return simulate_agent_races(base, n_sims, seed, pit_plans=pit_plans,
+            settings=agent_settings, sample_pace_posterior=sample_pace_posterior,
+            weather_modifiers=weather_modifiers, overtaking_difficulty=overtaking_difficulty)
 
     rng = np.random.default_rng(seed)
 
@@ -301,7 +316,12 @@ def simulate_races(
     race_pace_seconds_multiplier = _sim_param("race_pace_seconds_multiplier", 0.20)
     long_run_penalty_multiplier = _sim_param("long_run_penalty_multiplier", 0.25)
     tyre_deg_multiplier = _sim_param("tyre_deg_multiplier", 7.00)
-    grid_loss_multiplier = _sim_param("grid_loss_multiplier", 1.65)
+    if grid_loss_multiplier is None:
+        grid_loss_multiplier = _sim_param("grid_loss_multiplier", 1.65)
+    else:
+        grid_loss_multiplier = float(grid_loss_multiplier)
+        if not np.isfinite(grid_loss_multiplier) or not 0 <= grid_loss_multiplier <= 50:
+            raise ValueError('grid_loss_multiplier must be finite and between 0 and 50.')
     strategy_loss_multiplier = _sim_param("strategy_loss_multiplier", 2.50)
     race_noise_multiplier = _sim_param("race_noise_multiplier", 3.80)
     start_noise_seconds = _sim_param("start_noise_seconds", 1.15)
@@ -406,6 +426,23 @@ def simulate_races(
         + chaos_noise
     )
 
+    # Separate candidate streams preserve the default RNG sequence exactly.
+    pace_samples = np.broadcast_to(race_pace, (n_sims, n_drivers))
+    if sample_pace_posterior:
+        from src.qualifying_pace import sample_pace
+        pace_samples = sample_pace(base, n_sims, seed)
+        projected_times += (pace_samples - race_pace) * race_laps * race_pace_seconds_multiplier
+    pit_costs = pit_counts = pit_labels = None
+    if pit_plans is not None:
+        from src.pit_scenarios import sample_pit_costs
+        pit_costs, pit_counts, pit_labels = sample_pit_costs(base, pit_plans, race_laps,
+            n_sims, seed, degradation_factor)
+        # Explicit lap/stint costs replace aggregate long-run, degradation and
+        # strategy penalties/noise. Pace gaps accumulate over the full distance.
+        from src.model_config import DEFAULT_PIT_AND_RACE_ALLOWANCE
+        projected_times = (base_winner_time - DEFAULT_PIT_AND_RACE_ALLOWANCE + pace_samples * race_laps + grid_loss
+                           + pit_costs + race_noise + start_noise + chaos_noise)
+
     if red_flags.any():
         red_flag_rows = red_flags.reshape(n_sims, 1)
 
@@ -438,14 +475,32 @@ def simulate_races(
         projected_times,
     )
 
-    order = np.argsort(classified_times, axis=1)
+    completed_laps = None
+    if retirement_classification == 'completed_laps_v1':
+        from src.retirement_progress import sample_completed_laps, distance_order
+        # Separate stream preserves the paired pace/occurrence random draws.
+        distance_rng = np.random.default_rng(np.random.SeedSequence([seed, 20261011]))
+        completed_laps = sample_completed_laps(base, dnf_matrix, race_laps, distance_rng)
+        # At equal distance use estimated elapsed time at the last crossing.
+        classified_times = projected_times * completed_laps / max(1, round(race_laps))
+        if pit_plans is not None:
+            from src.pit_scenarios import elapsed_pit_costs
+            elapsed_costs, actual_stops = elapsed_pit_costs(base, pit_plans, pit_labels,
+                completed_laps, race_laps, degradation_factor)
+            classified_times = ((projected_times - pit_costs) * completed_laps
+                                / max(1, round(race_laps)) + elapsed_costs)
+        order = distance_order(classified_times, completed_laps)
+    else:
+        order = np.argsort(classified_times, axis=1)
     positions = np.empty_like(order)
 
     row_index = np.arange(n_sims)[:, None]
     positions[row_index, order] = np.arange(1, n_drivers + 1)
 
     race_points = _points_for_positions(positions)
-    race_points = np.where(dnf_matrix, 0.0, race_points)
+    classified = ((~dnf_matrix) if completed_laps is None else
+                  completed_laps >= np.floor(.9 * completed_laps.max(axis=1, keepdims=True)))
+    race_points = np.where(classified, race_points, 0.0)
 
     positions_gained = grid.reshape(1, n_drivers) - positions
 
@@ -524,9 +579,26 @@ def simulate_races(
             }
         )
 
+        if completed_laps is not None:
+            driver_records['completed_laps'] = completed_laps[:, driver_idx]
+            driver_records['classified'] = classified[:, driver_idx]
+            driver_records['retirement_classification'] = retirement_classification
+        if pit_plans is not None:
+            driver_records['pit_scenario'] = pit_labels[:, driver_idx]
+            driver_records['planned_pit_stops'] = pit_counts[:, driver_idx]
+            driver_records['stint_and_pit_cost_seconds'] = pit_costs[:, driver_idx]
+            if completed_laps is not None:
+                driver_records['completed_pit_stops'] = actual_stops[:, driver_idx]
         records.append(driver_records)
 
     results = pd.concat(records, ignore_index=True)
+
+    return summarise_results(base, results, grid_loss_multiplier)
+
+
+def summarise_results(base, results, grid_loss_multiplier):
+    """Shared forecast table contract for aggregate and experimental engines."""
+    n_drivers = len(base)
 
     summary_rows = []
 
@@ -539,6 +611,7 @@ def simulate_races(
 
         row = {
             "Driver": driver,
+            "grid_loss_multiplier": grid_loss_multiplier,
             "Team": team,
             "avg_grid": float(group["grid_position"].mean()),
             "avg_finish": float(finish.mean()),
@@ -550,7 +623,10 @@ def simulate_races(
             "win_chance": float((finish == 1).mean()),
             "podium_chance": float((finish <= 3).mean()),
             "top5_chance": float((finish <= 5).mean()),
+            # Legacy field retains its historical top-ten target for old trials.
             "points_chance": float((finish <= 10).mean()),
+            "top10_chance": float((finish <= 10).mean()),
+            "points_scoring_chance": float((pts > 0).mean()),
             "dnf_chance": float(group["dnf"].mean()),
             "red_flag_chance": float(group["red_flag"].mean()),
             "avg_projected_race_time_seconds": float(
@@ -598,6 +674,15 @@ def simulate_races(
             "estimated_race_laps",
             "base_winner_race_time_seconds",
             "performance_model_version",
+            "race_pace_current_weight",
+            "race_pace_history_weight",
+            "race_pace_blend_version",
+            "retirement_model_version",
+            "retirement_history_races",
+            "retirement_known_observations",
+            "retirement_unknown_observations",
+            "retirement_progress_version",
+            "retirement_progress_observations",
             "historical_model_available",
             "historical_predicted_finish",
             "historical_finish_score",

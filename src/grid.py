@@ -272,6 +272,11 @@ def _extract_fia_official_grid(
 
     if grid.empty or "Driver" not in grid.columns or "fia_grid_position" not in grid.columns:
         return pd.DataFrame()
+    positions = pd.to_numeric(grid['fia_grid_position'],errors='coerce')
+    if (grid.Driver.duplicated().any() or positions.isna().any()
+            or not positions.eq(positions.round()).all()
+            or positions[positions.gt(0)].duplicated().any()):
+        return pd.DataFrame()
 
     output = pd.DataFrame()
     output["Driver"] = grid["Driver"].map(_normalise_driver)
@@ -303,6 +308,18 @@ def _extract_fia_official_grid(
         return output
 
     output["fia_grid_position"] = output["fia_grid_position"].astype(int)
+    # Withdrawn entrants need an explicit DNS model; never turn -1 into pole.
+    if output.fia_grid_position.lt(0).any():
+        return pd.DataFrame()
+    pit = grid.get('fia_pit_lane_start', pd.Series(False, index=grid.index)).fillna(False)
+    output['fia_pit_lane_start'] = pit.astype(str).str.lower().eq('true')
+    if (output.fia_grid_position.eq(0) & ~output.fia_pit_lane_start).any():
+        return pd.DataFrame()
+    # Preserve the official pit-lane flag; the existing grid model approximates
+    # these entrants after the last grid starter, not at position zero.
+    pit_indices = output.index[output.fia_grid_position.eq(0)]
+    for order, index in enumerate(pit_indices, start=1):
+        output.loc[index, 'fia_grid_position'] = len(output) + order
     output["fia_grid_score"] = output["fia_grid_position"].astype(float)
 
     return output.sort_values(
@@ -330,7 +347,7 @@ def _extract_fia_penalty_notes(
 
     note_cols = [
         col
-        for col in ["penalty_type", "penalty_value", "document_title", "notes"]
+        for col in ["penalty_type", "penalty_value", "document_title", "decision_text", "notes"]
         if col in penalties.columns
     ]
 
@@ -540,6 +557,9 @@ def build_grid_features(
         current_session_type=current_session_type,
     )
     fia_grid = _extract_fia_official_grid(fia_context)
+    if not fia_grid.empty and set(fia_grid.Driver) != set(output.Driver):
+        # Never partly overlay a grid for a different or incomplete roster.
+        fia_grid = pd.DataFrame()
     fia_penalties = _extract_fia_penalty_notes(fia_context)
 
     estimated_grid = _estimate_grid_from_features(

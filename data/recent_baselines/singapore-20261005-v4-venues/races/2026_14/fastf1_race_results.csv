@@ -1,0 +1,23 @@
+Year,Event,Round,Session,DriverNumber,BroadcastName,Abbreviation,TeamName,Position,ClassifiedPosition,Status,Points,GridPosition,Time,source_circuit_id,source_layout_id,source_venue_status
+2026,Spanish Grand Prix,14,R,12,K ANTONELLI,ANT,Mercedes,1.0,1,Finished,25.0,2.0,0 days 01:34:23.754000,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,3,M VERSTAPPEN,VER,Red Bull Racing,2.0,2,Finished,18.0,3.0,0 days 00:00:04.351000,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,1,L NORRIS,NOR,McLaren,3.0,3,Finished,15.0,1.0,0 days 00:00:05.089000,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,16,C LECLERC,LEC,Ferrari,4.0,4,Finished,12.0,5.0,0 days 00:00:29.116000,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,63,G RUSSELL,RUS,Mercedes,5.0,5,Finished,10.0,6.0,0 days 00:00:29.829000,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,30,L LAWSON,LAW,Red Bull Racing,6.0,6,Finished,8.0,8.0,0 days 00:01:26.746000,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,43,F COLAPINTO,COL,Alpine,7.0,7,Finished,6.0,9.0,0 days 00:01:34.281000,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,81,O PIASTRI,PIA,McLaren,8.0,8,Finished,4.0,7.0,0 days 00:01:35.839000,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,41,A LINDBLAD,LIN,Racing Bulls,9.0,9,Lapped,2.0,10.0,0 days 00:00:10.408000,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,27,N HULKENBERG,HUL,Audi,10.0,10,Lapped,1.0,11.0,0 days 00:00:11.298000,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,31,E OCON,OCO,Haas F1 Team,11.0,11,Lapped,0.0,13.0,0 days 00:00:15.143000,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,10,P GASLY,GAS,Alpine,12.0,12,Lapped,0.0,14.0,0 days 00:00:26.152000,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,5,G BORTOLETO,BOR,Audi,13.0,13,Lapped,0.0,12.0,0 days 00:00:28.389000,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,22,Y TSUNODA,TSU,Racing Bulls,14.0,14,Lapped,0.0,15.0,0 days 00:01:00.163000,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,23,A ALBON,ALB,Williams,15.0,15,Lapped,0.0,16.0,0 days 00:01:26.212000,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,87,O BEARMAN,BEA,Haas F1 Team,16.0,16,Lapped,0.0,22.0,0 days 00:01:29.963000,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,14,F ALONSO,ALO,Aston Martin,17.0,17,Lapped,0.0,17.0,0 days 00:00:33.776000,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,77,V BOTTAS,BOT,Cadillac,18.0,18,Lapped,0.0,19.0,0 days 00:00:49.246000,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,55,C SAINZ,SAI,Williams,19.0,R,Retired,0.0,20.0,,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,11,S PEREZ,PER,Cadillac,20.0,R,Retired,0.0,18.0,,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,18,L STROLL,STR,Aston Martin,21.0,R,Retired,0.0,21.0,,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,44,L HAMILTON,HAM,Ferrari,22.0,R,Retired,0.0,4.0,,madring,madring_gp,resolved

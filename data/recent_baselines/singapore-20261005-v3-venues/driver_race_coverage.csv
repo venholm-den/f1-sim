@@ -1,0 +1,353 @@
+Driver,Team,relative_pace,race_pace,clean_laps,raw_laps,pace_available,thin_pace_sample,source_year,source_round,source_circuit_id,source_layout_id,source_venue_status
+VER,Red Bull Racing,1.1592411485499952,101.07233909447068,28.0,55.0,True,False,2026,16,sepang,sepang_gp,resolved
+ANT,Mercedes,1.09244368197389,101.4122897406078,27.0,55.0,True,False,2026,16,sepang,sepang_gp,resolved
+HAM,Ferrari,1.055745165060145,101.61177119674339,26.0,55.0,True,False,2026,16,sepang,sepang_gp,resolved
+LEC,Ferrari,2.0801972239875255,102.31219670289632,11.0,55.0,True,False,2026,16,sepang,sepang_gp,resolved
+HAD,Red Bull Racing,2.0946978211673013,102.42032511774585,19.0,55.0,True,False,2026,16,sepang,sepang_gp,resolved
+PIA,McLaren,0.0,102.91155955760178,28.0,55.0,True,False,2026,16,sepang,sepang_gp,resolved
+LAW,Racing Bulls,1.8259399730958563,102.71059874807779,29.0,55.0,True,False,2026,16,sepang,sepang_gp,resolved
+ALO,Aston Martin,2.177160505475726,103.31035702654601,18.0,55.0,True,False,2026,16,sepang,sepang_gp,resolved
+NOR,McLaren,1.4900258473987975,102.70366207973669,28.0,55.0,True,False,2026,16,sepang,sepang_gp,resolved
+LIN,Racing Bulls,2.053211795477509,103.0544617969736,28.0,55.0,True,False,2026,16,sepang,sepang_gp,resolved
+HUL,Audi,2.6997411783476934,102.93691712982745,29.0,55.0,True,False,2026,16,sepang,sepang_gp,resolved
+STR,Aston Martin,2.1764270258880885,103.23793883647154,27.0,55.0,True,False,2026,16,sepang,sepang_gp,resolved
+COL,Alpine,1.8037533804569534,102.50988612162688,27.0,55.0,True,False,2026,16,sepang,sepang_gp,resolved
+BEA,Haas F1 Team,2.044032752193999,103.08769159335922,19.0,55.0,True,False,2026,16,sepang,sepang_gp,resolved
+OCO,Haas F1 Team,3.0645922043566145,103.67043089309772,27.0,55.0,True,False,2026,16,sepang,sepang_gp,resolved
+GAS,Alpine,2.2543937250003694,102.98196316011926,25.0,55.0,True,False,2026,16,sepang,sepang_gp,resolved
+SAI,Williams,2.8295000807526947,103.72941609397826,27.0,55.0,True,False,2026,16,sepang,sepang_gp,resolved
+BOR,Audi,2.7341811681473445,103.6228447771039,27.0,55.0,True,False,2026,16,sepang,sepang_gp,resolved
+PER,Cadillac,3.5194434073547285,104.52527060766884,19.0,55.0,True,False,2026,16,sepang,sepang_gp,resolved
+RUS,Mercedes,1.4546384801808045,101.90474418508315,26.0,50.0,True,False,2026,16,sepang,sepang_gp,resolved
+ALB,Williams,3.0026382667179377,103.65325190417386,22.0,42.0,True,False,2026,16,sepang,sepang_gp,resolved
+BOT,Cadillac,37.44282659819467,139.06305057471263,2.0,8.0,True,True,2026,16,sepang,sepang_gp,resolved
+RUS,Mercedes,0.0,107.4744198588637,36.0,51.0,True,False,2026,15,baku,baku_gp,resolved
+VER,Red Bull Racing,0.3791430084418437,107.72406259302318,36.0,51.0,True,False,2026,15,baku,baku_gp,resolved
+HAD,Red Bull Racing,0.7765809339084058,107.91824287577427,35.0,51.0,True,False,2026,15,baku,baku_gp,resolved
+LEC,Ferrari,0.965386461871816,107.99531373860486,35.0,51.0,True,False,2026,15,baku,baku_gp,resolved
+ANT,Mercedes,0.5158905159165386,107.85919807066671,32.0,51.0,True,False,2026,15,baku,baku_gp,resolved
+HAM,Ferrari,1.241836471247609,108.09490796740114,35.0,51.0,True,False,2026,15,baku,baku_gp,resolved
+LIN,Racing Bulls,2.0288548193584575,109.2936862478462,35.0,51.0,True,False,2026,15,baku,baku_gp,resolved
+OCO,Haas F1 Team,2.027198897611413,109.02329659101561,32.0,51.0,True,False,2026,15,baku,baku_gp,resolved
+BEA,Haas F1 Team,2.0614178783782933,109.04636034093232,34.0,51.0,True,False,2026,15,baku,baku_gp,resolved
+SAI,Williams,2.0666892149102836,109.32490868252988,30.0,51.0,True,False,2026,15,baku,baku_gp,resolved
+HUL,Audi,2.299186106160036,109.59725764204448,34.0,51.0,True,False,2026,15,baku,baku_gp,resolved
+LAW,Racing Bulls,1.9096588244491244,108.93593115441169,33.0,51.0,True,False,2026,15,baku,baku_gp,resolved
+PIA,McLaren,0.9291296611047812,107.95893018082919,37.0,51.0,True,False,2026,15,baku,baku_gp,resolved
+PER,Cadillac,2.5370707702058013,109.87831250106676,36.0,51.0,True,False,2026,15,baku,baku_gp,resolved
+BOR,Audi,2.0500169596969613,109.35644958423923,32.0,51.0,True,False,2026,15,baku,baku_gp,resolved
+BOT,Cadillac,4.516662324526237,111.81333926685893,32.0,50.0,True,False,2026,15,baku,baku_gp,resolved
+COL,Alpine,1.736040788479599,108.95001769606448,26.0,36.0,True,False,2026,15,baku,baku_gp,resolved
+GAS,Alpine,1.3691382603716278,108.59602271433025,27.0,36.0,True,False,2026,15,baku,baku_gp,resolved
+NOR,McLaren,1.1975954761786056,108.46916351511052,27.0,36.0,True,False,2026,15,baku,baku_gp,resolved
+ALB,Williams,2.3938783673566775,109.42162911713059,25.0,30.0,True,False,2026,15,baku,baku_gp,resolved
+ALO,Aston Martin,5.158506001159239,112.19256766980956,17.0,20.0,True,False,2026,15,baku,baku_gp,resolved
+STR,Aston Martin,5.267769609611932,112.12199967949998,6.0,8.0,True,False,2026,15,baku,baku_gp,resolved
+ANT,Mercedes,0.29101117772279395,98.36633819840236,52.0,57.0,True,False,2026,14,madring,madring_gp,resolved
+VER,Red Bull Racing,0.28466426943070644,98.26756679022498,52.0,57.0,True,False,2026,14,madring,madring_gp,resolved
+NOR,McLaren,0.022416015940208922,98.11220580456556,51.0,57.0,True,False,2026,14,madring,madring_gp,resolved
+LEC,Ferrari,0.0,97.94239813149326,38.0,57.0,True,False,2026,14,madring,madring_gp,resolved
+RUS,Mercedes,0.07047297896751559,97.93992027363508,42.0,57.0,True,False,2026,14,madring,madring_gp,resolved
+LAW,Red Bull Racing,0.9345861476175514,98.94219028297346,42.0,57.0,True,False,2026,14,madring,madring_gp,resolved
+COL,Alpine,1.4565904481741825,99.47866816942785,42.0,57.0,True,False,2026,14,madring,madring_gp,resolved
+PIA,McLaren,0.8123906013731101,98.83495537658843,40.0,57.0,True,False,2026,14,madring,madring_gp,resolved
+LIN,Racing Bulls,1.8936774870063715,99.89679956812881,46.0,56.0,True,False,2026,14,madring,madring_gp,resolved
+HUL,Audi,1.870615558651977,100.05744048097552,50.0,56.0,True,False,2026,14,madring,madring_gp,resolved
+OCO,Haas F1 Team,1.5636940044327616,99.88151379233923,44.0,56.0,True,False,2026,14,madring,madring_gp,resolved
+GAS,Alpine,1.3837148954558103,99.22575200077091,40.0,56.0,True,False,2026,14,madring,madring_gp,resolved
+BOR,Audi,1.5241731861202368,99.42104082773174,38.0,56.0,True,False,2026,14,madring,madring_gp,resolved
+TSU,Racing Bulls,1.4073999507244395,99.76143478861586,39.0,56.0,True,False,2026,14,madring,madring_gp,resolved
+ALB,Williams,3.3130885359400395,101.6312751644477,49.0,56.0,True,False,2026,14,madring,madring_gp,resolved
+BEA,Haas F1 Team,1.0137377895344173,99.20730606750452,28.0,56.0,True,False,2026,14,madring,madring_gp,resolved
+ALO,Aston Martin,1.7849325948483852,100.4942120573551,35.0,55.0,True,False,2026,14,madring,madring_gp,resolved
+BOT,Cadillac,5.005179971507403,103.75075023471355,45.0,54.0,True,False,2026,14,madring,madring_gp,resolved
+SAI,Williams,3.998949203296135,102.03781340437419,26.0,43.0,True,False,2026,14,madring,madring_gp,resolved
+PER,Cadillac,4.009835820820854,103.51308015057462,22.0,31.0,True,False,2026,14,madring,madring_gp,resolved
+STR,Aston Martin,6.4215781584239835,104.20710350416638,10.0,13.0,True,False,2026,14,madring,madring_gp,resolved
+HAM,Ferrari,1.6590378363918319,100.96715244892037,3.0,6.0,True,True,2026,14,madring,madring_gp,resolved
+ANT,Mercedes,0.0,84.90666750564182,44.0,53.0,True,False,2026,13,monza,monza_gp,resolved
+RUS,Mercedes,0.7224826306710099,85.65532917327548,46.0,53.0,True,False,2026,13,monza,monza_gp,resolved
+VER,Red Bull Racing,0.572296454014591,85.47514755613891,46.0,53.0,True,False,2026,13,monza,monza_gp,resolved
+NOR,McLaren,1.2544479356010925,86.2016877120243,45.0,53.0,True,False,2026,13,monza,monza_gp,resolved
+PIA,McLaren,1.215820022212668,86.08789704047281,46.0,53.0,True,False,2026,13,monza,monza_gp,resolved
+HAM,Ferrari,1.251218279501785,86.06835428189575,46.0,53.0,True,False,2026,13,monza,monza_gp,resolved
+GAS,Alpine,1.2065588137137127,86.22104376013147,45.0,53.0,True,False,2026,13,monza,monza_gp,resolved
+LIN,Racing Bulls,1.6979088334447,86.55968647176337,45.0,53.0,True,False,2026,13,monza,monza_gp,resolved
+COL,Alpine,1.5040225474080842,86.57417893015372,46.0,53.0,True,False,2026,13,monza,monza_gp,resolved
+TSU,Racing Bulls,2.00993431351246,86.74769447045753,44.0,53.0,True,False,2026,13,monza,monza_gp,resolved
+BOR,Audi,2.0439095303685377,86.86205725880065,46.0,53.0,True,False,2026,13,monza,monza_gp,resolved
+HUL,Audi,1.5458539819550339,86.4192965883101,41.0,53.0,True,False,2026,13,monza,monza_gp,resolved
+SAI,Williams,1.574265906380603,86.43612981309973,45.0,53.0,True,False,2026,13,monza,monza_gp,resolved
+LAW,Red Bull Racing,1.51723778605448,86.313355510297,43.0,53.0,True,False,2026,13,monza,monza_gp,resolved
+BEA,Haas F1 Team,2.3329774308594438,87.24645844515356,46.0,53.0,True,False,2026,13,monza,monza_gp,resolved
+OCO,Haas F1 Team,2.1401018864200267,87.05103029877594,44.0,52.0,True,False,2026,13,monza,monza_gp,resolved
+ALB,Williams,2.1675178602920653,87.01012240022222,33.0,52.0,True,False,2026,13,monza,monza_gp,resolved
+PER,Cadillac,2.2429078322582683,88.37446152912945,43.0,52.0,True,False,2026,13,monza,monza_gp,resolved
+BOT,Cadillac,2.114779018171575,88.47242443240978,38.0,51.0,True,False,2026,13,monza,monza_gp,resolved
+STR,Aston Martin,4.390055023468378,89.30785343921471,20.0,27.0,True,False,2026,13,monza,monza_gp,resolved
+ALO,Aston Martin,1.7066718188615084,88.50187336603364,16.0,23.0,True,False,2026,13,monza,monza_gp,resolved
+LEC,Ferrari,,,0.0,2.0,False,False,2026,13,monza,monza_gp,resolved
+NOR,McLaren,0.1750110749466245,76.27196433469986,58.0,72.0,True,False,2026,12,zandvoort,zandvoort_gp,resolved
+ANT,Mercedes,0.0,76.14755312239613,58.0,72.0,True,False,2026,12,zandvoort,zandvoort_gp,resolved
+RUS,Mercedes,0.24888908733844062,76.53715701782357,57.0,72.0,True,False,2026,12,zandvoort,zandvoort_gp,resolved
+HAM,Ferrari,0.07049704806915713,76.31069455761944,59.0,72.0,True,False,2026,12,zandvoort,zandvoort_gp,resolved
+LEC,Ferrari,0.30742662118124997,76.18596344087182,57.0,72.0,True,False,2026,12,zandvoort,zandvoort_gp,resolved
+PIA,McLaren,0.42932254721128515,76.70194863548066,55.0,72.0,True,False,2026,12,zandvoort,zandvoort_gp,resolved
+LAW,Red Bull Racing,1.3816485662358247,77.12383617422886,58.0,72.0,True,False,2026,12,zandvoort,zandvoort_gp,resolved
+HUL,Audi,1.7827900789202147,77.97537177729886,55.0,71.0,True,False,2026,12,zandvoort,zandvoort_gp,resolved
+ALO,Aston Martin,2.3315076899506124,78.84829444947587,57.0,71.0,True,False,2026,12,zandvoort,zandvoort_gp,resolved
+GAS,Alpine,1.8034953334278043,78.38221832899505,54.0,71.0,True,False,2026,12,zandvoort,zandvoort_gp,resolved
+TSU,Racing Bulls,1.85487116558717,78.12496804821603,55.0,71.0,True,False,2026,12,zandvoort,zandvoort_gp,resolved
+LIN,Racing Bulls,1.9251663517338073,78.49559095413815,55.0,71.0,True,False,2026,12,zandvoort,zandvoort_gp,resolved
+BOR,Audi,1.5752809355062993,77.64496231276634,47.0,71.0,True,False,2026,12,zandvoort,zandvoort_gp,resolved
+COL,Alpine,1.7211713582550203,77.85118053152182,41.0,70.0,True,False,2026,12,zandvoort,zandvoort_gp,resolved
+PER,Cadillac,2.8687102084550986,79.29429870463677,55.0,70.0,True,False,2026,12,zandvoort,zandvoort_gp,resolved
+SAI,Williams,3.340823740593109,79.3554354848306,55.0,70.0,True,False,2026,12,zandvoort,zandvoort_gp,resolved
+ALB,Williams,3.0411066532903988,79.07601991519581,50.0,66.0,True,False,2026,12,zandvoort,zandvoort_gp,resolved
+BOT,Cadillac,3.795524561079276,79.94572935915728,48.0,61.0,True,False,2026,12,zandvoort,zandvoort_gp,resolved
+OCO,Haas F1 Team,2.5820499491409095,78.76028704958335,43.0,53.0,True,False,2026,12,zandvoort,zandvoort_gp,resolved
+STR,Aston Martin,2.8541202589940298,79.11108395138216,35.0,45.0,True,False,2026,12,zandvoort,zandvoort_gp,resolved
+BEA,Haas F1 Team,,,0.0,2.0,False,False,2026,12,zandvoort,zandvoort_gp,resolved
+VER,Red Bull Racing,,,0.0,1.0,False,False,2026,12,zandvoort,zandvoort_gp,resolved
+NOR,McLaren,0.0,84.51368687945983,62.0,70.0,True,False,2026,11,hungaroring,hungaroring_gp,resolved
+VER,Red Bull Racing,0.2902041447892003,85.19526455448637,61.0,70.0,True,False,2026,11,hungaroring,hungaroring_gp,resolved
+ANT,Mercedes,0.4442618190011274,85.15898836236445,61.0,70.0,True,False,2026,11,hungaroring,hungaroring_gp,resolved
+LEC,Ferrari,0.885829561006986,84.88739077065249,61.0,70.0,True,False,2026,11,hungaroring,hungaroring_gp,resolved
+HAM,Ferrari,0.744118855985846,84.8897611504107,61.0,70.0,True,False,2026,11,hungaroring,hungaroring_gp,resolved
+HAD,Red Bull Racing,0.8515543940132204,85.48786842821325,60.0,70.0,True,False,2026,11,hungaroring,hungaroring_gp,resolved
+RUS,Mercedes,0.6082882171356943,85.1019549066473,60.0,70.0,True,False,2026,11,hungaroring,hungaroring_gp,resolved
+LAW,Racing Bulls,1.6075626954107776,86.27065901707896,59.0,69.0,True,False,2026,11,hungaroring,hungaroring_gp,resolved
+HUL,Audi,1.7790138237553492,86.39979063305204,58.0,69.0,True,False,2026,11,hungaroring,hungaroring_gp,resolved
+LIN,Racing Bulls,2.0020378336737252,86.74678646832169,60.0,69.0,True,False,2026,11,hungaroring,hungaroring_gp,resolved
+BOR,Audi,2.8036964260655566,87.13213068407386,61.0,69.0,True,False,2026,11,hungaroring,hungaroring_gp,resolved
+GAS,Alpine,1.7003491690082768,86.02270179343384,53.0,69.0,True,False,2026,11,hungaroring,hungaroring_gp,resolved
+STR,Aston Martin,1.6370066679222077,86.85800850045295,58.0,69.0,True,False,2026,11,hungaroring,hungaroring_gp,resolved
+ALO,Aston Martin,0.5378876593441362,85.81005146522024,40.0,69.0,True,False,2026,11,hungaroring,hungaroring_gp,resolved
+COL,Alpine,2.574431271321984,87.24763336819987,59.0,68.0,True,False,2026,11,hungaroring,hungaroring_gp,resolved
+OCO,Haas F1 Team,2.5824000522764123,87.405263531204,59.0,68.0,True,False,2026,11,hungaroring,hungaroring_gp,resolved
+ALB,Williams,3.1865059537135068,87.82817639916829,60.0,68.0,True,False,2026,11,hungaroring,hungaroring_gp,resolved
+SAI,Williams,2.682389309233642,87.67816979191976,55.0,68.0,True,False,2026,11,hungaroring,hungaroring_gp,resolved
+BEA,Haas F1 Team,2.8764172953352585,87.99684622994093,59.0,68.0,True,False,2026,11,hungaroring,hungaroring_gp,resolved
+PIA,McLaren,0.4409041253701673,85.02468727852232,48.0,56.0,True,False,2026,11,hungaroring,hungaroring_gp,resolved
+PER,Cadillac,3.9113337555895953,89.35289267792359,19.0,48.0,True,False,2026,11,hungaroring,hungaroring_gp,resolved
+BOT,Cadillac,3.5561302177065244,88.97389955187093,12.0,14.0,True,False,2026,11,hungaroring,hungaroring_gp,resolved
+ANT,Mercedes,0.0,109.96299846974162,35.0,44.0,True,False,2026,10,spa,spa_gp,resolved
+LEC,Ferrari,1.1833576206877012,110.15988901494045,36.0,44.0,True,False,2026,10,spa,spa_gp,resolved
+VER,Red Bull Racing,1.3371513260461114,110.32630598912746,35.0,44.0,True,False,2026,10,spa,spa_gp,resolved
+HAM,Ferrari,1.2816087546472659,110.17228869926218,35.0,44.0,True,False,2026,10,spa,spa_gp,resolved
+PIA,McLaren,1.534377711781488,110.64610803092243,36.0,44.0,True,False,2026,10,spa,spa_gp,resolved
+HAD,Red Bull Racing,1.2761227569452842,110.23019874829691,35.0,44.0,True,False,2026,10,spa,spa_gp,resolved
+NOR,McLaren,0.31206421772949966,110.29936762658522,31.0,44.0,True,False,2026,10,spa,spa_gp,resolved
+BOR,Audi,2.1979311273858286,111.23385585480644,36.0,44.0,True,False,2026,10,spa,spa_gp,resolved
+LIN,Racing Bulls,2.1585885799343743,111.09446101852542,34.0,44.0,True,False,2026,10,spa,spa_gp,resolved
+COL,Alpine,2.9411814134931404,111.9357450274455,35.0,44.0,True,False,2026,10,spa,spa_gp,resolved
+GAS,Alpine,2.866622833437262,111.88715163812181,34.0,44.0,True,False,2026,10,spa,spa_gp,resolved
+LAW,Racing Bulls,2.9841031964612483,112.02017724947106,34.0,44.0,True,False,2026,10,spa,spa_gp,resolved
+HUL,Audi,3.126326617866866,112.16145875666697,36.0,44.0,True,False,2026,10,spa,spa_gp,resolved
+BEA,Haas F1 Team,3.1698723598189815,112.09344679251937,36.0,44.0,True,False,2026,10,spa,spa_gp,resolved
+ALB,Williams,3.6896411728905036,112.69258915269124,36.0,44.0,True,False,2026,10,spa,spa_gp,resolved
+SAI,Williams,3.1819952131207856,112.24253800076156,33.0,44.0,True,False,2026,10,spa,spa_gp,resolved
+OCO,Haas F1 Team,3.5259982406110595,112.44184246600095,35.0,44.0,True,False,2026,10,spa,spa_gp,resolved
+BOT,Cadillac,4.093114139474935,113.56129666362267,28.0,43.0,True,False,2026,10,spa,spa_gp,resolved
+ALO,Aston Martin,5.14618677295293,115.31241506981677,22.0,42.0,True,False,2026,10,spa,spa_gp,resolved
+STR,Aston Martin,6.758420087315002,115.84231260400084,15.0,25.0,True,False,2026,10,spa,spa_gp,resolved
+PER,Cadillac,3.7527706156560328,114.17230295985878,6.0,13.0,True,False,2026,10,spa,spa_gp,resolved
+RUS,Mercedes,,,0.0,1.0,False,False,2026,10,spa,spa_gp,resolved
+LEC,Ferrari,0.2586165451379827,93.83273944990084,40.0,52.0,True,False,2026,9,silverstone,silverstone_gp,resolved
+RUS,Mercedes,0.5793958432824411,94.48742122650894,37.0,52.0,True,False,2026,9,silverstone,silverstone_gp,resolved
+HAM,Ferrari,0.6331127706659316,94.11093531799803,39.0,52.0,True,False,2026,9,silverstone,silverstone_gp,resolved
+NOR,McLaren,0.5555917192838251,94.72316259087586,39.0,52.0,True,False,2026,9,silverstone,silverstone_gp,resolved
+HAD,Red Bull Racing,1.0514201387208573,94.72611654024868,37.0,52.0,True,False,2026,9,silverstone,silverstone_gp,resolved
+LAW,Racing Bulls,1.4139773857377946,95.6360276999068,39.0,52.0,True,False,2026,9,silverstone,silverstone_gp,resolved
+LIN,Racing Bulls,1.391996237076654,95.59262557896963,38.0,52.0,True,False,2026,9,silverstone,silverstone_gp,resolved
+BOR,Audi,1.6149623453649866,95.66279100649477,38.0,52.0,True,False,2026,9,silverstone,silverstone_gp,resolved
+COL,Alpine,1.8732481705771136,95.75654071923593,39.0,52.0,True,False,2026,9,silverstone,silverstone_gp,resolved
+GAS,Alpine,1.9591109896036158,95.66566487702207,38.0,52.0,True,False,2026,9,silverstone,silverstone_gp,resolved
+PIA,McLaren,1.7757706293570266,94.92181898489768,35.0,52.0,True,False,2026,9,silverstone,silverstone_gp,resolved
+BEA,Haas F1 Team,2.70554727107114,96.78592426936285,38.0,52.0,True,False,2026,9,silverstone,silverstone_gp,resolved
+OCO,Haas F1 Team,2.724747108967364,96.51214556061689,39.0,52.0,True,False,2026,9,silverstone,silverstone_gp,resolved
+PER,Cadillac,3.2898604035974017,96.99059764409718,39.0,52.0,True,False,2026,9,silverstone,silverstone_gp,resolved
+ANT,Mercedes,0.0,94.0765451724166,35.0,52.0,True,False,2026,9,silverstone,silverstone_gp,resolved
+BOT,Cadillac,3.566193419867787,97.65382406140877,38.0,52.0,True,False,2026,9,silverstone,silverstone_gp,resolved
+SAI,Williams,2.5901789237953494,96.49380577235385,39.0,52.0,True,False,2026,9,silverstone,silverstone_gp,resolved
+ALO,Aston Martin,4.804261358132919,98.73185988684595,38.0,51.0,True,False,2026,9,silverstone,silverstone_gp,resolved
+STR,Aston Martin,5.041408362864345,98.90768479272731,36.0,51.0,True,False,2026,9,silverstone,silverstone_gp,resolved
+VER,Red Bull Racing,0.7208833701874511,94.13834324074233,39.0,47.0,True,False,2026,9,silverstone,silverstone_gp,resolved
+ALB,Williams,2.295305665552249,96.08095239409461,25.0,43.0,True,False,2026,9,silverstone,silverstone_gp,resolved
+HUL,Audi,2.06630378166939,95.97074208025282,29.0,37.0,True,False,2026,9,silverstone,silverstone_gp,resolved
+RUS,Mercedes,0.09222307530237117,71.6562311601449,61.0,71.0,True,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+VER,Red Bull Racing,0.005806223468709959,71.74825911235597,61.0,71.0,True,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+ANT,Mercedes,0.08326639808497305,71.67387165328569,64.0,71.0,True,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+PIA,McLaren,0.3351994162609202,71.89148235977193,61.0,71.0,True,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+HAM,Ferrari,0.0,71.88511149172884,60.0,71.0,True,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+HAD,Red Bull Racing,0.03658313364735477,72.00624495400719,61.0,71.0,True,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+NOR,McLaren,0.4105586834827477,71.96032048716847,62.0,71.0,True,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+LEC,Ferrari,0.31462954081251837,71.82642090762558,52.0,71.0,True,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+LAW,Racing Bulls,1.1491984378097584,73.0575180717889,60.0,70.0,True,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+LIN,Racing Bulls,1.2931604337789508,72.88304337881664,60.0,70.0,True,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+BOR,Audi,0.9077165127432494,73.21893177422757,60.0,70.0,True,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+HUL,Audi,0.8536913448022148,72.99652134195034,60.0,70.0,True,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+GAS,Alpine,0.3781671076654618,72.97219123948504,57.0,70.0,True,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+BEA,Haas F1 Team,2.0566031085511725,73.37460850658694,61.0,70.0,True,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+COL,Alpine,1.604714417429534,73.35388055510992,58.0,70.0,True,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+OCO,Haas F1 Team,2.060803452253168,73.81165258430943,58.0,69.0,True,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+ALB,Williams,2.2481560665790568,74.07152884109075,60.0,69.0,True,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+ALO,Aston Martin,1.7908602577187764,74.9731366400642,61.0,68.0,True,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+STR,Aston Martin,2.503291557505065,75.22800953632165,40.0,45.0,True,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+SAI,Williams,1.7806408360150812,74.26601422019974,20.0,24.0,True,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+PER,Cadillac,2.741786798916735,74.86837529691212,2.0,4.0,True,True,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+BOT,Cadillac,,,0.0,2.0,False,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+HAM,Ferrari,0.0,81.37147514480405,55.0,66.0,True,False,2026,7,catalunya,catalunya_since_2023,resolved
+RUS,Mercedes,0.9418236472359496,82.16364804472283,54.0,66.0,True,False,2026,7,catalunya,catalunya_since_2023,resolved
+NOR,McLaren,1.30543023546781,82.27385896721042,54.0,66.0,True,False,2026,7,catalunya,catalunya_since_2023,resolved
+VER,Red Bull Racing,1.013007418475027,82.02757199924591,56.0,66.0,True,False,2026,7,catalunya,catalunya_since_2023,resolved
+PIA,McLaren,1.736474748295933,82.81046866558414,55.0,66.0,True,False,2026,7,catalunya,catalunya_since_2023,resolved
+HAD,Red Bull Racing,1.5820413704836795,82.59791587110232,37.0,65.0,True,False,2026,7,catalunya,catalunya_since_2023,resolved
+GAS,Alpine,3.2130618905598567,84.18286948873714,56.0,65.0,True,False,2026,7,catalunya,catalunya_since_2023,resolved
+LAW,Racing Bulls,3.0762515092700227,84.32810509491141,53.0,65.0,True,False,2026,7,catalunya,catalunya_since_2023,resolved
+LIN,Racing Bulls,3.1721037352724153,84.28727096702956,54.0,65.0,True,False,2026,7,catalunya,catalunya_since_2023,resolved
+COL,Alpine,3.202045954419802,84.33406713412246,54.0,65.0,True,False,2026,7,catalunya,catalunya_since_2023,resolved
+BOR,Audi,2.9090475090735026,83.82685624912149,35.0,64.0,True,False,2026,7,catalunya,catalunya_since_2023,resolved
+SAI,Williams,3.679725552105211,84.57454191513321,50.0,64.0,True,False,2026,7,catalunya,catalunya_since_2023,resolved
+OCO,Haas F1 Team,2.3732276183270073,84.48658231341992,36.0,64.0,True,False,2026,7,catalunya,catalunya_since_2023,resolved
+PER,Cadillac,4.412115130657526,85.49513422412987,46.0,63.0,True,False,2026,7,catalunya,catalunya_since_2023,resolved
+LEC,Ferrari,1.3604334502211657,82.69766077177715,55.0,62.0,True,False,2026,7,catalunya,catalunya_since_2023,resolved
+ANT,Mercedes,1.0680076296689833,82.1121542317982,53.0,62.0,True,False,2026,7,catalunya,catalunya_since_2023,resolved
+BEA,Haas F1 Team,3.4679345843747313,84.54151784486142,52.0,60.0,True,False,2026,7,catalunya,catalunya_since_2023,resolved
+ALB,Williams,2.0931032190116525,83.66132443745373,21.0,55.0,True,False,2026,7,catalunya,catalunya_since_2023,resolved
+ALO,Aston Martin,5.717382259996981,86.26635070071642,34.0,38.0,True,False,2026,7,catalunya,catalunya_since_2023,resolved
+HUL,Audi,3.579686397641325,84.64288016383371,25.0,29.0,True,False,2026,7,catalunya,catalunya_since_2023,resolved
+BOT,Cadillac,5.432023917549728,86.68072346110725,12.0,15.0,True,False,2026,7,catalunya,catalunya_since_2023,resolved
+STR,Aston Martin,6.08707741632513,86.29481720961726,3.0,5.0,True,True,2026,7,catalunya,catalunya_since_2023,resolved
+ANT,Mercedes,0.0,76.32486336698815,52.0,78.0,True,False,2026,6,monaco,monaco_gp,resolved
+HAM,Ferrari,0.6921144353024289,76.99371142683604,61.0,78.0,True,False,2026,6,monaco,monaco_gp,resolved
+HAD,Red Bull Racing,1.6347670807167844,77.77568375060264,60.0,78.0,True,False,2026,6,monaco,monaco_gp,resolved
+PIA,McLaren,1.5950586793637882,78.17840783993803,60.0,78.0,True,False,2026,6,monaco,monaco_gp,resolved
+LAW,Racing Bulls,2.0343210198194726,78.56126611846959,54.0,78.0,True,False,2026,6,monaco,monaco_gp,resolved
+LIN,Racing Bulls,2.1922491271311344,78.96997938168057,40.0,78.0,True,False,2026,6,monaco,monaco_gp,resolved
+GAS,Alpine,1.7563425069350558,78.31356306221268,56.0,78.0,True,False,2026,6,monaco,monaco_gp,resolved
+ALB,Williams,2.3351845763594525,78.95674212368927,51.0,78.0,True,False,2026,6,monaco,monaco_gp,resolved
+OCO,Haas F1 Team,2.0069162238996654,78.02437619102389,39.0,78.0,True,False,2026,6,monaco,monaco_gp,resolved
+ALO,Aston Martin,2.5143750875058544,79.24997337418887,55.0,78.0,True,False,2026,6,monaco,monaco_gp,resolved
+BOR,Audi,2.014563693405961,78.15767434755733,36.0,78.0,True,False,2026,6,monaco,monaco_gp,resolved
+RUS,Mercedes,1.17930322173558,77.73230347192478,58.0,78.0,True,False,2026,6,monaco,monaco_gp,resolved
+HUL,Audi,2.226727798376004,78.68315424154774,37.0,78.0,True,False,2026,6,monaco,monaco_gp,resolved
+COL,Alpine,2.2296648291526537,78.79261776728039,39.0,78.0,True,False,2026,6,monaco,monaco_gp,resolved
+PER,Cadillac,2.369565371184791,79.05451300639437,42.0,78.0,True,False,2026,6,monaco,monaco_gp,resolved
+SAI,Williams,2.5232956624002583,79.17284143705778,52.0,71.0,True,False,2026,6,monaco,monaco_gp,resolved
+LEC,Ferrari,0.6487384487392234,77.06566741200558,56.0,65.0,True,False,2026,6,monaco,monaco_gp,resolved
+STR,Aston Martin,2.5623331369577045,79.33126333110778,51.0,57.0,True,False,2026,6,monaco,monaco_gp,resolved
+NOR,McLaren,1.8570032595185495,78.4731473567313,42.0,44.0,True,False,2026,6,monaco,monaco_gp,resolved
+BEA,Haas F1 Team,3.342868802698405,79.80755022169029,21.0,28.0,True,False,2026,6,monaco,monaco_gp,resolved
+BOT,Cadillac,4.717555109904197,81.3726193366863,13.0,16.0,True,False,2026,6,monaco,monaco_gp,resolved
+VER,Red Bull Racing,,,0.0,1.0,False,False,2026,6,monaco,monaco_gp,resolved
+ANT,Mercedes,0.0,75.45500977938697,53.0,68.0,True,False,2026,5,villeneuve,villeneuve_gp,resolved
+HAM,Ferrari,0.21681738785407845,75.66580332561416,52.0,68.0,True,False,2026,5,villeneuve,villeneuve_gp,resolved
+VER,Red Bull Racing,0.37027935252484667,75.90419152812848,53.0,68.0,True,False,2026,5,villeneuve,villeneuve_gp,resolved
+LEC,Ferrari,0.6421738573943969,76.25057958535531,55.0,68.0,True,False,2026,5,villeneuve,villeneuve_gp,resolved
+HAD,Red Bull Racing,0.5153204960624151,76.19493129697818,49.0,67.0,True,False,2026,5,villeneuve,villeneuve_gp,resolved
+COL,Alpine,1.877893249371212,77.05601432066531,50.0,67.0,True,False,2026,5,villeneuve,villeneuve_gp,resolved
+LAW,Racing Bulls,1.358775027686363,77.46557075098724,48.0,67.0,True,False,2026,5,villeneuve,villeneuve_gp,resolved
+GAS,Alpine,2.124538178763956,77.38516020871988,48.0,67.0,True,False,2026,5,villeneuve,villeneuve_gp,resolved
+SAI,Williams,1.7063708912621252,77.15993046985845,52.0,67.0,True,False,2026,5,villeneuve,villeneuve_gp,resolved
+BEA,Haas F1 Team,1.7056836607819292,77.37801617181297,51.0,67.0,True,False,2026,5,villeneuve,villeneuve_gp,resolved
+PIA,McLaren,1.4295119795405213,76.96892223383499,45.0,66.0,True,False,2026,5,villeneuve,villeneuve_gp,resolved
+HUL,Audi,1.8659754609907253,77.45449490091332,46.0,66.0,True,False,2026,5,villeneuve,villeneuve_gp,resolved
+BOR,Audi,2.141694390443405,77.70553193287843,47.0,66.0,True,False,2026,5,villeneuve,villeneuve_gp,resolved
+OCO,Haas F1 Team,2.737897589590247,78.50661440967468,45.0,66.0,True,False,2026,5,villeneuve,villeneuve_gp,resolved
+STR,Aston Martin,4.413205851351734,80.31473916016016,40.0,64.0,True,False,2026,5,villeneuve,villeneuve_gp,resolved
+BOT,Cadillac,3.6601721056758123,79.37920445360318,41.0,64.0,True,False,2026,5,villeneuve,villeneuve_gp,resolved
+PER,Cadillac,3.0058997897850617,78.56616223066511,25.0,40.0,True,False,2026,5,villeneuve,villeneuve_gp,resolved
+NOR,McLaren,1.7188346529718501,77.07870041732602,24.0,39.0,True,False,2026,5,villeneuve,villeneuve_gp,resolved
+RUS,Mercedes,0.33837037735727904,76.27672423157716,24.0,30.0,True,False,2026,5,villeneuve,villeneuve_gp,resolved
+ALO,Aston Martin,4.768474570979407,80.4663551867191,15.0,24.0,True,False,2026,5,villeneuve,villeneuve_gp,resolved
+ALB,Williams,2.9086262185933265,78.92317422721257,8.0,12.0,True,False,2026,5,villeneuve,villeneuve_gp,resolved
+LIN,Racing Bulls,,,0.0,0.0,False,False,2026,5,villeneuve,villeneuve_gp,resolved
+ANT,Mercedes,0.0687308058326721,92.49302650197325,44.0,57.0,True,False,2026,4,,,unresolved
+NOR,McLaren,0.0,92.65852277144846,44.0,57.0,True,False,2026,4,,,unresolved
+PIA,McLaren,0.4586404734711209,93.247938348869,44.0,57.0,True,False,2026,4,,,unresolved
+RUS,Mercedes,0.9510939060919696,93.42690336798293,43.0,57.0,True,False,2026,4,,,unresolved
+VER,Red Bull Racing,1.4149030121557757,93.55448683572985,46.0,57.0,True,False,2026,4,,,unresolved
+HAM,Ferrari,0.8402032673809998,93.57443402132462,44.0,57.0,True,False,2026,4,,,unresolved
+COL,Alpine,1.1277432980934918,93.9086529568858,44.0,57.0,True,False,2026,4,,,unresolved
+LEC,Ferrari,0.7467888097674944,92.9991427787143,44.0,57.0,True,False,2026,4,,,unresolved
+SAI,Williams,1.8016968493769383,94.2256316051855,44.0,57.0,True,False,2026,4,,,unresolved
+ALB,Williams,2.060215198743947,94.36345897680135,44.0,57.0,True,False,2026,4,,,unresolved
+BEA,Haas F1 Team,1.9109872742424443,94.49005512363141,43.0,56.0,True,False,2026,4,,,unresolved
+BOR,Audi,1.8822361551973046,94.85179565205061,43.0,56.0,True,False,2026,4,,,unresolved
+OCO,Haas F1 Team,2.042808892262073,94.86149262175549,43.0,56.0,True,False,2026,4,,,unresolved
+LIN,Racing Bulls,2.56873069666932,95.05000979417893,41.0,56.0,True,False,2026,4,,,unresolved
+ALO,Aston Martin,2.73804174543271,96.32444147049948,41.0,56.0,True,False,2026,4,,,unresolved
+PER,Cadillac,3.307897733126893,96.40475911658248,43.0,56.0,True,False,2026,4,,,unresolved
+STR,Aston Martin,1.617841922637865,95.59359571573219,41.0,56.0,True,False,2026,4,,,unresolved
+BOT,Cadillac,3.223745267994218,96.7719445668029,35.0,55.0,True,False,2026,4,,,unresolved
+HUL,Audi,1.3284380972379353,94.72988361045131,2.0,7.0,True,True,2026,4,,,unresolved
+LAW,Racing Bulls,1.7524599519489072,95.21600678006813,3.0,6.0,True,True,2026,4,,,unresolved
+GAS,Alpine,1.6714841154829259,95.0630664545738,3.0,5.0,True,True,2026,4,,,unresolved
+HAD,Red Bull Racing,3.154141570088953,95.21633675476403,3.0,5.0,True,True,2026,4,,,unresolved
+ANT,Mercedes,0.0,93.8276018455504,46.0,53.0,True,False,2026,3,suzuka,suzuka_gp,resolved
+PIA,McLaren,0.21310916641546385,94.07967931636946,44.0,53.0,True,False,2026,3,suzuka,suzuka_gp,resolved
+LEC,Ferrari,0.37180170249430944,94.20549238496659,44.0,53.0,True,False,2026,3,suzuka,suzuka_gp,resolved
+RUS,Mercedes,0.1488338065454684,94.495740518268,45.0,53.0,True,False,2026,3,suzuka,suzuka_gp,resolved
+NOR,McLaren,0.5237677661127975,94.3659086030341,44.0,53.0,True,False,2026,3,suzuka,suzuka_gp,resolved
+HAM,Ferrari,0.5141768593803846,94.89412984831675,46.0,53.0,True,False,2026,3,suzuka,suzuka_gp,resolved
+GAS,Alpine,0.9285376354191897,95.34420904783772,46.0,53.0,True,False,2026,3,suzuka,suzuka_gp,resolved
+VER,Red Bull Racing,0.9205568417928447,95.53822618173442,46.0,53.0,True,False,2026,3,suzuka,suzuka_gp,resolved
+LAW,Racing Bulls,1.7458389603539075,95.10774328145753,44.0,53.0,True,False,2026,3,suzuka,suzuka_gp,resolved
+OCO,Haas F1 Team,1.6850263945051864,95.17655542150631,43.0,53.0,True,False,2026,3,suzuka,suzuka_gp,resolved
+HUL,Audi,1.5698059003401994,95.97804464571286,45.0,53.0,True,False,2026,3,suzuka,suzuka_gp,resolved
+HAD,Red Bull Racing,1.6267371598799798,96.04441430105432,43.0,53.0,True,False,2026,3,suzuka,suzuka_gp,resolved
+BOR,Audi,1.8487075193202145,96.11867506966308,45.0,53.0,True,False,2026,3,suzuka,suzuka_gp,resolved
+LIN,Racing Bulls,1.795235486053798,95.99196373641014,43.0,53.0,True,False,2026,3,suzuka,suzuka_gp,resolved
+SAI,Williams,2.088744254394399,96.44885732974912,45.0,53.0,True,False,2026,3,suzuka,suzuka_gp,resolved
+COL,Alpine,1.9576030407145453,96.36649598996435,43.0,53.0,True,False,2026,3,suzuka,suzuka_gp,resolved
+PER,Cadillac,3.1406415177155083,96.9587164597427,45.0,53.0,True,False,2026,3,suzuka,suzuka_gp,resolved
+ALO,Aston Martin,2.8395287184310547,97.9936920926091,44.0,52.0,True,False,2026,3,suzuka,suzuka_gp,resolved
+BOT,Cadillac,1.9864665202862142,97.06791039362201,24.0,52.0,True,False,2026,3,suzuka,suzuka_gp,resolved
+ALB,Williams,2.0462221626906683,96.79883570485323,24.0,51.0,True,False,2026,3,suzuka,suzuka_gp,resolved
+STR,Aston Martin,3.390417623461232,98.38951708297996,21.0,30.0,True,False,2026,3,suzuka,suzuka_gp,resolved
+BEA,Haas F1 Team,1.8305323822469148,96.66097993258002,17.0,21.0,True,False,2026,3,suzuka,suzuka_gp,resolved
+ANT,Mercedes,0.0,96.58806680549542,47.0,56.0,True,False,2026,2,shanghai,shanghai_gp,resolved
+RUS,Mercedes,0.036646378651369105,96.63123720294936,46.0,56.0,True,False,2026,2,shanghai,shanghai_gp,resolved
+HAM,Ferrari,0.48450518245790875,96.98120419528561,47.0,56.0,True,False,2026,2,shanghai,shanghai_gp,resolved
+LEC,Ferrari,0.45484736641579104,97.08370517680125,47.0,56.0,True,False,2026,2,shanghai,shanghai_gp,resolved
+BEA,Haas F1 Team,1.1102640681153275,97.68209485067334,46.0,56.0,True,False,2026,2,shanghai,shanghai_gp,resolved
+GAS,Alpine,1.2273198755258363,98.23661840674734,46.0,56.0,True,False,2026,2,shanghai,shanghai_gp,resolved
+LAW,Racing Bulls,1.6510036602782066,98.48475890800005,44.0,56.0,True,False,2026,2,shanghai,shanghai_gp,resolved
+HAD,Red Bull Racing,1.67587097546469,98.3496849260745,45.0,56.0,True,False,2026,2,shanghai,shanghai_gp,resolved
+SAI,Williams,2.3480134842452287,98.96683567685272,44.0,55.0,True,False,2026,2,shanghai,shanghai_gp,resolved
+COL,Alpine,1.3680930288970785,98.3323942404087,44.0,55.0,True,False,2026,2,shanghai,shanghai_gp,resolved
+HUL,Audi,1.4614205713415203,98.30051355177882,40.0,55.0,True,False,2026,2,shanghai,shanghai_gp,resolved
+LIN,Racing Bulls,1.6688326615536653,98.48767210269116,41.0,55.0,True,False,2026,2,shanghai,shanghai_gp,resolved
+BOT,Cadillac,3.375084388028597,99.934130224718,45.0,55.0,True,False,2026,2,shanghai,shanghai_gp,resolved
+OCO,Haas F1 Team,1.7713431274537896,98.33100207015444,40.0,55.0,True,False,2026,2,shanghai,shanghai_gp,resolved
+PER,Cadillac,3.4104452103042178,100.01111008255151,43.0,55.0,True,False,2026,2,shanghai,shanghai_gp,resolved
+VER,Red Bull Racing,1.3636318572241635,98.05611284135126,34.0,45.0,True,False,2026,2,shanghai,shanghai_gp,resolved
+ALO,Aston Martin,3.970597932163244,100.71628904117823,22.0,32.0,True,False,2026,2,shanghai,shanghai_gp,resolved
+STR,Aston Martin,4.608986501791321,101.1165741626818,8.0,10.0,True,False,2026,2,shanghai,shanghai_gp,resolved
+PIA,McLaren,,,0.0,0.0,False,False,2026,2,shanghai,shanghai_gp,resolved
+NOR,McLaren,,,0.0,0.0,False,False,2026,2,shanghai,shanghai_gp,resolved
+BOR,Audi,,,0.0,0.0,False,False,2026,2,shanghai,shanghai_gp,resolved
+ALB,Williams,,,0.0,0.0,False,False,2026,2,shanghai,shanghai_gp,resolved
+RUS,Mercedes,0.07816588029086802,83.11089079121199,50.0,58.0,True,False,2026,1,albert_park,albert_park_gp,resolved
+ANT,Mercedes,0.0,83.07401752764837,48.0,58.0,True,False,2026,1,albert_park,albert_park_gp,resolved
+LEC,Ferrari,0.1970948119692224,83.19763273346003,48.0,58.0,True,False,2026,1,albert_park,albert_park_gp,resolved
+HAM,Ferrari,0.059741759712537146,83.35399325555296,48.0,58.0,True,False,2026,1,albert_park,albert_park_gp,resolved
+NOR,McLaren,0.16674124823659042,83.52284907398075,47.0,58.0,True,False,2026,1,albert_park,albert_park_gp,resolved
+VER,Red Bull Racing,0.196568878863161,83.51158070688538,45.0,58.0,True,False,2026,1,albert_park,albert_park_gp,resolved
+BEA,Haas F1 Team,1.5964884528875558,84.75656880684487,49.0,57.0,True,False,2026,1,albert_park,albert_park_gp,resolved
+LIN,Racing Bulls,1.7289991125323212,84.8760760430251,47.0,57.0,True,False,2026,1,albert_park,albert_park_gp,resolved
+BOR,Audi,1.6586320943636679,84.69480464838854,49.0,57.0,True,False,2026,1,albert_park,albert_park_gp,resolved
+GAS,Alpine,2.0620991266416695,85.20621925390309,49.0,57.0,True,False,2026,1,albert_park,albert_park_gp,resolved
+OCO,Haas F1 Team,2.091412984833383,85.30429623758718,49.0,57.0,True,False,2026,1,albert_park,albert_park_gp,resolved
+ALB,Williams,1.8948088938142433,85.30508604709524,48.0,57.0,True,False,2026,1,albert_park,albert_park_gp,resolved
+LAW,Racing Bulls,1.2375311185412698,85.1023056449275,45.0,57.0,True,False,2026,1,albert_park,albert_park_gp,resolved
+COL,Alpine,1.9686564685917034,85.2325714228407,32.0,56.0,True,False,2026,1,albert_park,albert_park_gp,resolved
+SAI,Williams,2.1353928221478213,85.39250327985516,39.0,56.0,True,False,2026,1,albert_park,albert_park_gp,resolved
+PER,Cadillac,4.168262225500655,87.4005520667319,42.0,55.0,True,False,2026,1,albert_park,albert_park_gp,resolved
+STR,Aston Martin,3.4616984391132775,87.25617443692336,28.0,43.0,True,False,2026,1,albert_park,albert_park_gp,resolved
+ALO,Aston Martin,3.619084961233483,87.4679773548798,16.0,22.0,True,False,2026,1,albert_park,albert_park_gp,resolved
+BOT,Cadillac,5.048912405826101,87.79907714135491,11.0,16.0,True,False,2026,1,albert_park,albert_park_gp,resolved
+HAD,Red Bull Racing,2.080220525185851,85.37393606725732,9.0,11.0,True,False,2026,1,albert_park,albert_park_gp,resolved
+PIA,McLaren,,,0.0,0.0,False,False,2026,1,albert_park,albert_park_gp,resolved
+HUL,Audi,,,0.0,0.0,False,False,2026,1,albert_park,albert_park_gp,resolved

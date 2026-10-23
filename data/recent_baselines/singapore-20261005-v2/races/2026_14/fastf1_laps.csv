@@ -1,0 +1,1107 @@
+Year,Event,Round,Session,Driver,DriverNumber,Team,LapNumber,Stint,Compound,TyreLife,FreshTyre,LapTimeSeconds,Sector1Seconds,Sector2Seconds,Sector3Seconds,SpeedI1,SpeedI2,SpeedFL,SpeedST,IsPersonalBest,IsAccurate,TrackStatus,Deleted,PitOut,PitIn,LapStartTimeSeconds,CleanPushLap
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,1.0,1.0,MEDIUM,1.0,True,101.813,,36.257,32.846,201.0,251.0,222.0,298.0,False,False,12,False,False,False,3493.809,False
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,2.0,1.0,MEDIUM,2.0,True,99.404,30.504,35.647,33.253,218.0,247.0,217.0,295.0,True,True,1,False,False,False,3595.878,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,3.0,1.0,MEDIUM,3.0,True,100.111,30.661,36.019,33.431,218.0,250.0,220.0,294.0,False,True,1,False,False,False,3695.282,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,4.0,1.0,MEDIUM,4.0,True,100.119,30.37,36.213,33.536,220.0,249.0,220.0,287.0,False,True,1,False,False,False,3795.393,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,5.0,1.0,MEDIUM,5.0,True,99.764,30.385,36.044,33.335,218.0,250.0,220.0,291.0,False,True,12,False,False,False,3895.512,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,6.0,1.0,MEDIUM,6.0,True,99.345,30.389,35.842,33.114,223.0,252.0,221.0,295.0,True,True,21,False,False,False,3995.276,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,7.0,1.0,MEDIUM,7.0,True,99.498,30.334,35.872,33.292,222.0,252.0,221.0,294.0,False,True,1,False,False,False,4094.621,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,8.0,1.0,MEDIUM,8.0,True,99.343,30.307,35.78,33.256,222.0,252.0,220.0,299.0,True,True,1,False,False,False,4194.119,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,9.0,1.0,MEDIUM,9.0,True,99.122,30.233,35.709,33.18,222.0,252.0,220.0,296.0,True,True,1,False,False,False,4293.462,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,10.0,1.0,MEDIUM,10.0,True,99.091,30.297,35.713,33.081,220.0,253.0,222.0,292.0,True,True,1,False,False,False,4392.584,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,11.0,1.0,MEDIUM,11.0,True,99.229,30.362,35.794,33.073,222.0,254.0,222.0,292.0,False,True,1,False,False,False,4491.675,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,12.0,1.0,MEDIUM,12.0,True,99.295,30.309,35.766,33.22,220.0,252.0,221.0,292.0,False,True,1,False,False,False,4590.904,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,13.0,1.0,MEDIUM,13.0,True,99.422,30.484,35.759,33.179,220.0,255.0,219.0,292.0,False,True,1,False,False,False,4690.199,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,14.0,1.0,MEDIUM,14.0,True,100.33,30.384,35.89,34.056,222.0,253.0,196.0,291.0,False,False,126,False,False,False,4789.621,False
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,15.0,1.0,MEDIUM,15.0,True,146.124,50.861,48.134,47.129,196.0,210.0,,107.0,False,False,671,False,False,True,4889.951,False
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,16.0,2.0,HARD,1.0,True,126.51,57.867,36.076,32.567,211.0,251.0,224.0,243.0,False,False,1,False,True,False,5036.075,False
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,17.0,2.0,HARD,2.0,True,98.286,29.899,35.7,32.687,220.0,251.0,224.0,291.0,True,True,1,False,False,False,5162.585,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,18.0,2.0,HARD,3.0,True,97.96,29.923,35.485,32.552,221.0,256.0,223.0,295.0,True,True,1,False,False,False,5260.871,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,19.0,2.0,HARD,4.0,True,98.225,29.86,35.638,32.727,222.0,255.0,222.0,294.0,False,True,1,False,False,False,5358.831,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,20.0,2.0,HARD,5.0,True,97.985,29.822,35.479,32.684,224.0,252.0,224.0,296.0,False,True,1,False,False,False,5457.056,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,21.0,2.0,HARD,6.0,True,98.239,29.799,35.645,32.795,221.0,252.0,222.0,295.0,False,True,1,False,False,False,5555.041,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,22.0,2.0,HARD,7.0,True,98.167,29.921,35.516,32.73,221.0,252.0,221.0,294.0,False,True,1,False,False,False,5653.28,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,23.0,2.0,HARD,8.0,True,98.176,29.841,35.414,32.921,222.0,256.0,221.0,292.0,False,True,1,False,False,False,5751.447,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,24.0,2.0,HARD,9.0,True,98.051,29.859,35.478,32.714,225.0,256.0,222.0,296.0,False,True,1,False,False,False,5849.623,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,25.0,2.0,HARD,10.0,True,98.521,29.876,35.648,32.997,223.0,254.0,224.0,298.0,False,True,1,False,False,False,5947.674,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,26.0,2.0,HARD,11.0,True,98.898,29.824,35.892,33.182,219.0,249.0,222.0,295.0,False,True,1,False,False,False,6046.195,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,27.0,2.0,HARD,12.0,True,99.035,29.957,35.969,33.109,218.0,251.0,223.0,286.0,False,True,1,False,False,False,6145.093,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,28.0,2.0,HARD,13.0,True,98.869,29.77,35.886,33.213,219.0,255.0,220.0,295.0,False,True,1,False,False,False,6244.128,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,29.0,2.0,HARD,14.0,True,97.709,29.409,35.379,32.921,222.0,253.0,223.0,304.0,True,True,1,False,False,False,6342.997,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,30.0,2.0,HARD,15.0,True,98.237,29.845,35.457,32.935,223.0,251.0,225.0,301.0,False,True,1,False,False,False,6440.706,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,31.0,2.0,HARD,16.0,True,97.611,29.493,35.325,32.793,223.0,253.0,223.0,301.0,True,True,1,False,False,False,6538.943,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,32.0,2.0,HARD,17.0,True,98.124,29.646,35.309,33.169,223.0,252.0,222.0,301.0,False,True,1,False,False,False,6636.554,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,33.0,2.0,HARD,18.0,True,97.473,29.659,35.328,32.486,223.0,254.0,223.0,304.0,True,True,1,False,False,False,6734.678,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,34.0,2.0,HARD,19.0,True,97.133,29.481,35.232,32.42,224.0,253.0,224.0,299.0,True,True,1,False,False,False,6832.151,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,35.0,2.0,HARD,20.0,True,97.16,29.4,35.265,32.495,224.0,255.0,224.0,304.0,False,True,1,False,False,False,6929.284,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,36.0,2.0,HARD,21.0,True,97.029,29.513,35.038,32.478,223.0,254.0,223.0,305.0,True,True,1,False,False,False,7026.444,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,37.0,2.0,HARD,22.0,True,97.705,29.519,35.293,32.893,222.0,249.0,223.0,305.0,False,True,1,False,False,False,7123.473,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,38.0,2.0,HARD,23.0,True,96.897,29.541,34.937,32.419,221.0,256.0,224.0,306.0,True,True,1,False,False,False,7221.178,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,39.0,2.0,HARD,24.0,True,96.951,29.349,35.098,32.504,225.0,256.0,223.0,306.0,False,True,1,False,False,False,7318.075,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,40.0,2.0,HARD,25.0,True,96.796,29.31,34.943,32.543,223.0,257.0,223.0,304.0,True,True,1,False,False,False,7415.026,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,41.0,2.0,HARD,26.0,True,97.208,29.452,35.025,32.731,222.0,256.0,223.0,307.0,False,True,1,False,False,False,7511.822,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,42.0,2.0,HARD,27.0,True,97.067,29.38,34.974,32.713,225.0,259.0,225.0,305.0,False,True,1,False,False,False,7609.03,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,43.0,2.0,HARD,28.0,True,97.149,29.287,35.163,32.699,223.0,260.0,225.0,305.0,False,True,1,False,False,False,7706.097,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,44.0,2.0,HARD,29.0,True,97.09,29.311,35.112,32.667,222.0,256.0,225.0,289.0,False,True,1,False,False,False,7803.246,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,45.0,2.0,HARD,30.0,True,97.126,29.537,34.905,32.684,222.0,258.0,224.0,300.0,False,True,1,False,False,False,7900.336,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,46.0,2.0,HARD,31.0,True,97.333,29.408,35.145,32.78,223.0,256.0,224.0,303.0,False,True,1,False,False,False,7997.462,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,47.0,2.0,HARD,32.0,True,97.327,29.548,35.002,32.777,222.0,255.0,225.0,310.0,False,True,1,False,False,False,8094.795,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,48.0,2.0,HARD,33.0,True,97.347,29.288,35.115,32.944,221.0,257.0,224.0,303.0,False,True,1,False,False,False,8192.122,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,49.0,2.0,HARD,34.0,True,96.999,29.425,34.934,32.64,222.0,256.0,225.0,280.0,False,True,1,False,False,False,8289.469,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,50.0,2.0,HARD,35.0,True,97.135,29.463,35.005,32.667,217.0,256.0,223.0,282.0,False,True,1,False,False,False,8386.468,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,51.0,2.0,HARD,36.0,True,96.9,29.354,34.875,32.671,226.0,259.0,223.0,307.0,False,True,1,False,False,False,8483.603,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,52.0,2.0,HARD,37.0,True,96.68,29.331,34.755,32.594,222.0,256.0,223.0,308.0,True,True,1,False,False,False,8580.503,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,53.0,2.0,HARD,38.0,True,96.983,29.375,35.034,32.574,219.0,258.0,225.0,291.0,False,True,1,False,False,False,8677.183,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,54.0,2.0,HARD,39.0,True,96.934,29.595,34.837,32.502,214.0,259.0,223.0,308.0,False,True,1,False,False,False,8774.166,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,55.0,2.0,HARD,40.0,True,96.787,29.268,34.658,32.861,224.0,260.0,222.0,305.0,False,True,1,False,False,False,8871.1,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,56.0,2.0,HARD,41.0,True,98.003,30.061,35.457,32.485,208.0,263.0,222.0,276.0,False,True,1,False,False,False,8967.887,True
+2026,Spanish Grand Prix,14,R,NOR,1,McLaren,57.0,2.0,HARD,42.0,True,97.018,29.428,35.079,32.511,221.0,257.0,223.0,285.0,False,True,1,False,False,False,9065.89,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,1.0,1.0,HARD,1.0,True,110.207,,38.59,35.142,184.0,218.0,209.0,245.0,False,False,12,False,False,False,3493.809,False
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,2.0,1.0,HARD,2.0,True,102.989,31.348,37.202,34.439,193.0,230.0,211.0,281.0,True,True,1,False,False,False,3604.272,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,3.0,1.0,HARD,3.0,True,102.795,30.875,37.406,34.514,204.0,225.0,219.0,265.0,True,True,1,False,False,False,3707.261,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,4.0,1.0,HARD,4.0,True,102.704,31.184,37.212,34.308,193.0,232.0,212.0,260.0,True,True,1,False,False,False,3810.056,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,5.0,1.0,HARD,5.0,True,103.252,31.037,37.269,34.946,205.0,234.0,209.0,266.0,False,True,12,False,False,False,3912.76,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,6.0,1.0,HARD,6.0,True,103.376,31.499,37.549,34.328,197.0,232.0,213.0,267.0,False,True,1,False,False,False,4016.012,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,7.0,1.0,HARD,7.0,True,102.41,30.988,36.964,34.458,208.0,233.0,212.0,282.0,True,True,1,False,False,False,4119.388,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,8.0,1.0,HARD,8.0,True,102.112,31.169,36.901,34.042,211.0,241.0,219.0,275.0,True,True,1,False,False,False,4221.798,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,9.0,1.0,HARD,9.0,True,102.181,31.178,36.829,34.174,210.0,228.0,216.0,277.0,False,True,1,False,False,False,4323.91,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,10.0,1.0,HARD,10.0,True,102.3,31.25,36.696,34.354,207.0,233.0,209.0,272.0,False,True,1,False,False,False,4426.091,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,11.0,1.0,HARD,11.0,True,102.46,31.252,36.823,34.385,213.0,234.0,219.0,270.0,False,True,1,False,False,False,4528.391,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,12.0,1.0,HARD,12.0,True,102.577,31.038,37.13,34.409,203.0,234.0,214.0,265.0,False,True,1,False,False,False,4630.851,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,13.0,1.0,HARD,13.0,True,102.436,31.041,36.925,34.47,206.0,238.0,213.0,271.0,False,True,1,False,False,False,4733.428,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,14.0,1.0,HARD,14.0,True,125.674,30.892,46.832,47.95,209.0,210.0,116.0,270.0,False,False,126,False,False,False,4835.864,False
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,15.0,1.0,HARD,15.0,True,121.034,47.086,40.181,33.767,179.0,240.0,222.0,114.0,False,False,671,False,False,False,4961.538,False
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,16.0,1.0,HARD,16.0,True,100.626,30.569,36.349,33.708,210.0,245.0,221.0,282.0,True,True,1,False,False,False,5082.572,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,17.0,1.0,HARD,17.0,True,100.093,30.452,36.112,33.529,214.0,238.0,222.0,289.0,True,True,1,False,False,False,5183.198,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,18.0,1.0,HARD,18.0,True,100.077,30.263,36.267,33.547,217.0,245.0,222.0,283.0,True,True,1,False,False,False,5283.291,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,19.0,1.0,HARD,19.0,True,99.753,30.361,35.993,33.399,216.0,251.0,221.0,277.0,True,True,1,False,False,False,5383.368,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,20.0,1.0,HARD,20.0,True,99.961,30.426,35.951,33.584,217.0,242.0,223.0,280.0,False,True,1,False,False,False,5483.121,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,21.0,1.0,HARD,21.0,True,99.454,30.214,35.967,33.273,218.0,246.0,222.0,286.0,True,True,1,False,False,False,5583.082,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,22.0,1.0,HARD,22.0,True,98.986,30.127,35.631,33.228,215.0,249.0,222.0,290.0,True,True,1,False,False,False,5682.536,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,23.0,1.0,HARD,23.0,True,99.138,30.135,35.593,33.41,216.0,251.0,223.0,290.0,False,True,1,False,False,False,5781.522,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,24.0,1.0,HARD,24.0,True,99.192,30.126,35.653,33.413,220.0,249.0,222.0,293.0,False,True,1,False,False,False,5880.66,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,25.0,1.0,HARD,25.0,True,99.895,30.152,35.567,34.176,221.0,247.0,222.0,280.0,False,True,1,False,False,False,5979.852,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,26.0,1.0,HARD,26.0,True,99.315,30.209,35.589,33.517,217.0,251.0,221.0,291.0,False,True,1,False,False,False,6079.747,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,27.0,1.0,HARD,27.0,True,99.259,30.144,35.607,33.508,218.0,252.0,221.0,283.0,False,True,1,False,False,False,6179.062,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,28.0,1.0,HARD,28.0,True,98.73,29.952,35.36,33.418,219.0,256.0,221.0,292.0,True,True,1,False,False,False,6278.321,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,29.0,1.0,HARD,29.0,True,99.288,30.15,35.498,33.64,218.0,256.0,222.0,279.0,False,True,1,False,False,False,6377.051,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,30.0,1.0,HARD,30.0,True,99.632,30.231,35.589,33.812,214.0,247.0,221.0,289.0,False,True,1,False,False,False,6476.339,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,31.0,1.0,HARD,31.0,True,99.273,30.023,35.754,33.496,219.0,250.0,221.0,283.0,False,True,1,False,False,False,6575.971,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,32.0,1.0,HARD,32.0,True,99.004,30.065,35.582,33.357,216.0,252.0,224.0,295.0,False,True,1,False,False,False,6675.244,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,33.0,1.0,HARD,33.0,True,98.549,30.142,35.22,33.187,219.0,254.0,223.0,291.0,True,True,1,False,False,False,6774.248,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,34.0,1.0,HARD,34.0,True,98.438,30.063,35.286,33.089,218.0,252.0,224.0,299.0,True,True,1,False,False,False,6872.797,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,35.0,1.0,HARD,35.0,True,98.595,30.163,35.253,33.179,215.0,251.0,223.0,292.0,False,True,1,False,False,False,6971.235,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,36.0,1.0,HARD,36.0,True,98.141,29.796,35.139,33.206,220.0,258.0,222.0,299.0,True,True,1,False,False,False,7069.83,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,37.0,1.0,HARD,37.0,True,99.105,30.09,35.345,33.67,219.0,251.0,222.0,292.0,False,True,1,False,False,False,7167.971,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,38.0,1.0,HARD,38.0,True,99.166,30.163,35.507,33.496,222.0,250.0,224.0,296.0,False,True,1,False,False,False,7267.076,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,39.0,1.0,HARD,39.0,True,99.228,30.163,35.493,33.572,220.0,253.0,221.0,286.0,False,True,1,False,False,False,7366.242,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,40.0,1.0,HARD,40.0,True,99.183,30.232,35.501,33.45,218.0,252.0,224.0,283.0,False,True,1,False,False,False,7465.47,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,41.0,1.0,HARD,41.0,True,99.13,30.247,35.377,33.506,219.0,251.0,223.0,288.0,False,True,1,False,False,False,7564.653,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,42.0,1.0,HARD,42.0,True,98.982,29.97,35.37,33.642,219.0,255.0,224.0,293.0,False,True,1,False,False,False,7663.783,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,43.0,1.0,HARD,43.0,True,98.715,30.127,35.091,33.497,217.0,256.0,224.0,291.0,False,True,1,False,False,False,7762.765,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,44.0,1.0,HARD,44.0,True,99.325,29.904,35.649,33.772,220.0,248.0,225.0,294.0,False,True,1,False,False,False,7861.48,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,45.0,1.0,HARD,45.0,True,98.523,30.019,35.135,33.369,217.0,251.0,224.0,293.0,False,True,1,False,False,False,7960.805,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,46.0,1.0,HARD,46.0,True,98.745,30.002,35.112,33.631,221.0,252.0,223.0,292.0,False,True,1,False,False,False,8059.328,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,47.0,1.0,HARD,47.0,True,98.573,29.884,35.105,33.584,224.0,254.0,225.0,284.0,False,True,1,False,False,False,8158.073,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,48.0,1.0,HARD,48.0,True,98.589,29.871,35.28,33.438,221.0,252.0,224.0,294.0,False,True,1,False,False,False,8256.646,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,49.0,1.0,HARD,49.0,True,98.514,29.893,35.272,33.349,220.0,250.0,222.0,297.0,False,True,1,False,False,False,8355.235,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,50.0,1.0,HARD,50.0,True,98.941,30.041,35.392,33.508,222.0,251.0,224.0,286.0,False,True,1,False,False,False,8453.749,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,51.0,1.0,HARD,51.0,True,99.51,30.338,35.563,33.609,219.0,254.0,224.0,278.0,False,True,1,False,False,False,8552.69,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,52.0,1.0,HARD,52.0,True,99.539,30.04,35.762,33.737,222.0,248.0,225.0,293.0,False,True,1,False,False,False,8652.2,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,53.0,1.0,HARD,53.0,True,100.045,30.465,35.792,33.788,214.0,248.0,223.0,296.0,False,True,1,False,False,False,8751.739,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,54.0,1.0,HARD,54.0,True,101.425,30.441,35.704,35.28,214.0,247.0,219.0,280.0,False,True,1,False,False,False,8851.784,True
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,55.0,1.0,HARD,55.0,True,104.713,31.39,36.232,37.091,208.0,241.0,,274.0,False,False,1,False,False,True,8953.209,False
+2026,Spanish Grand Prix,14,R,GAS,10,Alpine,56.0,2.0,SOFT,1.0,True,121.049,54.098,34.791,32.16,213.0,258.0,229.0,268.0,False,False,1,False,True,False,9057.922,False
+2026,Spanish Grand Prix,14,R,PER,11,Cadillac,1.0,1.0,MEDIUM,1.0,True,111.706,,39.169,35.004,180.0,203.0,220.0,233.0,False,False,12,False,False,False,3493.809,False
+2026,Spanish Grand Prix,14,R,PER,11,Cadillac,2.0,1.0,MEDIUM,2.0,True,104.485,31.917,37.698,34.87,193.0,225.0,217.0,230.0,True,True,1,False,False,False,3605.771,True
+2026,Spanish Grand Prix,14,R,PER,11,Cadillac,3.0,1.0,MEDIUM,3.0,True,103.795,31.532,37.631,34.632,204.0,222.0,217.0,240.0,True,True,1,False,False,False,3710.256,True
+2026,Spanish Grand Prix,14,R,PER,11,Cadillac,4.0,1.0,MEDIUM,4.0,True,103.506,31.59,37.452,34.464,201.0,227.0,219.0,255.0,True,True,1,False,False,False,3814.051,True
+2026,Spanish Grand Prix,14,R,PER,11,Cadillac,5.0,1.0,MEDIUM,5.0,True,104.091,31.656,37.671,34.764,204.0,229.0,217.0,243.0,False,True,12,False,False,False,3917.557,True
+2026,Spanish Grand Prix,14,R,PER,11,Cadillac,6.0,1.0,MEDIUM,6.0,True,104.448,31.714,38.131,34.603,196.0,225.0,217.0,249.0,False,True,1,False,False,False,4021.648,True
+2026,Spanish Grand Prix,14,R,PER,11,Cadillac,7.0,1.0,MEDIUM,7.0,True,103.527,31.515,37.488,34.524,203.0,223.0,215.0,248.0,False,True,1,False,False,False,4126.096,True
+2026,Spanish Grand Prix,14,R,PER,11,Cadillac,8.0,1.0,MEDIUM,8.0,True,103.85,31.478,37.693,34.679,206.0,229.0,215.0,255.0,False,True,1,False,False,False,4229.623,True
+2026,Spanish Grand Prix,14,R,PER,11,Cadillac,9.0,1.0,MEDIUM,9.0,True,103.687,31.546,37.493,34.648,198.0,231.0,215.0,262.0,False,True,1,False,False,False,4333.473,True
+2026,Spanish Grand Prix,14,R,PER,11,Cadillac,10.0,1.0,MEDIUM,10.0,True,103.685,31.499,37.548,34.638,206.0,227.0,218.0,274.0,False,True,1,False,False,False,4437.16,True
+2026,Spanish Grand Prix,14,R,PER,11,Cadillac,11.0,1.0,MEDIUM,11.0,True,103.624,31.497,37.403,34.724,204.0,227.0,216.0,256.0,False,True,1,False,False,False,4540.845,True
+2026,Spanish Grand Prix,14,R,PER,11,Cadillac,12.0,1.0,MEDIUM,12.0,True,103.932,31.579,37.602,34.751,205.0,224.0,216.0,262.0,False,True,1,False,False,False,4644.469,True
+2026,Spanish Grand Prix,14,R,PER,11,Cadillac,13.0,1.0,MEDIUM,13.0,True,104.87,31.956,38.158,34.756,204.0,224.0,218.0,238.0,False,True,12,False,False,False,4748.401,True
+2026,Spanish Grand Prix,14,R,PER,11,Cadillac,14.0,1.0,MEDIUM,14.0,True,132.541,31.471,51.927,49.143,204.0,160.0,,260.0,False,False,26,False,False,True,4853.271,False
+2026,Spanish Grand Prix,14,R,PER,11,Cadillac,15.0,2.0,HARD,1.0,True,126.905,56.324,36.732,33.849,204.0,229.0,220.0,203.0,False,False,671,False,True,False,4985.812,False
+2026,Spanish Grand Prix,14,R,PER,11,Cadillac,16.0,2.0,HARD,2.0,True,101.116,30.655,36.676,33.785,202.0,230.0,222.0,260.0,True,True,1,False,False,False,5112.717,True
+2026,Spanish Grand Prix,14,R,PER,11,Cadillac,17.0,2.0,HARD,3.0,True,101.424,30.815,36.654,33.955,208.0,236.0,218.0,264.0,False,True,1,False,False,False,5213.833,True
+2026,Spanish Grand Prix,14,R,PER,11,Cadillac,18.0,2.0,HARD,4.0,True,101.425,30.887,36.747,33.791,206.0,232.0,223.0,261.0,False,True,1,False,False,False,5315.257,True
+2026,Spanish Grand Prix,14,R,PER,11,Cadillac,19.0,2.0,HARD,5.0,True,101.441,30.846,36.653,33.942,208.0,230.0,222.0,260.0,False,True,1,False,False,False,5416.682,True
+2026,Spanish Grand Prix,14,R,PER,11,Cadillac,20.0,2.0,HARD,6.0,True,101.261,30.689,36.547,34.025,207.0,235.0,220.0,259.0,False,True,1,False,False,False,5518.123,True
+2026,Spanish Grand Prix,14,R,PER,11,Cadillac,21.0,2.0,HARD,7.0,True,101.682,30.932,36.691,34.059,208.0,233.0,217.0,257.0,False,True,1,False,False,False,5619.384,True
+2026,Spanish Grand Prix,14,R,PER,11,Cadillac,22.0,2.0,HARD,8.0,True,101.335,30.722,36.647,33.966,210.0,237.0,220.0,281.0,False,True,1,False,False,False,5721.066,True
+2026,Spanish Grand Prix,14,R,PER,11,Cadillac,23.0,2.0,HARD,9.0,True,101.221,30.747,36.525,33.949,211.0,228.0,222.0,265.0,False,True,1,False,False,False,5822.401,True
+2026,Spanish Grand Prix,14,R,PER,11,Cadillac,24.0,2.0,HARD,10.0,True,101.12,30.744,36.526,33.85,211.0,233.0,221.0,268.0,False,True,1,False,False,False,5923.622,True
+2026,Spanish Grand Prix,14,R,PER,11,Cadillac,25.0,2.0,HARD,11.0,True,102.206,31.036,37.218,33.952,206.0,230.0,219.0,267.0,False,True,1,False,False,False,6024.742,True
+2026,Spanish Grand Prix,14,R,PER,11,Cadillac,26.0,2.0,HARD,12.0,True,103.523,30.762,36.823,35.938,210.0,226.0,220.0,270.0,False,True,1,False,False,False,6126.948,True
+2026,Spanish Grand Prix,14,R,PER,11,Cadillac,27.0,2.0,HARD,13.0,True,103.767,31.98,36.469,35.318,203.0,232.0,221.0,237.0,False,True,1,False,False,False,6230.471,True
+2026,Spanish Grand Prix,14,R,PER,11,Cadillac,28.0,2.0,HARD,14.0,True,105.416,31.076,39.122,35.218,201.0,229.0,188.0,265.0,False,True,1,False,False,False,6334.238,True
+2026,Spanish Grand Prix,14,R,PER,11,Cadillac,29.0,2.0,HARD,15.0,True,108.131,34.8,38.083,35.248,199.0,221.0,187.0,245.0,False,True,1,False,False,False,6439.654,True
+2026,Spanish Grand Prix,14,R,PER,11,Cadillac,30.0,2.0,HARD,16.0,True,108.743,34.747,38.641,35.355,195.0,224.0,188.0,240.0,False,True,1,False,False,False,6547.785,True
+2026,Spanish Grand Prix,14,R,PER,11,Cadillac,31.0,2.0,HARD,17.0,True,117.516,37.355,41.289,38.872,123.0,217.0,,229.0,False,False,1,False,False,True,6656.528,False
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,1.0,1.0,MEDIUM,1.0,True,103.897,,37.541,33.612,192.0,230.0,221.0,305.0,False,False,12,False,False,False,3493.809,False
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,2.0,1.0,MEDIUM,2.0,True,100.251,30.295,36.511,33.445,209.0,246.0,220.0,278.0,True,True,1,False,False,False,3597.962,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,3.0,1.0,MEDIUM,3.0,True,100.085,30.113,36.548,33.424,209.0,247.0,220.0,280.0,True,True,1,False,False,False,3698.213,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,4.0,1.0,MEDIUM,4.0,True,99.911,30.489,36.402,33.02,214.0,249.0,221.0,266.0,True,True,1,False,False,False,3798.298,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,5.0,1.0,MEDIUM,5.0,True,99.532,30.272,36.354,32.906,218.0,249.0,221.0,290.0,True,True,12,False,False,False,3898.209,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,6.0,1.0,MEDIUM,6.0,True,101.166,30.511,36.337,34.318,217.0,251.0,221.0,284.0,False,True,21,False,False,False,3997.741,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,7.0,1.0,MEDIUM,7.0,True,99.758,30.261,36.342,33.155,219.0,250.0,220.0,287.0,False,True,1,False,False,False,4098.907,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,8.0,1.0,MEDIUM,8.0,True,99.433,30.125,36.179,33.129,219.0,248.0,221.0,291.0,True,True,1,False,False,False,4198.665,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,9.0,1.0,MEDIUM,9.0,True,99.601,30.042,36.282,33.277,218.0,247.0,221.0,285.0,False,True,1,False,False,False,4298.098,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,10.0,1.0,MEDIUM,10.0,True,99.645,30.094,36.312,33.239,218.0,247.0,220.0,287.0,False,True,1,False,False,False,4397.699,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,11.0,1.0,MEDIUM,11.0,True,99.415,30.117,36.123,33.175,219.0,246.0,221.0,283.0,True,True,1,False,False,False,4497.344,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,12.0,1.0,MEDIUM,12.0,True,99.759,30.346,36.238,33.175,216.0,246.0,221.0,283.0,False,True,1,False,False,False,4596.759,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,13.0,1.0,MEDIUM,13.0,True,99.322,30.059,36.122,33.141,218.0,248.0,222.0,285.0,True,True,1,False,False,False,4696.518,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,14.0,1.0,MEDIUM,14.0,True,104.304,29.907,36.175,38.222,220.0,247.0,,288.0,False,False,126,False,False,True,4795.84,False
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,15.0,2.0,HARD,1.0,True,149.237,64.127,49.559,35.551,178.0,192.0,226.0,130.0,False,False,671,False,True,False,4900.144,False
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,16.0,2.0,HARD,2.0,True,97.477,29.42,35.644,32.413,219.0,253.0,225.0,286.0,True,True,1,False,False,False,5049.381,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,17.0,2.0,HARD,3.0,True,98.161,29.67,36.043,32.448,216.0,244.0,224.0,275.0,False,True,1,False,False,False,5146.858,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,18.0,2.0,HARD,4.0,True,98.519,29.714,36.067,32.738,216.0,240.0,221.0,282.0,False,True,1,False,False,False,5245.019,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,19.0,2.0,HARD,5.0,True,98.365,29.742,35.905,32.718,217.0,251.0,223.0,287.0,False,True,1,False,False,False,5343.538,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,20.0,2.0,HARD,6.0,True,98.407,29.735,36.074,32.598,218.0,251.0,223.0,284.0,False,True,1,False,False,False,5441.903,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,21.0,2.0,HARD,7.0,True,99.779,29.704,36.154,33.921,215.0,248.0,222.0,287.0,False,True,1,False,False,False,5540.31,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,22.0,2.0,HARD,8.0,True,99.187,30.012,36.316,32.859,212.0,245.0,220.0,287.0,False,True,1,False,False,False,5640.089,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,23.0,2.0,HARD,9.0,True,99.145,30.068,36.244,32.833,206.0,246.0,222.0,287.0,False,True,1,False,False,False,5739.276,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,24.0,2.0,HARD,10.0,True,98.785,29.776,35.825,33.184,217.0,241.0,225.0,291.0,False,True,1,False,False,False,5838.421,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,25.0,2.0,HARD,11.0,True,97.492,29.577,35.47,32.445,219.0,249.0,224.0,295.0,False,True,1,False,False,False,5937.206,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,26.0,2.0,HARD,12.0,True,98.057,29.625,35.609,32.823,218.0,251.0,223.0,286.0,False,True,1,False,False,False,6034.698,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,27.0,2.0,HARD,13.0,True,98.661,29.619,35.991,33.051,218.0,245.0,223.0,287.0,False,True,1,False,False,False,6132.755,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,28.0,2.0,HARD,14.0,True,99.027,29.95,36.097,32.98,217.0,248.0,223.0,281.0,False,True,1,False,False,False,6231.416,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,29.0,2.0,HARD,15.0,True,98.484,29.585,36.048,32.851,212.0,245.0,222.0,286.0,False,True,1,False,False,False,6330.443,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,30.0,2.0,HARD,16.0,True,98.664,29.789,36.102,32.773,211.0,247.0,224.0,282.0,False,True,1,False,False,False,6428.927,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,31.0,2.0,HARD,17.0,True,97.753,29.645,35.493,32.615,217.0,251.0,225.0,288.0,False,True,1,False,False,False,6527.591,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,32.0,2.0,HARD,18.0,True,97.867,29.536,35.719,32.612,216.0,245.0,223.0,288.0,False,True,1,False,False,False,6625.344,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,33.0,2.0,HARD,19.0,True,98.044,29.807,35.602,32.635,216.0,248.0,223.0,281.0,False,True,1,False,False,False,6723.211,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,34.0,2.0,HARD,20.0,True,97.786,29.659,35.577,32.55,217.0,251.0,224.0,288.0,False,True,1,False,False,False,6821.255,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,35.0,2.0,HARD,21.0,True,97.859,29.582,35.652,32.625,217.0,249.0,223.0,288.0,False,True,1,False,False,False,6919.041,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,36.0,2.0,HARD,22.0,True,97.999,29.676,35.89,32.433,215.0,253.0,224.0,290.0,False,True,1,False,False,False,7016.9,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,37.0,2.0,HARD,23.0,True,97.642,29.489,35.606,32.547,214.0,253.0,224.0,292.0,False,True,1,False,False,False,7114.899,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,38.0,2.0,HARD,24.0,True,98.492,29.714,35.929,32.849,218.0,253.0,224.0,279.0,False,True,1,False,False,False,7212.541,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,39.0,2.0,HARD,25.0,True,97.627,29.616,35.46,32.551,219.0,252.0,223.0,287.0,False,True,1,False,False,False,7311.033,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,40.0,2.0,HARD,26.0,True,97.743,29.464,35.604,32.675,218.0,255.0,224.0,289.0,False,True,1,False,False,False,7408.66,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,41.0,2.0,HARD,27.0,True,97.547,29.486,35.495,32.566,218.0,250.0,224.0,283.0,False,True,1,False,False,False,7506.403,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,42.0,2.0,HARD,28.0,True,97.296,29.426,35.352,32.518,220.0,253.0,225.0,288.0,True,True,1,False,False,False,7603.95,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,43.0,2.0,HARD,29.0,True,97.335,29.358,35.469,32.508,216.0,254.0,225.0,290.0,False,True,1,False,False,False,7701.246,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,44.0,2.0,HARD,30.0,True,97.167,29.253,35.436,32.478,217.0,251.0,226.0,287.0,True,True,1,False,False,False,7798.581,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,45.0,2.0,HARD,31.0,True,98.315,29.647,35.97,32.698,210.0,250.0,226.0,280.0,False,True,1,False,False,False,7895.748,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,46.0,2.0,HARD,32.0,True,98.31,29.549,35.955,32.806,205.0,250.0,225.0,280.0,False,True,1,False,False,False,7994.063,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,47.0,2.0,HARD,33.0,True,97.668,29.475,35.689,32.504,210.0,253.0,226.0,282.0,False,True,1,False,False,False,8092.373,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,48.0,2.0,HARD,34.0,True,97.833,29.394,35.651,32.788,211.0,250.0,227.0,286.0,False,True,1,False,False,False,8190.041,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,49.0,2.0,HARD,35.0,True,96.561,29.172,35.231,32.158,217.0,251.0,226.0,293.0,True,True,1,False,False,False,8287.874,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,50.0,2.0,HARD,36.0,True,96.561,29.373,34.932,32.256,220.0,251.0,226.0,292.0,False,True,1,False,False,False,8384.435,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,51.0,2.0,HARD,37.0,True,96.597,29.446,34.878,32.273,219.0,252.0,225.0,294.0,False,True,1,False,False,False,8480.996,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,52.0,2.0,HARD,38.0,True,96.197,29.164,34.77,32.263,217.0,255.0,227.0,296.0,True,True,1,False,False,False,8577.593,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,53.0,2.0,HARD,39.0,True,96.08,29.137,34.699,32.244,222.0,257.0,226.0,301.0,True,True,1,False,False,False,8673.79,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,54.0,2.0,HARD,40.0,True,97.19,29.528,34.94,32.722,220.0,255.0,225.0,287.0,False,True,1,False,False,False,8769.87,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,55.0,2.0,HARD,41.0,True,98.04,29.515,35.106,33.419,215.0,250.0,226.0,290.0,False,True,1,False,False,False,8867.06,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,56.0,2.0,HARD,42.0,True,96.689,29.326,34.957,32.406,219.0,255.0,226.0,301.0,False,True,1,False,False,False,8965.1,True
+2026,Spanish Grand Prix,14,R,ANT,12,Mercedes,57.0,2.0,HARD,43.0,True,96.03,29.167,34.661,32.202,220.0,257.0,225.0,294.0,True,True,1,False,False,False,9061.789,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,1.0,1.0,HARD,1.0,True,114.173,,38.431,35.306,171.0,214.0,220.0,226.0,False,False,12,False,False,False,3493.809,False
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,2.0,1.0,HARD,2.0,True,105.467,32.093,38.42,34.954,187.0,220.0,214.0,252.0,True,True,1,False,False,False,3608.238,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,3.0,1.0,HARD,3.0,True,103.773,31.232,37.722,34.819,202.0,239.0,217.0,268.0,True,True,1,False,False,False,3713.705,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,4.0,1.0,HARD,4.0,True,104.268,31.735,38.004,34.529,191.0,237.0,217.0,249.0,False,True,1,False,False,False,3817.478,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,5.0,1.0,HARD,5.0,True,104.073,31.484,37.748,34.841,204.0,235.0,216.0,280.0,False,True,12,False,False,False,3921.746,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,6.0,1.0,HARD,6.0,True,103.825,31.511,37.851,34.463,205.0,230.0,217.0,243.0,False,True,1,False,False,False,4025.819,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,7.0,1.0,HARD,7.0,True,104.045,31.595,37.64,34.81,205.0,226.0,216.0,253.0,False,True,1,False,False,False,4129.644,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,8.0,1.0,HARD,8.0,True,103.626,31.509,37.553,34.564,205.0,236.0,217.0,286.0,True,True,1,False,False,False,4233.689,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,9.0,1.0,HARD,9.0,True,104.115,31.395,38.049,34.671,206.0,234.0,216.0,252.0,False,True,1,False,False,False,4337.315,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,10.0,1.0,HARD,10.0,True,103.696,31.396,37.647,34.653,206.0,232.0,217.0,267.0,False,True,1,False,False,False,4441.43,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,11.0,1.0,HARD,11.0,True,103.362,31.129,37.667,34.566,203.0,232.0,216.0,264.0,True,True,1,False,False,False,4545.126,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,12.0,1.0,HARD,12.0,True,104.184,31.478,38.092,34.614,200.0,232.0,216.0,278.0,False,True,1,False,False,False,4648.488,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,13.0,1.0,HARD,13.0,True,103.288,31.261,37.435,34.592,212.0,235.0,217.0,265.0,True,True,12,False,False,False,4752.672,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,14.0,1.0,HARD,14.0,True,133.244,31.329,52.271,49.644,207.0,192.0,,263.0,False,False,26,False,False,True,4855.96,False
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,15.0,2.0,SOFT,1.0,True,137.454,67.591,36.316,33.547,210.0,238.0,222.0,264.0,False,False,671,False,True,False,4989.204,False
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,16.0,2.0,SOFT,2.0,True,100.34,30.739,36.228,33.373,217.0,238.0,220.0,285.0,True,True,1,False,False,False,5126.658,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,17.0,2.0,SOFT,3.0,True,100.82,30.991,36.386,33.443,214.0,242.0,218.0,284.0,False,True,1,False,False,False,5226.998,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,18.0,2.0,SOFT,4.0,True,101.455,30.872,36.554,34.029,215.0,225.0,220.0,285.0,False,True,1,False,False,False,5327.818,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,19.0,2.0,SOFT,5.0,True,100.743,30.76,36.449,33.534,220.0,246.0,219.0,288.0,False,True,1,False,False,False,5429.273,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,20.0,2.0,SOFT,6.0,True,100.639,30.421,36.483,33.735,220.0,245.0,218.0,299.0,False,True,1,False,False,False,5530.016,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,21.0,2.0,SOFT,7.0,True,101.519,30.826,36.679,34.014,218.0,241.0,220.0,288.0,False,True,1,False,False,False,5630.655,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,22.0,2.0,SOFT,8.0,True,101.843,30.937,36.727,34.179,215.0,245.0,219.0,282.0,False,True,1,False,False,False,5732.174,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,23.0,2.0,SOFT,9.0,True,104.977,31.939,37.416,35.622,199.0,246.0,220.0,237.0,False,True,1,False,False,False,5834.017,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,24.0,2.0,SOFT,10.0,True,101.271,30.539,36.97,33.762,216.0,240.0,219.0,297.0,False,True,1,False,False,False,5938.994,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,25.0,2.0,SOFT,11.0,True,102.039,31.83,36.631,33.578,214.0,245.0,221.0,235.0,False,True,1,False,False,False,6040.265,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,26.0,2.0,SOFT,12.0,True,103.761,30.784,38.913,34.064,217.0,238.0,219.0,292.0,False,True,1,False,False,False,6142.304,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,27.0,2.0,SOFT,13.0,True,100.78,30.574,36.371,33.835,220.0,245.0,221.0,299.0,False,True,1,False,False,False,6246.065,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,28.0,2.0,SOFT,14.0,True,100.645,30.782,36.361,33.502,219.0,245.0,221.0,292.0,False,True,1,False,False,False,6346.845,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,29.0,2.0,SOFT,15.0,True,100.9,30.813,36.208,33.879,218.0,247.0,219.0,291.0,False,True,1,False,False,False,6447.49,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,30.0,2.0,SOFT,16.0,True,100.467,30.677,36.248,33.542,219.0,246.0,218.0,303.0,False,True,1,False,False,False,6548.39,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,31.0,2.0,SOFT,17.0,True,100.498,30.783,36.215,33.5,219.0,244.0,220.0,288.0,False,True,1,False,False,False,6648.857,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,32.0,2.0,SOFT,18.0,True,100.488,30.922,36.057,33.509,219.0,246.0,220.0,290.0,False,True,1,False,False,False,6749.355,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,33.0,2.0,SOFT,19.0,True,100.142,30.749,35.941,33.452,219.0,246.0,220.0,289.0,True,True,1,False,False,False,6849.843,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,34.0,2.0,SOFT,20.0,True,100.425,30.771,36.209,33.445,218.0,244.0,220.0,290.0,False,True,1,False,False,False,6949.985,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,35.0,2.0,SOFT,21.0,True,100.874,30.786,36.436,33.652,217.0,246.0,220.0,290.0,False,True,1,False,False,False,7050.41,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,36.0,2.0,SOFT,22.0,True,105.2,30.942,37.891,36.367,211.0,239.0,219.0,290.0,False,True,1,False,False,False,7151.284,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,37.0,2.0,SOFT,23.0,True,104.253,30.956,36.551,36.746,212.0,248.0,,282.0,False,False,1,False,False,True,7256.484,False
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,38.0,3.0,HARD,1.0,True,125.391,55.909,36.286,33.196,212.0,249.0,221.0,251.0,False,False,1,False,True,False,7360.737,False
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,39.0,3.0,HARD,2.0,True,99.134,30.588,35.751,32.795,220.0,248.0,223.0,288.0,True,True,1,False,False,False,7486.128,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,40.0,3.0,HARD,3.0,True,99.003,30.257,35.535,33.211,221.0,249.0,222.0,290.0,True,True,1,False,False,False,7585.262,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,41.0,3.0,HARD,4.0,True,99.664,30.139,35.64,33.885,219.0,249.0,221.0,290.0,False,True,1,False,False,False,7684.265,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,42.0,3.0,HARD,5.0,True,99.01,30.308,35.549,33.153,220.0,247.0,221.0,289.0,False,True,1,False,False,False,7783.929,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,43.0,3.0,HARD,6.0,True,102.7,31.015,37.805,33.88,220.0,224.0,220.0,247.0,False,True,1,False,False,False,7882.939,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,44.0,3.0,HARD,7.0,True,100.159,30.661,35.999,33.499,214.0,246.0,223.0,281.0,False,True,1,False,False,False,7985.639,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,45.0,3.0,HARD,8.0,True,100.108,30.929,35.839,33.34,215.0,247.0,223.0,279.0,False,True,1,False,False,False,8085.798,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,46.0,3.0,HARD,9.0,True,99.624,30.525,35.831,33.268,213.0,247.0,221.0,291.0,False,True,1,False,False,False,8185.906,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,47.0,3.0,HARD,10.0,True,104.41,30.736,40.328,33.346,217.0,249.0,218.0,284.0,False,True,1,False,False,False,8285.53,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,48.0,3.0,HARD,11.0,True,99.206,30.52,35.547,33.139,217.0,249.0,220.0,292.0,False,True,1,False,False,False,8389.94,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,49.0,3.0,HARD,12.0,True,99.846,30.952,35.736,33.158,219.0,245.0,219.0,278.0,False,True,1,False,False,False,8489.146,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,50.0,3.0,HARD,13.0,True,99.27,30.437,35.669,33.164,218.0,245.0,220.0,292.0,False,True,1,False,False,False,8588.992,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,51.0,3.0,HARD,14.0,True,99.619,30.919,35.62,33.08,215.0,250.0,222.0,294.0,False,True,1,False,False,False,8688.262,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,52.0,3.0,HARD,15.0,True,101.616,30.789,37.405,33.422,214.0,250.0,212.0,289.0,False,True,1,False,False,False,8787.881,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,53.0,3.0,HARD,16.0,True,99.634,30.651,35.919,33.064,218.0,245.0,221.0,299.0,False,True,1,False,False,False,8889.497,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,54.0,3.0,HARD,17.0,True,101.973,30.4,35.858,35.715,220.0,249.0,221.0,292.0,False,True,1,False,False,False,8989.131,True
+2026,Spanish Grand Prix,14,R,ALO,14,Aston Martin,55.0,3.0,HARD,18.0,True,100.491,30.306,36.278,33.907,218.0,238.0,220.0,277.0,False,True,1,False,False,False,9091.104,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,1.0,1.0,HARD,1.0,True,105.113,,37.764,33.836,187.0,239.0,221.0,247.0,False,False,12,False,False,False,3493.809,False
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,2.0,1.0,HARD,2.0,True,101.503,30.582,37.107,33.814,201.0,242.0,223.0,268.0,True,True,1,False,False,False,3599.178,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,3.0,1.0,HARD,3.0,True,100.212,30.358,36.488,33.366,212.0,247.0,219.0,285.0,True,True,1,False,False,False,3700.681,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,4.0,1.0,HARD,4.0,True,102.298,30.825,37.082,34.391,206.0,230.0,219.0,276.0,False,True,1,False,False,False,3800.893,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,5.0,1.0,HARD,5.0,True,102.046,31.466,37.114,33.466,194.0,239.0,220.0,237.0,False,True,12,False,False,False,3903.191,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,6.0,1.0,HARD,6.0,True,100.662,30.916,36.191,33.555,213.0,247.0,221.0,269.0,False,True,1,False,False,False,4005.237,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,7.0,1.0,HARD,7.0,True,100.077,30.427,36.456,33.194,216.0,245.0,221.0,282.0,True,True,1,False,False,False,4105.899,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,8.0,1.0,HARD,8.0,True,100.022,30.39,36.4,33.232,212.0,247.0,221.0,283.0,True,True,1,False,False,False,4205.976,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,9.0,1.0,HARD,9.0,True,99.474,30.317,35.943,33.214,216.0,249.0,220.0,289.0,True,True,1,False,False,False,4305.998,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,10.0,1.0,HARD,10.0,True,99.597,30.32,35.943,33.334,214.0,248.0,221.0,282.0,False,True,1,False,False,False,4405.472,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,11.0,1.0,HARD,11.0,True,99.501,30.327,35.793,33.381,215.0,250.0,221.0,283.0,False,True,1,False,False,False,4505.069,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,12.0,1.0,HARD,12.0,True,99.559,30.391,35.932,33.236,213.0,244.0,221.0,284.0,False,True,1,False,False,False,4604.57,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,13.0,1.0,HARD,13.0,True,99.449,30.262,35.876,33.311,215.0,247.0,221.0,294.0,True,True,1,False,False,False,4704.129,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,14.0,1.0,HARD,14.0,True,107.817,30.274,35.71,41.833,212.0,246.0,129.0,294.0,False,False,126,False,False,False,4803.578,False
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,15.0,1.0,HARD,15.0,True,135.218,47.168,50.473,37.577,162.0,195.0,223.0,138.0,False,False,671,False,False,False,4911.395,False
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,16.0,1.0,HARD,16.0,True,98.773,30.289,35.618,32.866,213.0,247.0,223.0,284.0,True,True,1,False,False,False,5046.613,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,17.0,1.0,HARD,17.0,True,98.298,30.002,35.447,32.849,210.0,248.0,222.0,293.0,True,True,1,False,False,False,5145.386,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,18.0,1.0,HARD,18.0,True,98.856,30.199,35.77,32.887,211.0,244.0,222.0,298.0,False,True,1,False,False,False,5243.684,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,19.0,1.0,HARD,19.0,True,98.335,29.979,35.341,33.015,214.0,249.0,223.0,293.0,False,True,1,False,False,False,5342.54,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,20.0,1.0,HARD,20.0,True,98.595,29.966,35.519,33.11,216.0,249.0,223.0,299.0,False,True,1,False,False,False,5440.875,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,21.0,1.0,HARD,21.0,True,98.384,29.896,35.569,32.919,216.0,248.0,221.0,298.0,False,True,1,False,False,False,5539.47,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,22.0,1.0,HARD,22.0,True,98.477,30.062,35.306,33.109,216.0,249.0,221.0,294.0,False,True,1,False,False,False,5637.854,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,23.0,1.0,HARD,23.0,True,98.601,29.9,35.499,33.202,218.0,248.0,220.0,299.0,False,True,1,False,False,False,5736.331,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,24.0,1.0,HARD,24.0,True,98.655,30.387,35.414,32.854,215.0,250.0,224.0,261.0,False,True,1,False,False,False,5834.932,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,25.0,1.0,HARD,25.0,True,98.328,30.113,35.323,32.892,210.0,249.0,223.0,299.0,False,True,1,False,False,False,5933.587,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,26.0,1.0,HARD,26.0,True,98.614,29.996,35.478,33.14,216.0,248.0,222.0,295.0,False,True,1,False,False,False,6031.915,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,27.0,1.0,HARD,27.0,True,98.905,30.018,35.565,33.322,216.0,246.0,223.0,290.0,False,True,1,False,False,False,6130.529,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,28.0,1.0,HARD,28.0,True,98.401,29.94,35.338,33.123,218.0,250.0,224.0,300.0,False,True,1,False,False,False,6229.434,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,29.0,1.0,HARD,29.0,True,98.139,29.738,35.331,33.07,215.0,253.0,221.0,292.0,True,True,1,False,False,False,6327.835,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,30.0,1.0,HARD,30.0,True,97.926,29.964,35.18,32.782,217.0,246.0,223.0,299.0,True,True,1,False,False,False,6425.974,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,31.0,1.0,HARD,31.0,True,97.937,29.9,35.271,32.766,215.0,249.0,224.0,299.0,False,True,1,False,False,False,6523.9,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,32.0,1.0,HARD,32.0,True,98.18,29.914,35.117,33.149,218.0,251.0,222.0,298.0,False,True,1,False,False,False,6621.837,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,33.0,1.0,HARD,33.0,True,98.072,29.985,35.198,32.889,220.0,250.0,222.0,301.0,False,True,1,False,False,False,6720.017,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,34.0,1.0,HARD,34.0,True,98.018,29.875,35.218,32.925,216.0,245.0,223.0,303.0,False,True,1,False,False,False,6818.089,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,35.0,1.0,HARD,35.0,True,98.023,29.902,35.194,32.927,218.0,248.0,222.0,300.0,False,True,1,False,False,False,6916.107,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,36.0,1.0,HARD,36.0,True,98.162,29.884,35.333,32.945,208.0,247.0,222.0,312.0,False,True,1,False,False,False,7014.13,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,37.0,1.0,HARD,37.0,True,97.92,29.91,35.157,32.853,218.0,249.0,223.0,301.0,True,True,1,False,False,False,7112.292,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,38.0,1.0,HARD,38.0,True,97.939,29.942,35.103,32.894,219.0,254.0,224.0,299.0,False,True,1,False,False,False,7210.212,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,39.0,1.0,HARD,39.0,True,97.715,29.867,35.11,32.738,217.0,251.0,223.0,298.0,True,True,1,False,False,False,7308.151,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,40.0,1.0,HARD,40.0,True,97.787,29.872,35.004,32.911,220.0,254.0,222.0,298.0,False,True,1,False,False,False,7405.866,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,41.0,1.0,HARD,41.0,True,97.661,29.81,35.08,32.771,219.0,250.0,224.0,299.0,True,True,1,False,False,False,7503.653,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,42.0,1.0,HARD,42.0,True,97.771,29.725,35.048,32.998,220.0,252.0,223.0,298.0,False,True,1,False,False,False,7601.314,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,43.0,1.0,HARD,43.0,True,97.51,29.682,34.993,32.835,221.0,253.0,224.0,298.0,True,True,1,False,False,False,7699.085,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,44.0,1.0,HARD,44.0,True,97.82,29.681,35.079,33.06,219.0,251.0,223.0,300.0,False,True,1,False,False,False,7796.595,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,45.0,1.0,HARD,45.0,True,98.095,29.959,35.212,32.924,217.0,252.0,222.0,300.0,False,True,1,False,False,False,7894.415,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,46.0,1.0,HARD,46.0,True,98.161,29.932,35.155,33.074,218.0,253.0,224.0,300.0,False,True,1,False,False,False,7992.51,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,47.0,1.0,HARD,47.0,True,98.169,29.902,35.041,33.226,214.0,254.0,223.0,302.0,False,True,1,False,False,False,8090.671,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,48.0,1.0,HARD,48.0,True,101.576,29.847,35.272,36.457,213.0,252.0,,304.0,False,False,1,False,False,True,8188.84,False
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,49.0,2.0,SOFT,1.0,True,120.567,53.91,34.842,31.815,201.0,253.0,228.0,247.0,False,False,1,False,True,False,8290.416,False
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,50.0,2.0,SOFT,2.0,True,96.063,29.465,34.428,32.17,223.0,253.0,228.0,298.0,True,True,1,False,False,False,8410.983,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,51.0,2.0,SOFT,3.0,True,96.339,29.562,34.594,32.183,221.0,251.0,226.0,298.0,False,True,1,False,False,False,8507.046,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,52.0,2.0,SOFT,4.0,True,97.637,29.903,35.138,32.596,212.0,253.0,225.0,286.0,False,True,1,False,False,False,8603.385,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,53.0,2.0,SOFT,5.0,True,97.016,29.723,34.778,32.515,218.0,251.0,227.0,301.0,False,True,1,False,False,False,8701.022,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,54.0,2.0,SOFT,6.0,True,97.004,29.533,34.796,32.675,221.0,250.0,225.0,302.0,False,True,1,False,False,False,8798.038,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,55.0,2.0,SOFT,7.0,True,96.677,29.768,34.545,32.364,218.0,253.0,225.0,302.0,False,True,1,False,False,False,8895.042,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,56.0,2.0,SOFT,8.0,True,97.267,29.654,34.924,32.689,223.0,250.0,225.0,298.0,False,True,1,False,False,False,8991.719,True
+2026,Spanish Grand Prix,14,R,LEC,16,Ferrari,57.0,2.0,SOFT,9.0,True,97.949,30.024,34.928,32.997,219.0,254.0,209.0,288.0,False,True,1,False,False,False,9088.986,True
+2026,Spanish Grand Prix,14,R,STR,18,Aston Martin,1.0,1.0,HARD,1.0,True,113.663,,38.881,35.455,182.0,208.0,208.0,213.0,False,False,12,False,False,False,3493.809,False
+2026,Spanish Grand Prix,14,R,STR,18,Aston Martin,2.0,1.0,HARD,2.0,True,105.373,32.149,38.326,34.898,199.0,226.0,210.0,268.0,True,True,1,False,False,False,3607.728,True
+2026,Spanish Grand Prix,14,R,STR,18,Aston Martin,3.0,1.0,HARD,3.0,True,104.942,31.499,38.775,34.668,203.0,225.0,211.0,269.0,True,True,1,False,False,False,3713.101,True
+2026,Spanish Grand Prix,14,R,STR,18,Aston Martin,4.0,1.0,HARD,4.0,True,104.584,31.656,38.61,34.318,201.0,223.0,212.0,253.0,True,True,1,False,False,False,3818.043,True
+2026,Spanish Grand Prix,14,R,STR,18,Aston Martin,5.0,1.0,HARD,5.0,True,104.269,31.377,37.946,34.946,201.0,230.0,209.0,273.0,True,True,12,False,False,False,3922.627,True
+2026,Spanish Grand Prix,14,R,STR,18,Aston Martin,6.0,1.0,HARD,6.0,True,104.168,31.787,37.891,34.49,200.0,216.0,211.0,259.0,True,True,1,False,False,False,4026.896,True
+2026,Spanish Grand Prix,14,R,STR,18,Aston Martin,7.0,1.0,HARD,7.0,True,104.176,31.78,37.741,34.655,203.0,233.0,210.0,260.0,False,True,1,False,False,False,4131.064,True
+2026,Spanish Grand Prix,14,R,STR,18,Aston Martin,8.0,1.0,HARD,8.0,True,104.91,31.381,38.694,34.835,206.0,218.0,207.0,272.0,False,True,1,False,False,False,4235.24,True
+2026,Spanish Grand Prix,14,R,STR,18,Aston Martin,9.0,1.0,HARD,9.0,True,104.214,31.811,37.694,34.709,207.0,233.0,202.0,264.0,False,True,1,False,False,False,4340.15,True
+2026,Spanish Grand Prix,14,R,STR,18,Aston Martin,10.0,1.0,HARD,10.0,True,103.989,31.856,37.568,34.565,201.0,239.0,207.0,268.0,True,True,1,False,False,False,4444.364,True
+2026,Spanish Grand Prix,14,R,STR,18,Aston Martin,11.0,1.0,HARD,11.0,True,103.462,31.613,37.318,34.531,205.0,241.0,207.0,262.0,True,True,1,False,False,False,4548.353,True
+2026,Spanish Grand Prix,14,R,STR,18,Aston Martin,12.0,1.0,HARD,12.0,True,103.673,31.767,37.316,34.59,209.0,237.0,211.0,262.0,False,True,1,False,False,False,4651.815,True
+2026,Spanish Grand Prix,14,R,STR,18,Aston Martin,13.0,1.0,HARD,13.0,True,,,,,,,,,False,False,126,False,False,False,4755.488,False
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,1.0,1.0,HARD,1.0,True,112.541,,39.288,35.411,184.0,214.0,219.0,219.0,False,False,12,False,False,False,3493.809,False
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,2.0,1.0,HARD,2.0,True,104.161,31.801,37.606,34.754,207.0,227.0,218.0,255.0,True,True,1,False,False,False,3606.606,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,3.0,1.0,HARD,3.0,True,104.194,31.627,37.679,34.888,204.0,233.0,205.0,226.0,False,True,1,False,False,False,3710.767,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,4.0,1.0,HARD,4.0,True,103.594,31.682,37.474,34.438,210.0,232.0,218.0,261.0,True,True,1,False,False,False,3814.961,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,5.0,1.0,HARD,5.0,True,104.254,31.597,37.556,35.101,202.0,235.0,218.0,246.0,False,True,12,False,False,False,3918.555,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,6.0,1.0,HARD,6.0,True,103.835,31.429,38.132,34.274,204.0,229.0,221.0,241.0,False,True,1,False,False,False,4022.809,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,7.0,1.0,HARD,7.0,True,103.517,31.52,37.728,34.269,201.0,230.0,220.0,231.0,True,True,1,False,False,False,4126.644,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,8.0,1.0,HARD,8.0,True,103.759,31.701,37.329,34.729,204.0,228.0,217.0,228.0,False,True,1,False,False,False,4230.161,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,9.0,1.0,HARD,9.0,True,103.837,31.768,37.594,34.475,202.0,231.0,218.0,227.0,False,True,1,False,False,False,4333.92,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,10.0,1.0,HARD,10.0,True,103.732,31.575,37.677,34.48,199.0,230.0,221.0,254.0,False,True,1,False,False,False,4437.757,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,11.0,1.0,HARD,11.0,True,103.429,31.383,37.541,34.505,201.0,230.0,220.0,242.0,True,True,1,False,False,False,4541.489,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,12.0,1.0,HARD,12.0,True,104.359,32.498,37.56,34.301,192.0,234.0,220.0,263.0,False,True,1,False,False,False,4644.918,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,13.0,1.0,HARD,13.0,True,104.494,31.7,38.089,34.705,206.0,230.0,222.0,250.0,False,True,12,False,False,False,4749.277,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,14.0,1.0,HARD,14.0,True,131.357,31.408,51.826,48.123,203.0,149.0,142.0,240.0,False,False,26,False,False,False,4853.771,False
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,15.0,1.0,HARD,15.0,True,114.855,43.903,37.009,33.943,202.0,234.0,218.0,199.0,False,False,671,False,False,False,4985.128,False
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,16.0,1.0,HARD,16.0,True,101.763,31.005,36.957,33.801,212.0,235.0,221.0,271.0,True,True,1,False,False,False,5099.983,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,17.0,1.0,HARD,17.0,True,101.254,30.756,36.633,33.865,216.0,236.0,220.0,284.0,True,True,1,False,False,False,5201.746,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,18.0,1.0,HARD,18.0,True,101.192,30.986,36.351,33.855,213.0,238.0,222.0,274.0,True,True,1,False,False,False,5303.0,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,19.0,1.0,HARD,19.0,True,101.049,30.777,36.432,33.84,217.0,230.0,222.0,277.0,True,True,1,False,False,False,5404.192,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,20.0,1.0,HARD,20.0,True,100.871,30.917,36.171,33.783,214.0,240.0,222.0,275.0,True,True,1,False,False,False,5505.241,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,21.0,1.0,HARD,21.0,True,100.782,30.724,36.122,33.936,217.0,239.0,221.0,272.0,True,True,1,False,False,False,5606.112,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,22.0,1.0,HARD,22.0,True,100.557,30.716,36.183,33.658,218.0,238.0,222.0,282.0,True,True,1,False,False,False,5706.894,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,23.0,1.0,HARD,23.0,True,100.604,30.869,36.033,33.702,215.0,240.0,216.0,274.0,False,True,1,False,False,False,5807.451,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,24.0,1.0,HARD,24.0,True,100.208,30.77,35.897,33.541,218.0,244.0,221.0,280.0,True,True,1,False,False,False,5908.055,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,25.0,1.0,HARD,25.0,True,100.178,30.58,35.993,33.605,221.0,239.0,221.0,289.0,True,True,1,False,False,False,6008.263,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,26.0,1.0,HARD,26.0,True,100.226,30.575,36.007,33.644,219.0,238.0,221.0,279.0,False,True,1,False,False,False,6108.441,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,27.0,1.0,HARD,27.0,True,100.355,30.619,35.969,33.767,220.0,240.0,221.0,275.0,False,True,1,False,False,False,6208.667,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,28.0,1.0,HARD,28.0,True,100.087,30.534,35.893,33.66,218.0,243.0,222.0,282.0,True,True,1,False,False,False,6309.022,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,29.0,1.0,HARD,29.0,True,100.069,30.582,35.831,33.656,219.0,243.0,221.0,280.0,True,True,1,False,False,False,6409.109,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,30.0,1.0,HARD,30.0,True,100.047,30.698,35.776,33.573,218.0,243.0,222.0,284.0,True,True,1,False,False,False,6509.178,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,31.0,1.0,HARD,31.0,True,99.834,30.56,35.677,33.597,218.0,244.0,222.0,290.0,True,True,1,False,False,False,6609.225,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,32.0,1.0,HARD,32.0,True,99.837,30.604,35.697,33.536,220.0,244.0,221.0,292.0,False,True,1,False,False,False,6709.059,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,33.0,1.0,HARD,33.0,True,99.836,30.743,35.54,33.553,219.0,243.0,221.0,283.0,False,True,1,False,False,False,6808.896,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,34.0,1.0,HARD,34.0,True,99.86,30.617,35.744,33.499,221.0,242.0,223.0,288.0,False,True,1,False,False,False,6908.732,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,35.0,1.0,HARD,35.0,True,99.974,30.6,35.675,33.699,221.0,238.0,221.0,286.0,False,True,1,False,False,False,7008.592,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,36.0,1.0,HARD,36.0,True,102.736,30.637,35.591,36.508,217.0,246.0,,280.0,False,False,1,False,False,True,7108.566,False
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,37.0,2.0,MEDIUM,1.0,True,122.821,54.018,36.105,32.698,200.0,234.0,227.0,253.0,False,False,1,False,True,False,7211.302,False
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,38.0,2.0,MEDIUM,2.0,True,98.87,30.201,35.684,32.985,219.0,239.0,224.0,280.0,True,True,1,False,False,False,7334.123,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,39.0,2.0,MEDIUM,3.0,True,99.076,30.372,35.716,32.988,218.0,242.0,225.0,286.0,False,True,1,False,False,False,7432.993,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,40.0,2.0,MEDIUM,4.0,True,99.249,30.205,35.783,33.261,218.0,241.0,224.0,288.0,False,True,1,False,False,False,7532.069,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,41.0,2.0,MEDIUM,5.0,True,99.761,30.495,35.869,33.397,218.0,236.0,222.0,283.0,False,True,1,False,False,False,7631.318,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,42.0,2.0,MEDIUM,6.0,True,99.764,30.358,35.798,33.608,215.0,239.0,223.0,288.0,False,True,1,False,False,False,7731.079,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,43.0,2.0,MEDIUM,7.0,True,99.677,30.455,36.072,33.15,219.0,239.0,225.0,275.0,False,True,1,False,False,False,7830.843,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,44.0,2.0,MEDIUM,8.0,True,100.632,29.963,35.78,34.889,217.0,241.0,223.0,289.0,False,True,1,False,False,False,7930.52,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,45.0,2.0,MEDIUM,9.0,True,99.438,30.498,35.825,33.115,218.0,242.0,226.0,268.0,False,True,1,False,False,False,8031.152,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,46.0,2.0,MEDIUM,10.0,True,99.516,29.996,36.152,33.368,220.0,239.0,224.0,291.0,False,True,1,False,False,False,8130.59,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,47.0,2.0,MEDIUM,11.0,True,99.147,30.203,35.767,33.177,219.0,240.0,226.0,299.0,False,True,1,False,False,False,8230.106,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,48.0,2.0,MEDIUM,12.0,True,99.07,30.083,35.769,33.218,220.0,239.0,226.0,293.0,False,True,1,False,False,False,8329.253,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,49.0,2.0,MEDIUM,13.0,True,99.226,30.156,35.809,33.261,221.0,241.0,225.0,297.0,False,True,1,False,False,False,8428.323,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,50.0,2.0,MEDIUM,14.0,True,98.726,30.043,35.661,33.022,220.0,243.0,225.0,296.0,True,True,1,False,False,False,8527.549,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,51.0,2.0,MEDIUM,15.0,True,98.759,30.138,35.682,32.939,220.0,243.0,225.0,289.0,False,True,1,False,False,False,8626.275,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,52.0,2.0,MEDIUM,16.0,True,98.407,29.94,35.522,32.945,222.0,243.0,225.0,301.0,True,True,1,False,False,False,8725.034,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,53.0,2.0,MEDIUM,17.0,True,98.543,30.044,35.56,32.939,221.0,241.0,224.0,300.0,False,True,1,False,False,False,8823.441,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,54.0,2.0,MEDIUM,18.0,True,98.396,29.958,35.47,32.968,223.0,240.0,224.0,304.0,True,True,1,False,False,False,8921.984,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,55.0,2.0,MEDIUM,19.0,True,98.784,30.149,35.583,33.052,219.0,241.0,224.0,303.0,False,True,1,False,False,False,9020.38,True
+2026,Spanish Grand Prix,14,R,TSU,22,Racing Bulls,56.0,2.0,MEDIUM,20.0,True,98.818,30.052,35.688,33.078,220.0,243.0,225.0,299.0,False,True,1,False,False,False,9119.164,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,1.0,1.0,MEDIUM,1.0,True,110.959,,38.989,35.344,182.0,215.0,208.0,228.0,False,False,12,False,False,False,3493.809,False
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,2.0,1.0,MEDIUM,2.0,True,104.211,32.04,37.629,34.542,205.0,225.0,216.0,265.0,True,True,1,False,False,False,3605.024,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,3.0,1.0,MEDIUM,3.0,True,103.603,31.148,37.858,34.597,211.0,222.0,212.0,276.0,True,True,1,False,False,False,3709.235,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,4.0,1.0,MEDIUM,4.0,True,103.364,31.411,37.439,34.514,209.0,242.0,208.0,278.0,True,True,1,False,False,False,3812.838,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,5.0,1.0,MEDIUM,5.0,True,104.477,32.246,37.463,34.768,217.0,240.0,217.0,257.0,False,True,12,False,False,False,3916.202,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,6.0,1.0,MEDIUM,6.0,True,103.784,32.136,37.497,34.151,206.0,239.0,218.0,267.0,False,True,1,False,False,False,4020.679,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,7.0,1.0,MEDIUM,7.0,True,103.443,31.773,37.219,34.451,214.0,238.0,216.0,270.0,False,True,1,False,False,False,4124.463,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,8.0,1.0,MEDIUM,8.0,True,103.201,31.678,37.216,34.307,207.0,238.0,216.0,268.0,True,True,1,False,False,False,4227.906,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,9.0,1.0,MEDIUM,9.0,True,103.363,31.735,37.245,34.383,209.0,240.0,214.0,259.0,False,True,1,False,False,False,4331.107,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,10.0,1.0,MEDIUM,10.0,True,103.186,31.698,37.262,34.226,209.0,241.0,218.0,265.0,True,True,1,False,False,False,4434.47,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,11.0,1.0,MEDIUM,11.0,True,103.231,31.614,37.196,34.421,209.0,244.0,218.0,277.0,False,True,1,False,False,False,4537.656,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,12.0,1.0,MEDIUM,12.0,True,103.435,31.412,37.333,34.69,213.0,243.0,217.0,273.0,False,True,1,False,False,False,4640.887,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,13.0,1.0,MEDIUM,13.0,True,103.495,31.496,37.495,34.504,207.0,241.0,219.0,262.0,False,True,1,False,False,False,4744.322,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,14.0,1.0,MEDIUM,14.0,True,130.254,31.437,49.057,49.76,208.0,171.0,,266.0,False,False,126,False,False,True,4847.817,False
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,15.0,2.0,HARD,1.0,True,128.429,57.133,37.571,33.725,207.0,234.0,220.0,232.0,False,False,671,False,True,False,4978.071,False
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,16.0,2.0,HARD,2.0,True,102.132,31.058,37.236,33.838,208.0,232.0,221.0,272.0,True,True,1,False,False,False,5106.5,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,17.0,2.0,HARD,3.0,True,101.554,30.964,36.815,33.775,208.0,244.0,220.0,260.0,True,True,1,False,False,False,5208.632,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,18.0,2.0,HARD,4.0,True,101.726,30.734,37.042,33.95,212.0,241.0,221.0,276.0,False,True,1,False,False,False,5310.186,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,19.0,2.0,HARD,5.0,True,101.807,30.766,37.038,34.003,206.0,237.0,221.0,271.0,False,True,1,False,False,False,5411.912,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,20.0,2.0,HARD,6.0,True,101.917,30.904,36.912,34.101,212.0,235.0,219.0,272.0,False,True,1,False,False,False,5513.719,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,21.0,2.0,HARD,7.0,True,101.861,30.776,36.905,34.18,219.0,242.0,220.0,275.0,False,True,1,False,False,False,5615.636,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,22.0,2.0,HARD,8.0,True,101.901,31.068,36.854,33.979,214.0,234.0,220.0,268.0,False,True,1,False,False,False,5717.497,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,23.0,2.0,HARD,9.0,True,101.661,31.245,36.612,33.804,215.0,244.0,221.0,272.0,False,True,1,False,False,False,5819.398,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,24.0,2.0,HARD,10.0,True,101.292,31.082,36.392,33.818,217.0,238.0,218.0,276.0,True,True,1,False,False,False,5921.059,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,25.0,2.0,HARD,11.0,True,101.046,30.963,36.208,33.875,213.0,244.0,220.0,270.0,True,True,1,False,False,False,6022.351,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,26.0,2.0,HARD,12.0,True,100.625,30.51,36.228,33.887,218.0,249.0,219.0,273.0,True,True,1,False,False,False,6123.397,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,27.0,2.0,HARD,13.0,True,100.352,30.597,36.07,33.685,220.0,249.0,221.0,283.0,True,True,1,False,False,False,6224.022,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,28.0,2.0,HARD,14.0,True,100.512,30.455,36.2,33.857,214.0,249.0,219.0,285.0,False,True,1,False,False,False,6324.374,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,29.0,2.0,HARD,15.0,True,104.913,32.065,37.658,35.19,214.0,133.0,219.0,250.0,False,True,1,False,False,False,6424.886,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,30.0,2.0,HARD,16.0,True,102.529,30.786,36.161,35.582,216.0,238.0,220.0,276.0,False,True,1,False,False,False,6529.799,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,31.0,2.0,HARD,17.0,True,101.45,31.284,36.305,33.861,218.0,241.0,216.0,269.0,False,True,1,False,False,False,6632.328,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,32.0,2.0,HARD,18.0,True,102.086,32.351,36.199,33.536,214.0,247.0,219.0,281.0,False,True,1,False,False,False,6733.778,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,33.0,2.0,HARD,19.0,True,100.064,30.471,35.972,33.621,220.0,249.0,220.0,283.0,True,True,1,False,False,False,6835.864,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,34.0,2.0,HARD,20.0,True,99.897,30.248,36.111,33.538,217.0,243.0,219.0,290.0,True,True,1,False,False,False,6935.928,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,35.0,2.0,HARD,21.0,True,99.883,30.289,36.102,33.492,215.0,252.0,221.0,284.0,True,True,1,False,False,False,7035.825,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,36.0,2.0,HARD,22.0,True,99.994,30.283,36.073,33.638,220.0,250.0,220.0,290.0,False,True,1,False,False,False,7135.708,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,37.0,2.0,HARD,23.0,True,100.619,30.359,36.386,33.874,214.0,239.0,222.0,277.0,False,True,1,False,False,False,7235.702,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,38.0,2.0,HARD,24.0,True,100.166,30.268,36.153,33.745,218.0,251.0,219.0,287.0,False,True,1,False,False,False,7336.321,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,39.0,2.0,HARD,25.0,True,100.262,30.245,36.257,33.76,214.0,247.0,220.0,283.0,False,True,1,False,False,False,7436.487,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,40.0,2.0,HARD,26.0,True,100.072,29.997,36.247,33.828,220.0,252.0,221.0,292.0,False,True,1,False,False,False,7536.749,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,41.0,2.0,HARD,27.0,True,100.131,30.118,36.221,33.792,215.0,248.0,218.0,286.0,False,True,1,False,False,False,7636.821,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,42.0,2.0,HARD,28.0,True,101.782,31.699,36.241,33.842,218.0,254.0,221.0,283.0,False,True,1,False,False,False,7736.952,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,43.0,2.0,HARD,29.0,True,100.06,30.105,36.143,33.812,215.0,244.0,223.0,282.0,False,True,1,False,False,False,7838.734,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,44.0,2.0,HARD,30.0,True,101.131,30.394,36.714,34.023,208.0,246.0,221.0,281.0,False,True,1,False,False,False,7938.794,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,45.0,2.0,HARD,31.0,True,99.772,30.078,36.047,33.647,218.0,250.0,223.0,288.0,True,True,1,False,False,False,8039.925,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,46.0,2.0,HARD,32.0,True,99.496,29.918,36.073,33.505,225.0,248.0,223.0,288.0,True,True,1,False,False,False,8139.697,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,47.0,2.0,HARD,33.0,True,99.397,29.93,36.001,33.466,223.0,246.0,221.0,292.0,True,True,1,False,False,False,8239.193,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,48.0,2.0,HARD,34.0,True,99.435,29.863,36.047,33.525,221.0,246.0,221.0,295.0,False,True,1,False,False,False,8338.59,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,49.0,2.0,HARD,35.0,True,99.606,30.128,35.941,33.537,222.0,250.0,221.0,293.0,False,True,1,False,False,False,8438.025,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,50.0,2.0,HARD,36.0,True,100.127,30.32,36.182,33.625,218.0,251.0,221.0,285.0,False,True,1,False,False,False,8537.631,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,51.0,2.0,HARD,37.0,True,99.616,29.954,35.991,33.671,221.0,251.0,219.0,290.0,False,True,1,False,False,False,8637.758,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,52.0,2.0,HARD,38.0,True,100.294,30.198,36.179,33.917,223.0,254.0,220.0,281.0,False,True,1,False,False,False,8737.374,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,53.0,2.0,HARD,39.0,True,100.029,30.247,36.233,33.549,224.0,246.0,218.0,280.0,False,True,1,False,False,False,8837.668,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,54.0,2.0,HARD,40.0,True,100.52,30.377,36.243,33.9,217.0,244.0,220.0,280.0,False,True,1,False,False,False,8937.697,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,55.0,2.0,HARD,41.0,True,103.346,30.362,38.986,33.998,225.0,234.0,219.0,286.0,False,True,1,False,False,False,9038.217,True
+2026,Spanish Grand Prix,14,R,ALB,23,Williams,56.0,2.0,HARD,42.0,True,102.468,31.151,37.147,34.17,215.0,244.0,218.0,268.0,False,True,1,False,False,False,9141.563,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,1.0,1.0,SOFT,1.0,True,109.232,,38.486,34.737,186.0,206.0,221.0,213.0,False,False,12,False,False,False,3493.809,False
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,2.0,1.0,SOFT,2.0,True,103.377,31.156,37.592,34.629,200.0,221.0,218.0,254.0,True,True,1,False,False,False,3603.297,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,3.0,1.0,SOFT,3.0,True,102.807,30.609,37.512,34.686,204.0,230.0,217.0,281.0,True,True,1,False,False,False,3706.674,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,4.0,1.0,SOFT,4.0,True,102.521,30.558,37.421,34.542,209.0,225.0,218.0,285.0,True,True,1,False,False,False,3809.481,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,5.0,1.0,SOFT,5.0,True,103.154,30.721,37.499,34.934,208.0,228.0,215.0,275.0,False,True,12,False,False,False,3912.002,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,6.0,1.0,SOFT,6.0,True,103.085,31.641,37.239,34.205,210.0,243.0,219.0,272.0,False,True,1,False,False,False,4015.156,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,7.0,1.0,SOFT,7.0,True,102.109,30.711,37.189,34.209,214.0,226.0,218.0,277.0,True,True,1,False,False,False,4118.241,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,8.0,1.0,SOFT,8.0,True,102.047,30.623,37.146,34.278,214.0,230.0,218.0,283.0,True,True,1,False,False,False,4220.35,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,9.0,1.0,SOFT,9.0,True,102.447,31.107,37.284,34.056,210.0,232.0,218.0,281.0,False,True,1,False,False,False,4322.397,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,10.0,1.0,SOFT,10.0,True,102.026,30.644,37.037,34.345,213.0,229.0,218.0,282.0,True,True,1,False,False,False,4424.844,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,11.0,1.0,SOFT,11.0,True,102.545,30.594,37.43,34.521,212.0,233.0,219.0,276.0,False,True,1,False,False,False,4526.87,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,12.0,1.0,SOFT,12.0,True,102.794,30.848,37.362,34.584,210.0,227.0,216.0,265.0,False,True,1,False,False,False,4629.415,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,13.0,1.0,SOFT,13.0,True,102.53,30.896,37.219,34.415,215.0,232.0,217.0,272.0,False,True,1,False,False,False,4732.209,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,14.0,1.0,SOFT,14.0,True,124.356,30.515,45.717,48.124,210.0,182.0,,276.0,False,False,126,False,False,True,4834.739,False
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,15.0,2.0,HARD,1.0,True,132.061,60.256,38.346,33.459,161.0,237.0,222.0,153.0,False,False,671,False,True,False,4959.095,False
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,16.0,2.0,HARD,2.0,True,100.428,30.177,36.91,33.341,217.0,234.0,221.0,291.0,True,True,1,False,False,False,5091.156,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,17.0,2.0,HARD,3.0,True,100.384,30.205,36.835,33.344,212.0,241.0,222.0,287.0,True,True,1,False,False,False,5191.584,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,18.0,2.0,HARD,4.0,True,100.233,30.149,36.617,33.467,216.0,238.0,222.0,279.0,True,True,1,False,False,False,5291.968,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,19.0,2.0,HARD,5.0,True,100.44,30.16,36.727,33.553,213.0,236.0,221.0,291.0,False,True,1,False,False,False,5392.201,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,20.0,2.0,HARD,6.0,True,100.259,30.401,36.361,33.497,217.0,242.0,222.0,280.0,False,True,1,False,False,False,5492.641,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,21.0,2.0,HARD,7.0,True,99.591,29.996,36.152,33.443,218.0,244.0,220.0,293.0,True,True,1,False,False,False,5592.9,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,22.0,2.0,HARD,8.0,True,100.16,30.089,36.356,33.715,217.0,242.0,221.0,293.0,False,True,1,False,False,False,5692.491,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,23.0,2.0,HARD,9.0,True,99.517,29.84,36.089,33.588,220.0,244.0,222.0,293.0,True,True,1,False,False,False,5792.651,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,24.0,2.0,HARD,10.0,True,99.896,29.933,36.433,33.53,219.0,240.0,221.0,294.0,False,True,1,False,False,False,5892.168,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,25.0,2.0,HARD,11.0,True,100.206,30.02,36.35,33.836,214.0,243.0,221.0,297.0,False,True,1,False,False,False,5992.064,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,26.0,2.0,HARD,12.0,True,99.992,30.21,36.218,33.564,218.0,247.0,220.0,282.0,False,True,1,False,False,False,6092.27,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,27.0,2.0,HARD,13.0,True,100.195,30.295,36.441,33.459,215.0,244.0,220.0,285.0,False,True,1,False,False,False,6192.262,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,28.0,2.0,HARD,14.0,True,100.148,29.994,36.496,33.658,218.0,237.0,222.0,295.0,False,True,1,False,False,False,6292.457,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,29.0,2.0,HARD,15.0,True,99.564,29.89,36.037,33.637,221.0,245.0,221.0,297.0,False,True,1,False,False,False,6392.605,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,30.0,2.0,HARD,16.0,True,99.23,29.985,36.028,33.217,221.0,247.0,223.0,296.0,True,True,1,False,False,False,6492.169,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,31.0,2.0,HARD,17.0,True,99.209,29.894,35.848,33.467,221.0,246.0,221.0,281.0,True,True,1,False,False,False,6591.399,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,32.0,2.0,HARD,18.0,True,99.192,29.825,36.021,33.346,222.0,248.0,221.0,300.0,True,True,1,False,False,False,6690.608,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,33.0,2.0,HARD,19.0,True,98.937,30.101,35.706,33.13,223.0,247.0,220.0,292.0,True,True,1,False,False,False,6789.8,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,34.0,2.0,HARD,20.0,True,98.804,29.917,35.828,33.059,222.0,246.0,222.0,295.0,True,True,1,False,False,False,6888.737,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,35.0,2.0,HARD,21.0,True,98.368,29.688,35.612,33.068,224.0,247.0,222.0,302.0,True,True,1,False,False,False,6987.541,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,36.0,2.0,HARD,22.0,True,98.59,29.718,35.743,33.129,225.0,248.0,222.0,300.0,False,True,1,False,False,False,7085.909,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,37.0,2.0,HARD,23.0,True,98.813,29.848,35.797,33.168,222.0,249.0,222.0,302.0,False,True,1,False,False,False,7184.499,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,38.0,2.0,HARD,24.0,True,98.851,29.872,35.846,33.133,222.0,249.0,222.0,300.0,False,True,1,False,False,False,7283.312,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,39.0,2.0,HARD,25.0,True,99.457,30.482,35.754,33.221,221.0,246.0,221.0,285.0,False,True,1,False,False,False,7382.163,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,40.0,2.0,HARD,26.0,True,98.764,29.883,35.704,33.177,223.0,247.0,223.0,299.0,False,True,1,False,False,False,7481.62,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,41.0,2.0,HARD,27.0,True,98.566,29.872,35.621,33.073,219.0,250.0,222.0,301.0,False,True,1,False,False,False,7580.384,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,42.0,2.0,HARD,28.0,True,98.761,29.862,35.651,33.248,224.0,249.0,222.0,300.0,False,True,1,False,False,False,7678.95,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,43.0,2.0,HARD,29.0,True,98.785,29.874,35.834,33.077,219.0,249.0,223.0,286.0,False,True,1,False,False,False,7777.711,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,44.0,2.0,HARD,30.0,True,98.78,29.962,35.703,33.115,220.0,249.0,223.0,303.0,False,True,1,False,False,False,7876.496,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,45.0,2.0,HARD,31.0,True,99.75,29.928,36.2,33.622,216.0,244.0,224.0,295.0,False,True,1,False,False,False,7975.276,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,46.0,2.0,HARD,32.0,True,99.92,30.316,36.177,33.427,212.0,244.0,223.0,293.0,False,True,1,False,False,False,8075.026,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,47.0,2.0,HARD,33.0,True,100.009,30.274,36.272,33.463,209.0,244.0,222.0,267.0,False,True,1,False,False,False,8174.946,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,48.0,2.0,HARD,34.0,True,98.879,29.988,35.831,33.06,221.0,250.0,224.0,287.0,False,True,1,False,False,False,8274.955,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,49.0,2.0,HARD,35.0,True,98.689,29.862,35.49,33.337,225.0,250.0,224.0,294.0,False,True,1,False,False,False,8373.834,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,50.0,2.0,HARD,36.0,True,98.114,29.754,35.559,32.801,224.0,246.0,223.0,300.0,True,True,1,False,False,False,8472.523,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,51.0,2.0,HARD,37.0,True,98.186,29.734,35.558,32.894,223.0,247.0,224.0,302.0,False,True,1,False,False,False,8570.637,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,52.0,2.0,HARD,38.0,True,98.184,29.753,35.479,32.952,225.0,250.0,223.0,307.0,False,True,1,False,False,False,8668.823,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,53.0,2.0,HARD,39.0,True,98.823,30.059,35.763,33.001,211.0,249.0,220.0,295.0,False,True,1,False,False,False,8767.007,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,54.0,2.0,HARD,40.0,True,101.004,31.538,35.402,34.064,220.0,251.0,223.0,259.0,False,True,1,False,False,False,8865.83,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,55.0,2.0,HARD,41.0,True,102.637,32.191,36.998,33.448,193.0,245.0,223.0,252.0,False,True,1,False,False,False,8966.834,True
+2026,Spanish Grand Prix,14,R,HUL,27,Audi,56.0,2.0,HARD,42.0,True,99.646,30.175,35.978,33.493,215.0,241.0,220.0,280.0,False,True,1,False,False,False,9069.471,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,1.0,1.0,SOFT,4.0,False,103.131,,36.843,33.385,180.0,237.0,224.0,264.0,False,False,12,False,False,False,3493.809,False
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,2.0,1.0,SOFT,5.0,False,100.125,30.477,36.361,33.287,207.0,244.0,222.0,269.0,True,True,1,False,False,False,3597.196,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,3.0,1.0,SOFT,6.0,False,100.155,30.573,36.215,33.367,210.0,236.0,223.0,279.0,False,True,1,False,False,False,3697.321,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,4.0,1.0,SOFT,7.0,False,105.324,30.83,40.083,34.411,211.0,234.0,219.0,242.0,False,True,1,False,False,False,3797.476,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,5.0,1.0,SOFT,8.0,False,100.103,30.59,36.062,33.451,214.0,237.0,216.0,278.0,True,True,12,False,False,False,3902.8,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,6.0,1.0,SOFT,9.0,False,100.465,30.426,36.558,33.481,209.0,233.0,217.0,282.0,False,True,1,False,False,False,4002.903,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,7.0,1.0,SOFT,10.0,False,100.426,30.561,36.317,33.548,210.0,235.0,221.0,283.0,False,True,1,False,False,False,4103.368,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,8.0,1.0,SOFT,11.0,False,99.894,30.165,36.245,33.484,209.0,241.0,216.0,287.0,True,True,1,False,False,False,4203.794,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,9.0,1.0,SOFT,12.0,False,99.826,30.214,36.28,33.332,215.0,241.0,219.0,282.0,True,True,1,False,False,False,4303.688,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,10.0,1.0,SOFT,13.0,False,99.597,30.049,36.168,33.38,211.0,241.0,221.0,290.0,True,True,1,False,False,False,4403.514,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,11.0,1.0,SOFT,14.0,False,99.55,30.125,36.094,33.331,213.0,243.0,223.0,287.0,True,True,1,False,False,False,4503.111,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,12.0,1.0,SOFT,15.0,False,99.69,30.174,36.231,33.285,215.0,237.0,221.0,287.0,False,True,1,False,False,False,4602.661,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,13.0,1.0,SOFT,16.0,False,99.718,30.086,36.234,33.398,212.0,240.0,222.0,286.0,False,True,1,False,False,False,4702.351,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,14.0,1.0,SOFT,17.0,False,106.069,30.144,35.939,39.986,217.0,243.0,,282.0,False,False,126,False,False,True,4802.069,False
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,15.0,2.0,HARD,1.0,True,146.009,60.933,50.787,34.289,194.0,208.0,227.0,173.0,False,False,671,False,True,False,4908.138,False
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,16.0,2.0,HARD,2.0,True,99.054,30.021,36.186,32.847,213.0,238.0,226.0,280.0,True,True,1,False,False,False,5054.147,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,17.0,2.0,HARD,3.0,True,98.819,29.941,35.957,32.921,212.0,238.0,225.0,289.0,True,True,1,False,False,False,5153.201,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,18.0,2.0,HARD,4.0,True,98.68,29.78,35.968,32.932,215.0,236.0,224.0,286.0,True,True,1,False,False,False,5252.02,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,19.0,2.0,HARD,5.0,True,98.441,29.818,35.761,32.862,214.0,240.0,225.0,288.0,True,True,1,False,False,False,5350.7,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,20.0,2.0,HARD,6.0,True,98.554,29.792,35.875,32.887,213.0,239.0,224.0,286.0,False,True,1,False,False,False,5449.141,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,21.0,2.0,HARD,7.0,True,98.707,29.81,35.89,33.007,216.0,243.0,220.0,283.0,False,True,1,False,False,False,5547.695,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,22.0,2.0,HARD,8.0,True,98.836,29.943,35.737,33.156,218.0,242.0,217.0,278.0,False,True,1,False,False,False,5646.402,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,23.0,2.0,HARD,9.0,True,98.735,30.018,35.708,33.009,214.0,242.0,224.0,285.0,False,True,1,False,False,False,5745.238,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,24.0,2.0,HARD,10.0,True,98.551,29.774,35.703,33.074,210.0,241.0,226.0,290.0,False,True,1,False,False,False,5843.973,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,25.0,2.0,HARD,11.0,True,98.9,30.151,35.726,33.023,212.0,246.0,220.0,291.0,False,True,1,False,False,False,5942.524,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,26.0,2.0,HARD,12.0,True,98.074,29.879,35.352,32.843,217.0,248.0,224.0,275.0,True,True,1,False,False,False,6041.424,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,27.0,2.0,HARD,13.0,True,98.081,29.8,35.355,32.926,219.0,246.0,224.0,294.0,False,True,1,False,False,False,6139.498,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,28.0,2.0,HARD,14.0,True,98.678,29.926,35.578,33.174,216.0,240.0,224.0,293.0,False,True,1,False,False,False,6237.579,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,29.0,2.0,HARD,15.0,True,98.24,29.748,35.523,32.969,218.0,239.0,224.0,285.0,False,True,1,False,False,False,6336.257,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,30.0,2.0,HARD,16.0,True,98.25,29.832,35.481,32.937,213.0,245.0,225.0,289.0,False,True,1,False,False,False,6434.497,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,31.0,2.0,HARD,17.0,True,98.268,29.762,35.516,32.99,214.0,247.0,226.0,289.0,False,True,1,False,False,False,6532.747,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,32.0,2.0,HARD,18.0,True,97.91,29.811,35.236,32.863,216.0,250.0,224.0,285.0,True,True,1,False,False,False,6631.015,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,33.0,2.0,HARD,19.0,True,98.03,29.862,35.309,32.859,215.0,248.0,223.0,291.0,False,True,1,False,False,False,6728.925,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,34.0,2.0,HARD,20.0,True,97.568,29.756,35.076,32.736,218.0,243.0,225.0,293.0,True,True,1,False,False,False,6826.955,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,35.0,2.0,HARD,21.0,True,97.691,29.763,35.247,32.681,218.0,250.0,224.0,286.0,False,True,1,False,False,False,6924.523,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,36.0,2.0,HARD,22.0,True,97.691,29.725,35.166,32.8,217.0,248.0,223.0,292.0,False,True,1,False,False,False,7022.214,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,37.0,2.0,HARD,23.0,True,97.818,29.769,35.297,32.752,221.0,249.0,224.0,289.0,False,True,1,False,False,False,7119.905,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,38.0,2.0,HARD,24.0,True,97.512,29.7,35.052,32.76,219.0,250.0,224.0,295.0,True,True,1,False,False,False,7217.723,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,39.0,2.0,HARD,25.0,True,97.676,29.719,35.106,32.851,220.0,247.0,225.0,291.0,False,True,1,False,False,False,7315.235,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,40.0,2.0,HARD,26.0,True,97.419,29.608,35.001,32.81,222.0,250.0,223.0,292.0,True,True,1,False,False,False,7412.911,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,41.0,2.0,HARD,27.0,True,97.563,29.788,34.923,32.852,220.0,250.0,223.0,286.0,False,True,1,False,False,False,7510.33,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,42.0,2.0,HARD,28.0,True,97.377,29.596,34.906,32.875,220.0,250.0,226.0,292.0,True,True,1,False,False,False,7607.893,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,43.0,2.0,HARD,29.0,True,97.156,29.466,34.956,32.734,221.0,251.0,226.0,291.0,True,True,1,False,False,False,7705.27,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,44.0,2.0,HARD,30.0,True,97.077,29.505,34.913,32.659,220.0,253.0,228.0,296.0,True,True,1,False,False,False,7802.426,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,45.0,2.0,HARD,31.0,True,97.104,29.507,34.889,32.708,218.0,253.0,226.0,293.0,False,True,1,False,False,False,7899.503,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,46.0,2.0,HARD,32.0,True,97.317,29.477,35.05,32.79,221.0,251.0,225.0,295.0,False,True,1,False,False,False,7996.607,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,47.0,2.0,HARD,33.0,True,97.311,29.444,34.951,32.916,221.0,246.0,227.0,291.0,False,True,1,False,False,False,8093.924,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,48.0,2.0,HARD,34.0,True,97.66,29.45,35.166,33.044,222.0,248.0,225.0,292.0,False,True,1,False,False,False,8191.235,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,49.0,2.0,HARD,35.0,True,96.922,29.254,34.819,32.849,224.0,254.0,223.0,296.0,True,True,1,False,False,False,8288.895,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,50.0,2.0,HARD,36.0,True,96.934,29.547,34.707,32.68,221.0,253.0,224.0,293.0,False,True,1,False,False,False,8385.817,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,51.0,2.0,HARD,37.0,True,96.945,29.515,34.82,32.61,222.0,253.0,224.0,294.0,False,True,1,False,False,False,8482.751,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,52.0,2.0,HARD,38.0,True,96.76,29.453,34.694,32.613,222.0,254.0,224.0,300.0,True,True,1,False,False,False,8579.696,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,53.0,2.0,HARD,39.0,True,96.817,29.542,34.67,32.605,224.0,255.0,225.0,299.0,False,True,1,False,False,False,8676.456,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,54.0,2.0,HARD,40.0,True,96.824,29.669,34.495,32.66,223.0,254.0,224.0,300.0,False,True,1,False,False,False,8773.273,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,55.0,2.0,HARD,41.0,True,97.235,29.583,34.596,33.056,225.0,254.0,222.0,300.0,False,True,1,False,False,False,8870.097,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,56.0,2.0,HARD,42.0,True,97.837,30.489,34.874,32.474,220.0,255.0,225.0,298.0,False,True,1,False,False,False,8967.332,True
+2026,Spanish Grand Prix,14,R,VER,3,Red Bull Racing,57.0,2.0,HARD,43.0,True,97.001,29.741,34.596,32.664,221.0,256.0,223.0,296.0,False,True,1,False,False,False,9065.169,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,1.0,1.0,HARD,1.0,True,107.203,,37.796,34.431,191.0,229.0,223.0,228.0,False,False,12,False,False,False,3493.809,False
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,2.0,1.0,HARD,2.0,True,102.589,30.835,37.643,34.111,199.0,238.0,223.0,279.0,True,True,1,False,False,False,3601.268,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,3.0,1.0,HARD,3.0,True,102.163,30.805,37.132,34.226,200.0,237.0,222.0,273.0,True,True,1,False,False,False,3703.857,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,4.0,1.0,HARD,4.0,True,101.81,30.699,36.921,34.19,204.0,239.0,219.0,273.0,True,True,1,False,False,False,3806.02,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,5.0,1.0,HARD,5.0,True,103.455,30.997,37.851,34.607,191.0,235.0,215.0,271.0,False,True,12,False,False,False,3907.83,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,6.0,1.0,HARD,6.0,True,102.191,30.921,37.242,34.028,203.0,241.0,221.0,269.0,False,True,1,False,False,False,4011.285,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,7.0,1.0,HARD,7.0,True,102.065,30.737,36.92,34.408,202.0,235.0,215.0,258.0,False,True,1,False,False,False,4113.476,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,8.0,1.0,HARD,8.0,True,101.959,30.779,37.17,34.01,203.0,241.0,219.0,279.0,False,True,1,False,False,False,4215.541,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,9.0,1.0,HARD,9.0,True,102.268,30.794,37.249,34.225,203.0,238.0,222.0,276.0,False,True,1,False,False,False,4317.5,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,10.0,1.0,HARD,10.0,True,101.592,31.199,36.823,33.57,203.0,240.0,223.0,300.0,True,True,1,False,False,False,4419.768,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,11.0,1.0,HARD,11.0,True,100.395,30.66,36.205,33.53,210.0,243.0,224.0,278.0,True,True,1,False,False,False,4521.36,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,12.0,1.0,HARD,12.0,True,100.558,30.584,36.268,33.706,206.0,243.0,223.0,279.0,False,True,1,False,False,False,4621.755,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,13.0,1.0,HARD,13.0,True,100.105,30.531,36.101,33.473,208.0,242.0,222.0,286.0,True,True,1,False,False,False,4722.313,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,14.0,1.0,HARD,14.0,True,119.201,30.513,36.404,52.284,211.0,216.0,148.0,286.0,False,False,126,False,False,False,4822.418,False
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,15.0,1.0,HARD,15.0,True,125.02,46.587,45.321,33.112,172.0,240.0,223.0,114.0,False,False,671,False,False,False,4941.619,False
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,16.0,1.0,HARD,16.0,True,100.213,30.38,36.193,33.64,205.0,244.0,220.0,281.0,False,True,1,False,False,False,5066.639,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,17.0,1.0,HARD,17.0,True,100.007,30.406,36.156,33.445,206.0,244.0,222.0,284.0,True,True,1,False,False,False,5166.852,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,18.0,1.0,HARD,18.0,True,99.829,30.333,35.948,33.548,213.0,247.0,222.0,286.0,True,True,1,False,False,False,5266.859,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,19.0,1.0,HARD,19.0,True,99.152,30.147,35.677,33.328,215.0,250.0,224.0,289.0,True,True,1,False,False,False,5366.688,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,20.0,1.0,HARD,20.0,True,99.354,30.313,35.658,33.383,211.0,244.0,223.0,286.0,False,True,1,False,False,False,5465.84,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,21.0,1.0,HARD,21.0,True,99.52,30.308,35.79,33.422,213.0,244.0,224.0,284.0,False,True,1,False,False,False,5565.194,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,22.0,1.0,HARD,22.0,True,99.338,30.205,35.733,33.4,216.0,246.0,224.0,283.0,False,True,1,False,False,False,5664.714,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,23.0,1.0,HARD,23.0,True,98.944,30.253,35.542,33.149,213.0,247.0,224.0,288.0,True,True,1,False,False,False,5764.052,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,24.0,1.0,HARD,24.0,True,99.066,30.275,35.652,33.139,215.0,246.0,224.0,286.0,False,True,1,False,False,False,5862.996,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,25.0,1.0,HARD,25.0,True,99.928,30.472,36.053,33.403,211.0,249.0,225.0,290.0,False,True,1,False,False,False,5962.062,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,26.0,1.0,HARD,26.0,True,99.271,30.18,35.786,33.305,211.0,248.0,225.0,291.0,False,True,1,False,False,False,6061.99,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,27.0,1.0,HARD,27.0,True,99.4,30.246,35.665,33.489,213.0,247.0,224.0,292.0,False,True,1,False,False,False,6161.261,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,28.0,1.0,HARD,28.0,True,99.352,30.271,35.553,33.528,214.0,247.0,224.0,289.0,False,True,1,False,False,False,6260.661,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,29.0,1.0,HARD,29.0,True,99.742,30.182,35.718,33.842,211.0,245.0,224.0,288.0,False,True,1,False,False,False,6360.013,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,30.0,1.0,HARD,30.0,True,98.883,30.279,35.39,33.214,216.0,247.0,225.0,289.0,True,True,1,False,False,False,6459.755,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,31.0,1.0,HARD,31.0,True,99.182,30.3,35.401,33.481,218.0,249.0,223.0,287.0,False,True,1,False,False,False,6558.638,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,32.0,1.0,HARD,32.0,True,99.273,30.642,35.308,33.323,217.0,246.0,225.0,292.0,False,True,1,False,False,False,6657.82,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,33.0,1.0,HARD,33.0,True,98.575,30.191,35.302,33.082,218.0,249.0,224.0,292.0,True,True,1,False,False,False,6757.093,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,34.0,1.0,HARD,34.0,True,98.465,30.11,35.174,33.181,215.0,250.0,224.0,290.0,True,True,1,False,False,False,6855.668,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,35.0,1.0,HARD,35.0,True,102.529,31.725,37.205,33.599,187.0,238.0,223.0,286.0,False,True,1,False,False,False,6954.133,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,36.0,1.0,HARD,36.0,True,98.941,30.385,35.239,33.317,208.0,247.0,224.0,285.0,False,True,1,False,False,False,7056.662,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,37.0,1.0,HARD,37.0,True,99.085,30.216,35.341,33.528,217.0,249.0,224.0,295.0,False,True,1,False,False,False,7155.603,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,38.0,1.0,HARD,38.0,True,98.745,30.14,35.414,33.191,215.0,247.0,224.0,287.0,False,True,1,False,False,False,7254.688,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,39.0,1.0,HARD,39.0,True,98.761,30.148,35.199,33.414,223.0,246.0,224.0,289.0,False,True,1,False,False,False,7353.433,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,40.0,1.0,HARD,40.0,True,98.698,30.141,35.354,33.203,219.0,249.0,222.0,288.0,False,True,1,False,False,False,7452.194,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,41.0,1.0,HARD,41.0,True,98.667,30.175,35.335,33.157,218.0,250.0,224.0,294.0,False,True,1,False,False,False,7550.892,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,42.0,1.0,HARD,42.0,True,98.885,30.192,35.225,33.468,217.0,249.0,223.0,293.0,False,True,1,False,False,False,7649.559,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,43.0,1.0,HARD,43.0,True,98.506,29.988,35.268,33.25,218.0,249.0,224.0,296.0,False,True,1,False,False,False,7748.444,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,44.0,1.0,HARD,44.0,True,101.585,30.121,35.097,36.367,220.0,253.0,,292.0,False,False,1,False,False,True,7846.95,False
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,45.0,2.0,MEDIUM,1.0,True,121.703,53.022,35.863,32.818,211.0,249.0,227.0,260.0,False,False,1,False,True,False,7948.535,False
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,46.0,2.0,MEDIUM,2.0,True,97.939,29.915,35.563,32.461,217.0,249.0,229.0,288.0,True,True,1,False,False,False,8070.238,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,47.0,2.0,MEDIUM,3.0,True,97.201,29.896,34.846,32.459,219.0,252.0,226.0,288.0,True,True,1,False,False,False,8168.177,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,48.0,2.0,MEDIUM,4.0,True,97.231,30.074,34.86,32.297,214.0,250.0,227.0,286.0,False,True,1,False,False,False,8265.378,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,49.0,2.0,MEDIUM,5.0,True,96.846,29.666,34.686,32.494,215.0,250.0,227.0,290.0,True,True,1,False,False,False,8362.609,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,50.0,2.0,MEDIUM,6.0,True,97.398,29.836,35.064,32.498,214.0,246.0,228.0,287.0,False,True,1,False,False,False,8459.455,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,51.0,2.0,MEDIUM,7.0,True,97.625,29.8,35.013,32.812,218.0,251.0,226.0,296.0,False,True,1,False,False,False,8556.853,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,52.0,2.0,MEDIUM,8.0,True,98.427,29.949,35.18,33.298,218.0,245.0,228.0,295.0,False,True,1,False,False,False,8654.478,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,53.0,2.0,MEDIUM,9.0,True,99.321,30.15,35.431,33.74,216.0,251.0,227.0,288.0,False,True,1,False,False,False,8752.905,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,54.0,2.0,MEDIUM,10.0,True,99.743,30.569,35.592,33.582,208.0,242.0,224.0,279.0,False,True,1,False,False,False,8852.226,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,55.0,2.0,MEDIUM,11.0,True,97.456,30.057,34.744,32.655,218.0,251.0,225.0,292.0,False,True,1,False,False,False,8951.969,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,56.0,2.0,MEDIUM,12.0,True,97.288,29.985,34.863,32.44,220.0,251.0,226.0,289.0,False,True,1,False,False,False,9049.425,True
+2026,Spanish Grand Prix,14,R,LAW,30,Red Bull Racing,57.0,2.0,MEDIUM,13.0,True,97.852,29.899,34.675,33.278,223.0,252.0,222.0,292.0,False,True,1,False,False,False,9146.713,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,1.0,1.0,MEDIUM,1.0,True,108.737,,38.487,34.548,187.0,227.0,220.0,227.0,False,False,12,False,False,False,3493.809,False
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,2.0,1.0,MEDIUM,2.0,True,103.205,31.1,37.715,34.39,194.0,227.0,219.0,254.0,True,True,1,False,False,False,3602.802,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,3.0,1.0,MEDIUM,3.0,True,102.608,30.675,37.739,34.194,202.0,232.0,220.0,261.0,True,True,1,False,False,False,3706.007,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,4.0,1.0,MEDIUM,4.0,True,102.596,30.591,37.867,34.138,206.0,239.0,220.0,270.0,True,True,1,False,False,False,3808.615,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,5.0,1.0,MEDIUM,5.0,True,103.433,30.831,37.489,35.113,206.0,236.0,221.0,266.0,False,True,12,False,False,False,3911.211,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,6.0,1.0,MEDIUM,6.0,True,102.478,31.151,37.351,33.976,214.0,240.0,220.0,273.0,True,True,1,False,False,False,4014.644,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,7.0,1.0,MEDIUM,7.0,True,102.118,30.915,37.374,33.829,216.0,239.0,218.0,248.0,True,True,1,False,False,False,4117.122,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,8.0,1.0,MEDIUM,8.0,True,102.096,30.747,37.335,34.014,210.0,240.0,219.0,275.0,True,True,1,False,False,False,4219.24,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,9.0,1.0,MEDIUM,9.0,True,102.143,30.64,37.47,34.033,216.0,240.0,218.0,285.0,False,True,1,False,False,False,4321.336,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,10.0,1.0,MEDIUM,10.0,True,102.457,30.84,37.558,34.059,213.0,239.0,220.0,290.0,False,True,1,False,False,False,4423.479,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,11.0,1.0,MEDIUM,11.0,True,102.574,30.722,37.617,34.235,206.0,240.0,219.0,262.0,False,True,1,False,False,False,4525.936,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,12.0,1.0,MEDIUM,12.0,True,102.612,30.828,37.352,34.432,217.0,236.0,219.0,264.0,False,True,1,False,False,False,4628.51,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,13.0,1.0,MEDIUM,13.0,True,102.623,30.885,37.447,34.291,214.0,239.0,217.0,260.0,False,True,1,False,False,False,4731.122,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,14.0,1.0,MEDIUM,14.0,True,124.784,30.837,45.336,48.611,208.0,177.0,,268.0,False,False,126,False,False,True,4833.745,False
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,15.0,2.0,HARD,1.0,True,133.727,61.703,38.321,33.703,144.0,239.0,224.0,143.0,False,False,671,False,True,False,4958.529,False
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,16.0,2.0,HARD,2.0,True,100.848,30.195,37.007,33.646,211.0,237.0,221.0,278.0,True,True,1,False,False,False,5092.256,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,17.0,2.0,HARD,3.0,True,100.544,30.314,36.679,33.551,217.0,239.0,221.0,275.0,True,True,1,False,False,False,5193.104,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,18.0,2.0,HARD,4.0,True,100.872,30.411,36.859,33.602,215.0,244.0,222.0,282.0,False,True,1,False,False,False,5293.648,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,19.0,2.0,HARD,5.0,True,100.584,30.238,36.693,33.653,221.0,243.0,221.0,276.0,False,True,1,False,False,False,5394.52,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,20.0,2.0,HARD,6.0,True,100.644,30.24,36.706,33.698,218.0,243.0,221.0,292.0,False,True,1,False,False,False,5495.104,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,21.0,2.0,HARD,7.0,True,100.904,30.373,36.81,33.721,222.0,241.0,221.0,282.0,False,True,1,False,False,False,5595.748,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,22.0,2.0,HARD,8.0,True,100.732,30.181,36.876,33.675,219.0,242.0,220.0,274.0,False,True,1,False,False,False,5696.652,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,23.0,2.0,HARD,9.0,True,100.47,30.433,36.613,33.424,219.0,242.0,222.0,280.0,True,True,1,False,False,False,5797.384,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,24.0,2.0,HARD,10.0,True,100.648,30.385,36.74,33.523,222.0,243.0,221.0,280.0,False,True,1,False,False,False,5897.854,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,25.0,2.0,HARD,11.0,True,100.676,30.341,36.806,33.529,217.0,242.0,222.0,281.0,False,True,1,False,False,False,5998.502,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,26.0,2.0,HARD,12.0,True,100.289,30.368,36.395,33.526,218.0,243.0,220.0,279.0,True,True,1,False,False,False,6099.178,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,27.0,2.0,HARD,13.0,True,100.016,30.237,36.444,33.335,221.0,243.0,222.0,286.0,True,True,1,False,False,False,6199.467,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,28.0,2.0,HARD,14.0,True,100.006,30.259,36.425,33.322,222.0,243.0,219.0,288.0,True,True,1,False,False,False,6299.483,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,29.0,2.0,HARD,15.0,True,99.677,30.287,36.227,33.163,222.0,244.0,222.0,296.0,True,True,1,False,False,False,6399.489,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,30.0,2.0,HARD,16.0,True,99.369,30.202,35.961,33.206,223.0,244.0,223.0,294.0,True,True,1,False,False,False,6499.166,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,31.0,2.0,HARD,17.0,True,99.547,30.225,35.925,33.397,222.0,244.0,222.0,294.0,False,True,1,False,False,False,6598.535,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,32.0,2.0,HARD,18.0,True,99.696,30.423,36.047,33.226,219.0,244.0,221.0,293.0,False,True,1,False,False,False,6698.082,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,33.0,2.0,HARD,19.0,True,99.292,30.219,35.786,33.287,223.0,244.0,222.0,298.0,True,True,1,False,False,False,6797.778,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,34.0,2.0,HARD,20.0,True,99.069,30.208,35.849,33.012,223.0,243.0,221.0,292.0,True,True,1,False,False,False,6897.07,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,35.0,2.0,HARD,21.0,True,98.805,30.076,35.68,33.049,221.0,244.0,222.0,298.0,True,True,1,False,False,False,6996.139,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,36.0,2.0,HARD,22.0,True,98.606,30.06,35.643,32.903,223.0,244.0,223.0,299.0,True,True,1,False,False,False,7094.944,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,37.0,2.0,HARD,23.0,True,98.68,30.117,35.604,32.959,226.0,245.0,221.0,294.0,False,True,1,False,False,False,7193.55,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,38.0,2.0,HARD,24.0,True,98.603,30.091,35.528,32.984,223.0,245.0,222.0,289.0,True,True,1,False,False,False,7292.23,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,39.0,2.0,HARD,25.0,True,98.935,30.091,35.671,33.173,227.0,246.0,221.0,293.0,False,True,1,False,False,False,7390.833,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,40.0,2.0,HARD,26.0,True,98.585,29.904,35.59,33.091,224.0,246.0,223.0,295.0,True,True,1,False,False,False,7489.768,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,41.0,2.0,HARD,27.0,True,98.65,29.983,35.543,33.124,226.0,247.0,222.0,298.0,False,True,1,False,False,False,7588.353,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,42.0,2.0,HARD,28.0,True,98.885,29.969,35.563,33.353,223.0,247.0,222.0,297.0,False,True,1,False,False,False,7687.003,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,43.0,2.0,HARD,29.0,True,99.041,30.073,35.762,33.206,222.0,246.0,222.0,296.0,False,True,1,False,False,False,7785.888,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,44.0,2.0,HARD,30.0,True,99.175,30.074,36.085,33.016,223.0,246.0,224.0,284.0,False,True,1,False,False,False,7884.929,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,45.0,2.0,HARD,31.0,True,98.429,30.073,35.419,32.937,227.0,247.0,222.0,296.0,True,True,1,False,False,False,7984.104,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,46.0,2.0,HARD,32.0,True,98.485,29.965,35.402,33.118,225.0,247.0,223.0,298.0,False,True,1,False,False,False,8082.533,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,47.0,2.0,HARD,33.0,True,98.661,29.912,35.537,33.212,226.0,247.0,223.0,292.0,False,True,1,False,False,False,8181.018,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,48.0,2.0,HARD,34.0,True,98.265,29.835,35.456,32.974,222.0,247.0,222.0,301.0,True,True,1,False,False,False,8279.679,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,49.0,2.0,HARD,35.0,True,98.119,29.781,35.213,33.125,224.0,246.0,223.0,299.0,True,True,1,False,False,False,8377.944,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,50.0,2.0,HARD,36.0,True,98.769,30.174,35.521,33.074,220.0,245.0,223.0,302.0,False,True,1,False,False,False,8476.063,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,51.0,2.0,HARD,37.0,True,100.242,29.966,35.529,34.747,224.0,246.0,224.0,298.0,False,True,1,False,False,False,8574.832,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,52.0,2.0,HARD,38.0,True,101.627,30.136,38.262,33.229,220.0,246.0,223.0,301.0,False,True,1,False,False,False,8675.074,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,53.0,2.0,HARD,39.0,True,99.245,30.202,35.856,33.187,217.0,246.0,222.0,296.0,False,True,1,False,False,False,8776.701,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,54.0,2.0,HARD,40.0,True,98.727,30.201,35.417,33.109,223.0,246.0,223.0,291.0,False,True,1,False,False,False,8875.946,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,55.0,2.0,HARD,41.0,True,99.115,30.111,35.649,33.355,223.0,246.0,222.0,296.0,False,True,1,False,False,False,8974.673,True
+2026,Spanish Grand Prix,14,R,OCO,31,Haas F1 Team,56.0,2.0,HARD,42.0,True,99.174,30.092,35.764,33.318,227.0,247.0,220.0,299.0,False,True,1,False,False,False,9073.788,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,1.0,1.0,MEDIUM,1.0,True,107.741,,37.854,34.533,196.0,228.0,221.0,240.0,False,False,12,False,False,False,3493.809,False
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,2.0,1.0,MEDIUM,2.0,True,102.867,30.834,37.844,34.189,197.0,240.0,220.0,256.0,True,True,1,False,False,False,3601.806,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,3.0,1.0,MEDIUM,3.0,True,102.231,30.751,37.223,34.257,206.0,238.0,218.0,275.0,True,True,1,False,False,False,3704.673,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,4.0,1.0,MEDIUM,4.0,True,102.426,31.245,37.172,34.009,209.0,240.0,219.0,275.0,False,True,1,False,False,False,3806.904,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,5.0,1.0,MEDIUM,5.0,True,103.081,30.894,37.69,34.497,207.0,238.0,218.0,285.0,False,True,12,False,False,False,3909.33,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,6.0,1.0,MEDIUM,6.0,True,102.135,30.901,37.183,34.051,212.0,244.0,216.0,259.0,True,True,1,False,False,False,4012.411,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,7.0,1.0,MEDIUM,7.0,True,102.032,30.822,37.271,33.939,208.0,238.0,218.0,263.0,True,True,1,False,False,False,4114.546,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,8.0,1.0,MEDIUM,8.0,True,101.981,30.928,37.061,33.992,211.0,240.0,218.0,262.0,True,True,1,False,False,False,4216.578,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,9.0,1.0,MEDIUM,9.0,True,102.319,30.813,37.356,34.15,211.0,230.0,218.0,260.0,False,True,1,False,False,False,4318.559,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,10.0,1.0,MEDIUM,10.0,True,103.253,31.119,37.873,34.261,205.0,236.0,221.0,267.0,False,True,1,False,False,False,4420.878,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,11.0,1.0,MEDIUM,11.0,True,102.547,30.974,37.562,34.011,205.0,226.0,219.0,258.0,False,True,1,False,False,False,4524.131,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,12.0,1.0,MEDIUM,12.0,True,102.617,31.042,37.429,34.146,210.0,233.0,215.0,265.0,False,True,1,False,False,False,4626.678,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,13.0,1.0,MEDIUM,13.0,True,102.605,31.138,37.412,34.055,210.0,231.0,216.0,259.0,False,True,1,False,False,False,4729.295,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,14.0,1.0,MEDIUM,14.0,True,124.205,31.059,43.608,49.538,209.0,216.0,,263.0,False,False,126,False,False,True,4831.9,False
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,15.0,2.0,HARD,1.0,True,133.376,61.86,38.197,33.319,193.0,241.0,224.0,167.0,False,False,671,False,True,False,4956.105,False
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,16.0,2.0,HARD,2.0,True,99.883,30.137,36.337,33.409,211.0,236.0,222.0,278.0,True,True,1,False,False,False,5089.481,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,17.0,2.0,HARD,3.0,True,99.901,30.271,36.154,33.476,211.0,242.0,221.0,280.0,False,True,1,False,False,False,5189.364,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,18.0,2.0,HARD,4.0,True,100.323,30.368,36.482,33.473,214.0,236.0,223.0,276.0,False,True,1,False,False,False,5289.265,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,19.0,2.0,HARD,5.0,True,99.957,30.153,36.442,33.362,216.0,244.0,222.0,277.0,False,True,1,False,False,False,5389.588,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,20.0,2.0,HARD,6.0,True,100.302,30.251,36.377,33.674,213.0,240.0,221.0,270.0,False,True,1,False,False,False,5489.545,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,21.0,2.0,HARD,7.0,True,100.311,30.327,36.393,33.591,215.0,232.0,219.0,287.0,False,True,1,False,False,False,5589.847,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,22.0,2.0,HARD,8.0,True,100.164,30.405,36.22,33.539,214.0,235.0,220.0,286.0,False,True,1,False,False,False,5690.158,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,23.0,2.0,HARD,9.0,True,100.119,30.289,36.553,33.277,213.0,238.0,220.0,286.0,False,True,1,False,False,False,5790.322,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,24.0,2.0,HARD,10.0,True,99.98,30.33,36.387,33.263,214.0,245.0,221.0,278.0,False,True,1,False,False,False,5890.441,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,25.0,2.0,HARD,11.0,True,100.23,30.284,36.445,33.501,216.0,246.0,221.0,283.0,False,True,1,False,False,False,5990.421,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,26.0,2.0,HARD,12.0,True,99.648,30.311,36.107,33.23,216.0,242.0,220.0,282.0,True,True,1,False,False,False,6090.651,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,27.0,2.0,HARD,13.0,True,99.897,30.342,36.19,33.365,215.0,243.0,221.0,284.0,False,True,1,False,False,False,6190.299,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,28.0,2.0,HARD,14.0,True,99.82,30.288,36.14,33.392,217.0,247.0,221.0,284.0,False,True,1,False,False,False,6290.196,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,29.0,2.0,HARD,15.0,True,99.48,30.225,35.912,33.343,217.0,243.0,220.0,285.0,True,True,1,False,False,False,6390.016,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,30.0,2.0,HARD,16.0,True,99.637,30.349,36.095,33.193,214.0,245.0,222.0,278.0,False,True,1,False,False,False,6489.496,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,31.0,2.0,HARD,17.0,True,99.05,30.019,35.886,33.145,216.0,241.0,222.0,296.0,True,True,1,False,False,False,6589.133,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,32.0,2.0,HARD,18.0,True,99.166,30.108,35.824,33.234,219.0,245.0,221.0,296.0,False,True,1,False,False,False,6688.183,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,33.0,2.0,HARD,19.0,True,98.771,30.061,35.594,33.116,219.0,248.0,222.0,295.0,True,True,1,False,False,False,6787.349,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,34.0,2.0,HARD,20.0,True,98.572,30.029,35.473,33.07,217.0,245.0,223.0,303.0,True,True,1,False,False,False,6886.12,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,35.0,2.0,HARD,21.0,True,98.52,29.929,35.564,33.027,218.0,245.0,223.0,303.0,True,True,1,False,False,False,6984.692,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,36.0,2.0,HARD,22.0,True,98.687,30.04,35.594,33.053,217.0,249.0,222.0,293.0,False,True,1,False,False,False,7083.212,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,37.0,2.0,HARD,23.0,True,99.716,30.919,35.76,33.037,202.0,249.0,223.0,300.0,False,True,1,False,False,False,7181.899,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,38.0,2.0,HARD,24.0,True,98.385,30.026,35.438,32.921,217.0,248.0,223.0,301.0,True,True,1,False,False,False,7281.615,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,39.0,2.0,HARD,25.0,True,98.356,29.96,35.369,33.027,217.0,249.0,222.0,303.0,True,True,1,False,False,False,7380.0,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,40.0,2.0,HARD,26.0,True,98.211,29.85,35.294,33.067,218.0,250.0,223.0,302.0,True,True,1,False,False,False,7478.356,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,41.0,2.0,HARD,27.0,True,98.938,30.218,35.508,33.212,210.0,249.0,223.0,293.0,False,True,1,False,False,False,7576.567,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,42.0,2.0,HARD,28.0,True,99.028,30.067,35.487,33.474,211.0,247.0,224.0,284.0,False,True,1,False,False,False,7675.505,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,43.0,2.0,HARD,29.0,True,99.511,30.193,35.756,33.562,213.0,238.0,223.0,276.0,False,True,1,False,False,False,7774.533,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,44.0,2.0,HARD,30.0,True,99.915,30.811,35.723,33.381,215.0,247.0,223.0,287.0,False,True,1,False,False,False,7874.044,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,45.0,2.0,HARD,31.0,True,100.35,30.361,36.336,33.653,209.0,242.0,223.0,281.0,False,True,1,False,False,False,7973.959,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,46.0,2.0,HARD,32.0,True,99.464,30.057,35.977,33.43,209.0,246.0,224.0,293.0,False,True,1,False,False,False,8074.309,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,47.0,2.0,HARD,33.0,True,100.648,30.975,35.959,33.714,209.0,246.0,222.0,269.0,False,True,1,False,False,False,8173.773,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,48.0,2.0,HARD,34.0,True,98.27,29.841,35.296,33.133,217.0,251.0,223.0,302.0,False,True,1,False,False,False,8274.421,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,49.0,2.0,HARD,35.0,True,98.314,29.84,35.133,33.341,216.0,248.0,224.0,303.0,False,True,1,False,False,False,8372.691,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,50.0,2.0,HARD,36.0,True,98.279,29.905,35.364,33.01,221.0,247.0,224.0,307.0,False,True,1,False,False,False,8471.005,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,51.0,2.0,HARD,37.0,True,98.457,30.166,35.302,32.989,218.0,249.0,223.0,307.0,False,True,1,False,False,False,8569.284,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,52.0,2.0,HARD,38.0,True,98.635,29.919,35.268,33.448,219.0,254.0,221.0,306.0,False,True,1,False,False,False,8667.741,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,53.0,2.0,HARD,39.0,True,98.679,30.271,35.215,33.193,217.0,248.0,221.0,293.0,False,True,1,False,False,False,8766.376,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,54.0,2.0,HARD,40.0,True,101.555,30.181,35.517,35.857,215.0,242.0,220.0,303.0,False,True,1,False,False,False,8865.055,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,55.0,2.0,HARD,41.0,True,102.383,32.3,36.634,33.449,197.0,243.0,222.0,254.0,False,True,1,False,False,False,8966.61,True
+2026,Spanish Grand Prix,14,R,LIN,41,Racing Bulls,56.0,2.0,HARD,42.0,True,99.234,30.152,35.701,33.381,213.0,242.0,220.0,295.0,False,True,1,False,False,False,9068.993,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,1.0,1.0,MEDIUM,1.0,True,106.464,,37.611,34.122,189.0,231.0,216.0,238.0,False,False,12,False,False,False,3493.809,False
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,2.0,1.0,MEDIUM,2.0,True,102.467,31.468,37.126,33.873,196.0,240.0,218.0,301.0,True,True,1,False,False,False,3600.529,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,3.0,1.0,MEDIUM,3.0,True,102.137,30.998,37.082,34.057,209.0,240.0,216.0,281.0,True,True,1,False,False,False,3702.996,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,4.0,1.0,MEDIUM,4.0,True,101.919,30.902,37.129,33.888,212.0,243.0,219.0,290.0,True,True,1,False,False,False,3805.133,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,5.0,1.0,MEDIUM,5.0,True,103.267,31.273,37.636,34.358,208.0,241.0,219.0,298.0,False,True,12,False,False,False,3907.052,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,6.0,1.0,MEDIUM,6.0,True,102.318,31.179,37.125,34.014,213.0,243.0,218.0,287.0,False,True,1,False,False,False,4010.319,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,7.0,1.0,MEDIUM,7.0,True,102.168,30.995,37.098,34.075,210.0,242.0,219.0,287.0,False,True,1,False,False,False,4112.637,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,8.0,1.0,MEDIUM,8.0,True,101.793,30.948,37.075,33.77,206.0,245.0,217.0,286.0,True,True,1,False,False,False,4214.805,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,9.0,1.0,MEDIUM,9.0,True,102.564,31.12,37.22,34.224,208.0,243.0,217.0,280.0,False,True,1,False,False,False,4316.598,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,10.0,1.0,MEDIUM,10.0,True,104.342,32.087,38.06,34.195,194.0,239.0,220.0,279.0,False,True,1,False,False,False,4419.162,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,11.0,1.0,MEDIUM,11.0,True,102.259,30.888,37.403,33.968,209.0,244.0,218.0,288.0,False,True,1,False,False,False,4523.504,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,12.0,1.0,MEDIUM,12.0,True,102.66,31.117,37.485,34.058,209.0,241.0,218.0,282.0,False,True,1,False,False,False,4625.763,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,13.0,1.0,MEDIUM,13.0,True,102.325,31.095,37.482,33.748,213.0,244.0,218.0,279.0,False,True,1,False,False,False,4728.423,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,14.0,1.0,MEDIUM,14.0,True,123.181,31.219,42.11,49.852,209.0,199.0,,281.0,False,False,126,False,False,True,4830.748,False
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,15.0,2.0,HARD,1.0,True,134.883,61.807,39.866,33.21,180.0,242.0,226.0,185.0,False,False,671,False,True,False,4953.929,False
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,16.0,2.0,HARD,2.0,True,99.818,30.113,36.641,33.064,215.0,247.0,223.0,286.0,True,True,1,False,False,False,5088.812,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,17.0,2.0,HARD,3.0,True,99.924,30.274,36.451,33.199,211.0,246.0,222.0,293.0,False,True,1,False,False,False,5188.63,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,18.0,2.0,HARD,4.0,True,100.409,30.392,36.725,33.292,208.0,247.0,224.0,293.0,False,True,1,False,False,False,5288.554,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,19.0,2.0,HARD,5.0,True,100.0,30.164,36.409,33.427,214.0,243.0,223.0,294.0,False,True,1,False,False,False,5388.963,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,20.0,2.0,HARD,6.0,True,100.11,30.101,36.596,33.413,217.0,241.0,223.0,292.0,False,True,1,False,False,False,5488.963,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,21.0,2.0,HARD,7.0,True,100.288,30.424,36.512,33.352,213.0,245.0,220.0,287.0,False,True,1,False,False,False,5589.073,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,22.0,2.0,HARD,8.0,True,99.803,30.402,36.259,33.142,214.0,248.0,221.0,288.0,True,True,1,False,False,False,5689.361,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,23.0,2.0,HARD,9.0,True,100.179,30.491,36.317,33.371,211.0,248.0,222.0,291.0,False,True,1,False,False,False,5789.164,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,24.0,2.0,HARD,10.0,True,100.051,30.453,36.376,33.222,215.0,248.0,222.0,292.0,False,True,1,False,False,False,5889.343,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,25.0,2.0,HARD,11.0,True,100.036,30.359,36.368,33.309,216.0,247.0,221.0,291.0,False,True,1,False,False,False,5989.394,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,26.0,2.0,HARD,12.0,True,99.899,30.332,36.39,33.177,214.0,247.0,221.0,296.0,False,True,1,False,False,False,6089.43,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,27.0,2.0,HARD,13.0,True,99.686,30.318,36.332,33.036,218.0,251.0,221.0,294.0,True,True,1,False,False,False,6189.329,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,28.0,2.0,HARD,14.0,True,99.708,30.304,36.14,33.264,218.0,252.0,221.0,291.0,False,True,1,False,False,False,6289.015,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,29.0,2.0,HARD,15.0,True,99.356,30.124,36.107,33.125,218.0,250.0,222.0,293.0,True,True,1,False,False,False,6388.723,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,30.0,2.0,HARD,16.0,True,99.148,30.139,35.928,33.081,221.0,250.0,223.0,297.0,True,True,1,False,False,False,6488.079,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,31.0,2.0,HARD,17.0,True,98.775,29.957,35.712,33.106,221.0,254.0,222.0,295.0,True,True,1,False,False,False,6587.227,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,32.0,2.0,HARD,18.0,True,99.489,29.984,35.768,33.737,223.0,252.0,220.0,299.0,False,True,1,False,False,False,6686.002,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,33.0,2.0,HARD,19.0,True,98.803,30.21,35.589,33.004,220.0,255.0,223.0,299.0,False,True,1,False,False,False,6785.491,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,34.0,2.0,HARD,20.0,True,98.733,29.882,35.649,33.202,221.0,252.0,224.0,297.0,True,True,1,False,False,False,6884.294,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,35.0,2.0,HARD,21.0,True,98.938,29.823,35.724,33.391,221.0,253.0,223.0,297.0,False,True,1,False,False,False,6983.027,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,36.0,2.0,HARD,22.0,True,97.966,29.69,35.29,32.986,223.0,255.0,223.0,303.0,True,True,1,False,False,False,7081.965,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,37.0,2.0,HARD,23.0,True,98.604,30.076,35.366,33.162,221.0,256.0,223.0,304.0,False,True,1,False,False,False,7179.931,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,38.0,2.0,HARD,24.0,True,98.223,29.728,35.345,33.15,221.0,256.0,224.0,303.0,False,True,1,False,False,False,7278.535,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,39.0,2.0,HARD,25.0,True,99.21,29.875,35.709,33.626,218.0,249.0,222.0,297.0,False,True,1,False,False,False,7376.758,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,40.0,2.0,HARD,26.0,True,99.293,29.962,35.97,33.361,215.0,250.0,223.0,287.0,False,True,1,False,False,False,7475.968,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,41.0,2.0,HARD,27.0,True,99.402,30.111,35.948,33.343,217.0,251.0,224.0,302.0,False,True,1,False,False,False,7575.261,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,42.0,2.0,HARD,28.0,True,99.209,30.036,35.511,33.662,217.0,252.0,225.0,291.0,False,True,1,False,False,False,7674.663,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,43.0,2.0,HARD,29.0,True,99.664,30.3,35.862,33.502,215.0,246.0,225.0,276.0,False,True,1,False,False,False,7773.872,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,44.0,2.0,HARD,30.0,True,99.092,30.003,35.639,33.45,217.0,250.0,225.0,293.0,False,True,1,False,False,False,7873.536,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,45.0,2.0,HARD,31.0,True,100.47,30.692,36.285,33.493,201.0,251.0,225.0,297.0,False,True,1,False,False,False,7972.628,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,46.0,2.0,HARD,32.0,True,99.605,30.202,35.86,33.543,215.0,246.0,223.0,281.0,False,True,1,False,False,False,8073.098,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,47.0,2.0,HARD,33.0,True,98.892,30.209,35.765,32.918,219.0,247.0,226.0,300.0,False,True,1,False,False,False,8172.703,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,48.0,2.0,HARD,34.0,True,97.472,29.745,34.849,32.878,221.0,258.0,223.0,299.0,True,True,1,False,False,False,8271.595,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,49.0,2.0,HARD,35.0,True,97.524,29.602,35.194,32.728,222.0,253.0,225.0,303.0,False,True,1,False,False,False,8369.067,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,50.0,2.0,HARD,36.0,True,97.76,29.841,35.032,32.887,226.0,258.0,227.0,301.0,False,True,1,False,False,False,8466.591,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,51.0,2.0,HARD,37.0,True,97.325,29.764,34.901,32.66,224.0,262.0,224.0,303.0,True,True,1,False,False,False,8564.351,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,52.0,2.0,HARD,38.0,True,97.321,29.615,34.962,32.744,223.0,256.0,225.0,305.0,True,True,1,False,False,False,8661.676,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,53.0,2.0,HARD,39.0,True,97.45,29.73,34.825,32.895,223.0,258.0,224.0,303.0,False,True,1,False,False,False,8758.997,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,54.0,2.0,HARD,40.0,True,98.299,29.852,35.197,33.25,220.0,252.0,223.0,302.0,False,True,1,False,False,False,8856.447,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,55.0,2.0,HARD,41.0,True,100.851,30.195,36.248,34.408,212.0,246.0,220.0,286.0,False,True,1,False,False,False,8954.746,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,56.0,2.0,HARD,42.0,True,98.015,29.941,35.14,32.934,225.0,256.0,224.0,304.0,False,True,1,False,False,False,9055.597,True
+2026,Spanish Grand Prix,14,R,COL,43,Alpine,57.0,2.0,HARD,43.0,True,98.488,29.566,35.625,33.297,221.0,250.0,202.0,309.0,False,True,1,False,False,False,9153.612,True
+2026,Spanish Grand Prix,14,R,HAM,44,Ferrari,1.0,1.0,SOFT,1.0,True,104.424,,37.709,33.663,189.0,232.0,221.0,253.0,False,False,12,False,False,False,3493.809,False
+2026,Spanish Grand Prix,14,R,HAM,44,Ferrari,2.0,1.0,SOFT,2.0,True,100.985,30.928,36.626,33.431,207.0,239.0,220.0,284.0,True,True,1,False,False,False,3598.489,True
+2026,Spanish Grand Prix,14,R,HAM,44,Ferrari,3.0,1.0,SOFT,3.0,True,99.839,30.043,36.404,33.392,211.0,235.0,219.0,293.0,True,True,1,False,False,False,3699.474,True
+2026,Spanish Grand Prix,14,R,HAM,44,Ferrari,4.0,1.0,SOFT,4.0,True,103.055,31.052,37.362,34.641,165.0,206.0,222.0,239.0,False,True,1,False,False,False,3799.313,True
+2026,Spanish Grand Prix,14,R,HAM,44,Ferrari,5.0,1.0,SOFT,5.0,True,111.932,31.933,38.069,41.93,178.0,202.0,217.0,258.0,False,True,12,False,False,False,3902.368,True
+2026,Spanish Grand Prix,14,R,HAM,44,Ferrari,6.0,1.0,SOFT,6.0,True,134.937,35.327,46.356,53.254,158.0,146.0,,184.0,False,False,1,False,False,True,4014.3,False
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,1.0,1.0,HARD,1.0,True,111.283,,39.171,35.308,185.0,200.0,215.0,236.0,False,False,12,False,False,False,3493.809,False
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,2.0,1.0,HARD,2.0,True,102.582,30.791,37.425,34.366,206.0,229.0,216.0,280.0,True,True,1,False,False,False,3605.348,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,3.0,1.0,HARD,3.0,True,102.84,30.979,37.341,34.52,214.0,233.0,215.0,264.0,False,True,1,False,False,False,3707.93,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,4.0,1.0,HARD,4.0,True,102.695,30.897,37.605,34.193,202.0,236.0,216.0,275.0,False,True,1,False,False,False,3810.77,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,5.0,1.0,HARD,5.0,True,103.197,30.918,37.38,34.899,206.0,233.0,215.0,267.0,False,True,12,False,False,False,3913.465,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,6.0,1.0,HARD,6.0,True,103.441,31.334,37.55,34.557,208.0,231.0,216.0,261.0,False,True,1,False,False,False,4016.662,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,7.0,1.0,HARD,7.0,True,102.511,30.865,37.233,34.413,206.0,239.0,216.0,268.0,True,True,1,False,False,False,4120.103,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,8.0,1.0,HARD,8.0,True,102.322,30.92,37.444,33.958,198.0,242.0,215.0,262.0,True,True,1,False,False,False,4222.614,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,9.0,1.0,HARD,9.0,True,102.056,30.685,37.223,34.148,204.0,238.0,213.0,279.0,True,True,1,False,False,False,4324.936,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,10.0,1.0,HARD,10.0,True,102.527,30.827,37.6,34.1,201.0,241.0,216.0,280.0,False,True,1,False,False,False,4426.992,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,11.0,1.0,HARD,11.0,True,102.603,30.876,37.593,34.134,208.0,239.0,215.0,280.0,False,True,1,False,False,False,4529.519,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,12.0,1.0,HARD,12.0,True,102.358,30.748,37.314,34.296,212.0,239.0,215.0,285.0,False,True,1,False,False,False,4632.122,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,13.0,1.0,HARD,13.0,True,102.253,30.59,37.417,34.246,213.0,239.0,213.0,288.0,False,True,1,False,False,False,4734.48,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,14.0,1.0,HARD,14.0,True,126.013,30.569,47.988,47.456,208.0,204.0,123.0,276.0,False,False,126,False,False,False,4836.733,False
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,15.0,1.0,HARD,15.0,True,121.207,47.831,39.434,33.942,180.0,238.0,217.0,122.0,False,False,671,False,False,False,4962.746,False
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,16.0,1.0,HARD,16.0,True,100.995,30.419,36.869,33.707,214.0,244.0,217.0,283.0,True,True,1,False,False,False,5083.953,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,17.0,1.0,HARD,17.0,True,100.223,30.36,36.419,33.444,218.0,244.0,218.0,292.0,True,True,1,False,False,False,5184.948,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,18.0,1.0,HARD,18.0,True,100.227,30.249,36.416,33.562,217.0,246.0,219.0,292.0,False,True,1,False,False,False,5285.171,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,19.0,1.0,HARD,19.0,True,100.089,30.222,36.272,33.595,216.0,245.0,218.0,290.0,True,True,1,False,False,False,5385.398,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,20.0,1.0,HARD,20.0,True,100.038,30.12,36.298,33.62,221.0,246.0,217.0,296.0,True,True,1,False,False,False,5485.487,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,21.0,1.0,HARD,21.0,True,99.974,30.087,36.355,33.532,220.0,245.0,217.0,294.0,True,True,1,False,False,False,5585.525,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,22.0,1.0,HARD,22.0,True,99.45,30.057,35.984,33.409,223.0,246.0,218.0,295.0,True,True,1,False,False,False,5685.499,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,23.0,1.0,HARD,23.0,True,99.674,30.136,36.084,33.454,222.0,247.0,219.0,296.0,False,True,1,False,False,False,5784.949,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,24.0,1.0,HARD,24.0,True,99.61,30.062,36.134,33.414,222.0,247.0,218.0,296.0,False,True,1,False,False,False,5884.623,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,25.0,1.0,HARD,25.0,True,99.596,30.14,36.05,33.406,222.0,246.0,219.0,294.0,False,True,1,False,False,False,5984.233,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,26.0,1.0,HARD,26.0,True,99.753,30.017,36.234,33.502,202.0,246.0,218.0,298.0,False,True,1,False,False,False,6083.829,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,27.0,1.0,HARD,27.0,True,99.778,30.17,36.043,33.565,224.0,246.0,217.0,293.0,False,True,1,False,False,False,6183.582,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,28.0,1.0,HARD,28.0,True,99.282,29.919,35.947,33.416,225.0,246.0,217.0,295.0,True,True,1,False,False,False,6283.36,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,29.0,1.0,HARD,29.0,True,99.311,30.032,35.929,33.35,224.0,247.0,218.0,292.0,False,True,1,False,False,False,6382.642,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,30.0,1.0,HARD,30.0,True,99.62,30.32,35.927,33.373,219.0,245.0,218.0,293.0,False,True,1,False,False,False,6481.953,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,31.0,1.0,HARD,31.0,True,99.553,29.946,36.002,33.605,223.0,247.0,217.0,294.0,False,True,1,False,False,False,6581.573,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,32.0,1.0,HARD,32.0,True,99.395,30.107,36.029,33.259,225.0,248.0,218.0,297.0,False,True,1,False,False,False,6681.126,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,33.0,1.0,HARD,33.0,True,99.013,30.006,35.763,33.244,225.0,248.0,219.0,290.0,True,True,1,False,False,False,6780.521,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,34.0,1.0,HARD,34.0,True,99.65,30.48,35.91,33.26,220.0,249.0,220.0,290.0,False,True,1,False,False,False,6879.534,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,35.0,1.0,HARD,35.0,True,99.138,30.04,35.859,33.239,223.0,245.0,219.0,295.0,False,True,1,False,False,False,6979.184,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,36.0,1.0,HARD,36.0,True,99.043,29.902,35.871,33.27,223.0,247.0,219.0,293.0,False,True,1,False,False,False,7078.322,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,37.0,1.0,HARD,37.0,True,99.271,30.193,35.793,33.285,223.0,246.0,220.0,295.0,False,True,1,False,False,False,7177.365,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,38.0,1.0,HARD,38.0,True,99.133,30.008,35.949,33.176,223.0,249.0,220.0,296.0,False,True,1,False,False,False,7276.636,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,39.0,1.0,HARD,39.0,True,99.411,29.999,36.029,33.383,220.0,246.0,218.0,300.0,False,True,1,False,False,False,7375.769,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,40.0,1.0,HARD,40.0,True,99.379,30.159,35.981,33.239,224.0,248.0,219.0,300.0,False,True,1,False,False,False,7475.18,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,41.0,1.0,HARD,41.0,True,99.349,30.133,35.741,33.475,225.0,244.0,218.0,300.0,False,True,1,False,False,False,7574.559,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,42.0,1.0,HARD,42.0,True,99.442,30.076,35.797,33.569,221.0,247.0,219.0,296.0,False,True,1,False,False,False,7673.908,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,43.0,1.0,HARD,43.0,True,99.402,30.084,35.934,33.384,219.0,249.0,219.0,292.0,False,True,1,False,False,False,7773.35,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,44.0,1.0,HARD,44.0,True,99.507,29.899,35.932,33.676,224.0,248.0,220.0,299.0,False,True,1,False,False,False,7872.752,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,45.0,1.0,HARD,45.0,True,100.293,30.701,36.037,33.555,215.0,249.0,219.0,292.0,False,True,1,False,False,False,7972.259,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,46.0,1.0,HARD,46.0,True,99.747,30.14,36.006,33.601,221.0,248.0,219.0,289.0,False,True,1,False,False,False,8072.552,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,47.0,1.0,HARD,47.0,True,103.703,30.837,36.664,36.202,191.0,249.0,,259.0,False,False,1,False,False,True,8172.299,False
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,48.0,2.0,SOFT,1.0,True,120.65,52.713,35.397,32.54,225.0,249.0,221.0,280.0,False,False,1,False,True,False,8276.002,False
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,49.0,2.0,SOFT,2.0,True,98.43,30.365,35.427,32.638,221.0,247.0,223.0,292.0,True,True,1,False,False,False,8396.652,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,50.0,2.0,SOFT,3.0,True,97.837,29.867,35.402,32.568,224.0,248.0,222.0,295.0,True,True,1,False,False,False,8495.082,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,51.0,2.0,SOFT,4.0,True,98.188,29.819,35.535,32.834,224.0,248.0,222.0,297.0,False,True,1,False,False,False,8592.919,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,52.0,2.0,SOFT,5.0,True,98.116,29.776,35.532,32.808,224.0,247.0,220.0,300.0,False,True,1,False,False,False,8691.107,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,53.0,2.0,SOFT,6.0,True,98.509,30.148,35.485,32.876,218.0,246.0,221.0,293.0,False,True,1,False,False,False,8789.223,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,54.0,2.0,SOFT,7.0,True,98.433,29.972,35.608,32.853,224.0,247.0,222.0,293.0,False,True,1,False,False,False,8887.732,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,55.0,2.0,SOFT,8.0,True,99.458,29.862,36.406,33.19,228.0,236.0,222.0,299.0,False,True,1,False,False,False,8986.165,True
+2026,Spanish Grand Prix,14,R,BOR,5,Audi,56.0,2.0,SOFT,9.0,True,100.585,30.097,36.465,34.023,224.0,234.0,219.0,290.0,False,True,1,False,False,False,9085.623,True
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,1.0,1.0,HARD,1.0,True,112.963,,39.512,35.143,176.0,206.0,221.0,224.0,False,False,12,False,False,False,3493.809,False
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,2.0,1.0,HARD,2.0,True,105.181,32.08,38.264,34.837,194.0,218.0,217.0,233.0,True,True,1,False,False,False,3607.028,True
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,3.0,1.0,HARD,3.0,True,104.511,31.372,38.218,34.921,198.0,226.0,207.0,249.0,True,True,1,False,False,False,3712.209,True
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,4.0,1.0,HARD,4.0,True,104.301,32.19,37.546,34.565,198.0,226.0,209.0,259.0,True,True,1,False,False,False,3816.72,True
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,5.0,1.0,HARD,5.0,True,104.158,31.681,37.732,34.745,209.0,221.0,214.0,274.0,True,True,12,False,False,False,3921.021,True
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,6.0,1.0,HARD,6.0,True,103.981,31.571,37.876,34.534,203.0,228.0,219.0,254.0,True,True,1,False,False,False,4025.179,True
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,7.0,1.0,HARD,7.0,True,103.938,31.444,37.917,34.577,198.0,219.0,212.0,271.0,True,True,1,False,False,False,4129.16,True
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,8.0,1.0,HARD,8.0,True,103.638,31.482,37.581,34.575,208.0,226.0,217.0,272.0,True,True,1,False,False,False,4233.098,True
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,9.0,1.0,HARD,9.0,True,103.918,31.503,37.798,34.617,203.0,227.0,215.0,256.0,False,True,1,False,False,False,4336.736,True
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,10.0,1.0,HARD,10.0,True,103.944,31.551,37.82,34.573,196.0,234.0,218.0,267.0,False,True,1,False,False,False,4440.654,True
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,11.0,1.0,HARD,11.0,True,103.366,31.301,37.401,34.664,207.0,231.0,213.0,265.0,True,True,1,False,False,False,4544.598,True
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,12.0,1.0,HARD,12.0,True,104.117,31.319,38.282,34.516,177.0,237.0,220.0,280.0,False,True,1,False,False,False,4647.964,True
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,13.0,1.0,HARD,13.0,True,103.256,31.288,37.488,34.48,206.0,234.0,218.0,263.0,True,True,12,False,False,False,4752.081,True
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,14.0,1.0,HARD,14.0,True,131.665,31.145,52.415,48.105,205.0,177.0,115.0,260.0,False,False,26,False,False,False,4855.337,False
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,15.0,1.0,HARD,15.0,True,115.168,43.121,37.812,34.235,191.0,232.0,219.0,194.0,False,False,671,False,False,False,4987.002,False
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,16.0,1.0,HARD,16.0,True,102.162,30.893,37.001,34.268,210.0,234.0,219.0,266.0,True,True,1,False,False,False,5102.17,True
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,17.0,1.0,HARD,17.0,True,102.175,30.961,37.104,34.11,209.0,233.0,218.0,275.0,False,True,1,False,False,False,5204.332,True
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,18.0,1.0,HARD,18.0,True,102.061,30.875,36.984,34.202,208.0,235.0,220.0,283.0,True,True,1,False,False,False,5306.507,True
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,19.0,1.0,HARD,19.0,True,101.704,30.725,36.771,34.208,210.0,240.0,216.0,275.0,True,True,1,False,False,False,5408.568,True
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,20.0,1.0,HARD,20.0,True,101.826,30.878,36.77,34.178,213.0,242.0,219.0,282.0,False,True,1,False,False,False,5510.272,True
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,21.0,1.0,HARD,21.0,True,101.725,30.86,36.756,34.109,210.0,240.0,219.0,275.0,False,True,1,False,False,False,5612.098,True
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,22.0,1.0,HARD,22.0,True,102.021,30.928,36.923,34.17,203.0,234.0,219.0,277.0,False,True,1,False,False,False,5713.823,True
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,23.0,1.0,HARD,23.0,True,104.987,31.073,36.859,37.055,207.0,239.0,,274.0,False,False,1,False,False,True,5815.844,False
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,24.0,2.0,MEDIUM,1.0,True,143.167,69.966,39.004,34.197,194.0,214.0,222.0,251.0,False,False,1,False,True,False,5920.831,False
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,25.0,2.0,MEDIUM,2.0,True,100.585,30.637,36.372,33.576,208.0,244.0,217.0,282.0,True,True,1,False,False,False,6063.998,True
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,26.0,2.0,MEDIUM,3.0,True,101.345,30.575,36.688,34.082,213.0,237.0,219.0,288.0,False,True,1,False,False,False,6164.583,True
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,27.0,2.0,MEDIUM,4.0,True,103.364,30.569,36.84,35.955,211.0,243.0,213.0,291.0,False,True,1,False,False,False,6265.928,True
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,28.0,2.0,MEDIUM,5.0,True,102.736,31.048,37.207,34.481,210.0,230.0,219.0,279.0,False,True,1,False,False,False,6369.292,True
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,29.0,2.0,MEDIUM,6.0,True,102.659,31.108,37.172,34.379,203.0,233.0,218.0,272.0,False,True,1,False,False,False,6472.028,True
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,30.0,2.0,MEDIUM,7.0,True,105.251,32.536,38.203,34.512,204.0,232.0,213.0,183.0,False,True,1,False,False,False,6574.687,True
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,31.0,2.0,MEDIUM,8.0,True,107.505,32.632,37.695,37.178,199.0,230.0,,237.0,False,False,1,False,False,True,6679.938,False
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,32.0,3.0,HARD,1.0,True,125.071,54.844,36.884,33.343,198.0,237.0,224.0,235.0,False,False,1,False,True,False,6787.443,False
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,33.0,3.0,HARD,2.0,True,100.632,30.561,36.409,33.662,211.0,241.0,221.0,283.0,False,True,1,False,False,False,6912.514,True
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,34.0,3.0,HARD,3.0,True,104.919,32.484,38.221,34.214,205.0,225.0,219.0,268.0,False,True,1,False,False,False,7013.146,True
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,35.0,3.0,HARD,4.0,True,104.517,30.989,38.03,35.498,202.0,230.0,219.0,282.0,False,True,1,False,False,False,7118.065,True
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,36.0,3.0,HARD,5.0,True,100.195,30.441,36.297,33.457,212.0,246.0,222.0,287.0,True,True,1,False,False,False,7222.582,True
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,37.0,3.0,HARD,6.0,True,101.439,30.451,36.364,34.624,209.0,245.0,218.0,284.0,False,True,1,False,False,False,7322.777,True
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,38.0,3.0,HARD,7.0,True,101.254,30.781,36.578,33.895,206.0,245.0,221.0,295.0,False,True,1,False,False,False,7424.216,True
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,39.0,3.0,HARD,8.0,True,101.044,30.462,36.446,34.136,212.0,245.0,221.0,289.0,False,True,1,False,False,False,7525.47,True
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,40.0,3.0,HARD,9.0,True,100.848,30.309,36.378,34.161,210.0,242.0,219.0,283.0,False,True,1,False,False,False,7626.514,True
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,41.0,3.0,HARD,10.0,True,101.975,30.922,36.661,34.392,210.0,244.0,216.0,270.0,False,True,1,False,False,False,7727.362,True
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,42.0,3.0,HARD,11.0,True,105.865,32.903,37.077,35.885,202.0,228.0,222.0,248.0,False,True,1,False,False,False,7829.337,True
+2026,Spanish Grand Prix,14,R,SAI,55,Williams,43.0,3.0,HARD,12.0,True,107.611,31.699,37.559,38.353,194.0,228.0,,266.0,False,False,1,False,False,True,7935.202,False
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,1.0,1.0,HARD,1.0,True,105.584,,37.47,33.928,180.0,221.0,223.0,238.0,False,False,12,False,False,False,3493.809,False
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,2.0,1.0,HARD,2.0,True,101.683,30.353,37.56,33.77,184.0,239.0,218.0,262.0,True,True,1,False,False,False,3599.649,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,3.0,1.0,HARD,3.0,True,100.64,30.492,36.803,33.345,210.0,247.0,221.0,282.0,True,True,1,False,False,False,3701.332,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,4.0,1.0,HARD,4.0,True,102.119,30.605,37.449,34.065,207.0,225.0,223.0,289.0,False,True,1,False,False,False,3801.972,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,5.0,1.0,HARD,5.0,True,103.007,30.915,37.584,34.508,195.0,202.0,213.0,242.0,False,True,12,False,False,False,3904.091,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,6.0,1.0,HARD,6.0,True,100.55,30.824,36.315,33.411,212.0,248.0,220.0,288.0,True,True,1,False,False,False,4007.098,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,7.0,1.0,HARD,7.0,True,100.031,30.229,36.525,33.277,213.0,248.0,219.0,291.0,True,True,1,False,False,False,4107.648,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,8.0,1.0,HARD,8.0,True,100.118,30.196,36.496,33.426,218.0,245.0,220.0,300.0,False,True,1,False,False,False,4207.679,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,9.0,1.0,HARD,9.0,True,99.803,30.311,36.362,33.13,216.0,251.0,223.0,293.0,True,True,1,False,False,False,4307.797,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,10.0,1.0,HARD,10.0,True,99.549,30.182,36.134,33.233,215.0,250.0,221.0,306.0,True,True,1,False,False,False,4407.6,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,11.0,1.0,HARD,11.0,True,99.382,30.084,36.061,33.237,218.0,251.0,223.0,306.0,True,True,1,False,False,False,4507.149,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,12.0,1.0,HARD,12.0,True,99.63,30.028,36.197,33.405,215.0,248.0,221.0,303.0,False,True,1,False,False,False,4606.531,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,13.0,1.0,HARD,13.0,True,99.307,30.034,36.061,33.212,219.0,252.0,220.0,303.0,True,True,1,False,False,False,4706.161,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,14.0,1.0,HARD,14.0,True,109.967,30.075,36.175,43.717,218.0,238.0,,298.0,False,False,126,False,False,True,4805.468,False
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,15.0,2.0,MEDIUM,1.0,True,142.44,60.132,50.025,32.283,176.0,238.0,227.0,169.0,False,False,671,False,True,False,4915.435,False
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,16.0,2.0,MEDIUM,2.0,True,98.378,29.601,35.999,32.778,215.0,249.0,223.0,301.0,True,True,1,False,False,False,5057.875,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,17.0,2.0,MEDIUM,3.0,True,98.669,30.014,35.802,32.853,216.0,248.0,223.0,305.0,False,True,1,False,False,False,5156.253,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,18.0,2.0,MEDIUM,4.0,True,98.301,29.692,35.831,32.778,216.0,254.0,222.0,305.0,True,True,1,False,False,False,5254.922,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,19.0,2.0,MEDIUM,5.0,True,98.947,29.771,36.228,32.948,220.0,249.0,224.0,307.0,False,True,1,False,False,False,5353.223,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,20.0,2.0,MEDIUM,6.0,True,99.081,29.7,36.133,33.248,220.0,243.0,225.0,307.0,False,True,1,False,False,False,5452.17,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,21.0,2.0,MEDIUM,7.0,True,98.303,29.756,35.77,32.777,218.0,252.0,222.0,304.0,False,True,1,False,False,False,5551.251,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,22.0,2.0,MEDIUM,8.0,True,98.916,29.854,35.896,33.166,218.0,250.0,218.0,304.0,False,True,1,False,False,False,5649.554,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,23.0,2.0,MEDIUM,9.0,True,98.501,29.866,35.647,32.988,221.0,252.0,222.0,303.0,False,True,1,False,False,False,5748.47,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,24.0,2.0,MEDIUM,10.0,True,98.552,29.917,35.619,33.016,219.0,251.0,224.0,306.0,False,True,1,False,False,False,5846.971,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,25.0,2.0,MEDIUM,11.0,True,99.399,29.988,35.999,33.412,216.0,252.0,222.0,310.0,False,True,1,False,False,False,5945.523,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,26.0,2.0,MEDIUM,12.0,True,99.312,29.968,36.07,33.274,217.0,249.0,221.0,305.0,False,True,1,False,False,False,6044.922,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,27.0,2.0,MEDIUM,13.0,True,98.914,30.027,35.911,32.976,216.0,251.0,221.0,300.0,False,True,1,False,False,False,6144.234,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,28.0,2.0,MEDIUM,14.0,True,101.437,29.912,35.983,35.542,220.0,248.0,,305.0,False,False,1,False,False,True,6243.148,False
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,29.0,3.0,HARD,1.0,True,120.878,52.635,35.807,32.436,215.0,248.0,226.0,282.0,False,False,1,False,True,False,6344.585,False
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,30.0,3.0,HARD,2.0,True,97.904,29.557,35.605,32.742,217.0,249.0,226.0,305.0,True,True,1,False,False,False,6465.463,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,31.0,3.0,HARD,3.0,True,97.818,29.621,35.73,32.467,219.0,249.0,225.0,304.0,True,True,1,False,False,False,6563.367,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,32.0,3.0,HARD,4.0,True,97.947,29.9,35.589,32.458,222.0,252.0,225.0,293.0,False,True,1,False,False,False,6661.185,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,33.0,3.0,HARD,5.0,True,97.718,29.663,35.378,32.677,221.0,253.0,224.0,308.0,True,True,1,False,False,False,6759.132,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,34.0,3.0,HARD,6.0,True,97.93,29.777,35.227,32.926,219.0,251.0,221.0,296.0,False,True,1,False,False,False,6856.85,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,35.0,3.0,HARD,7.0,True,100.551,30.979,36.729,32.843,201.0,251.0,222.0,265.0,False,True,1,False,False,False,6954.78,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,36.0,3.0,HARD,8.0,True,97.995,29.794,35.53,32.671,219.0,256.0,223.0,311.0,False,True,1,False,False,False,7055.331,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,37.0,3.0,HARD,9.0,True,97.898,29.838,35.596,32.464,221.0,254.0,225.0,308.0,False,True,1,False,False,False,7153.326,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,38.0,3.0,HARD,10.0,True,97.113,29.704,35.053,32.356,225.0,255.0,226.0,305.0,True,True,1,False,False,False,7251.224,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,39.0,3.0,HARD,11.0,True,96.857,29.441,34.872,32.544,223.0,256.0,223.0,304.0,True,True,1,False,False,False,7348.337,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,40.0,3.0,HARD,12.0,True,97.033,29.514,35.044,32.475,225.0,257.0,224.0,304.0,False,True,1,False,False,False,7445.194,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,41.0,3.0,HARD,13.0,True,97.166,29.436,35.115,32.615,224.0,257.0,223.0,308.0,False,True,1,False,False,False,7542.227,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,42.0,3.0,HARD,14.0,True,98.363,29.732,35.429,33.202,220.0,255.0,222.0,309.0,False,True,1,False,False,False,7639.393,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,43.0,3.0,HARD,15.0,True,97.215,29.561,34.955,32.699,224.0,257.0,225.0,314.0,False,True,1,False,False,False,7737.756,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,44.0,3.0,HARD,16.0,True,98.265,29.447,35.525,33.293,224.0,239.0,225.0,305.0,False,True,1,False,False,False,7834.971,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,45.0,3.0,HARD,17.0,True,97.109,29.555,34.857,32.697,223.0,257.0,225.0,302.0,False,True,1,False,False,False,7933.236,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,46.0,3.0,HARD,18.0,True,96.082,29.44,34.553,32.089,223.0,259.0,227.0,303.0,True,True,1,False,False,False,8030.345,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,47.0,3.0,HARD,19.0,True,95.873,29.276,34.565,32.032,227.0,258.0,225.0,304.0,True,True,1,False,False,False,8126.427,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,48.0,3.0,HARD,20.0,True,95.758,29.267,34.618,31.873,226.0,255.0,226.0,304.0,True,True,1,False,False,False,8222.3,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,49.0,3.0,HARD,21.0,True,95.587,29.099,34.497,31.991,227.0,258.0,224.0,308.0,True,True,1,False,False,False,8318.058,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,50.0,3.0,HARD,22.0,True,96.461,29.222,34.517,32.722,227.0,258.0,225.0,312.0,False,True,1,False,False,False,8413.645,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,51.0,3.0,HARD,23.0,True,96.104,29.243,34.724,32.137,226.0,258.0,224.0,312.0,False,True,1,False,False,False,8510.106,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,52.0,3.0,HARD,24.0,True,96.487,29.518,34.678,32.291,225.0,257.0,225.0,311.0,False,True,1,False,False,False,8606.21,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,53.0,3.0,HARD,25.0,True,96.415,29.483,34.541,32.391,224.0,257.0,223.0,312.0,False,True,1,False,False,False,8702.697,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,54.0,3.0,HARD,26.0,True,96.902,29.427,34.842,32.633,223.0,255.0,222.0,312.0,False,True,1,False,False,False,8799.112,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,55.0,3.0,HARD,27.0,True,96.817,29.426,34.859,32.532,222.0,259.0,225.0,311.0,False,True,1,False,False,False,8896.014,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,56.0,3.0,HARD,28.0,True,97.306,29.429,35.196,32.681,225.0,255.0,224.0,301.0,False,True,1,False,False,False,8992.831,True
+2026,Spanish Grand Prix,14,R,RUS,63,Mercedes,57.0,3.0,HARD,29.0,True,97.511,29.466,35.235,32.81,226.0,257.0,224.0,304.0,False,True,1,False,False,False,9090.137,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,1.0,1.0,HARD,1.0,True,115.231,,39.314,35.235,168.0,228.0,218.0,220.0,False,False,12,False,False,False,3493.809,False
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,2.0,1.0,HARD,2.0,True,106.52,31.75,38.826,35.944,199.0,223.0,215.0,243.0,True,True,1,False,False,False,3609.296,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,3.0,1.0,HARD,3.0,True,105.001,31.42,38.2,35.381,207.0,217.0,216.0,256.0,True,True,1,False,False,False,3715.816,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,4.0,1.0,HARD,4.0,True,104.761,31.414,38.131,35.216,205.0,221.0,217.0,253.0,True,True,1,False,False,False,3820.817,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,5.0,1.0,HARD,5.0,True,104.223,31.48,37.787,34.956,208.0,229.0,217.0,268.0,True,True,12,False,False,False,3925.578,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,6.0,1.0,HARD,6.0,True,105.057,31.397,37.805,35.855,195.0,222.0,217.0,269.0,False,True,1,False,False,False,4029.801,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,7.0,1.0,HARD,7.0,True,103.759,31.133,37.611,35.015,209.0,226.0,218.0,274.0,True,True,1,False,False,False,4134.858,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,8.0,1.0,HARD,8.0,True,103.843,31.386,37.578,34.879,205.0,227.0,216.0,270.0,False,True,1,False,False,False,4238.617,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,9.0,1.0,HARD,9.0,True,104.139,31.214,37.708,35.217,206.0,227.0,215.0,277.0,False,True,1,False,False,False,4342.46,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,10.0,1.0,HARD,10.0,True,104.189,31.444,37.798,34.947,208.0,226.0,217.0,270.0,False,True,1,False,False,False,4446.599,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,11.0,1.0,HARD,11.0,True,103.727,31.454,37.386,34.887,210.0,226.0,215.0,273.0,True,True,1,False,False,False,4550.788,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,12.0,1.0,HARD,12.0,True,104.342,31.497,37.591,35.254,207.0,223.0,214.0,270.0,False,True,1,False,False,False,4654.515,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,13.0,1.0,HARD,13.0,True,104.575,31.324,37.46,35.791,210.0,227.0,217.0,266.0,False,True,12,False,False,False,4758.857,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,14.0,1.0,HARD,14.0,True,136.01,35.238,51.445,49.327,132.0,152.0,147.0,260.0,False,False,26,False,False,False,4863.432,False
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,15.0,1.0,HARD,15.0,True,112.853,40.727,37.218,34.908,211.0,233.0,214.0,244.0,False,False,671,False,False,False,4999.442,False
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,16.0,1.0,HARD,16.0,True,104.245,32.0,37.297,34.948,204.0,222.0,218.0,268.0,False,True,1,False,False,False,5112.295,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,17.0,1.0,HARD,17.0,True,103.192,31.108,37.254,34.83,204.0,233.0,217.0,278.0,True,True,1,False,False,False,5216.54,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,18.0,1.0,HARD,18.0,True,102.933,31.066,37.259,34.608,208.0,230.0,219.0,271.0,True,True,1,False,False,False,5319.732,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,19.0,1.0,HARD,19.0,True,102.583,30.874,37.035,34.674,211.0,227.0,218.0,279.0,True,True,1,False,False,False,5422.665,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,20.0,1.0,HARD,20.0,True,102.82,31.203,36.914,34.703,211.0,232.0,219.0,271.0,False,True,1,False,False,False,5525.248,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,21.0,1.0,HARD,21.0,True,102.885,31.079,37.113,34.693,208.0,229.0,219.0,269.0,False,True,1,False,False,False,5628.068,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,22.0,1.0,HARD,22.0,True,102.619,31.03,36.847,34.742,210.0,234.0,217.0,275.0,False,True,1,False,False,False,5730.953,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,23.0,1.0,HARD,23.0,True,105.124,32.027,37.338,35.759,182.0,227.0,219.0,266.0,False,True,1,False,False,False,5833.572,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,24.0,1.0,HARD,24.0,True,108.717,31.648,38.948,38.121,203.0,222.0,214.0,263.0,False,True,1,False,False,False,5938.696,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,25.0,1.0,HARD,25.0,True,103.725,31.551,37.571,34.603,206.0,232.0,218.0,275.0,False,True,1,False,False,False,6047.413,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,26.0,1.0,HARD,26.0,True,102.667,30.97,36.927,34.77,212.0,231.0,218.0,280.0,False,True,1,False,False,False,6151.138,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,27.0,1.0,HARD,27.0,True,102.77,31.045,37.109,34.616,210.0,235.0,220.0,277.0,False,True,1,False,False,False,6253.805,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,28.0,1.0,HARD,28.0,True,104.06,30.945,36.94,36.175,206.0,231.0,216.0,278.0,False,True,1,False,False,False,6356.575,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,29.0,1.0,HARD,29.0,True,108.049,31.712,37.161,39.176,209.0,235.0,,240.0,False,False,1,False,False,True,6460.635,False
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,30.0,2.0,HARD,1.0,True,127.536,55.35,38.083,34.103,206.0,230.0,220.0,245.0,False,False,1,False,True,False,6568.684,False
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,31.0,2.0,HARD,2.0,True,103.788,30.81,38.464,34.514,213.0,232.0,222.0,278.0,False,True,1,False,False,False,6696.22,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,32.0,2.0,HARD,3.0,True,101.547,30.846,36.691,34.01,211.0,235.0,218.0,283.0,True,True,1,False,False,False,6800.008,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,33.0,2.0,HARD,4.0,True,101.651,30.935,36.665,34.051,211.0,231.0,222.0,271.0,False,True,1,False,False,False,6901.555,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,34.0,2.0,HARD,5.0,True,101.276,30.797,36.458,34.021,213.0,236.0,220.0,275.0,True,True,1,False,False,False,7003.206,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,35.0,2.0,HARD,6.0,True,101.283,30.763,36.311,34.209,212.0,238.0,221.0,278.0,False,True,1,False,False,False,7104.482,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,36.0,2.0,HARD,7.0,True,103.912,31.047,36.811,36.054,208.0,235.0,218.0,278.0,False,True,1,False,False,False,7205.765,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,37.0,2.0,HARD,8.0,True,109.793,32.745,42.131,34.917,208.0,213.0,218.0,235.0,False,True,1,False,False,False,7309.677,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,38.0,2.0,HARD,9.0,True,102.124,30.939,36.743,34.442,215.0,238.0,218.0,276.0,False,True,1,False,False,False,7419.47,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,39.0,2.0,HARD,10.0,True,102.042,31.01,36.545,34.487,213.0,232.0,219.0,276.0,False,True,1,False,False,False,7521.594,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,40.0,2.0,HARD,11.0,True,102.309,31.06,36.954,34.295,211.0,235.0,220.0,268.0,False,True,1,False,False,False,7623.636,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,41.0,2.0,HARD,12.0,True,102.478,31.098,36.912,34.468,213.0,231.0,221.0,278.0,False,True,1,False,False,False,7725.945,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,42.0,2.0,HARD,13.0,True,106.032,31.337,38.831,35.864,211.0,227.0,223.0,269.0,False,True,1,False,False,False,7828.423,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,43.0,2.0,HARD,14.0,True,106.131,31.939,37.112,37.08,207.0,241.0,,293.0,False,False,1,False,False,True,7934.455,False
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,44.0,3.0,SOFT,1.0,True,124.43,54.39,36.554,33.486,212.0,237.0,222.0,260.0,False,False,1,False,True,False,8040.586,False
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,45.0,3.0,SOFT,2.0,True,99.13,30.16,35.777,33.193,217.0,244.0,226.0,280.0,True,True,1,False,False,False,8165.016,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,46.0,3.0,SOFT,3.0,True,102.219,32.435,36.172,33.612,218.0,242.0,225.0,270.0,False,True,1,False,False,False,8264.146,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,47.0,3.0,SOFT,4.0,True,107.756,30.575,38.321,38.86,213.0,234.0,222.0,282.0,False,True,1,False,False,False,8366.365,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,48.0,3.0,SOFT,5.0,True,110.365,30.981,44.309,35.075,213.0,194.0,220.0,278.0,False,True,1,False,False,False,8474.121,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,49.0,3.0,SOFT,6.0,True,102.018,31.084,36.728,34.206,210.0,238.0,217.0,283.0,False,True,1,False,False,False,8584.486,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,50.0,3.0,SOFT,7.0,True,105.816,30.947,40.495,34.374,214.0,237.0,219.0,286.0,False,True,1,False,False,False,8686.504,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,51.0,3.0,SOFT,8.0,True,105.657,31.116,37.782,36.759,215.0,232.0,214.0,276.0,False,True,1,False,False,False,8792.32,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,52.0,3.0,SOFT,9.0,True,102.417,31.111,36.88,34.426,216.0,231.0,220.0,284.0,False,True,1,False,False,False,8897.977,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,53.0,3.0,SOFT,10.0,True,102.753,31.123,37.38,34.25,212.0,241.0,221.0,269.0,False,True,1,False,False,False,9000.394,True
+2026,Spanish Grand Prix,14,R,BOT,77,Cadillac,54.0,3.0,SOFT,11.0,True,103.918,31.063,37.6,35.255,218.0,226.0,220.0,278.0,False,True,1,False,False,False,9103.147,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,1.0,1.0,HARD,1.0,True,108.258,,37.908,34.54,190.0,217.0,217.0,220.0,False,False,12,False,False,False,3493.809,False
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,2.0,1.0,HARD,2.0,True,102.951,30.852,37.886,34.213,207.0,230.0,220.0,262.0,True,True,1,False,False,False,3602.323,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,3.0,1.0,HARD,3.0,True,102.497,30.807,37.673,34.017,215.0,244.0,220.0,278.0,True,True,1,False,False,False,3705.274,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,4.0,1.0,HARD,4.0,True,102.422,30.68,37.901,33.841,205.0,240.0,221.0,259.0,True,True,1,False,False,False,3807.771,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,5.0,1.0,HARD,5.0,True,102.864,30.731,37.607,34.526,210.0,236.0,220.0,274.0,False,True,12,False,False,False,3910.193,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,6.0,1.0,HARD,6.0,True,102.754,30.861,37.619,34.274,209.0,241.0,219.0,265.0,False,True,1,False,False,False,4013.057,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,7.0,1.0,HARD,7.0,True,101.994,31.152,37.162,33.68,217.0,243.0,220.0,248.0,True,True,1,False,False,False,4115.811,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,8.0,1.0,HARD,8.0,True,101.958,30.818,37.488,33.652,212.0,244.0,220.0,261.0,True,True,1,False,False,False,4217.805,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,9.0,1.0,HARD,9.0,True,101.81,30.596,37.282,33.932,212.0,237.0,219.0,272.0,True,True,1,False,False,False,4319.763,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,10.0,1.0,HARD,10.0,True,103.045,31.082,37.71,34.253,206.0,232.0,221.0,273.0,False,True,1,False,False,False,4421.573,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,11.0,1.0,HARD,11.0,True,102.524,30.926,37.479,34.119,213.0,237.0,220.0,281.0,False,True,1,False,False,False,4524.618,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,12.0,1.0,HARD,12.0,True,102.702,30.776,37.576,34.35,208.0,234.0,219.0,254.0,False,True,1,False,False,False,4627.142,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,13.0,1.0,HARD,13.0,True,102.49,30.866,37.488,34.136,210.0,238.0,221.0,271.0,False,True,1,False,False,False,4729.844,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,14.0,1.0,HARD,14.0,True,124.233,30.76,45.154,48.319,210.0,207.0,117.0,250.0,False,False,126,False,False,False,4832.334,False
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,15.0,1.0,HARD,15.0,True,121.918,48.746,39.701,33.471,192.0,232.0,223.0,128.0,False,False,671,False,False,False,4956.567,False
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,16.0,1.0,HARD,16.0,True,100.067,30.621,36.115,33.331,219.0,248.0,214.0,270.0,True,True,1,False,False,False,5078.485,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,17.0,1.0,HARD,17.0,True,99.959,30.728,36.367,32.864,215.0,249.0,223.0,285.0,True,True,1,False,False,False,5178.552,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,18.0,1.0,HARD,18.0,True,99.179,30.343,36.006,32.83,219.0,253.0,223.0,290.0,True,True,1,False,False,False,5278.511,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,19.0,1.0,HARD,19.0,True,99.328,30.318,35.883,33.127,216.0,249.0,221.0,293.0,False,True,1,False,False,False,5377.69,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,20.0,1.0,HARD,20.0,True,99.383,30.434,35.876,33.073,219.0,248.0,224.0,291.0,False,True,1,False,False,False,5477.018,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,21.0,1.0,HARD,21.0,True,99.147,30.412,35.883,32.852,218.0,249.0,223.0,285.0,True,True,1,False,False,False,5576.401,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,22.0,1.0,HARD,22.0,True,99.114,30.263,35.911,32.94,221.0,249.0,222.0,283.0,True,True,1,False,False,False,5675.548,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,23.0,1.0,HARD,23.0,True,98.526,30.054,35.607,32.865,221.0,252.0,225.0,294.0,True,True,1,False,False,False,5774.662,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,24.0,1.0,HARD,24.0,True,98.687,30.155,35.606,32.926,222.0,253.0,222.0,297.0,False,True,1,False,False,False,5873.188,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,25.0,1.0,HARD,25.0,True,98.679,30.049,35.715,32.915,222.0,253.0,223.0,297.0,False,True,1,False,False,False,5971.875,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,26.0,1.0,HARD,26.0,True,99.395,30.31,35.965,33.12,221.0,250.0,221.0,290.0,False,True,1,False,False,False,6070.554,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,27.0,1.0,HARD,27.0,True,98.848,30.315,35.579,32.954,222.0,255.0,221.0,292.0,False,True,1,False,False,False,6169.949,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,28.0,1.0,HARD,28.0,True,99.18,30.062,35.724,33.394,224.0,251.0,225.0,298.0,False,True,1,False,False,False,6268.797,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,29.0,1.0,HARD,29.0,True,99.054,29.994,35.851,33.209,213.0,253.0,222.0,297.0,False,True,1,False,False,False,6367.977,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,30.0,1.0,HARD,30.0,True,99.033,30.03,35.76,33.243,220.0,248.0,223.0,289.0,False,True,1,False,False,False,6467.031,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,31.0,1.0,HARD,31.0,True,98.188,29.757,35.488,32.943,220.0,255.0,220.0,301.0,True,True,1,False,False,False,6566.064,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,32.0,1.0,HARD,32.0,True,99.263,29.998,35.56,33.705,219.0,252.0,223.0,297.0,False,True,1,False,False,False,6664.252,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,33.0,1.0,HARD,33.0,True,98.014,29.923,35.264,32.827,222.0,255.0,222.0,296.0,True,True,1,False,False,False,6763.515,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,34.0,1.0,HARD,34.0,True,97.965,29.896,35.232,32.837,225.0,252.0,220.0,296.0,True,True,1,False,False,False,6861.529,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,35.0,1.0,HARD,35.0,True,98.324,29.924,35.361,33.039,223.0,259.0,221.0,297.0,False,True,1,False,False,False,6959.494,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,36.0,1.0,HARD,36.0,True,98.859,30.042,35.68,33.137,217.0,252.0,224.0,295.0,False,True,1,False,False,False,7057.818,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,37.0,1.0,HARD,37.0,True,98.832,30.001,35.635,33.196,214.0,255.0,222.0,296.0,False,True,1,False,False,False,7156.677,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,38.0,1.0,HARD,38.0,True,98.636,30.147,35.487,33.002,215.0,254.0,224.0,288.0,False,True,1,False,False,False,7255.509,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,39.0,1.0,HARD,39.0,True,98.85,29.984,35.622,33.244,211.0,252.0,222.0,298.0,False,True,1,False,False,False,7354.145,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,40.0,1.0,HARD,40.0,True,98.565,29.952,35.436,33.177,217.0,256.0,223.0,290.0,False,True,1,False,False,False,7452.995,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,41.0,1.0,HARD,41.0,True,98.767,30.192,35.455,33.12,215.0,257.0,223.0,297.0,False,True,1,False,False,False,7551.56,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,42.0,1.0,HARD,42.0,True,102.194,29.856,35.598,36.74,214.0,258.0,,302.0,False,False,1,False,False,True,7650.327,False
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,43.0,2.0,MEDIUM,1.0,True,121.789,54.498,35.053,32.238,206.0,257.0,227.0,255.0,False,False,1,False,True,False,7752.521,False
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,44.0,2.0,MEDIUM,2.0,True,98.641,29.984,35.319,33.338,211.0,243.0,224.0,273.0,False,True,1,False,False,False,7874.31,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,45.0,2.0,MEDIUM,3.0,True,100.554,30.856,36.252,33.446,210.0,242.0,225.0,274.0,False,True,1,False,False,False,7972.951,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,46.0,2.0,MEDIUM,4.0,True,99.478,30.463,35.6,33.415,207.0,251.0,225.0,302.0,False,True,1,False,False,False,8073.505,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,47.0,2.0,MEDIUM,5.0,True,100.588,30.396,36.684,33.508,199.0,237.0,225.0,276.0,False,True,1,False,False,False,8172.983,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,48.0,2.0,MEDIUM,6.0,True,97.226,29.811,34.724,32.691,218.0,254.0,224.0,292.0,True,True,1,False,False,False,8273.571,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,49.0,2.0,MEDIUM,7.0,True,98.059,29.964,34.867,33.228,217.0,253.0,225.0,294.0,False,True,1,False,False,False,8370.797,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,50.0,2.0,MEDIUM,8.0,True,98.187,30.283,35.17,32.734,217.0,250.0,224.0,294.0,False,True,1,False,False,False,8468.856,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,51.0,2.0,MEDIUM,9.0,True,97.288,29.807,34.868,32.613,220.0,251.0,224.0,296.0,False,True,1,False,False,False,8567.043,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,52.0,2.0,MEDIUM,10.0,True,97.522,29.878,34.847,32.797,220.0,251.0,225.0,294.0,False,True,1,False,False,False,8664.331,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,53.0,2.0,MEDIUM,11.0,True,97.657,30.084,34.89,32.683,216.0,259.0,224.0,296.0,False,True,1,False,False,False,8761.853,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,54.0,2.0,MEDIUM,12.0,True,97.579,29.94,34.84,32.799,222.0,253.0,221.0,295.0,False,True,1,False,False,False,8859.51,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,55.0,2.0,MEDIUM,13.0,True,98.984,30.252,35.273,33.459,212.0,253.0,222.0,295.0,False,True,1,False,False,False,8957.089,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,56.0,2.0,MEDIUM,14.0,True,98.714,30.228,35.457,33.029,211.0,252.0,223.0,276.0,False,True,1,False,False,False,9056.073,True
+2026,Spanish Grand Prix,14,R,PIA,81,McLaren,57.0,2.0,MEDIUM,15.0,True,98.871,30.215,35.277,33.379,217.0,248.0,221.0,292.0,False,True,1,False,False,False,9154.787,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,1.0,1.0,HARD,1.0,True,116.813,,37.389,33.916,204.0,240.0,217.0,252.0,False,False,12,False,True,False,3493.809,False
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,2.0,1.0,HARD,2.0,True,104.015,30.932,38.339,34.744,201.0,211.0,217.0,247.0,True,True,1,False,False,False,3610.878,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,3.0,1.0,HARD,3.0,True,103.779,30.775,38.21,34.794,200.0,218.0,220.0,266.0,True,True,1,False,False,False,3714.893,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,4.0,1.0,HARD,4.0,True,104.496,31.395,38.568,34.533,190.0,226.0,220.0,251.0,False,True,1,False,False,False,3818.672,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,5.0,1.0,HARD,5.0,True,104.274,31.04,38.288,34.946,198.0,212.0,215.0,248.0,False,True,12,False,False,False,3923.168,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,6.0,1.0,HARD,6.0,True,104.658,31.771,37.947,34.94,200.0,219.0,218.0,250.0,False,True,1,False,False,False,4027.442,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,7.0,1.0,HARD,7.0,True,103.768,31.085,38.13,34.553,202.0,240.0,220.0,255.0,True,True,1,False,False,False,4132.1,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,8.0,1.0,HARD,8.0,True,102.975,31.175,37.649,34.151,201.0,239.0,219.0,264.0,True,True,1,False,False,False,4235.868,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,9.0,1.0,HARD,9.0,True,103.496,31.079,37.68,34.737,208.0,240.0,217.0,255.0,False,True,1,False,False,False,4338.843,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,10.0,1.0,HARD,10.0,True,103.309,31.101,37.645,34.563,203.0,237.0,221.0,261.0,False,True,1,False,False,False,4442.339,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,11.0,1.0,HARD,11.0,True,103.902,31.198,37.702,35.002,205.0,225.0,217.0,260.0,False,True,1,False,False,False,4545.648,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,12.0,1.0,HARD,12.0,True,104.215,31.306,38.25,34.659,194.0,235.0,218.0,273.0,False,True,1,False,False,False,4649.55,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,13.0,1.0,HARD,13.0,True,103.123,31.075,37.548,34.5,206.0,239.0,220.0,245.0,False,True,12,False,False,False,4753.765,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,14.0,1.0,HARD,14.0,True,133.149,31.055,52.455,49.639,198.0,183.0,124.0,246.0,False,False,26,False,False,False,4856.888,False
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,15.0,1.0,HARD,15.0,True,113.236,41.999,37.284,33.953,197.0,240.0,219.0,196.0,False,False,671,False,False,False,4990.037,False
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,16.0,1.0,HARD,16.0,True,101.781,30.527,37.063,34.191,212.0,235.0,221.0,263.0,True,True,1,False,False,False,5103.273,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,17.0,1.0,HARD,17.0,True,102.196,30.687,37.233,34.276,212.0,236.0,220.0,263.0,False,True,1,False,False,False,5205.054,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,18.0,1.0,HARD,18.0,True,102.139,30.774,37.272,34.093,202.0,235.0,220.0,284.0,False,True,1,False,False,False,5307.25,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,19.0,1.0,HARD,19.0,True,101.796,30.554,37.095,34.147,207.0,238.0,221.0,270.0,False,True,1,False,False,False,5409.389,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,20.0,1.0,HARD,20.0,True,101.66,30.554,37.158,33.948,209.0,240.0,221.0,269.0,True,True,1,False,False,False,5511.185,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,21.0,1.0,HARD,21.0,True,101.694,30.589,37.037,34.068,204.0,234.0,221.0,262.0,False,True,1,False,False,False,5612.845,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,22.0,1.0,HARD,22.0,True,102.041,30.546,37.231,34.264,202.0,235.0,221.0,270.0,False,True,1,False,False,False,5714.539,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,23.0,1.0,HARD,23.0,True,101.936,30.72,37.185,34.031,204.0,235.0,223.0,264.0,False,True,1,False,False,False,5816.58,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,24.0,1.0,HARD,24.0,True,100.115,30.306,36.491,33.318,216.0,242.0,221.0,282.0,True,True,1,False,False,False,5918.516,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,25.0,1.0,HARD,25.0,True,100.157,30.21,36.572,33.375,216.0,242.0,221.0,299.0,False,True,1,False,False,False,6018.631,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,26.0,1.0,HARD,26.0,True,99.749,30.243,36.274,33.232,220.0,242.0,221.0,282.0,True,True,1,False,False,False,6118.788,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,27.0,1.0,HARD,27.0,True,99.751,30.281,36.199,33.271,217.0,242.0,222.0,289.0,False,True,1,False,False,False,6218.537,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,28.0,1.0,HARD,28.0,True,99.917,30.198,36.232,33.487,217.0,243.0,221.0,290.0,False,True,1,False,False,False,6318.288,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,29.0,1.0,HARD,29.0,True,99.198,29.977,36.006,33.215,220.0,243.0,224.0,296.0,True,True,1,False,False,False,6418.205,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,30.0,1.0,HARD,30.0,True,99.205,30.171,35.903,33.131,219.0,243.0,220.0,297.0,False,True,1,False,False,False,6517.403,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,31.0,1.0,HARD,31.0,True,99.321,30.09,35.965,33.266,222.0,243.0,222.0,296.0,False,True,1,False,False,False,6616.608,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,32.0,1.0,HARD,32.0,True,99.235,30.139,35.939,33.157,221.0,244.0,222.0,295.0,False,True,1,False,False,False,6715.929,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,33.0,1.0,HARD,33.0,True,101.711,30.061,35.893,35.757,221.0,242.0,,295.0,False,False,1,False,False,True,6815.164,False
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,34.0,2.0,MEDIUM,1.0,True,124.98,55.75,36.359,32.871,215.0,238.0,222.0,257.0,False,False,1,False,True,False,6916.875,False
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,35.0,2.0,MEDIUM,2.0,True,98.947,30.012,35.981,32.954,221.0,243.0,220.0,294.0,True,True,1,False,False,False,7041.855,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,36.0,2.0,MEDIUM,3.0,True,98.951,30.049,35.944,32.958,221.0,242.0,224.0,300.0,False,True,1,False,False,False,7140.802,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,37.0,2.0,MEDIUM,4.0,True,99.058,29.976,36.013,33.069,221.0,244.0,222.0,298.0,False,True,1,False,False,False,7239.753,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,38.0,2.0,MEDIUM,5.0,True,99.399,29.948,36.048,33.403,221.0,244.0,220.0,293.0,False,True,1,False,False,False,7338.811,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,39.0,2.0,MEDIUM,6.0,True,99.497,29.983,36.032,33.482,217.0,245.0,222.0,302.0,False,True,1,False,False,False,7438.21,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,40.0,2.0,MEDIUM,7.0,True,99.953,30.188,36.115,33.65,219.0,244.0,224.0,309.0,False,True,1,False,False,False,7537.707,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,41.0,2.0,MEDIUM,8.0,True,101.829,30.008,38.11,33.711,212.0,243.0,220.0,294.0,False,True,1,False,False,False,7637.66,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,42.0,2.0,MEDIUM,9.0,True,100.194,30.207,36.262,33.725,216.0,244.0,222.0,287.0,False,True,1,False,False,False,7739.489,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,43.0,2.0,MEDIUM,10.0,True,102.351,29.895,36.282,36.174,217.0,243.0,,294.0,False,False,1,False,False,True,7839.683,False
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,44.0,3.0,HARD,1.0,True,121.49,53.457,35.507,32.526,217.0,246.0,226.0,272.0,False,False,1,False,True,False,7942.034,False
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,45.0,3.0,HARD,2.0,True,97.308,29.608,35.176,32.524,222.0,247.0,226.0,300.0,True,True,1,False,False,False,8063.524,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,46.0,3.0,HARD,3.0,True,97.667,29.669,35.257,32.741,222.0,246.0,226.0,301.0,False,True,1,False,False,False,8160.832,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,47.0,3.0,HARD,4.0,True,97.927,29.602,35.291,33.034,222.0,246.0,224.0,302.0,False,True,1,False,False,False,8258.499,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,48.0,3.0,HARD,5.0,True,98.139,29.81,35.484,32.845,217.0,244.0,226.0,297.0,False,True,1,False,False,False,8356.426,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,49.0,3.0,HARD,6.0,True,98.635,29.77,35.771,33.094,217.0,245.0,227.0,298.0,False,True,1,False,False,False,8454.565,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,50.0,3.0,HARD,7.0,True,99.441,30.219,36.148,33.074,214.0,246.0,225.0,271.0,False,True,1,False,False,False,8553.2,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,51.0,3.0,HARD,8.0,True,101.079,30.055,36.065,34.959,214.0,242.0,222.0,279.0,False,True,1,False,False,False,8652.641,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,52.0,3.0,HARD,9.0,True,99.224,30.006,35.892,33.326,217.0,245.0,222.0,280.0,False,True,1,False,False,False,8753.72,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,53.0,3.0,HARD,10.0,True,100.479,30.435,36.235,33.809,207.0,244.0,226.0,295.0,False,True,1,False,False,False,8852.944,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,54.0,3.0,HARD,11.0,True,98.163,29.941,35.462,32.76,224.0,246.0,223.0,295.0,False,True,1,False,False,False,8953.423,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,55.0,3.0,HARD,12.0,True,98.885,29.837,35.689,33.359,220.0,245.0,225.0,304.0,False,True,1,False,False,False,9051.586,True
+2026,Spanish Grand Prix,14,R,BEA,87,Haas F1 Team,56.0,3.0,HARD,13.0,True,97.311,29.594,35.045,32.672,226.0,246.0,222.0,307.0,False,True,1,False,False,False,9150.471,True

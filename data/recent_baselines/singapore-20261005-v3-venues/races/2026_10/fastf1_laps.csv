@@ -1,0 +1,873 @@
+Year,Event,Round,Session,Driver,DriverNumber,Team,LapNumber,Stint,Compound,TyreLife,FreshTyre,LapTimeSeconds,Sector1Seconds,Sector2Seconds,Sector3Seconds,SpeedI1,SpeedI2,SpeedFL,SpeedST,IsPersonalBest,IsAccurate,TrackStatus,Deleted,PitOut,PitIn,LapStartTimeSeconds,CleanPushLap,source_circuit_id,source_layout_id,source_venue_status
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,1.0,1.0,MEDIUM,1.0,True,121.479,,49.689,37.953,307.0,205.0,191.0,287.0,False,False,124,False,False,False,3355.977,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,2.0,1.0,MEDIUM,2.0,True,,47.708,76.685,43.606,139.0,112.0,177.0,186.0,False,False,4,False,False,False,3477.622,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,3.0,1.0,MEDIUM,3.0,True,,43.661,73.591,43.349,164.0,98.0,189.0,176.0,False,False,4,False,False,False,3645.71,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,4.0,1.0,MEDIUM,4.0,True,,42.001,72.223,49.265,258.0,133.0,219.0,175.0,False,False,41,False,False,False,3806.249,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,5.0,1.0,MEDIUM,5.0,True,111.638,31.74,49.916,29.982,304.0,205.0,220.0,293.0,True,True,1,False,False,False,3969.687,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,6.0,1.0,MEDIUM,6.0,True,111.315,31.424,49.856,30.035,306.0,205.0,220.0,296.0,True,True,1,False,False,False,4081.325,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,7.0,1.0,MEDIUM,7.0,True,110.957,31.459,49.581,29.917,306.0,203.0,219.0,295.0,True,True,1,False,False,False,4192.64,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,8.0,1.0,MEDIUM,8.0,True,110.986,31.546,49.565,29.875,306.0,204.0,218.0,296.0,False,True,12,False,False,False,4303.597,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,9.0,1.0,MEDIUM,9.0,True,110.825,31.549,49.468,29.808,306.0,205.0,218.0,296.0,True,True,1,False,False,False,4414.583,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,10.0,1.0,MEDIUM,10.0,True,110.739,31.488,49.387,29.864,306.0,201.0,218.0,296.0,True,True,1,False,False,False,4525.408,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,11.0,1.0,MEDIUM,11.0,True,111.09,31.438,49.775,29.877,307.0,202.0,219.0,297.0,False,True,1,False,False,False,4636.147,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,12.0,1.0,MEDIUM,12.0,True,110.893,31.404,49.603,29.886,308.0,201.0,219.0,299.0,False,True,1,False,False,False,4747.237,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,13.0,1.0,MEDIUM,13.0,True,111.069,31.431,49.782,29.856,308.0,204.0,218.0,299.0,False,True,1,False,False,False,4858.13,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,14.0,1.0,MEDIUM,14.0,True,110.984,31.446,49.762,29.776,308.0,202.0,219.0,298.0,False,True,1,False,False,False,4969.199,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,15.0,1.0,MEDIUM,15.0,True,111.113,31.418,49.812,29.883,310.0,202.0,219.0,298.0,False,True,1,False,False,False,5080.183,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,16.0,1.0,MEDIUM,16.0,True,111.179,31.471,49.853,29.855,308.0,202.0,220.0,298.0,False,True,1,False,False,False,5191.296,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,17.0,1.0,MEDIUM,17.0,True,110.968,31.432,49.784,29.752,308.0,202.0,218.0,298.0,False,True,1,False,False,False,5302.475,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,18.0,1.0,MEDIUM,18.0,True,126.758,31.505,55.212,40.041,307.0,131.0,,299.0,False,False,167,False,False,True,5413.443,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,19.0,2.0,SOFT,4.0,False,124.838,46.389,49.204,29.245,311.0,207.0,223.0,302.0,False,False,1,False,True,False,5540.201,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,20.0,2.0,SOFT,5.0,False,128.72,31.186,56.837,40.697,311.0,132.0,142.0,296.0,False,False,16,False,False,False,5665.039,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,21.0,2.0,SOFT,6.0,False,121.049,41.721,49.703,29.625,300.0,204.0,220.0,261.0,False,False,671,False,False,False,5793.759,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,22.0,2.0,SOFT,7.0,False,109.367,30.938,48.972,29.457,318.0,204.0,222.0,302.0,True,True,1,False,False,False,5914.808,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,23.0,2.0,SOFT,8.0,False,109.585,30.891,49.333,29.361,317.0,200.0,222.0,303.0,False,True,1,False,False,False,6024.175,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,24.0,2.0,SOFT,9.0,False,109.943,30.617,49.97,29.356,328.0,203.0,224.0,306.0,False,True,1,False,False,False,6133.76,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,25.0,2.0,SOFT,10.0,False,110.878,30.775,50.656,29.447,324.0,202.0,224.0,298.0,False,True,1,False,False,False,6243.703,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,26.0,2.0,SOFT,11.0,False,109.333,30.706,49.329,29.298,324.0,203.0,219.0,307.0,True,True,1,False,False,False,6354.581,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,27.0,2.0,SOFT,12.0,False,109.784,31.161,49.258,29.365,315.0,205.0,218.0,299.0,False,True,1,False,False,False,6463.914,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,28.0,2.0,SOFT,13.0,False,109.649,31.196,49.248,29.205,315.0,202.0,220.0,300.0,False,True,1,False,False,False,6573.698,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,29.0,2.0,SOFT,14.0,False,109.659,31.11,49.23,29.319,318.0,206.0,220.0,301.0,False,True,1,False,False,False,6683.347,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,30.0,2.0,SOFT,15.0,False,109.695,30.913,49.479,29.303,321.0,208.0,220.0,303.0,False,True,1,False,False,False,6793.006,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,31.0,2.0,SOFT,16.0,False,110.023,31.051,49.56,29.412,322.0,206.0,221.0,304.0,False,True,1,False,False,False,6902.701,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,32.0,2.0,SOFT,17.0,False,109.863,30.808,49.814,29.241,322.0,206.0,221.0,305.0,False,True,1,False,False,False,7012.724,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,33.0,2.0,SOFT,18.0,False,109.798,30.619,49.726,29.453,326.0,204.0,222.0,305.0,False,True,1,False,False,False,7122.587,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,34.0,2.0,SOFT,19.0,False,109.305,30.576,49.052,29.677,322.0,208.0,220.0,307.0,True,True,1,False,False,False,7232.385,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,35.0,2.0,SOFT,20.0,False,109.856,31.217,49.418,29.221,309.0,207.0,214.0,300.0,False,True,1,False,False,False,7341.69,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,36.0,2.0,SOFT,21.0,False,110.073,31.621,49.373,29.079,308.0,207.0,217.0,301.0,False,True,1,False,False,False,7451.546,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,37.0,2.0,SOFT,22.0,False,109.701,31.597,49.072,29.032,309.0,209.0,216.0,299.0,False,True,1,False,False,False,7561.619,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,38.0,2.0,SOFT,23.0,False,109.68,31.503,49.125,29.052,309.0,205.0,214.0,300.0,False,True,1,False,False,False,7671.32,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,39.0,2.0,SOFT,24.0,False,109.629,31.523,49.168,28.938,310.0,206.0,215.0,301.0,False,True,1,False,False,False,7781.0,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,40.0,2.0,SOFT,25.0,False,109.665,31.343,49.364,28.958,310.0,207.0,214.0,301.0,False,True,1,False,False,False,7890.629,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,41.0,2.0,SOFT,26.0,False,109.098,31.318,48.904,28.876,313.0,206.0,214.0,305.0,True,True,1,False,False,False,8000.294,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,42.0,2.0,SOFT,27.0,False,109.357,31.134,49.327,28.896,316.0,206.0,213.0,303.0,False,True,1,False,False,False,8109.392,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,43.0,2.0,SOFT,28.0,False,109.886,31.268,49.5,29.118,314.0,206.0,213.0,303.0,False,True,1,False,False,False,8218.749,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ANT,12,Mercedes,44.0,2.0,SOFT,29.0,False,109.963,31.26,49.72,28.983,316.0,205.0,205.0,302.0,False,True,1,False,False,False,8328.635,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,1.0,1.0,MEDIUM,1.0,True,123.706,,50.445,39.336,323.0,204.0,200.0,295.0,False,False,124,False,False,False,3355.977,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,2.0,1.0,MEDIUM,2.0,True,,46.114,77.706,43.317,174.0,119.0,190.0,165.0,False,False,4,False,False,False,3480.026,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,3.0,1.0,MEDIUM,3.0,True,,42.937,73.907,43.715,143.0,110.0,197.0,161.0,False,False,4,False,False,False,3647.075,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,4.0,1.0,MEDIUM,4.0,True,,41.71,72.198,49.218,253.0,137.0,219.0,261.0,False,False,41,False,False,False,3807.601,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,5.0,1.0,MEDIUM,5.0,True,111.674,32.023,49.845,29.806,306.0,203.0,212.0,285.0,True,True,1,False,False,False,3970.71,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,6.0,1.0,MEDIUM,6.0,True,111.98,31.713,50.403,29.864,308.0,208.0,211.0,297.0,False,True,1,False,False,False,4082.384,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,7.0,1.0,MEDIUM,7.0,True,111.118,31.46,49.938,29.72,320.0,203.0,211.0,300.0,True,True,1,False,False,False,4194.364,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,8.0,1.0,MEDIUM,8.0,True,111.57,31.511,50.211,29.848,315.0,202.0,210.0,300.0,False,True,12,False,False,False,4305.482,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,9.0,1.0,MEDIUM,9.0,True,110.651,31.29,49.648,29.713,317.0,203.0,210.0,299.0,True,True,1,False,False,False,4417.052,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,10.0,1.0,MEDIUM,10.0,True,110.785,31.342,49.697,29.746,320.0,201.0,211.0,300.0,False,True,1,False,False,False,4527.703,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,11.0,1.0,MEDIUM,11.0,True,111.209,31.299,50.175,29.735,322.0,203.0,212.0,301.0,False,True,1,False,False,False,4638.488,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,12.0,1.0,MEDIUM,12.0,True,111.224,31.514,49.94,29.77,324.0,202.0,205.0,296.0,False,True,1,False,False,False,4749.697,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,13.0,1.0,MEDIUM,13.0,True,111.352,31.692,50.015,29.645,318.0,203.0,211.0,295.0,False,True,1,False,False,False,4860.921,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,14.0,1.0,MEDIUM,14.0,True,111.032,31.588,49.914,29.53,317.0,203.0,211.0,300.0,False,True,1,False,False,False,4972.273,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,15.0,1.0,MEDIUM,15.0,True,111.106,31.584,50.041,29.481,317.0,204.0,212.0,300.0,False,True,1,False,False,False,5083.305,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,16.0,1.0,MEDIUM,16.0,True,111.369,31.534,50.287,29.548,318.0,203.0,212.0,300.0,False,True,1,False,False,False,5194.411,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,17.0,1.0,MEDIUM,17.0,True,111.236,31.579,50.075,29.582,319.0,202.0,211.0,300.0,False,True,1,False,False,False,5305.78,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,18.0,1.0,MEDIUM,18.0,True,123.649,31.67,56.518,35.461,311.0,158.0,212.0,298.0,False,False,167,False,False,False,5417.016,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,19.0,1.0,MEDIUM,19.0,True,110.862,31.633,49.493,29.736,305.0,206.0,212.0,299.0,False,True,1,False,False,False,5540.665,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,20.0,1.0,MEDIUM,20.0,True,128.966,31.708,53.359,43.899,305.0,160.0,,297.0,False,False,16,False,False,True,5651.527,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,21.0,2.0,HARD,1.0,True,131.825,52.988,49.359,29.478,288.0,209.0,214.0,233.0,False,False,671,False,True,False,5780.493,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,22.0,2.0,HARD,2.0,True,109.818,31.034,48.974,29.81,318.0,207.0,215.0,301.0,True,True,1,False,False,False,5912.318,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,23.0,2.0,HARD,3.0,True,109.333,30.732,48.948,29.653,320.0,206.0,213.0,305.0,True,True,1,False,False,False,6022.136,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,24.0,2.0,HARD,4.0,True,109.493,31.411,48.456,29.626,309.0,207.0,214.0,299.0,False,True,1,False,False,False,6131.469,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,25.0,2.0,HARD,5.0,True,110.088,31.591,48.798,29.699,307.0,208.0,212.0,300.0,False,True,1,False,False,False,6240.962,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,26.0,2.0,HARD,6.0,True,109.907,31.41,49.003,29.494,314.0,206.0,214.0,299.0,False,True,1,False,False,False,6351.05,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,27.0,2.0,HARD,7.0,True,109.988,31.592,48.921,29.475,311.0,207.0,212.0,299.0,False,True,1,False,False,False,6460.957,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,28.0,2.0,HARD,8.0,True,109.905,31.414,49.076,29.415,314.0,209.0,213.0,300.0,False,True,1,False,False,False,6570.945,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,29.0,2.0,HARD,9.0,True,110.006,31.508,48.806,29.692,310.0,209.0,214.0,300.0,False,True,1,False,False,False,6680.85,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,30.0,2.0,HARD,10.0,True,110.153,31.431,49.136,29.586,311.0,208.0,214.0,300.0,False,True,1,False,False,False,6790.856,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,31.0,2.0,HARD,11.0,True,110.37,31.554,49.237,29.579,310.0,209.0,213.0,300.0,False,True,1,False,False,False,6901.009,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,32.0,2.0,HARD,12.0,True,110.199,31.485,49.291,29.423,308.0,209.0,214.0,302.0,False,True,1,False,False,False,7011.379,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,33.0,2.0,HARD,13.0,True,110.229,31.28,49.155,29.794,310.0,206.0,213.0,303.0,False,True,1,False,False,False,7121.578,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,34.0,2.0,HARD,14.0,True,110.672,31.324,49.782,29.566,309.0,206.0,214.0,301.0,False,True,1,False,False,False,7231.807,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,35.0,2.0,HARD,15.0,True,109.928,31.045,49.552,29.331,321.0,204.0,215.0,302.0,False,True,1,False,False,False,7342.479,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,36.0,2.0,HARD,16.0,True,110.162,31.162,49.78,29.22,324.0,205.0,215.0,304.0,False,True,1,False,False,False,7452.407,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,37.0,2.0,HARD,17.0,True,109.716,31.161,49.488,29.067,322.0,206.0,216.0,302.0,False,True,1,False,False,False,7562.569,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,38.0,2.0,HARD,18.0,True,110.07,31.411,49.442,29.217,322.0,205.0,216.0,301.0,False,True,1,False,False,False,7672.285,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,39.0,2.0,HARD,19.0,True,109.845,31.195,49.482,29.168,317.0,206.0,215.0,303.0,False,True,1,False,False,False,7782.355,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,40.0,2.0,HARD,20.0,True,109.63,31.174,49.133,29.323,313.0,206.0,215.0,301.0,False,True,1,False,False,False,7892.2,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,41.0,2.0,HARD,21.0,True,109.549,31.133,49.036,29.38,316.0,204.0,215.0,305.0,False,True,1,False,False,False,8001.83,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,42.0,2.0,HARD,22.0,True,109.976,31.185,49.486,29.305,314.0,207.0,215.0,304.0,False,True,1,False,False,False,8111.379,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,43.0,2.0,HARD,23.0,True,109.844,31.212,49.237,29.395,314.0,206.0,215.0,302.0,False,True,1,False,False,False,8221.355,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LEC,16,Ferrari,44.0,2.0,HARD,24.0,True,109.414,31.221,49.385,28.808,315.0,202.0,219.0,302.0,False,True,1,False,False,False,8331.199,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,1.0,1.0,MEDIUM,1.0,True,125.369,,51.029,40.391,299.0,194.0,178.0,288.0,False,False,124,False,False,False,3355.977,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,2.0,1.0,MEDIUM,2.0,True,,45.495,78.753,42.436,185.0,67.0,187.0,240.0,False,False,4,False,False,False,3481.653,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,3.0,1.0,MEDIUM,3.0,True,,43.061,73.679,43.737,203.0,147.0,183.0,240.0,False,False,4,False,False,False,3648.285,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,4.0,1.0,MEDIUM,4.0,True,,41.711,72.078,49.115,247.0,142.0,210.0,269.0,False,False,41,False,False,False,3808.796,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,5.0,1.0,MEDIUM,5.0,True,111.301,31.396,50.173,29.732,317.0,200.0,210.0,288.0,True,True,1,False,False,False,3971.631,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,6.0,1.0,MEDIUM,6.0,True,110.587,31.078,49.712,29.797,320.0,198.0,210.0,293.0,True,True,1,False,False,False,4082.932,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,7.0,1.0,MEDIUM,7.0,True,111.128,31.476,49.951,29.701,315.0,194.0,209.0,289.0,False,True,1,False,False,False,4193.519,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,8.0,1.0,MEDIUM,8.0,True,111.033,31.569,49.831,29.633,314.0,197.0,210.0,287.0,False,True,12,False,False,False,4304.647,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,9.0,1.0,MEDIUM,9.0,True,111.047,31.626,49.729,29.692,313.0,195.0,208.0,287.0,False,True,1,False,False,False,4415.68,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,10.0,1.0,MEDIUM,10.0,True,111.09,31.642,49.69,29.758,312.0,196.0,211.0,286.0,False,True,1,False,False,False,4526.727,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,11.0,1.0,MEDIUM,11.0,True,111.12,31.708,49.648,29.764,310.0,196.0,211.0,287.0,False,True,1,False,False,False,4637.817,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,12.0,1.0,MEDIUM,12.0,True,111.093,31.65,49.65,29.793,312.0,199.0,211.0,287.0,False,True,1,False,False,False,4748.937,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,13.0,1.0,MEDIUM,13.0,True,111.16,31.63,49.722,29.808,311.0,202.0,211.0,286.0,False,True,1,False,False,False,4860.03,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,14.0,1.0,MEDIUM,14.0,True,111.142,31.62,49.641,29.881,311.0,197.0,211.0,287.0,False,True,1,False,False,False,4971.19,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,15.0,1.0,MEDIUM,15.0,True,111.241,31.668,49.78,29.793,311.0,198.0,211.0,285.0,False,True,1,False,False,False,5082.332,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,16.0,1.0,MEDIUM,16.0,True,111.318,31.692,49.855,29.771,311.0,198.0,210.0,287.0,False,True,1,False,False,False,5193.573,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,17.0,1.0,MEDIUM,17.0,True,115.718,31.71,49.777,34.231,311.0,197.0,,286.0,False,False,1,False,False,True,5304.891,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,18.0,2.0,HARD,1.0,True,137.096,46.038,61.121,29.937,307.0,202.0,211.0,284.0,False,False,167,False,True,False,5420.609,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,19.0,2.0,HARD,2.0,True,110.031,31.505,49.062,29.464,312.0,203.0,214.0,287.0,True,True,1,False,False,False,5557.705,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,20.0,2.0,HARD,3.0,True,129.313,31.309,57.599,40.405,313.0,149.0,179.0,289.0,False,False,16,False,False,False,5667.736,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,21.0,2.0,HARD,4.0,True,121.248,42.246,49.199,29.803,278.0,201.0,213.0,260.0,False,False,671,False,False,False,5797.049,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,22.0,2.0,HARD,5.0,True,109.726,31.332,48.925,29.469,313.0,202.0,212.0,289.0,True,True,1,False,False,False,5918.297,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,23.0,2.0,HARD,6.0,True,109.618,31.403,48.669,29.546,311.0,203.0,214.0,288.0,True,True,1,False,False,False,6028.023,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,24.0,2.0,HARD,7.0,True,109.63,31.376,48.756,29.498,312.0,202.0,213.0,288.0,False,True,1,False,False,False,6137.641,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,25.0,2.0,HARD,8.0,True,109.801,31.373,48.959,29.469,311.0,202.0,212.0,291.0,False,True,1,False,False,False,6247.271,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,26.0,2.0,HARD,9.0,True,110.072,31.35,49.313,29.409,316.0,197.0,213.0,289.0,False,True,1,False,False,False,6357.072,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,27.0,2.0,HARD,10.0,True,110.101,31.6,49.23,29.271,318.0,199.0,212.0,288.0,False,True,1,False,False,False,6467.144,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,28.0,2.0,HARD,11.0,True,110.338,31.106,49.82,29.412,326.0,195.0,213.0,292.0,False,True,1,False,False,False,6577.245,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,29.0,2.0,HARD,12.0,True,110.368,30.752,50.084,29.532,332.0,200.0,213.0,299.0,False,True,1,False,False,False,6687.583,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,30.0,2.0,HARD,13.0,True,110.306,31.467,49.363,29.476,313.0,202.0,212.0,289.0,False,True,1,False,False,False,6797.951,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,31.0,2.0,HARD,14.0,True,110.195,31.546,49.206,29.443,312.0,203.0,213.0,288.0,False,True,1,False,False,False,6908.257,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,32.0,2.0,HARD,15.0,True,110.424,31.514,49.375,29.535,310.0,202.0,214.0,290.0,False,True,1,False,False,False,7018.452,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,33.0,2.0,HARD,16.0,True,110.068,31.417,49.204,29.447,310.0,205.0,214.0,290.0,False,True,1,False,False,False,7128.876,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,34.0,2.0,HARD,17.0,True,110.698,31.509,49.472,29.717,309.0,202.0,214.0,294.0,False,True,1,False,False,False,7238.944,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,35.0,2.0,HARD,18.0,True,110.407,31.503,49.351,29.553,306.0,202.0,215.0,292.0,False,True,1,False,False,False,7349.642,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,36.0,2.0,HARD,19.0,True,110.198,31.573,49.144,29.481,306.0,203.0,213.0,291.0,False,True,1,False,False,False,7460.049,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,37.0,2.0,HARD,20.0,True,110.092,31.627,49.054,29.411,306.0,204.0,214.0,289.0,False,True,1,False,False,False,7570.247,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,38.0,2.0,HARD,21.0,True,110.352,31.625,49.209,29.518,306.0,204.0,215.0,291.0,False,True,1,False,False,False,7680.339,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,39.0,2.0,HARD,22.0,True,110.287,31.424,49.13,29.733,307.0,208.0,215.0,294.0,False,True,1,False,False,False,7790.691,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,40.0,2.0,HARD,23.0,True,109.653,31.263,49.021,29.369,308.0,206.0,213.0,297.0,False,True,1,False,False,False,7900.978,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,41.0,2.0,HARD,24.0,True,109.923,31.313,49.114,29.496,309.0,207.0,215.0,298.0,False,True,1,False,False,False,8010.631,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,42.0,2.0,HARD,25.0,True,109.86,31.178,49.175,29.507,309.0,208.0,212.0,296.0,False,True,1,False,False,False,8120.554,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,43.0,2.0,HARD,26.0,True,110.057,31.265,49.117,29.675,313.0,208.0,212.0,297.0,False,True,1,False,False,False,8230.414,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,VER,3,Red Bull Racing,44.0,2.0,HARD,27.0,True,109.791,31.259,49.349,29.183,310.0,204.0,210.0,295.0,False,True,1,False,False,False,8340.471,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,1.0,1.0,MEDIUM,1.0,True,130.66,,53.401,43.1,324.0,202.0,196.0,293.0,False,False,124,False,False,False,3355.977,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,2.0,1.0,MEDIUM,2.0,True,,42.961,77.208,44.802,182.0,64.0,162.0,267.0,False,False,4,False,False,False,3486.907,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,3.0,1.0,MEDIUM,3.0,True,,42.071,73.258,44.291,195.0,117.0,148.0,233.0,False,False,4,False,False,False,3651.863,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,4.0,1.0,MEDIUM,4.0,True,,41.704,71.214,48.077,218.0,107.0,225.0,264.0,False,False,41,False,False,False,3811.473,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,5.0,1.0,MEDIUM,5.0,True,111.956,31.787,50.624,29.545,313.0,204.0,213.0,288.0,True,True,1,False,False,False,3972.436,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,6.0,1.0,MEDIUM,6.0,True,111.257,31.179,50.39,29.688,326.0,203.0,211.0,302.0,True,True,1,False,False,False,4084.392,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,7.0,1.0,MEDIUM,7.0,True,110.772,30.912,50.471,29.389,333.0,203.0,212.0,304.0,True,True,1,False,False,False,4195.649,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,8.0,1.0,MEDIUM,8.0,True,111.677,30.734,51.617,29.326,339.0,199.0,212.0,307.0,False,True,12,False,False,False,4306.421,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,9.0,1.0,MEDIUM,9.0,True,110.199,30.909,50.012,29.278,339.0,204.0,212.0,300.0,True,True,1,False,False,False,4418.098,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,10.0,1.0,MEDIUM,10.0,True,110.813,31.063,50.27,29.48,328.0,202.0,209.0,298.0,False,True,1,False,False,False,4528.297,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,11.0,1.0,MEDIUM,11.0,True,111.079,31.006,50.568,29.505,333.0,199.0,211.0,305.0,False,True,1,False,False,False,4639.11,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,12.0,1.0,MEDIUM,12.0,True,111.42,31.08,50.892,29.448,327.0,202.0,211.0,300.0,False,True,1,False,False,False,4750.189,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,13.0,1.0,MEDIUM,13.0,True,111.707,,,29.478,327.0,201.0,212.0,300.0,False,False,1,False,False,False,4861.609,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,14.0,1.0,MEDIUM,14.0,True,111.168,31.123,50.412,29.633,327.0,199.0,211.0,302.0,False,True,1,False,False,False,4973.316,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,15.0,1.0,MEDIUM,15.0,True,111.422,31.251,50.556,29.615,323.0,200.0,210.0,303.0,False,True,1,False,False,False,5084.484,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,16.0,1.0,MEDIUM,16.0,True,111.769,31.361,50.7,29.708,320.0,199.0,211.0,302.0,False,True,1,False,False,False,5195.906,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,17.0,1.0,MEDIUM,17.0,True,111.564,31.414,50.465,29.685,317.0,198.0,212.0,301.0,False,True,1,False,False,False,5307.675,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,18.0,1.0,MEDIUM,18.0,True,122.86,31.504,57.643,33.713,314.0,149.0,219.0,301.0,False,False,167,False,False,False,5419.239,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,19.0,1.0,MEDIUM,19.0,True,112.803,32.376,50.641,29.786,300.0,200.0,211.0,286.0,False,True,1,False,False,False,5542.099,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,20.0,1.0,MEDIUM,20.0,True,131.009,31.453,55.34,44.216,313.0,124.0,,299.0,False,False,16,False,False,True,5654.902,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,21.0,2.0,HARD,1.0,True,138.908,59.872,49.681,29.355,333.0,207.0,216.0,259.0,False,False,671,False,True,False,5785.911,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,22.0,2.0,HARD,2.0,True,110.089,31.205,49.116,29.768,316.0,208.0,214.0,301.0,True,True,1,False,False,False,5924.819,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,23.0,2.0,HARD,3.0,True,109.515,31.106,48.913,29.496,315.0,207.0,214.0,301.0,True,True,1,False,False,False,6034.908,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,24.0,2.0,HARD,4.0,True,110.524,31.62,49.294,29.61,314.0,206.0,214.0,297.0,False,True,1,False,False,False,6144.423,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,25.0,2.0,HARD,5.0,True,110.332,31.344,49.437,29.551,313.0,202.0,215.0,302.0,False,True,1,False,False,False,6254.947,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,26.0,2.0,HARD,6.0,True,110.142,31.221,49.476,29.445,314.0,205.0,215.0,302.0,False,True,1,False,False,False,6365.279,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,27.0,2.0,HARD,7.0,True,110.163,31.283,49.459,29.421,315.0,205.0,215.0,300.0,False,True,1,False,False,False,6475.421,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,28.0,2.0,HARD,8.0,True,110.082,31.335,49.346,29.401,314.0,203.0,215.0,299.0,False,True,1,False,False,False,6585.584,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,29.0,2.0,HARD,9.0,True,109.858,31.308,49.072,29.478,315.0,206.0,215.0,302.0,False,True,1,False,False,False,6695.666,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,30.0,2.0,HARD,10.0,True,110.014,31.234,49.359,29.421,316.0,206.0,213.0,302.0,False,True,1,False,False,False,6805.524,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,31.0,2.0,HARD,11.0,True,109.867,31.258,49.089,29.52,316.0,205.0,214.0,303.0,False,True,1,False,False,False,6915.538,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,32.0,2.0,HARD,12.0,True,109.626,31.148,49.144,29.334,314.0,207.0,214.0,305.0,False,True,1,False,False,False,7025.405,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,33.0,2.0,HARD,13.0,True,109.454,31.074,48.95,29.43,316.0,206.0,215.0,304.0,True,True,1,False,False,False,7135.031,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,34.0,2.0,HARD,14.0,True,109.972,31.153,49.186,29.633,317.0,204.0,212.0,304.0,False,True,1,False,False,False,7244.485,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,35.0,2.0,HARD,15.0,True,110.16,31.17,49.445,29.545,315.0,206.0,214.0,302.0,False,True,1,False,False,False,7354.457,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,36.0,2.0,HARD,16.0,True,110.141,31.183,49.423,29.535,318.0,199.0,213.0,305.0,False,True,1,False,False,False,7464.617,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,37.0,2.0,HARD,17.0,True,109.538,31.061,49.146,29.331,319.0,204.0,216.0,303.0,False,True,1,False,False,False,7574.758,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,38.0,2.0,HARD,18.0,True,109.88,31.247,49.417,29.216,328.0,202.0,217.0,301.0,False,True,1,False,False,False,7684.296,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,39.0,2.0,HARD,19.0,True,110.691,30.859,50.779,29.053,338.0,205.0,211.0,302.0,False,True,1,False,False,False,7794.176,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,40.0,2.0,HARD,20.0,True,109.539,30.976,49.42,29.143,339.0,204.0,215.0,303.0,False,True,1,False,False,False,7904.867,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,41.0,2.0,HARD,21.0,True,109.683,31.232,49.019,29.432,314.0,204.0,214.0,304.0,False,True,1,False,False,False,8014.406,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,42.0,2.0,HARD,22.0,True,110.152,31.222,49.364,29.566,310.0,206.0,215.0,304.0,False,True,1,False,False,False,8124.089,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,43.0,2.0,HARD,23.0,True,111.054,31.158,50.311,29.585,314.0,201.0,216.0,304.0,False,True,1,False,False,False,8234.241,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAM,44,Ferrari,44.0,2.0,HARD,24.0,True,110.619,30.999,50.01,29.61,318.0,202.0,214.0,305.0,False,True,1,False,False,False,8345.295,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,1.0,1.0,MEDIUM,1.0,True,129.005,,,42.63,,202.0,152.0,297.0,False,False,124,False,False,False,3355.977,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,2.0,1.0,MEDIUM,2.0,True,,43.922,77.305,44.013,197.0,64.0,154.0,245.0,False,False,4,False,False,False,3485.222,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,3.0,1.0,MEDIUM,3.0,True,,43.026,73.014,44.399,209.0,122.0,155.0,246.0,False,False,4,False,False,False,3650.477,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,4.0,1.0,MEDIUM,4.0,True,,41.406,71.177,48.765,261.0,123.0,222.0,238.0,False,False,41,False,False,False,3810.982,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,5.0,1.0,MEDIUM,5.0,True,111.333,31.072,50.798,29.463,327.0,203.0,212.0,302.0,True,True,1,False,False,False,3972.25,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,6.0,1.0,MEDIUM,6.0,True,111.431,31.328,50.354,29.749,319.0,205.0,212.0,301.0,False,True,1,False,False,False,4083.583,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,7.0,1.0,MEDIUM,7.0,True,110.916,31.088,50.384,29.444,328.0,202.0,213.0,306.0,True,True,1,False,False,False,4195.014,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,8.0,1.0,MEDIUM,8.0,True,111.782,31.121,51.223,29.438,319.0,201.0,211.0,308.0,False,True,12,False,False,False,4305.93,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,9.0,1.0,MEDIUM,9.0,True,111.665,31.404,50.838,29.423,313.0,204.0,210.0,303.0,False,True,1,False,False,False,4417.712,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,10.0,1.0,MEDIUM,10.0,True,110.734,31.212,50.061,29.461,321.0,203.0,215.0,303.0,True,True,1,False,False,False,4529.377,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,11.0,1.0,MEDIUM,11.0,True,111.156,31.09,50.459,29.607,324.0,200.0,215.0,305.0,False,True,1,False,False,False,4640.111,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,12.0,1.0,MEDIUM,12.0,True,111.821,31.159,50.893,29.769,321.0,201.0,210.0,306.0,False,True,1,False,False,False,4751.267,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,13.0,1.0,MEDIUM,13.0,True,112.128,31.429,50.825,29.874,317.0,197.0,204.0,304.0,False,True,1,False,False,False,4863.088,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,14.0,1.0,MEDIUM,14.0,True,112.155,31.75,50.509,29.896,315.0,202.0,211.0,303.0,False,True,1,False,False,False,4975.216,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,15.0,1.0,MEDIUM,15.0,True,112.044,31.526,50.61,29.908,315.0,200.0,212.0,304.0,False,True,1,False,False,False,5087.371,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,16.0,1.0,MEDIUM,16.0,True,112.175,31.509,50.694,29.972,314.0,202.0,212.0,303.0,False,True,1,False,False,False,5199.415,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,17.0,1.0,MEDIUM,17.0,True,112.074,31.614,50.525,29.935,312.0,202.0,212.0,302.0,False,True,1,False,False,False,5311.59,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,18.0,1.0,MEDIUM,18.0,True,123.308,31.628,59.511,32.169,310.0,134.0,212.0,302.0,False,False,167,False,False,False,5423.664,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,19.0,1.0,MEDIUM,19.0,True,112.84,31.668,50.737,30.435,309.0,200.0,213.0,303.0,False,True,1,False,False,False,5546.972,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,20.0,1.0,MEDIUM,20.0,True,130.454,31.203,57.077,42.174,313.0,136.0,,308.0,False,False,16,False,False,True,5659.812,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,21.0,2.0,HARD,1.0,True,129.309,50.756,49.482,29.071,317.0,208.0,213.0,251.0,False,False,671,False,True,False,5790.266,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,22.0,2.0,HARD,2.0,True,109.899,31.389,49.033,29.477,315.0,209.0,214.0,300.0,True,True,1,False,False,False,5919.575,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,23.0,2.0,HARD,3.0,True,109.562,30.917,49.201,29.444,318.0,207.0,213.0,305.0,True,True,1,False,False,False,6029.474,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,24.0,2.0,HARD,4.0,True,109.571,30.988,49.113,29.47,318.0,209.0,217.0,307.0,False,True,1,False,False,False,6139.036,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,25.0,2.0,HARD,5.0,True,109.969,30.878,49.53,29.561,320.0,199.0,216.0,308.0,False,True,1,False,False,False,6248.607,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,26.0,2.0,HARD,6.0,True,109.791,30.882,49.653,29.256,321.0,205.0,213.0,306.0,False,True,1,False,False,False,6358.576,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,27.0,2.0,HARD,7.0,True,110.095,30.985,49.707,29.403,326.0,204.0,215.0,306.0,False,True,1,False,False,False,6468.367,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,28.0,2.0,HARD,8.0,True,110.098,30.958,49.751,29.389,322.0,206.0,217.0,305.0,False,True,1,False,False,False,6578.462,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,29.0,2.0,HARD,9.0,True,111.529,30.888,50.656,29.985,324.0,202.0,214.0,310.0,False,True,1,False,False,False,6688.56,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,30.0,2.0,HARD,10.0,True,110.256,30.897,50.016,29.343,325.0,204.0,216.0,309.0,False,True,1,False,False,False,6800.089,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,31.0,2.0,HARD,11.0,True,110.362,31.201,49.623,29.538,317.0,206.0,217.0,306.0,False,True,1,False,False,False,6910.345,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,32.0,2.0,HARD,12.0,True,110.201,31.061,49.653,29.487,315.0,206.0,213.0,308.0,False,True,1,False,False,False,7020.707,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,33.0,2.0,HARD,13.0,True,109.998,31.068,49.616,29.314,316.0,206.0,215.0,307.0,False,True,1,False,False,False,7130.908,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,34.0,2.0,HARD,14.0,True,110.869,31.223,49.958,29.688,316.0,203.0,214.0,305.0,False,True,1,False,False,False,7240.906,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,35.0,2.0,HARD,15.0,True,110.738,31.232,49.974,29.532,313.0,207.0,215.0,304.0,False,True,1,False,False,False,7351.775,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,36.0,2.0,HARD,16.0,True,110.565,31.309,49.695,29.561,312.0,203.0,218.0,304.0,False,True,1,False,False,False,7462.513,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,37.0,2.0,HARD,17.0,True,110.314,31.245,49.605,29.464,312.0,204.0,218.0,303.0,False,True,1,False,False,False,7573.078,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,38.0,2.0,HARD,18.0,True,110.356,31.245,49.643,29.468,311.0,205.0,219.0,305.0,False,True,1,False,False,False,7683.392,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,39.0,2.0,HARD,19.0,True,110.718,31.195,50.093,29.43,311.0,208.0,215.0,304.0,False,True,1,False,False,False,7793.748,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,40.0,2.0,HARD,20.0,True,111.99,31.35,51.129,29.511,314.0,203.0,215.0,305.0,False,True,1,False,False,False,7904.466,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,41.0,2.0,HARD,21.0,True,110.423,31.14,49.79,29.493,316.0,205.0,215.0,307.0,False,True,1,False,False,False,8016.456,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,42.0,2.0,HARD,22.0,True,110.576,31.092,49.877,29.607,314.0,206.0,217.0,308.0,False,True,1,False,False,False,8126.879,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,43.0,2.0,HARD,23.0,True,110.456,31.043,49.919,29.494,315.0,205.0,217.0,306.0,False,True,1,False,False,False,8237.455,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PIA,81,McLaren,44.0,2.0,HARD,24.0,True,109.774,30.939,49.849,28.986,317.0,204.0,218.0,306.0,False,True,1,False,False,False,8347.911,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,1.0,1.0,HARD,1.0,True,154.266,,56.074,60.868,335.0,184.0,,280.0,False,False,124,False,False,True,3355.977,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,2.0,2.0,MEDIUM,1.0,True,,49.495,61.684,49.344,263.0,103.0,,263.0,False,False,4,False,True,True,3510.496,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,3.0,3.0,HARD,1.0,True,,49.255,65.704,46.845,265.0,108.0,178.0,265.0,False,False,4,False,True,False,3671.011,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,4.0,3.0,HARD,2.0,True,148.123,44.687,63.973,39.463,263.0,166.0,215.0,245.0,True,False,41,False,False,False,3832.712,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,5.0,3.0,HARD,3.0,True,113.796,30.819,53.0,29.977,335.0,187.0,205.0,300.0,True,True,1,False,False,False,3980.835,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,6.0,3.0,HARD,4.0,True,111.864,31.802,50.015,30.047,312.0,188.0,213.0,290.0,True,True,1,False,False,False,4094.631,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,7.0,3.0,HARD,5.0,True,111.556,31.166,50.675,29.715,323.0,191.0,212.0,295.0,True,True,1,False,False,False,4206.495,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,8.0,3.0,HARD,6.0,True,112.369,31.185,51.362,29.822,328.0,188.0,211.0,294.0,False,True,12,False,False,False,4318.051,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,9.0,3.0,HARD,7.0,True,113.145,30.661,52.685,29.799,344.0,190.0,212.0,303.0,False,True,1,False,False,False,4430.42,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,10.0,3.0,HARD,8.0,True,112.112,31.067,51.134,29.911,329.0,186.0,211.0,298.0,False,True,1,False,False,False,4543.565,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,11.0,3.0,HARD,9.0,True,111.673,30.964,50.833,29.876,326.0,191.0,212.0,297.0,False,True,1,False,False,False,4655.677,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,12.0,3.0,HARD,10.0,True,111.935,30.899,51.298,29.738,327.0,194.0,209.0,296.0,False,True,1,False,False,False,4767.35,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,13.0,3.0,HARD,11.0,True,111.034,31.016,50.27,29.748,326.0,193.0,209.0,295.0,True,True,1,False,False,False,4879.285,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,14.0,3.0,HARD,12.0,True,111.419,31.34,50.439,29.64,319.0,194.0,209.0,292.0,False,True,1,False,False,False,4990.319,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,15.0,3.0,HARD,13.0,True,111.948,30.875,51.049,30.024,326.0,193.0,211.0,299.0,False,True,1,False,False,False,5101.738,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,16.0,3.0,HARD,14.0,True,111.724,31.604,50.279,29.841,315.0,192.0,209.0,290.0,False,True,1,False,False,False,5213.686,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,17.0,3.0,HARD,15.0,True,111.422,31.693,50.016,29.713,310.0,194.0,208.0,287.0,False,True,1,False,False,False,5325.41,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,18.0,3.0,HARD,16.0,True,123.208,31.664,61.82,29.724,313.0,200.0,212.0,291.0,False,False,167,False,False,False,5436.832,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,19.0,3.0,HARD,17.0,True,111.003,31.504,49.863,29.636,314.0,203.0,212.0,290.0,True,True,1,False,False,False,5560.04,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,20.0,3.0,HARD,18.0,True,134.214,31.491,60.395,42.328,313.0,137.0,,291.0,False,False,16,False,False,True,5671.043,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,21.0,4.0,HARD,2.0,False,127.242,48.077,49.663,29.502,304.0,205.0,213.0,285.0,False,False,671,False,True,False,5805.257,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,22.0,4.0,HARD,3.0,False,109.666,31.333,48.859,29.474,311.0,207.0,213.0,289.0,True,True,1,False,False,False,5932.499,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,23.0,4.0,HARD,4.0,False,109.999,31.397,48.997,29.605,310.0,203.0,209.0,291.0,False,True,1,False,False,False,6042.165,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,24.0,4.0,HARD,5.0,False,109.841,31.406,48.907,29.528,314.0,206.0,213.0,291.0,False,True,1,False,False,False,6152.164,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,25.0,4.0,HARD,6.0,False,110.085,31.268,49.288,29.529,313.0,205.0,212.0,291.0,False,True,1,False,False,False,6262.005,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,26.0,4.0,HARD,7.0,False,109.892,31.319,49.188,29.385,314.0,205.0,211.0,291.0,False,True,1,False,False,False,6372.09,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,27.0,4.0,HARD,8.0,False,110.085,31.433,49.264,29.388,312.0,207.0,213.0,291.0,False,True,1,False,False,False,6481.982,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,28.0,4.0,HARD,9.0,False,110.027,31.325,49.207,29.495,313.0,207.0,213.0,291.0,False,True,1,False,False,False,6592.067,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,29.0,4.0,HARD,10.0,False,109.945,31.314,49.154,29.477,317.0,205.0,210.0,295.0,False,True,1,False,False,False,6702.094,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,30.0,4.0,HARD,11.0,False,110.183,31.327,49.402,29.454,319.0,204.0,210.0,291.0,False,True,1,False,False,False,6812.039,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,31.0,4.0,HARD,12.0,False,110.153,31.421,49.258,29.474,316.0,206.0,212.0,292.0,False,True,1,False,False,False,6922.222,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,32.0,4.0,HARD,13.0,False,110.215,31.254,49.36,29.601,316.0,206.0,213.0,293.0,False,True,1,False,False,False,7032.375,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,33.0,4.0,HARD,14.0,False,109.939,31.231,49.157,29.551,311.0,205.0,213.0,298.0,False,True,1,False,False,False,7142.59,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,34.0,4.0,HARD,15.0,False,110.274,31.275,49.346,29.653,312.0,201.0,211.0,297.0,False,True,1,False,False,False,7252.529,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,35.0,4.0,HARD,16.0,False,110.452,31.334,49.524,29.594,308.0,203.0,212.0,295.0,False,True,1,False,False,False,7362.803,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,36.0,4.0,HARD,17.0,False,110.241,31.378,49.337,29.526,310.0,205.0,211.0,297.0,False,True,1,False,False,False,7473.255,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,37.0,4.0,HARD,18.0,False,110.248,31.357,49.278,29.613,309.0,205.0,214.0,297.0,False,True,1,False,False,False,7583.496,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,38.0,4.0,HARD,19.0,False,110.125,31.334,49.392,29.399,309.0,204.0,215.0,296.0,False,True,1,False,False,False,7693.744,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,39.0,4.0,HARD,20.0,False,109.9,31.257,49.201,29.442,309.0,207.0,213.0,296.0,False,True,1,False,False,False,7803.869,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,40.0,4.0,HARD,21.0,False,110.047,31.277,49.292,29.478,310.0,204.0,213.0,297.0,False,True,1,False,False,False,7913.769,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,41.0,4.0,HARD,22.0,False,109.484,31.122,49.002,29.36,313.0,206.0,213.0,301.0,True,True,1,False,False,False,8023.816,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,42.0,4.0,HARD,23.0,False,109.631,31.194,49.155,29.282,322.0,207.0,214.0,292.0,False,True,1,False,False,False,8133.3,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,43.0,4.0,HARD,24.0,False,109.676,31.154,49.192,29.33,312.0,202.0,215.0,298.0,False,True,1,False,False,False,8242.931,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HAD,6,Red Bull Racing,44.0,4.0,HARD,25.0,False,109.298,31.113,49.31,28.875,312.0,206.0,212.0,300.0,True,True,1,False,False,False,8352.607,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,1.0,1.0,HARD,1.0,True,139.726,,55.081,49.3,319.0,200.0,189.0,290.0,False,False,124,False,False,False,3355.977,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,2.0,1.0,HARD,2.0,True,,41.849,74.702,46.687,183.0,81.0,150.0,237.0,False,False,4,False,False,False,3495.954,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,3.0,1.0,HARD,3.0,True,,39.812,74.837,42.619,157.0,138.0,118.0,265.0,False,False,4,False,False,False,3659.196,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,4.0,1.0,HARD,4.0,True,,44.011,67.867,46.299,258.0,137.0,225.0,252.0,False,False,41,False,False,False,3816.523,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,5.0,1.0,HARD,5.0,True,113.047,31.008,52.469,29.57,322.0,203.0,211.0,310.0,True,True,1,False,False,False,3974.619,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,6.0,1.0,HARD,6.0,True,112.672,31.363,51.464,29.845,311.0,204.0,213.0,302.0,True,True,1,False,False,False,4087.666,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,7.0,1.0,HARD,7.0,True,111.107,31.351,50.581,29.175,318.0,202.0,213.0,302.0,True,True,1,False,False,False,4200.338,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,8.0,1.0,HARD,8.0,True,111.894,31.914,50.703,29.277,312.0,202.0,211.0,296.0,False,True,12,False,False,False,4311.445,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,9.0,1.0,HARD,9.0,True,111.467,31.209,51.05,29.208,323.0,201.0,213.0,305.0,False,True,1,False,False,False,4423.339,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,10.0,1.0,HARD,10.0,True,111.642,31.902,50.312,29.428,312.0,200.0,213.0,296.0,False,True,1,False,False,False,4534.806,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,11.0,1.0,HARD,11.0,True,112.804,31.517,51.476,29.811,326.0,201.0,213.0,308.0,False,True,1,False,False,False,4646.448,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,12.0,1.0,HARD,12.0,True,110.76,31.309,50.013,29.438,318.0,205.0,210.0,305.0,True,True,1,False,False,False,4759.252,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,13.0,1.0,HARD,13.0,True,111.516,31.769,50.215,29.532,307.0,205.0,211.0,299.0,False,True,1,False,False,False,4870.012,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,14.0,1.0,HARD,14.0,True,110.943,31.55,49.85,29.543,310.0,203.0,214.0,301.0,False,True,1,False,False,False,4981.528,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,15.0,1.0,HARD,15.0,True,110.663,31.55,49.733,29.38,310.0,204.0,211.0,300.0,True,True,1,False,False,False,5092.471,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,16.0,1.0,HARD,16.0,True,111.063,31.602,50.02,29.441,311.0,203.0,211.0,300.0,False,True,1,False,False,False,5203.134,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,17.0,1.0,HARD,17.0,True,110.9,31.639,49.899,29.362,312.0,204.0,212.0,300.0,False,True,1,False,False,False,5314.197,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,18.0,1.0,HARD,18.0,True,122.574,31.432,59.733,31.409,316.0,119.0,211.0,303.0,False,False,167,False,False,False,5425.097,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,19.0,1.0,HARD,19.0,True,111.461,31.374,50.801,29.286,319.0,198.0,215.0,306.0,False,True,1,False,False,False,5547.671,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,20.0,1.0,HARD,20.0,True,130.041,31.996,58.503,39.542,307.0,148.0,106.0,293.0,False,False,16,False,False,False,5659.132,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,21.0,1.0,HARD,21.0,True,121.71,42.219,49.455,30.036,246.0,205.0,221.0,269.0,False,False,671,False,False,False,5789.173,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,22.0,1.0,HARD,22.0,True,110.733,31.42,49.483,29.83,307.0,207.0,218.0,299.0,False,True,1,False,False,False,5910.883,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,23.0,1.0,HARD,23.0,True,111.275,31.45,50.262,29.563,305.0,201.0,215.0,301.0,False,True,1,False,False,False,6021.616,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,24.0,1.0,HARD,24.0,True,110.428,31.13,49.708,29.59,317.0,204.0,216.0,304.0,True,True,1,False,False,False,6132.891,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,25.0,1.0,HARD,25.0,True,110.903,31.179,50.188,29.536,312.0,202.0,216.0,305.0,False,True,1,False,False,False,6243.319,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,26.0,1.0,HARD,26.0,True,111.067,31.303,50.502,29.262,311.0,200.0,214.0,302.0,False,True,1,False,False,False,6354.222,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,27.0,1.0,HARD,27.0,True,110.974,31.405,50.264,29.305,317.0,201.0,212.0,303.0,False,True,1,False,False,False,6465.289,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,28.0,1.0,HARD,28.0,True,110.743,31.5,49.88,29.363,312.0,203.0,213.0,302.0,False,True,1,False,False,False,6576.263,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,29.0,1.0,HARD,29.0,True,111.796,31.335,51.177,29.284,313.0,205.0,212.0,305.0,False,True,1,False,False,False,6687.006,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,30.0,1.0,HARD,30.0,True,115.056,31.142,50.302,33.612,322.0,206.0,,307.0,False,False,1,False,False,True,6798.802,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,31.0,2.0,MEDIUM,1.0,True,129.847,51.668,48.943,29.236,314.0,207.0,216.0,290.0,False,False,1,False,True,False,6913.858,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,32.0,2.0,MEDIUM,2.0,True,109.447,31.334,48.87,29.243,310.0,212.0,214.0,311.0,True,True,1,False,False,False,7043.705,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,33.0,2.0,MEDIUM,3.0,True,109.432,31.298,48.783,29.351,308.0,210.0,215.0,303.0,True,True,1,False,False,False,7153.152,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,34.0,2.0,MEDIUM,4.0,True,109.317,31.245,48.593,29.479,312.0,209.0,219.0,304.0,True,True,1,False,False,False,7262.584,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,35.0,2.0,MEDIUM,5.0,True,109.103,31.074,48.8,29.229,311.0,209.0,216.0,304.0,True,True,1,False,False,False,7371.901,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,36.0,2.0,MEDIUM,6.0,True,109.354,31.406,48.699,29.249,306.0,207.0,217.0,302.0,False,True,1,False,False,False,7481.004,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,37.0,2.0,MEDIUM,7.0,True,109.141,31.315,48.755,29.071,307.0,210.0,216.0,302.0,False,True,1,False,False,False,7590.358,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,38.0,2.0,MEDIUM,8.0,True,109.1,31.341,48.745,29.014,307.0,208.0,217.0,302.0,True,True,1,False,False,False,7699.499,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,39.0,2.0,MEDIUM,9.0,True,109.122,31.281,48.783,29.058,307.0,210.0,215.0,304.0,False,True,1,False,False,False,7808.599,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,40.0,2.0,MEDIUM,10.0,True,109.084,31.289,48.757,29.038,308.0,207.0,216.0,305.0,True,True,1,False,False,False,7917.721,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,41.0,2.0,MEDIUM,11.0,True,108.927,31.085,48.786,29.056,311.0,204.0,216.0,309.0,True,True,1,False,False,False,8026.805,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,42.0,2.0,MEDIUM,12.0,True,108.904,30.934,49.096,28.874,312.0,204.0,217.0,310.0,True,True,1,False,False,False,8135.732,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,43.0,2.0,MEDIUM,13.0,True,109.177,31.031,49.017,29.129,315.0,206.0,215.0,309.0,False,True,1,False,False,False,8244.636,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,NOR,1,McLaren,44.0,2.0,MEDIUM,14.0,True,108.89,30.922,49.362,28.606,318.0,204.0,220.0,308.0,True,True,1,False,False,False,8353.813,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,1.0,1.0,MEDIUM,1.0,True,138.086,,54.783,48.145,325.0,199.0,176.0,293.0,False,False,124,False,False,False,3355.977,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,2.0,1.0,MEDIUM,2.0,True,,40.65,76.536,45.164,181.0,79.0,160.0,243.0,False,False,4,False,False,False,3494.379,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,3.0,1.0,MEDIUM,3.0,True,,41.017,73.278,44.497,169.0,176.0,121.0,255.0,False,False,4,False,False,False,3656.668,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,4.0,1.0,MEDIUM,4.0,True,,42.043,70.234,46.581,182.0,118.0,216.0,245.0,False,False,41,False,False,False,3815.515,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,5.0,1.0,MEDIUM,5.0,True,113.849,31.243,51.936,30.67,335.0,197.0,207.0,298.0,True,True,1,False,False,False,3974.327,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,6.0,1.0,MEDIUM,6.0,True,112.91,31.416,51.421,30.073,326.0,196.0,207.0,309.0,True,True,1,False,False,False,4088.176,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,7.0,1.0,MEDIUM,7.0,True,112.826,31.79,51.133,29.903,315.0,198.0,207.0,298.0,True,True,1,False,False,False,4201.086,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,8.0,1.0,MEDIUM,8.0,True,112.312,31.739,50.648,29.925,310.0,197.0,205.0,300.0,True,True,12,False,False,False,4313.912,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,9.0,1.0,MEDIUM,9.0,True,111.875,31.722,50.243,29.91,314.0,199.0,206.0,301.0,True,True,1,False,False,False,4426.224,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,10.0,1.0,MEDIUM,10.0,True,111.844,31.688,50.254,29.902,314.0,194.0,206.0,302.0,True,True,1,False,False,False,4538.099,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,11.0,1.0,MEDIUM,11.0,True,112.248,31.619,50.71,29.919,317.0,197.0,208.0,303.0,False,True,1,False,False,False,4649.943,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,12.0,1.0,MEDIUM,12.0,True,112.981,31.641,51.211,30.129,316.0,191.0,206.0,303.0,False,True,1,False,False,False,4762.191,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,13.0,1.0,MEDIUM,13.0,True,112.88,31.656,51.123,30.101,318.0,193.0,207.0,303.0,False,True,1,False,False,False,4875.172,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,14.0,1.0,MEDIUM,14.0,True,112.9,31.673,51.116,30.111,319.0,196.0,207.0,302.0,False,True,1,False,False,False,4988.052,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,15.0,1.0,MEDIUM,15.0,True,113.46,31.809,51.595,30.056,325.0,195.0,207.0,292.0,False,True,1,False,False,False,5100.952,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,16.0,1.0,MEDIUM,16.0,True,112.426,31.855,50.665,29.906,313.0,196.0,207.0,302.0,False,True,1,False,False,False,5214.412,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,17.0,1.0,MEDIUM,17.0,True,112.274,31.946,50.239,30.089,307.0,200.0,208.0,300.0,False,True,1,False,False,False,5326.838,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,18.0,1.0,MEDIUM,18.0,True,123.589,31.835,61.638,30.116,307.0,199.0,208.0,301.0,False,False,167,False,False,False,5439.112,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,19.0,1.0,MEDIUM,19.0,True,111.947,31.645,50.23,30.072,307.0,197.0,208.0,303.0,False,True,1,False,False,False,5562.701,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,20.0,1.0,MEDIUM,20.0,True,135.782,31.786,61.281,42.715,307.0,162.0,,301.0,False,False,16,False,False,True,5674.648,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,21.0,2.0,HARD,1.0,True,124.602,45.673,49.479,29.45,308.0,205.0,210.0,298.0,False,False,671,False,True,False,5810.43,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,22.0,2.0,HARD,2.0,True,110.334,31.634,48.84,29.86,306.0,204.0,211.0,297.0,True,True,1,False,False,False,5935.032,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,23.0,2.0,HARD,3.0,True,110.357,31.529,48.93,29.898,306.0,203.0,209.0,302.0,False,True,1,False,False,False,6045.366,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,24.0,2.0,HARD,4.0,True,110.621,31.595,49.171,29.855,307.0,203.0,210.0,301.0,False,True,1,False,False,False,6155.723,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,25.0,2.0,HARD,5.0,True,110.858,31.564,49.443,29.851,306.0,199.0,210.0,301.0,False,True,1,False,False,False,6266.344,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,26.0,2.0,HARD,6.0,True,110.957,31.632,49.473,29.852,306.0,200.0,211.0,301.0,False,True,1,False,False,False,6377.202,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,27.0,2.0,HARD,7.0,True,110.884,31.691,49.277,29.916,305.0,202.0,211.0,301.0,False,True,1,False,False,False,6488.159,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,28.0,2.0,HARD,8.0,True,111.051,31.772,49.408,29.871,304.0,200.0,211.0,299.0,False,True,1,False,False,False,6599.043,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,29.0,2.0,HARD,9.0,True,110.882,31.646,49.367,29.869,306.0,199.0,210.0,302.0,False,True,1,False,False,False,6710.094,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,30.0,2.0,HARD,10.0,True,111.273,31.732,49.65,29.891,306.0,204.0,209.0,301.0,False,True,1,False,False,False,6820.976,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,31.0,2.0,HARD,11.0,True,111.201,31.813,49.545,29.843,306.0,201.0,209.0,301.0,False,True,1,False,False,False,6932.249,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,32.0,2.0,HARD,12.0,True,111.938,31.732,50.321,29.885,311.0,202.0,211.0,302.0,False,True,1,False,False,False,7043.45,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,33.0,2.0,HARD,13.0,True,110.989,31.521,49.578,29.89,309.0,201.0,210.0,305.0,False,True,1,False,False,False,7155.388,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,34.0,2.0,HARD,14.0,True,111.507,31.615,49.86,30.032,309.0,198.0,211.0,303.0,False,True,1,False,False,False,7266.377,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,35.0,2.0,HARD,15.0,True,111.396,31.678,49.846,29.872,304.0,200.0,211.0,302.0,False,True,1,False,False,False,7377.884,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,36.0,2.0,HARD,16.0,True,110.861,31.687,49.411,29.763,305.0,199.0,211.0,302.0,False,True,1,False,False,False,7489.28,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,37.0,2.0,HARD,17.0,True,110.718,31.65,49.307,29.761,306.0,203.0,206.0,303.0,False,True,1,False,False,False,7600.141,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,38.0,2.0,HARD,18.0,True,111.159,31.798,49.65,29.711,306.0,201.0,212.0,302.0,False,True,1,False,False,False,7710.859,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,39.0,2.0,HARD,19.0,True,110.89,31.417,49.658,29.815,308.0,203.0,212.0,305.0,False,True,1,False,False,False,7822.018,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,40.0,2.0,HARD,20.0,True,110.825,31.67,49.298,29.857,303.0,200.0,211.0,304.0,False,True,1,False,False,False,7932.908,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,41.0,2.0,HARD,21.0,True,110.69,31.613,49.27,29.807,303.0,199.0,211.0,305.0,False,True,1,False,False,False,8043.733,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,42.0,2.0,HARD,22.0,True,111.011,31.676,49.486,29.849,303.0,202.0,211.0,304.0,False,True,1,False,False,False,8154.423,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,43.0,2.0,HARD,23.0,True,111.174,31.723,49.513,29.938,302.0,202.0,212.0,301.0,False,True,1,False,False,False,8265.434,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOR,5,Audi,44.0,2.0,HARD,24.0,True,111.252,31.727,49.815,29.71,302.0,200.0,211.0,301.0,False,True,1,False,False,False,8376.608,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,1.0,1.0,MEDIUM,1.0,True,135.083,,54.179,46.102,324.0,201.0,173.0,303.0,False,False,124,False,False,False,3355.977,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,2.0,1.0,MEDIUM,2.0,True,,41.647,75.688,45.907,164.0,84.0,147.0,268.0,False,False,4,False,False,False,3491.398,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,3.0,1.0,MEDIUM,3.0,True,,41.491,72.851,44.921,178.0,140.0,146.0,291.0,False,False,4,False,False,False,3654.557,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,4.0,1.0,MEDIUM,4.0,True,,42.453,69.937,47.354,267.0,110.0,218.0,284.0,False,False,41,False,False,False,3813.917,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,5.0,1.0,MEDIUM,5.0,True,112.741,31.167,51.713,29.861,329.0,202.0,207.0,302.0,True,True,1,False,False,False,3973.611,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,6.0,1.0,MEDIUM,6.0,True,112.209,31.367,50.996,29.846,315.0,205.0,210.0,305.0,True,True,1,False,False,False,4086.352,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,7.0,1.0,MEDIUM,7.0,True,111.483,31.128,50.578,29.777,320.0,205.0,208.0,312.0,True,True,1,False,False,False,4198.561,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,8.0,1.0,MEDIUM,8.0,True,111.54,31.115,50.708,29.717,318.0,204.0,207.0,316.0,False,True,12,False,False,False,4310.044,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,9.0,1.0,MEDIUM,9.0,True,112.328,31.729,50.709,29.89,307.0,203.0,207.0,304.0,False,True,1,False,False,False,4421.584,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,10.0,1.0,MEDIUM,10.0,True,112.202,31.686,50.547,29.969,307.0,201.0,206.0,303.0,False,True,1,False,False,False,4533.912,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,11.0,1.0,MEDIUM,11.0,True,112.749,31.793,50.933,30.023,306.0,201.0,206.0,304.0,False,True,1,False,False,False,4646.114,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,12.0,1.0,MEDIUM,12.0,True,113.151,31.793,51.542,29.816,303.0,205.0,206.0,302.0,False,True,1,False,False,False,4758.863,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,13.0,1.0,MEDIUM,13.0,True,112.239,31.586,50.725,29.928,311.0,202.0,210.0,306.0,False,True,1,False,False,False,4872.014,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,14.0,1.0,MEDIUM,14.0,True,112.05,31.491,50.683,29.876,310.0,204.0,206.0,305.0,False,True,1,False,False,False,4984.253,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,15.0,1.0,MEDIUM,15.0,True,112.316,31.665,50.736,29.915,308.0,204.0,209.0,304.0,False,True,1,False,False,False,5096.303,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,16.0,1.0,MEDIUM,16.0,True,116.679,31.595,50.646,34.438,308.0,205.0,,304.0,False,False,1,False,False,True,5208.619,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,17.0,2.0,HARD,1.0,True,128.544,48.037,50.98,29.527,304.0,208.0,212.0,294.0,False,False,1,False,True,False,5325.298,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,18.0,2.0,HARD,2.0,True,123.683,36.088,57.359,30.236,244.0,207.0,208.0,304.0,False,False,167,False,False,False,5453.842,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,19.0,2.0,HARD,3.0,True,111.094,31.491,49.951,29.652,308.0,206.0,210.0,305.0,True,True,1,False,False,False,5577.525,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,20.0,2.0,HARD,4.0,True,137.741,31.195,66.585,39.961,313.0,122.0,153.0,306.0,False,False,167,False,False,False,5688.619,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,21.0,2.0,HARD,5.0,True,112.013,32.319,50.107,29.587,311.0,207.0,212.0,305.0,False,False,71,False,False,False,5826.36,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,22.0,2.0,HARD,6.0,True,110.588,31.234,49.623,29.731,311.0,208.0,210.0,305.0,True,True,1,False,False,False,5938.373,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,23.0,2.0,HARD,7.0,True,110.536,31.371,49.58,29.585,310.0,207.0,212.0,305.0,True,True,1,False,False,False,6048.961,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,24.0,2.0,HARD,8.0,True,110.809,31.378,49.781,29.65,310.0,207.0,212.0,305.0,False,True,1,False,False,False,6159.497,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,25.0,2.0,HARD,9.0,True,110.946,31.291,50.005,29.65,308.0,203.0,210.0,305.0,False,True,1,False,False,False,6270.306,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,26.0,2.0,HARD,10.0,True,111.019,31.443,50.063,29.513,309.0,205.0,212.0,305.0,False,True,1,False,False,False,6381.252,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,27.0,2.0,HARD,11.0,True,111.026,31.381,49.988,29.657,309.0,207.0,214.0,307.0,False,True,1,False,False,False,6492.271,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,28.0,2.0,HARD,12.0,True,110.885,31.356,49.965,29.564,308.0,205.0,210.0,304.0,False,True,1,False,False,False,6603.297,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,29.0,2.0,HARD,13.0,True,110.824,31.326,49.962,29.536,310.0,208.0,211.0,307.0,False,True,1,False,False,False,6714.182,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,30.0,2.0,HARD,14.0,True,111.128,31.415,50.187,29.526,311.0,208.0,209.0,305.0,False,True,1,False,False,False,6825.006,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,31.0,2.0,HARD,15.0,True,111.124,31.32,50.279,29.525,315.0,206.0,212.0,307.0,False,True,1,False,False,False,6936.134,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,32.0,2.0,HARD,16.0,True,111.138,31.107,50.589,29.442,313.0,200.0,210.0,308.0,False,True,1,False,False,False,7047.258,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,33.0,2.0,HARD,17.0,True,110.912,31.295,50.043,29.574,312.0,203.0,213.0,308.0,False,True,1,False,False,False,7158.396,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,34.0,2.0,HARD,18.0,True,111.164,31.271,50.191,29.702,314.0,204.0,214.0,308.0,False,True,1,False,False,False,7269.308,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,35.0,2.0,HARD,19.0,True,110.989,31.166,50.277,29.546,311.0,206.0,214.0,307.0,False,True,1,False,False,False,7380.472,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,36.0,2.0,HARD,20.0,True,110.994,31.186,50.228,29.58,314.0,206.0,212.0,307.0,False,True,1,False,False,False,7491.461,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,37.0,2.0,HARD,21.0,True,110.914,31.199,50.225,29.49,314.0,205.0,214.0,307.0,False,True,1,False,False,False,7602.455,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,38.0,2.0,HARD,22.0,True,110.92,31.19,50.269,29.461,313.0,207.0,215.0,307.0,False,True,1,False,False,False,7713.369,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,39.0,2.0,HARD,23.0,True,111.241,31.197,50.52,29.524,310.0,207.0,214.0,307.0,False,True,1,False,False,False,7824.289,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,40.0,2.0,HARD,24.0,True,110.583,31.12,49.96,29.503,311.0,207.0,214.0,314.0,False,True,1,False,False,False,7935.53,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,41.0,2.0,HARD,25.0,True,110.722,31.032,50.154,29.536,311.0,203.0,215.0,316.0,False,True,1,False,False,False,8046.113,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,42.0,2.0,HARD,26.0,True,110.659,31.109,50.204,29.346,314.0,207.0,211.0,309.0,False,True,1,False,False,False,8156.835,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,43.0,2.0,HARD,27.0,True,111.096,31.224,50.267,29.605,313.0,205.0,216.0,313.0,False,True,1,False,False,False,8267.494,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LIN,41,Racing Bulls,44.0,2.0,HARD,28.0,True,110.574,31.013,50.426,29.135,314.0,206.0,214.0,313.0,False,True,1,False,False,False,8378.59,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,1.0,1.0,MEDIUM,1.0,True,136.278,,54.418,46.752,335.0,201.0,195.0,297.0,False,False,124,False,False,False,3355.977,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,2.0,1.0,MEDIUM,2.0,True,,41.284,75.72,45.683,174.0,100.0,160.0,252.0,False,False,4,False,False,False,3492.679,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,3.0,1.0,MEDIUM,3.0,True,,41.529,73.022,45.076,147.0,169.0,99.0,265.0,False,False,4,False,False,False,3655.197,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,4.0,1.0,MEDIUM,4.0,True,,41.956,70.098,47.129,259.0,93.0,220.0,258.0,False,False,41,False,False,False,3814.901,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,5.0,1.0,MEDIUM,5.0,True,113.135,30.983,52.134,30.018,328.0,204.0,214.0,305.0,True,True,1,False,False,False,3974.049,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,6.0,1.0,MEDIUM,6.0,True,112.526,31.664,51.068,29.794,320.0,204.0,216.0,298.0,True,True,1,False,False,False,4087.184,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,7.0,1.0,MEDIUM,7.0,True,112.417,31.387,50.739,30.291,318.0,200.0,218.0,300.0,True,True,1,False,False,False,4199.71,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,8.0,1.0,MEDIUM,8.0,True,112.721,31.236,51.83,29.655,317.0,202.0,216.0,303.0,False,True,12,False,False,False,4312.127,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,9.0,1.0,MEDIUM,9.0,True,111.85,31.461,50.715,29.674,317.0,205.0,214.0,300.0,True,True,1,False,False,False,4424.848,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,10.0,1.0,MEDIUM,10.0,True,112.113,31.413,50.937,29.763,316.0,199.0,214.0,302.0,False,True,1,False,False,False,4536.698,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,11.0,1.0,MEDIUM,11.0,True,112.28,31.42,51.094,29.766,323.0,197.0,216.0,302.0,False,True,1,False,False,False,4648.811,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,12.0,1.0,MEDIUM,12.0,True,113.486,31.51,52.039,29.937,313.0,197.0,213.0,300.0,False,True,1,False,False,False,4761.091,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,13.0,1.0,MEDIUM,13.0,True,112.876,31.538,51.414,29.924,320.0,197.0,216.0,302.0,False,True,1,False,False,False,4874.577,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,14.0,1.0,MEDIUM,14.0,True,112.938,31.592,51.374,29.972,318.0,201.0,213.0,300.0,False,True,1,False,False,False,4987.453,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,15.0,1.0,MEDIUM,15.0,True,117.406,31.642,51.089,34.675,314.0,198.0,,300.0,False,False,1,False,False,True,5100.391,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,16.0,2.0,HARD,1.0,True,127.628,47.655,50.262,29.711,317.0,204.0,221.0,290.0,False,False,1,False,True,False,5217.797,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,17.0,2.0,HARD,2.0,True,111.618,31.487,50.492,29.639,311.0,204.0,221.0,298.0,True,True,1,False,False,False,5345.425,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,18.0,2.0,HARD,3.0,True,123.824,40.916,53.006,29.902,220.0,203.0,211.0,299.0,False,False,167,False,False,False,5457.043,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,19.0,2.0,HARD,4.0,True,111.957,31.603,50.648,29.706,315.0,202.0,218.0,300.0,False,True,1,False,False,False,5580.867,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,20.0,2.0,HARD,5.0,True,138.927,31.33,67.222,40.375,264.0,136.0,141.0,303.0,False,False,167,False,False,False,5692.824,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,21.0,2.0,HARD,6.0,True,112.401,31.206,51.55,29.645,332.0,198.0,219.0,305.0,False,True,1,False,False,False,5831.751,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,22.0,2.0,HARD,7.0,True,112.106,31.055,51.242,29.809,324.0,202.0,221.0,302.0,False,True,1,False,False,False,5944.152,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,23.0,2.0,HARD,8.0,True,111.891,31.13,51.2,29.561,324.0,198.0,215.0,302.0,False,True,1,False,False,False,6056.258,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,24.0,2.0,HARD,9.0,True,111.454,31.205,50.642,29.607,322.0,204.0,219.0,301.0,True,True,1,False,False,False,6168.149,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,25.0,2.0,HARD,10.0,True,112.679,30.813,51.873,29.993,321.0,198.0,219.0,304.0,False,True,1,False,False,False,6279.603,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,26.0,2.0,HARD,11.0,True,112.295,31.094,51.507,29.694,298.0,200.0,220.0,304.0,False,True,1,False,False,False,6392.282,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,27.0,2.0,HARD,12.0,True,112.231,31.002,51.674,29.555,327.0,201.0,218.0,304.0,False,True,1,False,False,False,6504.577,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,28.0,2.0,HARD,13.0,True,111.828,31.03,51.182,29.616,331.0,202.0,220.0,303.0,False,True,1,False,False,False,6616.808,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,29.0,2.0,HARD,14.0,True,112.38,31.173,51.395,29.812,317.0,202.0,220.0,304.0,False,True,1,False,False,False,6728.636,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,30.0,2.0,HARD,15.0,True,111.884,31.145,51.005,29.734,316.0,206.0,220.0,305.0,False,True,1,False,False,False,6841.016,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,31.0,2.0,HARD,16.0,True,111.732,31.558,50.508,29.666,306.0,203.0,217.0,297.0,False,True,1,False,False,False,6952.9,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,32.0,2.0,HARD,17.0,True,111.657,31.471,50.426,29.76,307.0,205.0,219.0,300.0,False,True,1,False,False,False,7064.632,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,33.0,2.0,HARD,18.0,True,111.723,31.558,50.282,29.883,307.0,202.0,216.0,300.0,False,True,1,False,False,False,7176.289,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,34.0,2.0,HARD,19.0,True,111.659,31.651,50.133,29.875,306.0,204.0,219.0,299.0,False,True,1,False,False,False,7288.012,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,35.0,2.0,HARD,20.0,True,112.274,31.826,50.429,30.019,302.0,203.0,220.0,295.0,False,True,1,False,False,False,7399.671,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,36.0,2.0,HARD,21.0,True,111.759,31.756,50.187,29.816,303.0,204.0,221.0,294.0,False,True,1,False,False,False,7511.945,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,37.0,2.0,HARD,22.0,True,111.562,31.636,50.27,29.656,303.0,202.0,219.0,298.0,False,True,1,False,False,False,7623.704,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,38.0,2.0,HARD,23.0,True,111.661,31.826,50.16,29.675,303.0,203.0,222.0,296.0,False,True,1,False,False,False,7735.266,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,39.0,2.0,HARD,24.0,True,111.234,31.628,50.03,29.576,303.0,205.0,220.0,297.0,True,True,1,False,False,False,7846.927,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,40.0,2.0,HARD,25.0,True,111.542,31.629,50.251,29.662,305.0,205.0,218.0,300.0,False,True,1,False,False,False,7958.161,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,41.0,2.0,HARD,26.0,True,111.365,31.489,50.251,29.625,306.0,201.0,219.0,303.0,False,True,1,False,False,False,8069.703,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,42.0,2.0,HARD,27.0,True,111.162,31.466,50.091,29.605,306.0,204.0,220.0,301.0,True,True,1,False,False,False,8181.068,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,43.0,2.0,HARD,28.0,True,111.363,31.584,50.025,29.754,307.0,206.0,220.0,298.0,False,True,1,False,False,False,8292.23,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,COL,43,Alpine,44.0,2.0,HARD,29.0,True,111.197,31.525,50.322,29.35,305.0,204.0,224.0,299.0,False,True,1,False,False,False,8403.593,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,1.0,1.0,MEDIUM,1.0,True,143.344,,55.345,52.483,337.0,200.0,202.0,284.0,False,False,124,False,False,False,3355.977,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,2.0,1.0,MEDIUM,2.0,True,,40.545,73.436,47.462,245.0,95.0,124.0,237.0,False,False,4,False,False,False,3499.691,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,3.0,1.0,MEDIUM,3.0,True,,39.45,74.579,43.413,233.0,131.0,197.0,262.0,False,False,4,False,False,False,3661.019,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,4.0,1.0,MEDIUM,4.0,True,,44.135,66.936,45.534,262.0,139.0,224.0,254.0,False,False,41,False,False,False,3818.65,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,5.0,1.0,MEDIUM,5.0,True,113.432,31.031,52.572,29.829,332.0,203.0,216.0,304.0,True,True,1,False,False,False,3975.133,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,6.0,1.0,MEDIUM,6.0,True,112.917,31.179,51.976,29.762,305.0,201.0,219.0,304.0,True,True,1,False,False,False,4088.565,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,7.0,1.0,MEDIUM,7.0,True,111.845,31.239,50.849,29.757,324.0,201.0,220.0,297.0,True,True,1,False,False,False,4201.482,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,8.0,1.0,MEDIUM,8.0,True,112.255,31.169,51.353,29.733,320.0,200.0,217.0,299.0,False,True,12,False,False,False,4313.327,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,9.0,1.0,MEDIUM,9.0,True,111.931,30.956,51.17,29.805,327.0,201.0,218.0,304.0,False,True,1,False,False,False,4425.582,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,10.0,1.0,MEDIUM,10.0,True,111.922,31.158,50.937,29.827,324.0,195.0,217.0,300.0,False,True,1,False,False,False,4537.513,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,11.0,1.0,MEDIUM,11.0,True,112.362,31.111,51.45,29.801,331.0,198.0,220.0,302.0,False,True,1,False,False,False,4649.435,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,12.0,1.0,MEDIUM,12.0,True,111.944,30.805,51.332,29.807,325.0,199.0,218.0,304.0,False,True,1,False,False,False,4761.797,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,13.0,1.0,MEDIUM,13.0,True,112.591,31.341,51.373,29.877,322.0,194.0,218.0,301.0,False,True,1,False,False,False,4873.741,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,14.0,1.0,MEDIUM,14.0,True,116.937,31.275,51.318,34.344,321.0,197.0,,300.0,False,False,1,False,False,True,4986.332,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,15.0,2.0,HARD,1.0,True,127.662,47.496,50.49,29.676,322.0,206.0,220.0,293.0,False,False,1,False,True,False,5103.269,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,16.0,2.0,HARD,2.0,True,111.581,31.269,50.818,29.494,318.0,204.0,219.0,295.0,True,True,1,False,False,False,5230.931,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,17.0,2.0,HARD,3.0,True,112.959,31.195,52.24,29.524,320.0,202.0,218.0,299.0,False,True,1,False,False,False,5342.512,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,18.0,2.0,HARD,4.0,True,123.882,40.247,53.974,29.661,192.0,201.0,219.0,303.0,False,False,167,False,False,False,5455.471,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,19.0,2.0,HARD,5.0,True,112.17,31.326,51.203,29.641,324.0,199.0,218.0,303.0,False,True,1,False,False,False,5579.353,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,20.0,2.0,HARD,6.0,True,138.531,31.084,67.531,39.916,327.0,117.0,168.0,304.0,False,False,167,False,False,False,5691.523,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,21.0,2.0,HARD,7.0,True,113.416,32.289,51.573,29.554,311.0,198.0,221.0,284.0,False,False,71,False,False,False,5830.054,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,22.0,2.0,HARD,8.0,True,112.112,30.921,51.44,29.751,326.0,201.0,221.0,303.0,False,True,1,False,False,False,5943.47,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,23.0,2.0,HARD,9.0,True,111.851,31.407,50.881,29.563,320.0,201.0,221.0,301.0,False,True,1,False,False,False,6055.582,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,24.0,2.0,HARD,10.0,True,111.396,30.667,51.029,29.7,333.0,199.0,219.0,303.0,True,True,1,False,False,False,6167.433,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,25.0,2.0,HARD,11.0,True,112.981,31.338,51.585,30.058,324.0,196.0,222.0,302.0,False,True,1,False,False,False,6278.829,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,26.0,2.0,HARD,12.0,True,111.87,31.194,50.888,29.788,315.0,199.0,222.0,301.0,False,True,1,False,False,False,6391.81,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,27.0,2.0,HARD,13.0,True,112.164,31.206,51.243,29.715,294.0,203.0,219.0,303.0,False,True,1,False,False,False,6503.68,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,28.0,2.0,HARD,14.0,True,112.042,31.2,51.162,29.68,318.0,200.0,220.0,300.0,False,True,1,False,False,False,6615.844,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,29.0,2.0,HARD,15.0,True,112.662,31.113,51.499,30.05,320.0,199.0,223.0,304.0,False,True,1,False,False,False,6727.886,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,30.0,2.0,HARD,16.0,True,114.174,31.646,52.998,29.53,307.0,201.0,220.0,294.0,False,True,1,False,False,False,6840.548,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,31.0,2.0,HARD,17.0,True,111.819,30.882,51.402,29.535,329.0,202.0,219.0,307.0,False,True,1,False,False,False,6954.722,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,32.0,2.0,HARD,18.0,True,111.721,30.861,51.194,29.666,324.0,202.0,219.0,307.0,False,True,1,False,False,False,7066.541,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,33.0,2.0,HARD,19.0,True,111.652,30.931,50.947,29.774,328.0,199.0,222.0,309.0,False,True,1,False,False,False,7178.262,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,34.0,2.0,HARD,20.0,True,111.757,31.249,50.697,29.811,313.0,201.0,219.0,300.0,False,True,1,False,False,False,7289.914,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,35.0,2.0,HARD,21.0,True,111.84,31.218,50.869,29.753,315.0,202.0,222.0,303.0,False,True,1,False,False,False,7401.671,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,36.0,2.0,HARD,22.0,True,111.477,31.271,50.619,29.587,315.0,198.0,222.0,299.0,False,True,1,False,False,False,7513.511,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,37.0,2.0,HARD,23.0,True,111.702,31.287,50.692,29.723,316.0,200.0,221.0,299.0,False,True,1,False,False,False,7624.988,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,38.0,2.0,HARD,24.0,True,111.446,31.156,50.744,29.546,317.0,202.0,221.0,300.0,False,True,1,False,False,False,7736.69,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,39.0,2.0,HARD,25.0,True,111.101,31.029,50.577,29.495,318.0,204.0,222.0,302.0,True,True,1,False,False,False,7848.136,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,40.0,2.0,HARD,26.0,True,111.305,30.751,51.126,29.428,325.0,203.0,223.0,306.0,False,True,1,False,False,False,7959.237,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,41.0,2.0,HARD,27.0,True,111.365,30.874,51.003,29.488,323.0,200.0,223.0,306.0,False,True,1,False,False,False,8070.542,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,42.0,2.0,HARD,28.0,True,111.449,31.049,50.907,29.493,322.0,201.0,223.0,302.0,False,True,1,False,False,False,8181.907,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,43.0,2.0,HARD,29.0,True,111.283,31.093,50.52,29.67,320.0,202.0,221.0,302.0,False,True,1,False,False,False,8293.356,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,GAS,10,Alpine,44.0,2.0,HARD,30.0,True,111.13,30.869,50.977,29.284,322.0,202.0,217.0,305.0,False,True,1,False,False,False,8404.639,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,1.0,1.0,MEDIUM,1.0,True,132.922,,53.516,44.556,328.0,203.0,182.0,302.0,False,False,124,False,False,False,3355.977,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,2.0,1.0,MEDIUM,2.0,True,,42.67,76.101,45.336,167.0,66.0,158.0,273.0,False,False,4,False,False,False,3489.151,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,3.0,1.0,MEDIUM,3.0,True,,42.112,72.757,44.776,182.0,127.0,144.0,293.0,False,False,4,False,False,False,3653.261,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,4.0,1.0,MEDIUM,4.0,True,,42.185,70.189,47.816,269.0,107.0,213.0,236.0,False,False,41,False,False,False,3812.84,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,5.0,1.0,MEDIUM,5.0,True,112.419,31.401,51.274,29.744,327.0,206.0,210.0,300.0,True,True,1,False,False,False,3972.998,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,6.0,1.0,MEDIUM,6.0,True,112.025,31.295,50.925,29.805,318.0,206.0,210.0,300.0,True,True,1,False,False,False,4085.417,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,7.0,1.0,MEDIUM,7.0,True,111.952,31.421,50.579,29.952,315.0,204.0,209.0,299.0,True,True,1,False,False,False,4197.442,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,8.0,1.0,MEDIUM,8.0,True,113.11,31.652,51.702,29.756,309.0,204.0,209.0,297.0,False,True,12,False,False,False,4309.394,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,9.0,1.0,MEDIUM,9.0,True,112.736,31.385,51.128,30.223,320.0,204.0,211.0,300.0,False,True,1,False,False,False,4422.504,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,10.0,1.0,MEDIUM,10.0,True,112.673,31.517,51.373,29.783,303.0,204.0,209.0,304.0,False,True,1,False,False,False,4535.24,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,11.0,1.0,MEDIUM,11.0,True,112.441,31.45,51.109,29.882,314.0,200.0,209.0,306.0,False,True,1,False,False,False,4647.913,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,12.0,1.0,MEDIUM,12.0,True,112.435,31.471,51.277,29.687,315.0,199.0,208.0,306.0,False,True,1,False,False,False,4760.354,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,13.0,1.0,MEDIUM,13.0,True,112.429,31.37,51.143,29.916,316.0,199.0,211.0,314.0,False,True,1,False,False,False,4872.789,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,14.0,1.0,MEDIUM,14.0,True,112.484,31.391,51.137,29.956,315.0,202.0,209.0,305.0,False,True,1,False,False,False,4985.218,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,15.0,1.0,MEDIUM,15.0,True,116.581,31.623,51.01,33.948,311.0,200.0,,306.0,False,False,1,False,False,True,5097.702,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,16.0,2.0,HARD,1.0,True,126.99,47.078,50.363,29.549,302.0,206.0,213.0,297.0,False,False,1,False,True,False,5214.283,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,17.0,2.0,HARD,2.0,True,113.39,31.938,51.957,29.495,313.0,206.0,210.0,293.0,False,True,1,False,False,False,5341.273,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,18.0,2.0,HARD,3.0,True,124.11,38.986,54.991,30.133,224.0,205.0,209.0,311.0,False,False,167,False,False,False,5454.663,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,19.0,2.0,HARD,4.0,True,111.939,31.633,50.528,29.778,312.0,207.0,214.0,305.0,True,True,1,False,False,False,5578.773,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,20.0,2.0,HARD,5.0,True,139.03,31.686,66.888,40.456,307.0,118.0,150.0,302.0,False,False,167,False,False,False,5690.712,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,21.0,2.0,HARD,6.0,True,112.646,32.086,50.7,29.86,308.0,193.0,211.0,310.0,False,False,71,False,False,False,5829.742,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,22.0,2.0,HARD,7.0,True,111.579,31.63,50.19,29.759,306.0,207.0,214.0,302.0,True,True,1,False,False,False,5942.388,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,23.0,2.0,HARD,8.0,True,111.63,31.364,50.275,29.991,307.0,207.0,208.0,310.0,False,True,1,False,False,False,6053.967,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,24.0,2.0,HARD,9.0,True,111.986,31.601,50.325,30.06,299.0,207.0,216.0,310.0,False,True,1,False,False,False,6165.597,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,25.0,2.0,HARD,10.0,True,112.958,31.841,51.038,30.079,302.0,204.0,211.0,300.0,False,True,1,False,False,False,6277.583,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,26.0,2.0,HARD,11.0,True,112.19,31.769,50.524,29.897,304.0,205.0,211.0,303.0,False,True,1,False,False,False,6390.541,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,27.0,2.0,HARD,12.0,True,112.11,31.68,50.616,29.814,303.0,207.0,212.0,303.0,False,True,1,False,False,False,6502.731,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,28.0,2.0,HARD,13.0,True,112.12,31.762,50.473,29.885,303.0,205.0,215.0,301.0,False,True,1,False,False,False,6614.841,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,29.0,2.0,HARD,14.0,True,112.942,31.742,50.891,30.309,303.0,206.0,212.0,303.0,False,True,1,False,False,False,6726.961,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,30.0,2.0,HARD,15.0,True,114.109,32.188,52.221,29.7,305.0,207.0,211.0,306.0,False,True,1,False,False,False,6839.903,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,31.0,2.0,HARD,16.0,True,111.725,31.235,50.794,29.696,315.0,207.0,215.0,312.0,False,True,1,False,False,False,6954.012,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,32.0,2.0,HARD,17.0,True,111.865,31.297,50.713,29.855,312.0,205.0,212.0,307.0,False,True,1,False,False,False,7065.737,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,33.0,2.0,HARD,18.0,True,112.763,31.438,51.638,29.687,310.0,201.0,213.0,314.0,False,True,1,False,False,False,7177.602,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,34.0,2.0,HARD,19.0,True,111.787,30.913,51.093,29.781,310.0,201.0,210.0,318.0,False,True,1,False,False,False,7290.365,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,35.0,2.0,HARD,20.0,True,111.843,30.974,51.157,29.712,316.0,203.0,211.0,320.0,False,True,1,False,False,False,7402.152,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,36.0,2.0,HARD,21.0,True,111.569,31.189,50.863,29.517,313.0,203.0,212.0,316.0,True,True,1,False,False,False,7513.995,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,37.0,2.0,HARD,22.0,True,111.59,30.992,51.003,29.595,316.0,200.0,215.0,319.0,False,True,1,False,False,False,7625.564,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,38.0,2.0,HARD,23.0,True,111.502,31.288,50.808,29.406,313.0,205.0,215.0,307.0,True,True,1,False,False,False,7737.154,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,39.0,2.0,HARD,24.0,True,111.252,30.998,50.844,29.41,313.0,204.0,211.0,313.0,True,True,1,False,False,False,7848.656,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,40.0,2.0,HARD,25.0,True,111.186,31.12,50.622,29.444,312.0,204.0,213.0,320.0,True,True,1,False,False,False,7959.908,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,41.0,2.0,HARD,26.0,True,111.177,30.909,50.912,29.356,313.0,201.0,210.0,323.0,True,True,1,False,False,False,8071.094,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,42.0,2.0,HARD,27.0,True,111.6,30.934,51.224,29.442,318.0,203.0,214.0,322.0,False,True,1,False,False,False,8182.271,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,43.0,2.0,HARD,28.0,True,111.19,30.852,50.853,29.485,322.0,201.0,217.0,306.0,False,True,1,False,False,False,8293.871,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,LAW,30,Racing Bulls,44.0,2.0,HARD,29.0,True,111.075,30.814,51.143,29.118,314.0,200.0,210.0,304.0,True,True,1,False,False,False,8405.061,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,1.0,1.0,MEDIUM,1.0,True,145.817,,55.944,53.926,311.0,194.0,201.0,284.0,False,False,124,False,False,False,3355.977,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,2.0,1.0,MEDIUM,2.0,True,,40.788,73.569,47.439,213.0,87.0,142.0,232.0,False,False,4,False,False,False,3502.055,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,3.0,1.0,MEDIUM,3.0,True,,40.033,73.85,43.547,250.0,165.0,166.0,268.0,False,False,4,False,False,False,3663.845,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,4.0,1.0,MEDIUM,4.0,True,,44.077,66.656,44.229,249.0,161.0,213.0,265.0,False,False,41,False,False,False,3821.319,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,5.0,1.0,MEDIUM,5.0,True,113.665,31.116,52.365,30.184,336.0,198.0,209.0,300.0,True,True,1,False,False,False,3976.212,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,6.0,1.0,MEDIUM,6.0,True,113.283,31.402,51.771,30.11,322.0,198.0,208.0,303.0,True,True,1,False,False,False,4089.877,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,7.0,1.0,MEDIUM,7.0,True,112.497,31.56,51.002,29.935,318.0,197.0,209.0,303.0,True,True,1,False,False,False,4203.16,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,8.0,1.0,MEDIUM,8.0,True,112.859,31.585,51.19,30.084,327.0,198.0,207.0,296.0,False,True,12,False,False,False,4315.657,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,9.0,1.0,MEDIUM,9.0,True,112.763,32.068,50.699,29.996,309.0,197.0,209.0,295.0,False,True,1,False,False,False,4428.516,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,10.0,1.0,MEDIUM,10.0,True,112.775,31.504,50.938,30.333,322.0,197.0,208.0,304.0,False,True,1,False,False,False,4541.279,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,11.0,1.0,MEDIUM,11.0,True,112.906,31.277,51.371,30.258,318.0,196.0,212.0,306.0,False,True,1,False,False,False,4654.054,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,12.0,1.0,MEDIUM,12.0,True,111.772,31.204,50.637,29.931,335.0,200.0,210.0,299.0,True,True,1,False,False,False,4766.96,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,13.0,1.0,MEDIUM,13.0,True,113.012,31.859,51.194,29.959,303.0,196.0,207.0,303.0,False,True,1,False,False,False,4878.732,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,14.0,1.0,MEDIUM,14.0,True,112.467,31.867,50.607,29.993,310.0,197.0,208.0,300.0,False,True,1,False,False,False,4991.744,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,15.0,1.0,MEDIUM,15.0,True,112.43,31.805,50.544,30.081,308.0,199.0,209.0,302.0,False,True,1,False,False,False,5104.211,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,16.0,1.0,MEDIUM,16.0,True,112.467,31.836,50.625,30.006,309.0,195.0,209.0,301.0,False,True,1,False,False,False,5216.641,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,17.0,1.0,MEDIUM,17.0,True,112.056,31.886,50.183,29.987,309.0,201.0,209.0,300.0,False,True,1,False,False,False,5329.108,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,18.0,1.0,MEDIUM,18.0,True,123.68,31.91,61.782,29.988,307.0,198.0,210.0,300.0,False,False,167,False,False,False,5441.164,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,19.0,1.0,MEDIUM,19.0,True,111.91,31.753,50.134,30.023,308.0,199.0,210.0,302.0,False,True,1,False,False,False,5564.844,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,20.0,1.0,MEDIUM,20.0,True,137.243,31.751,62.164,43.328,309.0,130.0,,301.0,False,False,16,False,False,True,5676.754,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,21.0,2.0,HARD,1.0,True,128.886,48.148,50.795,29.943,333.0,202.0,214.0,300.0,False,False,671,False,True,False,5813.997,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,22.0,2.0,HARD,2.0,True,112.173,31.286,50.704,30.183,327.0,204.0,213.0,301.0,False,True,1,False,False,False,5942.883,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,23.0,2.0,HARD,3.0,True,111.219,31.65,49.842,29.727,326.0,200.0,213.0,293.0,True,True,1,False,False,False,6055.056,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,24.0,2.0,HARD,4.0,True,111.875,31.444,50.449,29.982,327.0,200.0,214.0,294.0,False,True,1,False,False,False,6166.275,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,25.0,2.0,HARD,5.0,True,113.291,31.611,51.226,30.454,332.0,193.0,211.0,298.0,False,True,1,False,False,False,6278.15,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,26.0,2.0,HARD,6.0,True,112.628,31.482,51.277,29.869,322.0,198.0,212.0,304.0,False,True,1,False,False,False,6391.441,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,27.0,2.0,HARD,7.0,True,112.105,31.368,51.041,29.696,317.0,199.0,212.0,305.0,False,True,1,False,False,False,6504.069,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,28.0,2.0,HARD,8.0,True,113.03,31.601,51.755,29.674,314.0,197.0,210.0,296.0,False,True,1,False,False,False,6616.174,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,29.0,2.0,HARD,9.0,True,112.513,31.553,50.879,30.081,317.0,198.0,213.0,304.0,False,True,1,False,False,False,6729.204,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,30.0,2.0,HARD,10.0,True,113.843,31.086,52.76,29.997,325.0,198.0,212.0,309.0,False,True,1,False,False,False,6841.717,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,31.0,2.0,HARD,11.0,True,111.972,31.022,50.938,30.012,322.0,199.0,212.0,310.0,False,True,1,False,False,False,6955.56,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,32.0,2.0,HARD,12.0,True,111.532,31.142,50.387,30.003,318.0,199.0,213.0,308.0,False,True,1,False,False,False,7067.532,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,33.0,2.0,HARD,13.0,True,112.363,31.073,51.196,30.094,320.0,197.0,211.0,309.0,False,True,1,False,False,False,7179.064,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,34.0,2.0,HARD,14.0,True,111.331,31.544,50.186,29.601,315.0,198.0,211.0,309.0,False,True,1,False,False,False,7291.427,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,35.0,2.0,HARD,15.0,True,111.96,31.2,50.94,29.82,321.0,200.0,213.0,311.0,False,True,1,False,False,False,7402.758,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,36.0,2.0,HARD,16.0,True,111.784,31.091,50.846,29.847,319.0,200.0,211.0,314.0,False,True,1,False,False,False,7514.718,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,37.0,2.0,HARD,17.0,True,111.546,31.3,50.699,29.547,322.0,200.0,211.0,304.0,False,True,1,False,False,False,7626.502,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,38.0,2.0,HARD,18.0,True,111.874,31.709,50.522,29.643,311.0,198.0,210.0,304.0,False,True,1,False,False,False,7738.048,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,39.0,2.0,HARD,19.0,True,111.977,31.977,50.075,29.925,305.0,201.0,214.0,296.0,False,True,1,False,False,False,7849.922,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,40.0,2.0,HARD,20.0,True,110.639,31.183,49.607,29.849,310.0,201.0,213.0,310.0,True,True,1,False,False,False,7961.899,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,41.0,2.0,HARD,21.0,True,110.503,31.012,50.079,29.412,312.0,196.0,212.0,313.0,True,True,1,False,False,False,8072.538,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,42.0,2.0,HARD,22.0,True,111.502,30.96,50.999,29.543,324.0,196.0,212.0,314.0,False,True,1,False,False,False,8183.041,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,43.0,2.0,HARD,23.0,True,111.322,31.495,50.328,29.499,314.0,199.0,212.0,304.0,False,True,1,False,False,False,8294.543,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,HUL,27,Audi,44.0,2.0,HARD,24.0,True,111.169,31.331,50.569,29.269,313.0,200.0,213.0,305.0,False,True,1,False,False,False,8405.865,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,1.0,1.0,MEDIUM,1.0,True,153.664,,57.067,60.936,323.0,166.0,,282.0,False,False,124,False,False,True,3355.977,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,2.0,2.0,HARD,1.0,True,,52.323,60.584,47.484,244.0,123.0,98.0,264.0,False,False,4,False,True,False,3509.872,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,3.0,2.0,HARD,2.0,True,,39.798,71.374,45.246,247.0,137.0,195.0,266.0,False,False,4,False,False,False,3670.179,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,4.0,2.0,HARD,3.0,True,,44.636,65.663,41.837,251.0,164.0,220.0,274.0,False,False,41,False,False,False,3826.643,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,5.0,2.0,HARD,4.0,True,112.911,31.622,51.328,29.961,319.0,195.0,212.0,296.0,True,True,1,False,False,False,3978.678,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,6.0,2.0,HARD,5.0,True,112.807,31.741,51.169,29.897,319.0,198.0,213.0,294.0,True,True,1,False,False,False,4091.589,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,7.0,2.0,HARD,6.0,True,112.53,31.494,51.382,29.654,327.0,197.0,213.0,296.0,True,True,1,False,False,False,4204.396,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,8.0,2.0,HARD,7.0,True,112.877,31.469,51.685,29.723,328.0,200.0,214.0,296.0,False,True,12,False,False,False,4316.926,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,9.0,2.0,HARD,8.0,True,113.289,31.152,52.332,29.805,340.0,200.0,213.0,300.0,False,True,1,False,False,False,4429.803,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,10.0,2.0,HARD,9.0,True,113.236,31.664,51.902,29.67,315.0,198.0,211.0,297.0,False,True,1,False,False,False,4543.092,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,11.0,2.0,HARD,10.0,True,113.16,31.767,51.602,29.791,324.0,198.0,207.0,295.0,False,True,1,False,False,False,4656.328,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,12.0,2.0,HARD,11.0,True,113.365,31.693,51.808,29.864,330.0,198.0,205.0,295.0,False,True,1,False,False,False,4769.488,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,13.0,2.0,HARD,12.0,True,113.079,31.746,51.609,29.724,322.0,197.0,206.0,301.0,False,True,1,False,False,False,4882.853,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,14.0,2.0,HARD,13.0,True,113.0,32.055,51.325,29.62,312.0,199.0,213.0,294.0,False,True,1,False,False,False,4995.932,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,15.0,2.0,HARD,14.0,True,113.318,31.747,51.565,30.006,324.0,200.0,206.0,295.0,False,True,1,False,False,False,5108.932,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,16.0,2.0,HARD,15.0,True,113.251,31.622,51.661,29.968,326.0,200.0,206.0,295.0,False,True,1,False,False,False,5222.25,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,17.0,2.0,HARD,16.0,True,113.509,31.723,51.772,30.014,328.0,201.0,211.0,294.0,False,True,1,False,False,False,5335.501,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,18.0,2.0,HARD,17.0,True,124.258,32.074,62.268,29.916,202.0,197.0,206.0,296.0,False,False,167,False,False,False,5449.01,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,19.0,2.0,HARD,18.0,True,113.036,32.38,50.806,29.85,300.0,201.0,213.0,291.0,False,True,1,False,False,False,5573.268,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,20.0,2.0,HARD,19.0,True,140.849,32.17,66.281,42.398,302.0,121.0,,292.0,False,False,167,False,False,True,5686.304,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,21.0,3.0,HARD,1.0,True,132.242,52.389,50.264,29.589,313.0,205.0,215.0,290.0,False,False,71,False,True,False,5827.153,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,22.0,3.0,HARD,2.0,True,111.109,31.811,49.735,29.563,308.0,203.0,214.0,293.0,True,True,1,False,False,False,5959.395,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,23.0,3.0,HARD,3.0,True,111.509,31.91,49.779,29.82,309.0,205.0,215.0,292.0,False,True,1,False,False,False,6070.504,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,24.0,3.0,HARD,4.0,True,111.218,31.715,49.864,29.639,310.0,205.0,215.0,292.0,False,True,1,False,False,False,6182.013,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,25.0,3.0,HARD,5.0,True,111.978,31.648,50.523,29.807,312.0,199.0,218.0,295.0,False,True,1,False,False,False,6293.231,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,26.0,3.0,HARD,6.0,True,112.479,31.407,51.195,29.877,320.0,201.0,210.0,294.0,False,True,1,False,False,False,6405.209,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,27.0,3.0,HARD,7.0,True,111.981,31.799,50.524,29.658,312.0,207.0,208.0,299.0,False,True,1,False,False,False,6517.688,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,28.0,3.0,HARD,8.0,True,112.004,32.139,50.169,29.696,303.0,204.0,213.0,289.0,False,True,1,False,False,False,6629.669,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,29.0,3.0,HARD,9.0,True,112.163,31.896,50.654,29.613,303.0,202.0,208.0,294.0,False,True,1,False,False,False,6741.673,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,30.0,3.0,HARD,10.0,True,112.251,32.115,50.593,29.543,305.0,203.0,214.0,292.0,False,True,1,False,False,False,6853.836,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,31.0,3.0,HARD,11.0,True,111.981,31.95,50.365,29.666,306.0,204.0,214.0,293.0,False,True,1,False,False,False,6966.087,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,32.0,3.0,HARD,12.0,True,112.001,31.861,50.377,29.763,303.0,203.0,215.0,295.0,False,True,1,False,False,False,7078.068,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,33.0,3.0,HARD,13.0,True,111.986,31.773,50.426,29.787,306.0,202.0,213.0,295.0,False,True,1,False,False,False,7190.069,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,34.0,3.0,HARD,14.0,True,112.095,31.781,50.525,29.789,308.0,199.0,214.0,295.0,False,True,1,False,False,False,7302.055,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,35.0,3.0,HARD,15.0,True,112.076,31.877,50.464,29.735,303.0,202.0,215.0,294.0,False,True,1,False,False,False,7414.15,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,36.0,3.0,HARD,16.0,True,111.935,31.938,50.412,29.585,301.0,203.0,215.0,292.0,False,True,1,False,False,False,7526.226,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,37.0,3.0,HARD,17.0,True,112.317,32.156,50.452,29.709,299.0,200.0,213.0,292.0,False,True,1,False,False,False,7638.161,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,38.0,3.0,HARD,18.0,True,112.008,31.944,50.442,29.622,301.0,202.0,215.0,291.0,False,True,1,False,False,False,7750.478,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,39.0,3.0,HARD,19.0,True,111.639,31.94,50.199,29.5,298.0,204.0,216.0,293.0,False,True,1,False,False,False,7862.486,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,40.0,3.0,HARD,20.0,True,111.542,31.988,50.048,29.506,298.0,203.0,215.0,295.0,False,True,1,False,False,False,7974.125,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,41.0,3.0,HARD,21.0,True,111.696,31.77,50.398,29.528,300.0,203.0,215.0,295.0,False,True,1,False,False,False,8085.667,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,42.0,3.0,HARD,22.0,True,112.071,32.157,50.396,29.518,304.0,202.0,216.0,295.0,False,True,1,False,False,False,8197.363,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,43.0,3.0,HARD,23.0,True,112.068,31.847,50.498,29.723,302.0,203.0,218.0,293.0,False,True,1,False,False,False,8309.434,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BEA,87,Haas F1 Team,44.0,3.0,HARD,24.0,True,111.511,31.704,50.224,29.583,301.0,201.0,217.0,294.0,False,True,1,False,False,False,8421.502,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,1.0,1.0,MEDIUM,1.0,True,145.248,,55.736,53.711,344.0,197.0,190.0,280.0,False,False,124,False,False,False,3355.977,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,2.0,1.0,MEDIUM,2.0,True,,40.002,73.402,47.662,229.0,112.0,124.0,259.0,False,False,4,False,False,False,3501.463,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,3.0,1.0,MEDIUM,3.0,True,,39.961,74.23,43.993,252.0,136.0,189.0,259.0,False,False,4,False,False,False,3662.546,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,4.0,1.0,MEDIUM,4.0,True,,43.593,65.994,45.384,257.0,141.0,212.0,254.0,False,False,41,False,False,False,3820.794,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,5.0,1.0,MEDIUM,5.0,True,113.486,31.231,52.261,29.994,330.0,199.0,216.0,302.0,True,True,1,False,False,False,3975.701,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,6.0,1.0,MEDIUM,6.0,True,113.376,31.12,52.177,30.079,325.0,201.0,214.0,303.0,True,True,1,False,False,False,4089.187,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,7.0,1.0,MEDIUM,7.0,True,112.491,31.448,51.124,29.919,323.0,199.0,215.0,300.0,True,True,1,False,False,False,4202.563,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,8.0,1.0,MEDIUM,8.0,True,112.913,31.416,51.411,30.086,324.0,200.0,215.0,299.0,False,True,12,False,False,False,4315.054,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,9.0,1.0,MEDIUM,9.0,True,112.675,31.496,51.131,30.048,320.0,197.0,215.0,301.0,False,True,1,False,False,False,4427.967,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,10.0,1.0,MEDIUM,10.0,True,112.643,31.599,50.988,30.056,315.0,195.0,215.0,298.0,False,True,1,False,False,False,4540.642,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,11.0,1.0,MEDIUM,11.0,True,113.362,31.702,51.255,30.405,314.0,196.0,216.0,298.0,False,True,1,False,False,False,4653.285,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,12.0,1.0,MEDIUM,12.0,True,114.5,31.764,52.595,30.141,310.0,192.0,214.0,297.0,False,True,1,False,False,False,4766.647,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,13.0,1.0,MEDIUM,13.0,True,113.565,31.646,51.686,30.233,316.0,191.0,215.0,299.0,False,True,1,False,False,False,4881.147,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,14.0,1.0,MEDIUM,14.0,True,113.457,31.681,51.569,30.207,316.0,194.0,215.0,297.0,False,True,1,False,False,False,4994.712,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,15.0,1.0,MEDIUM,15.0,True,113.49,31.735,51.491,30.264,314.0,198.0,216.0,297.0,False,True,1,False,False,False,5108.169,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,16.0,1.0,MEDIUM,16.0,True,113.375,31.617,51.437,30.321,313.0,195.0,215.0,298.0,False,True,1,False,False,False,5221.659,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,17.0,1.0,MEDIUM,17.0,True,113.654,31.743,51.399,30.512,310.0,197.0,216.0,297.0,False,True,1,False,False,False,5335.034,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,18.0,1.0,MEDIUM,18.0,True,129.013,31.888,62.355,34.77,252.0,196.0,,297.0,False,False,167,False,False,True,5448.688,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,19.0,2.0,HARD,1.0,True,126.644,46.182,50.598,29.864,307.0,201.0,219.0,290.0,False,False,1,False,True,False,5577.701,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,20.0,2.0,HARD,2.0,True,138.352,39.005,64.38,34.967,261.0,126.0,217.0,296.0,False,False,167,False,False,False,5704.345,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,21.0,2.0,HARD,3.0,True,111.894,31.312,50.558,30.024,312.0,196.0,220.0,299.0,True,True,1,False,False,False,5842.697,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,22.0,2.0,HARD,4.0,True,112.325,31.441,50.74,30.144,312.0,197.0,220.0,297.0,False,True,1,False,False,False,5954.591,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,23.0,2.0,HARD,5.0,True,112.297,31.502,50.628,30.167,311.0,199.0,216.0,298.0,False,True,1,False,False,False,6066.916,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,24.0,2.0,HARD,6.0,True,112.771,31.541,50.988,30.242,311.0,194.0,218.0,297.0,False,True,1,False,False,False,6179.213,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,25.0,2.0,HARD,7.0,True,112.771,31.536,50.965,30.27,311.0,192.0,217.0,298.0,False,True,1,False,False,False,6291.984,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,26.0,2.0,HARD,8.0,True,112.978,31.537,50.988,30.453,310.0,199.0,210.0,298.0,False,True,1,False,False,False,6404.755,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,27.0,2.0,HARD,9.0,True,113.81,31.983,51.917,29.91,321.0,195.0,217.0,296.0,False,True,1,False,False,False,6517.733,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,28.0,2.0,HARD,10.0,True,112.557,31.395,51.152,30.01,317.0,195.0,215.0,298.0,False,True,1,False,False,False,6631.543,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,29.0,2.0,HARD,11.0,True,112.731,31.476,51.12,30.135,316.0,198.0,216.0,300.0,False,True,1,False,False,False,6744.1,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,30.0,2.0,HARD,12.0,True,112.524,31.405,51.171,29.948,317.0,199.0,218.0,301.0,False,True,1,False,False,False,6856.831,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,31.0,2.0,HARD,13.0,True,112.751,31.561,51.112,30.078,315.0,199.0,217.0,299.0,False,True,1,False,False,False,6969.355,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,32.0,2.0,HARD,14.0,True,112.459,31.308,51.089,30.062,315.0,200.0,217.0,301.0,False,True,1,False,False,False,7082.106,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,33.0,2.0,HARD,15.0,True,112.797,31.464,51.187,30.146,314.0,192.0,218.0,302.0,False,True,1,False,False,False,7194.565,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,34.0,2.0,HARD,16.0,True,112.827,31.422,51.001,30.404,313.0,199.0,217.0,300.0,False,True,1,False,False,False,7307.362,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,35.0,2.0,HARD,17.0,True,112.567,31.417,51.012,30.138,313.0,196.0,220.0,302.0,False,True,1,False,False,False,7420.189,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,36.0,2.0,HARD,18.0,True,112.242,31.347,50.945,29.95,314.0,198.0,218.0,300.0,False,True,1,False,False,False,7532.756,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,37.0,2.0,HARD,19.0,True,112.57,31.547,50.819,30.204,311.0,198.0,217.0,299.0,False,True,1,False,False,False,7644.998,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,38.0,2.0,HARD,20.0,True,112.532,31.452,50.972,30.108,310.0,197.0,219.0,300.0,False,True,1,False,False,False,7757.568,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,39.0,2.0,HARD,21.0,True,112.461,31.532,50.965,29.964,309.0,198.0,219.0,299.0,False,True,1,False,False,False,7870.1,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,40.0,2.0,HARD,22.0,True,112.159,31.659,50.654,29.846,307.0,201.0,221.0,299.0,False,True,1,False,False,False,7982.561,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,41.0,2.0,HARD,23.0,True,112.133,31.612,50.766,29.755,307.0,198.0,221.0,298.0,False,True,1,False,False,False,8094.72,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,42.0,2.0,HARD,24.0,True,112.094,31.569,50.745,29.78,309.0,200.0,220.0,299.0,False,True,1,False,False,False,8206.853,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,43.0,2.0,HARD,25.0,True,112.408,31.672,50.876,29.86,308.0,199.0,221.0,296.0,False,True,1,False,False,False,8318.947,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALB,23,Williams,44.0,2.0,HARD,26.0,True,112.04,31.573,50.827,29.64,307.0,199.0,220.0,298.0,False,True,1,False,False,False,8431.355,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,1.0,1.0,SOFT,1.0,True,149.515,,57.014,55.663,323.0,191.0,205.0,292.0,False,False,124,False,False,False,3355.977,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,2.0,1.0,SOFT,2.0,True,,38.559,73.24,48.021,261.0,115.0,144.0,260.0,False,False,4,False,False,False,3505.735,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,3.0,1.0,SOFT,3.0,True,,40.419,72.594,44.452,256.0,151.0,182.0,259.0,False,False,4,False,False,False,3665.567,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,4.0,1.0,SOFT,4.0,True,,43.668,66.263,43.437,259.0,145.0,224.0,246.0,False,False,41,False,False,False,3823.062,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,5.0,1.0,SOFT,5.0,True,113.978,31.044,52.896,30.038,320.0,200.0,218.0,308.0,True,True,1,False,False,False,3976.383,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,6.0,1.0,SOFT,6.0,True,113.589,31.696,51.984,29.909,325.0,201.0,218.0,296.0,True,True,1,False,False,False,4090.361,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,7.0,1.0,SOFT,7.0,True,112.503,31.374,51.377,29.752,326.0,199.0,217.0,300.0,True,True,1,False,False,False,4203.95,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,8.0,1.0,SOFT,8.0,True,113.151,31.274,51.871,30.006,330.0,197.0,217.0,302.0,False,True,12,False,False,False,4316.453,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,9.0,1.0,SOFT,9.0,True,113.158,31.317,51.831,30.01,327.0,200.0,219.0,301.0,False,True,1,False,False,False,4429.604,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,10.0,1.0,SOFT,10.0,True,112.549,31.501,51.118,29.93,319.0,197.0,218.0,296.0,False,True,1,False,False,False,4542.762,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,11.0,1.0,SOFT,11.0,True,113.838,,,30.047,319.0,197.0,216.0,297.0,False,False,1,False,False,False,4655.311,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,12.0,1.0,SOFT,12.0,True,113.929,31.669,51.78,30.48,316.0,196.0,219.0,298.0,False,True,1,False,False,False,4769.149,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,13.0,1.0,SOFT,13.0,True,114.265,31.802,52.557,29.906,314.0,194.0,217.0,298.0,False,True,1,False,False,False,4883.078,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,14.0,1.0,SOFT,14.0,True,117.774,31.416,52.019,34.339,325.0,195.0,,298.0,False,False,1,False,False,True,4997.343,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,15.0,2.0,HARD,1.0,True,140.077,58.89,51.681,29.506,311.0,196.0,213.0,289.0,False,False,1,False,True,False,5115.117,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,16.0,2.0,HARD,2.0,True,112.259,31.855,50.583,29.821,307.0,200.0,216.0,296.0,True,True,1,False,False,False,5255.194,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,17.0,2.0,HARD,3.0,True,111.95,31.52,50.717,29.713,313.0,198.0,214.0,298.0,True,False,16,False,False,False,5367.453,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,18.0,2.0,HARD,4.0,True,124.3,43.738,50.823,29.739,280.0,203.0,219.0,256.0,False,False,671,False,False,False,5479.403,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,19.0,2.0,HARD,5.0,True,111.74,31.48,50.641,29.619,310.0,200.0,219.0,299.0,True,True,1,False,False,False,5603.703,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,20.0,2.0,HARD,6.0,True,139.579,42.017,65.201,32.361,262.0,146.0,223.0,260.0,False,False,167,False,False,False,5715.443,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,21.0,2.0,HARD,7.0,True,112.593,30.939,52.051,29.603,326.0,200.0,220.0,302.0,False,True,1,False,False,False,5855.022,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,22.0,2.0,HARD,8.0,True,112.0,31.456,50.885,29.659,319.0,198.0,218.0,297.0,False,True,1,False,False,False,5967.615,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,23.0,2.0,HARD,9.0,True,111.632,31.301,50.82,29.511,321.0,198.0,219.0,299.0,True,True,1,False,False,False,6079.615,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,24.0,2.0,HARD,10.0,True,111.363,31.191,50.357,29.815,323.0,201.0,221.0,299.0,True,True,1,False,False,False,6191.247,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,25.0,2.0,HARD,11.0,True,112.25,31.568,50.807,29.875,309.0,197.0,222.0,296.0,False,True,1,False,False,False,6302.61,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,26.0,2.0,HARD,12.0,True,112.311,31.619,50.888,29.804,308.0,195.0,220.0,296.0,False,True,1,False,False,False,6414.86,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,27.0,2.0,HARD,13.0,True,112.265,31.685,50.828,29.752,309.0,200.0,219.0,296.0,False,True,1,False,False,False,6527.171,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,28.0,2.0,HARD,14.0,True,112.004,31.561,50.739,29.704,310.0,201.0,219.0,295.0,False,True,1,False,False,False,6639.436,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,29.0,2.0,HARD,15.0,True,112.067,31.641,50.822,29.604,311.0,201.0,216.0,297.0,False,True,1,False,False,False,6751.44,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,30.0,2.0,HARD,16.0,True,112.088,31.818,50.855,29.415,310.0,201.0,221.0,296.0,False,True,1,False,False,False,6863.507,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,31.0,2.0,HARD,17.0,True,112.69,31.784,51.129,29.777,309.0,201.0,220.0,294.0,False,True,1,False,False,False,6975.595,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,32.0,2.0,HARD,18.0,True,112.126,31.473,50.891,29.762,310.0,200.0,221.0,300.0,False,True,1,False,False,False,7088.285,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,33.0,2.0,HARD,19.0,True,112.189,31.394,50.96,29.835,313.0,198.0,220.0,300.0,False,True,1,False,False,False,7200.411,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,34.0,2.0,HARD,20.0,True,112.003,31.408,50.866,29.729,312.0,199.0,221.0,298.0,False,True,1,False,False,False,7312.6,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,35.0,2.0,HARD,21.0,True,112.445,31.853,50.957,29.635,311.0,200.0,221.0,299.0,False,True,1,False,False,False,7424.603,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,36.0,2.0,HARD,22.0,True,111.702,31.518,50.6,29.584,311.0,201.0,222.0,298.0,False,True,1,False,False,False,7537.048,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,37.0,2.0,HARD,23.0,True,112.386,31.619,51.066,29.701,312.0,198.0,220.0,297.0,False,True,1,False,False,False,7648.75,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,38.0,2.0,HARD,24.0,True,112.122,31.32,51.251,29.551,317.0,199.0,221.0,300.0,False,True,1,False,False,False,7761.136,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,39.0,2.0,HARD,25.0,True,111.86,31.351,50.861,29.648,312.0,201.0,220.0,299.0,False,True,1,False,False,False,7873.258,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,40.0,2.0,HARD,26.0,True,111.731,31.297,50.902,29.532,313.0,201.0,221.0,302.0,False,True,1,False,False,False,7985.118,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,41.0,2.0,HARD,27.0,True,111.737,31.251,51.042,29.444,314.0,200.0,222.0,301.0,False,True,1,False,False,False,8096.849,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,42.0,2.0,HARD,28.0,True,111.784,31.167,51.099,29.518,318.0,198.0,222.0,302.0,False,True,1,False,False,False,8208.586,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,43.0,2.0,HARD,29.0,True,111.983,31.274,51.376,29.333,319.0,199.0,217.0,299.0,False,True,1,False,False,False,8320.37,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,SAI,55,Williams,44.0,2.0,HARD,30.0,True,112.197,31.417,51.365,29.415,318.0,198.0,225.0,299.0,False,True,1,False,False,False,8432.353,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,1.0,1.0,MEDIUM,1.0,True,164.354,,65.536,62.761,333.0,,,300.0,False,False,124,False,False,True,3355.977,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,2.0,2.0,HARD,1.0,True,,58.486,57.539,37.133,290.0,182.0,123.0,258.0,False,False,4,False,True,False,3520.611,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,3.0,2.0,HARD,2.0,True,,39.585,71.688,46.251,224.0,103.0,184.0,250.0,False,False,4,False,False,False,3673.831,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,4.0,2.0,HARD,3.0,True,149.291,43.928,65.344,40.019,258.0,187.0,213.0,273.0,True,False,41,False,False,False,3831.206,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,5.0,2.0,HARD,4.0,True,115.886,31.933,53.844,30.109,325.0,196.0,211.0,299.0,True,True,1,False,False,False,3980.497,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,6.0,2.0,HARD,5.0,True,114.728,31.915,52.753,30.06,324.0,198.0,215.0,299.0,True,True,1,False,False,False,4096.383,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,7.0,2.0,HARD,6.0,True,113.397,32.217,51.22,29.96,315.0,202.0,211.0,289.0,True,True,1,False,False,False,4211.111,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,8.0,2.0,HARD,7.0,True,113.612,32.143,51.445,30.024,306.0,201.0,212.0,290.0,False,True,12,False,False,False,4324.508,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,9.0,2.0,HARD,8.0,True,113.299,32.139,51.123,30.037,305.0,200.0,212.0,292.0,True,True,1,False,False,False,4438.12,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,10.0,2.0,HARD,9.0,True,113.221,32.015,51.132,30.074,306.0,198.0,212.0,291.0,True,True,1,False,False,False,4551.419,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,11.0,2.0,HARD,10.0,True,113.14,32.087,51.16,29.893,306.0,199.0,212.0,291.0,True,True,1,False,False,False,4664.64,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,12.0,2.0,HARD,11.0,True,113.333,32.102,51.204,30.027,307.0,198.0,212.0,290.0,False,True,1,False,False,False,4777.78,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,13.0,2.0,HARD,12.0,True,113.564,32.244,51.339,29.981,305.0,192.0,212.0,290.0,False,True,1,False,False,False,4891.113,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,14.0,2.0,HARD,13.0,True,113.35,32.137,51.283,29.93,307.0,198.0,212.0,290.0,False,True,1,False,False,False,5004.677,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,15.0,2.0,HARD,14.0,True,113.616,32.152,51.847,29.617,305.0,198.0,213.0,291.0,False,True,1,False,False,False,5118.027,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,16.0,2.0,HARD,15.0,True,118.022,31.887,51.683,34.452,315.0,202.0,,294.0,False,False,1,False,False,True,5231.643,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,17.0,3.0,HARD,1.0,True,127.396,47.214,50.44,29.742,306.0,207.0,214.0,290.0,False,False,1,False,True,False,5349.665,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,18.0,3.0,HARD,2.0,True,124.358,43.358,51.268,29.732,243.0,203.0,213.0,224.0,False,False,167,False,False,False,5477.061,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,19.0,3.0,HARD,3.0,True,111.966,31.855,50.432,29.679,308.0,203.0,214.0,293.0,True,True,1,False,False,False,5601.419,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,20.0,3.0,HARD,4.0,True,140.353,41.203,67.184,31.966,275.0,156.0,215.0,228.0,False,False,167,False,False,False,5713.385,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,21.0,3.0,HARD,5.0,True,112.368,31.731,50.846,29.791,311.0,201.0,213.0,297.0,False,True,1,False,False,False,5853.738,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,22.0,3.0,HARD,6.0,True,111.955,31.922,50.256,29.777,307.0,203.0,215.0,292.0,True,True,1,False,False,False,5966.106,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,23.0,3.0,HARD,7.0,True,112.366,32.025,50.452,29.889,305.0,198.0,214.0,292.0,False,True,1,False,False,False,6078.061,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,24.0,3.0,HARD,8.0,True,112.886,32.028,51.253,29.605,302.0,199.0,215.0,291.0,False,True,1,False,False,False,6190.427,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,25.0,3.0,HARD,9.0,True,112.434,31.775,50.992,29.667,315.0,197.0,215.0,295.0,False,True,1,False,False,False,6303.313,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,26.0,3.0,HARD,10.0,True,112.308,31.626,51.087,29.595,317.0,199.0,214.0,295.0,False,True,1,False,False,False,6415.747,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,27.0,3.0,HARD,11.0,True,112.335,31.674,51.04,29.621,319.0,200.0,213.0,293.0,False,True,1,False,False,False,6528.055,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,28.0,3.0,HARD,12.0,True,112.13,31.768,51.037,29.325,318.0,199.0,213.0,293.0,False,True,1,False,False,False,6640.39,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,29.0,3.0,HARD,13.0,True,112.068,31.833,50.999,29.236,314.0,198.0,212.0,296.0,False,True,1,False,False,False,6752.52,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,30.0,3.0,HARD,14.0,True,112.175,32.132,50.853,29.19,309.0,199.0,213.0,294.0,False,True,1,False,False,False,6864.588,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,31.0,3.0,HARD,15.0,True,112.442,32.036,50.971,29.435,311.0,201.0,213.0,295.0,False,True,1,False,False,False,6976.763,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,32.0,3.0,HARD,16.0,True,112.15,31.563,51.031,29.556,318.0,200.0,214.0,297.0,False,True,1,False,False,False,7089.205,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,33.0,3.0,HARD,17.0,True,112.333,31.621,51.168,29.544,318.0,198.0,213.0,297.0,False,True,1,False,False,False,7201.355,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,34.0,3.0,HARD,18.0,True,112.017,31.807,50.898,29.312,313.0,200.0,214.0,296.0,False,True,1,False,False,False,7313.688,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,35.0,3.0,HARD,19.0,True,112.454,31.996,51.063,29.395,310.0,197.0,214.0,297.0,False,True,1,False,False,False,7425.705,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,36.0,3.0,HARD,20.0,True,112.004,31.973,50.666,29.365,308.0,201.0,213.0,295.0,False,True,1,False,False,False,7538.159,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,37.0,3.0,HARD,21.0,True,112.898,32.191,51.053,29.654,307.0,197.0,215.0,295.0,False,True,1,False,False,False,7650.163,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,38.0,3.0,HARD,22.0,True,112.679,31.89,51.109,29.68,309.0,199.0,214.0,295.0,False,True,1,False,False,False,7763.061,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,39.0,3.0,HARD,23.0,True,112.13,31.6,50.881,29.649,310.0,197.0,214.0,298.0,False,True,1,False,False,False,7875.74,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,40.0,3.0,HARD,24.0,True,112.195,31.861,50.732,29.602,306.0,198.0,214.0,297.0,False,True,1,False,False,False,7987.87,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,41.0,3.0,HARD,25.0,True,112.487,31.805,50.99,29.692,305.0,198.0,214.0,296.0,False,True,1,False,False,False,8100.065,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,42.0,3.0,HARD,26.0,True,112.479,31.856,50.896,29.727,304.0,198.0,214.0,295.0,False,True,1,False,False,False,8212.552,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,43.0,3.0,HARD,27.0,True,112.643,31.858,50.913,29.872,306.0,197.0,215.0,294.0,False,True,1,False,False,False,8325.031,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,OCO,31,Haas F1 Team,44.0,3.0,HARD,28.0,True,111.9,31.987,50.589,29.324,306.0,199.0,215.0,294.0,True,True,1,False,False,False,8437.674,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,1.0,1.0,SOFT,1.0,True,158.877,,56.638,64.272,324.0,152.0,,273.0,False,False,124,False,False,True,3355.977,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,2.0,2.0,HARD,1.0,True,,56.103,61.143,40.573,224.0,163.0,114.0,245.0,False,False,4,False,True,False,3515.101,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,3.0,2.0,HARD,2.0,True,,38.949,72.213,46.283,233.0,121.0,191.0,231.0,False,False,4,False,False,False,3672.897,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,4.0,2.0,HARD,3.0,True,149.688,44.09,65.251,40.347,246.0,174.0,223.0,277.0,True,False,41,False,False,False,3830.311,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,5.0,2.0,HARD,4.0,True,116.851,31.701,54.296,30.854,316.0,192.0,214.0,296.0,True,True,1,False,False,False,3979.999,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,6.0,2.0,HARD,5.0,True,116.213,32.052,53.8,30.361,316.0,190.0,214.0,298.0,True,True,1,False,False,False,4096.85,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,7.0,2.0,HARD,6.0,True,114.664,31.499,52.765,30.4,329.0,194.0,214.0,297.0,True,True,1,False,False,False,4213.063,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,8.0,2.0,HARD,7.0,True,115.121,32.803,52.224,30.094,305.0,196.0,211.0,289.0,False,True,12,False,False,False,4327.727,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,9.0,2.0,HARD,8.0,True,113.471,31.949,51.533,29.989,309.0,194.0,212.0,294.0,True,True,1,False,False,False,4442.848,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,10.0,2.0,HARD,9.0,True,113.559,32.006,51.561,29.992,309.0,197.0,212.0,293.0,False,True,1,False,False,False,4556.319,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,11.0,2.0,HARD,10.0,True,113.471,31.995,51.584,29.892,309.0,196.0,211.0,293.0,False,True,1,False,False,False,4669.878,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,12.0,2.0,HARD,11.0,True,114.668,32.132,52.312,30.224,309.0,194.0,211.0,292.0,False,True,1,False,False,False,4783.349,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,13.0,2.0,HARD,12.0,True,114.966,32.36,52.053,30.553,306.0,184.0,210.0,291.0,False,True,1,False,False,False,4898.017,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,14.0,2.0,HARD,13.0,True,114.785,32.382,52.04,30.363,306.0,196.0,211.0,291.0,False,True,1,False,False,False,5012.983,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,15.0,2.0,HARD,14.0,True,114.892,32.195,52.457,30.24,305.0,196.0,211.0,292.0,False,True,1,False,False,False,5127.768,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,16.0,2.0,HARD,15.0,True,114.317,32.169,51.875,30.273,305.0,196.0,211.0,292.0,False,True,1,False,False,False,5242.66,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,17.0,2.0,HARD,16.0,True,114.137,32.232,51.772,30.133,305.0,196.0,211.0,291.0,False,True,1,False,False,False,5356.977,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,18.0,2.0,HARD,17.0,True,127.044,41.458,55.132,30.454,231.0,195.0,210.0,209.0,False,False,167,False,False,False,5471.114,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,19.0,2.0,HARD,18.0,True,114.718,32.225,52.166,30.327,305.0,195.0,211.0,291.0,False,True,1,False,False,False,5598.158,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,20.0,2.0,HARD,19.0,True,140.536,40.773,67.403,32.36,266.0,152.0,212.0,210.0,False,False,167,False,False,False,5712.876,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,21.0,2.0,HARD,20.0,True,116.047,32.168,53.857,30.022,306.0,195.0,213.0,292.0,False,True,1,False,False,False,5853.412,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,22.0,2.0,HARD,21.0,True,114.435,31.991,52.234,30.21,311.0,196.0,213.0,293.0,False,True,1,False,False,False,5969.459,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,23.0,2.0,HARD,22.0,True,114.719,32.083,52.225,30.411,307.0,193.0,211.0,293.0,False,True,1,False,False,False,6083.894,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,24.0,2.0,HARD,23.0,True,114.445,32.165,51.998,30.282,304.0,195.0,214.0,292.0,False,True,1,False,False,False,6198.613,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,25.0,2.0,HARD,24.0,True,115.031,32.146,52.381,30.504,304.0,186.0,212.0,292.0,False,True,1,False,False,False,6313.058,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,26.0,2.0,HARD,25.0,True,114.834,32.335,52.237,30.262,304.0,189.0,214.0,291.0,False,True,1,False,False,False,6428.089,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,27.0,2.0,HARD,26.0,True,114.859,32.26,52.413,30.186,303.0,192.0,213.0,291.0,False,True,1,False,False,False,6542.923,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,28.0,2.0,HARD,27.0,True,114.774,32.123,52.355,30.296,305.0,194.0,214.0,291.0,False,True,1,False,False,False,6657.782,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,29.0,2.0,HARD,28.0,True,114.4,32.107,52.313,29.98,305.0,197.0,213.0,292.0,False,True,1,False,False,False,6772.556,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,30.0,2.0,HARD,29.0,True,114.949,32.258,52.174,30.517,304.0,191.0,212.0,292.0,False,True,1,False,False,False,6886.956,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,31.0,2.0,HARD,30.0,True,115.161,32.148,52.612,30.401,302.0,196.0,213.0,293.0,False,True,1,False,False,False,7001.905,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,32.0,2.0,HARD,31.0,True,121.245,32.14,52.547,36.558,303.0,193.0,,294.0,False,False,1,False,False,True,7117.066,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,33.0,3.0,SOFT,1.0,True,130.677,49.063,51.653,29.961,309.0,198.0,215.0,288.0,False,False,1,False,True,False,7238.311,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,34.0,3.0,SOFT,2.0,True,113.52,31.872,51.933,29.715,303.0,202.0,214.0,293.0,False,True,1,False,False,False,7368.988,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,35.0,3.0,SOFT,3.0,True,112.011,31.759,50.474,29.778,309.0,202.0,214.0,294.0,True,True,1,False,False,False,7482.508,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,36.0,3.0,SOFT,4.0,True,112.787,31.916,51.017,29.854,305.0,198.0,215.0,294.0,False,True,1,False,False,False,7594.519,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,37.0,3.0,SOFT,5.0,True,113.0,32.017,51.056,29.927,303.0,202.0,214.0,293.0,False,True,1,False,False,False,7707.306,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,38.0,3.0,SOFT,6.0,True,116.262,32.544,53.871,29.847,203.0,192.0,214.0,292.0,False,True,1,False,False,False,7820.306,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,39.0,3.0,SOFT,7.0,True,112.418,31.681,50.97,29.767,310.0,197.0,215.0,296.0,False,True,1,False,False,False,7936.568,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,40.0,3.0,SOFT,8.0,True,112.541,31.775,51.002,29.764,304.0,200.0,213.0,298.0,False,True,1,False,False,False,8048.986,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,41.0,3.0,SOFT,9.0,True,112.654,31.851,50.995,29.808,306.0,198.0,216.0,296.0,False,True,1,False,False,False,8161.527,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,42.0,3.0,SOFT,10.0,True,112.651,31.974,50.875,29.802,305.0,200.0,215.0,291.0,False,True,1,False,False,False,8274.181,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,BOT,77,Cadillac,43.0,3.0,SOFT,11.0,True,112.796,31.891,51.03,29.875,304.0,196.0,220.0,293.0,False,True,1,False,False,False,8386.832,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,1.0,1.0,HARD,1.0,True,155.038,,56.858,60.124,327.0,164.0,177.0,275.0,False,False,124,False,False,False,3355.977,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,2.0,1.0,HARD,2.0,True,,35.842,71.894,47.881,249.0,101.0,124.0,265.0,False,False,4,False,False,False,3511.371,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,3.0,1.0,HARD,3.0,True,,40.293,72.34,44.764,223.0,138.0,182.0,267.0,False,False,4,False,False,False,3666.887,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,4.0,1.0,HARD,4.0,True,,43.443,68.177,41.882,255.0,137.0,197.0,253.0,False,False,41,False,False,False,3824.367,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,5.0,1.0,HARD,5.0,True,118.326,33.166,54.361,30.799,303.0,194.0,201.0,285.0,True,True,1,False,False,False,3977.757,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,6.0,1.0,HARD,6.0,True,116.743,32.468,53.466,30.809,296.0,193.0,201.0,293.0,True,True,1,False,False,False,4096.083,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,7.0,1.0,HARD,7.0,True,116.248,32.177,53.378,30.693,322.0,194.0,202.0,295.0,True,True,1,False,False,False,4212.826,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,8.0,1.0,HARD,8.0,True,117.005,32.443,53.98,30.582,291.0,193.0,202.0,293.0,False,True,12,False,False,False,4329.074,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,9.0,1.0,HARD,9.0,True,114.934,32.139,52.213,30.582,309.0,196.0,203.0,295.0,True,True,1,False,False,False,4446.079,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,10.0,1.0,HARD,10.0,True,115.304,32.865,52.043,30.396,292.0,196.0,202.0,289.0,False,True,1,False,False,False,4561.013,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,11.0,1.0,HARD,11.0,True,115.81,33.035,52.066,30.709,291.0,195.0,202.0,286.0,False,True,1,False,False,False,4676.317,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,12.0,1.0,HARD,12.0,True,115.837,32.856,52.205,30.776,293.0,194.0,202.0,289.0,False,True,1,False,False,False,4792.127,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,13.0,1.0,HARD,13.0,True,115.659,32.888,52.061,30.71,289.0,192.0,202.0,289.0,False,True,1,False,False,False,4907.964,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,14.0,1.0,HARD,14.0,True,116.178,33.056,52.276,30.846,291.0,196.0,200.0,288.0,False,True,1,False,False,False,5023.623,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,15.0,1.0,HARD,15.0,True,116.427,33.158,52.273,30.996,290.0,194.0,201.0,289.0,False,True,1,False,False,False,5139.801,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,16.0,1.0,HARD,16.0,True,115.319,32.508,52.206,30.605,302.0,197.0,202.0,292.0,False,True,1,False,False,False,5256.228,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,17.0,1.0,HARD,17.0,True,119.748,32.881,51.922,34.945,293.0,196.0,126.0,291.0,False,False,16,False,False,False,5371.547,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,18.0,1.0,HARD,18.0,True,123.266,40.283,52.197,30.786,298.0,197.0,202.0,286.0,False,False,671,False,False,False,5491.295,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,19.0,1.0,HARD,19.0,True,122.62,33.081,51.962,37.577,289.0,198.0,,288.0,False,False,16,False,False,True,5614.561,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,20.0,2.0,SOFT,1.0,True,145.178,53.719,60.698,30.761,249.0,199.0,202.0,203.0,False,False,671,False,True,False,5737.181,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,21.0,2.0,SOFT,2.0,True,113.677,32.593,50.474,30.61,292.0,204.0,201.0,290.0,True,True,1,False,False,False,5882.359,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,22.0,2.0,SOFT,3.0,True,114.165,32.865,50.48,30.82,290.0,200.0,202.0,289.0,False,True,1,False,False,False,5996.036,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,23.0,2.0,SOFT,4.0,True,114.459,32.793,50.744,30.922,290.0,203.0,204.0,289.0,False,True,1,False,False,False,6110.201,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,24.0,2.0,SOFT,5.0,True,114.755,32.444,51.488,30.823,293.0,201.0,203.0,290.0,False,True,1,False,False,False,6224.66,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,25.0,2.0,SOFT,6.0,True,114.288,32.643,50.996,30.649,293.0,197.0,204.0,288.0,False,True,1,False,False,False,6339.415,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,26.0,2.0,SOFT,7.0,True,114.557,32.633,51.236,30.688,292.0,197.0,204.0,290.0,False,True,1,False,False,False,6453.703,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,27.0,2.0,SOFT,8.0,True,116.078,32.662,52.424,30.992,292.0,196.0,203.0,288.0,False,True,1,False,False,False,6568.26,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,28.0,2.0,SOFT,9.0,True,118.746,32.16,54.805,31.781,307.0,186.0,201.0,293.0,False,True,1,False,False,False,6684.338,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,29.0,2.0,SOFT,10.0,True,122.041,34.501,56.261,31.279,302.0,186.0,200.0,293.0,False,True,1,False,False,False,6803.084,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,30.0,2.0,SOFT,11.0,True,116.871,33.194,52.933,30.744,294.0,195.0,203.0,293.0,False,True,1,False,False,False,6925.125,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,31.0,2.0,SOFT,12.0,True,124.124,33.566,52.808,37.75,296.0,195.0,,305.0,False,False,1,False,False,True,7041.996,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,32.0,3.0,HARD,1.0,True,133.039,49.867,52.181,30.991,295.0,197.0,203.0,290.0,False,False,1,False,True,False,7166.12,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,33.0,3.0,HARD,2.0,True,115.801,32.583,51.18,32.038,303.0,193.0,204.0,293.0,False,True,1,False,False,False,7299.159,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,34.0,3.0,HARD,3.0,True,112.948,31.855,50.962,30.131,313.0,203.0,206.0,296.0,True,True,1,False,False,False,7414.96,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,35.0,3.0,HARD,4.0,True,117.903,32.725,53.194,31.984,282.0,195.0,205.0,288.0,False,True,1,False,False,False,7527.908,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,36.0,3.0,HARD,5.0,True,113.231,32.053,50.582,30.596,308.0,203.0,200.0,293.0,False,True,1,False,False,False,7645.811,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,37.0,3.0,HARD,6.0,True,115.408,32.793,52.758,29.857,295.0,198.0,205.0,295.0,False,True,1,False,False,False,7759.042,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,38.0,3.0,HARD,7.0,True,116.811,32.875,53.106,30.83,248.0,194.0,203.0,297.0,False,True,1,False,False,False,7874.45,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,39.0,3.0,HARD,8.0,True,115.78,32.834,51.956,30.99,287.0,197.0,203.0,290.0,False,True,1,False,False,False,7991.261,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,40.0,3.0,HARD,9.0,True,118.026,33.538,53.235,31.253,237.0,198.0,202.0,289.0,False,True,1,False,False,False,8107.041,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,41.0,3.0,HARD,10.0,True,117.347,32.726,53.756,30.865,283.0,194.0,202.0,293.0,False,True,1,False,False,False,8225.067,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,ALO,14,Aston Martin,42.0,3.0,HARD,11.0,True,117.116,32.505,52.402,32.209,301.0,191.0,198.0,292.0,False,True,1,False,False,False,8342.414,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,STR,18,Aston Martin,1.0,1.0,HARD,1.0,True,156.53,,57.231,61.001,296.0,139.0,171.0,274.0,False,False,124,False,False,False,3355.977,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,STR,18,Aston Martin,2.0,1.0,HARD,2.0,True,,36.306,71.217,49.002,246.0,115.0,108.0,266.0,False,False,4,False,False,False,3512.734,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,STR,18,Aston Martin,3.0,1.0,HARD,3.0,True,,39.362,71.948,45.296,252.0,155.0,181.0,260.0,False,False,4,False,False,False,3669.287,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,STR,18,Aston Martin,4.0,1.0,HARD,4.0,True,,43.833,66.803,41.913,265.0,156.0,200.0,266.0,False,False,41,False,False,False,3825.894,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,STR,18,Aston Martin,5.0,1.0,HARD,5.0,True,116.927,32.484,53.255,31.188,314.0,195.0,200.0,294.0,True,True,1,False,False,False,3978.385,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,STR,18,Aston Martin,6.0,1.0,HARD,6.0,True,116.552,32.567,52.03,31.955,303.0,195.0,200.0,290.0,True,True,1,False,False,False,4095.312,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,STR,18,Aston Martin,7.0,1.0,HARD,7.0,True,115.724,32.298,52.615,30.811,310.0,193.0,200.0,293.0,True,True,1,False,False,False,4211.864,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,STR,18,Aston Martin,8.0,1.0,HARD,8.0,True,117.955,33.086,54.116,30.753,290.0,192.0,200.0,283.0,False,True,12,False,False,False,4327.588,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,STR,18,Aston Martin,9.0,1.0,HARD,9.0,True,116.404,32.819,52.904,30.681,296.0,193.0,200.0,290.0,False,True,1,False,False,False,4445.543,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,STR,18,Aston Martin,10.0,1.0,HARD,10.0,True,115.557,32.534,52.549,30.474,301.0,192.0,201.0,290.0,True,True,1,False,False,False,4561.947,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,STR,18,Aston Martin,11.0,1.0,HARD,11.0,True,115.603,32.842,52.337,30.424,300.0,193.0,200.0,289.0,False,True,1,False,False,False,4677.504,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,STR,18,Aston Martin,12.0,1.0,HARD,12.0,True,116.027,33.101,52.367,30.559,295.0,192.0,202.0,287.0,False,True,1,False,False,False,4793.107,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,STR,18,Aston Martin,13.0,1.0,HARD,13.0,True,116.03,32.826,52.49,30.714,298.0,190.0,202.0,288.0,False,True,1,False,False,False,4909.134,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,STR,18,Aston Martin,14.0,1.0,HARD,14.0,True,116.285,32.957,52.48,30.848,297.0,192.0,202.0,288.0,False,True,1,False,False,False,5025.164,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,STR,18,Aston Martin,15.0,1.0,HARD,15.0,True,116.762,32.708,53.261,30.793,291.0,193.0,201.0,285.0,False,True,1,False,False,False,5141.449,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,STR,18,Aston Martin,16.0,1.0,HARD,16.0,True,116.295,33.167,52.331,30.797,292.0,195.0,202.0,286.0,False,True,1,False,False,False,5258.211,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,STR,18,Aston Martin,17.0,1.0,HARD,17.0,True,121.724,32.791,52.28,36.653,298.0,193.0,,289.0,False,False,16,False,False,True,5374.506,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,STR,18,Aston Martin,18.0,2.0,SOFT,1.0,True,136.82,55.237,50.966,30.617,296.0,199.0,203.0,288.0,False,False,671,False,True,False,5496.23,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,STR,18,Aston Martin,19.0,2.0,SOFT,2.0,True,122.29,32.629,51.225,38.436,291.0,195.0,162.0,289.0,False,False,16,False,False,False,5633.05,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,STR,18,Aston Martin,20.0,2.0,SOFT,3.0,True,133.727,42.649,60.231,30.847,243.0,196.0,202.0,216.0,False,False,671,False,False,False,5755.34,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,STR,18,Aston Martin,21.0,2.0,SOFT,4.0,True,113.98,32.465,50.885,30.63,296.0,199.0,203.0,290.0,True,True,1,False,False,False,5889.067,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,STR,18,Aston Martin,22.0,2.0,SOFT,5.0,True,114.372,32.651,50.954,30.767,293.0,194.0,203.0,290.0,False,True,1,False,False,False,6003.047,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,STR,18,Aston Martin,23.0,2.0,SOFT,6.0,True,114.785,32.957,51.01,30.818,289.0,197.0,204.0,288.0,False,True,1,False,False,False,6117.419,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,STR,18,Aston Martin,24.0,2.0,SOFT,7.0,True,114.631,32.691,51.114,30.826,292.0,195.0,201.0,290.0,False,True,1,False,False,False,6232.204,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,STR,18,Aston Martin,25.0,2.0,SOFT,8.0,True,129.921,32.653,52.963,44.305,294.0,190.0,,289.0,False,False,1,False,False,True,6346.835,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PER,11,Cadillac,1.0,1.0,HARD,1.0,True,155.709,,56.924,61.499,326.0,184.0,,278.0,False,False,124,False,False,True,3355.977,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PER,11,Cadillac,2.0,2.0,SOFT,1.0,True,,52.713,60.164,46.855,297.0,113.0,108.0,229.0,False,False,4,False,True,False,3511.89,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PER,11,Cadillac,3.0,2.0,SOFT,2.0,True,,38.892,71.916,45.472,239.0,147.0,206.0,252.0,False,False,4,False,False,False,3671.62,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PER,11,Cadillac,4.0,2.0,SOFT,3.0,True,,43.82,66.485,41.031,245.0,156.0,213.0,264.0,False,False,41,False,False,False,3827.891,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PER,11,Cadillac,5.0,2.0,SOFT,4.0,True,117.076,32.344,54.1,30.632,312.0,194.0,210.0,288.0,True,True,1,False,False,False,3979.204,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PER,11,Cadillac,6.0,2.0,SOFT,5.0,True,114.506,31.918,52.287,30.301,316.0,198.0,210.0,295.0,True,True,1,False,False,False,4096.28,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PER,11,Cadillac,7.0,2.0,SOFT,6.0,True,114.992,32.503,52.203,30.286,308.0,197.0,211.0,289.0,False,True,1,False,False,False,4210.786,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PER,11,Cadillac,8.0,2.0,SOFT,7.0,True,113.975,32.158,51.621,30.196,312.0,199.0,210.0,291.0,True,True,12,False,False,False,4325.778,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PER,11,Cadillac,9.0,2.0,SOFT,8.0,True,113.477,32.132,51.346,29.999,311.0,199.0,211.0,292.0,False,True,1,False,False,False,4439.753,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PER,11,Cadillac,10.0,2.0,SOFT,9.0,True,113.52,32.038,51.237,30.245,311.0,199.0,211.0,289.0,True,True,1,False,False,False,4553.23,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PER,11,Cadillac,11.0,2.0,SOFT,10.0,True,113.578,32.046,51.369,30.163,309.0,193.0,210.0,290.0,False,True,1,False,False,False,4666.75,True,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PER,11,Cadillac,12.0,2.0,SOFT,11.0,True,129.156,32.18,55.351,41.625,309.0,131.0,,288.0,False,False,1,False,False,True,4780.328,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,PER,11,Cadillac,13.0,3.0,HARD,2.0,False,,59.863,60.891,40.135,232.0,161.0,,202.0,False,False,1,False,True,True,4909.484,False,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,RUS,63,Mercedes,1.0,1.0,MEDIUM,1.0,True,,,,,,,,,False,False,124,False,False,False,3355.977,False,spa,spa_gp,resolved

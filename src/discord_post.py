@@ -8,6 +8,39 @@ from pathlib import Path
 from typing import Any
 from urllib.error import HTTPError, URLError
 from urllib.request import Request, urlopen
+from urllib.parse import parse_qsl, urlencode, urlsplit, urlunsplit
+
+
+def validate_message(content: str, embeds: list[dict] | None = None) -> None:
+    """Fail before delivery reservation when a message exceeds Discord limits."""
+    if len(content) > 2000:
+        raise ValueError('Discord content exceeds 2,000 characters.')
+    embeds = embeds or []
+    if len(embeds) > 10:
+        raise ValueError('Discord allows at most ten embeds.')
+    total = 0
+    for embed in embeds:
+        for key, limit in [('title', 256), ('description', 4096)]:
+            value = str(embed.get(key, ''))
+            if len(value) > limit:
+                raise ValueError(f'Discord embed {key} exceeds {limit} characters.')
+            total += len(value)
+        fields = embed.get('fields', [])
+        if len(fields) > 25:
+            raise ValueError('Discord embeds allow at most 25 fields.')
+        for field in fields:
+            for key, limit in [('name', 256), ('value', 1024)]:
+                value = str(field.get(key, ''))
+                if not value or len(value) > limit:
+                    raise ValueError(f'Invalid Discord embed field {key}.')
+                total += len(value)
+        for key, nested_key, limit in [('footer', 'text', 2048), ('author', 'name', 256)]:
+            value = str(embed.get(key, {}).get(nested_key, ''))
+            if len(value) > limit:
+                raise ValueError(f'Discord embed {key} exceeds {limit} characters.')
+            total += len(value)
+    if total > 6000:
+        raise ValueError('Discord embeds exceed 6,000 combined characters.')
 
 
 def _guess_content_type(path: Path) -> str:
@@ -54,6 +87,8 @@ def post_files_to_discord(
     file_paths: list[str | Path],
     username: str | None = None,
     timeout_seconds: int = 30,
+    *,
+    embeds: list[dict] | None = None,
 ) -> dict[str, Any]:
     """Post one message with file attachments to a Discord webhook."""
 
@@ -62,18 +97,25 @@ def post_files_to_discord(
 
     existing_files = [str(Path(path)) for path in file_paths if path and Path(path).exists()]
 
-    if not existing_files:
+    if not existing_files and not embeds:
         return {"ok": False, "status": "no_files_to_post"}
 
-    fields = {"content": content}
-
+    validate_message(content, embeds)
+    payload = {"content": content, "allowed_mentions": {"parse": []}}
     if username:
-        fields["username"] = username
+        payload["username"] = username
+    if embeds:
+        payload["embeds"] = embeds
+    fields = {"payload_json": json.dumps(payload, allow_nan=False)}
 
     body, boundary = _multipart_body(fields, existing_files)
 
+    parts = urlsplit(webhook_url)
+    query = dict(parse_qsl(parts.query))
+    query['wait'] = 'true'
+    confirmed_url = urlunsplit(parts._replace(query=urlencode(query)))
     request = Request(
-        webhook_url,
+        confirmed_url,
         data=body,
         headers={
             "Content-Type": f"multipart/form-data; boundary={boundary}",

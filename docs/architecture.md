@@ -1,6 +1,14 @@
 # Architecture
 
-`f1-sim` uses a hybrid architecture. Python remains the source of truth for data science and reporting, MATLAB/Simulink is an optional engineering-validation workbench, Rust owns the fast runtime engine and future packaged desktop backend, and React/Tauri will own the user-facing app experience.
+The current application uses Python for collection, feature engineering,
+Monte Carlo simulation, reporting, automation, and the desktop backend. The
+interface is HTML/CSS/JavaScript hosted in pywebview or the loopback browser
+server. Managed child processes execute both Race Setup and Simulation Centre
+jobs. MATLAB/Simulink is an optional validation workbench.
+
+Rust and React/Tauri describe a possible future architecture and the separate
+Rust integration contract; they do not power this checkout's desktop launcher.
+The sections below distinguish that proposed ownership from today's runtime.
 
 ## Ownership
 
@@ -8,8 +16,9 @@
 | --- | --- |
 | Python | FastF1 data collection, ML model training, race simulation prototype, CSV/JSON generation, data reports, Power BI prep |
 | MATLAB/Simulink | optional lap-level dynamics, strategy experiments, assumption inspection, engineering validation |
-| Rust | high-speed simulation engine, packaged backend, portable desktop app runtime |
-| React/Tauri | user interface, charts, race setup screens, export buttons, desktop wrapper |
+| Rust (proposed / separate repository) | high-speed simulation engine and future packaged backend |
+| HTML/JavaScript + pywebview (current) | user interface and desktop wrapper |
+| React/Tauri (proposed) | possible future UI and desktop wrapper |
 
 ## Python Responsibilities
 

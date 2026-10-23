@@ -6,46 +6,8 @@ from typing import Any
 import numpy as np
 import pandas as pd
 
+from src.result_status import classify_result_status, mechanical_label
 
-MECHANICAL_STATUS_KEYWORDS = {
-    "brake",
-    "brakes",
-    "clutch",
-    "electrical",
-    "electronics",
-    "engine",
-    "gearbox",
-    "hydraulic",
-    "hydraulics",
-    "mechanical",
-    "oil",
-    "overheating",
-    "power unit",
-    "powerunit",
-    "puncture",
-    "radiator",
-    "suspension",
-    "transmission",
-    "water leak",
-}
-
-NON_MECHANICAL_STATUS_KEYWORDS = {
-    "accident",
-    "collision",
-    "crash",
-    "damage",
-    "disqualified",
-    "excluded",
-    "illness",
-    "spun off",
-    "withdrawn",
-}
-
-FINISHED_STATUS_KEYWORDS = {
-    "finished",
-    "+",
-    "lap",
-}
 
 DEFAULT_MECHANICAL_DNF_RATE = 0.045
 DEFAULT_PRIOR_WEIGHT = 8.0
@@ -61,24 +23,6 @@ def _first_existing_column(df: pd.DataFrame, candidates: list[str]) -> str | Non
             return candidate
 
     return None
-
-
-def classify_result_status(status: Any) -> str:
-    text = _normalise_text(status)
-
-    if not text:
-        return "unknown"
-
-    if any(keyword in text for keyword in NON_MECHANICAL_STATUS_KEYWORDS):
-        return "non_mechanical_dnf"
-
-    if any(keyword in text for keyword in MECHANICAL_STATUS_KEYWORDS):
-        return "mechanical_dnf"
-
-    if text.isdigit() or any(keyword in text for keyword in FINISHED_STATUS_KEYWORDS):
-        return "finished"
-
-    return "unknown"
 
 
 def load_team_power_units(path: str | Path = "data/team_power_units.csv") -> pd.DataFrame:
@@ -124,10 +68,9 @@ def _power_unit_for_team(
         if not exact.empty:
             return str(exact.iloc[0]["PowerUnitSupplier"])
 
-        prior = candidates[candidates["Year"] <= int(year_number)]
-
-        if not prior.empty:
-            return str(prior.sort_values("Year").iloc[-1]["PowerUnitSupplier"])
+        # Suppliers can change each season. An unrecorded year must not inherit
+        # a newer engine (or carry an earlier contract forward without evidence).
+        return "Unknown"
 
     return str(candidates.sort_values("Year").iloc[-1]["PowerUnitSupplier"])
 
@@ -210,7 +153,7 @@ def infer_reliability_profile(
                     "PowerUnitSupplier": _power_unit_for_team(team, year, team_power_units),
                     "Status": status,
                     "status_class": status_class,
-                    "mechanical_dnf": status_class == "mechanical_dnf",
+                    "mechanical_dnf": mechanical_label(status),
                     "weight": weight,
                 }
             )

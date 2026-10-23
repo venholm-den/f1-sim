@@ -1,0 +1,23 @@
+Driver,Team,relative_pace,race_pace,clean_laps,raw_laps,pace_available,thin_pace_sample,source_year,source_round,source_circuit_id,source_layout_id,source_venue_status
+ANT,Mercedes,0.0687308058326721,92.49302650197325,44,57,True,False,2026,4,,,unresolved
+NOR,McLaren,0.0,92.65852277144846,44,57,True,False,2026,4,,,unresolved
+PIA,McLaren,0.4586404734711209,93.247938348869,44,57,True,False,2026,4,,,unresolved
+RUS,Mercedes,0.9510939060919696,93.42690336798293,43,57,True,False,2026,4,,,unresolved
+VER,Red Bull Racing,1.4149030121557757,93.55448683572985,46,57,True,False,2026,4,,,unresolved
+HAM,Ferrari,0.8402032673809998,93.57443402132462,44,57,True,False,2026,4,,,unresolved
+COL,Alpine,1.1277432980934918,93.9086529568858,44,57,True,False,2026,4,,,unresolved
+LEC,Ferrari,0.7467888097674944,92.9991427787143,44,57,True,False,2026,4,,,unresolved
+SAI,Williams,1.8016968493769383,94.2256316051855,44,57,True,False,2026,4,,,unresolved
+ALB,Williams,2.060215198743947,94.36345897680135,44,57,True,False,2026,4,,,unresolved
+BEA,Haas F1 Team,1.9109872742424443,94.49005512363141,43,56,True,False,2026,4,,,unresolved
+BOR,Audi,1.8822361551973046,94.85179565205061,43,56,True,False,2026,4,,,unresolved
+OCO,Haas F1 Team,2.042808892262073,94.86149262175549,43,56,True,False,2026,4,,,unresolved
+LIN,Racing Bulls,2.56873069666932,95.05000979417893,41,56,True,False,2026,4,,,unresolved
+ALO,Aston Martin,2.73804174543271,96.32444147049948,41,56,True,False,2026,4,,,unresolved
+PER,Cadillac,3.307897733126893,96.40475911658248,43,56,True,False,2026,4,,,unresolved
+STR,Aston Martin,1.617841922637865,95.59359571573219,41,56,True,False,2026,4,,,unresolved
+BOT,Cadillac,3.223745267994218,96.7719445668029,35,55,True,False,2026,4,,,unresolved
+HUL,Audi,1.3284380972379353,94.72988361045131,2,7,True,True,2026,4,,,unresolved
+LAW,Racing Bulls,1.7524599519489072,95.21600678006813,3,6,True,True,2026,4,,,unresolved
+GAS,Alpine,1.6714841154829259,95.0630664545738,3,5,True,True,2026,4,,,unresolved
+HAD,Red Bull Racing,3.154141570088953,95.21633675476403,3,5,True,True,2026,4,,,unresolved

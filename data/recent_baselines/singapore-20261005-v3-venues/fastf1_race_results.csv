@@ -1,0 +1,353 @@
+Year,Event,Round,Session,DriverNumber,BroadcastName,Abbreviation,TeamName,Position,ClassifiedPosition,Status,Points,GridPosition,Time,source_circuit_id,source_layout_id,source_venue_status
+2026,Bahrain Grand Prix,16,R,3,M VERSTAPPEN,VER,Red Bull Racing,1.0,1,Finished,25.0,1.0,0 days 01:47:14.808000,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,12,K ANTONELLI,ANT,Mercedes,2.0,2,Finished,18.0,3.0,0 days 00:00:02.307000,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,44,L HAMILTON,HAM,Ferrari,3.0,3,Finished,15.0,2.0,0 days 00:00:04.919000,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,16,C LECLERC,LEC,Ferrari,4.0,4,Finished,12.0,4.0,0 days 00:00:07.258000,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,6,I HADJAR,HAD,Red Bull Racing,5.0,5,Finished,10.0,8.0,0 days 00:00:08.571000,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,81,O PIASTRI,PIA,McLaren,6.0,6,Finished,8.0,6.0,0 days 00:00:09.454000,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,30,L LAWSON,LAW,Racing Bulls,7.0,7,Finished,6.0,11.0,0 days 00:00:12.753000,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,14,F ALONSO,ALO,Aston Martin,8.0,8,Finished,4.0,12.0,0 days 00:00:13.372000,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,1,L NORRIS,NOR,McLaren,9.0,9,Finished,2.0,5.0,0 days 00:00:13.993000,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,41,A LINDBLAD,LIN,Racing Bulls,10.0,10,Finished,1.0,22.0,0 days 00:00:15.928000,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,27,N HULKENBERG,HUL,Audi,11.0,11,Finished,0.0,15.0,0 days 00:00:17.404000,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,18,L STROLL,STR,Aston Martin,12.0,12,Finished,0.0,14.0,0 days 00:00:18.052000,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,43,F COLAPINTO,COL,Alpine,13.0,13,Finished,0.0,21.0,0 days 00:00:18.997000,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,87,O BEARMAN,BEA,Haas F1 Team,14.0,14,Finished,0.0,16.0,0 days 00:00:22.305000,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,31,E OCON,OCO,Haas F1 Team,15.0,15,Finished,0.0,17.0,0 days 00:00:22.532000,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,10,P GASLY,GAS,Alpine,16.0,16,Finished,0.0,9.0,0 days 00:00:23.315000,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,55,C SAINZ,SAI,Williams,17.0,17,Finished,0.0,13.0,0 days 00:00:25.431000,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,5,G BORTOLETO,BOR,Audi,18.0,18,Finished,0.0,10.0,0 days 00:00:28.233000,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,11,S PEREZ,PER,Cadillac,19.0,19,Finished,0.0,20.0,0 days 00:00:29.310000,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,63,G RUSSELL,RUS,Mercedes,20.0,20,Retired,0.0,7.0,,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,23,A ALBON,ALB,Williams,21.0,R,Retired,0.0,18.0,,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,77,V BOTTAS,BOT,Cadillac,22.0,R,Retired,0.0,19.0,,sepang,sepang_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,63,G RUSSELL,RUS,Mercedes,1.0,1,Finished,25.0,1.0,0 days 01:38:02.143000,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,3,M VERSTAPPEN,VER,Red Bull Racing,2.0,2,Finished,18.0,8.0,0 days 00:00:00.196000,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,6,I HADJAR,HAD,Red Bull Racing,3.0,3,Finished,15.0,4.0,0 days 00:00:10.704000,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,16,C LECLERC,LEC,Ferrari,4.0,4,Finished,12.0,2.0,0 days 00:00:14.136000,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,12,K ANTONELLI,ANT,Mercedes,5.0,5,Finished,10.0,16.0,0 days 00:00:14.512000,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,44,L HAMILTON,HAM,Ferrari,6.0,6,Finished,8.0,6.0,0 days 00:00:22.382000,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,41,A LINDBLAD,LIN,Racing Bulls,7.0,7,Finished,6.0,15.0,0 days 00:00:31.159000,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,31,E OCON,OCO,Haas F1 Team,8.0,8,Finished,4.0,13.0,0 days 00:00:31.189000,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,87,O BEARMAN,BEA,Haas F1 Team,9.0,9,Finished,2.0,10.0,0 days 00:00:31.929000,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,55,C SAINZ,SAI,Williams,10.0,10,Finished,1.0,14.0,0 days 00:00:32.416000,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,27,N HULKENBERG,HUL,Audi,11.0,11,Finished,0.0,18.0,0 days 00:00:33.231000,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,30,L LAWSON,LAW,Racing Bulls,12.0,12,Finished,0.0,11.0,0 days 00:00:34.013000,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,81,O PIASTRI,PIA,McLaren,13.0,13,Finished,0.0,3.0,0 days 00:00:36.401000,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,11,S PEREZ,PER,Cadillac,14.0,14,Finished,0.0,20.0,0 days 00:00:41.400000,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,5,G BORTOLETO,BOR,Audi,15.0,15,Finished,0.0,17.0,0 days 00:00:44.230000,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,77,V BOTTAS,BOT,Cadillac,16.0,16,Retired,0.0,19.0,,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,43,F COLAPINTO,COL,Alpine,17.0,R,Retired,0.0,9.0,,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,10,P GASLY,GAS,Alpine,18.0,R,Retired,0.0,7.0,,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,1,L NORRIS,NOR,McLaren,19.0,R,Retired,0.0,5.0,,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,23,A ALBON,ALB,Williams,20.0,R,Retired,0.0,12.0,,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,14,F ALONSO,ALO,Aston Martin,21.0,R,Retired,0.0,21.0,,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,18,L STROLL,STR,Aston Martin,22.0,R,Retired,0.0,22.0,,baku,baku_gp,resolved
+2026,Spanish Grand Prix,14,R,12,K ANTONELLI,ANT,Mercedes,1.0,1,Finished,25.0,2.0,0 days 01:34:23.754000,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,3,M VERSTAPPEN,VER,Red Bull Racing,2.0,2,Finished,18.0,3.0,0 days 00:00:04.351000,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,1,L NORRIS,NOR,McLaren,3.0,3,Finished,15.0,1.0,0 days 00:00:05.089000,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,16,C LECLERC,LEC,Ferrari,4.0,4,Finished,12.0,5.0,0 days 00:00:29.116000,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,63,G RUSSELL,RUS,Mercedes,5.0,5,Finished,10.0,6.0,0 days 00:00:29.829000,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,30,L LAWSON,LAW,Red Bull Racing,6.0,6,Finished,8.0,8.0,0 days 00:01:26.746000,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,43,F COLAPINTO,COL,Alpine,7.0,7,Finished,6.0,9.0,0 days 00:01:34.281000,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,81,O PIASTRI,PIA,McLaren,8.0,8,Finished,4.0,7.0,0 days 00:01:35.839000,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,41,A LINDBLAD,LIN,Racing Bulls,9.0,9,Lapped,2.0,10.0,0 days 00:00:10.408000,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,27,N HULKENBERG,HUL,Audi,10.0,10,Lapped,1.0,11.0,0 days 00:00:11.298000,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,31,E OCON,OCO,Haas F1 Team,11.0,11,Lapped,0.0,13.0,0 days 00:00:15.143000,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,10,P GASLY,GAS,Alpine,12.0,12,Lapped,0.0,14.0,0 days 00:00:26.152000,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,5,G BORTOLETO,BOR,Audi,13.0,13,Lapped,0.0,12.0,0 days 00:00:28.389000,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,22,Y TSUNODA,TSU,Racing Bulls,14.0,14,Lapped,0.0,15.0,0 days 00:01:00.163000,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,23,A ALBON,ALB,Williams,15.0,15,Lapped,0.0,16.0,0 days 00:01:26.212000,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,87,O BEARMAN,BEA,Haas F1 Team,16.0,16,Lapped,0.0,22.0,0 days 00:01:29.963000,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,14,F ALONSO,ALO,Aston Martin,17.0,17,Lapped,0.0,17.0,0 days 00:00:33.776000,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,77,V BOTTAS,BOT,Cadillac,18.0,18,Lapped,0.0,19.0,0 days 00:00:49.246000,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,55,C SAINZ,SAI,Williams,19.0,R,Retired,0.0,20.0,,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,11,S PEREZ,PER,Cadillac,20.0,R,Retired,0.0,18.0,,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,18,L STROLL,STR,Aston Martin,21.0,R,Retired,0.0,21.0,,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,R,44,L HAMILTON,HAM,Ferrari,22.0,R,Retired,0.0,4.0,,madring,madring_gp,resolved
+2026,Italian Grand Prix,13,R,12,K ANTONELLI,ANT,Mercedes,1.0,1,Finished,25.0,19.0,0 days 01:51:15.281000,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,R,63,G RUSSELL,RUS,Mercedes,2.0,2,Finished,18.0,2.0,0 days 00:00:03.857000,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,R,3,M VERSTAPPEN,VER,Red Bull Racing,3.0,3,Finished,15.0,5.0,0 days 00:00:14.718000,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,R,1,L NORRIS,NOR,McLaren,4.0,4,Finished,12.0,8.0,0 days 00:00:19.056000,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,R,81,O PIASTRI,PIA,McLaren,5.0,5,Finished,10.0,6.0,0 days 00:00:19.253000,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,R,44,L HAMILTON,HAM,Ferrari,6.0,6,Finished,8.0,4.0,0 days 00:00:24.655000,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,R,10,P GASLY,GAS,Alpine,7.0,7,Finished,6.0,1.0,0 days 00:00:27.351000,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,R,41,A LINDBLAD,LIN,Racing Bulls,8.0,8,Finished,4.0,9.0,0 days 00:00:45.136000,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,R,43,F COLAPINTO,COL,Alpine,9.0,9,Finished,2.0,7.0,0 days 00:00:47.353000,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,R,22,Y TSUNODA,TSU,Racing Bulls,10.0,10,Finished,1.0,15.0,0 days 00:00:58.187000,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,R,5,G BORTOLETO,BOR,Audi,11.0,11,Finished,0.0,10.0,0 days 00:01:05.187000,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,R,27,N HULKENBERG,HUL,Audi,12.0,12,Finished,0.0,12.0,0 days 00:01:06.187000,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,R,55,C SAINZ,SAI,Williams,13.0,13,Finished,0.0,13.0,0 days 00:01:14.117000,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,R,30,L LAWSON,LAW,Red Bull Racing,14.0,14,Finished,0.0,22.0,0 days 00:01:15.609000,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,R,87,O BEARMAN,BEA,Haas F1 Team,15.0,15,Finished,0.0,11.0,0 days 00:01:18.958000,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,R,31,E OCON,OCO,Haas F1 Team,16.0,16,Lapped,0.0,14.0,0 days 00:00:06.591000,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,R,23,A ALBON,ALB,Williams,17.0,17,Lapped,0.0,20.0,0 days 00:00:20.268000,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,R,11,S PEREZ,PER,Cadillac,18.0,18,Lapped,0.0,17.0,0 days 00:01:13.372000,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,R,77,V BOTTAS,BOT,Cadillac,19.0,19,Lapped,0.0,16.0,0 days 00:00:12.880000,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,R,18,L STROLL,STR,Aston Martin,20.0,R,Retired,0.0,18.0,,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,R,14,F ALONSO,ALO,Aston Martin,21.0,R,Retired,0.0,21.0,,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,R,16,C LECLERC,LEC,Ferrari,22.0,R,Retired,0.0,3.0,,monza,monza_gp,resolved
+2026,Dutch Grand Prix,12,R,1,L NORRIS,NOR,McLaren,1.0,1,Finished,25.0,1.0,0 days 02:04:44.859000,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,R,12,K ANTONELLI,ANT,Mercedes,2.0,2,Finished,18.0,3.0,0 days 00:00:11.536000,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,R,63,G RUSSELL,RUS,Mercedes,3.0,3,Finished,15.0,2.0,0 days 00:00:15.906000,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,R,44,L HAMILTON,HAM,Ferrari,4.0,4,Finished,12.0,5.0,0 days 00:00:16.755000,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,R,16,C LECLERC,LEC,Ferrari,5.0,5,Finished,10.0,6.0,0 days 00:00:17.258000,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,R,81,O PIASTRI,PIA,McLaren,6.0,6,Finished,8.0,4.0,0 days 00:00:32.332000,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,R,30,L LAWSON,LAW,Red Bull Racing,7.0,7,Finished,6.0,8.0,0 days 00:01:19.915000,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,R,27,N HULKENBERG,HUL,Audi,8.0,8,Lapped,4.0,13.0,0 days 00:00:36.049000,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,R,14,F ALONSO,ALO,Aston Martin,9.0,9,Lapped,2.0,18.0,0 days 00:00:48.393000,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,R,10,P GASLY,GAS,Alpine,10.0,10,Lapped,1.0,11.0,0 days 00:00:49.640000,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,R,22,Y TSUNODA,TSU,Racing Bulls,11.0,11,Lapped,0.0,12.0,0 days 00:00:54.322000,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,R,41,A LINDBLAD,LIN,Racing Bulls,12.0,12,Lapped,0.0,10.0,0 days 00:01:05.680000,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,R,5,G BORTOLETO,BOR,Audi,13.0,13,Lapped,0.0,9.0,0 days 00:01:06.235000,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,R,43,F COLAPINTO,COL,Alpine,14.0,14,Lapped,0.0,14.0,0 days 00:00:20.534000,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,R,11,S PEREZ,PER,Cadillac,15.0,15,Lapped,0.0,22.0,0 days 00:00:58.582000,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,R,55,C SAINZ,SAI,Williams,16.0,16,Lapped,0.0,17.0,0 days 00:01:10.271000,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,R,23,A ALBON,ALB,Williams,17.0,17,Retired,0.0,16.0,,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,R,77,V BOTTAS,BOT,Cadillac,18.0,R,Retired,0.0,21.0,,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,R,31,E OCON,OCO,Haas F1 Team,19.0,R,Retired,0.0,15.0,,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,R,18,L STROLL,STR,Aston Martin,20.0,R,Retired,0.0,19.0,,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,R,87,O BEARMAN,BEA,Haas F1 Team,21.0,R,Retired,0.0,20.0,,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,R,3,M VERSTAPPEN,VER,Red Bull Racing,22.0,R,Retired,0.0,7.0,,zandvoort,zandvoort_gp,resolved
+2026,Hungarian Grand Prix,11,R,1,L NORRIS,NOR,McLaren,1.0,1,Finished,25.0,1.0,0 days 01:39:56.180000,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,R,3,M VERSTAPPEN,VER,Red Bull Racing,2.0,2,Finished,18.0,4.0,0 days 00:00:15.080000,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,R,12,K ANTONELLI,ANT,Mercedes,3.0,3,Finished,15.0,7.0,0 days 00:00:18.728000,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,R,16,C LECLERC,LEC,Ferrari,4.0,4,Finished,12.0,2.0,0 days 00:00:23.840000,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,R,44,L HAMILTON,HAM,Ferrari,5.0,5,Finished,10.0,5.0,0 days 00:00:24.540000,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,R,6,I HADJAR,HAD,Red Bull Racing,6.0,6,Finished,8.0,8.0,0 days 00:00:55.488000,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,R,63,G RUSSELL,RUS,Mercedes,7.0,7,Finished,6.0,6.0,0 days 00:00:57.503000,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,R,30,L LAWSON,LAW,Racing Bulls,8.0,8,Lapped,4.0,11.0,0 days 00:00:28.033000,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,R,27,N HULKENBERG,HUL,Audi,9.0,9,Lapped,2.0,10.0,0 days 00:00:30.382000,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,R,41,A LINDBLAD,LIN,Racing Bulls,10.0,10,Lapped,1.0,9.0,0 days 00:00:51.050000,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,R,5,G BORTOLETO,BOR,Audi,11.0,11,Lapped,0.0,14.0,0 days 00:00:52.028000,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,R,10,P GASLY,GAS,Alpine,12.0,12,Lapped,0.0,12.0,0 days 00:00:53.429000,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,R,18,L STROLL,STR,Aston Martin,13.0,13,Lapped,0.0,20.0,0 days 00:01:03.828000,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,R,14,F ALONSO,ALO,Aston Martin,14.0,14,Lapped,0.0,16.0,0 days 00:01:06.052000,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,R,43,F COLAPINTO,COL,Alpine,15.0,15,Lapped,0.0,13.0,0 days 00:00:03.876000,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,R,31,E OCON,OCO,Haas F1 Team,16.0,16,Lapped,0.0,15.0,0 days 00:00:12.859000,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,R,23,A ALBON,ALB,Williams,17.0,17,Lapped,0.0,19.0,0 days 00:00:52.729000,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,R,55,C SAINZ,SAI,Williams,18.0,18,Lapped,0.0,18.0,0 days 00:00:52.973000,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,R,87,O BEARMAN,BEA,Haas F1 Team,19.0,19,Lapped,0.0,17.0,0 days 00:00:57.198000,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,R,81,O PIASTRI,PIA,McLaren,20.0,R,Retired,0.0,3.0,,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,R,11,S PEREZ,PER,Cadillac,21.0,R,Retired,0.0,22.0,,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,R,77,V BOTTAS,BOT,Cadillac,22.0,R,Retired,0.0,21.0,,hungaroring,hungaroring_gp,resolved
+2026,Belgian Grand Prix,10,R,12,K ANTONELLI,ANT,Mercedes,1.0,1,Finished,25.0,1.0,0 days 01:24:42.479000,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,16,C LECLERC,LEC,Ferrari,2.0,2,Finished,18.0,4.0,0 days 00:00:01.952000,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,3,M VERSTAPPEN,VER,Red Bull Racing,3.0,3,Finished,15.0,2.0,0 days 00:00:11.586000,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,44,L HAMILTON,HAM,Ferrari,4.0,4,Finished,12.0,5.0,0 days 00:00:17.245000,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,81,O PIASTRI,PIA,McLaren,5.0,5,Finished,10.0,6.0,0 days 00:00:18.988000,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,6,I HADJAR,HAD,Red Bull Racing,6.0,6,Finished,8.0,21.0,0 days 00:00:23.307000,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,1,L NORRIS,NOR,McLaren,7.0,7,Finished,6.0,13.0,0 days 00:00:24.014000,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,5,G BORTOLETO,BOR,Audi,8.0,8,Finished,4.0,8.0,0 days 00:00:49.140000,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,41,A LINDBLAD,LIN,Racing Bulls,9.0,9,Finished,2.0,7.0,0 days 00:00:50.406000,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,43,F COLAPINTO,COL,Alpine,10.0,10,Finished,1.0,11.0,0 days 00:01:16.037000,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,10,P GASLY,GAS,Alpine,11.0,11,Finished,0.0,10.0,0 days 00:01:16.991000,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,30,L LAWSON,LAW,Racing Bulls,12.0,12,Finished,0.0,9.0,0 days 00:01:17.523000,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,27,N HULKENBERG,HUL,Audi,13.0,13,Finished,0.0,12.0,0 days 00:01:18.348000,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,87,O BEARMAN,BEA,Haas F1 Team,14.0,14,Finished,0.0,14.0,0 days 00:01:34.465000,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,23,A ALBON,ALB,Williams,15.0,15,Finished,0.0,15.0,0 days 00:01:44.684000,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,55,C SAINZ,SAI,Williams,16.0,16,Finished,0.0,19.0,0 days 00:01:45.856000,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,31,E OCON,OCO,Haas F1 Team,17.0,17,Finished,0.0,16.0,0 days 00:01:50.925000,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,77,V BOTTAS,BOT,Cadillac,18.0,18,Lapped,0.0,17.0,0 days 00:01:00.979000,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,14,F ALONSO,ALO,Aston Martin,19.0,19,Lapped,0.0,22.0,0 days 00:00:20.848000,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,18,L STROLL,STR,Aston Martin,20.0,R,Retired,0.0,20.0,,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,11,S PEREZ,PER,Cadillac,21.0,R,Retired,0.0,18.0,,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,R,63,G RUSSELL,RUS,Mercedes,22.0,R,Retired,0.0,3.0,,spa,spa_gp,resolved
+2026,British Grand Prix,9,R,16,C LECLERC,LEC,Ferrari,1.0,1,Finished,25.0,2.0,0 days 01:27:11.335000,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,63,G RUSSELL,RUS,Mercedes,2.0,2,Finished,18.0,4.0,0 days 00:00:00.427000,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,44,L HAMILTON,HAM,Ferrari,3.0,3,Finished,15.0,3.0,0 days 00:00:00.772000,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,1,L NORRIS,NOR,McLaren,4.0,4,Finished,12.0,6.0,0 days 00:00:01.149000,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,6,I HADJAR,HAD,Red Bull Racing,5.0,5,Finished,10.0,5.0,0 days 00:00:01.598000,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,30,L LAWSON,LAW,Racing Bulls,6.0,6,Finished,8.0,10.0,0 days 00:00:02.023000,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,41,A LINDBLAD,LIN,Racing Bulls,7.0,7,Finished,6.0,9.0,0 days 00:00:02.214000,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,5,G BORTOLETO,BOR,Audi,8.0,8,Finished,4.0,11.0,0 days 00:00:02.413000,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,43,F COLAPINTO,COL,Alpine,9.0,9,Finished,2.0,19.0,0 days 00:00:03.229000,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,10,P GASLY,GAS,Alpine,10.0,10,Finished,1.0,15.0,0 days 00:00:03.445000,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,81,O PIASTRI,PIA,McLaren,11.0,11,Finished,0.0,8.0,0 days 00:00:04.014000,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,87,O BEARMAN,BEA,Haas F1 Team,12.0,12,Finished,0.0,13.0,0 days 00:00:05.245000,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,31,E OCON,OCO,Haas F1 Team,13.0,13,Finished,0.0,17.0,0 days 00:00:05.512000,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,11,S PEREZ,PER,Cadillac,14.0,14,Finished,0.0,20.0,0 days 00:00:07.403000,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,12,K ANTONELLI,ANT,Mercedes,15.0,15,Finished,0.0,1.0,0 days 00:00:08.005000,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,77,V BOTTAS,BOT,Cadillac,16.0,16,Finished,0.0,18.0,0 days 00:00:08.162000,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,55,C SAINZ,SAI,Williams,17.0,17,Lapped,0.0,14.0,0 days 00:00:04.391000,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,14,F ALONSO,ALO,Aston Martin,18.0,18,Lapped,0.0,21.0,0 days 00:00:04.980000,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,18,L STROLL,STR,Aston Martin,19.0,19,Lapped,0.0,22.0,0 days 00:00:06.750000,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,3,M VERSTAPPEN,VER,Red Bull Racing,20.0,20,Retired,0.0,7.0,,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,23,A ALBON,ALB,Williams,21.0,R,Retired,0.0,16.0,,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,27,N HULKENBERG,HUL,Audi,22.0,R,Retired,0.0,12.0,,silverstone,silverstone_gp,resolved
+2026,Austrian Grand Prix,8,R,63,G RUSSELL,RUS,Mercedes,1.0,1,Finished,25.0,1.0,0 days 01:26:37.979000,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,R,3,M VERSTAPPEN,VER,Red Bull Racing,2.0,2,Finished,18.0,5.0,0 days 00:00:01.611000,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,R,12,K ANTONELLI,ANT,Mercedes,3.0,3,Finished,15.0,4.0,0 days 00:00:01.986000,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,R,81,O PIASTRI,PIA,McLaren,4.0,4,Finished,12.0,7.0,0 days 00:00:21.809000,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,R,44,L HAMILTON,HAM,Ferrari,5.0,5,Finished,10.0,3.0,0 days 00:00:26.393000,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,R,6,I HADJAR,HAD,Red Bull Racing,6.0,6,Finished,8.0,8.0,0 days 00:00:29.399000,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,R,1,L NORRIS,NOR,McLaren,7.0,7,Finished,6.0,6.0,0 days 00:00:31.505000,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,R,16,C LECLERC,LEC,Ferrari,8.0,8,Finished,4.0,2.0,0 days 00:00:45.659000,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,R,30,L LAWSON,LAW,Racing Bulls,9.0,9,Lapped,2.0,9.0,0 days 00:00:15.334000,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,R,41,A LINDBLAD,LIN,Racing Bulls,10.0,10,Lapped,1.0,10.0,0 days 00:00:19.030000,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,R,5,G BORTOLETO,BOR,Audi,11.0,11,Lapped,0.0,12.0,0 days 00:00:30.315000,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,R,27,N HULKENBERG,HUL,Audi,12.0,12,Lapped,0.0,14.0,0 days 00:00:38.484000,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,R,10,P GASLY,GAS,Alpine,13.0,13,Lapped,0.0,11.0,0 days 00:00:39.251000,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,R,87,O BEARMAN,BEA,Haas F1 Team,14.0,14,Lapped,0.0,13.0,0 days 00:01:02.677000,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,R,43,F COLAPINTO,COL,Alpine,15.0,15,Lapped,0.0,16.0,0 days 00:01:05.647000,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,R,31,E OCON,OCO,Haas F1 Team,16.0,16,Lapped,0.0,15.0,0 days 00:00:25.932000,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,R,23,A ALBON,ALB,Williams,17.0,17,Lapped,0.0,18.0,0 days 00:00:28.082000,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,R,14,F ALONSO,ALO,Aston Martin,18.0,18,Lapped,0.0,21.0,0 days 00:00:04.833000,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,R,18,L STROLL,STR,Aston Martin,19.0,R,Retired,0.0,22.0,,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,R,55,C SAINZ,SAI,Williams,20.0,R,Retired,0.0,17.0,,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,R,11,S PEREZ,PER,Cadillac,21.0,R,Retired,0.0,19.0,,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,R,77,V BOTTAS,BOT,Cadillac,22.0,R,Retired,0.0,20.0,,red_bull_ring,red_bull_ring_gp,resolved
+2026,Barcelona Grand Prix,7,R,44,L HAMILTON,HAM,Ferrari,1.0,1,Finished,25.0,2.0,0 days 01:32:28.105000,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,63,G RUSSELL,RUS,Mercedes,2.0,2,Finished,18.0,1.0,0 days 00:00:19.561000,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,1,L NORRIS,NOR,McLaren,3.0,3,Finished,15.0,4.0,0 days 00:00:23.719000,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,3,M VERSTAPPEN,VER,Red Bull Racing,4.0,4,Finished,12.0,5.0,0 days 00:00:40.497000,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,81,O PIASTRI,PIA,McLaren,5.0,5,Finished,10.0,7.0,0 days 00:00:58.661000,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,6,I HADJAR,HAD,Red Bull Racing,6.0,6,Lapped,8.0,6.0,0 days 00:00:24.627000,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,10,P GASLY,GAS,Alpine,7.0,7,Lapped,6.0,14.0,0 days 00:00:55.789000,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,30,L LAWSON,LAW,Racing Bulls,8.0,8,Lapped,4.0,8.0,0 days 00:01:12.224000,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,41,A LINDBLAD,LIN,Racing Bulls,9.0,9,Lapped,2.0,11.0,0 days 00:01:18.074000,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,43,F COLAPINTO,COL,Alpine,10.0,10,Lapped,1.0,13.0,0 days 00:01:19.867000,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,5,G BORTOLETO,BOR,Audi,11.0,11,Lapped,0.0,12.0,0 days 00:00:26.687000,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,55,C SAINZ,SAI,Williams,12.0,12,Lapped,0.0,16.0,0 days 00:00:27.866000,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,31,E OCON,OCO,Haas F1 Team,13.0,13,Lapped,0.0,17.0,0 days 00:00:59.149000,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,11,S PEREZ,PER,Cadillac,14.0,14,Lapped,0.0,19.0,0 days 00:00:07.769000,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,16,C LECLERC,LEC,Ferrari,15.0,15,Retired,0.0,10.0,,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,12,K ANTONELLI,ANT,Mercedes,16.0,16,Retired,0.0,3.0,,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,87,O BEARMAN,BEA,Haas F1 Team,17.0,17,Retired,0.0,15.0,,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,23,A ALBON,ALB,Williams,18.0,R,Lapped,0.0,18.0,,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,14,F ALONSO,ALO,Aston Martin,19.0,R,Retired,0.0,22.0,,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,27,N HULKENBERG,HUL,Audi,20.0,R,Retired,0.0,9.0,,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,77,V BOTTAS,BOT,Cadillac,21.0,R,Retired,0.0,20.0,,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,R,18,L STROLL,STR,Aston Martin,22.0,R,Retired,0.0,21.0,,catalunya,catalunya_since_2023,resolved
+2026,Monaco Grand Prix,6,R,12,K ANTONELLI,ANT,Mercedes,1.0,1,Finished,25.0,1.0,0 days 02:23:31.243000,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,R,44,L HAMILTON,HAM,Ferrari,2.0,2,Finished,18.0,3.0,0 days 00:00:06.271000,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,R,6,I HADJAR,HAD,Red Bull Racing,3.0,3,Finished,15.0,5.0,0 days 00:00:23.394000,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,R,81,O PIASTRI,PIA,McLaren,4.0,4,Finished,12.0,7.0,0 days 00:00:24.261000,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,R,30,L LAWSON,LAW,Racing Bulls,5.0,5,Finished,10.0,10.0,0 days 00:00:26.553000,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,R,41,A LINDBLAD,LIN,Racing Bulls,6.0,6,Finished,8.0,15.0,0 days 00:00:29.010000,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,R,10,P GASLY,GAS,Alpine,7.0,7,Finished,6.0,9.0,0 days 00:00:30.369000,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,R,23,A ALBON,ALB,Williams,8.0,8,Finished,4.0,11.0,0 days 00:00:33.413000,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,R,31,E OCON,OCO,Haas F1 Team,9.0,9,Finished,2.0,17.0,0 days 00:00:37.140000,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,R,14,F ALONSO,ALO,Aston Martin,10.0,10,Finished,1.0,21.0,0 days 00:00:41.899000,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,R,5,G BORTOLETO,BOR,Audi,11.0,11,Finished,0.0,16.0,0 days 00:00:42.748000,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,R,63,G RUSSELL,RUS,Mercedes,12.0,12,Finished,0.0,6.0,0 days 00:00:43.353000,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,R,27,N HULKENBERG,HUL,Audi,13.0,13,Finished,0.0,13.0,0 days 00:00:44.102000,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,R,43,F COLAPINTO,COL,Alpine,14.0,14,Finished,0.0,14.0,0 days 00:00:48.964000,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,R,11,S PEREZ,PER,Cadillac,15.0,15,Finished,0.0,18.0,0 days 00:00:49.153000,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,R,55,C SAINZ,SAI,Williams,16.0,16,Retired,0.0,12.0,,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,R,16,C LECLERC,LEC,Ferrari,17.0,R,Retired,0.0,4.0,,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,R,18,L STROLL,STR,Aston Martin,18.0,R,Retired,0.0,22.0,,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,R,1,L NORRIS,NOR,McLaren,19.0,R,Retired,0.0,8.0,,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,R,87,O BEARMAN,BEA,Haas F1 Team,20.0,R,Retired,0.0,19.0,,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,R,77,V BOTTAS,BOT,Cadillac,21.0,R,Retired,0.0,20.0,,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,R,3,M VERSTAPPEN,VER,Red Bull Racing,22.0,R,Retired,0.0,2.0,,monaco,monaco_gp,resolved
+2026,Canadian Grand Prix,5,R,12,K ANTONELLI,ANT,Mercedes,1.0,1,Finished,25.0,2.0,0 days 01:28:15.758000,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,R,44,L HAMILTON,HAM,Ferrari,2.0,2,Finished,18.0,5.0,0 days 00:00:10.768000,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,R,3,M VERSTAPPEN,VER,Red Bull Racing,3.0,3,Finished,15.0,6.0,0 days 00:00:11.276000,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,R,16,C LECLERC,LEC,Ferrari,4.0,4,Finished,12.0,8.0,0 days 00:00:44.151000,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,R,6,I HADJAR,HAD,Red Bull Racing,5.0,5,Lapped,10.0,7.0,0 days 00:00:05.033000,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,R,43,F COLAPINTO,COL,Alpine,6.0,6,Lapped,8.0,10.0,0 days 00:00:19.510000,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,R,30,L LAWSON,LAW,Racing Bulls,7.0,7,Lapped,6.0,12.0,0 days 00:00:34.235000,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,R,10,P GASLY,GAS,Alpine,8.0,8,Lapped,4.0,14.0,0 days 00:00:34.572000,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,R,55,C SAINZ,SAI,Williams,9.0,9,Lapped,2.0,15.0,0 days 00:00:58.014000,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,R,87,O BEARMAN,BEA,Haas F1 Team,10.0,10,Lapped,1.0,16.0,0 days 00:00:59.049000,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,R,81,O PIASTRI,PIA,McLaren,11.0,11,Lapped,0.0,4.0,0 days 00:00:12.699000,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,R,27,N HULKENBERG,HUL,Audi,12.0,12,Lapped,0.0,11.0,0 days 00:00:14.182000,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,R,5,G BORTOLETO,BOR,Audi,13.0,13,Lapped,0.0,13.0,0 days 00:00:21.156000,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,R,31,E OCON,OCO,Haas F1 Team,14.0,14,Lapped,0.0,17.0,0 days 00:01:08.635000,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,R,18,L STROLL,STR,Aston Martin,15.0,15,Lapped,0.0,22.0,0 days 00:00:18.397000,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,R,77,V BOTTAS,BOT,Cadillac,16.0,16,Lapped,0.0,21.0,0 days 00:00:53.390000,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,R,11,S PEREZ,PER,Cadillac,17.0,R,Retired,0.0,20.0,,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,R,1,L NORRIS,NOR,McLaren,18.0,R,Retired,0.0,3.0,,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,R,63,G RUSSELL,RUS,Mercedes,19.0,R,Retired,0.0,1.0,,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,R,14,F ALONSO,ALO,Aston Martin,20.0,R,Retired,0.0,19.0,,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,R,23,A ALBON,ALB,Williams,21.0,R,Retired,0.0,18.0,,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,R,41,A LINDBLAD,LIN,Racing Bulls,22.0,W,Did not start,0.0,9.0,,villeneuve,villeneuve_gp,resolved
+2026,Miami Grand Prix,4,R,12,K ANTONELLI,ANT,Mercedes,1.0,1,Finished,25.0,1.0,0 days 01:33:19.273000,,,unresolved
+2026,Miami Grand Prix,4,R,1,L NORRIS,NOR,McLaren,2.0,2,Finished,18.0,4.0,0 days 00:00:03.264000,,,unresolved
+2026,Miami Grand Prix,4,R,81,O PIASTRI,PIA,McLaren,3.0,3,Finished,15.0,7.0,0 days 00:00:27.092000,,,unresolved
+2026,Miami Grand Prix,4,R,63,G RUSSELL,RUS,Mercedes,4.0,4,Finished,12.0,5.0,0 days 00:00:43.051000,,,unresolved
+2026,Miami Grand Prix,4,R,3,M VERSTAPPEN,VER,Red Bull Racing,5.0,5,Finished,10.0,2.0,0 days 00:00:48.949000,,,unresolved
+2026,Miami Grand Prix,4,R,44,L HAMILTON,HAM,Ferrari,6.0,6,Finished,8.0,6.0,0 days 00:00:53.753000,,,unresolved
+2026,Miami Grand Prix,4,R,43,F COLAPINTO,COL,Alpine,7.0,7,Finished,6.0,8.0,0 days 00:01:01.871000,,,unresolved
+2026,Miami Grand Prix,4,R,16,C LECLERC,LEC,Ferrari,8.0,8,Finished,4.0,3.0,0 days 00:01:04.245000,,,unresolved
+2026,Miami Grand Prix,4,R,55,C SAINZ,SAI,Williams,9.0,9,Finished,2.0,13.0,0 days 00:01:22.072000,,,unresolved
+2026,Miami Grand Prix,4,R,23,A ALBON,ALB,Williams,10.0,10,Finished,1.0,15.0,0 days 00:01:30.972000,,,unresolved
+2026,Miami Grand Prix,4,R,87,O BEARMAN,BEA,Haas F1 Team,11.0,11,Lapped,0.0,12.0,0 days 00:00:06.400000,,,unresolved
+2026,Miami Grand Prix,4,R,5,G BORTOLETO,BOR,Audi,12.0,12,Lapped,0.0,21.0,0 days 00:00:09.353000,,,unresolved
+2026,Miami Grand Prix,4,R,31,E OCON,OCO,Haas F1 Team,13.0,13,Lapped,0.0,14.0,0 days 00:00:13.873000,,,unresolved
+2026,Miami Grand Prix,4,R,41,A LINDBLAD,LIN,Racing Bulls,14.0,14,Lapped,0.0,16.0,0 days 00:00:44.781000,,,unresolved
+2026,Miami Grand Prix,4,R,14,F ALONSO,ALO,Aston Martin,15.0,15,Lapped,0.0,17.0,0 days 00:01:14.964000,,,unresolved
+2026,Miami Grand Prix,4,R,11,S PEREZ,PER,Cadillac,16.0,16,Lapped,0.0,20.0,0 days 00:01:17.513000,,,unresolved
+2026,Miami Grand Prix,4,R,18,L STROLL,STR,Aston Martin,17.0,17,Lapped,0.0,18.0,0 days 00:01:22.631000,,,unresolved
+2026,Miami Grand Prix,4,R,77,V BOTTAS,BOT,Cadillac,18.0,18,Lapped,0.0,19.0,0 days 00:01:08.255000,,,unresolved
+2026,Miami Grand Prix,4,R,27,N HULKENBERG,HUL,Audi,19.0,R,Retired,0.0,10.0,,,,unresolved
+2026,Miami Grand Prix,4,R,30,L LAWSON,LAW,Racing Bulls,20.0,R,Retired,0.0,11.0,,,,unresolved
+2026,Miami Grand Prix,4,R,10,P GASLY,GAS,Alpine,21.0,R,Retired,0.0,9.0,,,,unresolved
+2026,Miami Grand Prix,4,R,6,I HADJAR,HAD,Red Bull Racing,22.0,R,Retired,0.0,22.0,,,,unresolved
+2026,Japanese Grand Prix,3,R,12,K ANTONELLI,ANT,Mercedes,1.0,1,Finished,25.0,1.0,0 days 01:28:03.403000,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,R,81,O PIASTRI,PIA,McLaren,2.0,2,Finished,18.0,3.0,0 days 00:00:13.722000,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,R,16,C LECLERC,LEC,Ferrari,3.0,3,Finished,15.0,4.0,0 days 00:00:15.270000,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,R,63,G RUSSELL,RUS,Mercedes,4.0,4,Finished,12.0,2.0,0 days 00:00:15.754000,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,R,1,L NORRIS,NOR,McLaren,5.0,5,Finished,10.0,5.0,0 days 00:00:23.479000,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,R,44,L HAMILTON,HAM,Ferrari,6.0,6,Finished,8.0,6.0,0 days 00:00:25.037000,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,R,10,P GASLY,GAS,Alpine,7.0,7,Finished,6.0,7.0,0 days 00:00:32.340000,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,R,3,M VERSTAPPEN,VER,Red Bull Racing,8.0,8,Finished,4.0,11.0,0 days 00:00:32.677000,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,R,30,L LAWSON,LAW,Racing Bulls,9.0,9,Finished,2.0,14.0,0 days 00:00:50.180000,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,R,31,E OCON,OCO,Haas F1 Team,10.0,10,Finished,1.0,12.0,0 days 00:00:51.216000,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,R,27,N HULKENBERG,HUL,Audi,11.0,11,Finished,0.0,13.0,0 days 00:00:52.280000,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,R,6,I HADJAR,HAD,Red Bull Racing,12.0,12,Finished,0.0,8.0,0 days 00:00:56.154000,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,R,5,G BORTOLETO,BOR,Audi,13.0,13,Finished,0.0,9.0,0 days 00:00:59.078000,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,R,41,A LINDBLAD,LIN,Racing Bulls,14.0,14,Finished,0.0,10.0,0 days 00:00:59.848000,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,R,55,C SAINZ,SAI,Williams,15.0,15,Finished,0.0,16.0,0 days 00:01:05.008000,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,R,43,F COLAPINTO,COL,Alpine,16.0,16,Finished,0.0,15.0,0 days 00:01:05.773000,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,R,11,S PEREZ,PER,Cadillac,17.0,17,Finished,0.0,19.0,0 days 00:01:32.453000,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,R,14,F ALONSO,ALO,Aston Martin,18.0,18,Lapped,0.0,21.0,0 days 00:00:26.548000,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,R,77,V BOTTAS,BOT,Cadillac,19.0,19,Lapped,0.0,20.0,0 days 00:00:42.621000,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,R,23,A ALBON,ALB,Williams,20.0,20,Lapped,0.0,17.0,0 days 00:00:05.067000,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,R,18,L STROLL,STR,Aston Martin,21.0,R,Retired,0.0,22.0,,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,R,87,O BEARMAN,BEA,Haas F1 Team,22.0,R,Retired,0.0,18.0,,suzuka,suzuka_gp,resolved
+2026,Chinese Grand Prix,2,R,12,K ANTONELLI,ANT,Mercedes,1.0,1,Finished,25.0,1.0,0 days 01:33:15.607000,shanghai,shanghai_gp,resolved
+2026,Chinese Grand Prix,2,R,63,G RUSSELL,RUS,Mercedes,2.0,2,Finished,18.0,2.0,0 days 00:00:05.515000,shanghai,shanghai_gp,resolved
+2026,Chinese Grand Prix,2,R,44,L HAMILTON,HAM,Ferrari,3.0,3,Finished,15.0,3.0,0 days 00:00:25.267000,shanghai,shanghai_gp,resolved
+2026,Chinese Grand Prix,2,R,16,C LECLERC,LEC,Ferrari,4.0,4,Finished,12.0,4.0,0 days 00:00:28.894000,shanghai,shanghai_gp,resolved
+2026,Chinese Grand Prix,2,R,87,O BEARMAN,BEA,Haas F1 Team,5.0,5,Finished,10.0,10.0,0 days 00:00:57.268000,shanghai,shanghai_gp,resolved
+2026,Chinese Grand Prix,2,R,10,P GASLY,GAS,Alpine,6.0,6,Finished,8.0,7.0,0 days 00:00:59.647000,shanghai,shanghai_gp,resolved
+2026,Chinese Grand Prix,2,R,30,L LAWSON,LAW,Racing Bulls,7.0,7,Finished,6.0,14.0,0 days 00:01:20.588000,shanghai,shanghai_gp,resolved
+2026,Chinese Grand Prix,2,R,6,I HADJAR,HAD,Red Bull Racing,8.0,8,Finished,4.0,9.0,0 days 00:01:27.247000,shanghai,shanghai_gp,resolved
+2026,Chinese Grand Prix,2,R,55,C SAINZ,SAI,Williams,9.0,9,Lapped,2.0,17.0,0 days 00:00:11.673000,shanghai,shanghai_gp,resolved
+2026,Chinese Grand Prix,2,R,43,F COLAPINTO,COL,Alpine,10.0,10,Lapped,1.0,12.0,0 days 00:00:12.403000,shanghai,shanghai_gp,resolved
+2026,Chinese Grand Prix,2,R,27,N HULKENBERG,HUL,Audi,11.0,11,Lapped,0.0,11.0,0 days 00:00:21.109000,shanghai,shanghai_gp,resolved
+2026,Chinese Grand Prix,2,R,41,A LINDBLAD,LIN,Racing Bulls,12.0,12,Lapped,0.0,15.0,0 days 00:00:22.828000,shanghai,shanghai_gp,resolved
+2026,Chinese Grand Prix,2,R,77,V BOTTAS,BOT,Cadillac,13.0,13,Lapped,0.0,19.0,0 days 00:00:56.158000,shanghai,shanghai_gp,resolved
+2026,Chinese Grand Prix,2,R,31,E OCON,OCO,Haas F1 Team,14.0,14,Lapped,0.0,13.0,0 days 00:01:06.256000,shanghai,shanghai_gp,resolved
+2026,Chinese Grand Prix,2,R,11,S PEREZ,PER,Cadillac,15.0,15,Lapped,0.0,21.0,0 days 00:01:14.641000,shanghai,shanghai_gp,resolved
+2026,Chinese Grand Prix,2,R,3,M VERSTAPPEN,VER,Red Bull Racing,16.0,R,Retired,0.0,8.0,,shanghai,shanghai_gp,resolved
+2026,Chinese Grand Prix,2,R,14,F ALONSO,ALO,Aston Martin,17.0,R,Retired,0.0,18.0,,shanghai,shanghai_gp,resolved
+2026,Chinese Grand Prix,2,R,18,L STROLL,STR,Aston Martin,18.0,R,Retired,0.0,20.0,,shanghai,shanghai_gp,resolved
+2026,Chinese Grand Prix,2,R,81,O PIASTRI,PIA,McLaren,19.0,W,Did not start,0.0,5.0,,shanghai,shanghai_gp,resolved
+2026,Chinese Grand Prix,2,R,1,L NORRIS,NOR,McLaren,20.0,W,Did not start,0.0,6.0,,shanghai,shanghai_gp,resolved
+2026,Chinese Grand Prix,2,R,5,G BORTOLETO,BOR,Audi,21.0,W,Did not start,0.0,16.0,,shanghai,shanghai_gp,resolved
+2026,Chinese Grand Prix,2,R,23,A ALBON,ALB,Williams,22.0,W,Did not start,0.0,22.0,,shanghai,shanghai_gp,resolved
+2026,Australian Grand Prix,1,R,63,G RUSSELL,RUS,Mercedes,1.0,1,Finished,25.0,1.0,0 days 01:23:06.801000,albert_park,albert_park_gp,resolved
+2026,Australian Grand Prix,1,R,12,K ANTONELLI,ANT,Mercedes,2.0,2,Finished,18.0,2.0,0 days 00:00:02.974000,albert_park,albert_park_gp,resolved
+2026,Australian Grand Prix,1,R,16,C LECLERC,LEC,Ferrari,3.0,3,Finished,15.0,4.0,0 days 00:00:15.519000,albert_park,albert_park_gp,resolved
+2026,Australian Grand Prix,1,R,44,L HAMILTON,HAM,Ferrari,4.0,4,Finished,12.0,7.0,0 days 00:00:16.144000,albert_park,albert_park_gp,resolved
+2026,Australian Grand Prix,1,R,1,L NORRIS,NOR,McLaren,5.0,5,Finished,10.0,6.0,0 days 00:00:51.741000,albert_park,albert_park_gp,resolved
+2026,Australian Grand Prix,1,R,3,M VERSTAPPEN,VER,Red Bull Racing,6.0,6,Finished,8.0,20.0,0 days 00:00:54.617000,albert_park,albert_park_gp,resolved
+2026,Australian Grand Prix,1,R,87,O BEARMAN,BEA,Haas F1 Team,7.0,7,Lapped,6.0,12.0,0 days 00:00:04.593000,albert_park,albert_park_gp,resolved
+2026,Australian Grand Prix,1,R,41,A LINDBLAD,LIN,Racing Bulls,8.0,8,Lapped,4.0,9.0,0 days 00:00:11.816000,albert_park,albert_park_gp,resolved
+2026,Australian Grand Prix,1,R,5,G BORTOLETO,BOR,Audi,9.0,9,Lapped,2.0,10.0,0 days 00:00:12.775000,albert_park,albert_park_gp,resolved
+2026,Australian Grand Prix,1,R,10,P GASLY,GAS,Alpine,10.0,10,Lapped,1.0,14.0,0 days 00:00:29.027000,albert_park,albert_park_gp,resolved
+2026,Australian Grand Prix,1,R,31,E OCON,OCO,Haas F1 Team,11.0,11,Lapped,0.0,13.0,0 days 00:00:29.850000,albert_park,albert_park_gp,resolved
+2026,Australian Grand Prix,1,R,23,A ALBON,ALB,Williams,12.0,12,Lapped,0.0,15.0,0 days 00:00:56.075000,albert_park,albert_park_gp,resolved
+2026,Australian Grand Prix,1,R,30,L LAWSON,LAW,Racing Bulls,13.0,13,Lapped,0.0,8.0,0 days 00:00:57.173000,albert_park,albert_park_gp,resolved
+2026,Australian Grand Prix,1,R,43,F COLAPINTO,COL,Alpine,14.0,14,Lapped,0.0,16.0,0 days 00:00:08.487000,albert_park,albert_park_gp,resolved
+2026,Australian Grand Prix,1,R,55,C SAINZ,SAI,Williams,15.0,15,Lapped,0.0,21.0,0 days 00:00:36.886000,albert_park,albert_park_gp,resolved
+2026,Australian Grand Prix,1,R,11,S PEREZ,PER,Cadillac,16.0,16,Lapped,0.0,18.0,0 days 00:00:07.850000,albert_park,albert_park_gp,resolved
+2026,Australian Grand Prix,1,R,18,L STROLL,STR,Aston Martin,17.0,R,Lapped,0.0,22.0,,albert_park,albert_park_gp,resolved
+2026,Australian Grand Prix,1,R,14,F ALONSO,ALO,Aston Martin,18.0,R,Retired,0.0,17.0,,albert_park,albert_park_gp,resolved
+2026,Australian Grand Prix,1,R,77,V BOTTAS,BOT,Cadillac,19.0,R,Retired,0.0,19.0,,albert_park,albert_park_gp,resolved
+2026,Australian Grand Prix,1,R,6,I HADJAR,HAD,Red Bull Racing,20.0,R,Retired,0.0,3.0,,albert_park,albert_park_gp,resolved
+2026,Australian Grand Prix,1,R,81,O PIASTRI,PIA,McLaren,21.0,W,Did not start,0.0,5.0,,albert_park,albert_park_gp,resolved
+2026,Australian Grand Prix,1,R,27,N HULKENBERG,HUL,Audi,22.0,W,Did not start,0.0,11.0,,albert_park,albert_park_gp,resolved

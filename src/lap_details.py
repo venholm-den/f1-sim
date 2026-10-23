@@ -28,6 +28,8 @@ def _td_to_seconds(value: Any) -> float | None:
 
 
 def _series_to_seconds(series: pd.Series) -> pd.Series:
+    if series.isna().all():
+        return pd.Series(np.nan, index=series.index, dtype=float)
     return pd.to_timedelta(series, errors="coerce").dt.total_seconds()
 
 
@@ -79,6 +81,9 @@ def extract_lap_details(session: Any, metadata: dict) -> pd.DataFrame:
 
     detail["PitOut"] = pit_out.notna()
     detail["PitIn"] = pit_in.notna()
+    detail['PitInTimeSeconds'] = _series_to_seconds(pit_in)
+    detail['PitOutTimeSeconds'] = _series_to_seconds(pit_out)
+    detail['LapStartUtc'] = pd.to_datetime(_safe_col(laps, 'LapStartDate'), utc=True, errors='coerce')
 
     detail["LapStartTimeSeconds"] = _series_to_seconds(_safe_col(laps, "LapStartTime"))
 

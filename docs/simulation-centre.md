@@ -5,6 +5,9 @@ app using this project's `.venv`; no terminal commands are needed for normal use
 Keep one instance open at a time. This launcher uses the current source code;
 an older executable under `dist` will not include these changes until rebuilt.
 
+For the new one-click upcoming-race workflow, frozen snapshots, post-race scoring,
+and the self-contained Windows package, see [Windows beta](windows-beta.md).
+
 ## Run and review
 
 1. Check the saved-input event and date at the top. The initial data is the saved
@@ -114,6 +117,6 @@ Verified on the configured Windows workspace:
   the run history without repeating preparation.
 - Simulink lap dynamics completed using those historical inputs (20 drivers).
 
-The existing 242-case all-scenario results are also available in history. The
-portable EXE packaging has not been rebuilt or retested in this change; use the
-source launcher above.
+The existing 242-case all-scenario results are also available in history. These
+checks describe the original Simulation Centre work; beta-specific package
+acceptance is documented separately in [Windows beta](windows-beta.md).

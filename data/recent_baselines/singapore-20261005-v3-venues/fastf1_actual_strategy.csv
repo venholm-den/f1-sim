@@ -1,0 +1,346 @@
+year,event,round,Driver,Team,actual_strategy,actual_strategy_sequence,actual_stops,actual_stint_count,actual_first_compound,actual_had_wet_compound,actual_completed_likely,actual_race_laps,actual_driver_max_lap,actual_strategy_source,source_circuit_id,source_layout_id,source_venue_status
+2026,Bahrain Grand Prix,16,ALB,Williams,SOFT-HARD-SOFT,SOFT-HARD-SOFT,2,3,SOFT,True,False,55,42,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,ALO,Aston Martin,MEDIUM-HARD-SOFT,MEDIUM-HARD-SOFT,2,3,MEDIUM,False,True,55,55,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,ANT,Mercedes,MEDIUM-SOFT-SOFT,MEDIUM-SOFT-SOFT,2,3,MEDIUM,True,True,55,55,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,BEA,Haas F1 Team,SOFT-MEDIUM-HARD,SOFT-MEDIUM-HARD,2,3,SOFT,False,False,55,38,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,BOR,Audi,SOFT-SOFT-HARD-SOFT-SOFT,SOFT-SOFT-HARD-SOFT-SOFT,4,5,SOFT,True,True,55,55,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,BOT,Cadillac,SOFT,SOFT,0,1,SOFT,False,False,55,8,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,COL,Alpine,SOFT-MEDIUM-HARD-MEDIUM,SOFT-MEDIUM-HARD-MEDIUM,3,4,SOFT,False,True,55,55,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,GAS,Alpine,SOFT-MEDIUM-HARD-SOFT-SOFT,SOFT-MEDIUM-HARD-SOFT-SOFT,4,5,SOFT,False,True,55,55,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,HAD,Red Bull Racing,SOFT-SOFT,SOFT-SOFT,1,2,SOFT,True,True,55,55,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,HAM,Ferrari,SOFT-MEDIUM-SOFT,SOFT-MEDIUM-SOFT,2,3,SOFT,False,True,55,55,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,HUL,Audi,SOFT-SOFT-SOFT-SOFT,SOFT-SOFT-SOFT-SOFT,3,4,SOFT,True,True,55,55,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,LAW,Racing Bulls,HARD-HARD-SOFT,HARD-HARD-SOFT,2,3,HARD,True,True,55,55,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,LEC,Ferrari,SOFT-SOFT-SOFT,SOFT-SOFT-SOFT,2,3,SOFT,True,True,55,55,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,LIN,Racing Bulls,HARD-HARD-SOFT,HARD-HARD-SOFT,2,3,HARD,True,True,55,55,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,NOR,McLaren,MEDIUM-HARD-SOFT-SOFT,MEDIUM-HARD-SOFT-SOFT,3,4,MEDIUM,False,True,55,55,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,OCO,Haas F1 Team,SOFT-HARD-SOFT,SOFT-HARD-SOFT,2,3,SOFT,True,True,55,55,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,PER,Cadillac,MEDIUM-HARD-HARD-MEDIUM-SOFT,MEDIUM-HARD-HARD-MEDIUM-SOFT,4,5,MEDIUM,True,True,55,55,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,PIA,McLaren,MEDIUM-HARD-HARD-MEDIUM,MEDIUM-HARD-HARD-MEDIUM,3,4,MEDIUM,True,True,55,55,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,RUS,Mercedes,MEDIUM-SOFT-SOFT,MEDIUM-SOFT-SOFT,2,3,MEDIUM,True,True,55,50,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,SAI,Williams,SOFT-HARD-SOFT,SOFT-HARD-SOFT,2,3,SOFT,True,True,55,55,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,STR,Aston Martin,MEDIUM-HARD-HARD-SOFT,MEDIUM-HARD-HARD-SOFT,3,4,MEDIUM,True,True,55,55,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,VER,Red Bull Racing,SOFT-SOFT-SOFT,SOFT-SOFT-SOFT,2,3,SOFT,True,True,55,55,fastf1_race_lap_stint_data,sepang,sepang_gp,resolved
+2026,Azerbaijan Grand Prix,15,ALB,Williams,SOFT,SOFT,0,1,SOFT,False,False,51,30,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,ALO,Aston Martin,SOFT,SOFT,0,1,SOFT,False,False,51,20,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,ANT,Mercedes,MEDIUM-SOFT-SOFT,MEDIUM-SOFT-SOFT,2,3,MEDIUM,False,True,51,51,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,BEA,Haas F1 Team,SOFT-MEDIUM-MEDIUM,SOFT-MEDIUM-MEDIUM,2,3,SOFT,False,True,51,51,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,BOR,Audi,MEDIUM-SOFT-SOFT,MEDIUM-SOFT-SOFT,2,3,MEDIUM,False,True,51,51,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,BOT,Cadillac,MEDIUM-SOFT-SOFT,MEDIUM-SOFT-SOFT,2,3,MEDIUM,False,True,51,50,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,COL,Alpine,MEDIUM-SOFT,MEDIUM-SOFT,1,2,MEDIUM,False,False,51,36,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,GAS,Alpine,MEDIUM-SOFT,MEDIUM-SOFT,1,2,MEDIUM,False,False,51,36,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,HAD,Red Bull Racing,SOFT-MEDIUM-MEDIUM,SOFT-MEDIUM-MEDIUM,2,3,SOFT,False,True,51,51,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,HAM,Ferrari,SOFT-MEDIUM-MEDIUM,SOFT-MEDIUM-MEDIUM,2,3,SOFT,False,True,51,51,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,HUL,Audi,MEDIUM-SOFT-SOFT,MEDIUM-SOFT-SOFT,2,3,MEDIUM,False,True,51,51,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,LAW,Racing Bulls,SOFT-MEDIUM-SOFT,SOFT-MEDIUM-SOFT,2,3,SOFT,False,True,51,51,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,LEC,Ferrari,SOFT-MEDIUM-MEDIUM,SOFT-MEDIUM-MEDIUM,2,3,SOFT,False,True,51,51,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,LIN,Racing Bulls,MEDIUM-SOFT-SOFT,MEDIUM-SOFT-SOFT,2,3,MEDIUM,False,True,51,51,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,NOR,McLaren,MEDIUM-SOFT,MEDIUM-SOFT,1,2,MEDIUM,False,False,51,36,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,OCO,Haas F1 Team,SOFT-MEDIUM-MEDIUM,SOFT-MEDIUM-MEDIUM,2,3,SOFT,False,True,51,51,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,PER,Cadillac,MEDIUM-SOFT-SOFT,MEDIUM-SOFT-SOFT,2,3,MEDIUM,False,True,51,51,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,PIA,McLaren,SOFT-MEDIUM-MEDIUM,SOFT-MEDIUM-MEDIUM,2,3,SOFT,False,True,51,51,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,RUS,Mercedes,MEDIUM-SOFT-SOFT,MEDIUM-SOFT-SOFT,2,3,MEDIUM,False,True,51,51,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,SAI,Williams,MEDIUM-SOFT-SOFT-SOFT,MEDIUM-SOFT-SOFT-SOFT,3,4,MEDIUM,False,True,51,51,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,STR,Aston Martin,SOFT,SOFT,0,1,SOFT,False,False,51,8,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,VER,Red Bull Racing,MEDIUM-SOFT-SOFT,MEDIUM-SOFT-SOFT,2,3,MEDIUM,False,True,51,51,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Spanish Grand Prix,14,ALB,Williams,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,56,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,ALO,Aston Martin,HARD-SOFT-HARD,HARD-SOFT-HARD,2,3,HARD,False,True,57,55,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,ANT,Mercedes,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,57,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,BEA,Haas F1 Team,HARD-MEDIUM-HARD,HARD-MEDIUM-HARD,2,3,HARD,False,True,57,56,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,BOR,Audi,HARD-SOFT,HARD-SOFT,1,2,HARD,False,True,57,56,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,BOT,Cadillac,HARD-HARD-SOFT,HARD-HARD-SOFT,2,3,HARD,False,True,57,54,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,COL,Alpine,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,57,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,GAS,Alpine,HARD,HARD,0,1,HARD,False,True,57,56,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,HAM,Ferrari,SOFT,SOFT,0,1,SOFT,False,False,57,6,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,HUL,Audi,SOFT-HARD,SOFT-HARD,1,2,SOFT,False,True,57,56,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,LAW,Red Bull Racing,HARD-MEDIUM,HARD-MEDIUM,1,2,HARD,False,True,57,57,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,LEC,Ferrari,HARD-SOFT,HARD-SOFT,1,2,HARD,False,True,57,57,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,LIN,Racing Bulls,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,56,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,NOR,McLaren,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,57,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,OCO,Haas F1 Team,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,56,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,PER,Cadillac,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,False,57,31,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,PIA,McLaren,HARD-MEDIUM,HARD-MEDIUM,1,2,HARD,False,True,57,57,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,RUS,Mercedes,HARD-MEDIUM-HARD,HARD-MEDIUM-HARD,2,3,HARD,False,True,57,57,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,SAI,Williams,HARD-MEDIUM-HARD,HARD-MEDIUM-HARD,2,3,HARD,False,False,57,43,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,STR,Aston Martin,HARD,HARD,0,1,HARD,False,False,57,13,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,TSU,Racing Bulls,HARD-MEDIUM,HARD-MEDIUM,1,2,HARD,False,True,57,56,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Spanish Grand Prix,14,VER,Red Bull Racing,SOFT-HARD,SOFT-HARD,1,2,SOFT,False,True,57,57,fastf1_race_lap_stint_data,madring,madring_gp,resolved
+2026,Italian Grand Prix,13,ALB,Williams,MEDIUM-HARD-SOFT,MEDIUM-HARD-SOFT,2,3,MEDIUM,False,True,53,52,fastf1_race_lap_stint_data,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,ALO,Aston Martin,HARD-SOFT,HARD-SOFT,1,2,HARD,False,False,53,23,fastf1_race_lap_stint_data,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,ANT,Mercedes,HARD-MEDIUM-MEDIUM,HARD-MEDIUM-MEDIUM,2,3,HARD,False,True,53,53,fastf1_race_lap_stint_data,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,BEA,Haas F1 Team,SOFT-HARD,SOFT-HARD,1,2,SOFT,False,True,53,53,fastf1_race_lap_stint_data,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,BOR,Audi,SOFT-MEDIUM,SOFT-MEDIUM,1,2,SOFT,False,True,53,53,fastf1_race_lap_stint_data,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,BOT,Cadillac,SOFT-MEDIUM-SOFT,SOFT-MEDIUM-SOFT,2,3,SOFT,False,True,53,51,fastf1_race_lap_stint_data,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,COL,Alpine,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,GAS,Alpine,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,HAM,Ferrari,SOFT-MEDIUM,SOFT-MEDIUM,1,2,SOFT,False,True,53,53,fastf1_race_lap_stint_data,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,HUL,Audi,MEDIUM-HARD-MEDIUM,MEDIUM-HARD-MEDIUM,2,3,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,LAW,Red Bull Racing,MEDIUM-HARD-MEDIUM,MEDIUM-HARD-MEDIUM,2,3,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,LEC,Ferrari,SOFT,SOFT,0,1,SOFT,False,False,53,2,fastf1_race_lap_stint_data,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,LIN,Racing Bulls,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,NOR,McLaren,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,OCO,Haas F1 Team,SOFT-HARD-MEDIUM,SOFT-HARD-MEDIUM,2,3,SOFT,False,True,53,52,fastf1_race_lap_stint_data,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,PER,Cadillac,SOFT-SOFT-MEDIUM,SOFT-SOFT-MEDIUM,2,3,SOFT,False,True,53,52,fastf1_race_lap_stint_data,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,PIA,McLaren,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,RUS,Mercedes,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,SAI,Williams,SOFT-HARD-MEDIUM,SOFT-HARD-MEDIUM,2,3,SOFT,False,True,53,53,fastf1_race_lap_stint_data,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,STR,Aston Martin,SOFT-HARD,SOFT-HARD,1,2,SOFT,False,False,53,27,fastf1_race_lap_stint_data,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,TSU,Racing Bulls,HARD-MEDIUM,HARD-MEDIUM,1,2,HARD,False,True,53,53,fastf1_race_lap_stint_data,monza,monza_gp,resolved
+2026,Italian Grand Prix,13,VER,Red Bull Racing,SOFT-MEDIUM-HARD,SOFT-MEDIUM-HARD,2,3,SOFT,False,True,53,53,fastf1_race_lap_stint_data,monza,monza_gp,resolved
+2026,Dutch Grand Prix,12,ALB,Williams,SOFT-HARD-HARD-MEDIUM,SOFT-HARD-HARD-MEDIUM,3,4,SOFT,False,True,72,66,fastf1_race_lap_stint_data,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,ALO,Aston Martin,SOFT-SOFT-HARD,SOFT-SOFT-HARD,2,3,SOFT,False,True,72,71,fastf1_race_lap_stint_data,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,ANT,Mercedes,MEDIUM-MEDIUM-HARD-HARD-SOFT,MEDIUM-MEDIUM-HARD-HARD-SOFT,4,5,MEDIUM,False,True,72,72,fastf1_race_lap_stint_data,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,BEA,Haas F1 Team,SOFT,SOFT,0,1,SOFT,False,False,72,2,fastf1_race_lap_stint_data,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,BOR,Audi,SOFT-SOFT-MEDIUM-HARD-SOFT,SOFT-SOFT-MEDIUM-HARD-SOFT,4,5,SOFT,False,True,72,71,fastf1_race_lap_stint_data,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,BOT,Cadillac,HARD-HARD-HARD-SOFT,HARD-HARD-HARD-SOFT,3,4,HARD,False,True,72,61,fastf1_race_lap_stint_data,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,COL,Alpine,MEDIUM-MEDIUM-MEDIUM-HARD-SOFT,MEDIUM-MEDIUM-MEDIUM-HARD-SOFT,4,5,MEDIUM,False,True,72,70,fastf1_race_lap_stint_data,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,GAS,Alpine,MEDIUM-MEDIUM-HARD-MEDIUM,MEDIUM-MEDIUM-HARD-MEDIUM,3,4,MEDIUM,False,True,72,71,fastf1_race_lap_stint_data,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,HAM,Ferrari,SOFT-SOFT-HARD-SOFT,SOFT-SOFT-HARD-SOFT,3,4,SOFT,False,True,72,72,fastf1_race_lap_stint_data,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,HUL,Audi,SOFT-SOFT-SOFT-HARD,SOFT-SOFT-SOFT-HARD,3,4,SOFT,False,True,72,71,fastf1_race_lap_stint_data,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,LAW,Red Bull Racing,SOFT-SOFT-MEDIUM-MEDIUM,SOFT-SOFT-MEDIUM-MEDIUM,3,4,SOFT,False,True,72,72,fastf1_race_lap_stint_data,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,LEC,Ferrari,SOFT-SOFT-MEDIUM-HARD-SOFT,SOFT-SOFT-MEDIUM-HARD-SOFT,4,5,SOFT,False,True,72,72,fastf1_race_lap_stint_data,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,LIN,Racing Bulls,SOFT-MEDIUM-MEDIUM-HARD,SOFT-MEDIUM-MEDIUM-HARD,3,4,SOFT,False,True,72,71,fastf1_race_lap_stint_data,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,NOR,McLaren,MEDIUM-SOFT-HARD-HARD,MEDIUM-SOFT-HARD-HARD,3,4,MEDIUM,False,True,72,72,fastf1_race_lap_stint_data,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,OCO,Haas F1 Team,MEDIUM-SOFT-HARD-HARD,MEDIUM-SOFT-HARD-HARD,3,4,MEDIUM,False,False,72,53,fastf1_race_lap_stint_data,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,PER,Cadillac,SOFT-HARD-HARD-SOFT,SOFT-HARD-HARD-SOFT,3,4,SOFT,False,True,72,70,fastf1_race_lap_stint_data,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,PIA,McLaren,MEDIUM-HARD-HARD-SOFT-SOFT,MEDIUM-HARD-HARD-SOFT-SOFT,4,5,MEDIUM,False,True,72,72,fastf1_race_lap_stint_data,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,RUS,Mercedes,MEDIUM-MEDIUM-HARD-HARD,MEDIUM-MEDIUM-HARD-HARD,3,4,MEDIUM,False,True,72,72,fastf1_race_lap_stint_data,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,SAI,Williams,SOFT-SOFT-HARD-SOFT,SOFT-SOFT-HARD-SOFT,3,4,SOFT,False,True,72,70,fastf1_race_lap_stint_data,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,STR,Aston Martin,SOFT-SOFT-HARD-HARD,SOFT-SOFT-HARD-HARD,3,4,SOFT,False,False,72,45,fastf1_race_lap_stint_data,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,TSU,Racing Bulls,SOFT-SOFT-HARD-SOFT,SOFT-SOFT-HARD-SOFT,3,4,SOFT,False,True,72,71,fastf1_race_lap_stint_data,zandvoort,zandvoort_gp,resolved
+2026,Dutch Grand Prix,12,VER,Red Bull Racing,SOFT,SOFT,0,1,SOFT,False,False,72,1,fastf1_race_lap_stint_data,zandvoort,zandvoort_gp,resolved
+2026,Hungarian Grand Prix,11,ALB,Williams,MEDIUM-HARD-SOFT,MEDIUM-HARD-SOFT,2,3,MEDIUM,False,True,70,68,fastf1_race_lap_stint_data,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,ALO,Aston Martin,SOFT-MEDIUM-SOFT,SOFT-MEDIUM-SOFT,2,3,SOFT,False,True,70,69,fastf1_race_lap_stint_data,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,ANT,Mercedes,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,True,70,70,fastf1_race_lap_stint_data,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,BEA,Haas F1 Team,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,True,70,68,fastf1_race_lap_stint_data,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,BOR,Audi,SOFT-HARD,SOFT-HARD,1,2,SOFT,False,True,70,69,fastf1_race_lap_stint_data,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,BOT,Cadillac,MEDIUM,MEDIUM,0,1,MEDIUM,False,False,70,14,fastf1_race_lap_stint_data,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,COL,Alpine,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,True,70,68,fastf1_race_lap_stint_data,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,GAS,Alpine,MEDIUM-HARD-HARD-SOFT,MEDIUM-HARD-HARD-SOFT,3,4,MEDIUM,False,True,70,69,fastf1_race_lap_stint_data,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,HAD,Red Bull Racing,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,True,70,70,fastf1_race_lap_stint_data,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,HAM,Ferrari,SOFT-HARD-HARD-SOFT,SOFT-HARD-HARD-SOFT,3,4,SOFT,False,True,70,70,fastf1_race_lap_stint_data,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,HUL,Audi,MEDIUM-HARD-SOFT,MEDIUM-HARD-SOFT,2,3,MEDIUM,False,True,70,69,fastf1_race_lap_stint_data,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,LAW,Racing Bulls,MEDIUM-HARD-SOFT,MEDIUM-HARD-SOFT,2,3,MEDIUM,False,True,70,69,fastf1_race_lap_stint_data,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,LEC,Ferrari,SOFT-HARD-HARD-SOFT,SOFT-HARD-HARD-SOFT,3,4,SOFT,False,True,70,70,fastf1_race_lap_stint_data,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,LIN,Racing Bulls,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,70,69,fastf1_race_lap_stint_data,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,NOR,McLaren,MEDIUM-HARD-HARD-SOFT,MEDIUM-HARD-HARD-SOFT,3,4,MEDIUM,False,True,70,70,fastf1_race_lap_stint_data,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,OCO,Haas F1 Team,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,True,70,68,fastf1_race_lap_stint_data,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,PER,Cadillac,MEDIUM-SOFT,MEDIUM-SOFT,1,2,MEDIUM,False,False,70,48,fastf1_race_lap_stint_data,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,PIA,McLaren,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,False,70,56,fastf1_race_lap_stint_data,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,RUS,Mercedes,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,True,70,70,fastf1_race_lap_stint_data,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,SAI,Williams,SOFT-MEDIUM-SOFT-SOFT,SOFT-MEDIUM-SOFT-SOFT,3,4,SOFT,False,True,70,68,fastf1_race_lap_stint_data,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,STR,Aston Martin,SOFT-MEDIUM-SOFT,SOFT-MEDIUM-SOFT,2,3,SOFT,False,True,70,69,fastf1_race_lap_stint_data,hungaroring,hungaroring_gp,resolved
+2026,Hungarian Grand Prix,11,VER,Red Bull Racing,MEDIUM-HARD-SOFT,MEDIUM-HARD-SOFT,2,3,MEDIUM,False,True,70,70,fastf1_race_lap_stint_data,hungaroring,hungaroring_gp,resolved
+2026,Belgian Grand Prix,10,ALB,Williams,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,44,44,fastf1_race_lap_stint_data,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,ALO,Aston Martin,HARD-SOFT-HARD,HARD-SOFT-HARD,2,3,HARD,False,True,44,42,fastf1_race_lap_stint_data,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,ANT,Mercedes,MEDIUM-SOFT,MEDIUM-SOFT,1,2,MEDIUM,False,True,44,44,fastf1_race_lap_stint_data,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,BEA,Haas F1 Team,HARD-HARD,HARD-HARD,1,2,HARD,False,True,44,44,fastf1_race_lap_stint_data,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,BOR,Audi,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,44,44,fastf1_race_lap_stint_data,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,BOT,Cadillac,HARD-SOFT,HARD-SOFT,1,2,HARD,False,True,44,43,fastf1_race_lap_stint_data,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,COL,Alpine,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,44,44,fastf1_race_lap_stint_data,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,GAS,Alpine,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,44,44,fastf1_race_lap_stint_data,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,HAD,Red Bull Racing,HARD-HARD,HARD-HARD,1,2,HARD,False,True,44,44,fastf1_race_lap_stint_data,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,HAM,Ferrari,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,44,44,fastf1_race_lap_stint_data,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,HUL,Audi,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,44,44,fastf1_race_lap_stint_data,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,LAW,Racing Bulls,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,44,44,fastf1_race_lap_stint_data,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,LEC,Ferrari,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,44,44,fastf1_race_lap_stint_data,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,LIN,Racing Bulls,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,44,44,fastf1_race_lap_stint_data,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,NOR,McLaren,HARD-MEDIUM,HARD-MEDIUM,1,2,HARD,False,True,44,44,fastf1_race_lap_stint_data,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,OCO,Haas F1 Team,HARD-HARD,HARD-HARD,1,2,HARD,False,True,44,44,fastf1_race_lap_stint_data,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,PER,Cadillac,SOFT,SOFT,0,1,SOFT,False,False,44,13,fastf1_race_lap_stint_data,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,PIA,McLaren,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,44,44,fastf1_race_lap_stint_data,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,RUS,Mercedes,MEDIUM,MEDIUM,0,1,MEDIUM,False,False,44,1,fastf1_race_lap_stint_data,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,SAI,Williams,SOFT-HARD,SOFT-HARD,1,2,SOFT,False,True,44,44,fastf1_race_lap_stint_data,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,STR,Aston Martin,HARD-SOFT,HARD-SOFT,1,2,HARD,False,False,44,25,fastf1_race_lap_stint_data,spa,spa_gp,resolved
+2026,Belgian Grand Prix,10,VER,Red Bull Racing,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,44,44,fastf1_race_lap_stint_data,spa,spa_gp,resolved
+2026,British Grand Prix,9,ALB,Williams,HARD-MEDIUM-SOFT-SOFT-SOFT,HARD-MEDIUM-SOFT-SOFT-SOFT,4,5,HARD,False,False,52,43,fastf1_race_lap_stint_data,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,ALO,Aston Martin,MEDIUM-HARD-SOFT,MEDIUM-HARD-SOFT,2,3,MEDIUM,False,True,52,51,fastf1_race_lap_stint_data,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,ANT,Mercedes,MEDIUM-HARD-MEDIUM-MEDIUM,MEDIUM-HARD-MEDIUM-MEDIUM,3,4,MEDIUM,False,True,52,52,fastf1_race_lap_stint_data,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,BEA,Haas F1 Team,MEDIUM-HARD-SOFT,MEDIUM-HARD-SOFT,2,3,MEDIUM,False,True,52,52,fastf1_race_lap_stint_data,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,BOR,Audi,MEDIUM-HARD-SOFT,MEDIUM-HARD-SOFT,2,3,MEDIUM,False,True,52,52,fastf1_race_lap_stint_data,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,BOT,Cadillac,MEDIUM-HARD-SOFT,MEDIUM-HARD-SOFT,2,3,MEDIUM,False,True,52,52,fastf1_race_lap_stint_data,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,COL,Alpine,MEDIUM-HARD-SOFT,MEDIUM-HARD-SOFT,2,3,MEDIUM,False,True,52,52,fastf1_race_lap_stint_data,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,GAS,Alpine,MEDIUM-HARD-SOFT,MEDIUM-HARD-SOFT,2,3,MEDIUM,False,True,52,52,fastf1_race_lap_stint_data,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,HAD,Red Bull Racing,MEDIUM-HARD-MEDIUM-SOFT,MEDIUM-HARD-MEDIUM-SOFT,3,4,MEDIUM,False,True,52,52,fastf1_race_lap_stint_data,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,HAM,Ferrari,MEDIUM-HARD-SOFT,MEDIUM-HARD-SOFT,2,3,MEDIUM,False,True,52,52,fastf1_race_lap_stint_data,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,HUL,Audi,MEDIUM-HARD-SOFT,MEDIUM-HARD-SOFT,2,3,MEDIUM,False,False,52,37,fastf1_race_lap_stint_data,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,LAW,Racing Bulls,MEDIUM-HARD-SOFT,MEDIUM-HARD-SOFT,2,3,MEDIUM,False,True,52,52,fastf1_race_lap_stint_data,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,LEC,Ferrari,MEDIUM-HARD-SOFT,MEDIUM-HARD-SOFT,2,3,MEDIUM,False,True,52,52,fastf1_race_lap_stint_data,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,LIN,Racing Bulls,MEDIUM-HARD-SOFT,MEDIUM-HARD-SOFT,2,3,MEDIUM,False,True,52,52,fastf1_race_lap_stint_data,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,NOR,McLaren,MEDIUM-HARD-MEDIUM-SOFT,MEDIUM-HARD-MEDIUM-SOFT,3,4,MEDIUM,False,True,52,52,fastf1_race_lap_stint_data,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,OCO,Haas F1 Team,MEDIUM-HARD-SOFT,MEDIUM-HARD-SOFT,2,3,MEDIUM,False,True,52,52,fastf1_race_lap_stint_data,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,PER,Cadillac,MEDIUM-HARD-SOFT,MEDIUM-HARD-SOFT,2,3,MEDIUM,False,True,52,52,fastf1_race_lap_stint_data,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,PIA,McLaren,MEDIUM-HARD-MEDIUM-SOFT,MEDIUM-HARD-MEDIUM-SOFT,3,4,MEDIUM,False,True,52,52,fastf1_race_lap_stint_data,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,RUS,Mercedes,MEDIUM-HARD-MEDIUM,MEDIUM-HARD-MEDIUM,2,3,MEDIUM,False,True,52,52,fastf1_race_lap_stint_data,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,SAI,Williams,MEDIUM-HARD-SOFT,MEDIUM-HARD-SOFT,2,3,MEDIUM,False,True,52,52,fastf1_race_lap_stint_data,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,STR,Aston Martin,MEDIUM-HARD-SOFT,MEDIUM-HARD-SOFT,2,3,MEDIUM,False,True,52,51,fastf1_race_lap_stint_data,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,VER,Red Bull Racing,MEDIUM-HARD-MEDIUM,MEDIUM-HARD-MEDIUM,2,3,MEDIUM,False,True,52,47,fastf1_race_lap_stint_data,silverstone,silverstone_gp,resolved
+2026,Austrian Grand Prix,8,ALB,Williams,MEDIUM-MEDIUM-HARD,MEDIUM-MEDIUM-HARD,2,3,MEDIUM,False,True,71,69,fastf1_race_lap_stint_data,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,ALO,Aston Martin,MEDIUM-SOFT-SOFT,MEDIUM-SOFT-SOFT,2,3,MEDIUM,False,True,71,68,fastf1_race_lap_stint_data,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,ANT,Mercedes,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,True,71,71,fastf1_race_lap_stint_data,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,BEA,Haas F1 Team,MEDIUM-HARD-MEDIUM,MEDIUM-HARD-MEDIUM,2,3,MEDIUM,False,True,71,70,fastf1_race_lap_stint_data,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,BOR,Audi,SOFT-MEDIUM-HARD,SOFT-MEDIUM-HARD,2,3,SOFT,False,True,71,70,fastf1_race_lap_stint_data,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,BOT,Cadillac,MEDIUM,MEDIUM,0,1,MEDIUM,False,False,71,2,fastf1_race_lap_stint_data,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,COL,Alpine,MEDIUM-HARD-MEDIUM,MEDIUM-HARD-MEDIUM,2,3,MEDIUM,False,True,71,70,fastf1_race_lap_stint_data,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,GAS,Alpine,MEDIUM-HARD-MEDIUM-SOFT,MEDIUM-HARD-MEDIUM-SOFT,3,4,MEDIUM,False,True,71,70,fastf1_race_lap_stint_data,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,HAD,Red Bull Racing,MEDIUM-MEDIUM-HARD,MEDIUM-MEDIUM-HARD,2,3,MEDIUM,False,True,71,71,fastf1_race_lap_stint_data,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,HAM,Ferrari,MEDIUM-HARD-SOFT-HARD,MEDIUM-HARD-SOFT-HARD,3,4,MEDIUM,False,True,71,71,fastf1_race_lap_stint_data,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,HUL,Audi,MEDIUM-MEDIUM-HARD,MEDIUM-MEDIUM-HARD,2,3,MEDIUM,False,True,71,70,fastf1_race_lap_stint_data,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,LAW,Racing Bulls,MEDIUM-HARD-MEDIUM,MEDIUM-HARD-MEDIUM,2,3,MEDIUM,False,True,71,70,fastf1_race_lap_stint_data,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,LEC,Ferrari,MEDIUM-HARD-HARD-SOFT,MEDIUM-HARD-HARD-SOFT,3,4,MEDIUM,False,True,71,71,fastf1_race_lap_stint_data,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,LIN,Racing Bulls,MEDIUM-HARD-MEDIUM,MEDIUM-HARD-MEDIUM,2,3,MEDIUM,False,True,71,70,fastf1_race_lap_stint_data,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,NOR,McLaren,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,True,71,71,fastf1_race_lap_stint_data,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,OCO,Haas F1 Team,MEDIUM-MEDIUM-HARD,MEDIUM-MEDIUM-HARD,2,3,MEDIUM,False,True,71,69,fastf1_race_lap_stint_data,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,PER,Cadillac,MEDIUM,MEDIUM,0,1,MEDIUM,False,False,71,4,fastf1_race_lap_stint_data,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,PIA,McLaren,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,True,71,71,fastf1_race_lap_stint_data,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,RUS,Mercedes,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,True,71,71,fastf1_race_lap_stint_data,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,SAI,Williams,SOFT-MEDIUM,SOFT-MEDIUM,1,2,SOFT,False,False,71,24,fastf1_race_lap_stint_data,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,STR,Aston Martin,MEDIUM-SOFT,MEDIUM-SOFT,1,2,MEDIUM,False,False,71,45,fastf1_race_lap_stint_data,red_bull_ring,red_bull_ring_gp,resolved
+2026,Austrian Grand Prix,8,VER,Red Bull Racing,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,True,71,71,fastf1_race_lap_stint_data,red_bull_ring,red_bull_ring_gp,resolved
+2026,Barcelona Grand Prix,7,ALB,Williams,MEDIUM-HARD-HARD-SOFT-SOFT,MEDIUM-HARD-HARD-SOFT-SOFT,4,5,MEDIUM,False,False,66,55,fastf1_race_lap_stint_data,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,ALO,Aston Martin,HARD-HARD,HARD-HARD,1,2,HARD,False,False,66,38,fastf1_race_lap_stint_data,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,ANT,Mercedes,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,True,66,62,fastf1_race_lap_stint_data,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,BEA,Haas F1 Team,MEDIUM-HARD-SOFT,MEDIUM-HARD-SOFT,2,3,MEDIUM,False,True,66,60,fastf1_race_lap_stint_data,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,BOR,Audi,MEDIUM-HARD-HARD-SOFT,MEDIUM-HARD-HARD-SOFT,3,4,MEDIUM,False,True,66,64,fastf1_race_lap_stint_data,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,BOT,Cadillac,MEDIUM,MEDIUM,0,1,MEDIUM,False,False,66,15,fastf1_race_lap_stint_data,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,COL,Alpine,SOFT-HARD-HARD,SOFT-HARD-HARD,2,3,SOFT,False,True,66,65,fastf1_race_lap_stint_data,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,GAS,Alpine,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,True,66,65,fastf1_race_lap_stint_data,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,HAD,Red Bull Racing,MEDIUM-HARD-HARD-SOFT,MEDIUM-HARD-HARD-SOFT,3,4,MEDIUM,False,True,66,65,fastf1_race_lap_stint_data,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,HAM,Ferrari,SOFT-HARD-MEDIUM-HARD,SOFT-HARD-MEDIUM-HARD,3,4,SOFT,False,True,66,66,fastf1_race_lap_stint_data,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,HUL,Audi,SOFT-HARD,SOFT-HARD,1,2,SOFT,False,False,66,29,fastf1_race_lap_stint_data,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,LAW,Racing Bulls,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,True,66,65,fastf1_race_lap_stint_data,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,LEC,Ferrari,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,True,66,62,fastf1_race_lap_stint_data,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,LIN,Racing Bulls,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,True,66,65,fastf1_race_lap_stint_data,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,NOR,McLaren,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,True,66,66,fastf1_race_lap_stint_data,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,OCO,Haas F1 Team,SOFT-HARD-MEDIUM-SOFT,SOFT-HARD-MEDIUM-SOFT,3,4,SOFT,False,True,66,64,fastf1_race_lap_stint_data,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,PER,Cadillac,SOFT-HARD-HARD-MEDIUM,SOFT-HARD-HARD-MEDIUM,3,4,SOFT,False,True,66,63,fastf1_race_lap_stint_data,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,PIA,McLaren,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,True,66,66,fastf1_race_lap_stint_data,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,RUS,Mercedes,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,True,66,66,fastf1_race_lap_stint_data,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,SAI,Williams,SOFT-HARD-HARD-MEDIUM,SOFT-HARD-HARD-MEDIUM,3,4,SOFT,False,True,66,64,fastf1_race_lap_stint_data,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,STR,Aston Martin,HARD,HARD,0,1,HARD,False,False,66,5,fastf1_race_lap_stint_data,catalunya,catalunya_since_2023,resolved
+2026,Barcelona Grand Prix,7,VER,Red Bull Racing,SOFT-MEDIUM-HARD-MEDIUM,SOFT-MEDIUM-HARD-MEDIUM,3,4,SOFT,False,True,66,66,fastf1_race_lap_stint_data,catalunya,catalunya_since_2023,resolved
+2026,Monaco Grand Prix,6,ALB,Williams,MEDIUM-SOFT-SOFT-SOFT-SOFT,MEDIUM-SOFT-SOFT-SOFT-SOFT,4,5,MEDIUM,False,True,78,78,fastf1_race_lap_stint_data,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,ALO,Aston Martin,MEDIUM-SOFT-SOFT-SOFT-SOFT,MEDIUM-SOFT-SOFT-SOFT-SOFT,4,5,MEDIUM,False,True,78,78,fastf1_race_lap_stint_data,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,ANT,Mercedes,MEDIUM-HARD-SOFT-SOFT-SOFT,MEDIUM-HARD-SOFT-SOFT-SOFT,4,5,MEDIUM,False,True,78,78,fastf1_race_lap_stint_data,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,BEA,Haas F1 Team,HARD,HARD,0,1,HARD,False,False,78,28,fastf1_race_lap_stint_data,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,BOR,Audi,HARD-MEDIUM-SOFT-SOFT-SOFT,HARD-MEDIUM-SOFT-SOFT-SOFT,4,5,HARD,False,True,78,78,fastf1_race_lap_stint_data,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,BOT,Cadillac,MEDIUM,MEDIUM,0,1,MEDIUM,False,False,78,16,fastf1_race_lap_stint_data,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,COL,Alpine,MEDIUM-HARD-HARD-HARD-SOFT,MEDIUM-HARD-HARD-HARD-SOFT,4,5,MEDIUM,False,True,78,78,fastf1_race_lap_stint_data,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,GAS,Alpine,MEDIUM-HARD-HARD-HARD-SOFT,MEDIUM-HARD-HARD-HARD-SOFT,4,5,MEDIUM,False,True,78,78,fastf1_race_lap_stint_data,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,HAD,Red Bull Racing,MEDIUM-HARD-HARD-HARD-SOFT,MEDIUM-HARD-HARD-HARD-SOFT,4,5,MEDIUM,False,True,78,78,fastf1_race_lap_stint_data,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,HAM,Ferrari,MEDIUM-HARD-SOFT-SOFT-SOFT,MEDIUM-HARD-SOFT-SOFT-SOFT,4,5,MEDIUM,False,True,78,78,fastf1_race_lap_stint_data,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,HUL,Audi,MEDIUM-HARD-HARD-HARD-SOFT,MEDIUM-HARD-HARD-HARD-SOFT,4,5,MEDIUM,False,True,78,78,fastf1_race_lap_stint_data,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,LAW,Racing Bulls,MEDIUM-SOFT-SOFT-SOFT-SOFT,MEDIUM-SOFT-SOFT-SOFT-SOFT,4,5,MEDIUM,False,True,78,78,fastf1_race_lap_stint_data,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,LEC,Ferrari,MEDIUM-HARD-SOFT,MEDIUM-HARD-SOFT,2,3,MEDIUM,False,False,78,65,fastf1_race_lap_stint_data,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,LIN,Racing Bulls,MEDIUM-MEDIUM-MEDIUM-SOFT,MEDIUM-MEDIUM-MEDIUM-SOFT,3,4,MEDIUM,False,True,78,78,fastf1_race_lap_stint_data,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,NOR,McLaren,MEDIUM,MEDIUM,0,1,MEDIUM,False,False,78,44,fastf1_race_lap_stint_data,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,OCO,Haas F1 Team,MEDIUM-HARD-HARD-HARD-SOFT,MEDIUM-HARD-HARD-HARD-SOFT,4,5,MEDIUM,False,True,78,78,fastf1_race_lap_stint_data,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,PER,Cadillac,SOFT-MEDIUM-MEDIUM-SOFT-SOFT-SOFT,SOFT-MEDIUM-MEDIUM-SOFT-SOFT-SOFT,5,6,SOFT,False,True,78,78,fastf1_race_lap_stint_data,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,PIA,McLaren,MEDIUM-HARD-SOFT-SOFT-SOFT,MEDIUM-HARD-SOFT-SOFT-SOFT,4,5,MEDIUM,False,True,78,78,fastf1_race_lap_stint_data,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,RUS,Mercedes,MEDIUM-HARD-SOFT-SOFT-SOFT-SOFT,MEDIUM-HARD-SOFT-SOFT-SOFT-SOFT,5,6,MEDIUM,False,True,78,78,fastf1_race_lap_stint_data,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,SAI,Williams,MEDIUM-SOFT-SOFT-SOFT-SOFT,MEDIUM-SOFT-SOFT-SOFT-SOFT,4,5,MEDIUM,False,True,78,71,fastf1_race_lap_stint_data,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,STR,Aston Martin,MEDIUM-SOFT,MEDIUM-SOFT,1,2,MEDIUM,False,False,78,57,fastf1_race_lap_stint_data,monaco,monaco_gp,resolved
+2026,Monaco Grand Prix,6,VER,Red Bull Racing,MEDIUM,MEDIUM,0,1,MEDIUM,False,False,78,1,fastf1_race_lap_stint_data,monaco,monaco_gp,resolved
+2026,Canadian Grand Prix,5,ALB,Williams,SOFT,SOFT,0,1,SOFT,False,False,68,12,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,ALO,Aston Martin,SOFT-SOFT,SOFT-SOFT,1,2,SOFT,False,False,68,24,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,ANT,Mercedes,SOFT-MEDIUM,SOFT-MEDIUM,1,2,SOFT,False,True,68,68,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,BEA,Haas F1 Team,SOFT-MEDIUM,SOFT-MEDIUM,1,2,SOFT,False,True,68,67,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,BOR,Audi,SOFT-MEDIUM,SOFT-MEDIUM,1,2,SOFT,True,True,68,66,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,BOT,Cadillac,SOFT-MEDIUM-SOFT-MEDIUM,SOFT-MEDIUM-SOFT-MEDIUM,3,4,SOFT,True,True,68,64,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,COL,Alpine,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,68,67,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,GAS,Alpine,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,68,67,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,HAD,Red Bull Racing,SOFT-MEDIUM-SOFT-SOFT,SOFT-MEDIUM-SOFT-SOFT,3,4,SOFT,False,True,68,67,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,HAM,Ferrari,SOFT-MEDIUM,SOFT-MEDIUM,1,2,SOFT,False,True,68,68,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,HUL,Audi,SOFT-MEDIUM,SOFT-MEDIUM,1,2,SOFT,True,True,68,66,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,LAW,Racing Bulls,MEDIUM-SOFT,MEDIUM-SOFT,1,2,MEDIUM,False,True,68,67,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,LEC,Ferrari,SOFT-MEDIUM,SOFT-MEDIUM,1,2,SOFT,False,True,68,68,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,NOR,McLaren,MEDIUM-MEDIUM,MEDIUM-MEDIUM,1,2,MEDIUM,True,False,68,39,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,OCO,Haas F1 Team,SOFT-MEDIUM-SOFT,SOFT-MEDIUM-SOFT,2,3,SOFT,False,True,68,66,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,PER,Cadillac,SOFT-MEDIUM-SOFT,SOFT-MEDIUM-SOFT,2,3,SOFT,True,False,68,40,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,PIA,McLaren,MEDIUM-MEDIUM-SOFT,MEDIUM-MEDIUM-SOFT,2,3,MEDIUM,False,True,68,66,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,RUS,Mercedes,SOFT,SOFT,0,1,SOFT,False,False,68,30,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,SAI,Williams,MEDIUM-MEDIUM,MEDIUM-MEDIUM,1,2,MEDIUM,True,True,68,67,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,STR,Aston Martin,SOFT-SOFT-MEDIUM,SOFT-SOFT-MEDIUM,2,3,SOFT,False,True,68,64,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,VER,Red Bull Racing,SOFT-MEDIUM,SOFT-MEDIUM,1,2,SOFT,False,True,68,68,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Miami Grand Prix,4,ALB,Williams,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,57,fastf1_race_lap_stint_data,,,unresolved
+2026,Miami Grand Prix,4,ALO,Aston Martin,MEDIUM-SOFT,MEDIUM-SOFT,1,2,MEDIUM,False,True,57,56,fastf1_race_lap_stint_data,,,unresolved
+2026,Miami Grand Prix,4,ANT,Mercedes,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,57,fastf1_race_lap_stint_data,,,unresolved
+2026,Miami Grand Prix,4,BEA,Haas F1 Team,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,56,fastf1_race_lap_stint_data,,,unresolved
+2026,Miami Grand Prix,4,BOR,Audi,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,56,fastf1_race_lap_stint_data,,,unresolved
+2026,Miami Grand Prix,4,BOT,Cadillac,MEDIUM-SOFT-MEDIUM-MEDIUM,MEDIUM-SOFT-MEDIUM-MEDIUM,3,4,MEDIUM,False,True,57,55,fastf1_race_lap_stint_data,,,unresolved
+2026,Miami Grand Prix,4,COL,Alpine,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,57,fastf1_race_lap_stint_data,,,unresolved
+2026,Miami Grand Prix,4,GAS,Alpine,MEDIUM,MEDIUM,0,1,MEDIUM,False,False,57,5,fastf1_race_lap_stint_data,,,unresolved
+2026,Miami Grand Prix,4,HAD,Red Bull Racing,HARD,HARD,0,1,HARD,False,False,57,5,fastf1_race_lap_stint_data,,,unresolved
+2026,Miami Grand Prix,4,HAM,Ferrari,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,57,fastf1_race_lap_stint_data,,,unresolved
+2026,Miami Grand Prix,4,HUL,Audi,MEDIUM,MEDIUM,0,1,MEDIUM,False,False,57,7,fastf1_race_lap_stint_data,,,unresolved
+2026,Miami Grand Prix,4,LAW,Racing Bulls,MEDIUM,MEDIUM,0,1,MEDIUM,False,False,57,6,fastf1_race_lap_stint_data,,,unresolved
+2026,Miami Grand Prix,4,LEC,Ferrari,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,57,fastf1_race_lap_stint_data,,,unresolved
+2026,Miami Grand Prix,4,LIN,Racing Bulls,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,56,fastf1_race_lap_stint_data,,,unresolved
+2026,Miami Grand Prix,4,NOR,McLaren,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,57,fastf1_race_lap_stint_data,,,unresolved
+2026,Miami Grand Prix,4,OCO,Haas F1 Team,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,56,fastf1_race_lap_stint_data,,,unresolved
+2026,Miami Grand Prix,4,PER,Cadillac,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,56,fastf1_race_lap_stint_data,,,unresolved
+2026,Miami Grand Prix,4,PIA,McLaren,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,57,fastf1_race_lap_stint_data,,,unresolved
+2026,Miami Grand Prix,4,RUS,Mercedes,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,57,fastf1_race_lap_stint_data,,,unresolved
+2026,Miami Grand Prix,4,SAI,Williams,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,57,fastf1_race_lap_stint_data,,,unresolved
+2026,Miami Grand Prix,4,STR,Aston Martin,MEDIUM-SOFT-SOFT,MEDIUM-SOFT-SOFT,2,3,MEDIUM,False,True,57,56,fastf1_race_lap_stint_data,,,unresolved
+2026,Miami Grand Prix,4,VER,Red Bull Racing,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,57,57,fastf1_race_lap_stint_data,,,unresolved
+2026,Japanese Grand Prix,3,ALB,Williams,MEDIUM-HARD-MEDIUM,MEDIUM-HARD-MEDIUM,2,3,MEDIUM,False,True,53,51,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,ALO,Aston Martin,MEDIUM-HARD-MEDIUM,MEDIUM-HARD-MEDIUM,2,3,MEDIUM,False,True,53,52,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,ANT,Mercedes,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,BEA,Haas F1 Team,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,False,53,21,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,BOR,Audi,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,BOT,Cadillac,HARD-MEDIUM,HARD-MEDIUM,1,2,HARD,False,True,53,52,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,COL,Alpine,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,GAS,Alpine,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,HAD,Red Bull Racing,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,HAM,Ferrari,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,HUL,Audi,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,LAW,Racing Bulls,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,LEC,Ferrari,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,LIN,Racing Bulls,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,NOR,McLaren,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,OCO,Haas F1 Team,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,PER,Cadillac,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,PIA,McLaren,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,RUS,Mercedes,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,SAI,Williams,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,STR,Aston Martin,MEDIUM-HARD-MEDIUM,MEDIUM-HARD-MEDIUM,2,3,MEDIUM,False,False,53,30,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,VER,Red Bull Racing,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Chinese Grand Prix,2,ALO,Aston Martin,HARD,HARD,0,1,HARD,False,False,56,32,fastf1_race_lap_stint_data,shanghai,shanghai_gp,resolved
+2026,Chinese Grand Prix,2,ANT,Mercedes,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,56,56,fastf1_race_lap_stint_data,shanghai,shanghai_gp,resolved
+2026,Chinese Grand Prix,2,BEA,Haas F1 Team,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,56,56,fastf1_race_lap_stint_data,shanghai,shanghai_gp,resolved
+2026,Chinese Grand Prix,2,BOT,Cadillac,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,56,55,fastf1_race_lap_stint_data,shanghai,shanghai_gp,resolved
+2026,Chinese Grand Prix,2,COL,Alpine,HARD-MEDIUM,HARD-MEDIUM,1,2,HARD,False,True,56,55,fastf1_race_lap_stint_data,shanghai,shanghai_gp,resolved
+2026,Chinese Grand Prix,2,GAS,Alpine,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,56,56,fastf1_race_lap_stint_data,shanghai,shanghai_gp,resolved
+2026,Chinese Grand Prix,2,HAD,Red Bull Racing,HARD-HARD,HARD-HARD,1,2,HARD,False,True,56,56,fastf1_race_lap_stint_data,shanghai,shanghai_gp,resolved
+2026,Chinese Grand Prix,2,HAM,Ferrari,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,56,56,fastf1_race_lap_stint_data,shanghai,shanghai_gp,resolved
+2026,Chinese Grand Prix,2,HUL,Audi,HARD-MEDIUM,HARD-MEDIUM,1,2,HARD,False,True,56,55,fastf1_race_lap_stint_data,shanghai,shanghai_gp,resolved
+2026,Chinese Grand Prix,2,LAW,Racing Bulls,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,56,56,fastf1_race_lap_stint_data,shanghai,shanghai_gp,resolved
+2026,Chinese Grand Prix,2,LEC,Ferrari,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,56,56,fastf1_race_lap_stint_data,shanghai,shanghai_gp,resolved
+2026,Chinese Grand Prix,2,LIN,Racing Bulls,HARD-MEDIUM,HARD-MEDIUM,1,2,HARD,False,True,56,55,fastf1_race_lap_stint_data,shanghai,shanghai_gp,resolved
+2026,Chinese Grand Prix,2,OCO,Haas F1 Team,HARD-MEDIUM-SOFT,HARD-MEDIUM-SOFT,2,3,HARD,False,True,56,55,fastf1_race_lap_stint_data,shanghai,shanghai_gp,resolved
+2026,Chinese Grand Prix,2,PER,Cadillac,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,56,55,fastf1_race_lap_stint_data,shanghai,shanghai_gp,resolved
+2026,Chinese Grand Prix,2,RUS,Mercedes,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,56,56,fastf1_race_lap_stint_data,shanghai,shanghai_gp,resolved
+2026,Chinese Grand Prix,2,SAI,Williams,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,56,55,fastf1_race_lap_stint_data,shanghai,shanghai_gp,resolved
+2026,Chinese Grand Prix,2,STR,Aston Martin,HARD,HARD,0,1,HARD,False,False,56,10,fastf1_race_lap_stint_data,shanghai,shanghai_gp,resolved
+2026,Chinese Grand Prix,2,VER,Red Bull Racing,SOFT-HARD,SOFT-HARD,1,2,SOFT,False,False,56,45,fastf1_race_lap_stint_data,shanghai,shanghai_gp,resolved
+2026,Australian Grand Prix,1,ALB,Williams,MEDIUM-HARD-SOFT,MEDIUM-HARD-SOFT,2,3,MEDIUM,False,True,58,57,fastf1_race_lap_stint_data,albert_park,albert_park_gp,resolved
+2026,Australian Grand Prix,1,ALO,Aston Martin,SOFT-SOFT-SOFT,SOFT-SOFT-SOFT,2,3,SOFT,False,False,58,22,fastf1_race_lap_stint_data,albert_park,albert_park_gp,resolved
+2026,Australian Grand Prix,1,ANT,Mercedes,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,58,58,fastf1_race_lap_stint_data,albert_park,albert_park_gp,resolved
+2026,Australian Grand Prix,1,BEA,Haas F1 Team,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,58,57,fastf1_race_lap_stint_data,albert_park,albert_park_gp,resolved
+2026,Australian Grand Prix,1,BOR,Audi,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,True,58,57,fastf1_race_lap_stint_data,albert_park,albert_park_gp,resolved
+2026,Australian Grand Prix,1,BOT,Cadillac,HARD-HARD,HARD-HARD,1,2,HARD,False,False,58,16,fastf1_race_lap_stint_data,albert_park,albert_park_gp,resolved
+2026,Australian Grand Prix,1,COL,Alpine,HARD-HARD-SOFT,HARD-HARD-SOFT,2,3,HARD,False,True,58,56,fastf1_race_lap_stint_data,albert_park,albert_park_gp,resolved
+2026,Australian Grand Prix,1,GAS,Alpine,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,58,57,fastf1_race_lap_stint_data,albert_park,albert_park_gp,resolved
+2026,Australian Grand Prix,1,HAD,Red Bull Racing,MEDIUM,MEDIUM,0,1,MEDIUM,False,False,58,11,fastf1_race_lap_stint_data,albert_park,albert_park_gp,resolved
+2026,Australian Grand Prix,1,HAM,Ferrari,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,58,58,fastf1_race_lap_stint_data,albert_park,albert_park_gp,resolved
+2026,Australian Grand Prix,1,LAW,Racing Bulls,MEDIUM-HARD-SOFT,MEDIUM-HARD-SOFT,2,3,MEDIUM,False,True,58,57,fastf1_race_lap_stint_data,albert_park,albert_park_gp,resolved
+2026,Australian Grand Prix,1,LEC,Ferrari,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,58,58,fastf1_race_lap_stint_data,albert_park,albert_park_gp,resolved
+2026,Australian Grand Prix,1,LIN,Racing Bulls,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,58,57,fastf1_race_lap_stint_data,albert_park,albert_park_gp,resolved
+2026,Australian Grand Prix,1,NOR,McLaren,MEDIUM-HARD-MEDIUM,MEDIUM-HARD-MEDIUM,2,3,MEDIUM,False,True,58,58,fastf1_race_lap_stint_data,albert_park,albert_park_gp,resolved
+2026,Australian Grand Prix,1,OCO,Haas F1 Team,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,58,57,fastf1_race_lap_stint_data,albert_park,albert_park_gp,resolved
+2026,Australian Grand Prix,1,PER,Cadillac,MEDIUM-HARD-SOFT,MEDIUM-HARD-SOFT,2,3,MEDIUM,False,True,58,55,fastf1_race_lap_stint_data,albert_park,albert_park_gp,resolved
+2026,Australian Grand Prix,1,RUS,Mercedes,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,58,58,fastf1_race_lap_stint_data,albert_park,albert_park_gp,resolved
+2026,Australian Grand Prix,1,SAI,Williams,SOFT-HARD-MEDIUM-SOFT,SOFT-HARD-MEDIUM-SOFT,3,4,SOFT,False,True,58,56,fastf1_race_lap_stint_data,albert_park,albert_park_gp,resolved
+2026,Australian Grand Prix,1,STR,Aston Martin,MEDIUM-HARD-SOFT-SOFT-SOFT,MEDIUM-HARD-SOFT-SOFT-SOFT,4,5,MEDIUM,False,False,58,43,fastf1_race_lap_stint_data,albert_park,albert_park_gp,resolved
+2026,Australian Grand Prix,1,VER,Red Bull Racing,HARD-MEDIUM-HARD,HARD-MEDIUM-HARD,2,3,HARD,False,True,58,58,fastf1_race_lap_stint_data,albert_park,albert_park_gp,resolved

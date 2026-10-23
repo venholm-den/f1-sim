@@ -133,7 +133,7 @@ def settings_from_config(config: dict[str, Any]) -> PortableRunSettings:
             model.get("use_track_red_flag_base_chance", True)
         ),
         use_historical_model_calibration=bool(
-            model.get("use_historical_model_calibration", True)
+            model.get("use_historical_model_calibration", False)
         ),
         historical_finish_weight=float(model.get("historical_finish_weight", 0.15)),
         historical_dnf_weight=float(model.get("historical_dnf_weight", 0.30)),

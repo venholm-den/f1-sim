@@ -1,0 +1,23 @@
+year,event,round,Driver,Team,actual_strategy,actual_strategy_sequence,actual_stops,actual_stint_count,actual_first_compound,actual_had_wet_compound,actual_completed_likely,actual_race_laps,actual_driver_max_lap,actual_strategy_source
+2026,Barcelona Grand Prix,7,ALB,Williams,MEDIUM-HARD-HARD-SOFT-SOFT,MEDIUM-HARD-HARD-SOFT-SOFT,4,5,MEDIUM,False,False,66,55,fastf1_race_lap_stint_data
+2026,Barcelona Grand Prix,7,ALO,Aston Martin,HARD-HARD,HARD-HARD,1,2,HARD,False,False,66,38,fastf1_race_lap_stint_data
+2026,Barcelona Grand Prix,7,ANT,Mercedes,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,True,66,62,fastf1_race_lap_stint_data
+2026,Barcelona Grand Prix,7,BEA,Haas F1 Team,MEDIUM-HARD-SOFT,MEDIUM-HARD-SOFT,2,3,MEDIUM,False,True,66,60,fastf1_race_lap_stint_data
+2026,Barcelona Grand Prix,7,BOR,Audi,MEDIUM-HARD-HARD-SOFT,MEDIUM-HARD-HARD-SOFT,3,4,MEDIUM,False,True,66,64,fastf1_race_lap_stint_data
+2026,Barcelona Grand Prix,7,BOT,Cadillac,MEDIUM,MEDIUM,0,1,MEDIUM,False,False,66,15,fastf1_race_lap_stint_data
+2026,Barcelona Grand Prix,7,COL,Alpine,SOFT-HARD-HARD,SOFT-HARD-HARD,2,3,SOFT,False,True,66,65,fastf1_race_lap_stint_data
+2026,Barcelona Grand Prix,7,GAS,Alpine,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,True,66,65,fastf1_race_lap_stint_data
+2026,Barcelona Grand Prix,7,HAD,Red Bull Racing,MEDIUM-HARD-HARD-SOFT,MEDIUM-HARD-HARD-SOFT,3,4,MEDIUM,False,True,66,65,fastf1_race_lap_stint_data
+2026,Barcelona Grand Prix,7,HAM,Ferrari,SOFT-HARD-MEDIUM-HARD,SOFT-HARD-MEDIUM-HARD,3,4,SOFT,False,True,66,66,fastf1_race_lap_stint_data
+2026,Barcelona Grand Prix,7,HUL,Audi,SOFT-HARD,SOFT-HARD,1,2,SOFT,False,False,66,29,fastf1_race_lap_stint_data
+2026,Barcelona Grand Prix,7,LAW,Racing Bulls,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,True,66,65,fastf1_race_lap_stint_data
+2026,Barcelona Grand Prix,7,LEC,Ferrari,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,True,66,62,fastf1_race_lap_stint_data
+2026,Barcelona Grand Prix,7,LIN,Racing Bulls,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,True,66,65,fastf1_race_lap_stint_data
+2026,Barcelona Grand Prix,7,NOR,McLaren,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,True,66,66,fastf1_race_lap_stint_data
+2026,Barcelona Grand Prix,7,OCO,Haas F1 Team,SOFT-HARD-MEDIUM-SOFT,SOFT-HARD-MEDIUM-SOFT,3,4,SOFT,False,True,66,64,fastf1_race_lap_stint_data
+2026,Barcelona Grand Prix,7,PER,Cadillac,SOFT-HARD-HARD-MEDIUM,SOFT-HARD-HARD-MEDIUM,3,4,SOFT,False,True,66,63,fastf1_race_lap_stint_data
+2026,Barcelona Grand Prix,7,PIA,McLaren,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,True,66,66,fastf1_race_lap_stint_data
+2026,Barcelona Grand Prix,7,RUS,Mercedes,MEDIUM-HARD-HARD,MEDIUM-HARD-HARD,2,3,MEDIUM,False,True,66,66,fastf1_race_lap_stint_data
+2026,Barcelona Grand Prix,7,SAI,Williams,SOFT-HARD-HARD-MEDIUM,SOFT-HARD-HARD-MEDIUM,3,4,SOFT,False,True,66,64,fastf1_race_lap_stint_data
+2026,Barcelona Grand Prix,7,STR,Aston Martin,HARD,HARD,0,1,HARD,False,False,66,5,fastf1_race_lap_stint_data
+2026,Barcelona Grand Prix,7,VER,Red Bull Racing,SOFT-MEDIUM-HARD-MEDIUM,SOFT-MEDIUM-HARD-MEDIUM,3,4,SOFT,False,True,66,66,fastf1_race_lap_stint_data
