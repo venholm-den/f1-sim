@@ -22,11 +22,15 @@ function renderSessionPills() {
 function renderAutomationStatus(feed) {
   state.automation=feed;$('followPcRuns').checked=feed.following;
   const latest=feed.latest;
-  $('automationStatus').textContent=latest?`${feed.following?'Following':'Paused'} · ${latest.label} · ${new Date(latest.created_at).toLocaleString()}`:feed.pc_available?'No completed, verified forecast found.':'PC automation workspace unavailable.';
+  // Without a workspace there is nothing to follow: show it as off, not on.
+  document.querySelector('.automation-strip').classList.toggle('unavailable',!feed.pc_available);
+  $('followPcRuns').disabled=!feed.pc_available;
+  if(!feed.pc_available)$('followPcRuns').checked=false;
+  $('automationStatus').textContent=latest?`${feed.following?'Following':'Paused'} · ${latest.label} · ${new Date(latest.created_at).toLocaleString()}`:feed.pc_available?'No completed, verified forecast found.':'No PC automation workspace connected. Set one up in Settings.';
   const labels={sent:'Accepted by Discord',pending:'Pending',failed:'Failed',uncertain:'Uncertain — review required',sending:'Interrupted/in progress — review required',not_recorded:'No delivery receipt',unreadable:'Receipt unreadable — review required'};
   const deliveries=feed.deliveries || [];
   const latestDelivery=deliveries[0];
-  $('automationDeliverySummary').textContent=latestDelivery?`Latest delivery: ${latestDelivery.label} · ${labels[latestDelivery.status] || latestDelivery.status}${latestDelivery.attempted_at?` · ${new Date(latestDelivery.attempted_at).toLocaleString()}`:''}. Details in Settings.`:'No Discord delivery receipts found. Details in Settings.';
+  $('automationDeliverySummary').textContent=latestDelivery?`Latest delivery: ${latestDelivery.label} · ${labels[latestDelivery.status] || latestDelivery.status}${latestDelivery.attempted_at?` · ${new Date(latestDelivery.attempted_at).toLocaleString()}`:''}. Details in Settings.`:feed.pc_available?'No Discord delivery receipts yet.':'';
   const health=feed.health || {status:'unknown'};
   $('automationHealthStatus').textContent=`Last automation check: ${health.status}${health.checked_at_utc?` · ${new Date(health.checked_at_utc).toLocaleString()}`:''}.`+
     (health.failures?.length?` Failures: ${health.failures.join(', ')}.`:'')+

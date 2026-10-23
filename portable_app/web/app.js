@@ -28,6 +28,11 @@ function $(id) {
   return document.getElementById(id);
 }
 
+// "latest" is a selector, not a race name; show what it currently resolves to.
+function displayEventName(event) {
+  return event === "latest" ? state.setupOptions?.trackProfile?.event || "Latest eligible event" : event;
+}
+
 function setOptions(select, values, selected) {
   select.innerHTML = "";
   values.forEach((value) => {
@@ -62,6 +67,8 @@ function applySetupOptions(setupOptions, preferredSession) {
 
   const trackProfile = options.trackProfile || {};
   state.setupOptions = options;
+  const latestOption = Array.from($("eventInput").options).find((option) => option.value === "latest");
+  if (latestOption) latestOption.textContent = $("eventInput").value === "latest" && trackProfile.event ? `Latest · ${trackProfile.event}` : "Latest eligible event";
   if (typeof renderSessionPills === 'function') renderSessionPills();
   const overtakingDifficulty = Number(trackProfile.overtaking_difficulty);
   if (Number.isFinite(overtakingDifficulty)) {
@@ -135,7 +142,7 @@ function updateContext() {
   const saved = state.outputs.savedContext;
   const showingSaved = !['setup', 'data', 'settings', 'compare'].includes(state.view) && (state.outputs.summaryTable?.rows || []).length > 0;
   const context = showingSaved ? saved : settings;
-  const eventLabel = context?.event === 'latest' ? state.setupOptions?.trackProfile?.event || 'Latest eligible event' : context?.event;
+  const eventLabel = displayEventName(context?.event);
   $("contextTitle").textContent = eventLabel || 'Select an event';
   $("contextTitle").title = `${context?.year || ''} ${eventLabel || ''}${showingSaved ? ' · saved result' : ' · setup'}`;
   $("metricSession").textContent = context?.session || settings.session;

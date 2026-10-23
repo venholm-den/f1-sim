@@ -507,6 +507,7 @@ def build_grid_features(
     current_session_type: str,
     current_session: Any | None = None,
     fia_context: dict[str, pd.DataFrame] | None = None,
+    grid_penalty_model: str = 'off',
 ) -> pd.DataFrame:
     """
     Adds grid information to model features.
@@ -683,5 +684,12 @@ def build_grid_features(
         ["grid_position", "Driver"],
         ascending=[True, True],
     ).reset_index(drop=True)
+
+    if grid_penalty_model == 'announced_v1':
+        from src.grid_penalties import apply_announced_penalties
+        output = apply_announced_penalties(
+            output, (fia_context or {}).get("penalties"))
+    elif grid_penalty_model != 'off':
+        raise ValueError('Unknown grid_penalty_model.')
 
     return output

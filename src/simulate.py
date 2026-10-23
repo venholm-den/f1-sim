@@ -266,6 +266,8 @@ def simulate_races(
     agent_settings: dict | None = None,
     safety_car_probability: float | None = None,
     single_degradation_multiplier: float | None = None,
+    team_noise_seconds: float | None = None,
+    sample_estimated_grid: bool = False,
 ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     """
     Simulates races by estimating total projected race time per driver.
@@ -279,6 +281,9 @@ def simulate_races(
 
     safety_car_probability enables the opt-in track_sc_v1 candidate
     (src/safety_car.py); None keeps the established engine unchanged.
+    team_noise_seconds enables team_noise_v1 (src/shared_noise.py) and
+    sample_estimated_grid enables estimated_grid_v1 (src/grid_penalties.py);
+    both use their own random streams.
     """
 
     if retirement_classification not in {'legacy', 'completed_laps_v1'}:
@@ -291,6 +296,8 @@ def simulate_races(
             raise ValueError('Agent traffic replaces aggregate grid loss.')
         if safety_car_probability is not None:
             raise ValueError('The agent engine has its own SC/VSC neutralisation.')
+        if team_noise_seconds is not None or sample_estimated_grid:
+            raise ValueError('Shared noise and grid sampling apply to the aggregate engine only.')
         return simulate_agent_races(base, n_sims, seed, pit_plans=pit_plans,
             settings=agent_settings, sample_pace_posterior=sample_pace_posterior,
             weather_modifiers=weather_modifiers, overtaking_difficulty=overtaking_difficulty)
@@ -460,6 +467,27 @@ def simulate_races(
         projected_times = (base_winner_time - DEFAULT_PIT_AND_RACE_ALLOWANCE + pace_samples * race_laps + grid_loss
                            + pit_costs + race_noise + start_noise + chaos_noise)
 
+    qualifying = (base["qualifying_position"].to_numpy(dtype=float)
+                  if "qualifying_position" in base.columns else grid.copy())
+    grid_matrix = np.broadcast_to(grid, (n_sims, n_drivers))
+    qualifying_matrix = np.broadcast_to(qualifying, (n_sims, n_drivers))
+    grid_sampled = bool(sample_estimated_grid) and base["grid_source"].eq("estimated_model_grid").all()
+    if grid_sampled:
+        from src.grid_penalties import sample_grids
+        places = (base["grid_penalty_places"].to_numpy(dtype=float)
+                  if "grid_penalty_places" in base.columns else np.zeros(n_drivers))
+        back = (base["grid_penalty_back"].to_numpy(dtype=bool)
+                if "grid_penalty_back" in base.columns else np.zeros(n_drivers, dtype=bool))
+        qualifying_matrix, grid_matrix = sample_grids(qualifying, places, back, n_sims, seed)
+        sampled_grid_loss = ((grid_matrix - 1) * float(overtaking_difficulty)
+                             * grid_confidence.reshape(1, n_drivers) * grid_loss_multiplier)
+        projected_times = projected_times + sampled_grid_loss - grid_loss.reshape(1, n_drivers)
+
+    if team_noise_seconds is not None:
+        from src.shared_noise import apply_team_noise
+        projected_times, _ = apply_team_noise(projected_times, team_array, seed,
+            team_noise_seconds=team_noise_seconds, uncertainty_factor=uncertainty_factor)
+
     safety_cars = None
     if safety_car_probability is not None:
         from src.safety_car import apply_safety_cars
@@ -525,7 +553,7 @@ def simulate_races(
                   completed_laps >= np.floor(.9 * completed_laps.max(axis=1, keepdims=True)))
     race_points = np.where(classified, race_points, 0.0)
 
-    positions_gained = grid.reshape(1, n_drivers) - positions
+    positions_gained = grid_matrix - positions
 
     fastest_lap_matrix = np.zeros((n_sims, n_drivers), dtype=bool)
 
@@ -583,7 +611,7 @@ def simulate_races(
                 "sim_id": np.arange(n_sims),
                 "Driver": driver_array[driver_idx],
                 "Team": team_array[driver_idx],
-                "grid_position": int(grid[driver_idx]),
+                "grid_position": grid_matrix[:, driver_idx].astype(int),
                 "finish_position": positions[:, driver_idx].astype(int),
                 "position": positions[:, driver_idx].astype(int),
                 "Position": positions[:, driver_idx].astype(int),
@@ -602,6 +630,12 @@ def simulate_races(
             }
         )
 
+        if "qualifying_position" in base.columns or grid_sampled:
+            driver_records['qualifying_position'] = qualifying_matrix[:, driver_idx].astype(int)
+        if grid_sampled:
+            driver_records['grid_sampling_model'] = 'estimated_grid_v1'
+        if team_noise_seconds is not None:
+            driver_records['shared_noise_model'] = 'team_noise_v1'
         if safety_cars is not None:
             driver_records['safety_car'] = safety_cars
             driver_records['safety_car_probability'] = float(safety_car_probability)

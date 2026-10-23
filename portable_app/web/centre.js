@@ -7,6 +7,15 @@ let historicalEvents=[], historicalLoading=false, historicalRequest=0;
 let reusableSource=null;
 let sharingMessage='';
 const escape = value => String(value??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
+// Monte Carlo inputs start from the Race Setup defaults; "Forecast next race"
+// keeps the frozen PC-automation protocol and says so.
+let runDefaultsApplied=false;
+function forecastDefaults(){return appState?.forecast_defaults || {n_sims:10000,seed:42,overtaking_difficulty:.55};}
+function applyRunDefaults(){
+  const run=appState?.run_defaults, forecast=forecastDefaults();
+  if(run && !runDefaultsApplied){el('nSims').value=run.n_sims;el('seed').value=run.seed;el('difficulty').value=run.overtaking_difficulty;runDefaultsApplied=true;}
+  el('forecastProtocol').textContent=`${Number(forecast.n_sims).toLocaleString()} simulations · seed ${forecast.seed}, the same as automated PC forecasts so snapshots stay comparable`+(run && Number(run.n_sims)!==Number(forecast.n_sims)?` (Race Setup uses ${Number(run.n_sims).toLocaleString()})`:'')+' · neutral weather modifiers.';
+}
 function error(message){el('error').textContent=message;el('error').hidden=!message;}
 async function safely(action){try{await action();}catch(e){error(e.message||String(e));}}
 function options(id, values, allLabel, previous){
@@ -55,6 +64,7 @@ function history(){
 }
 async function refresh(){
   appState=await client().lab_state(el('sourceDir').value);
+  applyRunDefaults();
   el('connection').textContent='Local workspace';el('sourceContext').textContent=appState.context.label;
   el('sourceDetail').textContent=`${appState.context.drivers} drivers · ${appState.features?'Features available':'Features missing'} · ${appState.strategies?'Strategy available':'Strategy missing'}${appState.context.modified?' · Updated '+new Date(appState.context.modified).toLocaleDateString():''}`;
   el('matlabLabel').textContent=appState.matlab?'Installed':'Not found';controls();history();
@@ -126,7 +136,7 @@ async function boot(){
   if(booted||!client())return;booted=true;
   const year=new Date().getFullYear();for(let y=year;y>=2018;y--)el('historicalYear').add(new Option(String(y),String(y)));el('historicalYear').value=String(year-1);
   el('checkNext').onclick=()=>safely(async()=>{error('');el('checkNext').disabled=true;try{const f=await client().lab_next_race();el('nextRaceInfo').textContent=`${f.year} ${f.event} · ${f.session} inputs · Race ${new Date(f.race_start_utc).toLocaleString()}. Session availability is checked again when you run.`;}finally{el('checkNext').disabled=false;}});
-  el('forecastNext').onclick=()=>safely(async()=>{error('');el('forecastNext').disabled=true;try{const job=await client().lab_start({kind:'forecast',n_sims:10000,seed:42,overtaking_difficulty:.55});await refresh();await selectRun(job.id);}finally{controls();}});
+  el('forecastNext').onclick=()=>safely(async()=>{error('');el('forecastNext').disabled=true;try{const job=await client().lab_start({kind:'forecast',...forecastDefaults()});await refresh();await selectRun(job.id);}finally{controls();}});
   el('scoreForecast').onclick=()=>safely(async()=>{error('');const job=await client().lab_start({kind:'score',forecast_id:selected});await refresh();await selectRun(job.id);});
   el('uploadDiscord').onclick=()=>safely(async()=>{if(!window.confirm('Upload this frozen forecast CSV and all available report charts to your configured Discord channel? Successful deliveries will not be sent again.'))return;error('');const job=await client().lab_start({kind:'discord',forecast_id:selected});await refresh();await selectRun(job.id);});
   el('sharePreview').onclick=()=>safely(async()=>{const result=await client().lab_share_export(selected);sharingMessage=`Saved exports/${result.filename}. Review it using Open results folder. Nothing was uploaded.`;el('betaMessage').textContent=sharingMessage;el('betaMessage').hidden=false;});

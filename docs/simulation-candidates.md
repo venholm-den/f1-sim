@@ -135,6 +135,40 @@ candidate. The profiles average a 42% SC chance against 54% observed in those
 races, and six of the 13 used generic placeholders, so calibrating track SC rates
 (`scripts.calibrate_circuits`) is the obvious next step.
 
+## Shared team luck, sampled grids, grid penalties and sprints
+
+Four more local-only candidates, each `off` by default. Each uses its own random
+stream, so turning one off leaves the established engine's output unchanged.
+
+| Setting | Value | What it does |
+| --- | --- | --- |
+| `model.shared_noise_model` | `team_noise_v1` | Adds one normal draw per team per race (3 s sd, times the weather uncertainty factor) to both drivers (`src/shared_noise.py`). Teammates move together, so a car that is quicker or slower than practice showed lifts or sinks both. |
+| `model.grid_sampling_model` | `estimated_grid_v1` | When every grid slot is an estimate (before qualifying), draws a qualifying order per sim with 2-position noise instead of using one order in every race (`src/grid_penalties.py`). Grid loss, positions gained and Fantasy qualifying points then vary across sims. Actual and FIA grids are not sampled. |
+| `model.grid_penalty_model` | `announced_v1` | Applies verified stewards' decisions for the race (grid drops, back of grid, pit-lane starts) to a grid that lacks them: the estimate or the qualifying classification. An FIA starting grid already includes them and is left alone. The qualifying order is kept as `qualifying_position`, and Fantasy qualifying points use it, so a penalised pole-sitter keeps them. Drops are applied together, not in order of infringement. |
+| `model.sprint_model` | `sprint_v1` | On sprint weekends (FastF1 `EventFormat`, or SQ/S laps), simulates a sprint per sim (`src/sprint.py`): about 100 km, no stops, the forecast's grid, race noise and retirement risk scaled to the distance, points 8-1. Fantasy adds sprint points, the same per-place change rules and a DNF penalty (`FANTASY_SCORING['sprint_dnf_penalty']`, else the race value) as `avg_sprint_fantasy_points`. No sprint fastest-lap or overtake bonus. |
+
+Shared noise and grid sampling apply to the aggregate engine only. The spreads are
+stated assumptions, not fitted values.
+
+`python -m scripts.benchmark_safety_car --arms established team_noise_v1
+estimated_grid estimated_grid_v1` runs the same packet as above. The
+`estimated_grid` arms swap the actual grid for a pace-ranked estimate, which is
+what a pre-qualifying forecast sees, so compare `estimated_grid_v1` with
+`estimated_grid`, not with the established engine. Same packet, sims and seeds:
+
+| Arm | Finish MAE | Win Brier | Podium Brier | Top-10 Brier |
+| --- | ---: | ---: | ---: | ---: |
+| Established engine | 3.664 | 0.0307 | 0.0730 | 0.1846 |
+| `team_noise_v1` | 3.666 | 0.0305 | 0.0730 | 0.1828 |
+| Estimated grid, one order | 3.891 | 0.0382 | 0.0815 | 0.1986 |
+| `estimated_grid_v1` | 3.893 | 0.0380 | 0.0814 | 0.1985 |
+
+Team noise improved top-10 Brier in 10 of 13 races, with finish MAE flat. Grid
+sampling is close to neutral on these scores; its main effect is realistic spread
+in Fantasy qualifying points, which this packet does not score. Both gains are
+below the 5% promotion gate on already inspected races, so they stay candidates.
+Grid penalties and sprints cannot be scored from this packet.
+
 ## Retirement survival, separately
 
 Set `model.retirement_model` to `survival_dnf_v1`. Ten distance intervals estimate

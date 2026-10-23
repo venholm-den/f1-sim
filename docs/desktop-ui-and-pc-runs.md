@@ -8,6 +8,10 @@ The desktop workbench uses the supplied F1 Simulator Desktop App design: Nocturn
 
 The newest verified forecast supplies displayed results and the default season, Grand Prix and cutoff session. Selection uses the frozen forecast's timezone-aware creation timestamp, rather than folder modification time. Every frozen manifest and its recorded checksums are verified. Running, failed, non-forecast and invalid bundles cannot become the latest forecast. No scheduler process, upload, training or new simulation is started by following.
 
+The Follow PC runs strip shows on Race setup and Results only, where following changes what is displayed; Settings keeps the full controls and delivery receipts. Without a reachable PC workspace the switch shows off and is disabled. Analysis views with no saved run show one empty state with a link to Race setup instead of cards of unknown values, and the `latest` event choice is shown as the race it currently resolves to.
+
+The Simulation Centre's Monte Carlo inputs start from the Race setup defaults. **Forecast next race** keeps the PC automation protocol (`FORECAST_DEFAULTS` in `src/app_services/forecast_automation.py`, 10,000 simulations, seed 42) so frozen snapshots stay comparable, and the page states both counts.
+
 Editing setup or starting a manual run pauses following. Enable the switch to return to the latest PC forecast. **Refresh now** refreshes the followed results; it does not discard manual setup while paused. Reset restores model/output defaults with the latest verified forecast's race selection. Saved-result labels continue to describe the actual displayed run.
 
 Forecast probabilities and fantasy summaries use the frozen summary; supporting session, telemetry, strategy and chart exports are read from that forecast's `source` folder. Missing supporting exports remain unavailable. External PC forecasts also appear in Compare. Frozen forecast files and Discord delivery receipts are never copied over or rewritten by synchronization.

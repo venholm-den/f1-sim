@@ -946,8 +946,11 @@ def main() -> None:
             current_session_type=metadata["session"],
             current_session=current_session,
             fia_context=fia_context,
+            grid_penalty_model=app_config.model.grid_penalty_model,
         )
     except TypeError:
+        if app_config.model.grid_penalty_model != 'off':
+            raise
         model_features = build_grid_features(
             model_features,
             current_features,
@@ -1078,6 +1081,10 @@ def main() -> None:
         retirement_options['agent_settings'] = asdict(AgentSettings(**settings))
     if app_config.model.safety_car_model == 'track_sc_v1':
         retirement_options['safety_car_probability'] = float(track_profile['safety_car_chance'])
+    if app_config.model.shared_noise_model == 'team_noise_v1':
+        retirement_options['team_noise_seconds'] = 3.0
+    if app_config.model.grid_sampling_model == 'estimated_grid_v1':
+        retirement_options['sample_estimated_grid'] = True
     pd.Series({'overtaking_difficulty': overtaking_difficulty,
                'weather_modifiers': weather_summary, **retirement_options}).to_json(
         _output_path(output_dir, 'simulation_inputs.json'), indent=2)
@@ -1091,6 +1098,17 @@ def main() -> None:
     )
 
     print("- simulation complete")
+
+    if app_config.model.sprint_model == 'sprint_v1':
+        from src.sprint import add_sprints, is_sprint_weekend, simulate_sprints
+        if is_sprint_weekend(year, metadata["event"], sprint_weekend):
+            sprints = simulate_sprints(model_features, n_sims, random_seed,
+                                       overtaking_difficulty=overtaking_difficulty,
+                                       weather_modifiers=weather_summary)
+            results = add_sprints(results, sprints)
+            print(f"- sprint simulated: {int(sprints.sprint_laps.iloc[0])} laps")
+        else:
+            print("- sprint model on, but this is not a sprint weekend")
 
     print()
     print("Calculating fantasy summary...")
