@@ -120,7 +120,7 @@ Defined in `src\model_config.py` under `SIMULATION_PARAMETERS`.
 | --- | --- |
 | `race_pace_seconds_multiplier` | Converts race pace score into time loss. |
 | `long_run_penalty_multiplier` | Penalizes weak long-run pace. |
-| `tyre_deg_multiplier` | Converts degradation score into race time loss. |
+| `tyre_deg_multiplier` | Converts degradation score into race time loss. Degradation is also counted in long-run pace and strategy; the `single_degradation_v1` candidate removes those and uses 2.0 here (see [single-degradation.md](single-degradation.md)). |
 | `grid_loss_multiplier` | Converts grid position and overtaking difficulty into time loss. |
 | `strategy_loss_multiplier` | Converts strategy score into time loss. |
 | `race_noise_multiplier` | Driver/race stochastic pace noise. |

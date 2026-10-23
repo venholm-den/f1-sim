@@ -13,7 +13,16 @@ AUDIT_VARIANTS = ('legacy', 'all_cause_dnf_v2', 'single_pace_blend_v1', 'q_grid_
 REVISION_VARIANTS = ('legacy', 'single_pace_blend_v1', 'all_cause_dnf_v2',
                      'retirement_progress_v1', 'single_pace_retirement_v1')
 NEXT_VARIANTS = ('qualifying_partial_pooling_v1', 'pit_scenarios_v1', 'survival_dnf_v1', 'agent_laps_v1')
-SUPPORTED_VARIANTS = tuple(dict.fromkeys(FEATURE_VARIANTS + AUDIT_VARIANTS + REVISION_VARIANTS + NEXT_VARIANTS))
+DEGRADATION_VARIANTS = ('legacy', 'single_degradation_v1')
+SUPPORTED_VARIANTS = tuple(dict.fromkeys(FEATURE_VARIANTS + AUDIT_VARIANTS + REVISION_VARIANTS
+                                         + NEXT_VARIANTS + DEGRADATION_VARIANTS))
+
+# Predeclared, not fitted. The legacy engine counts pace gaps at 0.20 of their
+# full-distance value. A two-stint race costs roughly 14x the per-lap wear
+# slope per lap (sum of L^2/2 over stints, divided by race laps), so the same
+# 0.20 scale gives about 2.8; practice slopes include fuel burn and mixed
+# programmes, so this is rounded down to 2.0.
+SINGLE_DEGRADATION_MULTIPLIER = 2.0
 
 
 def candidate_retirement_options(variant):
@@ -30,7 +39,28 @@ def candidate_simulation_options(variant, features):
         options['pit_plans'] = assumed_plans(features, features.estimated_race_laps.median())
     if variant == 'agent_laps_v1':
         options['agent_settings'] = {}  # track difficulty supplies an explicit passability proxy
+    if variant == 'single_degradation_v1':
+        options['single_degradation_multiplier'] = SINGLE_DEGRADATION_MULTIPLIER
     return options
+
+
+def single_degradation(features: pd.DataFrame) -> pd.DataFrame:
+    """Remove the wear terms that performance.py folds into long-run pace and strategy.
+
+    Race time then counts degradation once, through the simulator's
+    degradation loss. Pace, uncertainty and the remaining strategy baseline
+    are unchanged.
+    """
+    output = features.copy()
+    wear = pd.to_numeric(output['tyre_deg_score'], errors='coerce').fillna(0.0).clip(lower=0.0)
+    long_run = output['long_run_pace_score'] - wear * 12.0
+    output['long_run_pace_score'] = long_run - long_run.min()
+    strategy_weight = pd.to_numeric(output['strategy_weight_used'], errors='coerce').fillna(0.0)
+    # performance.py never reaches its 1.5 cap, so subtracting is exact.
+    output['strategy_score'] = (output['strategy_score']
+        - wear * (strategy_weight * 4.0 + (1 - strategy_weight) * 2.0)).clip(lower=0.0)
+    output['degradation_model'] = 'single_degradation_v1_experimental'
+    return output
 
 
 def single_pace_blend(features: pd.DataFrame, session: str) -> pd.DataFrame:

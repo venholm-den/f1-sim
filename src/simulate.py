@@ -265,6 +265,7 @@ def simulate_races(
     pit_plans: list[dict] | None = None,
     agent_settings: dict | None = None,
     safety_car_probability: float | None = None,
+    single_degradation_multiplier: float | None = None,
 ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     """
     Simulates races by estimating total projected race time per driver.
@@ -322,6 +323,11 @@ def simulate_races(
     race_pace_seconds_multiplier = _sim_param("race_pace_seconds_multiplier", 0.20)
     long_run_penalty_multiplier = _sim_param("long_run_penalty_multiplier", 0.25)
     tyre_deg_multiplier = _sim_param("tyre_deg_multiplier", 7.00)
+    if single_degradation_multiplier is not None:
+        # Candidate: degradation enters race time once, here, with this weight.
+        tyre_deg_multiplier = float(single_degradation_multiplier)
+        if not np.isfinite(tyre_deg_multiplier) or not 0 <= tyre_deg_multiplier <= 50:
+            raise ValueError('single_degradation_multiplier must be finite and between 0 and 50.')
     if grid_loss_multiplier is None:
         grid_loss_multiplier = _sim_param("grid_loss_multiplier", 1.65)
     else:
@@ -411,9 +417,14 @@ def simulate_races(
         size=(n_sims, n_drivers),
     )
 
+    degradation_noise_deg = np.maximum(tyre_deg, 0.01)
+    if single_degradation_multiplier is not None:
+        # Same overall spread, but a noisy high-wear estimate no longer widens
+        # one driver's outcomes more than another's.
+        degradation_noise_deg = np.full(n_drivers, np.median(degradation_noise_deg))
     degradation_noise = rng.normal(
         loc=0.0,
-        scale=(np.maximum(tyre_deg, 0.01) * race_laps * 1.4 * degradation_factor),
+        scale=(degradation_noise_deg * race_laps * 1.4 * degradation_factor),
         size=(n_sims, n_drivers),
     )
 
