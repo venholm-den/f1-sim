@@ -90,8 +90,8 @@ class ModelSettings:
                 raise ValueError('Agent settings require the agent race engine.')
             from src.agent_race import AgentSettings
             AgentSettings(**self.agent_settings)
-        if self.safety_car_model not in {'off', 'track_sc_v1'}:
-            raise ValueError('Unknown safety_car_model; choose off or track_sc_v1.')
+        if self.safety_car_model not in {'off', 'track_sc_v1', 'multi_sc_v1'}:
+            raise ValueError('Unknown safety_car_model; choose off, track_sc_v1 or multi_sc_v1.')
         if self.safety_car_model != 'off' and self.race_engine == 'agent_laps_v1':
             raise ValueError('The agent engine has its own SC/VSC neutralisation.')
         for key, allowed in [('shared_noise_model', 'team_noise_v1'),
