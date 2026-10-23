@@ -120,20 +120,10 @@ function updateWorkbenchContext() {
   drawSetupTrack(profile);
 }
 function drawSetupTrack(profile) {
-  const canvas=$('setupTrackCanvas'), ctx=canvas.getContext('2d');
-  ctx.clearRect(0,0,canvas.width,canvas.height);
   const track=setupDisplayTrack(), points=track?.points || [];
   $('setupTrackSource').textContent=track?.message || 'Select a race to inspect downloaded telemetry.';
-  if (!points.length) {
-    ctx.fillStyle='#8494a8'; ctx.font='18px Segoe UI'; ctx.textAlign='center';
-    ctx.fillText(track?.status==='loading'?'Loading downloaded telemetry…':'No downloaded track outline', canvas.width/2,canvas.height/2);
-    ctx.font='15px Segoe UI'; ctx.fillText('Select detailed sessions with position telemetry',canvas.width/2,canvas.height/2+28); return;
-  }
-  const xs=points.map(p=>p.x),ys=points.map(p=>p.y),minX=Math.min(...xs),minY=Math.min(...ys),spanX=Math.max(...xs)-minX,spanY=Math.max(...ys)-minY;
-  const scale=Math.min((canvas.width-70)/Math.max(spanX,1),(canvas.height-50)/Math.max(spanY,1));
-  const dx=(canvas.width-spanX*scale)/2,dy=(canvas.height-spanY*scale)/2;
-  ctx.lineWidth=3;ctx.strokeStyle='#d5dde9';ctx.beginPath();
-  points.forEach((p,i)=>{const x=dx+(p.x-minX)*scale,y=canvas.height-dy-(p.y-minY)*scale;i?ctx.lineTo(x,y):ctx.moveTo(x,y);});ctx.stroke();
+  $('setupTrackMap').innerHTML=points.length ? trackSvg(points,`${profile.circuit_name || 'Circuit'} outline`) :
+    trackMessage(track?.status==='loading'?'Loading downloaded telemetry…':'No downloaded track outline','Select detailed sessions with position telemetry');
 }
 function setupDisplayTrack() {
   const selected=readSettings(), event=state.setupOptions?.trackProfile?.event;
@@ -174,7 +164,7 @@ function renderSignals() {
     ['MODEL UNCERTAINTY',overviewMetric('Avg model uncertainty'),'Spread score; not an error probability.'],
     ['PERFORMANCE UNCERTAINTY',overviewMetric('Avg performance uncertainty'),'Spread in projected performance.']];
   $('signalMetrics').innerHTML=metrics.map(([title,value,note])=>`<div class="signal-metric"><h3>${title}</h3><strong>${fmt(value,3)}</strong><small>${note}</small></div>`).join('');
-  renderBarChart('signalScoreChart',[['Qualifying pace','quali_pace_score'],['Race pace','race_pace_score'],['Strategy','strategy_score'],['Reliability','reliability_score']].map(([label,column])=>({label,value:meanScore(column)})).filter(p=>p.value!=null),'#e5111a');
+  renderBarChart('signalScoreChart',[['Qualifying pace','quali_pace_score'],['Race pace','race_pace_score'],['Strategy','strategy_score'],['Reliability','reliability_score']].map(([label,column])=>({label,value:meanScore(column)})).filter(p=>p.value!=null),colors.red);
 }
 function renderProbabilityChart() {
   const rows=(state.outputs.summaryTable?.rows || []).slice().sort((a,b)=>Number(b.win_chance)-Number(a.win_chance)).slice(0,Number($('resultTop').value));

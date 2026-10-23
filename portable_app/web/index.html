@@ -32,7 +32,7 @@
 <label class="check"><input id="forecastInput" type="checkbox">Session weather forecast fallback</label><label class="check"><input id="raceControlInput" type="checkbox">Race-control context</label><label class="check"><input id="trackFlagInput" type="checkbox">Track red-flag baseline</label><label class="check"><input id="historicalModelInput" type="checkbox">Historical model calibration</label>
 <label>Finish calibration weight<input id="historicalFinishWeightInput" type="number" min="0" max="0.6" step="0.05"></label><label>DNF calibration weight<input id="historicalDnfWeightInput" type="number" min="0" max="0.75" step="0.05"></label></div></details></div>
 <div class="setup-right">
-<section class="panel track-overview"><h2>Track overview</h2><canvas id="setupTrackCanvas" width="600" height="350" aria-label="Saved telemetry for the selected circuit"></canvas>
+<section class="panel track-overview"><h2>Track overview</h2><div id="setupTrackMap" class="track-map"></div>
 <p id="setupTrackSource" class="footnote" role="status">Loading downloaded track geometry.</p><div id="venueOverview" class="definition-list"></div><button class="text-button" data-open-view="track" data-track-source="setup">Inspect downloaded telemetry →</button></section>
 <section class="panel weather-preview"><div class="panel-header"><span data-icon="sun"></span><div><h2>Weather preview</h2><p>Selected race · regional forecast</p></div></div><div id="setupWeatherPreview" class="forecast-summary"><strong>Not captured</strong><p>Fetch a future race forecast to inspect the start window.</p></div><button id="fetchSetupWeather" class="ghost full">Fetch race weather</button><p class="footnote">Informational forecast. Start-delay probability is unavailable.</p></section>
 <section class="panel outputs-panel"><h2>Save with this run</h2><p class="panel-subtitle">Choose what to save and where.</p><label class="output-row"><span class="row-icon" data-icon="file"></span><span><b>Save Prediction Snapshot</b><small>Save the existing CSV prediction snapshot.</small></span><input class="switch" id="snapshotInput" type="checkbox"></label><label class="output-row"><span class="row-icon" data-icon="image"></span><span><b>Save Report Images</b><small>Generate charts and report images.</small></span><input class="switch" id="imagesInput" type="checkbox"></label><label class="output-row"><span class="row-icon" data-icon="table"></span><span><b>Save Raw Results</b><small>Save full simulation and fantasy rows.</small></span><input class="switch" id="rawInput" type="checkbox"></label><div class="output-row"><span class="row-icon" data-icon="chat"></span><span><b>Post to Discord</b><small>Upload a verified frozen forecast from the Centre.</small></span><button class="mini-button" id="discordSetup" title="Open verified forecast uploads">↗</button></div>
@@ -89,7 +89,7 @@
 <section class="panel"><div class="panel-header"><div><h2>Race weather forecast</h2><p>Selected setup · scheduled and delayed starts</p></div><button id="fetchWeather" class="ghost">REFRESH FORECAST</button></div><div id="raceForecast" class="forecast-summary"></div><div id="delayTable" class="table-wrap"></div><p class="footnote">Regional ensemble guidance is informational. Wet-hour frequency is not the probability of a wet race or a delayed start.</p></section>
 <section class="panel"><h2>Observed session weather</h2><div id="observedWeather" class="definition-list"></div><p id="weatherDetails" class="commentary"></p></section></div>
 <section class="panel"><h2>Reliability projections</h2><div id="weatherReliabilityTable" class="table-wrap"></div><p class="footnote">Weighted historical mechanical failures. Incident risk and simulated driver retirement risk are separate.</p></section>
-<details class="panel"><summary>WEATHER AND SIMULATED RISK CHART</summary><canvas id="weatherCanvas" width="780" height="250"></canvas></details></div>
+<details class="panel"><summary>WEATHER AND SIMULATED RISK CHART</summary><div id="weatherChart" class="bar-chart percent-chart"></div><p id="weatherChartSource" class="footnote"></p></details></div>
 <div>
 <section class="panel"><h2>Race risk outlook</h2><div id="riskCards" class="risk-list"></div></section>
 <section class="panel"><h2>Model confidence</h2><div class="confidence-empty">Not calibrated</div><p class="footnote">Model uncertainty is available under Model Signals; it cannot be converted to a probability of a correct forecast.</p></section>
@@ -236,7 +236,7 @@
                   <p id="trackContext">Real FastF1 telemetry layout and sector winners from the saved session.</p>
               </div>
             </div>
-            <canvas id="trackCanvas" width="1100" height="520"></canvas>
+            <div id="trackMap" class="track-map large"></div>
             <div id="sectorLegend" class="sector-legend"></div>
           </section>
         </section>
