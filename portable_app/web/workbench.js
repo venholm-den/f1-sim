@@ -1,22 +1,22 @@
 // Presentation for the mockup-based dashboard; all data comes from the Python API.
 const pages = {
-  setup: ['RACE SETUP', 'Configure your race simulation parameters and output preferences.'],
-  data: ['DATA SOURCES', 'Manage connected data files, configuration paths and data health.'],
-  historical: ['HISTORICAL DATA', 'Build your own season-by-season archive of race data.'],
-  training: ['MODEL TRAINING', 'Train and evaluate candidate models from your downloaded session archive.'],
-  signals: ['MODEL SIGNALS', 'Inspect how the model blends baseline knowledge with session data.'],
-  weather: ['WEATHER & RELIABILITY', 'Review environmental conditions, disruption and retirement risk.'],
-  reliability: ['RELIABILITY', 'Inspect historical mechanical failures and simulated retirement risk.'],
-  strategy: ['TYRE STRATEGY', 'Inspect tyre recommendations, candidate scores and inventory assumptions.'],
-  fantasy: ['FANTASY', 'Weekly market prices, actual Fantasy scores and separate simulation projections.'],
-  dashboard: ['RESULTS & STRATEGY', 'Post-simulation results, insights and strategy recommendations.'],
-  compare: ['COMPARE RUNS', 'Compare probabilities and expected finishes on matched driver coverage.'],
-  settings: ['SETTINGS', 'Local workspace preferences, data paths and integration status.'],
-  practice: ['PRACTICE ANALYSIS', 'Clean sectors, lap summaries and long-run pace.'],
-  quali: ['QUALIFYING ANALYSIS', 'One-lap pace and sector performance from saved sessions.'],
-  race: ['FULL RACE', 'Driver outlook and strategy estimates from saved outputs.'],
-  review: ['RACE REVIEW', 'Completed race observations and diagnostic outliers.'],
-  track: ['TRACK MAP', 'Real saved-session telemetry and sector leaders.'],
+  setup: ['Race setup', 'Configure your race simulation parameters and output preferences.'],
+  data: ['Data sources', 'Manage connected data files, configuration paths and data health.'],
+  historical: ['Historical data', 'Build your own season-by-season archive of race data.'],
+  training: ['Model training', 'Train and evaluate candidate models from your downloaded session archive.'],
+  signals: ['Model signals', 'Inspect how the model blends baseline knowledge with session data.'],
+  weather: ['Weather & reliability', 'Review environmental conditions, disruption and retirement risk.'],
+  reliability: ['Reliability', 'Inspect historical mechanical failures and simulated retirement risk.'],
+  strategy: ['Tyre strategy', 'Inspect tyre recommendations, candidate scores and inventory assumptions.'],
+  fantasy: ['Fantasy', 'Weekly market prices, actual Fantasy scores and separate simulation projections.'],
+  dashboard: ['Results', 'Post-simulation results, insights and strategy recommendations.'],
+  compare: ['Compare runs', 'Compare probabilities and expected finishes on matched driver coverage.'],
+  settings: ['Settings', 'Local workspace preferences, data paths and integration status.'],
+  practice: ['Practice analysis', 'Clean sectors, lap summaries and long-run pace.'],
+  quali: ['Qualifying analysis', 'One-lap pace and sector performance from saved sessions.'],
+  race: ['Full race', 'Driver outlook and strategy estimates from saved outputs.'],
+  review: ['Race review', 'Completed race observations and diagnostic outliers.'],
+  track: ['Track map', 'Real saved-session telemetry and sector leaders.'],
 };
 const iconPaths = {
   calendar:'M4 5h16v16H4z M4 10h16 M8 3v4 M16 3v4 M8 14h2 M14 14h2 M8 18h2',
@@ -51,8 +51,7 @@ function navigate(view) {
   state.view = view;
   document.querySelectorAll('.nav-item').forEach(el => { el.classList.toggle('active', el.dataset.view === view); if (el.dataset.view) el.setAttribute('aria-current', el.dataset.view === view ? 'page' : 'false'); });
   document.querySelectorAll('.view').forEach(el => el.classList.toggle('active', el.id === `view-${view}`));
-  $('viewTitle').textContent = pages[view]?.[0] || view.toUpperCase();
-  $('viewTitle').textContent = $('viewTitle').textContent.toLowerCase().replace(/^./, c=>c.toUpperCase()).replace(' & strategy','');
+  $('viewTitle').textContent = pages[view]?.[0] || view;
   $('viewSubtitle').textContent = pages[view]?.[1] || '';
   document.querySelector('.main').scrollTop = 0;
   document.querySelectorAll('.workflow-steps [data-open-view]').forEach(el=>el.classList.toggle('active',el.dataset.openView===view || (el.dataset.openView==='dashboard' && !['data','historical','training','setup','settings'].includes(view))));
@@ -121,20 +120,10 @@ function updateWorkbenchContext() {
   drawSetupTrack(profile);
 }
 function drawSetupTrack(profile) {
-  const canvas=$('setupTrackCanvas'), ctx=canvas.getContext('2d');
-  ctx.clearRect(0,0,canvas.width,canvas.height);
   const track=setupDisplayTrack(), points=track?.points || [];
   $('setupTrackSource').textContent=track?.message || 'Select a race to inspect downloaded telemetry.';
-  if (!points.length) {
-    ctx.fillStyle='#8494a8'; ctx.font='18px Segoe UI'; ctx.textAlign='center';
-    ctx.fillText(track?.status==='loading'?'Loading downloaded telemetry…':'No downloaded track outline', canvas.width/2,canvas.height/2);
-    ctx.font='15px Segoe UI'; ctx.fillText('Select detailed sessions with position telemetry',canvas.width/2,canvas.height/2+28); return;
-  }
-  const xs=points.map(p=>p.x),ys=points.map(p=>p.y),minX=Math.min(...xs),minY=Math.min(...ys),spanX=Math.max(...xs)-minX,spanY=Math.max(...ys)-minY;
-  const scale=Math.min((canvas.width-70)/Math.max(spanX,1),(canvas.height-50)/Math.max(spanY,1));
-  const dx=(canvas.width-spanX*scale)/2,dy=(canvas.height-spanY*scale)/2;
-  ctx.lineWidth=3;ctx.strokeStyle='#d5dde9';ctx.beginPath();
-  points.forEach((p,i)=>{const x=dx+(p.x-minX)*scale,y=canvas.height-dy-(p.y-minY)*scale;i?ctx.lineTo(x,y):ctx.moveTo(x,y);});ctx.stroke();
+  $('setupTrackMap').innerHTML=points.length ? trackSvg(points,`${profile.circuit_name || 'Circuit'} outline`) :
+    trackMessage(track?.status==='loading'?'Loading downloaded telemetry…':'No downloaded track outline','Select detailed sessions with position telemetry');
 }
 function setupDisplayTrack() {
   const selected=readSettings(), event=state.setupOptions?.trackProfile?.event;
@@ -175,7 +164,7 @@ function renderSignals() {
     ['MODEL UNCERTAINTY',overviewMetric('Avg model uncertainty'),'Spread score; not an error probability.'],
     ['PERFORMANCE UNCERTAINTY',overviewMetric('Avg performance uncertainty'),'Spread in projected performance.']];
   $('signalMetrics').innerHTML=metrics.map(([title,value,note])=>`<div class="signal-metric"><h3>${title}</h3><strong>${fmt(value,3)}</strong><small>${note}</small></div>`).join('');
-  renderBarChart('signalScoreChart',[['Qualifying pace','quali_pace_score'],['Race pace','race_pace_score'],['Strategy','strategy_score'],['Reliability','reliability_score']].map(([label,column])=>({label,value:meanScore(column)})).filter(p=>p.value!=null),'#e5111a');
+  renderBarChart('signalScoreChart',[['Qualifying pace','quali_pace_score'],['Race pace','race_pace_score'],['Strategy','strategy_score'],['Reliability','reliability_score']].map(([label,column])=>({label,value:meanScore(column)})).filter(p=>p.value!=null),colors.red);
 }
 function renderProbabilityChart() {
   const rows=(state.outputs.summaryTable?.rows || []).slice().sort((a,b)=>Number(b.win_chance)-Number(a.win_chance)).slice(0,Number($('resultTop').value));
@@ -246,13 +235,13 @@ function renderWorkbench() {
 }
 async function loadDataPreview(key=state.previewKey || 'track_profiles',page=1) {
   const preview=await api().workbench_data(key,page);state.previewKey=key;state.previewPage=preview.page;state.previewPages=preview.pages;
-  $('previewTitle').textContent=`DATA PREVIEW: ${preview.source.label.toUpperCase()}${preview.sort?.direction==='desc'?' · NEWEST FIRST':''}`;
+  $('previewTitle').textContent=`Data preview: ${preview.source.label.toLowerCase()}${preview.sort?.direction==='desc'?' · newest first':''}`;
   $('previewPath').textContent=preview.source.path;
   const keys={track_profiles:['Event','CircuitName','RaceLaps','OvertakingDifficulty','SafetyCarChance','RedFlagBaseChance','ProfileStatus'],team_power_units:['Year','Team','PowerUnitSupplier','EngineBadge','OfficialTeamLabel'],fantasy_prices:['Driver','Team','fantasy_price'],fia_document_index:['published_at','year','event','session','doc_number','document_title']};
   if(key==='fia_document_index' && preview.columns.includes('published_at'))preview.columns=['published_at',...preview.columns.filter(column=>column!=='published_at')];
   state.outputs.dataHealth=(state.outputs.dataHealth || []).map(source=>source.key===key?preview.source:source);
   const columns=(keys[key] || []).filter(column=>preview.columns.includes(column));
-  renderTable('dataPreviewTable',state.showAllColumns || columns.length<2?preview:{...preview,columns});
+  renderTable('dataPreviewTable',state.showAllColumns || columns.length<2?preview:{...preview,columns},{sortable:false});
   $('previewCount').textContent=preview.source.status!=='valid'?preview.source.message:`Showing ${preview.rows.length ? (preview.page-1)*10+1 : 0}–${Math.min(preview.page*10,preview.source.row_count)} of ${preview.source.row_count} rows`;
   $('previewPage').textContent=`${preview.page} / ${preview.pages}`;$('previewPrevious').disabled=preview.page<=1;$('previewNext').disabled=preview.page>=preview.pages;
   $('validationTime').textContent=new Date(preview.checked_at_utc).toLocaleString();renderSourceCards();

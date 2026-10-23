@@ -94,7 +94,7 @@ function renderArchiveInventory() {
   $('archiveSavedSize').textContent=archiveSize(library.totals.bytes);
   $('archiveFreeSpace').textContent=archiveSize(library.free_bytes);
   renderTable('archiveInventory',{columns:['Season','Dataset','Saved sessions','Needs retry','Lap rows','Result rows','Stored size','Last downloaded'],rows:rows.map(row=>({Season:row.year,Dataset:row.mode==='detailed'?'Detailed sessions':'Race classifications','Saved sessions':row.sessions,'Needs retry':row.needs_retry,'Lap rows':row.lap_rows,'Result rows':row.result_rows,'Stored size':archiveSize(row.bytes),'Last downloaded':row.last_download_utc}))});
-  $('archiveInventory').querySelectorAll('tbody tr').forEach((el,i)=>{el.classList.add('selectable-row');el.tabIndex=0;el.setAttribute('role','button');el.setAttribute('aria-label',`Preview ${rows[i].year} ${rows[i].mode}`);const select=()=>safeAction(()=>chooseArchivePreview(rows[i].year,rows[i].mode));el.addEventListener('click',select);el.addEventListener('keydown',event=>{if(event.key==='Enter')select();});});
+  $('archiveInventory').querySelectorAll('tbody tr').forEach(el=>{const i=Number(el.dataset.row);el.classList.add('selectable-row');el.tabIndex=0;el.setAttribute('role','button');el.setAttribute('aria-label',`Preview ${rows[i].year} ${rows[i].mode}`);const select=()=>safeAction(()=>chooseArchivePreview(rows[i].year,rows[i].mode));el.addEventListener('click',select);el.addEventListener('keydown',event=>{if(event.key==='Enter')select();});});
   const keys=rows.map(row=>`${row.year}:${row.mode}`), selected=$('archivePreviewSeason').value;
   $('archivePreviewSeason').innerHTML=rows.map(row=>`<option value="${row.year}:${row.mode}">${row.year} · ${row.mode==='detailed'?'Detailed':'Classifications'}</option>`).join('');
   if(keys.includes(selected))$('archivePreviewSeason').value=selected;
@@ -164,7 +164,7 @@ async function loadArchivePreview(page=archiveState.page) {
   const [year,mode]=$('archivePreviewSeason').value.split(':');if(!year)return;
   const preview=await api().historical_preview(Number(year),mode,$('archivePreviewTableName').value,page);
   archiveState.page=preview.page;archiveState.pages=preview.pages;
-  renderTable('archivePreview',preview);
+  renderTable('archivePreview',preview,{sortable:false});
   $('archivePreviewCount').textContent=`${preview.total_rows.toLocaleString()} rows · page ${preview.page} of ${preview.pages}`;
   $('archivePrevious').disabled=preview.page<=1;$('archiveNext').disabled=preview.page>=preview.pages;
 }

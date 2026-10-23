@@ -6,13 +6,14 @@ const state = {
   activeOutputDir: null,
 };
 
+// Chart colours resolve to the stylesheet's tokens.
 const colors = {
-  red: "#ef233c",
-  amber: "#f59e0b",
-  blue: "#38bdf8",
-  green: "#22c55e",
-  muted: "#8ea0b8",
-  panel: "#101620",
+  red: "var(--red)",
+  amber: "var(--amber)",
+  blue: "var(--blue)",
+  green: "var(--green)",
+  muted: "var(--subtle)",
+  orange: "var(--orange)",
 };
 
 function api() {
@@ -161,7 +162,63 @@ function sessionModeLabel(mode) {
   return "Race run";
 }
 
-function renderTable(targetId, payload) {
+// Readable headers for the snake_case columns written by the simulation outputs.
+const columnLabels = {
+  avg_finish: "Avg finish", win_chance: "Win", podium_chance: "Podium", dnf_chance: "DNF",
+  points_chance: "Points finish", points_scoring_chance: "Points finish", top5_chance: "Top 5", top10_chance: "Top 10",
+  avg_points: "Avg points", avg_grid: "Avg grid", finish_p25: "Finish P25", finish_p75: "Finish P75",
+  avg_fantasy_points: "Fantasy pts", fantasy_points: "Fantasy pts", fantasy_ceiling_p90: "Ceiling (P90)",
+  fantasy_floor_p10: "Floor (P10)", fantasy_price: "Price", fantasy_xppm: "Pts per $m",
+  primary_strategy: "Strategy", alternative_strategy: "Alternative", expected_stops: "Stops",
+  strategy_confidence: "Confidence", risk_level: "Risk", primary_score: "Strategy score",
+  quali_pace_score: "Quali pace", race_pace_score: "Race pace", long_run_pace_score: "Long-run pace",
+  strategy_score: "Strategy score", reliability_score: "Reliability", tyre_deg_score: "Tyre deg",
+  current_weight: "Session weight", model_uncertainty: "Model uncertainty", performance_uncertainty: "Performance uncertainty",
+  engine_reliability_score: "PU reliability", team_dnf_rate: "Team DNF", driver_dnf_rate: "Driver DNF",
+  quali_rank_from_laps: "Rank", clean_laps: "Clean laps", best_lap: "Best lap (s)", median_lap: "Median lap (s)",
+  ideal_lap: "Ideal lap (s)", avg_lap: "Avg lap (s)", gap_to_fastest: "Gap (s)", ideal_gap_to_fastest: "Ideal gap (s)",
+  best_s1: "Best S1 (s)", best_s2: "Best S2 (s)", best_s3: "Best S3 (s)", avg_speed_trap: "Speed trap (km/h)",
+  laps_in_run: "Run laps", run_start_lap: "From lap", run_end_lap: "To lap", degradation_per_lap: "Deg / lap (s)",
+  row_count: "Rows", size_bytes: "Size (bytes)", modified_at: "Modified",
+};
+
+function columnLabel(column) {
+  if (columnLabels[column]) return columnLabels[column];
+  if (!/^[a-z0-9]+(_[a-z0-9]+)+$|^[a-z]+$/.test(column)) return column;
+  const words = column.split("_").map((word) => (/^(dnf|pu|fia|sc|vsc|p\d+|s\d)$/.test(word) ? word.toUpperCase() : word));
+  return words.join(" ").replace(/^./, (c) => c.toUpperCase());
+}
+
+function sortValue(value) {
+  if (value == null || value === "") return null;
+  const number = Number(value);
+  return Number.isFinite(number) ? number : String(value).toLowerCase();
+}
+
+// Reorders rendered rows by the saved sort, moving the existing <tr> nodes so their listeners survive.
+function applyTableSort(target) {
+  const sort = state.tableSort?.[target.id];
+  const table = target.querySelector("table");
+  if (!table) return;
+  table.querySelectorAll("th[data-column]").forEach((th) => {
+    th.setAttribute("aria-sort", th.dataset.column === sort?.column ? (sort.direction > 0 ? "ascending" : "descending") : "none");
+  });
+  const body = table.tBodies[0];
+  const rows = Array.from(body.rows);
+  const index = sort ? Array.from(table.querySelectorAll("th[data-column]")).findIndex((th) => th.dataset.column === sort.column) : -1;
+  const key = (row) => (index < 0 ? null : sortValue(row.cells[index]?.dataset.value));
+  rows.sort((a, b) => {
+    const x = key(a), y = key(b);
+    if (index < 0 || x === y) return Number(a.dataset.row) - Number(b.dataset.row);
+    if (x == null) return 1;
+    if (y == null) return -1;
+    if (typeof x !== typeof y) return typeof x === "number" ? -1 : 1;
+    return (x < y ? -1 : 1) * sort.direction;
+  });
+  body.append(...rows);
+}
+
+function renderTable(targetId, payload, { sortable = true } = {}) {
   const target = $(targetId);
   const columns = payload?.columns || [];
   const rows = payload?.rows || [];
@@ -171,11 +228,35 @@ function renderTable(targetId, payload) {
     return;
   }
 
-  const head = columns.map((column) => `<th>${escapeHtml(column)}</th>`).join("");
+  // A column is numeric when every filled cell parses as a number; those align right.
+  const numericColumns = new Set(columns.filter((column) => {
+    const values = rows.map((row) => row[column]).filter((value) => value != null && value !== "");
+    return values.length > 0 && values.every((value) => Number.isFinite(Number(value)));
+  }));
+  const cellClass = (column) => (numericColumns.has(column) ? ' class="num"' : "");
+  const head = columns.map((column) => {
+    const label = escapeHtml(columnLabel(column));
+    const title = columnLabel(column) === column ? "" : ` title="${escapeHtml(column)}"`;
+    return sortable
+      ? `<th${cellClass(column)} data-column="${escapeHtml(column)}" aria-sort="none"${title}><button type="button" class="sort-button">${label}</button></th>`
+      : `<th${cellClass(column)}${title}>${label}</th>`;
+  }).join("");
   const body = rows
-    .map((row) => `<tr>${columns.map((column) => `<td title="${escapeHtml(row[column] ?? '')}">${escapeHtml(typeof formatCell === 'function' ? formatCell(column, row[column]) : row[column] ?? "")}</td>`).join("")}</tr>`)
+    .map((row, index) => `<tr data-row="${index}">${columns.map((column) => `<td${cellClass(column)} data-value="${escapeHtml(row[column] ?? '')}" title="${escapeHtml(row[column] ?? '')}">${escapeHtml(typeof formatCell === 'function' ? formatCell(column, row[column]) : row[column] ?? "")}</td>`).join("")}</tr>`)
     .join("");
-  target.innerHTML = `<table><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`;
+  target.innerHTML = `<table${sortable ? ' class="sortable"' : ""}><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`;
+  if (!sortable) return;
+  target.querySelectorAll("th[data-column] button").forEach((button) => button.addEventListener("click", () => {
+    const column = button.parentElement.dataset.column;
+    const current = state.tableSort?.[targetId];
+    // Numbers start high-to-low, text A-Z; a third click restores the original order.
+    const first = numericColumns.has(column) ? -1 : 1;
+    const next = current?.column !== column ? { column, direction: first }
+      : current.direction === first ? { column, direction: -first } : null;
+    state.tableSort = { ...state.tableSort, [targetId]: next };
+    applyTableSort(target);
+  }));
+  applyTableSort(target);
 }
 
 function escapeHtml(value) {
@@ -183,10 +264,11 @@ function escapeHtml(value) {
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;");
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
 }
 
-function renderBarChart(targetId, points, fill = colors.red) {
+function renderBarChart(targetId, points, fill = colors.red, { max = null, unit = "" } = {}) {
   const target = $(targetId);
   const items = points || [];
 
@@ -195,74 +277,63 @@ function renderBarChart(targetId, points, fill = colors.red) {
     return;
   }
 
-  const maxValue = Math.max(...items.map((item) => Number(item.value) || 0), 1);
+  // A fixed max (e.g. 100 for percentages) keeps bars comparable between charts.
+  const maxValue = max ?? Math.max(...items.map((item) => Number(item.value) || 0), 1);
   target.innerHTML = items
     .map((item) => {
-      const value = Number(item.value) || 0;
-      const width = Math.max(2, (value / maxValue) * 100);
+      const known = item.value != null && item.value !== "" && Number.isFinite(Number(item.value));
+      const value = known ? Number(item.value) : 0;
+      const width = known ? Math.min(100, Math.max(2, (value / maxValue) * 100)) : 0;
       return `
         <div class="bar-row">
           <div class="bar-label" title="${escapeHtml(item.label)}">${escapeHtml(item.label)}</div>
-          <div class="bar-track"><div class="bar-fill" style="width:${width}%;background:${fill}"></div></div>
-          <div class="bar-value">${value.toFixed(1)}</div>
+          <div class="bar-track"><div class="bar-fill" style="width:${width}%;background:${item.fill || fill}"></div></div>
+          <div class="bar-value">${known ? `${value.toFixed(1)}${unit}` : "Unknown"}</div>
         </div>`;
     })
     .join("");
 }
 
+// Draws telemetry x/y points as a scalable SVG. colourFor(point) picks each segment's colour.
+function trackSvg(points, label, colourFor = () => "var(--text-2)") {
+  const xs = points.map((point) => point.x);
+  const ys = points.map((point) => point.y);
+  const minX = Math.min(...xs), maxY = Math.max(...ys);
+  const width = Math.max(Math.max(...xs) - minX, 1), height = Math.max(maxY - Math.min(...ys), 1);
+  const pad = Math.max(width, height) * 0.04;
+  const paths = [];
+  let current = null;
+  points.forEach((point, index) => {
+    const colour = colourFor(point);
+    const xy = `${(point.x - minX).toFixed(1)} ${(maxY - point.y).toFixed(1)}`;
+    if (!current || current.colour !== colour) {
+      // Start each run at the previous point so the line stays continuous.
+      const start = index ? points[index - 1] : point;
+      current = { colour, d: `M${(start.x - minX).toFixed(1)} ${(maxY - start.y).toFixed(1)}` };
+      paths.push(current);
+    }
+    current.d += `L${xy}`;
+  });
+  return `<svg viewBox="${-pad} ${-pad} ${width + pad * 2} ${height + pad * 2}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="${escapeHtml(label)}">${paths
+    .map((path) => `<path d="${path.d}" stroke="${path.colour}"/>`)
+    .join("")}</svg>`;
+}
+
+function trackMessage(title, detail = "") {
+  return `<div class="track-empty"><strong>${escapeHtml(title)}</strong>${detail ? `<small>${escapeHtml(detail)}</small>` : ""}</div>`;
+}
+
 function renderTrack(track) {
-  const canvas = $("trackCanvas");
-  const context = canvas.getContext("2d");
   const points = track?.points || [];
   const sectors = track?.sectors || {};
   const fastestLap = track?.fastestLap || {};
   const selectedSession = track?.session || readSettings().session;
   $("trackContext").textContent = `${track?.year || ''} ${track?.event || 'Unknown event'} · ${selectedSession} · ${track?.message || 'No telemetry status recorded.'}`;
-  context.clearRect(0, 0, canvas.width, canvas.height);
-  context.fillStyle = "#090d14";
-  context.fillRect(0, 0, canvas.width, canvas.height);
-
-  if (!points.length) {
-    context.fillStyle = colors.muted;
-    context.font = "18px Segoe UI";
-    context.font = "14px Segoe UI";
-    context.fillText(track?.message || `Telemetry status unknown for ${selectedSession}.`, 24, 58);
-  } else {
-    const xs = points.map((point) => point.x);
-    const ys = points.map((point) => point.y);
-    const minX = Math.min(...xs);
-    const maxX = Math.max(...xs);
-    const minY = Math.min(...ys);
-    const maxY = Math.max(...ys);
-    const spanX = Math.max(maxX - minX, 1);
-    const spanY = Math.max(maxY - minY, 1);
-    const pad = 52;
-    const drawW = canvas.width - pad * 2;
-    const drawH = canvas.height - pad * 2;
-    const factor = Math.min(drawW/spanX, drawH/spanY);
-    const offsetX = (canvas.width-spanX*factor)/2, offsetY = (canvas.height-spanY*factor)/2;
-
-    const scale = (point) => ({
-      x: offsetX + (point.x-minX)*factor,
-      y: offsetY + (maxY-point.y)*factor,
-    });
-
-    for (let index = 0; index < points.length - 1; index += 1) {
-      const start = points[index];
-      const end = points[index + 1];
-      const p1 = scale(start);
-      const p2 = scale(end);
-      const sectorColor = start.sector ? ({S1:colors.red,S2:colors.amber,S3:colors.blue}[start.sector] || colors.muted) :
-        start.progress < 1 / 3 ? colors.red : start.progress < 2 / 3 ? colors.amber : colors.blue;
-      context.strokeStyle = sectorColor;
-      context.lineWidth = 7;
-      context.lineCap = "round";
-      context.beginPath();
-      context.moveTo(p1.x, p1.y);
-      context.lineTo(p2.x, p2.y);
-      context.stroke();
-    }
-  }
+  const sectorColour = { S1: colors.red, S2: colors.amber, S3: colors.blue };
+  $("trackMap").innerHTML = points.length
+    ? trackSvg(points, `${track?.event || 'Circuit'} layout coloured by sector`, (point) =>
+        point.sector ? sectorColour[point.sector] || colors.muted : point.progress < 1 / 3 ? colors.red : point.progress < 2 / 3 ? colors.amber : colors.blue)
+    : trackMessage(track?.message || `Telemetry status unknown for ${selectedSession}.`);
 
   const sectorCards = ["S1", "S2", "S3"]
     .map((sector) => {
@@ -279,35 +350,12 @@ function renderTrack(track) {
 }
 
 function renderWeather(weather) {
-  const canvas = $("weatherCanvas");
-  const context = canvas.getContext("2d");
-  const rows = [
-    ["Forecast rain", weather?.rain, colors.blue],
-    ["Simulated red flag", weather?.chaos, colors.red],
-    ["Mean driver DNF", weather?.dnf, "#f97316"],
-  ];
-
-  context.clearRect(0, 0, canvas.width, canvas.height);
-  context.fillStyle = "#090d14";
-  context.fillRect(0, 0, canvas.width, canvas.height);
-  context.font = "16px Segoe UI";
-
-  rows.forEach(([label, rawValue, color], index) => {
-    const value = Math.max(0, Math.min(100, Number(rawValue) || 0));
-    const y = 58 + index * 58;
-    context.fillStyle = "#cbd5e1";
-    context.fillText(label, 28, y);
-    context.fillStyle = "#1f2937";
-    context.fillRect(190, y - 18, 430, 18);
-    context.fillStyle = color;
-    context.fillRect(190, y - 18, 430 * (value / 100), 18);
-    context.fillStyle = "#edf3fb";
-    context.fillText(rawValue == null ? 'Unknown' : `${value.toFixed(1)}%`, 642, y);
-  });
-
-  context.fillStyle = colors.muted;
-  context.font = "13px Segoe UI";
-  context.fillText(String(weather?.source || "No weather source available").slice(0, 105), 28, canvas.height - 28);
+  renderBarChart("weatherChart", [
+    { label: "Forecast rain", value: weather?.rain, fill: colors.blue },
+    { label: "Simulated red flag", value: weather?.chaos, fill: colors.red },
+    { label: "Mean driver DNF", value: weather?.dnf, fill: colors.orange },
+  ], colors.blue, { max: 100, unit: "%" });
+  $("weatherChartSource").textContent = weather?.source || "No weather source available";
   const observed = weather?.observed || {}, modifiers = weather?.modifiers || {};
   const number = value => value == null ? 'not recorded' : Number(value).toFixed(2);
   $("weatherDetails").textContent = `Saved observations — air: ${number(observed.air_temp_avg)} °C; track: ${number(observed.track_temp_avg)} °C; rainfall: ${observed.rainfall_flag == null ? 'not recorded' : observed.rainfall_flag ? 'observed' : 'not observed'}. Model weather multipliers — disruption: ${number(modifiers.chaos_factor)}; DNF: ${number(modifiers.dnf_factor)}; degradation: ${number(modifiers.degradation_factor)}. Spread/degradation scores are not probabilities.`;
@@ -329,9 +377,9 @@ function renderOutputs(outputs) {
   renderTable('runHealthTable',{columns:['check','value','detail'],rows});
   const charts = state.outputs.resultsCharts || {};
   const screens = state.outputs.sessionScreens || {};
-  renderBarChart("winChart", charts.win, colors.red);
-  renderBarChart("podiumChart", charts.podium, colors.amber);
-  renderBarChart("dnfChart", charts.dnf, "#f97316");
+  renderBarChart("winChart", charts.win, colors.red, { unit: "%" });
+  renderBarChart("podiumChart", charts.podium, colors.amber, { unit: "%" });
+  renderBarChart("dnfChart", charts.dnf, colors.orange, { unit: "%" });
   renderBarChart("fantasyChart", charts.fantasy, colors.blue);
   renderTable("summaryTable", state.outputs.summaryTable);
   $("practiceModeBadge").textContent = sessionModeLabel(state.outputs.sessionMode);
@@ -349,7 +397,7 @@ function renderOutputs(outputs) {
   $("modelCommentary").textContent = state.outputs.signals?.commentary || "No model commentary found yet.";
   renderTrack(displayedTrack());
   renderWeather(state.outputs.weather);
-  renderBarChart("engineChart", state.outputs.reliability?.engineChart, colors.green);
+  renderBarChart("engineChart", state.outputs.reliability?.engineChart, colors.green, { max: 100 });
   renderTable("reliabilityTable", state.outputs.reliability?.table);
   renderTable("strategyTable", state.outputs.strategy);
   TyreStrategy.render(state.outputs);
@@ -438,7 +486,7 @@ function setupEvents() {
 async function boot() {
   if (state.booted) return;
   state.booted = true;
-  initRedesign();
+  initSetupControls();
   setupNavigation();
   setupEvents();
   initWorkbench();

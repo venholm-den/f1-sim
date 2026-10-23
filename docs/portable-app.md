@@ -9,7 +9,7 @@ portable_app\web_main.py       # pywebview entry point
 portable_app\web_backend.py    # Python API exposed to JavaScript
 portable_app\web\index.html
 portable_app\web\app.js
-portable_app\web\styles.css
+portable_app\web\app.css        # single Workbench stylesheet (Nocturne tokens)
 src\app_services\              # config, validation, run, output, and model-signal services
 ```
 
