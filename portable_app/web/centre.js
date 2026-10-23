@@ -96,7 +96,7 @@ async function status(){
   lastStatus=data.status;
 }
 const headings={Driver:'Driver',Team:'Team',scenario:'Scenario',simulated_rank:'Rank',avg_finish:'Avg. finish',win_chance:'Win %',podium_chance:'Podium %',dnf_chance:'DNF %',points_chance:'Top 10 % (legacy)',top10_chance:'Top 10 %',points_scoring_chance:'Scores points %',avg_points:'Avg. points',simulated_race_time_seconds:'Race time (s)',delta_vs_baseline_seconds:'Δ baseline (s)',pit_stops:'Stops'};
-function format(value,key){if(value===null||value===undefined)return '—';if(typeof value!=='number')return scenarioNames[value]||value;return ['win_chance','podium_chance','dnf_chance'].includes(key)?(value*100).toFixed(2):Number.isInteger(value)?String(value):value.toFixed(3);}
+function format(value,key){if(value===null||value===undefined)return '—';if(typeof value!=='number')return scenarioNames[value]||value;return ['win_chance','podium_chance','dnf_chance','points_chance','top10_chance','points_scoring_chance'].includes(key)?(value*100).toFixed(1):Number.isInteger(value)?String(value):value.toFixed(3);}
 async function results(){
   if(!selected)return;const ticket=++loading;
   el('exportCsv').disabled=true;el('exportStatus').hidden=true;

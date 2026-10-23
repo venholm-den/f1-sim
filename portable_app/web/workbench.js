@@ -92,8 +92,13 @@ function formatCell(column, value) {
   if (/chance$|_dnf_rate$/.test(column)) return pct(n);
   if (/^P\d+$/.test(column)) return pct(n);
   if (/price/i.test(column)) return `$${n.toFixed(1)}m`;
-  if (/_delta_pp$/.test(column)) return `${n > 0 ? '+' : ''}${n.toFixed(2)} pp`;
-  return Number.isInteger(n) ? String(n) : n.toFixed(3).replace(/0+$/, '').replace(/\.$/, '');
+  if (/_delta_pp$/.test(column)) return `${n > 0 ? '+' : ''}${n.toFixed(1)} pp`;
+  if (/_delta$/.test(column)) return `${n > 0 ? '+' : ''}${n.toFixed(2)}`;
+  // Fixed decimals per kind of value, so a column never mixes 22.274 with 13.3.
+  if (/reliability_score$/.test(column)) return (n*100).toFixed(1);
+  if (/points|fantasy|ceiling|floor|positions_gained/.test(column)) return n.toFixed(1);
+  if (/^(avg_finish|avg_grid|finish_p\d+)$/.test(column)) return n.toFixed(2);
+  return Number.isInteger(n) ? String(n) : n.toFixed(3);
 }
 function definitions(target, pairs) {
   $(target).innerHTML = pairs.map(([label,value])=>`<div><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value ?? 'Unknown')}</dd></div>`).join('');
@@ -191,6 +196,9 @@ function renderResultsDetails() {
   const details=state.outputs.details || {}, run=details.run || {}, saved=state.outputs.savedContext || {};
   $('resultSims').textContent=run.settings?.n_sims ? Number(run.settings.n_sims).toLocaleString() : details.forecastRun?.n_sims ? Number(details.forecastRun.n_sims).toLocaleString() : 'Not recorded';
   $('resultRuntime').textContent=run.elapsed_seconds == null ? 'Not recorded' : `${Number(run.elapsed_seconds).toFixed(1)} s`;
+  const sc=safetyCarSummary(details.risk || {});
+  $('safetyCarMetric').hidden=numeric(details.risk?.safety_car_chance)==null;
+  $('resultSafetyCar').textContent=sc.value;$('resultSafetyCarNote').textContent=sc.note;
   $('savedResultLabel').textContent=(state.outputs.summaryTable?.rows || []).length ? `${saved.year || ''} ${displayEventName(saved.event) || 'Saved run'} · ${saved.session || ''}` : 'NO SAVED RUN';
   const rows=(state.outputs.summaryTable?.rows || []).slice().sort((a,b)=>Number(b.win_chance)-Number(a.win_chance));
   const notes=[];
@@ -202,13 +210,21 @@ function renderResultsDetails() {
   const rules=state.reference?.fantasy_scoring || {};
   definitions('fantasyRules',[['Fastest lap bonus',rules.fastest_lap_bonus],['Driver of the day bonus',rules.dotd_bonus],['DNF penalty',rules.dnf_penalty],['Position gain / place',rules.position_gain_points_per_place],['Position loss / place',rules.position_loss_points_per_place]]);
 }
+// Safety-car numbers exist only when a run used a safety-car candidate.
+function safetyCarSummary(risk) {
+  if (numeric(risk.safety_car_chance)==null) return {value:'Off for this run',note:'Turn on a safety-car model under Model candidates in Race setup.'};
+  const vsc=numeric(risk.vsc_chance), count=numeric(risk.avg_safety_cars);
+  const parts=[count==null?null:`${count.toFixed(2)} SCs per race`,vsc==null?null:`VSC in ${pct(vsc,0)} of races`].filter(Boolean);
+  return {value:pct(risk.safety_car_chance,0),note:parts.length?parts.join(' · '):'Simulated races with at least one safety car.'};
+}
 function renderWeatherPanels() {
   const weather=state.outputs.weather || {}, modifiers=weather.modifiers || {}, observed=weather.observed || {};
   const descriptions={chaos_factor:'Disruption multiplier',strategy_factor:'Strategy variance multiplier',dnf_factor:'Retirement risk multiplier',degradation_factor:'Tyre degradation multiplier',uncertainty_factor:'Forecast spread multiplier'};
   $('modifierCards').innerHTML=Object.entries(descriptions).map(([key,description])=>`<div class="modifier-card"><h3>${key.replace('_factor','').toUpperCase()}</h3><strong>${numeric(modifiers[key])==null?'Unknown':fmt(modifiers[key])+'×'}</strong><small>${description}<br>Read-only model output</small></div>`).join('');
   definitions('observedWeather',[['Air temperature',observed.air_temp_avg==null?'Not recorded':`${fmt(observed.air_temp_avg,1)} °C`],['Track temperature',observed.track_temp_avg==null?'Not recorded':`${fmt(observed.track_temp_avg,1)} °C`],['Rainfall',observed.rainfall_flag==null?'Unknown':observed.rainfall_flag?'Observed':'Not observed'],['Source',weather.source || 'Unknown']]);
   renderTable('weatherReliabilityTable',state.outputs.reliability?.table);
-  const items=[['car','Safety Car Probability','Unavailable','A track prior is not a calibrated simulation probability.'],
+  const risk=state.outputs.details?.risk || {}, sc=safetyCarSummary(risk);
+  const items=[['car','Safety Car Probability',sc.value,sc.note],
     ['flag','Red Flag Probability',pct(state.outputs.details?.risk?.red_flag_chance),'Estimated from simulated event outcomes.'],
     ['sun','Wet Race Probability','Unavailable','Regional wet-hour ensemble frequency is separate.'],
     ['gauge','Mean Driver DNF',pct(state.outputs.details?.risk?.dnf_chance),'Mean retirement chance across modelled drivers.']];
@@ -283,7 +299,7 @@ async function loadComparisonHistory() {
   const runs=history.filter(r=>['monte_carlo','forecast'].includes(r.kind) && ['completed','existing'].includes(r.status));
   ['compareA','compareB'].forEach((id,index)=>{const selected=$(id).value;$(id).innerHTML=runs.map(r=>`<option value="${escapeHtml(r.id)}">${escapeHtml(r.label)} · ${escapeHtml(r.created_at?.slice(0,16)||'')}</option>`).join('');if(runs.some(r=>r.id===selected))$(id).value=selected;else if(runs[index])$(id).value=runs[index].id;});
   $('compareRuns').disabled=runs.length<2;
-  if(runs.length<2)renderTable('comparisonTable',{columns:[],rows:[]});
+  if(runs.length<2)$('comparisonTable').innerHTML=`<div class="empty">${runs.length?'Only one saved run so far. Save a second run to compare.':'No saved runs yet. Run a simulation from Race setup first.'}</div>`;
 }
 function applyPreferences(preferences) {
   $('autoReloadInput').checked=Boolean(preferences.auto_reload);updateAutoReload();
@@ -324,7 +340,10 @@ function initWorkbench() {
   ['resetSetup','resetSettings'].forEach(id=>$(id).addEventListener('click',()=>safeAction(resetForm)));
   $('discordSetup').addEventListener('click',()=>window.location.href='centre.html');
   $('refreshComparisons').addEventListener('click',()=>safeAction(loadComparisonHistory));
-  $('compareRuns').addEventListener('click',()=>safeAction(async()=>renderTable('comparisonTable',await api().workbench_compare($('compareA').value,$('compareB').value))));
+  $('compareRuns').addEventListener('click',()=>safeAction(async()=>{
+    if($('compareA').value===$('compareB').value){$('comparisonTable').innerHTML='<div class="empty">Run A and Run B are the same run. Pick two different runs.</div>';return;}
+    renderTable('comparisonTable',await api().workbench_compare($('compareA').value,$('compareB').value));
+  }));
   $('resultTop').addEventListener('change',renderProbabilityChart);
   $('outputInput').addEventListener('change',()=>{state.activeOutputDir=null;safeAction(refreshOutputs);});
   ['baselineInput','lookbackInput','seedInput'].forEach(id=>$(id).addEventListener('change',updateContext));

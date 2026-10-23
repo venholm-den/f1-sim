@@ -1007,7 +1007,10 @@ class PortableWebApi:
             summary = read_output_table(folder.parent / 'frozen', 'simulation_summary.csv', max_rows=100)
         reliability = read_output_table(output_dir, "debug/reliability_profile.csv", max_rows=100)
         strategy = read_output_table(output_dir, "strategy/predicted_tyre_strategy.csv", max_rows=100)
-        fantasy = fantasy_driver_summary(read_output_table(output_dir, "raw_fantasy_results.csv", max_rows=5_000))
+        # The summary already averages every sim. The raw file is grouped by driver,
+        # so a row cap there would only ever reach the first driver or two.
+        fantasy = summary if "avg_fantasy_points" in summary else fantasy_driver_summary(
+            read_output_table(output_dir, "raw_fantasy_results.csv", max_rows=None))
         signals = load_model_signals(output_dir)
         files = list_core_outputs(output_dir)
         health = validate_data_sources(build_run_config(self.base_config, settings))

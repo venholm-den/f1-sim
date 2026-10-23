@@ -228,11 +228,11 @@ input[type=range]{border:0;background:transparent;height:18px;min-height:18px;cu
 .sector-pill{padding:10px;background:var(--bg);border:1px solid var(--line);min-width:110px;font-size:11px}
 .sector-pill span{display:block;font-size:10px;color:var(--muted)}
 .sector-pill strong{display:block;color:var(--text);margin:4px 0}
-.result-metrics{display:grid;grid-template-columns:repeat(5,minmax(0,1fr))}
+.result-metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr))}
 .metric{display:flex;align-items:flex-start;min-width:0}
 .metric>span{color:var(--text-2)}
 .metric div{min-width:0}
-.metric strong{margin:13px 0 6px;line-height:1.1;white-space:nowrap}
+.metric strong{margin:13px 0 6px;line-height:1.1;overflow-wrap:anywhere}
 .metric:nth-child(4)>span{color:var(--amber)}
 .metric:nth-child(5)>span{color:var(--red)}
 .scenario-strip{display:flex;align-items:center;border-radius:6px}
@@ -295,7 +295,7 @@ details>div{margin-top:12px}
 .setup-layout,.data-layout,.results-layout,.two-column,.weather-layout,.signals-layout{grid-template-columns:1fr}
 .source-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 .data-layout>div:last-child,.weather-layout>div:last-child{grid-template-columns:1fr}
-.signal-metrics,.result-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
+.signal-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
 .modifier-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 .about{display:block}
 .about button{margin-top:12px}
@@ -545,7 +545,7 @@ summary{font-size:13px;color:var(--text-2);text-transform:none}
 .result-metrics{gap:12px;margin-bottom:20px}
 .metric{padding:16px;gap:10px}
 .metric small{font-size:10px;color:var(--subtle)}
-.metric strong{font-size:23px;font-weight:500}
+.metric strong{font-size:clamp(18px,2vw,23px);font-weight:500}
 .metric p{font-size:11px;color:var(--subtle)}
 .results-layout{gap:20px;margin-bottom:20px;grid-template-columns:1fr 1fr}
 .results-layout>.panel:last-child{grid-column:1/-1}
@@ -622,7 +622,7 @@ summary{font-size:13px;color:var(--text-2);text-transform:none}
 .data-layout{grid-template-columns:1fr}
 .data-layout>div:last-child{grid-template-columns:1fr 1fr}
 .run-dock{margin-left:-20px;margin-right:-20px;bottom:-24px}
-.result-metrics{grid-template-columns:repeat(3,minmax(0,1fr))}
+
 }
 @media (max-width:900px){
 .app-shell{grid-template-columns:180px minmax(0,1fr)}
@@ -642,7 +642,7 @@ summary{font-size:13px;color:var(--text-2);text-transform:none}
 .run-dock .run-button{min-width:145px;font-size:13px!important}
 .source-grid{grid-template-columns:1fr 1fr}
 .archive-layout{grid-template-columns:1fr}
-.result-metrics,.archive-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
+
 .page-heading p{font-size:13px}
 }
 @media (max-width:620px){

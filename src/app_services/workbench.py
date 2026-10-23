@@ -83,7 +83,7 @@ def saved_details(output_dir: str | Path, summary_override=None) -> dict:
             'venue': read('venue_context.json'), 'raceWeather': weather,
             'run': saved_run, 'forecastRun': forecast_config.get('run', {}),
             'risk': {column: float(pd.to_numeric(summary[column], errors='coerce').mean())
-                     for column in ('red_flag_chance', 'dnf_chance')
+                     for column in ('red_flag_chance', 'dnf_chance', 'safety_car_chance', 'avg_safety_cars', 'vsc_chance')
                      if column in summary and pd.to_numeric(summary[column], errors='coerce').notna().any()},
             'confidence': None}
 
