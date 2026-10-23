@@ -36,6 +36,21 @@ def _sim_param(key: str, default: float) -> float:
     return number
 
 
+def _validate_parameter_overrides(overrides: dict | None) -> dict[str, float]:
+    if not overrides:
+        return {}
+    unknown = set(overrides) - set(SIMULATION_PARAMETERS)
+    if unknown:
+        raise ValueError(f'Unknown simulation parameters: {sorted(unknown)}.')
+    checked = {}
+    for key, value in overrides.items():
+        number = float(value)
+        if not np.isfinite(number) or not 0 <= number <= 50:
+            raise ValueError(f'{key} override must be finite and between 0 and 50.')
+        checked[key] = number
+    return checked
+
+
 def _to_float_or_default(value: Any, default: float) -> float:
     try:
         number = float(value)
@@ -269,6 +284,7 @@ def simulate_races(
     single_degradation_multiplier: float | None = None,
     team_noise_seconds: float | None = None,
     sample_estimated_grid: bool = False,
+    parameter_overrides: dict | None = None,
 ) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
     """
     Simulates races by estimating total projected race time per driver.
@@ -287,6 +303,8 @@ def simulate_races(
     team_noise_seconds enables team_noise_v1 (src/shared_noise.py) and
     sample_estimated_grid enables estimated_grid_v1 (src/grid_penalties.py);
     both use their own random streams.
+    parameter_overrides replaces named SIMULATION_PARAMETERS for this call
+    only (src/multi_score_tuning.py); None keeps the configured values.
     """
 
     if retirement_classification not in {'legacy', 'completed_laps_v1'}:
@@ -294,8 +312,18 @@ def simulate_races(
     if safety_car_probability is not None and multi_safety_car_probability is not None:
         raise ValueError('Choose one safety-car candidate.')
     base = _prepare_features(features)
+    overrides = _validate_parameter_overrides(parameter_overrides)
+    if 'grid_loss_multiplier' in overrides and grid_loss_multiplier is not None:
+        raise ValueError('Override grid_loss_multiplier once.')
+    if 'tyre_deg_multiplier' in overrides and single_degradation_multiplier is not None:
+        raise ValueError('Override tyre_deg_multiplier once.')
+
+    def param(key: str, default: float) -> float:
+        return overrides[key] if key in overrides else _sim_param(key, default)
 
     if agent_settings is not None:
+        if overrides:
+            raise ValueError('Parameter overrides apply to the aggregate engine only.')
         from src.agent_race import simulate_agent_races
         if grid_loss_multiplier is not None:
             raise ValueError('Agent traffic replaces aggregate grid loss.')
@@ -332,27 +360,27 @@ def simulate_races(
         0.02,
     )
 
-    race_pace_seconds_multiplier = _sim_param("race_pace_seconds_multiplier", 0.20)
-    long_run_penalty_multiplier = _sim_param("long_run_penalty_multiplier", 0.25)
-    tyre_deg_multiplier = _sim_param("tyre_deg_multiplier", 7.00)
+    race_pace_seconds_multiplier = param("race_pace_seconds_multiplier", 0.20)
+    long_run_penalty_multiplier = param("long_run_penalty_multiplier", 0.25)
+    tyre_deg_multiplier = param("tyre_deg_multiplier", 7.00)
     if single_degradation_multiplier is not None:
         # Candidate: degradation enters race time once, here, with this weight.
         tyre_deg_multiplier = float(single_degradation_multiplier)
         if not np.isfinite(tyre_deg_multiplier) or not 0 <= tyre_deg_multiplier <= 50:
             raise ValueError('single_degradation_multiplier must be finite and between 0 and 50.')
     if grid_loss_multiplier is None:
-        grid_loss_multiplier = _sim_param("grid_loss_multiplier", 1.65)
+        grid_loss_multiplier = param("grid_loss_multiplier", 1.65)
     else:
         grid_loss_multiplier = float(grid_loss_multiplier)
         if not np.isfinite(grid_loss_multiplier) or not 0 <= grid_loss_multiplier <= 50:
             raise ValueError('grid_loss_multiplier must be finite and between 0 and 50.')
-    strategy_loss_multiplier = _sim_param("strategy_loss_multiplier", 2.50)
-    race_noise_multiplier = _sim_param("race_noise_multiplier", 3.80)
-    start_noise_seconds = _sim_param("start_noise_seconds", 1.15)
-    strategy_noise_seconds = _sim_param("strategy_noise_seconds", 1.50)
-    chaos_noise_seconds = _sim_param("chaos_noise_seconds", 1.25)
-    red_flag_field_compression = _sim_param("red_flag_field_compression", 0.72)
-    red_flag_noise_seconds = _sim_param("red_flag_noise_seconds", 2.00)
+    strategy_loss_multiplier = param("strategy_loss_multiplier", 2.50)
+    race_noise_multiplier = param("race_noise_multiplier", 3.80)
+    start_noise_seconds = param("start_noise_seconds", 1.15)
+    strategy_noise_seconds = param("strategy_noise_seconds", 1.50)
+    chaos_noise_seconds = param("chaos_noise_seconds", 1.25)
+    red_flag_field_compression = param("red_flag_field_compression", 0.72)
+    red_flag_noise_seconds = param("red_flag_noise_seconds", 2.00)
 
     red_flag_probability = _calculate_red_flag_probability(weather_modifiers)
     red_flag_probability = max(
