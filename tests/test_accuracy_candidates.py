@@ -66,3 +66,54 @@ def test_pre_reference_uses_only_prior_same_event_or_explicit_assumption():
     features, _, _ = build_replay_inputs(None, events[:2], metadata=metadata,
                                         feature_variant='normalised_history_v1')
     assert features.historical_reference_source.eq('prior_same_event_2024_2').all()
+
+
+def _wear_features():
+    from tests.test_simulate import _minimal_features
+    features = _minimal_features()
+    # Equal pace; LEC has the highest wear and its pace scores already include it.
+    features['race_pace_score'] = 0.0
+    features['tyre_deg_score'] = [0.0, 0.0, 0.0, 0.10]
+    features['long_run_pace_score'] = [0.0, 0.0, 0.0, 1.2]
+    features['strategy_weight_used'] = 0.5
+    features['strategy_score'] = [0.15, 0.15, 0.15, 0.15 + 0.10 * 3.0]
+    features['grid_position'] = [1, 2, 3, 4]
+    return features
+
+
+def test_single_degradation_removes_wear_from_pace_and_strategy_only():
+    from src.accuracy_candidates import candidate_simulation_options, single_degradation
+    features = _wear_features()
+    original = features.copy()
+    single = single_degradation(features)
+    assert single.long_run_pace_score.tolist() == pytest.approx([0.0] * 4)
+    assert single.strategy_score.tolist() == pytest.approx([0.15] * 4)
+    for column in ['race_pace_score', 'tyre_deg_score', 'performance_uncertainty', 'reliability_score']:
+        pd.testing.assert_series_equal(single[column], original[column])
+    pd.testing.assert_frame_equal(features, original)
+    assert candidate_simulation_options('single_degradation_v1', single) == {
+        'single_degradation_multiplier': 2.0}
+
+
+def test_single_degradation_weight_sets_the_only_wear_cost():
+    from src.accuracy_candidates import single_degradation
+    from src.simulate import simulate_races
+    features = single_degradation(_wear_features())
+    def mean_gap(multiplier):
+        _, _, raw = simulate_races(features, n_sims=400, seed=7, overtaking_difficulty=0.0,
+                                   single_degradation_multiplier=multiplier)
+        times = raw.groupby('Driver').projected_race_time_seconds.mean()
+        return times['LEC'] - times[['RUS', 'HAM', 'ANT']].mean()
+    # 0.10 s/lap over 66 laps at weight 2.0 is 13.2 s; zero weight leaves no wear cost.
+    assert mean_gap(0.0) == pytest.approx(0.0, abs=1.0)
+    assert mean_gap(2.0) == pytest.approx(13.2, abs=1.0)
+    with pytest.raises(ValueError, match='single_degradation_multiplier'):
+        simulate_races(features, n_sims=100, single_degradation_multiplier=float('nan'))
+
+
+def test_single_degradation_default_leaves_legacy_engine_unchanged():
+    from src.simulate import simulate_races
+    features = _wear_features()
+    first, _, _ = simulate_races(features, n_sims=200, seed=3)
+    second, _, _ = simulate_races(features, n_sims=200, seed=3, single_degradation_multiplier=None)
+    pd.testing.assert_frame_equal(first, second)

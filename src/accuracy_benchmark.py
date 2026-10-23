@@ -17,7 +17,8 @@ import pandas as pd
 
 from src.features import build_driver_features, _prepare_laps
 from src.accuracy_candidates import (SUPPORTED_VARIANTS, decouple_feature_dnf,
-    normalise_historical_pace, target_reference_lap, single_pace_blend, candidate_grid_multiplier)
+    normalise_historical_pace, target_reference_lap, single_pace_blend, candidate_grid_multiplier,
+    single_degradation)
 from src.retirement_risk import apply_retirement_risk
 from src.retirement_progress import attach_retirement_progress
 from src.accuracy_candidates import candidate_simulation_options
@@ -120,6 +121,8 @@ def build_replay_inputs(current, previous: list[ReplayRace], *, metadata: dict,
             features = attach_retirement_progress(features, history, metadata)
     if feature_variant in {'single_pace_blend_v1', 'single_pace_retirement_v1'}:
         features = single_pace_blend(features, metadata['session'])
+    if feature_variant == 'single_degradation_v1':
+        features = single_degradation(features)
     if feature_variant == 'qualifying_partial_pooling_v1':
         if metadata['session'] != 'Q':
             raise ValueError('Qualifying pace candidate is available only after Q.')
