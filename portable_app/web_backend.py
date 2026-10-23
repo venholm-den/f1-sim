@@ -871,6 +871,18 @@ class PortableWebApi:
         from src.app_services.historical_library import preview
         return preview(self._jobs.root, year, mode, table, page)
 
+    def replay_sessions(self):
+        from src.app_services.session_replay import sessions
+        return sessions(self._jobs.root)
+
+    def replay_load(self, session_id):
+        from src.app_services.session_replay import replay
+        return replay(self._jobs.root, session_id)
+
+    def replay_lap(self, session_id, driver, lap):
+        from src.app_services.session_replay import lap_telemetry
+        return lap_telemetry(self._jobs.root, session_id, driver, lap)
+
     def historical_export(self, payload):
         from src.app_services.historical_library import export
         return export(self._jobs.root, payload)

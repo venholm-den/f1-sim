@@ -10,6 +10,7 @@ const pages = {
   strategy: ['Tyre strategy', 'Inspect tyre recommendations, candidate scores and inventory assumptions.'],
   fantasy: ['Fantasy', 'Weekly market prices, actual Fantasy scores and separate simulation projections.'],
   dashboard: ['Results', 'Post-simulation results, insights and strategy recommendations.'],
+  replay: ['Session replay', 'Replay a downloaded session and compare lap telemetry.'],
   compare: ['Compare runs', 'Compare probabilities and expected finishes on matched driver coverage.'],
   settings: ['Settings', 'Local workspace preferences, data paths and integration status.'],
   practice: ['Practice analysis', 'Clean sectors, lap summaries and long-run pace.'],
@@ -57,9 +58,11 @@ function navigate(view) {
   document.querySelectorAll('.workflow-steps [data-open-view]').forEach(el=>el.classList.toggle('active',el.dataset.openView===view || (el.dataset.openView==='dashboard' && !['data','historical','training','setup','settings'].includes(view))));
   $('workflowRun').classList.toggle('active',Boolean(state.manualRunning));
   updateContext();
-  document.querySelector('.context-strip').hidden = ['historical','training'].includes(view);
+  document.querySelector('.context-strip').hidden = ['historical','training','replay'].includes(view);
   // PC following only changes what Setup and Results show; Settings has the full controls.
   document.querySelector('.automation-strip').hidden = !['setup','dashboard'].includes(view);
+  if (typeof pauseReplay === 'function' && view !== 'replay') pauseReplay();
+  if (view === 'replay') safeAction(refreshReplaySessions);
   clearTimeout(trainingState.timer);
   clearTimeout(fantasyArchive.timer);
   if(view==='fantasy')safeAction(()=>refreshFantasyArchive());

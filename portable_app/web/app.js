@@ -511,6 +511,7 @@ async function boot() {
   applyPreferences(initial.preferences || {});
   initPcRuns(initial);
   initHistoricalLibrary();
+  initReplay();
   initModelTraining();
   await refreshSetupTrack();
 }
