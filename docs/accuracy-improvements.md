@@ -11,6 +11,11 @@ The [SC/VSC, tyre inventory and classification follow-up](simulation-gap-tests.m
 adds isolated shadow comparisons and timestamped OpenF1 checks without
 changing live probabilities.
 
+[Multi-score settings tuning](multi-score-tuning.md) fits five simulation
+settings jointly on rank correlation, Brier and calibration error, using
+whole earlier seasons for fitting and later seasons for held-out scoring. It
+never changes live defaults.
+
 For the latest implementation and experiment settings, see the
 [11 October qualifying, pace and retirement revision](model-accuracy-revision.md).
 
