@@ -1,0 +1,46 @@
+{
+  "version": "pair_overtaking_v1",
+  "intercept": -1.9239336268220228,
+  "pace": 1.1173963413493084,
+  "tyre_age": 0.06166601987734187,
+  "compound": 0.014357923530742897,
+  "track": -3.1497036768293882,
+  "standard_errors": {
+    "intercept": 0.06865039877057603,
+    "pace": 0.07483185622613886,
+    "tyre_age": 0.007431745407006379,
+    "compound": 0.07178770423578612,
+    "track": 0.41737603909929916
+  },
+  "difficulty_centre": 0.55,
+  "max_gap_seconds": 1.0,
+  "pair_laps": 2970,
+  "passes": 467,
+  "races": [
+    "2026-01",
+    "2026-02",
+    "2026-03",
+    "2026-04",
+    "2026-05",
+    "2026-06",
+    "2026-07",
+    "2026-08",
+    "2026-09",
+    "2026-10",
+    "2026-11",
+    "2026-12",
+    "2026-13",
+    "2026-14",
+    "2026-15",
+    "2026-16"
+  ],
+  "sources": {
+    "data/recent_baselines/singapore-20261005-v4-venues/fastf1_laps.csv": "95e589e5ea9f10fc4ddf7e42e914e270a8909b7df0ae13da9c5b8b191b8e26d7",
+    "data/track_calibration/track_calibration_v1.csv": "9ed30442e7b4bd24a45197ce9c028f33265f92d32b573180455b1cc73884f62f"
+  },
+  "rolling_log_loss": {
+    "constant": 0.43658304642419515,
+    "track_only": 0.4298276737133695,
+    "pair": 0.3759513591165804
+  }
+}
