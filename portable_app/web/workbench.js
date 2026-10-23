@@ -1,22 +1,22 @@
 // Presentation for the mockup-based dashboard; all data comes from the Python API.
 const pages = {
-  setup: ['RACE SETUP', 'Configure your race simulation parameters and output preferences.'],
-  data: ['DATA SOURCES', 'Manage connected data files, configuration paths and data health.'],
-  historical: ['HISTORICAL DATA', 'Build your own season-by-season archive of race data.'],
-  training: ['MODEL TRAINING', 'Train and evaluate candidate models from your downloaded session archive.'],
-  signals: ['MODEL SIGNALS', 'Inspect how the model blends baseline knowledge with session data.'],
-  weather: ['WEATHER & RELIABILITY', 'Review environmental conditions, disruption and retirement risk.'],
-  reliability: ['RELIABILITY', 'Inspect historical mechanical failures and simulated retirement risk.'],
-  strategy: ['TYRE STRATEGY', 'Inspect tyre recommendations, candidate scores and inventory assumptions.'],
-  fantasy: ['FANTASY', 'Weekly market prices, actual Fantasy scores and separate simulation projections.'],
-  dashboard: ['RESULTS & STRATEGY', 'Post-simulation results, insights and strategy recommendations.'],
-  compare: ['COMPARE RUNS', 'Compare probabilities and expected finishes on matched driver coverage.'],
-  settings: ['SETTINGS', 'Local workspace preferences, data paths and integration status.'],
-  practice: ['PRACTICE ANALYSIS', 'Clean sectors, lap summaries and long-run pace.'],
-  quali: ['QUALIFYING ANALYSIS', 'One-lap pace and sector performance from saved sessions.'],
-  race: ['FULL RACE', 'Driver outlook and strategy estimates from saved outputs.'],
-  review: ['RACE REVIEW', 'Completed race observations and diagnostic outliers.'],
-  track: ['TRACK MAP', 'Real saved-session telemetry and sector leaders.'],
+  setup: ['Race setup', 'Configure your race simulation parameters and output preferences.'],
+  data: ['Data sources', 'Manage connected data files, configuration paths and data health.'],
+  historical: ['Historical data', 'Build your own season-by-season archive of race data.'],
+  training: ['Model training', 'Train and evaluate candidate models from your downloaded session archive.'],
+  signals: ['Model signals', 'Inspect how the model blends baseline knowledge with session data.'],
+  weather: ['Weather & reliability', 'Review environmental conditions, disruption and retirement risk.'],
+  reliability: ['Reliability', 'Inspect historical mechanical failures and simulated retirement risk.'],
+  strategy: ['Tyre strategy', 'Inspect tyre recommendations, candidate scores and inventory assumptions.'],
+  fantasy: ['Fantasy', 'Weekly market prices, actual Fantasy scores and separate simulation projections.'],
+  dashboard: ['Results', 'Post-simulation results, insights and strategy recommendations.'],
+  compare: ['Compare runs', 'Compare probabilities and expected finishes on matched driver coverage.'],
+  settings: ['Settings', 'Local workspace preferences, data paths and integration status.'],
+  practice: ['Practice analysis', 'Clean sectors, lap summaries and long-run pace.'],
+  quali: ['Qualifying analysis', 'One-lap pace and sector performance from saved sessions.'],
+  race: ['Full race', 'Driver outlook and strategy estimates from saved outputs.'],
+  review: ['Race review', 'Completed race observations and diagnostic outliers.'],
+  track: ['Track map', 'Real saved-session telemetry and sector leaders.'],
 };
 const iconPaths = {
   calendar:'M4 5h16v16H4z M4 10h16 M8 3v4 M16 3v4 M8 14h2 M14 14h2 M8 18h2',
@@ -51,8 +51,7 @@ function navigate(view) {
   state.view = view;
   document.querySelectorAll('.nav-item').forEach(el => { el.classList.toggle('active', el.dataset.view === view); if (el.dataset.view) el.setAttribute('aria-current', el.dataset.view === view ? 'page' : 'false'); });
   document.querySelectorAll('.view').forEach(el => el.classList.toggle('active', el.id === `view-${view}`));
-  $('viewTitle').textContent = pages[view]?.[0] || view.toUpperCase();
-  $('viewTitle').textContent = $('viewTitle').textContent.toLowerCase().replace(/^./, c=>c.toUpperCase()).replace(' & strategy','');
+  $('viewTitle').textContent = pages[view]?.[0] || view;
   $('viewSubtitle').textContent = pages[view]?.[1] || '';
   document.querySelector('.main').scrollTop = 0;
   document.querySelectorAll('.workflow-steps [data-open-view]').forEach(el=>el.classList.toggle('active',el.dataset.openView===view || (el.dataset.openView==='dashboard' && !['data','historical','training','setup','settings'].includes(view))));

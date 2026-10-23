@@ -438,7 +438,7 @@ function setupEvents() {
 async function boot() {
   if (state.booted) return;
   state.booted = true;
-  initRedesign();
+  initSetupControls();
   setupNavigation();
   setupEvents();
   initWorkbench();
