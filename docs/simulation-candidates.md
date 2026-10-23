@@ -76,9 +76,11 @@ is copied into the new run's output for reproducibility.
 Set `model.race_engine` to `pit_scenarios_v1`. The first experiment is a
 **free-air dry scenario model**, not an overtaking/traffic engine. It calculates
 compound offsets and linear age costs lap by lap, charges pit losses on the
-specified inlaps, and accumulates pace gaps over the full distance. It replaces
-aggregate long-run, degradation and strategy penalties/noise; the generic
-28-second pit/race allowance is removed before explicit stint costs are added.
+specified inlaps, and accumulates pace gaps over the full distance with the
+established engine's `race_pace_seconds_multiplier` (0.20), so a pace gap is worth
+the same in both engines. It replaces aggregate long-run, degradation and strategy
+penalties/noise; the generic 28-second pit/race allowance is removed before
+explicit stint costs are added.
 Completed-distance classification charges only stint costs and stops reached
 before retirement. The existing aggregate red-flag compression remains a
 heuristic, not chronological interruption modelling.
@@ -95,6 +97,25 @@ per driver and the roster must match exactly. Raw results include the selected
 scenario, planned stops and stint/pit cost; distance classification also reports
 completed stops. Traffic, undercuts through rejoin position, safety-car discounts,
 pit stacking, fuel effects and dynamic tyre choices remain future work.
+
+Before 24 October 2026 this engine charged pace at the full score (no 0.20
+weight), so a pace gap counted five times more than in the established engine and
+candidate comparisons mixed a pace-scale change with the stint model.
+`python -m scripts.benchmark_safety_car --arms established pit_scenarios_v1` on
+the 23 October packet (rounds 4-16 of 2026, three-race history, 5,000 sims,
+seeds 42/123/777):
+
+| Arm | Finish MAE | Win Brier | Podium Brier | Top-10 Brier |
+| --- | ---: | ---: | ---: | ---: |
+| Established engine | 3.664 | 0.0307 | 0.0730 | 0.1846 |
+| `pit_scenarios_v1`, unweighted pace (old) | 3.631 | 0.0413 | 0.0844 | 0.2078 |
+| `pit_scenarios_v1`, weighted pace | 3.466 | 0.0296 | 0.0700 | 0.1747 |
+
+Weighted, it improves finish MAE in 9 of 13 races. Most of that gain comes from
+dropping the aggregate degradation penalty rather than from the stint costs: the
+established engine with `single_degradation_multiplier = 0` scores 3.436 / 0.0268
+/ 0.0687 / 0.1778 on the same packet. These races were already inspected, so this
+is a diagnostic, not a promotion test.
 
 ## Shared-clock car agents
 

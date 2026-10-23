@@ -462,9 +462,11 @@ def simulate_races(
         pit_costs, pit_counts, pit_labels = sample_pit_costs(base, pit_plans, race_laps,
             n_sims, seed, degradation_factor)
         # Explicit lap/stint costs replace aggregate long-run, degradation and
-        # strategy penalties/noise. Pace gaps accumulate over the full distance.
+        # strategy penalties/noise. Pace uses the established engine's weight so
+        # candidate-vs-default differences come from the stint model alone.
         from src.model_config import DEFAULT_PIT_AND_RACE_ALLOWANCE
-        projected_times = (base_winner_time - DEFAULT_PIT_AND_RACE_ALLOWANCE + pace_samples * race_laps + grid_loss
+        projected_times = (base_winner_time - DEFAULT_PIT_AND_RACE_ALLOWANCE
+                           + pace_samples * race_laps * race_pace_seconds_multiplier + grid_loss
                            + pit_costs + race_noise + start_noise + chaos_noise)
 
     qualifying = (base["qualifying_position"].to_numpy(dtype=float)
