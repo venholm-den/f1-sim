@@ -7,8 +7,8 @@ from pathlib import Path
 
 import webview
 
-from src.app_services.app_paths import resource_path, initialize_user_workspace
-from portable_app.web_backend import PortableWebApi, project_root
+from src.app_services.app_paths import resource_path, select_workspace
+from portable_app.web_backend import PortableWebApi, project_root, WORKSPACE_ENV
 from portable_app.instance_lock import workspace_lock
 
 
@@ -22,6 +22,8 @@ def main() -> None:
     parser.add_argument('--race-setup', action='store_true', help='Open Race Setup (the default)')
     parser.add_argument('--simulation-centre', action='store_true', help='Open forecasts, scoring and Simulink tools')
     parser.add_argument('--workspace', type=Path, help='Use a separate local data and results workspace')
+    parser.add_argument('--repo-workspace', action='store_true',
+                        help="From source, use this checkout's data folder instead of the saved app data folder")
     parser.add_argument('--browser', action='store_true', help='Run in a local web browser instead of a desktop window')
     parser.add_argument('--no-open', action='store_true', help='Start the browser server without opening a tab')
     parser.add_argument('--job-worker', help=argparse.SUPPRESS)
@@ -43,9 +45,11 @@ def main() -> None:
                     raise SystemExit(1)
         return
 
-    root = (initialize_user_workspace(args.workspace) if args.workspace else
-            initialize_user_workspace() if getattr(sys, 'frozen', False) else project_root())
+    root = select_workspace(args.workspace, project_root(), frozen=getattr(sys, 'frozen', False),
+                            use_repo=args.repo_workspace)
+    print(f'Using workspace: {root}', flush=True)
     os.chdir(root)
+    os.environ[WORKSPACE_ENV] = str(root)
     with workspace_lock(root):
         run_app(args)
 

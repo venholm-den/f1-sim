@@ -19,6 +19,21 @@ src\app_services\              # config, validation, run, output, and model-sign
 python -m portable_app.web_main
 ```
 
+Source runs use the same saved data folder as the packaged app,
+`%LOCALAPPDATA%\RaceWorkbench`, whenever that folder exists, so both see the
+same downloads, settings and results. The folder in use is printed at startup.
+If it does not exist yet, the checkout's own `data`, `config` and `outputs`
+folders are used as before. To choose explicitly:
+
+```powershell
+python -m portable_app.web_main --repo-workspace          # this checkout's folders
+python -m portable_app.web_main --workspace D:\f1-data    # any other folder
+```
+
+If FastF1 cannot load a session (not run yet, timing data not published, rate
+limit, or no connection), the run stops with a plain-language reason under the
+log instead of only a traceback. The full traceback stays in the log.
+
 For pywebview debug mode:
 
 ```powershell

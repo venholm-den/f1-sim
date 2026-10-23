@@ -28,9 +28,28 @@ def resource_path(path: str | Path) -> Path:
     return bundled_root() / file_path
 
 
+def user_workspace_dir() -> Path:
+    """The saved app data folder the packaged app uses (%LOCALAPPDATA%\\RaceWorkbench)."""
+    return Path(os.environ.get('LOCALAPPDATA', str(Path.home()/'.local/share')))/'RaceWorkbench'
+
+
+def select_workspace(explicit: Path | None, repo_root: Path, *, frozen: bool, use_repo: bool = False) -> Path:
+    """Choose the data and results folder for this launch.
+
+    Source runs share the packaged app's saved data folder when it exists, so
+    both see the same downloads and results. --repo-workspace keeps the
+    checkout's own folders; --workspace always wins.
+    """
+    if explicit:
+        return initialize_user_workspace(explicit)
+    if frozen or (not use_repo and user_workspace_dir().is_dir()):
+        return initialize_user_workspace()
+    return repo_root
+
+
 def initialize_user_workspace(root: Path | None = None) -> Path:
     """Packaged releases never write caches or user settings into the install."""
-    target = root or Path(os.environ.get('LOCALAPPDATA', str(Path.home()/'.local/share')))/'RaceWorkbench'
+    target = root or user_workspace_dir()
     target.mkdir(parents=True, exist_ok=True)
     for relative in ['config/default_run_config.json','data/fantasy_prices.csv',
                      'data/track_profiles.csv','data/team_power_units.csv','data/fia_documents/fia_document_index.csv']:

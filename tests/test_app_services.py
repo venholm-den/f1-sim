@@ -483,3 +483,24 @@ def test_track_cards_are_filtered_to_selected_session(tmp_path) -> None:
     assert quali_fastest["driver"] == "NOR"
     assert quali_sectors["S1"]["driver"] == "LEC"
     assert practice_fastest["driver"] == "RUS"
+
+
+def test_source_runs_use_saved_app_data_folder_when_present(tmp_path, monkeypatch):
+    from src.app_services.app_paths import select_workspace
+    repo, local = tmp_path/'repo', tmp_path/'local'
+    monkeypatch.setenv('LOCALAPPDATA', str(local))
+    assert select_workspace(None, repo, frozen=False) == repo
+    (local/'RaceWorkbench').mkdir(parents=True)
+    saved = (local/'RaceWorkbench').resolve()
+    assert select_workspace(None, repo, frozen=False) == saved
+    assert select_workspace(None, repo, frozen=False, use_repo=True) == repo
+    assert select_workspace(tmp_path/'other', repo, frozen=False) == (tmp_path/'other').resolve()
+    assert select_workspace(None, repo, frozen=True, use_repo=True) == saved
+
+
+def test_project_root_follows_selected_workspace(tmp_path, monkeypatch):
+    from portable_app import web_backend
+    monkeypatch.setenv(web_backend.WORKSPACE_ENV, str(tmp_path))
+    assert web_backend.project_root() == tmp_path
+    monkeypatch.delenv(web_backend.WORKSPACE_ENV)
+    assert web_backend.project_root() == Path(web_backend.__file__).resolve().parents[1]

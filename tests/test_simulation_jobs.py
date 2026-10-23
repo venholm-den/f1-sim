@@ -97,6 +97,17 @@ def test_cancel_updates_status_and_wait_marks_cancelled(jobs, monkeypatch):
     assert jobs.status(folder.name)['status'] == 'cancelled'
 
 
+def test_failed_job_shows_the_worker_reason(jobs):
+    folder = jobs.run_root/'20260907T000000Z_5678abcd'
+    folder.mkdir()
+    write_json(folder/'job.json', {'id':folder.name, 'status':'running', 'created_at':'2026-09-07'})
+    write_json(folder/'failure.json', {'message':'FastF1 could not load this session.', 'session_load':True})
+    jobs._wait(folder.name, Mock(wait=Mock(return_value=1)))
+    status = jobs.status(folder.name)
+    assert status['status'] == 'failed'
+    assert status['error'] == 'FastF1 could not load this session.'
+
+
 def test_workspace_lock_rejects_second_instance_and_releases(tmp_path):
     with workspace_lock(tmp_path):
         with pytest.raises(RuntimeError, match='already open'):

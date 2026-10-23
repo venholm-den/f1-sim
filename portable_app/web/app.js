@@ -441,7 +441,9 @@ async function pollRunStatus() {
   state.manualRunning = Boolean(status.running);
   $("runDot").classList.toggle("running", Boolean(status.running));
   $("runState").textContent = status.running ? "Running" : status.exitCode === 0 ? "Run complete" : status.exitCode ? "Run failed" : "Ready";
-  $("runLog").textContent = status.log || "No run output yet.";
+  // The log scrolls to its end, so the plain-language reason goes last.
+  const failure = !status.running && status.exitCode && status.error ? `\n\nRun failed: ${status.error}` : "";
+  $("runLog").textContent = (status.log || "No run output yet.") + failure;
   $("runLog").scrollTop = $("runLog").scrollHeight;
   $("runButton").disabled = Boolean(status.running);
 

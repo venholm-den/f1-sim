@@ -6,6 +6,9 @@ from contextlib import redirect_stderr, redirect_stdout
 from pathlib import Path
 from typing import Callable
 
+# The worker re-raises from this so the job keeps the pipeline's real cause.
+last_failure: BaseException | None = None
+
 
 class CallbackWriter:
     def __init__(self, callback: Callable[[str], None]) -> None:
@@ -25,6 +28,8 @@ def run_pipeline_with_config(
     config_path: str | Path,
     log_callback: Callable[[str], None],
 ) -> int:
+    global last_failure
+    last_failure = None
     argv = sys.argv[:]
     writer = CallbackWriter(log_callback)
 
@@ -37,7 +42,8 @@ def run_pipeline_with_config(
             pipeline_main.main()
 
         return 0
-    except Exception:
+    except Exception as exc:
+        last_failure = exc
         log_callback(traceback.format_exc())
         return 1
     finally:

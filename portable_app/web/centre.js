@@ -86,7 +86,7 @@ async function status(){
   el('statusDot').classList.toggle('running',running);
   if(running&&!data.progress)el('progress').removeAttribute('value');
   else el('progress').value=data.progress?100*data.progress[0]/data.progress[1]:['completed','existing'].includes(data.status)?100:0;
-  el('progressText').textContent=running?(data.progress?`${data.progress[0]} / ${data.progress[1]} simulations complete`:data.kind==='monte_carlo'?'Running Monte Carlo simulation…':'Starting simulation. MATLAB startup may take a minute.'):(data.status==='failed'?'Run failed. Open the log for the error.':data.status==='cancelled'?'Cancelled. Partial outputs may be available.':data.status==='interrupted'?'Previous app session ended unexpectedly. Partial outputs may be available.':'Saved results available below.');
+  el('progressText').textContent=running?(data.progress?`${data.progress[0]} / ${data.progress[1]} simulations complete`:data.kind==='monte_carlo'?'Running Monte Carlo simulation…':'Starting simulation. MATLAB startup may take a minute.'):(data.status==='failed'?(data.error?`Run failed: ${data.error}`:'Run failed. Open the log for the error.'):data.status==='cancelled'?'Cancelled. Partial outputs may be available.':data.status==='interrupted'?'Previous app session ended unexpectedly. Partial outputs may be available.':'Saved results available below.');
   el('log').textContent=data.log||'No log was recorded for this earlier run.';
   if(running&&data.historical&&!data.log.includes('Historical inputs ready.'))el('progressText').textContent='Preparing historical inputs. First-time downloads can take several minutes.';
   if(running&&data.kind==='forecast')el('progressText').textContent='Preparing the next-race forecast and frozen snapshot. Follow the live log.';
