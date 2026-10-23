@@ -1,0 +1,23 @@
+Driver,Team,relative_pace,race_pace,clean_laps,raw_laps,pace_available,thin_pace_sample,source_year,source_round,source_circuit_id,source_layout_id,source_venue_status
+RUS,Mercedes,0.09222307530237117,71.6562311601449,61.0,71,True,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+VER,Red Bull Racing,0.005806223468709959,71.74825911235597,61.0,71,True,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+ANT,Mercedes,0.08326639808497305,71.67387165328569,64.0,71,True,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+PIA,McLaren,0.3351994162609202,71.89148235977193,61.0,71,True,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+HAM,Ferrari,0.0,71.88511149172884,60.0,71,True,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+HAD,Red Bull Racing,0.03658313364735477,72.00624495400719,61.0,71,True,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+NOR,McLaren,0.4105586834827477,71.96032048716847,62.0,71,True,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+LEC,Ferrari,0.31462954081251837,71.82642090762558,52.0,71,True,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+LAW,Racing Bulls,1.1491984378097584,73.0575180717889,60.0,70,True,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+LIN,Racing Bulls,1.2931604337789508,72.88304337881664,60.0,70,True,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+BOR,Audi,0.9077165127432494,73.21893177422757,60.0,70,True,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+HUL,Audi,0.8536913448022148,72.99652134195034,60.0,70,True,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+GAS,Alpine,0.3781671076654618,72.97219123948504,57.0,70,True,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+BEA,Haas F1 Team,2.0566031085511725,73.37460850658694,61.0,70,True,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+COL,Alpine,1.604714417429534,73.35388055510992,58.0,70,True,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+OCO,Haas F1 Team,2.060803452253168,73.81165258430943,58.0,69,True,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+ALB,Williams,2.2481560665790568,74.07152884109075,60.0,69,True,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+ALO,Aston Martin,1.7908602577187764,74.9731366400642,61.0,68,True,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+STR,Aston Martin,2.503291557505065,75.22800953632165,40.0,45,True,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+SAI,Williams,1.7806408360150812,74.26601422019974,20.0,24,True,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+PER,Cadillac,2.741786798916735,74.86837529691212,2.0,4,True,True,2026,8,red_bull_ring,red_bull_ring_gp,resolved
+BOT,Cadillac,,,0.0,2,False,False,2026,8,red_bull_ring,red_bull_ring_gp,resolved

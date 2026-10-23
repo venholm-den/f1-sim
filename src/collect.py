@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from src.data_sources.fastf1_cache import enable_cache
+
 from datetime import datetime, timedelta
 from pathlib import Path
 from types import SimpleNamespace
@@ -24,7 +26,7 @@ ANY_SESSION_PRIORITY = ["R", "Q", "SQ", "S", "FP3", "FP2", "FP1"]
 
 def enable_fastf1_cache() -> None:
     Path("data/cache").mkdir(parents=True, exist_ok=True)
-    fastf1.Cache.enable_cache("data/cache")
+    enable_cache("data/cache")
 
 
 def _load_fastf1_session(year: int, event_identifier, session_type: str):
@@ -39,6 +41,42 @@ def _load_fastf1_session(year: int, event_identifier, session_type: str):
         raise ValueError(f"No laps found for {year} {event_identifier} {session_type}")
 
     return session
+
+
+def completed_race_quality(session, *, archive=False) -> dict:
+    """Require a terminal race and complete classification before baseline use."""
+    status = getattr(session, 'session_status', pd.DataFrame())
+    states = status.get('Status', pd.Series(dtype=str)).dropna().astype(str)
+    aborted_classified = (archive and not states.empty and 'Aborted' in set(states)
+                          and 'Finished' not in set(states) and states.iloc[-1] in {'Finalised', 'Ends'})
+    if states.empty or (not aborted_classified and 'Finished' not in set(states)) or states.iloc[-1] not in {'Finished', 'Finalised', 'Ends'}:
+        raise ValueError('Race is not confirmed finished.')
+    results = getattr(session, 'results', pd.DataFrame())
+    if results.empty or not {'Abbreviation', 'Position', 'Status'}.issubset(results):
+        raise ValueError('Race classification is unavailable.')
+    drivers = results.Abbreviation.dropna().astype(str).str.strip()
+    positions = pd.to_numeric(results.Position, errors='coerce')
+    laps = getattr(session, 'laps', pd.DataFrame())
+    unranked = pd.Series(False, index=results.index)
+    if archive and 'Driver' in laps:
+        # These feed rows describe entrants who did not participate. Keep their
+        # original status and missing rank in the archive; never invent P20 or
+        # relax completeness for a starter with missing timing/classification.
+        unranked = (positions.isna() & results.Status.astype(str).str.lower().isin(
+            {'illness', 'withdrew', 'withdrawn', 'did not start', 'dns', 'did not qualify'})
+            & ~results.Abbreviation.isin(laps.Driver.dropna().unique()))
+    ranked_positions = positions.loc[~unranked]
+    if (len(drivers) != len(results) or drivers.eq('').any() or drivers.duplicated().any()
+            or ranked_positions.empty or ranked_positions.isna().any()
+            or sorted(ranked_positions.tolist()) != list(range(1, len(ranked_positions) + 1))
+            or results.Status.isna().any() or results.Status.astype(str).str.strip().eq('').any()):
+        raise ValueError('Race classification is incomplete or duplicated.')
+    if laps.empty or not {'Driver', 'LapTime'}.issubset(laps):
+        raise ValueError('Race lap data is unavailable.')
+    return {'result_drivers': len(results), 'lap_drivers': int(laps.Driver.nunique()),
+            'lap_rows': len(laps), 'completion_state': states.iloc[-1],
+            'unranked_nonparticipants': int(unranked.sum()), 'aborted_classified': bool(aborted_classified),
+            'training_eligible': not aborted_classified}
 
 
 def _normalise_schedule(year: int) -> pd.DataFrame:
@@ -133,6 +171,7 @@ def load_pre_fp1_session(year: int, event: str | int = "latest"):
         event={
             "EventName": event_name,
             "RoundNumber": round_number,
+            "Location": row.get("Location"),
         },
         laps=pd.DataFrame(),
         weather_data=pd.DataFrame(),
@@ -142,11 +181,21 @@ def load_pre_fp1_session(year: int, event: str | int = "latest"):
         name=PRE_FP1_SESSION,
     )
 
+    # Historical PRE replays must not consume an entry list published after FP1.
+    dates = [pd.to_datetime(row.get(f'Session{i}DateUtc'), utc=True, errors='coerce')
+             for i in range(1, 6)]
+    dates = [date for date in dates if pd.notna(date)]
+    first_session = min(dates) if dates else pd.to_datetime(event_date, utc=True, errors='coerce')
+    feature_cutoff = pd.Timestamp.now(tz='UTC')
+    if pd.notna(first_session):
+        feature_cutoff = min(feature_cutoff, first_session)
+
     metadata = {
         "year": year,
         "event": event_name,
         "round": round_number,
         "session": PRE_FP1_SESSION,
+        'feature_cutoff_utc': feature_cutoff.isoformat(),
     }
 
     return session, metadata
@@ -265,6 +314,7 @@ def load_recent_race_sessions(
                 candidate["round"],
                 "R",
             )
+            completed_race_quality(session)
 
             metadata = {
                 "year": candidate["year"],

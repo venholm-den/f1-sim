@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+import json
 from pathlib import Path
 from typing import Any
 
@@ -17,6 +18,7 @@ from src.collect import (
     load_session,
 )
 from src.features import build_driver_features
+from src.forecast_roster import session_roster, validate_roster, pre_race_roster
 from src.model import build_model_features
 from src.grid import build_grid_features
 from src.weather import summarize_weather
@@ -38,6 +40,7 @@ from src.charts import make_probability_chart, make_text_report_image
 from src.run_config import load_app_config, parse_config_args
 from src.discord_post import post_files_to_discord
 from src.track import load_track_profile
+from src.venues import event_display, venue_for_context
 from src.lap_details import export_weekend_lap_details
 from src.tyres import infer_tyre_usage
 from src.strategy import predict_tyre_strategies, make_strategy_table_image
@@ -250,6 +253,7 @@ def _detect_sprint_weekend(
 
 def _build_baseline_features(
     recent_races: list[tuple[Any, dict]],
+    use_stint_pace: bool = False,
 ) -> pd.DataFrame:
     baseline_frames: list[pd.DataFrame] = []
 
@@ -266,7 +270,10 @@ def _build_baseline_features(
         print(f"- baseline race: Round {round_number} {event_name}")
 
         try:
-            race_features = build_driver_features(race_session.laps)
+            race_features = (
+                build_driver_features(race_session.laps, use_stint_pace=True)
+                if use_stint_pace else build_driver_features(race_session.laps)
+            )
         except Exception as exc:
             print(f"  skipped: could not build features: {exc}")
             continue
@@ -278,6 +285,9 @@ def _build_baseline_features(
         race_features["source_year"] = race_metadata.get("year")
         race_features["source_event"] = race_metadata.get("event")
         race_features["source_round"] = race_metadata.get("round")
+        source_venue = venue_for_context(race_metadata, session=race_session)
+        race_features['source_circuit_id'] = source_venue['circuit_id']
+        race_features['source_layout_id'] = source_venue['layout_id']
         race_features["baseline_age"] = baseline_age
 
         baseline_frames.append(race_features)
@@ -456,7 +466,7 @@ def build_model_commentary(
     podium = summary.sort_values("podium_chance", ascending=False).head(3)
 
     lines.append(
-        f"Model read: {metadata.get('year')} {metadata.get('event')} "
+        f"Model read: {metadata.get('year')} {event_display(metadata)} "
         f"using {metadata.get('session')} data."
     )
 
@@ -470,7 +480,7 @@ def build_model_commentary(
 
     lines.append(
         "Track profile: "
-        f"{track_profile.get('event', metadata.get('event'))}; "
+        f"{track_profile.get('circuit_name') or track_profile.get('event', metadata.get('event'))}; "
         f"overtaking difficulty "
         f"{float(track_profile.get('overtaking_difficulty', DEFAULT_OVERTAKING_DIFFICULTY)):.2f}."
     )
@@ -555,7 +565,7 @@ def build_discord_summary(
     lines: list[str] = []
 
     lines.append(
-        f"🏁 **F1 Fantasy Simulation — {metadata.get('year')} {metadata.get('event')}**"
+        f"🏁 **F1 Fantasy Simulation — {metadata.get('year')} {event_display(metadata)}**"
     )
     lines.append(f"Session used: **{metadata.get('session')}**")
 
@@ -729,6 +739,8 @@ def main() -> None:
         f"{metadata.get('session')}"
     )
     print(f"- round: {metadata.get('round')}")
+    metadata['venue'] = venue_for_context(metadata, session=current_session)
+    print(f"- venue: {metadata['venue'].get('circuit_name') or 'unresolved'} ({metadata['venue']['venue_status']})")
 
     print()
     print("Exporting weekend lap details...")
@@ -737,10 +749,12 @@ def main() -> None:
         lap_detail_files = export_weekend_lap_details(
             year=metadata["year"],
             event_identifier=metadata["event"],
-            sessions=["FP1", "FP2", "FP3", "Q", "SQ", "S"],
+            sessions=app_config.run.weekend_sessions if app_config.run.weekend_sessions is not None else ["FP1", "FP2", "FP3", "Q", "SQ", "S"],
             output_dir=_output_path(output_dir, "lap_details"),
         )
     except TypeError:
+        if app_config.run.weekend_sessions is not None:
+            raise  # Never fall back to unrestricted collection for a frozen forecast.
         lap_detail_files = export_weekend_lap_details(
             metadata["year"],
             metadata["event"],
@@ -767,7 +781,13 @@ def main() -> None:
     track_profile = load_track_profile(
         metadata["event"],
         path=app_config.data.track_profiles_path,
+        metadata=metadata,
     )
+    metadata['venue'].update(profile_status=track_profile['profile_status'],
+        track_factors={key: track_profile[key] for key in
+                      ('overtaking_difficulty', 'safety_car_chance', 'red_flag_base_chance')})
+    Path(_output_path(output_dir, 'venue_context.json')).write_text(
+        json.dumps(metadata['venue'], indent=2), encoding='utf-8')
     overtaking_difficulty = float(
         track_profile.get(
             "overtaking_difficulty",
@@ -781,11 +801,20 @@ def main() -> None:
     print()
     print("Loading FIA document context...")
 
+    from src.data_sources.fia_asof import feature_cutoff
+    fia_cutoff = feature_cutoff(current_session, metadata, app_config.run.feature_cutoff_utc)
     fia_context = build_fia_context(
         year=metadata["year"],
         event=metadata["event"],
         path=app_config.data.fia_document_index_path,
+        cutoff=fia_cutoff,
+        safe_asof=True,
     )
+    with open(_output_path(output_dir, 'fia_context.json'), 'w', encoding='utf-8') as handle:
+        json.dump({'feature_cutoff_utc': fia_cutoff,
+                   'policy': 'verified publication and first observation before cutoff; complete single grid version',
+                   'tables': {name: json.loads(frame.to_json(orient='records'))
+                              for name, frame in fia_context.items()}}, handle, indent=2)
 
     for context_name, context_frame in fia_context.items():
         print(f"- {context_name}: {len(context_frame)} rows")
@@ -793,14 +822,22 @@ def main() -> None:
     print()
     print("Summarising weather...")
 
-    try:
-        weather_summary = summarize_weather(
-            current_session,
-            track_profile=track_profile,
-            use_forecast=app_config.model.use_weather_forecast,
-        )
-    except TypeError:
-        weather_summary = summarize_weather(current_session)
+    if app_config.model.weather_model == 'race_window_v1':
+        from src.race_window_weather import candidate_weather
+        weather_summary = candidate_weather(current_session, track_profile, output_dir,
+            report_path=app_config.model.race_weather_report_path,
+            cutoff=app_config.run.feature_cutoff_utc)
+    else:
+        try:
+            weather_summary = summarize_weather(current_session, track_profile=track_profile,
+                                                use_forecast=app_config.model.use_weather_forecast)
+        except TypeError:
+            weather_summary = summarize_weather(current_session)
+
+    # Persist observations/modifiers separately from simulated disruption risk.
+    pd.Series({**weather_summary, 'year': metadata['year'], 'event': metadata['event'],
+               'session': metadata['session'], 'saved_at_utc': pd.Timestamp.now(tz='UTC').isoformat()}
+              ).to_json(_output_path(output_dir, 'weather_context.json'), indent=2, date_format='iso')
 
     print(
         "- weather: "
@@ -813,15 +850,20 @@ def main() -> None:
     print()
     print("Loading recent race baseline sessions...")
 
-    recent_races = load_recent_race_sessions(
+    retirement_enabled = app_config.model.retirement_model != 'legacy'
+    history_races = load_recent_race_sessions(
         target_year=metadata["year"],
         target_round=metadata["round"],
-        count=n_baseline_races,
+        count=max(n_baseline_races, app_config.model.retirement_history_races) if retirement_enabled else n_baseline_races,
     )
+    recent_races = history_races[:n_baseline_races]
 
     print(f"- recent races loaded: {len(recent_races)}")
 
-    baseline_features = _build_baseline_features(recent_races)
+    baseline_features = (
+        _build_baseline_features(recent_races, use_stint_pace=True)
+        if app_config.model.use_stint_pace else _build_baseline_features(recent_races)
+    )
     baseline_features_path = _output_path(output_dir, "baseline_race_features.csv")
     baseline_features.to_csv(baseline_features_path, index=False)
 
@@ -835,7 +877,25 @@ def main() -> None:
         current_features = _empty_current_features()
         print("- pre-FP1 mode: no target session laps loaded; using baselines only")
     else:
-        current_features = build_driver_features(current_session.laps)
+        current_features = (
+            build_driver_features(current_session.laps, use_stint_pace=True)
+            if app_config.model.use_stint_pace else build_driver_features(current_session.laps)
+        )
+        if app_config.model.use_stint_pace and metadata['session'] in {'Q', 'SQ'}:
+            # These exports already obey the forecast's eligible-session list.
+            # Reuse prior practice for race pace rather than qualifying stints.
+            from src.features import _prepare_laps
+            from src.long_run_pace import attach_long_run_pace
+            details = _safe_read_csv(_get_lap_detail_path(lap_detail_files, output_dir))
+            practice = pd.DataFrame()
+            if 'Session' in details:
+                for code in ('FP2', 'FP3', 'FP1'):
+                    selected = details[details['Session'].eq(code)]
+                    if not selected.empty:
+                        prepared = _prepare_laps(selected)
+                        practice = prepared[prepared['TruePaceEligible']]
+                        break
+            current_features = attach_long_run_pace(current_features, practice)
 
     current_features_path = _output_path(output_dir, "current_session_features.csv")
     current_features.to_csv(current_features_path, index=False)
@@ -852,7 +912,32 @@ def main() -> None:
         current_session_type=metadata["session"],
     )
 
+    roster_session = recent_races[0][0] if pre_fp1_run and recent_races else current_session
+    if pre_fp1_run:
+        roster, roster_provenance = pre_race_roster('data/race_entries.csv', metadata, roster_session,
+            metadata.get('feature_cutoff_utc', pd.Timestamp.now(tz='UTC')))
+    else:
+        roster = session_roster(roster_session)
+        roster_provenance = {'roster_source': 'target_session', 'roster_assumed': False}
+    roster_source = roster_provenance['roster_source']
+    excluded = sorted(set(model_features['Driver']) - set(roster))
+    model_features = validate_roster(model_features, roster)
+    roster_teams = roster_provenance.pop('roster_teams', None)
+    if roster_teams:
+        model_features['Team'] = model_features.Driver.map(roster_teams)
+    for key, value in roster_provenance.items():
+        model_features[key] = value
+    pd.DataFrame({'Driver': roster, 'Team': model_features.Team.tolist(), **roster_provenance}).to_csv(
+        _output_path(output_dir, 'driver_roster.csv'), index=False
+    )
+    print(f"- roster: {len(roster)} drivers ({roster_source}); excluded baseline drivers: {excluded}")
+
     print("Adding grid features...")
+
+    if app_config.model.qualifying_classifications_path:
+        from src.qualifying_archive import read_qualifying_archive, with_qualifying_classification
+        current_session = with_qualifying_classification(current_session, metadata,
+            read_qualifying_archive(app_config.model.qualifying_classifications_path))
 
     try:
         model_features = build_grid_features(
@@ -898,7 +983,17 @@ def main() -> None:
         baseline_features=baseline_features,
         current_session_type=metadata["session"],
         metadata=metadata,
+        **({'pace_blend': app_config.model.pace_blend} if app_config.model.pace_blend == 'single_pace_blend_v1' else {}),
     )
+
+    from src.qualifying_features import attach_current_qualifying
+    model_features = attach_current_qualifying(model_features, current_session, metadata)
+    if app_config.model.pace_blend == 'qualifying_partial_pooling_v1':
+        from src.qualifying_pace import apply_qualifying_pace, load_qualifying_pace
+        pace_artifact = load_qualifying_pace(app_config.model.qualifying_pace_model_path)
+        model_features = apply_qualifying_pace(model_features, pace_artifact, metadata)
+        with open(_output_path(output_dir, 'qualifying_pace_artifact.json'), 'x', encoding='utf-8') as handle:
+            json.dump(pace_artifact, handle, indent=2, allow_nan=False)
 
     if app_config.model.use_historical_model_calibration:
         print("Applying historical model calibration...")
@@ -924,6 +1019,18 @@ def main() -> None:
             note = str(model_features["historical_calibration_note"].iloc[0])
             print(f"- historical calibration skipped: {note}")
 
+    if retirement_enabled:
+        from src.retirement_risk import apply_retirement_risk
+        retirement_history = [(session, {**context, 'venue': venue_for_context(context, session=session)})
+                              for session, context in history_races[:app_config.model.retirement_history_races]]
+        model_features = apply_retirement_risk(model_features, retirement_history, metadata)
+        if app_config.model.retirement_model == 'retirement_progress_v1':
+            from src.retirement_progress import attach_retirement_progress
+            model_features = attach_retirement_progress(model_features, retirement_history, metadata)
+        elif app_config.model.retirement_model == 'survival_dnf_v1':
+            from src.retirement_survival import attach_survival_risk
+            model_features = attach_survival_risk(model_features, retirement_history, metadata)
+
     model_features_path = _output_path(output_dir, "driver_model_features.csv")
     model_features.to_csv(model_features_path, index=False)
 
@@ -945,12 +1052,40 @@ def main() -> None:
     print()
     print(f"Running Monte Carlo simulation: {n_sims:,} races...")
 
+    # Exact replay arguments for independent prospective experiments. This
+    # packet is provenance only; it does not alter the live simulation.
+    retirement_options = ({'retirement_classification': 'completed_laps_v1'}
+                          if app_config.model.retirement_model in {'retirement_progress_v1', 'survival_dnf_v1'} else {})
+    if app_config.model.pace_blend == 'qualifying_partial_pooling_v1':
+        retirement_options['sample_pace_posterior'] = True
+    if app_config.model.race_engine in {'pit_scenarios_v1', 'agent_laps_v1'}:
+        from src.pit_scenarios import assumed_plans
+        if app_config.model.pit_scenarios_path:
+            with open(app_config.model.pit_scenarios_path, encoding='utf-8') as handle:
+                pit_plans = json.load(handle)
+        else:
+            pit_plans = assumed_plans(model_features, model_features.estimated_race_laps.median())
+        retirement_options['pit_plans'] = pit_plans
+    if app_config.model.race_engine == 'agent_laps_v1':
+        from dataclasses import asdict
+        from src.agent_race import AgentSettings
+        settings = dict(app_config.model.agent_settings or {})
+        if settings.get('season_year') is None:
+            settings['season_year'] = year
+        settings.setdefault('passability', 1. - float(overtaking_difficulty))
+        if settings['season_year'] != year:
+            raise ValueError('Agent season year must match the forecast year.')
+        retirement_options['agent_settings'] = asdict(AgentSettings(**settings))
+    pd.Series({'overtaking_difficulty': overtaking_difficulty,
+               'weather_modifiers': weather_summary, **retirement_options}).to_json(
+        _output_path(output_dir, 'simulation_inputs.json'), indent=2)
     race_summary, position_matrix, results = simulate_races(
         features=model_features,
         n_sims=n_sims,
         seed=random_seed,
         overtaking_difficulty=overtaking_difficulty,
         weather_modifiers=weather_summary,
+        **retirement_options,
     )
 
     print("- simulation complete")
@@ -958,10 +1093,14 @@ def main() -> None:
     print()
     print("Calculating fantasy summary...")
 
+    from src.fantasy_market import snapshot_prices
+    market_prices = snapshot_prices(Path.cwd(), metadata, output_dir)
+    if market_prices:
+        print(f"- observed official fantasy prices: {market_prices}")
     summary, fantasy_results = calculate_fantasy_summary(
         results=results,
         race_summary=race_summary,
-        prices_path=app_config.data.fantasy_prices_path,
+        prices_path=market_prices or app_config.data.fantasy_prices_path,
     )
 
     summary_path = _output_path(output_dir, "simulation_summary.csv")
@@ -1064,6 +1203,7 @@ def main() -> None:
                 lookback_years=historical_strategy_lookback_years,
                 session=current_session,
                 output_dir=output_dir,
+                venue=metadata['venue'],
             )
         except TypeError:
             historical_strategy_files = apply_historical_strategy_adjustment_to_outputs(

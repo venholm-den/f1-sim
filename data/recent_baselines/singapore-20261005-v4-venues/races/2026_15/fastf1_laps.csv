@@ -1,0 +1,982 @@
+Year,Event,Round,Session,Driver,DriverNumber,Team,LapNumber,Stint,Compound,TyreLife,FreshTyre,LapTimeSeconds,Sector1Seconds,Sector2Seconds,Sector3Seconds,SpeedI1,SpeedI2,SpeedFL,SpeedST,IsPersonalBest,IsAccurate,TrackStatus,Deleted,PitOut,PitIn,LapStartTimeSeconds,CleanPushLap,source_circuit_id,source_layout_id,source_venue_status
+2026,Azerbaijan Grand Prix,15,R,NOR,1,McLaren,1.0,1.0,MEDIUM,1.0,True,114.469,,45.326,25.27,184.0,196.0,321.0,328.0,False,False,1,False,False,False,3413.247,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,NOR,1,McLaren,2.0,1.0,MEDIUM,2.0,True,110.202,39.575,45.259,25.368,183.0,198.0,321.0,323.0,True,True,1,False,False,False,3527.973,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,NOR,1,McLaren,3.0,1.0,MEDIUM,3.0,True,110.919,40.277,45.17,25.472,177.0,205.0,318.0,325.0,False,True,1,False,False,False,3638.175,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,NOR,1,McLaren,4.0,1.0,MEDIUM,4.0,True,109.477,39.242,44.847,25.388,185.0,200.0,321.0,330.0,True,True,1,False,False,False,3749.094,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,NOR,1,McLaren,5.0,1.0,MEDIUM,5.0,True,109.137,39.028,44.642,25.467,187.0,200.0,320.0,327.0,True,True,1,False,False,False,3858.571,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,NOR,1,McLaren,6.0,1.0,MEDIUM,6.0,True,108.245,38.682,44.319,25.244,194.0,202.0,322.0,332.0,True,True,1,False,False,False,3967.708,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,NOR,1,McLaren,7.0,1.0,MEDIUM,7.0,True,108.587,38.761,44.417,25.409,194.0,198.0,320.0,332.0,False,True,1,False,False,False,4075.953,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,NOR,1,McLaren,8.0,1.0,MEDIUM,8.0,True,108.551,38.779,44.486,25.286,197.0,200.0,321.0,332.0,False,True,1,False,False,False,4184.54,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,NOR,1,McLaren,9.0,1.0,MEDIUM,9.0,True,109.365,38.604,45.237,25.524,200.0,196.0,316.0,328.0,False,True,12,False,False,False,4293.091,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,NOR,1,McLaren,10.0,1.0,MEDIUM,10.0,True,108.488,38.579,44.523,25.386,202.0,198.0,315.0,325.0,False,True,1,False,False,False,4402.456,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,NOR,1,McLaren,11.0,1.0,MEDIUM,11.0,True,108.562,38.572,44.498,25.492,196.0,203.0,314.0,324.0,False,True,1,False,False,False,4510.944,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,NOR,1,McLaren,12.0,1.0,MEDIUM,12.0,True,108.298,38.54,44.423,25.335,202.0,202.0,314.0,327.0,False,True,1,False,False,False,4619.506,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,NOR,1,McLaren,13.0,1.0,MEDIUM,13.0,True,108.447,38.49,44.538,25.419,197.0,202.0,313.0,325.0,False,True,1,False,False,False,4727.804,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,NOR,1,McLaren,14.0,1.0,MEDIUM,14.0,True,108.102,38.399,44.269,25.434,200.0,202.0,312.0,326.0,True,True,1,False,False,False,4836.251,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,NOR,1,McLaren,15.0,1.0,MEDIUM,15.0,True,108.372,38.462,44.404,25.506,197.0,200.0,310.0,325.0,False,True,1,False,False,False,4944.353,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,NOR,1,McLaren,16.0,1.0,MEDIUM,16.0,True,109.976,38.61,45.695,25.671,202.0,198.0,306.0,315.0,False,True,1,False,False,False,5052.725,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,NOR,1,McLaren,17.0,1.0,MEDIUM,17.0,True,109.408,39.482,44.553,25.373,184.0,200.0,315.0,327.0,False,True,1,False,False,False,5162.701,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,NOR,1,McLaren,18.0,1.0,MEDIUM,18.0,True,108.39,38.573,44.431,25.386,194.0,199.0,315.0,327.0,False,True,1,False,False,False,5272.109,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,NOR,1,McLaren,19.0,1.0,MEDIUM,19.0,True,108.541,38.609,44.53,25.402,190.0,205.0,313.0,326.0,False,True,1,False,False,False,5380.499,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,NOR,1,McLaren,20.0,1.0,MEDIUM,20.0,True,108.241,38.445,44.411,25.385,199.0,207.0,313.0,327.0,False,True,1,False,False,False,5489.04,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,NOR,1,McLaren,21.0,1.0,MEDIUM,21.0,True,108.172,38.484,44.325,25.363,198.0,205.0,312.0,326.0,False,True,1,False,False,False,5597.281,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,NOR,1,McLaren,22.0,1.0,MEDIUM,22.0,True,108.035,38.442,44.256,25.337,191.0,204.0,310.0,319.0,True,True,1,False,False,False,5705.453,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,NOR,1,McLaren,23.0,1.0,MEDIUM,23.0,True,108.905,38.568,44.607,25.73,193.0,208.0,309.0,322.0,False,True,1,False,False,False,5813.488,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,NOR,1,McLaren,24.0,1.0,MEDIUM,24.0,True,108.333,38.543,44.18,25.61,201.0,205.0,309.0,321.0,False,True,1,False,False,False,5922.393,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,NOR,1,McLaren,25.0,1.0,MEDIUM,25.0,True,108.042,38.351,44.1,25.591,198.0,199.0,307.0,314.0,False,True,1,False,False,False,6030.726,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,NOR,1,McLaren,26.0,1.0,MEDIUM,26.0,True,107.981,38.386,43.994,25.601,196.0,208.0,307.0,315.0,True,True,1,False,False,False,6138.768,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,NOR,1,McLaren,27.0,1.0,MEDIUM,27.0,True,107.961,38.276,44.132,25.553,202.0,208.0,307.0,315.0,True,True,1,False,False,False,6246.749,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,NOR,1,McLaren,28.0,1.0,MEDIUM,28.0,True,107.761,38.317,43.867,25.577,196.0,212.0,306.0,316.0,True,True,1,False,False,False,6354.71,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,NOR,1,McLaren,29.0,1.0,MEDIUM,29.0,True,108.088,38.404,44.053,25.631,199.0,209.0,306.0,315.0,False,True,1,False,False,False,6462.471,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,NOR,1,McLaren,30.0,1.0,MEDIUM,30.0,True,139.053,49.766,46.953,42.334,180.0,198.0,,243.0,False,False,124,False,False,True,6570.559,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,NOR,1,McLaren,31.0,2.0,SOFT,1.0,True,,67.942,58.022,38.877,107.0,179.0,260.0,231.0,False,False,4,False,True,False,6709.612,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,NOR,1,McLaren,32.0,2.0,SOFT,2.0,True,132.33,47.071,55.916,29.343,115.0,177.0,261.0,281.0,False,False,4,False,False,False,6874.417,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,NOR,1,McLaren,33.0,2.0,SOFT,3.0,True,149.017,44.949,66.127,37.941,118.0,134.0,241.0,203.0,False,False,4,False,False,False,7006.747,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,NOR,1,McLaren,34.0,2.0,SOFT,4.0,True,,63.746,62.299,38.412,166.0,185.0,245.0,234.0,False,False,4,False,False,False,7155.764,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,NOR,1,McLaren,35.0,2.0,SOFT,5.0,True,149.546,51.791,63.079,34.676,160.0,145.0,306.0,233.0,False,False,41,False,False,False,7320.3,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,NOR,1,McLaren,36.0,2.0,SOFT,6.0,True,,,,,,,,,False,False,124,False,False,False,7469.846,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,GAS,10,Alpine,1.0,1.0,MEDIUM,1.0,True,117.497,,46.044,25.213,167.0,190.0,325.0,335.0,False,False,1,False,False,False,3413.247,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,GAS,10,Alpine,2.0,1.0,MEDIUM,2.0,True,110.267,39.864,45.212,25.191,185.0,201.0,325.0,332.0,True,True,1,False,False,False,3531.001,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,GAS,10,Alpine,3.0,1.0,MEDIUM,3.0,True,109.257,39.291,44.842,25.124,184.0,202.0,328.0,332.0,True,True,1,False,False,False,3641.268,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,GAS,10,Alpine,4.0,1.0,MEDIUM,4.0,True,109.38,39.302,45.126,24.952,190.0,201.0,334.0,337.0,False,True,1,False,False,False,3750.525,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,GAS,10,Alpine,5.0,1.0,MEDIUM,5.0,True,109.343,39.326,44.861,25.156,188.0,206.0,330.0,335.0,False,True,1,False,False,False,3859.905,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,GAS,10,Alpine,6.0,1.0,MEDIUM,6.0,True,109.204,39.254,44.73,25.22,186.0,197.0,324.0,330.0,True,True,1,False,False,False,3969.248,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,GAS,10,Alpine,7.0,1.0,MEDIUM,7.0,True,109.233,39.006,44.925,25.302,192.0,196.0,320.0,324.0,False,True,1,False,False,False,4078.452,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,GAS,10,Alpine,8.0,1.0,MEDIUM,8.0,True,108.921,38.923,44.667,25.331,189.0,199.0,321.0,321.0,True,True,1,False,False,False,4187.685,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,GAS,10,Alpine,9.0,1.0,MEDIUM,9.0,True,108.802,38.77,44.775,25.257,193.0,199.0,320.0,324.0,True,True,12,False,False,False,4296.606,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,GAS,10,Alpine,10.0,1.0,MEDIUM,10.0,True,108.926,38.979,44.677,25.27,190.0,196.0,317.0,319.0,False,True,1,False,False,False,4405.408,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,GAS,10,Alpine,11.0,1.0,MEDIUM,11.0,True,108.993,38.879,44.769,25.345,194.0,204.0,317.0,322.0,False,True,1,False,False,False,4514.334,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,GAS,10,Alpine,12.0,1.0,MEDIUM,12.0,True,108.636,38.75,44.604,25.282,191.0,203.0,316.0,320.0,True,True,1,False,False,False,4623.327,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,GAS,10,Alpine,13.0,1.0,MEDIUM,13.0,True,108.584,38.607,44.52,25.457,195.0,205.0,314.0,317.0,True,True,1,False,False,False,4731.963,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,GAS,10,Alpine,14.0,1.0,MEDIUM,14.0,True,108.542,38.597,44.569,25.376,193.0,202.0,313.0,319.0,True,True,1,False,False,False,4840.547,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,GAS,10,Alpine,15.0,1.0,MEDIUM,15.0,True,108.889,38.958,44.528,25.403,194.0,204.0,312.0,320.0,False,True,1,False,False,False,4949.089,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,GAS,10,Alpine,16.0,1.0,MEDIUM,16.0,True,108.446,38.768,44.212,25.466,193.0,201.0,314.0,319.0,True,True,1,False,False,False,5057.978,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,GAS,10,Alpine,17.0,1.0,MEDIUM,17.0,True,108.551,38.825,44.341,25.385,190.0,203.0,314.0,318.0,False,True,1,False,False,False,5166.424,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,GAS,10,Alpine,18.0,1.0,MEDIUM,18.0,True,108.301,38.602,44.356,25.343,195.0,205.0,315.0,319.0,True,True,1,False,False,False,5274.975,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,GAS,10,Alpine,19.0,1.0,MEDIUM,19.0,True,108.518,38.77,44.394,25.354,191.0,204.0,315.0,319.0,False,True,1,False,False,False,5383.276,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,GAS,10,Alpine,20.0,1.0,MEDIUM,20.0,True,108.144,38.688,44.162,25.294,196.0,212.0,315.0,320.0,True,True,1,False,False,False,5491.794,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,GAS,10,Alpine,21.0,1.0,MEDIUM,21.0,True,108.229,38.64,44.298,25.291,198.0,209.0,315.0,320.0,False,True,1,False,False,False,5599.938,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,GAS,10,Alpine,22.0,1.0,MEDIUM,22.0,True,108.193,38.641,44.299,25.253,193.0,208.0,314.0,320.0,False,True,1,False,False,False,5708.167,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,GAS,10,Alpine,23.0,1.0,MEDIUM,23.0,True,108.283,38.656,44.178,25.449,196.0,205.0,316.0,322.0,False,True,1,False,False,False,5816.36,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,GAS,10,Alpine,24.0,1.0,MEDIUM,24.0,True,108.529,38.729,44.304,25.496,197.0,203.0,315.0,319.0,False,True,1,False,False,False,5924.643,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,GAS,10,Alpine,25.0,1.0,MEDIUM,25.0,True,108.219,38.609,44.27,25.34,192.0,204.0,314.0,319.0,False,True,1,False,False,False,6033.172,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,GAS,10,Alpine,26.0,1.0,MEDIUM,26.0,True,107.987,38.452,44.065,25.47,198.0,208.0,314.0,317.0,True,True,1,False,False,False,6141.391,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,GAS,10,Alpine,27.0,1.0,MEDIUM,27.0,True,108.043,38.468,44.235,25.34,195.0,208.0,315.0,320.0,False,True,1,False,False,False,6249.378,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,GAS,10,Alpine,28.0,1.0,MEDIUM,28.0,True,107.822,38.476,44.04,25.306,199.0,210.0,314.0,319.0,True,True,1,False,False,False,6357.421,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,GAS,10,Alpine,29.0,1.0,MEDIUM,29.0,True,107.999,38.465,44.144,25.39,201.0,210.0,315.0,319.0,False,True,1,False,False,False,6465.243,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,GAS,10,Alpine,30.0,1.0,MEDIUM,30.0,True,120.371,39.176,44.319,36.876,196.0,201.0,,133.0,False,False,124,False,False,True,6573.242,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,GAS,10,Alpine,31.0,2.0,SOFT,1.0,True,,66.023,59.072,38.897,97.0,185.0,302.0,134.0,False,False,4,False,True,False,6693.613,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,GAS,10,Alpine,32.0,2.0,SOFT,2.0,True,136.459,46.322,55.475,34.662,127.0,189.0,248.0,246.0,False,False,4,False,False,False,6857.656,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,GAS,10,Alpine,33.0,2.0,SOFT,3.0,True,,53.33,67.999,36.892,84.0,182.0,246.0,190.0,False,False,4,False,False,False,6994.115,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,GAS,10,Alpine,34.0,2.0,SOFT,4.0,True,,64.044,63.127,37.831,152.0,179.0,261.0,221.0,False,False,4,False,False,False,7152.376,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,GAS,10,Alpine,35.0,2.0,SOFT,5.0,True,,52.892,63.188,36.188,165.0,172.0,292.0,238.0,False,False,41,False,False,False,7317.37,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,GAS,10,Alpine,36.0,2.0,SOFT,6.0,True,,,,,,,,,False,False,124,False,False,False,7469.604,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,1.0,1.0,MEDIUM,1.0,True,125.274,,49.82,25.262,154.0,180.0,329.0,340.0,False,False,1,False,False,False,3413.247,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,2.0,1.0,MEDIUM,2.0,True,111.131,40.058,45.847,25.226,178.0,184.0,334.0,338.0,True,True,1,False,False,False,3538.778,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,3.0,1.0,MEDIUM,3.0,True,110.991,40.101,45.502,25.388,173.0,192.0,324.0,331.0,True,True,1,False,False,False,3649.909,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,4.0,1.0,MEDIUM,4.0,True,110.08,39.648,45.153,25.279,178.0,195.0,329.0,335.0,True,True,1,False,False,False,3760.9,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,5.0,1.0,MEDIUM,5.0,True,110.381,39.721,45.401,25.259,187.0,189.0,332.0,336.0,False,True,1,False,False,False,3870.98,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,6.0,1.0,MEDIUM,6.0,True,110.506,39.723,45.399,25.384,181.0,193.0,322.0,333.0,False,True,1,False,False,False,3981.361,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,7.0,1.0,MEDIUM,7.0,True,110.409,39.613,45.463,25.333,184.0,191.0,325.0,336.0,False,True,1,False,False,False,4091.867,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,8.0,1.0,MEDIUM,8.0,True,109.926,39.48,45.117,25.329,186.0,197.0,326.0,335.0,True,True,12,False,False,False,4202.276,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,9.0,1.0,MEDIUM,9.0,True,110.061,39.382,45.425,25.254,179.0,183.0,332.0,338.0,False,True,1,False,False,False,4312.202,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,10.0,1.0,MEDIUM,10.0,True,110.451,39.761,45.375,25.315,183.0,191.0,323.0,334.0,False,True,1,False,False,False,4422.263,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,11.0,1.0,MEDIUM,11.0,True,110.082,39.453,45.217,25.412,178.0,191.0,321.0,332.0,False,True,1,False,False,False,4532.714,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,12.0,1.0,MEDIUM,12.0,True,109.611,39.191,45.129,25.291,185.0,194.0,323.0,336.0,True,True,1,False,False,False,4642.796,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,13.0,1.0,MEDIUM,13.0,True,110.76,39.996,45.417,25.347,180.0,193.0,323.0,335.0,False,True,1,False,False,False,4752.407,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,14.0,1.0,MEDIUM,14.0,True,109.704,39.291,45.11,25.303,182.0,201.0,322.0,335.0,False,True,1,False,False,False,4863.167,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,15.0,1.0,MEDIUM,15.0,True,109.71,39.15,45.118,25.442,182.0,196.0,319.0,331.0,False,True,1,False,False,False,4972.871,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,16.0,1.0,MEDIUM,16.0,True,110.17,39.64,44.983,25.547,191.0,196.0,316.0,328.0,False,True,1,False,False,False,5082.581,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,17.0,1.0,MEDIUM,17.0,True,109.857,39.31,44.905,25.642,191.0,197.0,309.0,324.0,False,True,1,False,False,False,5192.751,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,18.0,1.0,MEDIUM,18.0,True,110.019,39.315,45.189,25.515,189.0,195.0,317.0,328.0,False,True,1,False,False,False,5302.608,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,19.0,1.0,MEDIUM,19.0,True,109.695,39.035,45.265,25.395,187.0,193.0,319.0,331.0,False,True,1,False,False,False,5412.627,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,20.0,1.0,MEDIUM,20.0,True,109.796,39.334,45.114,25.348,186.0,195.0,312.0,336.0,False,True,1,False,False,False,5522.322,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,21.0,1.0,MEDIUM,21.0,True,109.494,39.258,44.592,25.644,191.0,196.0,308.0,325.0,True,True,1,False,False,False,5632.118,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,22.0,1.0,MEDIUM,22.0,True,109.893,39.063,45.104,25.726,191.0,197.0,307.0,324.0,False,True,1,False,False,False,5741.612,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,23.0,1.0,MEDIUM,23.0,True,110.209,39.15,45.186,25.873,186.0,202.0,305.0,322.0,False,True,1,False,False,False,5851.505,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,24.0,1.0,MEDIUM,24.0,True,110.097,39.3,44.972,25.825,193.0,201.0,305.0,322.0,False,True,1,False,False,False,5961.714,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,25.0,1.0,MEDIUM,25.0,True,109.585,39.051,44.71,25.824,186.0,199.0,304.0,323.0,False,True,1,False,False,False,6071.811,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,26.0,1.0,MEDIUM,26.0,True,109.687,39.111,44.8,25.776,197.0,198.0,305.0,324.0,False,True,1,False,False,False,6181.396,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,27.0,1.0,MEDIUM,27.0,True,109.515,39.033,44.678,25.804,198.0,205.0,304.0,322.0,False,True,1,False,False,False,6291.083,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,28.0,1.0,MEDIUM,28.0,True,109.559,39.12,44.65,25.789,189.0,201.0,305.0,324.0,False,True,1,False,False,False,6400.598,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,29.0,1.0,MEDIUM,29.0,True,109.403,39.139,44.502,25.762,189.0,198.0,304.0,323.0,True,True,12,False,False,False,6510.157,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,30.0,1.0,MEDIUM,30.0,True,140.496,39.374,58.135,42.987,174.0,143.0,,195.0,False,False,124,False,False,True,6619.56,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,31.0,2.0,SOFT,1.0,True,,68.812,59.956,38.948,137.0,166.0,277.0,220.0,False,False,4,False,True,False,6760.056,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,32.0,2.0,SOFT,2.0,True,125.85,44.267,55.507,26.076,125.0,193.0,301.0,320.0,False,False,4,False,False,False,6927.832,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,33.0,2.0,SOFT,3.0,True,120.02,44.469,49.624,25.927,103.0,190.0,301.0,322.0,False,False,4,False,False,False,7053.682,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,34.0,2.0,SOFT,4.0,True,,55.436,63.412,36.738,113.0,149.0,268.0,198.0,False,False,4,False,False,False,7173.702,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,35.0,2.0,SOFT,5.0,True,142.309,53.99,58.634,29.685,164.0,158.0,309.0,295.0,False,False,41,False,False,False,7329.191,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,36.0,2.0,SOFT,6.0,True,147.687,44.137,59.78,43.77,143.0,138.0,,193.0,False,False,124,False,False,True,7471.5,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,37.0,3.0,SOFT,7.0,False,,60.452,61.155,38.455,118.0,136.0,209.0,196.0,False,False,4,False,True,False,7619.187,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,38.0,3.0,SOFT,8.0,False,148.61,56.172,61.24,31.198,165.0,113.0,341.0,302.0,False,False,41,False,False,False,7779.29,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,39.0,3.0,SOFT,9.0,False,111.164,40.771,45.326,25.067,174.0,198.0,324.0,335.0,False,True,1,False,False,False,7927.9,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,40.0,3.0,SOFT,10.0,False,109.953,40.231,44.689,25.033,192.0,197.0,321.0,337.0,False,True,12,False,False,False,8039.064,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,41.0,3.0,SOFT,11.0,False,107.592,38.517,44.184,24.891,191.0,201.0,325.0,339.0,True,True,1,False,False,False,8149.017,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,42.0,3.0,SOFT,12.0,False,107.511,38.479,44.093,24.939,183.0,199.0,324.0,338.0,True,True,1,False,False,False,8256.609,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,43.0,3.0,SOFT,13.0,False,107.363,38.295,44.144,24.924,187.0,209.0,320.0,338.0,True,True,1,False,False,False,8364.12,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,44.0,3.0,SOFT,14.0,False,107.902,38.609,44.194,25.099,188.0,204.0,316.0,332.0,False,True,1,False,False,False,8471.483,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,45.0,3.0,SOFT,15.0,False,108.516,39.021,44.306,25.189,190.0,199.0,318.0,332.0,False,True,1,False,False,False,8579.385,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,46.0,3.0,SOFT,16.0,False,107.752,38.511,44.036,25.205,192.0,201.0,312.0,328.0,False,True,1,False,False,False,8687.901,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,47.0,3.0,SOFT,17.0,False,108.949,39.253,44.329,25.367,185.0,210.0,311.0,327.0,False,True,1,False,False,False,8795.653,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,48.0,3.0,SOFT,18.0,False,107.897,38.497,43.985,25.415,187.0,211.0,310.0,327.0,False,True,1,False,False,False,8904.602,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,49.0,3.0,SOFT,19.0,False,108.382,38.992,43.866,25.524,196.0,212.0,307.0,324.0,False,True,1,False,False,False,9012.499,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,50.0,3.0,SOFT,20.0,False,107.504,38.428,43.756,25.32,192.0,209.0,308.0,326.0,False,True,12,False,False,False,9120.881,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PER,11,Cadillac,51.0,3.0,SOFT,21.0,False,108.666,38.403,44.676,25.587,191.0,193.0,308.0,326.0,False,True,12,False,False,False,9228.385,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,1.0,1.0,MEDIUM,3.0,False,123.131,,48.908,24.882,163.0,183.0,343.0,345.0,False,False,1,False,False,False,3413.247,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,2.0,1.0,MEDIUM,4.0,False,111.637,40.823,45.943,24.871,172.0,192.0,334.0,342.0,True,True,1,False,False,False,3536.635,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,3.0,1.0,MEDIUM,5.0,False,110.744,40.197,45.511,25.036,173.0,189.0,334.0,344.0,True,True,1,False,False,False,3648.272,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,4.0,1.0,MEDIUM,6.0,False,109.951,39.372,45.537,25.042,187.0,190.0,341.0,339.0,True,True,1,False,False,False,3759.016,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,5.0,1.0,MEDIUM,7.0,False,108.913,39.214,44.711,24.988,191.0,195.0,332.0,338.0,True,True,1,False,False,False,3868.967,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,6.0,1.0,MEDIUM,8.0,False,108.245,39.094,44.275,24.876,194.0,194.0,335.0,339.0,True,True,1,False,False,False,3977.88,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,7.0,1.0,MEDIUM,9.0,False,109.433,39.291,45.208,24.934,187.0,193.0,337.0,340.0,False,True,1,False,False,False,4086.125,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,8.0,1.0,MEDIUM,10.0,False,109.476,39.549,45.08,24.847,180.0,195.0,338.0,339.0,False,True,12,False,False,False,4195.558,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,9.0,1.0,MEDIUM,11.0,False,109.871,39.408,45.612,24.851,183.0,191.0,340.0,341.0,False,True,21,False,False,False,4305.034,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,10.0,1.0,MEDIUM,12.0,False,108.118,39.056,44.507,24.555,193.0,196.0,344.0,345.0,True,True,1,False,False,False,4414.905,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,11.0,1.0,MEDIUM,13.0,False,110.312,40.393,45.241,24.678,182.0,196.0,342.0,344.0,False,True,1,False,False,False,4523.023,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,12.0,1.0,MEDIUM,14.0,False,109.236,39.575,44.723,24.938,185.0,200.0,328.0,338.0,False,True,1,False,False,False,4633.335,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,13.0,1.0,MEDIUM,15.0,False,108.135,38.766,44.14,25.229,196.0,201.0,317.0,330.0,False,True,1,False,False,False,4742.571,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,14.0,1.0,MEDIUM,16.0,False,108.066,38.799,44.122,25.145,197.0,205.0,319.0,331.0,True,True,1,False,False,False,4850.706,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,15.0,1.0,MEDIUM,17.0,False,108.062,38.628,44.372,25.062,195.0,205.0,325.0,334.0,True,True,1,False,False,False,4958.772,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,16.0,1.0,MEDIUM,18.0,False,108.472,38.902,44.598,24.972,192.0,202.0,333.0,336.0,False,True,1,False,False,False,5066.834,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,17.0,1.0,MEDIUM,19.0,False,107.852,38.731,43.767,25.354,198.0,203.0,313.0,324.0,True,True,1,False,False,False,5175.306,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,18.0,1.0,MEDIUM,20.0,False,108.053,38.63,44.079,25.344,200.0,207.0,314.0,326.0,False,True,1,False,False,False,5283.158,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,19.0,1.0,MEDIUM,21.0,False,107.86,38.519,44.038,25.303,200.0,204.0,315.0,326.0,False,True,1,False,False,False,5391.211,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,20.0,1.0,MEDIUM,22.0,False,108.009,38.524,44.213,25.272,196.0,205.0,317.0,329.0,False,True,1,False,False,False,5499.071,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,21.0,1.0,MEDIUM,23.0,False,107.732,38.341,44.336,25.055,199.0,204.0,326.0,331.0,True,True,1,False,False,False,5607.08,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,22.0,1.0,MEDIUM,24.0,False,108.331,39.109,44.488,24.734,188.0,205.0,323.0,334.0,False,True,1,False,False,False,5714.812,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,23.0,1.0,MEDIUM,25.0,False,107.901,38.701,43.737,25.463,203.0,208.0,313.0,327.0,False,True,1,False,False,False,5823.143,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,24.0,1.0,MEDIUM,26.0,False,107.518,38.3,43.889,25.329,199.0,208.0,314.0,329.0,True,True,1,False,False,False,5931.044,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,25.0,1.0,MEDIUM,27.0,False,107.899,38.459,44.144,25.296,201.0,207.0,313.0,326.0,False,True,1,False,False,False,6038.562,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,26.0,1.0,MEDIUM,28.0,False,107.582,38.276,43.929,25.377,204.0,207.0,313.0,325.0,False,True,1,False,False,False,6146.461,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,27.0,1.0,MEDIUM,29.0,False,107.554,38.083,44.157,25.314,205.0,211.0,314.0,326.0,False,True,1,False,False,False,6254.043,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,28.0,1.0,MEDIUM,30.0,False,107.289,38.121,43.827,25.341,204.0,207.0,315.0,327.0,True,True,1,False,False,False,6361.597,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,29.0,1.0,MEDIUM,31.0,False,107.452,38.248,43.878,25.326,200.0,209.0,316.0,326.0,False,True,1,False,False,False,6468.886,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,30.0,1.0,MEDIUM,32.0,False,122.469,38.703,44.177,39.589,197.0,201.0,,122.0,False,False,124,False,False,True,6576.338,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,31.0,2.0,SOFT,1.0,False,,65.511,60.375,37.517,102.0,169.0,252.0,169.0,False,False,4,False,True,False,6698.807,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,32.0,2.0,SOFT,2.0,False,132.545,46.082,54.015,32.448,113.0,184.0,252.0,209.0,False,False,4,False,False,False,6862.238,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,33.0,2.0,SOFT,3.0,False,,53.456,68.357,37.78,79.0,166.0,248.0,178.0,False,False,4,False,False,False,6994.783,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,34.0,2.0,SOFT,4.0,False,,63.354,62.653,38.071,150.0,170.0,255.0,217.0,False,False,4,False,False,False,7154.472,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,35.0,2.0,SOFT,5.0,False,,52.904,62.765,35.615,154.0,154.0,286.0,228.0,False,False,41,False,False,False,7318.452,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,36.0,2.0,SOFT,6.0,False,140.511,41.282,55.663,43.566,187.0,145.0,,212.0,False,False,124,False,False,True,7469.776,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,37.0,3.0,SOFT,7.0,False,,60.692,61.332,39.932,151.0,160.0,237.0,199.0,False,False,4,False,True,False,7610.287,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,38.0,3.0,SOFT,8.0,False,,55.019,64.406,33.546,153.0,157.0,343.0,245.0,False,False,41,False,False,False,7772.257,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,39.0,3.0,SOFT,9.0,False,109.335,40.061,44.569,24.705,186.0,205.0,337.0,342.0,False,True,1,False,False,False,7925.148,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,40.0,3.0,SOFT,10.0,False,107.249,38.821,43.901,24.527,198.0,201.0,340.0,343.0,True,True,12,False,False,False,8034.483,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,41.0,3.0,SOFT,11.0,False,107.066,38.505,44.081,24.48,194.0,205.0,338.0,343.0,True,True,1,False,False,False,8141.732,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,42.0,3.0,SOFT,12.0,False,107.41,39.062,43.875,24.473,193.0,207.0,322.0,343.0,False,True,1,False,False,False,8248.798,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,43.0,3.0,SOFT,13.0,False,106.056,37.759,43.372,24.925,205.0,210.0,318.0,332.0,True,True,1,False,False,False,8356.208,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,44.0,3.0,SOFT,14.0,False,106.209,37.946,43.273,24.99,204.0,212.0,317.0,329.0,False,True,1,False,False,False,8462.264,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,45.0,3.0,SOFT,15.0,False,105.638,37.602,43.072,24.964,203.0,213.0,316.0,329.0,True,True,1,False,False,False,8568.473,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,46.0,3.0,SOFT,16.0,False,105.551,37.551,42.992,25.008,205.0,212.0,318.0,329.0,True,True,1,False,False,False,8674.111,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,47.0,3.0,SOFT,17.0,False,105.803,37.664,43.168,24.971,203.0,212.0,318.0,328.0,False,True,1,False,False,False,8779.662,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,48.0,3.0,SOFT,18.0,False,105.716,37.704,43.044,24.968,203.0,211.0,320.0,331.0,False,True,1,False,False,False,8885.465,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,49.0,3.0,SOFT,19.0,False,105.533,37.548,43.127,24.858,207.0,208.0,321.0,334.0,True,True,1,False,False,False,8991.181,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,50.0,3.0,SOFT,20.0,False,105.413,37.588,43.077,24.748,203.0,206.0,326.0,335.0,True,True,12,False,False,False,9096.714,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ANT,12,Mercedes,51.0,3.0,SOFT,21.0,False,108.032,37.558,45.801,24.673,206.0,204.0,315.0,331.0,False,True,12,False,False,False,9202.127,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALO,14,Aston Martin,1.0,1.0,SOFT,1.0,True,125.384,,49.542,25.947,156.0,187.0,311.0,316.0,False,False,1,False,False,False,3413.247,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALO,14,Aston Martin,2.0,1.0,SOFT,2.0,True,112.81,40.623,46.29,25.897,172.0,197.0,307.0,321.0,True,True,1,False,False,False,3538.888,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALO,14,Aston Martin,3.0,1.0,SOFT,3.0,True,112.833,40.288,46.204,26.341,185.0,186.0,299.0,310.0,False,True,1,False,False,False,3651.698,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALO,14,Aston Martin,4.0,1.0,SOFT,4.0,True,112.798,40.929,45.843,26.026,174.0,190.0,305.0,314.0,True,True,1,False,False,False,3764.531,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALO,14,Aston Martin,5.0,1.0,SOFT,5.0,True,112.246,40.198,45.94,26.108,182.0,193.0,301.0,308.0,True,True,1,False,False,False,3877.329,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALO,14,Aston Martin,6.0,1.0,SOFT,6.0,True,111.698,39.97,45.626,26.102,186.0,207.0,302.0,306.0,True,True,1,False,False,False,3989.575,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALO,14,Aston Martin,7.0,1.0,SOFT,7.0,True,111.414,39.694,45.722,25.998,188.0,201.0,305.0,312.0,True,True,1,False,False,False,4101.273,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALO,14,Aston Martin,8.0,1.0,SOFT,8.0,True,112.144,40.064,45.983,26.097,185.0,198.0,303.0,309.0,False,True,12,False,False,False,4212.687,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALO,14,Aston Martin,9.0,1.0,SOFT,9.0,True,112.344,39.783,46.223,26.338,177.0,191.0,301.0,303.0,False,True,1,False,False,False,4324.831,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALO,14,Aston Martin,10.0,1.0,SOFT,10.0,True,111.315,39.808,45.504,26.003,185.0,198.0,306.0,310.0,True,True,1,False,False,False,4437.175,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALO,14,Aston Martin,11.0,1.0,SOFT,11.0,True,112.541,40.852,45.889,25.8,181.0,197.0,311.0,313.0,False,True,1,False,False,False,4548.49,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALO,14,Aston Martin,12.0,1.0,SOFT,12.0,True,112.387,40.387,46.041,25.959,183.0,200.0,305.0,307.0,False,True,1,False,False,False,4661.031,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALO,14,Aston Martin,13.0,1.0,SOFT,13.0,True,111.3,39.175,45.634,26.491,189.0,190.0,291.0,301.0,True,True,1,False,False,False,4773.418,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALO,14,Aston Martin,14.0,1.0,SOFT,14.0,True,113.215,40.817,46.111,26.287,186.0,195.0,298.0,302.0,False,True,1,False,False,False,4884.718,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALO,14,Aston Martin,15.0,1.0,SOFT,15.0,True,110.968,39.391,45.363,26.214,192.0,200.0,300.0,303.0,True,True,1,False,False,False,4997.933,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALO,14,Aston Martin,16.0,1.0,SOFT,16.0,True,111.86,40.116,45.639,26.105,187.0,194.0,302.0,306.0,False,True,1,False,False,False,5108.901,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALO,14,Aston Martin,17.0,1.0,SOFT,17.0,True,111.374,39.015,45.985,26.374,184.0,190.0,290.0,301.0,False,True,1,False,False,False,5220.761,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALO,14,Aston Martin,18.0,1.0,SOFT,18.0,True,112.115,40.419,45.676,26.02,186.0,200.0,303.0,308.0,False,True,1,False,False,False,5332.135,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALO,14,Aston Martin,19.0,1.0,SOFT,19.0,True,112.037,39.531,45.723,26.783,185.0,190.0,293.0,293.0,False,True,1,False,False,False,5444.25,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALO,14,Aston Martin,20.0,1.0,SOFT,20.0,True,117.927,39.747,46.42,31.76,184.0,185.0,,290.0,False,False,1,False,False,True,5556.287,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,1.0,1.0,SOFT,1.0,True,113.667,,45.031,25.243,181.0,195.0,326.0,336.0,False,False,1,False,False,False,3413.247,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,2.0,1.0,SOFT,2.0,True,110.383,39.909,45.123,25.351,183.0,208.0,321.0,330.0,True,True,1,False,False,False,3527.171,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,3.0,1.0,SOFT,3.0,True,109.274,39.246,44.631,25.397,193.0,211.0,319.0,329.0,True,True,1,False,False,False,3637.554,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,4.0,1.0,SOFT,4.0,True,110.587,40.234,44.959,25.394,185.0,204.0,321.0,329.0,False,True,1,False,False,False,3746.828,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,5.0,1.0,SOFT,5.0,True,109.163,39.402,44.562,25.199,190.0,205.0,323.0,328.0,True,True,1,False,False,False,3857.415,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,6.0,1.0,SOFT,6.0,True,108.609,38.859,44.501,25.249,194.0,209.0,319.0,330.0,True,True,1,False,False,False,3966.578,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,7.0,1.0,SOFT,7.0,True,108.38,38.731,44.302,25.347,197.0,205.0,320.0,330.0,True,True,1,False,False,False,4075.187,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,8.0,1.0,SOFT,8.0,True,108.62,38.709,44.529,25.382,199.0,210.0,319.0,330.0,False,True,1,False,False,False,4183.567,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,9.0,1.0,SOFT,9.0,True,108.925,38.671,44.814,25.44,197.0,203.0,317.0,328.0,False,True,12,False,False,False,4292.187,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,10.0,1.0,SOFT,10.0,True,108.411,38.751,44.338,25.322,198.0,205.0,316.0,327.0,False,True,1,False,False,False,4401.112,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,11.0,1.0,SOFT,11.0,True,108.422,38.637,44.362,25.423,201.0,206.0,316.0,326.0,False,True,1,False,False,False,4509.523,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,12.0,1.0,SOFT,12.0,True,108.107,38.689,44.123,25.295,198.0,208.0,317.0,329.0,True,True,1,False,False,False,4617.945,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,13.0,1.0,SOFT,13.0,True,108.072,38.618,44.193,25.261,198.0,213.0,317.0,328.0,True,True,1,False,False,False,4726.052,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,14.0,1.0,SOFT,14.0,True,108.108,38.516,44.256,25.336,200.0,208.0,316.0,328.0,False,True,1,False,False,False,4834.124,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,15.0,1.0,SOFT,15.0,True,107.81,38.522,44.106,25.182,199.0,210.0,317.0,331.0,True,True,1,False,False,False,4942.232,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,16.0,1.0,SOFT,16.0,True,108.217,38.861,44.013,25.343,198.0,210.0,317.0,328.0,False,True,1,False,False,False,5050.042,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,17.0,1.0,SOFT,17.0,True,108.082,38.706,44.048,25.328,198.0,212.0,316.0,327.0,False,True,1,False,False,False,5158.259,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,18.0,1.0,SOFT,18.0,True,108.053,38.559,44.101,25.393,199.0,212.0,315.0,327.0,False,True,1,False,False,False,5266.341,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,19.0,1.0,SOFT,19.0,True,107.923,38.557,44.061,25.305,201.0,212.0,315.0,328.0,False,True,1,False,False,False,5374.394,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,20.0,1.0,SOFT,20.0,True,108.124,38.781,44.079,25.264,198.0,214.0,315.0,330.0,False,True,1,False,False,False,5482.317,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,21.0,1.0,SOFT,21.0,True,107.78,38.46,44.118,25.202,200.0,211.0,316.0,329.0,True,True,1,False,False,False,5590.441,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,22.0,1.0,SOFT,22.0,True,107.819,38.519,43.988,25.312,205.0,208.0,314.0,328.0,False,True,1,False,False,False,5698.221,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,23.0,1.0,SOFT,23.0,True,107.569,38.435,43.829,25.305,202.0,213.0,317.0,330.0,True,True,1,False,False,False,5806.04,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,24.0,1.0,SOFT,24.0,True,107.673,38.441,43.869,25.363,204.0,211.0,315.0,329.0,False,True,1,False,False,False,5913.609,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,25.0,1.0,SOFT,25.0,True,107.699,38.414,44.003,25.282,206.0,206.0,315.0,330.0,False,True,1,False,False,False,6021.282,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,26.0,1.0,SOFT,26.0,True,107.729,38.498,43.943,25.288,201.0,212.0,316.0,330.0,False,True,1,False,False,False,6128.981,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,27.0,1.0,SOFT,27.0,True,107.721,38.504,44.071,25.146,204.0,206.0,318.0,333.0,False,True,1,False,False,False,6236.71,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,28.0,1.0,SOFT,28.0,True,107.748,38.453,43.966,25.329,204.0,211.0,315.0,329.0,False,True,1,False,False,False,6344.431,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,29.0,1.0,SOFT,29.0,True,107.208,38.276,43.686,25.246,203.0,209.0,316.0,329.0,True,True,1,False,False,False,6452.179,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,30.0,1.0,SOFT,30.0,True,107.416,38.252,43.809,25.355,206.0,208.0,316.0,330.0,False,True,12,False,False,False,6559.387,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,31.0,1.0,SOFT,31.0,True,,54.019,59.314,41.607,124.0,135.0,,194.0,False,False,24,False,False,True,6666.803,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,32.0,2.0,MEDIUM,1.0,True,,68.772,59.982,38.311,114.0,175.0,252.0,198.0,False,False,4,False,True,False,6821.821,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,33.0,2.0,MEDIUM,2.0,True,,55.177,68.576,36.391,81.0,163.0,204.0,206.0,False,False,4,False,False,False,6988.852,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,34.0,2.0,MEDIUM,3.0,True,,65.111,63.424,37.368,98.0,170.0,243.0,215.0,False,False,4,False,False,False,7149.049,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,35.0,2.0,MEDIUM,4.0,True,,52.728,62.796,38.937,166.0,145.0,292.0,205.0,False,False,41,False,False,False,7314.993,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,36.0,2.0,MEDIUM,5.0,True,138.696,40.376,54.147,44.173,185.0,124.0,,253.0,False,False,124,False,False,True,7469.303,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,37.0,3.0,MEDIUM,6.0,False,,60.25,60.979,38.956,127.0,182.0,271.0,182.0,False,False,4,False,True,False,7607.999,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,38.0,3.0,MEDIUM,7.0,False,,56.678,63.886,35.895,139.0,140.0,341.0,213.0,False,False,41,False,False,False,7768.308,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,39.0,3.0,MEDIUM,8.0,False,108.603,39.688,44.162,24.753,185.0,206.0,335.0,339.0,False,True,1,False,False,False,7924.66,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,40.0,3.0,MEDIUM,9.0,False,107.043,38.708,43.457,24.878,201.0,210.0,322.0,332.0,True,True,12,False,False,False,8033.263,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,41.0,3.0,MEDIUM,10.0,False,106.352,37.979,43.503,24.87,202.0,213.0,321.0,330.0,True,True,1,False,False,False,8140.306,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,42.0,3.0,MEDIUM,11.0,False,106.021,38.044,43.223,24.754,204.0,212.0,324.0,333.0,True,True,1,False,False,False,8246.658,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,43.0,3.0,MEDIUM,12.0,False,106.202,37.893,43.447,24.862,201.0,215.0,322.0,331.0,False,True,1,False,False,False,8352.679,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,44.0,3.0,MEDIUM,13.0,False,105.784,37.787,43.185,24.812,205.0,213.0,322.0,329.0,True,True,1,False,False,False,8458.881,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,45.0,3.0,MEDIUM,14.0,False,105.932,37.821,43.263,24.848,204.0,209.0,319.0,331.0,False,True,1,False,False,False,8564.665,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,46.0,3.0,MEDIUM,15.0,False,106.037,37.848,43.255,24.934,204.0,213.0,319.0,330.0,False,True,1,False,False,False,8670.597,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,47.0,3.0,MEDIUM,16.0,False,105.972,37.804,43.27,24.898,203.0,212.0,318.0,329.0,False,True,1,False,False,False,8776.634,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,48.0,3.0,MEDIUM,17.0,False,106.075,37.901,43.201,24.973,207.0,210.0,318.0,329.0,False,True,1,False,False,False,8882.606,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,49.0,3.0,MEDIUM,18.0,False,106.123,37.851,43.36,24.912,202.0,213.0,315.0,330.0,False,True,1,False,False,False,8988.681,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,50.0,3.0,MEDIUM,19.0,False,106.284,38.036,43.289,24.959,206.0,210.0,314.0,325.0,False,True,12,False,False,False,9094.804,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LEC,16,Ferrari,51.0,3.0,MEDIUM,20.0,False,108.699,37.93,45.487,25.282,205.0,206.0,281.0,323.0,False,True,12,False,False,False,9201.088,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,STR,18,Aston Martin,1.0,1.0,SOFT,1.0,True,127.887,,51.109,26.149,160.0,188.0,308.0,314.0,False,False,1,False,False,False,3413.247,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,STR,18,Aston Martin,2.0,1.0,SOFT,2.0,True,112.153,40.512,45.788,25.853,179.0,201.0,308.0,321.0,True,True,1,False,False,False,3541.391,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,STR,18,Aston Martin,3.0,1.0,SOFT,3.0,True,112.082,40.333,45.942,25.807,182.0,201.0,308.0,318.0,True,True,1,False,False,False,3653.544,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,STR,18,Aston Martin,4.0,1.0,SOFT,4.0,True,112.358,40.603,46.03,25.725,180.0,194.0,311.0,321.0,False,True,1,False,False,False,3765.626,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,STR,18,Aston Martin,5.0,1.0,SOFT,5.0,True,112.352,40.187,46.243,25.922,184.0,192.0,310.0,318.0,False,True,1,False,False,False,3877.984,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,STR,18,Aston Martin,6.0,1.0,SOFT,6.0,True,111.874,40.228,45.909,25.737,183.0,200.0,309.0,320.0,True,True,1,False,False,False,3990.336,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,STR,18,Aston Martin,7.0,1.0,SOFT,7.0,True,111.723,39.886,45.937,25.9,190.0,197.0,305.0,317.0,True,True,1,False,False,False,4102.21,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,STR,18,Aston Martin,8.0,1.0,SOFT,8.0,True,,,,,,,,,False,False,12,False,False,False,4213.933,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALB,23,Williams,1.0,1.0,SOFT,1.0,True,119.47,,46.756,25.119,166.0,188.0,326.0,342.0,False,False,1,False,False,False,3413.247,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALB,23,Williams,2.0,1.0,SOFT,2.0,True,111.801,41.062,45.45,25.289,171.0,195.0,336.0,336.0,True,True,1,False,False,False,3532.974,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALB,23,Williams,3.0,1.0,SOFT,3.0,True,110.388,39.788,45.391,25.209,179.0,190.0,331.0,334.0,True,True,1,False,False,False,3644.775,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALB,23,Williams,4.0,1.0,SOFT,4.0,True,110.062,39.449,45.308,25.305,187.0,194.0,328.0,334.0,True,True,1,False,False,False,3755.163,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALB,23,Williams,5.0,1.0,SOFT,5.0,True,109.551,39.285,44.947,25.319,188.0,201.0,327.0,333.0,True,True,1,False,False,False,3865.225,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALB,23,Williams,6.0,1.0,SOFT,6.0,True,109.832,39.458,45.361,25.013,184.0,193.0,331.0,335.0,False,True,1,False,False,False,3974.776,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALB,23,Williams,7.0,1.0,SOFT,7.0,True,109.7,39.469,45.089,25.142,193.0,193.0,335.0,343.0,False,True,1,False,False,False,4084.608,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALB,23,Williams,8.0,1.0,SOFT,8.0,True,109.519,39.443,45.135,24.941,190.0,188.0,336.0,340.0,True,True,12,False,False,False,4194.308,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALB,23,Williams,9.0,1.0,SOFT,9.0,True,109.667,39.53,45.02,25.117,195.0,191.0,331.0,340.0,False,True,21,False,False,False,4303.827,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALB,23,Williams,10.0,1.0,SOFT,10.0,True,109.249,39.354,44.934,24.961,191.0,198.0,334.0,337.0,True,True,1,False,False,False,4413.494,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALB,23,Williams,11.0,1.0,SOFT,11.0,True,110.332,40.252,45.114,24.966,186.0,191.0,333.0,337.0,False,True,1,False,False,False,4522.743,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALB,23,Williams,12.0,1.0,SOFT,12.0,True,110.441,40.311,45.148,24.982,178.0,188.0,330.0,336.0,False,True,1,False,False,False,4633.075,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALB,23,Williams,13.0,1.0,SOFT,13.0,True,109.585,39.635,44.984,24.966,181.0,198.0,334.0,335.0,False,True,1,False,False,False,4743.516,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALB,23,Williams,14.0,1.0,SOFT,14.0,True,109.206,39.501,44.77,24.935,194.0,196.0,329.0,335.0,True,True,1,False,False,False,4853.101,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALB,23,Williams,15.0,1.0,SOFT,15.0,True,109.023,39.4,44.583,25.04,193.0,196.0,325.0,335.0,True,True,1,False,False,False,4962.307,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALB,23,Williams,16.0,1.0,SOFT,16.0,True,109.481,39.27,44.922,25.289,195.0,193.0,324.0,332.0,False,True,1,False,False,False,5071.33,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALB,23,Williams,17.0,1.0,SOFT,17.0,True,108.715,39.048,44.503,25.164,192.0,200.0,324.0,328.0,True,True,1,False,False,False,5180.811,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALB,23,Williams,18.0,1.0,SOFT,18.0,True,109.207,39.066,44.829,25.312,188.0,196.0,322.0,325.0,False,True,1,False,False,False,5289.526,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALB,23,Williams,19.0,1.0,SOFT,19.0,True,108.993,38.981,44.738,25.274,191.0,206.0,321.0,329.0,False,True,1,False,False,False,5398.733,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALB,23,Williams,20.0,1.0,SOFT,20.0,True,108.863,38.968,44.725,25.17,194.0,204.0,322.0,329.0,False,True,1,False,False,False,5507.726,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALB,23,Williams,21.0,1.0,SOFT,21.0,True,108.801,38.878,44.748,25.175,191.0,201.0,323.0,328.0,False,True,1,False,False,False,5616.589,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALB,23,Williams,22.0,1.0,SOFT,22.0,True,109.091,39.043,44.768,25.28,194.0,202.0,321.0,325.0,False,True,1,False,False,False,5725.39,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALB,23,Williams,23.0,1.0,SOFT,23.0,True,108.905,38.876,44.747,25.282,192.0,198.0,324.0,326.0,False,True,1,False,False,False,5834.481,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALB,23,Williams,24.0,1.0,SOFT,24.0,True,109.319,39.193,44.712,25.414,191.0,201.0,321.0,326.0,False,True,1,False,False,False,5943.386,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALB,23,Williams,25.0,1.0,SOFT,25.0,True,108.734,38.926,44.666,25.142,191.0,204.0,326.0,329.0,False,True,1,False,False,False,6052.705,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALB,23,Williams,26.0,1.0,SOFT,26.0,True,108.633,38.873,44.517,25.243,196.0,200.0,323.0,330.0,True,True,1,False,False,False,6161.439,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALB,23,Williams,27.0,1.0,SOFT,27.0,True,108.562,38.891,44.51,25.161,198.0,203.0,325.0,328.0,True,True,1,False,False,False,6270.072,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALB,23,Williams,28.0,1.0,SOFT,28.0,True,110.306,40.37,44.579,25.357,182.0,206.0,316.0,328.0,False,True,1,False,False,False,6378.634,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALB,23,Williams,29.0,1.0,SOFT,29.0,True,108.443,39.003,44.292,25.148,198.0,208.0,319.0,331.0,True,True,12,False,False,False,6488.94,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,ALB,23,Williams,30.0,1.0,SOFT,30.0,True,,,,,,,,,False,False,124,False,False,False,6597.383,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,1.0,1.0,MEDIUM,1.0,True,122.779,,48.117,25.947,163.0,190.0,314.0,329.0,False,False,1,False,False,False,3413.247,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,2.0,1.0,MEDIUM,2.0,True,111.481,40.105,45.582,25.794,180.0,193.0,311.0,320.0,True,True,1,False,False,False,3536.283,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,3.0,1.0,MEDIUM,3.0,True,111.411,40.218,45.466,25.727,190.0,178.0,327.0,325.0,True,True,1,False,False,False,3647.764,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,4.0,1.0,MEDIUM,4.0,True,110.698,39.637,45.522,25.539,188.0,196.0,322.0,330.0,True,True,1,False,False,False,3759.175,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,5.0,1.0,MEDIUM,5.0,True,110.405,39.532,45.613,25.26,187.0,199.0,327.0,331.0,True,True,1,False,False,False,3869.873,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,6.0,1.0,MEDIUM,6.0,True,109.807,39.544,45.384,24.879,190.0,199.0,330.0,343.0,True,True,1,False,False,False,3980.278,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,7.0,1.0,MEDIUM,7.0,True,110.708,40.268,45.31,25.13,195.0,204.0,325.0,333.0,False,True,1,False,False,False,4090.085,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,8.0,1.0,MEDIUM,8.0,True,109.65,39.49,45.179,24.981,191.0,196.0,339.0,336.0,True,True,12,False,False,False,4200.793,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,9.0,1.0,MEDIUM,9.0,True,109.321,39.01,44.771,25.54,196.0,209.0,313.0,328.0,True,True,1,False,False,False,4310.443,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,10.0,1.0,MEDIUM,10.0,True,110.299,39.309,45.289,25.701,193.0,195.0,309.0,323.0,False,True,1,False,False,False,4419.764,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,11.0,1.0,MEDIUM,11.0,True,109.842,39.213,44.9,25.729,199.0,203.0,308.0,322.0,False,True,1,False,False,False,4530.063,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,12.0,1.0,MEDIUM,12.0,True,109.67,39.249,44.737,25.684,189.0,208.0,311.0,326.0,False,True,1,False,False,False,4639.905,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,13.0,1.0,MEDIUM,13.0,True,109.49,38.964,44.79,25.736,199.0,200.0,310.0,325.0,False,True,1,False,False,False,4749.575,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,14.0,1.0,MEDIUM,14.0,True,109.434,39.091,44.676,25.667,202.0,205.0,310.0,327.0,False,True,1,False,False,False,4859.065,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,15.0,1.0,MEDIUM,15.0,True,109.654,39.282,44.676,25.696,199.0,206.0,309.0,326.0,False,True,1,False,False,False,4968.499,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,16.0,1.0,MEDIUM,16.0,True,109.53,39.207,44.558,25.765,196.0,206.0,310.0,325.0,False,True,1,False,False,False,5078.153,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,17.0,1.0,MEDIUM,17.0,True,109.582,39.146,44.656,25.78,197.0,198.0,309.0,324.0,False,True,1,False,False,False,5187.683,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,18.0,1.0,MEDIUM,18.0,True,109.832,39.175,44.792,25.865,198.0,200.0,306.0,322.0,False,True,1,False,False,False,5297.265,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,19.0,1.0,MEDIUM,19.0,True,109.453,39.068,44.6,25.785,194.0,206.0,305.0,321.0,False,True,1,False,False,False,5407.097,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,20.0,1.0,MEDIUM,20.0,True,109.466,39.093,44.695,25.678,202.0,204.0,305.0,324.0,False,True,1,False,False,False,5516.55,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,21.0,1.0,MEDIUM,21.0,True,109.63,39.276,44.611,25.743,195.0,205.0,305.0,323.0,False,True,1,False,False,False,5626.016,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,22.0,1.0,MEDIUM,22.0,True,109.842,39.435,44.559,25.848,196.0,203.0,303.0,320.0,False,True,1,False,False,False,5735.646,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,23.0,1.0,MEDIUM,23.0,True,109.746,39.162,44.608,25.976,197.0,205.0,303.0,320.0,False,True,1,False,False,False,5845.488,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,24.0,1.0,MEDIUM,24.0,True,109.845,39.276,44.659,25.91,197.0,199.0,303.0,320.0,False,True,1,False,False,False,5955.234,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,25.0,1.0,MEDIUM,25.0,True,109.346,39.111,44.427,25.808,198.0,205.0,301.0,315.0,False,True,1,False,False,False,6065.079,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,26.0,1.0,MEDIUM,26.0,True,109.686,39.335,44.463,25.888,197.0,205.0,301.0,315.0,False,True,1,False,False,False,6174.425,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,27.0,1.0,MEDIUM,27.0,True,110.397,40.162,44.641,25.594,191.0,203.0,313.0,323.0,False,True,1,False,False,False,6284.111,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,28.0,1.0,MEDIUM,28.0,True,109.014,39.001,44.498,25.515,194.0,205.0,316.0,329.0,True,True,1,False,False,False,6394.508,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,29.0,1.0,MEDIUM,29.0,True,109.081,39.044,44.552,25.485,198.0,197.0,314.0,328.0,False,True,12,False,False,False,6503.522,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,30.0,1.0,MEDIUM,30.0,True,134.342,39.254,55.857,39.231,161.0,146.0,192.0,176.0,False,False,124,False,False,False,6612.603,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,31.0,1.0,MEDIUM,31.0,True,,56.131,59.821,37.258,93.0,151.0,268.0,183.0,False,False,4,False,False,False,6746.945,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,32.0,1.0,MEDIUM,32.0,True,127.626,44.356,51.0,32.27,87.0,168.0,,271.0,False,False,4,False,False,True,6900.21,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,33.0,2.0,SOFT,1.0,True,135.944,58.008,47.482,30.454,95.0,200.0,236.0,189.0,False,False,4,False,True,False,7027.836,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,34.0,2.0,SOFT,2.0,True,,62.704,63.453,37.637,156.0,123.0,217.0,203.0,False,False,4,False,False,False,7163.78,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,35.0,2.0,SOFT,3.0,True,143.369,52.662,59.631,31.076,186.0,154.0,322.0,284.0,False,False,41,False,False,False,7327.562,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,36.0,2.0,SOFT,4.0,True,144.546,43.396,57.491,43.659,154.0,151.0,,233.0,False,False,124,False,False,True,7470.931,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,37.0,3.0,SOFT,5.0,False,,60.955,61.123,39.653,114.0,180.0,210.0,200.0,False,False,4,False,True,False,7615.477,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,38.0,3.0,SOFT,6.0,False,149.87,54.46,63.339,32.071,178.0,103.0,338.0,255.0,False,False,41,False,False,False,7777.166,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,39.0,3.0,SOFT,7.0,False,110.703,40.287,44.977,25.439,179.0,201.0,316.0,326.0,False,True,1,False,False,False,7927.036,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,40.0,3.0,SOFT,8.0,False,108.253,39.027,44.028,25.198,194.0,204.0,321.0,337.0,True,True,12,False,False,False,8037.739,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,41.0,3.0,SOFT,9.0,False,107.475,38.301,44.35,24.824,201.0,201.0,323.0,330.0,True,True,1,False,False,False,8145.992,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,42.0,3.0,SOFT,10.0,False,107.53,38.414,44.217,24.899,196.0,212.0,323.0,327.0,False,True,1,False,False,False,8253.467,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,43.0,3.0,SOFT,11.0,False,107.288,38.259,44.316,24.713,202.0,206.0,325.0,331.0,True,True,1,False,False,False,8360.997,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,44.0,3.0,SOFT,12.0,False,107.043,38.217,44.091,24.735,198.0,208.0,324.0,332.0,True,True,1,False,False,False,8468.285,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,45.0,3.0,SOFT,13.0,False,106.85,38.085,44.246,24.519,201.0,208.0,330.0,337.0,True,True,1,False,False,False,8575.328,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,46.0,3.0,SOFT,14.0,False,107.267,38.348,44.252,24.667,200.0,207.0,326.0,333.0,False,True,1,False,False,False,8682.178,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,47.0,3.0,SOFT,15.0,False,107.426,38.424,44.46,24.542,192.0,208.0,331.0,335.0,False,True,1,False,False,False,8789.445,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,48.0,3.0,SOFT,16.0,False,108.792,38.86,44.448,25.484,198.0,212.0,315.0,321.0,False,True,1,False,False,False,8896.871,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,49.0,3.0,SOFT,17.0,False,107.327,38.833,43.871,24.623,193.0,204.0,329.0,333.0,False,True,1,False,False,False,9005.663,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,50.0,3.0,SOFT,18.0,False,107.624,38.477,44.172,24.975,196.0,201.0,323.0,330.0,False,True,12,False,False,False,9112.99,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HUL,27,Audi,51.0,3.0,SOFT,19.0,False,108.265,38.395,44.726,25.144,200.0,188.0,324.0,334.0,False,True,12,False,False,False,9220.614,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,1.0,1.0,MEDIUM,1.0,True,116.11,,45.736,24.842,181.0,197.0,335.0,343.0,False,False,1,False,False,False,3413.247,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,2.0,1.0,MEDIUM,2.0,True,109.236,39.463,44.774,24.999,184.0,200.0,330.0,339.0,True,True,1,False,False,False,3529.614,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,3.0,1.0,MEDIUM,3.0,True,109.023,39.245,44.763,25.015,183.0,206.0,326.0,338.0,True,True,1,False,False,False,3638.85,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,4.0,1.0,MEDIUM,4.0,True,109.457,39.529,45.137,24.791,183.0,208.0,328.0,344.0,False,True,1,False,False,False,3747.873,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,5.0,1.0,MEDIUM,5.0,True,107.851,38.665,44.205,24.981,189.0,206.0,328.0,334.0,True,True,1,False,False,False,3857.33,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,6.0,1.0,MEDIUM,6.0,True,107.574,38.662,44.169,24.743,192.0,206.0,337.0,340.0,True,True,1,False,False,False,3965.181,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,7.0,1.0,MEDIUM,7.0,True,107.931,38.5,44.149,25.282,188.0,208.0,320.0,330.0,False,True,1,False,False,False,4072.755,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,8.0,1.0,MEDIUM,8.0,True,107.919,38.523,44.307,25.089,192.0,206.0,325.0,331.0,False,True,1,False,False,False,4180.686,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,9.0,1.0,MEDIUM,9.0,True,108.868,39.061,44.589,25.218,191.0,200.0,321.0,330.0,False,True,12,False,False,False,4288.605,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,10.0,1.0,MEDIUM,10.0,True,108.019,38.736,44.29,24.993,191.0,209.0,325.0,331.0,False,True,1,False,False,False,4397.473,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,11.0,1.0,MEDIUM,11.0,True,108.557,38.906,44.542,25.109,191.0,207.0,323.0,330.0,False,True,1,False,False,False,4505.492,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,12.0,1.0,MEDIUM,12.0,True,108.407,38.832,44.458,25.117,192.0,209.0,320.0,329.0,False,True,1,False,False,False,4614.049,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,13.0,1.0,MEDIUM,13.0,True,108.001,38.547,44.313,25.141,193.0,207.0,321.0,329.0,False,True,1,False,False,False,4722.456,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,14.0,1.0,MEDIUM,14.0,True,108.011,38.601,44.281,25.129,191.0,210.0,319.0,330.0,False,True,1,False,False,False,4830.457,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,15.0,1.0,MEDIUM,15.0,True,108.132,38.641,44.437,25.054,188.0,207.0,318.0,330.0,False,True,1,False,False,False,4938.468,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,16.0,1.0,MEDIUM,16.0,True,107.942,38.578,44.153,25.211,195.0,207.0,317.0,328.0,False,True,1,False,False,False,5046.6,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,17.0,1.0,MEDIUM,17.0,True,107.687,38.582,43.942,25.163,193.0,210.0,321.0,330.0,False,True,1,False,False,False,5154.542,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,18.0,1.0,MEDIUM,18.0,True,107.916,38.662,44.165,25.089,193.0,207.0,321.0,330.0,False,True,1,False,False,False,5262.229,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,19.0,1.0,MEDIUM,19.0,True,108.454,38.655,44.325,25.474,197.0,211.0,317.0,328.0,False,True,1,False,False,False,5370.145,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,20.0,1.0,MEDIUM,20.0,True,107.838,38.553,44.217,25.068,198.0,209.0,318.0,330.0,False,True,1,False,False,False,5478.599,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,21.0,1.0,MEDIUM,21.0,True,107.663,38.437,44.164,25.062,196.0,211.0,319.0,331.0,False,True,1,False,False,False,5586.437,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,22.0,1.0,MEDIUM,22.0,True,107.655,38.399,44.178,25.078,196.0,211.0,317.0,330.0,False,True,1,False,False,False,5694.1,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,23.0,1.0,MEDIUM,23.0,True,107.385,38.326,43.943,25.116,196.0,208.0,321.0,331.0,True,True,1,False,False,False,5801.755,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,24.0,1.0,MEDIUM,24.0,True,107.497,38.292,44.071,25.134,198.0,211.0,320.0,331.0,False,True,1,False,False,False,5909.14,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,25.0,1.0,MEDIUM,25.0,True,107.207,38.08,44.14,24.987,196.0,212.0,321.0,332.0,True,True,1,False,False,False,6016.637,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,26.0,1.0,MEDIUM,26.0,True,107.8,38.427,44.242,25.131,197.0,204.0,317.0,331.0,False,True,1,False,False,False,6123.844,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,27.0,1.0,MEDIUM,27.0,True,107.48,38.251,44.147,25.082,196.0,205.0,318.0,330.0,False,True,1,False,False,False,6231.644,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,28.0,1.0,MEDIUM,28.0,True,107.37,38.113,44.007,25.25,196.0,207.0,318.0,330.0,False,True,1,False,False,False,6339.124,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,29.0,1.0,MEDIUM,29.0,True,107.307,38.222,43.987,25.098,200.0,208.0,318.0,330.0,False,True,1,False,False,False,6446.494,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,30.0,1.0,MEDIUM,30.0,True,107.29,38.187,43.992,25.111,197.0,207.0,318.0,331.0,False,True,12,False,False,False,6553.801,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,31.0,1.0,MEDIUM,31.0,True,,51.798,59.335,41.12,112.0,137.0,,196.0,False,False,24,False,False,True,6661.091,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,32.0,2.0,SOFT,1.0,True,,68.571,57.817,40.599,102.0,183.0,207.0,198.0,False,False,4,False,True,False,6813.415,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,33.0,2.0,SOFT,2.0,True,,60.588,67.57,38.058,80.0,189.0,170.0,213.0,False,False,4,False,False,False,6980.431,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,34.0,2.0,SOFT,3.0,True,,65.179,61.54,38.047,162.0,185.0,265.0,227.0,False,False,4,False,False,False,7146.658,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,35.0,2.0,SOFT,4.0,True,,53.67,62.727,41.118,140.0,162.0,297.0,182.0,False,False,41,False,False,False,7311.404,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,36.0,2.0,SOFT,5.0,True,129.938,38.488,49.854,41.596,194.0,149.0,,116.0,False,False,124,False,False,True,7468.871,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,37.0,3.0,SOFT,6.0,False,,62.542,62.059,39.891,96.0,159.0,206.0,238.0,False,False,4,False,True,False,7598.809,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,38.0,3.0,SOFT,7.0,False,,58.524,62.469,39.894,130.0,166.0,334.0,191.0,False,False,41,False,False,False,7763.35,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,39.0,3.0,SOFT,8.0,False,106.422,38.087,43.509,24.826,193.0,213.0,324.0,334.0,True,True,1,False,False,False,7924.198,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,40.0,3.0,SOFT,9.0,False,106.196,38.238,43.107,24.851,199.0,216.0,322.0,333.0,True,True,12,False,False,False,8030.62,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,41.0,3.0,SOFT,10.0,False,105.784,37.724,43.123,24.937,201.0,215.0,320.0,332.0,True,True,1,False,False,False,8136.816,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,42.0,3.0,SOFT,11.0,False,105.389,37.6,43.014,24.775,201.0,216.0,321.0,332.0,True,True,1,False,False,False,8242.6,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,43.0,3.0,SOFT,12.0,False,105.574,37.62,43.109,24.845,200.0,214.0,322.0,335.0,False,True,1,False,False,False,8347.989,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,44.0,3.0,SOFT,13.0,False,105.135,37.449,42.998,24.688,207.0,209.0,323.0,336.0,True,True,1,False,False,False,8453.563,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,45.0,3.0,SOFT,14.0,False,105.07,37.532,42.851,24.687,203.0,214.0,323.0,333.0,True,True,1,False,False,False,8558.698,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,46.0,3.0,SOFT,15.0,False,105.271,37.411,43.154,24.706,202.0,213.0,324.0,334.0,False,True,1,False,False,False,8663.768,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,47.0,3.0,SOFT,16.0,False,105.136,37.376,43.098,24.662,200.0,217.0,321.0,333.0,False,True,1,False,False,False,8769.039,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,48.0,3.0,SOFT,17.0,False,104.993,37.222,42.999,24.772,201.0,213.0,320.0,332.0,True,True,1,False,False,False,8874.175,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,49.0,3.0,SOFT,18.0,False,105.02,37.169,43.101,24.75,205.0,217.0,321.0,332.0,False,True,1,False,False,False,8979.168,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,50.0,3.0,SOFT,19.0,False,105.188,37.122,43.387,24.679,205.0,213.0,320.0,332.0,False,True,12,False,False,False,9084.188,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,VER,3,Red Bull Racing,51.0,3.0,SOFT,20.0,False,106.52,37.171,44.237,25.112,208.0,205.0,327.0,330.0,False,True,12,False,False,False,9189.376,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,1.0,1.0,SOFT,1.0,True,118.485,,46.34,24.896,155.0,192.0,334.0,341.0,False,False,1,False,False,False,3413.247,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,2.0,1.0,SOFT,2.0,True,111.286,40.469,45.556,25.261,173.0,189.0,320.0,332.0,True,True,1,False,False,False,3531.989,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,3.0,1.0,SOFT,3.0,True,110.403,39.819,45.233,25.351,177.0,197.0,316.0,328.0,True,True,1,False,False,False,3643.275,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,4.0,1.0,SOFT,4.0,True,109.949,39.473,45.069,25.407,182.0,189.0,316.0,328.0,True,True,1,False,False,False,3753.678,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,5.0,1.0,SOFT,5.0,True,109.578,39.314,44.822,25.442,187.0,201.0,314.0,325.0,True,True,1,False,False,False,3863.627,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,6.0,1.0,SOFT,6.0,True,110.767,40.438,45.219,25.11,178.0,197.0,322.0,332.0,False,True,1,False,False,False,3973.205,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,7.0,1.0,SOFT,7.0,True,109.833,39.447,45.013,25.373,186.0,194.0,320.0,332.0,False,True,1,False,False,False,4083.972,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,8.0,1.0,SOFT,8.0,True,109.721,39.262,45.039,25.42,188.0,192.0,318.0,329.0,False,True,12,False,False,False,4193.805,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,9.0,1.0,SOFT,9.0,True,109.289,39.108,44.828,25.353,196.0,194.0,317.0,329.0,True,True,21,False,False,False,4303.526,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,10.0,1.0,SOFT,10.0,True,109.623,39.242,45.025,25.356,194.0,198.0,315.0,328.0,False,True,1,False,False,False,4412.815,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,11.0,1.0,SOFT,11.0,True,110.418,39.976,44.941,25.501,185.0,196.0,311.0,326.0,False,True,1,False,False,False,4522.438,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,12.0,1.0,SOFT,12.0,True,109.724,39.396,44.907,25.421,186.0,195.0,311.0,326.0,False,True,1,False,False,False,4632.856,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,13.0,1.0,SOFT,13.0,True,110.266,39.973,44.887,25.406,190.0,200.0,313.0,326.0,False,True,1,False,False,False,4742.58,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,14.0,1.0,SOFT,14.0,True,109.049,38.982,44.676,25.391,197.0,196.0,311.0,326.0,True,True,1,False,False,False,4852.846,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,15.0,1.0,SOFT,15.0,True,108.734,38.837,44.561,25.336,192.0,197.0,311.0,328.0,True,True,1,False,False,False,4961.895,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,16.0,1.0,SOFT,16.0,True,109.058,38.973,44.599,25.486,194.0,196.0,311.0,325.0,False,True,1,False,False,False,5070.629,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,17.0,1.0,SOFT,17.0,True,109.018,38.897,44.617,25.504,195.0,196.0,310.0,325.0,False,True,1,False,False,False,5179.687,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,18.0,1.0,SOFT,18.0,True,108.942,38.817,44.622,25.503,196.0,200.0,311.0,325.0,False,True,1,False,False,False,5288.705,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,19.0,1.0,SOFT,19.0,True,109.084,38.952,44.654,25.478,188.0,201.0,309.0,324.0,False,True,1,False,False,False,5397.647,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,20.0,1.0,SOFT,20.0,True,108.928,38.856,44.586,25.486,199.0,205.0,309.0,325.0,False,True,1,False,False,False,5506.731,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,21.0,1.0,SOFT,21.0,True,108.708,38.767,44.507,25.434,196.0,201.0,310.0,326.0,True,True,1,False,False,False,5615.659,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,22.0,1.0,SOFT,22.0,True,109.153,39.015,44.599,25.539,193.0,203.0,309.0,324.0,False,True,1,False,False,False,5724.367,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,23.0,1.0,SOFT,23.0,True,108.929,38.774,44.667,25.488,196.0,198.0,311.0,326.0,False,True,1,False,False,False,5833.52,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,24.0,1.0,SOFT,24.0,True,109.05,38.952,44.561,25.537,192.0,203.0,310.0,325.0,False,True,1,False,False,False,5942.449,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,25.0,1.0,SOFT,25.0,True,108.857,38.854,44.605,25.398,195.0,204.0,310.0,327.0,False,True,1,False,False,False,6051.499,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,26.0,1.0,SOFT,26.0,True,108.66,38.596,44.536,25.528,198.0,206.0,310.0,326.0,True,True,1,False,False,False,6160.356,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,27.0,1.0,SOFT,27.0,True,108.504,38.585,44.518,25.401,195.0,202.0,310.0,325.0,True,True,1,False,False,False,6269.016,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,28.0,1.0,SOFT,28.0,True,108.574,38.644,44.442,25.488,197.0,201.0,311.0,327.0,False,True,1,False,False,False,6377.52,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,29.0,1.0,SOFT,29.0,True,108.263,38.731,44.249,25.283,197.0,199.0,316.0,329.0,True,True,12,False,False,False,6486.094,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,30.0,1.0,SOFT,30.0,True,126.544,38.99,48.888,38.666,197.0,165.0,203.0,202.0,False,False,124,False,False,False,6594.357,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,31.0,1.0,SOFT,31.0,True,,55.86,57.707,41.664,116.0,151.0,,177.0,False,False,4,False,False,True,6720.901,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,32.0,2.0,MEDIUM,1.0,True,144.591,62.449,54.402,27.74,120.0,186.0,292.0,284.0,False,False,4,False,True,False,6876.156,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,33.0,2.0,MEDIUM,2.0,True,139.679,44.576,56.839,38.264,123.0,134.0,198.0,177.0,False,False,4,False,False,False,7020.747,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,34.0,2.0,MEDIUM,3.0,True,,62.495,63.175,38.806,164.0,176.0,247.0,245.0,False,False,4,False,False,False,7160.426,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,35.0,2.0,MEDIUM,4.0,True,145.717,50.94,61.086,33.691,163.0,141.0,287.0,234.0,False,False,41,False,False,False,7324.873,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,36.0,2.0,MEDIUM,5.0,True,,51.8,57.073,41.878,173.0,152.0,,189.0,False,False,124,False,False,True,7470.59,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,37.0,3.0,SOFT,1.0,True,,70.565,60.591,37.549,90.0,128.0,287.0,209.0,False,False,4,False,True,False,7621.365,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,38.0,3.0,SOFT,2.0,True,138.168,48.587,58.832,30.749,160.0,114.0,332.0,309.0,False,False,41,False,False,False,7790.042,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,39.0,3.0,SOFT,3.0,True,111.052,41.264,45.172,24.616,185.0,191.0,341.0,342.0,False,True,1,False,False,False,7928.21,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,40.0,3.0,SOFT,4.0,True,108.693,39.505,44.435,24.753,191.0,195.0,330.0,339.0,False,True,12,False,False,False,8039.262,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,41.0,3.0,SOFT,5.0,True,107.819,38.674,44.41,24.735,192.0,204.0,327.0,337.0,True,True,1,False,False,False,8147.955,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,42.0,3.0,SOFT,6.0,True,107.39,38.633,44.074,24.683,184.0,201.0,327.0,341.0,True,True,1,False,False,False,8255.774,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,43.0,3.0,SOFT,7.0,True,107.215,38.316,44.206,24.693,194.0,198.0,329.0,338.0,True,True,1,False,False,False,8363.164,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,44.0,3.0,SOFT,8.0,True,107.26,38.259,44.347,24.654,193.0,200.0,328.0,338.0,False,True,1,False,False,False,8470.379,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,45.0,3.0,SOFT,9.0,True,107.194,38.282,44.247,24.665,188.0,199.0,328.0,338.0,True,True,1,False,False,False,8577.639,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,46.0,3.0,SOFT,10.0,True,106.906,38.197,44.129,24.58,195.0,201.0,329.0,341.0,True,True,1,False,False,False,8684.833,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,47.0,3.0,SOFT,11.0,True,106.932,38.293,44.293,24.346,185.0,199.0,339.0,347.0,False,True,1,False,False,False,8791.739,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,48.0,3.0,SOFT,12.0,True,107.465,38.675,44.435,24.355,190.0,202.0,339.0,349.0,False,True,1,False,False,False,8898.671,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,49.0,3.0,SOFT,13.0,True,107.955,39.001,44.249,24.705,188.0,204.0,327.0,336.0,False,True,1,False,False,False,9006.136,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,50.0,3.0,SOFT,14.0,True,107.688,38.51,44.425,24.753,190.0,200.0,324.0,335.0,False,True,12,False,False,False,9114.091,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LAW,30,Racing Bulls,51.0,3.0,SOFT,15.0,True,107.872,38.431,44.698,24.743,197.0,195.0,318.0,338.0,False,True,12,False,False,False,9221.779,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,1.0,1.0,SOFT,1.0,True,120.629,,47.224,25.307,169.0,190.0,324.0,340.0,False,False,1,False,False,False,3413.247,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,2.0,1.0,SOFT,2.0,True,111.092,40.454,45.56,25.078,166.0,192.0,335.0,341.0,True,True,1,False,False,False,3534.133,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,3.0,1.0,SOFT,3.0,True,110.748,40.16,45.234,25.354,176.0,187.0,329.0,340.0,True,True,1,False,False,False,3645.225,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,4.0,1.0,SOFT,4.0,True,109.775,39.539,45.16,25.076,184.0,189.0,330.0,340.0,True,True,1,False,False,False,3755.973,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,5.0,1.0,SOFT,5.0,True,109.445,39.598,44.773,25.074,184.0,196.0,334.0,338.0,True,True,1,False,False,False,3865.748,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,6.0,1.0,SOFT,6.0,True,110.164,39.644,45.261,25.259,182.0,188.0,331.0,342.0,False,True,1,False,False,False,3975.193,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,7.0,1.0,SOFT,7.0,True,109.776,39.577,45.076,25.123,182.0,196.0,328.0,341.0,False,True,1,False,False,False,4085.357,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,8.0,1.0,SOFT,8.0,True,109.499,39.478,44.888,25.133,180.0,197.0,329.0,339.0,False,True,12,False,False,False,4195.133,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,9.0,1.0,SOFT,9.0,True,110.037,39.483,45.247,25.307,176.0,193.0,321.0,336.0,False,True,21,False,False,False,4304.632,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,10.0,1.0,SOFT,10.0,True,110.496,40.26,44.845,25.391,180.0,196.0,317.0,329.0,False,True,1,False,False,False,4414.669,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,11.0,1.0,SOFT,11.0,True,109.615,39.527,44.832,25.256,183.0,195.0,320.0,335.0,False,True,1,False,False,False,4525.165,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,12.0,1.0,SOFT,12.0,True,109.212,39.437,44.845,24.93,180.0,192.0,333.0,341.0,True,True,1,False,False,False,4634.78,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,13.0,1.0,SOFT,13.0,True,109.864,39.577,45.187,25.1,181.0,197.0,327.0,337.0,False,True,1,False,False,False,4743.992,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,14.0,1.0,SOFT,14.0,True,109.534,39.561,44.743,25.23,176.0,201.0,322.0,335.0,False,True,1,False,False,False,4853.856,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,15.0,1.0,SOFT,15.0,True,109.319,39.31,44.717,25.292,185.0,194.0,318.0,331.0,False,True,1,False,False,False,4963.39,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,16.0,1.0,SOFT,16.0,True,109.424,39.258,44.781,25.385,190.0,199.0,318.0,330.0,False,True,1,False,False,False,5072.709,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,17.0,1.0,SOFT,17.0,True,109.18,39.188,44.554,25.438,188.0,199.0,315.0,327.0,True,True,1,False,False,False,5182.133,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,18.0,1.0,SOFT,18.0,True,109.015,39.009,44.542,25.464,197.0,199.0,316.0,327.0,True,True,1,False,False,False,5291.313,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,19.0,1.0,SOFT,19.0,True,109.077,39.079,44.55,25.448,191.0,205.0,314.0,327.0,False,True,1,False,False,False,5400.328,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,20.0,1.0,SOFT,20.0,True,108.9,39.028,44.515,25.357,186.0,201.0,315.0,330.0,True,True,1,False,False,False,5509.405,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,21.0,1.0,SOFT,21.0,True,108.505,38.832,44.368,25.305,191.0,203.0,317.0,330.0,True,True,1,False,False,False,5618.305,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,22.0,1.0,SOFT,22.0,True,108.84,38.982,44.534,25.324,190.0,202.0,318.0,331.0,False,True,1,False,False,False,5726.81,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,23.0,1.0,SOFT,23.0,True,108.843,38.984,44.551,25.308,187.0,201.0,319.0,333.0,False,True,1,False,False,False,5835.65,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,24.0,1.0,SOFT,24.0,True,108.68,39.04,44.507,25.133,188.0,204.0,329.0,339.0,False,True,1,False,False,False,5944.493,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,25.0,1.0,SOFT,25.0,True,108.6,39.107,44.6,24.893,188.0,208.0,333.0,340.0,False,True,1,False,False,False,6053.173,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,26.0,1.0,SOFT,26.0,True,109.025,39.175,44.684,25.166,187.0,200.0,325.0,337.0,False,True,1,False,False,False,6161.773,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,27.0,1.0,SOFT,27.0,True,108.021,38.931,44.309,24.781,182.0,203.0,338.0,343.0,True,True,1,False,False,False,6270.798,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,28.0,1.0,SOFT,28.0,True,110.834,40.832,44.858,25.144,175.0,203.0,321.0,337.0,False,True,1,False,False,False,6378.819,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,29.0,1.0,SOFT,29.0,True,108.3,39.083,44.237,24.98,184.0,200.0,326.0,338.0,False,True,12,False,False,False,6489.653,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,30.0,1.0,SOFT,30.0,True,131.076,39.09,51.35,40.636,192.0,155.0,,240.0,False,False,124,False,False,True,6597.953,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,31.0,2.0,MEDIUM,1.0,True,,68.218,59.61,36.958,104.0,137.0,303.0,224.0,False,False,4,False,True,False,6729.029,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,32.0,2.0,MEDIUM,2.0,True,129.39,46.348,54.473,28.569,102.0,174.0,294.0,280.0,False,False,4,False,False,False,6893.806,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,33.0,2.0,MEDIUM,3.0,True,137.736,43.875,56.219,37.642,113.0,124.0,195.0,179.0,False,False,4,False,False,False,7023.196,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,34.0,2.0,MEDIUM,4.0,True,,63.168,64.095,37.291,154.0,140.0,223.0,228.0,False,False,4,False,False,False,7160.932,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,35.0,2.0,MEDIUM,5.0,True,145.106,51.924,60.574,32.608,175.0,149.0,294.0,278.0,False,False,41,False,False,False,7325.53,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,36.0,2.0,MEDIUM,6.0,True,140.827,41.285,55.981,43.561,174.0,149.0,,223.0,False,False,124,False,False,True,7470.636,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,37.0,3.0,MEDIUM,7.0,False,,60.593,61.555,39.67,146.0,132.0,243.0,200.0,False,False,4,False,True,False,7611.463,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,38.0,3.0,MEDIUM,8.0,False,,55.266,64.072,33.75,135.0,133.0,334.0,233.0,False,False,41,False,False,False,7773.297,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,39.0,3.0,MEDIUM,9.0,False,108.908,39.548,44.435,24.925,187.0,198.0,330.0,338.0,False,True,1,False,False,False,7926.319,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,40.0,3.0,MEDIUM,10.0,False,108.531,39.388,43.896,25.247,191.0,207.0,315.0,330.0,False,True,12,False,False,False,8035.227,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,41.0,3.0,MEDIUM,11.0,False,107.86,38.8,43.745,25.315,189.0,205.0,312.0,327.0,True,True,1,False,False,False,8143.758,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,42.0,3.0,MEDIUM,12.0,False,107.496,38.618,43.605,25.273,193.0,216.0,313.0,328.0,True,True,1,False,False,False,8251.618,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,43.0,3.0,MEDIUM,13.0,False,107.196,38.504,43.528,25.164,196.0,210.0,314.0,329.0,True,True,1,False,False,False,8359.114,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,44.0,3.0,MEDIUM,14.0,False,107.068,38.379,43.447,25.242,201.0,209.0,311.0,327.0,True,True,1,False,False,False,8466.31,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,45.0,3.0,MEDIUM,15.0,False,107.174,38.296,43.571,25.307,196.0,202.0,310.0,327.0,False,True,1,False,False,False,8573.378,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,46.0,3.0,MEDIUM,16.0,False,107.328,38.36,43.616,25.352,198.0,210.0,309.0,326.0,False,True,1,False,False,False,8680.552,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,47.0,3.0,MEDIUM,17.0,False,107.561,38.507,43.702,25.352,190.0,210.0,307.0,325.0,False,True,1,False,False,False,8787.88,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,48.0,3.0,MEDIUM,18.0,False,107.698,38.631,43.698,25.369,192.0,208.0,307.0,326.0,False,True,1,False,False,False,8895.441,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,49.0,3.0,MEDIUM,19.0,False,107.133,38.343,43.434,25.356,199.0,208.0,307.0,326.0,False,True,1,False,False,False,9003.139,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,50.0,3.0,MEDIUM,20.0,False,107.624,38.808,43.341,25.475,196.0,212.0,304.0,322.0,False,True,12,False,False,False,9110.272,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,OCO,31,Haas F1 Team,51.0,3.0,MEDIUM,21.0,False,108.925,38.421,44.673,25.831,195.0,193.0,322.0,322.0,False,True,12,False,False,False,9217.896,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,1.0,1.0,MEDIUM,1.0,True,121.36,,47.844,25.044,161.0,192.0,329.0,338.0,False,False,1,False,False,False,3413.247,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,2.0,1.0,MEDIUM,2.0,True,111.669,40.51,46.072,25.087,170.0,200.0,323.0,333.0,True,True,1,False,False,False,3534.864,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,3.0,1.0,MEDIUM,3.0,True,110.789,39.868,45.767,25.154,179.0,199.0,321.0,331.0,True,True,1,False,False,False,3646.533,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,4.0,1.0,MEDIUM,4.0,True,110.256,39.539,45.512,25.205,186.0,195.0,319.0,332.0,True,True,1,False,False,False,3757.322,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,5.0,1.0,MEDIUM,5.0,True,110.251,39.508,45.309,25.434,189.0,193.0,317.0,328.0,True,True,1,False,False,False,3867.578,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,6.0,1.0,MEDIUM,6.0,True,110.97,40.342,45.362,25.266,185.0,193.0,316.0,330.0,False,True,1,False,False,False,3977.829,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,7.0,1.0,MEDIUM,7.0,True,109.981,39.351,45.214,25.416,192.0,197.0,314.0,329.0,True,True,1,False,False,False,4088.799,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,8.0,1.0,MEDIUM,8.0,True,109.81,39.319,45.073,25.418,190.0,198.0,314.0,327.0,True,True,12,False,False,False,4198.78,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,9.0,1.0,MEDIUM,9.0,True,109.857,39.079,45.406,25.372,192.0,199.0,314.0,328.0,False,True,1,False,False,False,4308.59,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,10.0,1.0,MEDIUM,10.0,True,109.654,39.155,45.147,25.352,200.0,197.0,312.0,327.0,True,True,1,False,False,False,4418.447,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,11.0,1.0,MEDIUM,11.0,True,109.365,39.018,44.959,25.388,194.0,193.0,314.0,327.0,True,True,1,False,False,False,4528.101,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,12.0,1.0,MEDIUM,12.0,True,109.339,39.005,45.09,25.244,194.0,197.0,316.0,329.0,True,True,1,False,False,False,4637.466,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,13.0,1.0,MEDIUM,13.0,True,109.303,39.066,44.995,25.242,197.0,208.0,317.0,330.0,True,True,1,False,False,False,4746.805,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,14.0,1.0,MEDIUM,14.0,True,109.315,38.93,45.103,25.282,195.0,198.0,316.0,331.0,False,True,1,False,False,False,4856.108,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,15.0,1.0,MEDIUM,15.0,True,109.675,39.199,45.218,25.258,191.0,198.0,314.0,330.0,False,True,1,False,False,False,4965.423,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,16.0,1.0,MEDIUM,16.0,True,109.499,39.161,44.962,25.376,194.0,202.0,315.0,329.0,False,True,1,False,False,False,5075.098,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,17.0,1.0,MEDIUM,17.0,True,109.102,38.997,44.835,25.27,198.0,200.0,315.0,328.0,True,True,1,False,False,False,5184.597,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,18.0,1.0,MEDIUM,18.0,True,109.38,38.953,44.959,25.468,196.0,199.0,313.0,327.0,False,True,1,False,False,False,5293.699,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,19.0,1.0,MEDIUM,19.0,True,109.28,39.09,44.865,25.325,198.0,198.0,312.0,328.0,False,True,1,False,False,False,5403.079,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,20.0,1.0,MEDIUM,20.0,True,109.243,39.039,44.884,25.32,198.0,204.0,312.0,328.0,False,True,1,False,False,False,5512.359,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,21.0,1.0,MEDIUM,21.0,True,109.126,38.851,44.92,25.355,187.0,206.0,311.0,328.0,False,True,1,False,False,False,5621.602,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,22.0,1.0,MEDIUM,22.0,True,109.142,39.014,44.798,25.33,194.0,201.0,311.0,327.0,False,True,1,False,False,False,5730.728,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,23.0,1.0,MEDIUM,23.0,True,109.172,38.917,44.812,25.443,195.0,201.0,310.0,327.0,False,True,1,False,False,False,5839.87,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,24.0,1.0,MEDIUM,24.0,True,109.411,38.971,44.981,25.459,194.0,202.0,311.0,327.0,False,True,1,False,False,False,5949.042,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,25.0,1.0,MEDIUM,25.0,True,109.224,38.955,44.91,25.359,197.0,207.0,309.0,327.0,False,True,1,False,False,False,6058.453,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,26.0,1.0,MEDIUM,26.0,True,109.093,38.84,44.726,25.527,195.0,204.0,310.0,326.0,True,True,1,False,False,False,6167.677,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,27.0,1.0,MEDIUM,27.0,True,108.889,38.807,44.688,25.394,195.0,201.0,309.0,326.0,True,True,1,False,False,False,6276.77,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,28.0,1.0,MEDIUM,28.0,True,109.041,38.919,44.685,25.437,192.0,198.0,310.0,327.0,False,True,1,False,False,False,6385.659,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,29.0,1.0,MEDIUM,29.0,True,108.943,38.853,44.671,25.419,200.0,204.0,309.0,326.0,False,True,12,False,False,False,6494.7,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,30.0,1.0,MEDIUM,30.0,True,134.005,38.9,53.37,41.735,186.0,159.0,,214.0,False,False,124,False,False,True,6603.643,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,31.0,2.0,SOFT,1.0,True,,68.757,59.636,37.319,101.0,154.0,293.0,181.0,False,False,4,False,True,False,6737.648,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,32.0,2.0,SOFT,2.0,True,125.983,43.281,53.968,28.734,94.0,191.0,273.0,268.0,False,False,4,False,False,False,6903.359,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,33.0,2.0,SOFT,3.0,True,132.674,40.515,54.337,37.822,135.0,129.0,245.0,183.0,False,False,4,False,False,False,7029.342,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,34.0,2.0,SOFT,4.0,True,,63.015,63.844,37.544,170.0,141.0,229.0,217.0,False,False,4,False,False,False,7162.016,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,35.0,2.0,SOFT,5.0,True,144.396,52.101,60.199,32.096,190.0,141.0,308.0,278.0,False,False,41,False,False,False,7326.407,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,36.0,2.0,SOFT,6.0,True,142.655,43.184,56.313,43.158,149.0,123.0,,207.0,False,False,124,False,False,True,7470.803,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,37.0,3.0,SOFT,7.0,False,,62.25,59.833,40.106,131.0,157.0,260.0,231.0,False,False,4,False,True,False,7613.458,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,38.0,3.0,SOFT,8.0,False,,54.714,63.57,32.807,172.0,151.0,344.0,246.0,False,False,41,False,False,False,7775.723,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,39.0,3.0,SOFT,9.0,False,109.291,40.076,44.778,24.437,193.0,204.0,348.0,344.0,False,True,1,False,False,False,7926.72,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,40.0,3.0,SOFT,10.0,False,108.644,39.718,44.436,24.49,186.0,209.0,339.0,345.0,True,True,12,False,False,False,8036.011,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,41.0,3.0,SOFT,11.0,False,107.929,38.95,44.428,24.551,182.0,204.0,335.0,344.0,True,True,1,False,False,False,8144.655,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,42.0,3.0,SOFT,12.0,False,107.444,38.77,44.211,24.463,189.0,201.0,337.0,344.0,True,True,1,False,False,False,8252.584,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,43.0,3.0,SOFT,13.0,False,107.559,38.709,44.322,24.528,186.0,209.0,328.0,343.0,False,True,1,False,False,False,8360.028,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,44.0,3.0,SOFT,14.0,False,106.849,38.398,44.026,24.425,188.0,209.0,337.0,344.0,True,True,1,False,False,False,8467.587,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,45.0,3.0,SOFT,15.0,False,107.216,38.546,44.111,24.559,188.0,206.0,332.0,343.0,False,True,1,False,False,False,8574.436,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,46.0,3.0,SOFT,16.0,False,106.995,38.376,44.2,24.419,188.0,208.0,338.0,344.0,False,True,1,False,False,False,8681.652,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,47.0,3.0,SOFT,17.0,False,107.744,38.846,44.344,24.554,185.0,204.0,334.0,343.0,False,True,1,False,False,False,8788.647,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,48.0,3.0,SOFT,18.0,False,107.409,38.561,43.928,24.92,194.0,209.0,314.0,331.0,False,True,1,False,False,False,8896.391,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,49.0,3.0,SOFT,19.0,False,106.857,38.352,43.816,24.689,200.0,209.0,326.0,336.0,False,True,1,False,False,False,9003.8,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,50.0,3.0,SOFT,20.0,False,107.795,38.885,44.175,24.735,194.0,202.0,324.0,334.0,False,True,12,False,False,False,9110.657,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,LIN,41,Racing Bulls,51.0,3.0,SOFT,21.0,False,108.323,38.403,45.039,24.881,194.0,200.0,313.0,345.0,False,True,12,False,False,False,9218.452,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,COL,43,Alpine,1.0,1.0,MEDIUM,1.0,True,118.035,,46.191,24.974,165.0,198.0,332.0,338.0,False,False,1,False,False,False,3413.247,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,COL,43,Alpine,2.0,1.0,MEDIUM,2.0,True,110.447,40.092,45.265,25.09,176.0,195.0,328.0,334.0,True,True,1,False,False,False,3531.539,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,COL,43,Alpine,3.0,1.0,MEDIUM,3.0,True,109.717,39.481,45.11,25.126,178.0,207.0,326.0,331.0,True,True,1,False,False,False,3641.986,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,COL,43,Alpine,4.0,1.0,MEDIUM,4.0,True,109.832,39.267,45.165,25.4,183.0,196.0,323.0,325.0,False,True,1,False,False,False,3751.703,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,COL,43,Alpine,5.0,1.0,MEDIUM,5.0,True,109.295,39.268,44.809,25.218,187.0,203.0,323.0,327.0,True,True,1,False,False,False,3861.535,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,COL,43,Alpine,6.0,1.0,MEDIUM,6.0,True,108.801,38.885,44.835,25.081,191.0,195.0,324.0,330.0,True,True,1,False,False,False,3970.83,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,COL,43,Alpine,7.0,1.0,MEDIUM,7.0,True,109.367,39.102,44.947,25.318,195.0,201.0,322.0,327.0,False,True,1,False,False,False,4079.631,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,COL,43,Alpine,8.0,1.0,MEDIUM,8.0,True,109.532,39.036,45.137,25.359,187.0,201.0,321.0,323.0,False,True,1,False,False,False,4188.998,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,COL,43,Alpine,9.0,1.0,MEDIUM,9.0,True,109.342,38.875,44.972,25.495,192.0,190.0,317.0,320.0,False,True,12,False,False,False,4298.53,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,COL,43,Alpine,10.0,1.0,MEDIUM,10.0,True,109.489,39.2,44.794,25.495,195.0,199.0,314.0,316.0,False,True,1,False,False,False,4407.872,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,COL,43,Alpine,11.0,1.0,MEDIUM,11.0,True,108.858,38.825,44.596,25.437,194.0,199.0,314.0,319.0,False,True,1,False,False,False,4517.361,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,COL,43,Alpine,12.0,1.0,MEDIUM,12.0,True,108.914,38.94,44.631,25.343,194.0,204.0,317.0,321.0,False,True,1,False,False,False,4626.219,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,COL,43,Alpine,13.0,1.0,MEDIUM,13.0,True,108.972,38.804,44.655,25.513,192.0,201.0,314.0,318.0,False,True,1,False,False,False,4735.133,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,COL,43,Alpine,14.0,1.0,MEDIUM,14.0,True,108.543,38.842,44.274,25.427,191.0,206.0,314.0,320.0,True,True,1,False,False,False,4844.105,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,COL,43,Alpine,15.0,1.0,MEDIUM,15.0,True,108.745,38.794,44.548,25.403,191.0,209.0,314.0,320.0,False,True,1,False,False,False,4952.648,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,COL,43,Alpine,16.0,1.0,MEDIUM,16.0,True,108.628,38.918,44.274,25.436,195.0,204.0,315.0,319.0,False,True,1,False,False,False,5061.393,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,COL,43,Alpine,17.0,1.0,MEDIUM,17.0,True,108.484,38.774,44.283,25.427,190.0,207.0,314.0,318.0,True,True,1,False,False,False,5170.021,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,COL,43,Alpine,18.0,1.0,MEDIUM,18.0,True,108.832,38.856,44.481,25.495,195.0,206.0,313.0,318.0,False,True,1,False,False,False,5278.505,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,COL,43,Alpine,19.0,1.0,MEDIUM,19.0,True,108.759,38.783,44.506,25.47,195.0,210.0,312.0,318.0,False,True,1,False,False,False,5387.337,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,COL,43,Alpine,20.0,1.0,MEDIUM,20.0,True,109.037,38.997,44.497,25.543,196.0,196.0,311.0,318.0,False,True,1,False,False,False,5496.096,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,COL,43,Alpine,21.0,1.0,MEDIUM,21.0,True,109.121,38.967,44.726,25.428,200.0,199.0,311.0,320.0,False,True,1,False,False,False,5605.133,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,COL,43,Alpine,22.0,1.0,MEDIUM,22.0,True,108.899,39.085,44.336,25.478,199.0,202.0,309.0,317.0,False,True,1,False,False,False,5714.254,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,COL,43,Alpine,23.0,1.0,MEDIUM,23.0,True,109.554,39.656,44.475,25.423,196.0,206.0,317.0,319.0,False,True,1,False,False,False,5823.153,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,COL,43,Alpine,24.0,1.0,MEDIUM,24.0,True,108.903,38.871,44.508,25.524,194.0,207.0,314.0,322.0,False,True,1,False,False,False,5932.707,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,COL,43,Alpine,25.0,1.0,MEDIUM,25.0,True,109.299,39.075,44.755,25.469,193.0,203.0,312.0,320.0,False,True,1,False,False,False,6041.61,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,COL,43,Alpine,26.0,1.0,MEDIUM,26.0,True,108.852,38.885,44.379,25.588,201.0,208.0,311.0,319.0,False,True,1,False,False,False,6150.909,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,COL,43,Alpine,27.0,1.0,MEDIUM,27.0,True,108.91,38.817,44.591,25.502,198.0,205.0,310.0,317.0,False,True,1,False,False,False,6259.761,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,COL,43,Alpine,28.0,1.0,MEDIUM,28.0,True,108.755,38.868,44.319,25.568,194.0,207.0,310.0,317.0,False,True,1,False,False,False,6368.671,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,COL,43,Alpine,29.0,1.0,MEDIUM,29.0,True,108.803,38.899,44.343,25.561,201.0,202.0,310.0,318.0,False,True,12,False,False,False,6477.426,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,COL,43,Alpine,30.0,1.0,MEDIUM,30.0,True,126.268,39.013,44.447,42.808,201.0,193.0,,196.0,False,False,124,False,False,True,6586.229,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,COL,43,Alpine,31.0,2.0,SOFT,1.0,True,,70.285,56.884,38.702,82.0,172.0,257.0,196.0,False,False,4,False,True,False,6712.497,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,COL,43,Alpine,32.0,2.0,SOFT,2.0,True,131.284,45.821,56.802,28.661,101.0,174.0,280.0,289.0,False,False,4,False,False,False,6878.423,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,COL,43,Alpine,33.0,2.0,SOFT,3.0,True,148.008,45.643,64.433,37.932,92.0,164.0,235.0,174.0,False,False,4,False,False,False,7009.707,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,COL,43,Alpine,34.0,2.0,SOFT,4.0,True,,62.757,62.506,38.072,151.0,172.0,259.0,238.0,False,False,4,False,False,False,7157.715,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,COL,43,Alpine,35.0,2.0,SOFT,5.0,True,149.0,52.182,62.46,34.358,141.0,143.0,313.0,238.0,False,False,41,False,False,False,7321.062,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,COL,43,Alpine,36.0,2.0,SOFT,6.0,True,,,84.85,56.095,98.0,101.0,,158.0,False,False,124,False,False,True,7470.062,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,1.0,1.0,SOFT,1.0,True,115.806,,45.252,25.43,185.0,198.0,326.0,341.0,False,False,1,False,False,False,3413.247,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,2.0,1.0,SOFT,2.0,True,110.728,40.386,45.122,25.22,176.0,198.0,323.0,334.0,True,True,1,False,False,False,3529.31,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,3.0,1.0,SOFT,3.0,True,109.399,39.272,45.05,25.077,185.0,198.0,333.0,338.0,True,True,1,False,False,False,3640.038,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,4.0,1.0,SOFT,4.0,True,109.909,39.582,45.172,25.155,180.0,209.0,325.0,328.0,False,True,1,False,False,False,3749.437,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,5.0,1.0,SOFT,5.0,True,108.861,39.217,44.534,25.11,190.0,210.0,331.0,336.0,True,True,1,False,False,False,3859.346,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,6.0,1.0,SOFT,6.0,True,108.875,39.004,44.698,25.173,188.0,199.0,324.0,332.0,False,True,1,False,False,False,3968.207,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,7.0,1.0,SOFT,7.0,True,109.061,38.841,44.874,25.346,194.0,204.0,319.0,330.0,False,True,1,False,False,False,4077.082,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,8.0,1.0,SOFT,8.0,True,108.788,38.919,44.494,25.375,196.0,212.0,320.0,330.0,True,True,1,False,False,False,4186.143,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,9.0,1.0,SOFT,9.0,True,108.585,38.643,44.684,25.258,198.0,204.0,323.0,331.0,True,True,12,False,False,False,4294.931,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,10.0,1.0,SOFT,10.0,True,108.708,39.318,44.136,25.254,194.0,210.0,320.0,330.0,False,True,1,False,False,False,4403.516,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,11.0,1.0,SOFT,11.0,True,108.349,38.66,44.457,25.232,189.0,208.0,323.0,329.0,True,True,1,False,False,False,4512.224,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,12.0,1.0,SOFT,12.0,True,108.384,38.771,44.451,25.162,192.0,212.0,322.0,331.0,False,True,1,False,False,False,4620.573,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,13.0,1.0,SOFT,13.0,True,108.042,38.724,44.158,25.16,196.0,208.0,325.0,332.0,True,True,1,False,False,False,4728.957,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,14.0,1.0,SOFT,14.0,True,108.084,38.612,44.446,25.026,191.0,210.0,325.0,334.0,False,True,1,False,False,False,4836.999,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,15.0,1.0,SOFT,15.0,True,108.118,38.69,44.432,24.996,191.0,207.0,327.0,338.0,False,True,1,False,False,False,4945.083,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,16.0,1.0,SOFT,16.0,True,109.333,38.971,45.365,24.997,189.0,190.0,319.0,332.0,False,True,1,False,False,False,5053.201,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,17.0,1.0,SOFT,17.0,True,108.25,38.72,44.098,25.432,192.0,207.0,312.0,327.0,False,True,1,False,False,False,5162.534,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,18.0,1.0,SOFT,18.0,True,108.576,38.771,44.281,25.524,191.0,208.0,310.0,324.0,False,True,1,False,False,False,5270.784,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,19.0,1.0,SOFT,19.0,True,108.337,38.83,44.039,25.468,193.0,214.0,310.0,325.0,False,True,1,False,False,False,5379.36,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,20.0,1.0,SOFT,20.0,True,108.063,38.69,43.932,25.441,194.0,216.0,310.0,326.0,False,True,1,False,False,False,5487.697,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,21.0,1.0,SOFT,21.0,True,108.069,38.619,44.022,25.428,196.0,213.0,311.0,327.0,False,True,1,False,False,False,5595.76,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,22.0,1.0,SOFT,22.0,True,107.98,38.707,43.847,25.426,191.0,211.0,309.0,325.0,True,True,1,False,False,False,5703.829,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,23.0,1.0,SOFT,23.0,True,108.061,38.649,43.875,25.537,197.0,212.0,310.0,326.0,False,True,1,False,False,False,5811.809,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,24.0,1.0,SOFT,24.0,True,107.935,38.494,43.866,25.575,198.0,214.0,310.0,326.0,True,True,1,False,False,False,5919.87,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,25.0,1.0,SOFT,25.0,True,108.126,38.703,43.991,25.432,192.0,210.0,309.0,327.0,False,True,1,False,False,False,6027.805,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,26.0,1.0,SOFT,26.0,True,107.929,38.526,43.881,25.522,197.0,210.0,309.0,325.0,True,True,1,False,False,False,6135.931,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,27.0,1.0,SOFT,27.0,True,107.607,38.451,43.691,25.465,197.0,211.0,309.0,324.0,True,True,1,False,False,False,6243.86,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,28.0,1.0,SOFT,28.0,True,107.487,38.457,43.56,25.47,204.0,208.0,309.0,326.0,True,True,1,False,False,False,6351.467,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,29.0,1.0,SOFT,29.0,True,107.601,38.446,43.679,25.476,206.0,211.0,310.0,326.0,False,True,1,False,False,False,6458.954,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,30.0,1.0,SOFT,30.0,True,113.909,38.345,43.775,31.789,197.0,210.0,131.0,327.0,False,False,124,False,False,False,6566.555,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,31.0,1.0,SOFT,31.0,True,,51.444,60.464,41.368,144.0,153.0,,182.0,False,False,4,False,False,True,6680.464,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,32.0,2.0,MEDIUM,1.0,True,,59.199,60.6,37.713,119.0,167.0,266.0,150.0,False,False,4,False,True,False,6833.763,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,33.0,2.0,MEDIUM,2.0,True,,53.65,69.331,36.081,87.0,169.0,242.0,206.0,False,False,4,False,False,False,6991.305,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,34.0,2.0,MEDIUM,3.0,True,,64.582,63.429,37.398,123.0,172.0,245.0,232.0,False,False,4,False,False,False,7150.402,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,35.0,2.0,MEDIUM,4.0,True,,52.702,64.211,36.889,160.0,160.0,296.0,223.0,False,False,41,False,False,False,7315.735,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,36.0,2.0,MEDIUM,5.0,True,139.352,40.663,54.981,43.708,177.0,157.0,,205.0,False,False,124,False,False,True,7469.555,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,37.0,3.0,MEDIUM,6.0,False,,60.818,61.768,38.72,165.0,176.0,257.0,204.0,False,False,4,False,True,False,7608.907,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,38.0,3.0,MEDIUM,7.0,False,,55.488,64.835,34.495,148.0,149.0,340.0,232.0,False,False,41,False,False,False,7770.266,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,39.0,3.0,MEDIUM,8.0,False,108.874,39.837,44.277,24.76,193.0,204.0,333.0,339.0,False,True,1,False,False,False,7925.026,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,40.0,3.0,MEDIUM,9.0,False,107.558,38.811,43.812,24.935,195.0,216.0,324.0,334.0,False,True,12,False,False,False,8033.9,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,41.0,3.0,MEDIUM,10.0,False,107.325,38.385,43.832,25.108,198.0,210.0,316.0,330.0,True,True,1,False,False,False,8141.458,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,42.0,3.0,MEDIUM,11.0,False,107.576,38.659,43.773,25.144,201.0,217.0,314.0,328.0,False,True,1,False,False,False,8248.783,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,43.0,3.0,MEDIUM,12.0,False,107.556,38.545,44.06,24.951,196.0,211.0,319.0,332.0,False,True,1,False,False,False,8356.359,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,44.0,3.0,MEDIUM,13.0,False,106.423,38.066,43.382,24.975,203.0,218.0,318.0,330.0,True,True,1,False,False,False,8463.915,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,45.0,3.0,MEDIUM,14.0,False,106.291,38.036,43.179,25.076,204.0,214.0,314.0,329.0,True,True,1,False,False,False,8570.338,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,46.0,3.0,MEDIUM,15.0,False,106.224,37.999,43.177,25.048,204.0,214.0,315.0,329.0,True,True,1,False,False,False,8676.629,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,47.0,3.0,MEDIUM,16.0,False,106.51,38.131,43.264,25.115,202.0,214.0,313.0,328.0,False,True,1,False,False,False,8782.853,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,48.0,3.0,MEDIUM,17.0,False,106.476,38.118,43.182,25.176,202.0,214.0,313.0,329.0,False,True,1,False,False,False,8889.363,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,49.0,3.0,MEDIUM,18.0,False,106.17,37.964,43.086,25.12,204.0,212.0,312.0,329.0,True,True,1,False,False,False,8995.839,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,50.0,3.0,MEDIUM,19.0,False,106.306,37.977,43.126,25.203,208.0,213.0,311.0,327.0,False,True,12,False,False,False,9102.009,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAM,44,Ferrari,51.0,3.0,MEDIUM,20.0,False,109.739,38.239,45.239,26.261,198.0,185.0,284.0,328.0,False,True,12,False,False,False,9208.315,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,1.0,1.0,MEDIUM,1.0,True,124.323,,48.912,25.724,164.0,182.0,322.0,334.0,False,False,1,False,False,False,3413.247,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,2.0,1.0,MEDIUM,2.0,True,111.822,40.27,45.833,25.719,180.0,192.0,319.0,331.0,True,True,1,False,False,False,3537.827,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,3.0,1.0,MEDIUM,3.0,True,110.386,39.466,45.362,25.558,180.0,194.0,325.0,334.0,True,True,1,False,False,False,3649.649,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,4.0,1.0,MEDIUM,4.0,True,110.326,39.434,45.484,25.408,188.0,198.0,328.0,329.0,True,True,1,False,False,False,3760.035,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,5.0,1.0,MEDIUM,5.0,True,110.552,39.518,45.678,25.356,187.0,201.0,326.0,330.0,False,True,1,False,False,False,3870.361,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,6.0,1.0,MEDIUM,6.0,True,109.835,39.447,45.362,25.026,188.0,200.0,327.0,338.0,True,True,1,False,False,False,3980.913,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,7.0,1.0,MEDIUM,7.0,True,110.74,40.038,45.406,25.296,185.0,202.0,325.0,333.0,False,True,1,False,False,False,4090.748,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,8.0,1.0,MEDIUM,8.0,True,110.055,39.418,45.259,25.378,189.0,204.0,320.0,332.0,False,True,12,False,False,False,4201.488,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,9.0,1.0,MEDIUM,9.0,True,110.184,39.366,45.696,25.122,190.0,197.0,336.0,339.0,False,True,1,False,False,False,4311.543,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,10.0,1.0,MEDIUM,10.0,True,109.977,39.648,45.323,25.006,186.0,198.0,335.0,338.0,False,True,1,False,False,False,4421.727,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,11.0,1.0,MEDIUM,11.0,True,110.167,39.582,45.341,25.244,187.0,198.0,321.0,331.0,False,True,1,False,False,False,4531.704,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,12.0,1.0,MEDIUM,12.0,True,109.397,39.174,45.378,24.845,189.0,203.0,339.0,341.0,True,True,1,False,False,False,4641.871,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,13.0,1.0,MEDIUM,13.0,True,111.06,40.511,45.39,25.159,189.0,202.0,327.0,331.0,False,True,1,False,False,False,4751.268,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,14.0,1.0,MEDIUM,14.0,True,109.785,39.289,45.18,25.316,190.0,206.0,318.0,333.0,False,True,1,False,False,False,4862.328,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,15.0,1.0,MEDIUM,15.0,True,109.34,39.144,44.99,25.206,191.0,205.0,319.0,332.0,True,True,1,False,False,False,4972.113,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,16.0,1.0,MEDIUM,16.0,True,109.452,39.334,45.087,25.031,195.0,210.0,332.0,333.0,False,True,1,False,False,False,5081.453,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,17.0,1.0,MEDIUM,17.0,True,109.338,39.405,44.83,25.103,193.0,202.0,333.0,321.0,True,True,1,False,False,False,5190.905,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,18.0,1.0,MEDIUM,18.0,True,109.712,39.245,44.75,25.717,196.0,211.0,308.0,323.0,False,True,1,False,False,False,5300.243,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,19.0,1.0,MEDIUM,19.0,True,109.697,39.145,44.86,25.692,195.0,209.0,305.0,320.0,False,True,1,False,False,False,5409.955,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,20.0,1.0,MEDIUM,20.0,True,109.217,38.968,44.557,25.692,200.0,209.0,309.0,326.0,True,True,1,False,False,False,5519.652,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,21.0,1.0,MEDIUM,21.0,True,108.996,38.838,44.548,25.61,199.0,208.0,311.0,327.0,True,True,1,False,False,False,5628.869,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,22.0,1.0,MEDIUM,22.0,True,109.105,38.996,44.479,25.63,193.0,207.0,311.0,326.0,False,True,1,False,False,False,5737.865,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,23.0,1.0,MEDIUM,23.0,True,109.206,38.961,44.655,25.59,198.0,211.0,314.0,327.0,False,True,1,False,False,False,5846.97,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,24.0,1.0,MEDIUM,24.0,True,109.508,39.057,44.929,25.522,192.0,208.0,317.0,327.0,False,True,1,False,False,False,5956.176,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,25.0,1.0,MEDIUM,25.0,True,108.993,39.153,44.434,25.406,192.0,211.0,322.0,329.0,True,True,1,False,False,False,6065.684,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,26.0,1.0,MEDIUM,26.0,True,109.843,39.678,44.616,25.549,194.0,209.0,316.0,317.0,False,True,1,False,False,False,6174.677,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,27.0,1.0,MEDIUM,27.0,True,109.267,39.023,44.285,25.959,196.0,214.0,302.0,316.0,False,True,1,False,False,False,6284.52,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,28.0,1.0,MEDIUM,28.0,True,109.172,38.989,44.258,25.925,200.0,212.0,302.0,321.0,False,True,1,False,False,False,6393.787,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,29.0,1.0,MEDIUM,29.0,True,108.909,38.929,44.207,25.773,198.0,211.0,302.0,320.0,True,True,12,False,False,False,6502.959,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,30.0,1.0,MEDIUM,30.0,True,136.427,39.082,55.828,41.517,180.0,168.0,,198.0,False,False,124,False,False,True,6611.868,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,31.0,2.0,SOFT,1.0,True,,67.353,59.516,38.299,152.0,145.0,270.0,185.0,False,False,4,False,True,False,6748.295,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,32.0,2.0,SOFT,2.0,True,130.828,48.397,53.974,28.457,123.0,197.0,286.0,279.0,False,False,4,False,False,False,6913.477,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,33.0,2.0,SOFT,3.0,True,121.665,43.197,48.804,29.664,116.0,206.0,238.0,291.0,False,False,4,False,False,False,7044.305,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,34.0,2.0,SOFT,4.0,True,,62.09,62.905,37.703,139.0,155.0,253.0,209.0,False,False,4,False,False,False,7165.97,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,35.0,2.0,SOFT,5.0,True,142.78,53.418,58.652,30.71,174.0,164.0,301.0,293.0,False,False,41,False,False,False,7328.686,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,36.0,2.0,SOFT,6.0,True,146.373,44.963,58.063,43.347,167.0,141.0,,197.0,False,False,124,False,False,True,7471.466,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,37.0,3.0,SOFT,7.0,False,,60.851,61.26,38.501,135.0,157.0,215.0,188.0,False,False,4,False,True,False,7617.839,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,38.0,3.0,SOFT,8.0,False,149.009,55.873,61.652,31.484,172.0,103.0,329.0,307.0,False,False,41,False,False,False,7778.407,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,39.0,3.0,SOFT,9.0,False,113.197,42.074,45.672,25.451,191.0,205.0,316.0,316.0,False,True,1,False,False,False,7927.416,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,40.0,3.0,SOFT,10.0,False,109.099,39.447,44.501,25.151,192.0,199.0,321.0,328.0,False,True,12,False,False,False,8040.613,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,41.0,3.0,SOFT,11.0,False,108.0,38.306,44.178,25.516,198.0,215.0,318.0,330.0,True,True,1,False,False,False,8149.712,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,42.0,3.0,SOFT,12.0,False,106.925,38.333,43.763,24.829,195.0,210.0,325.0,326.0,True,True,1,False,False,False,8257.712,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,43.0,3.0,SOFT,13.0,False,106.892,38.317,44.089,24.486,198.0,213.0,337.0,335.0,True,True,1,False,False,False,8364.637,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,44.0,3.0,SOFT,14.0,False,107.845,39.014,44.192,24.639,193.0,212.0,317.0,338.0,False,True,1,False,False,False,8471.529,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,45.0,3.0,SOFT,15.0,False,106.772,38.221,43.378,25.173,203.0,209.0,316.0,330.0,True,True,1,False,False,False,8579.374,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,46.0,3.0,SOFT,16.0,False,106.336,38.054,43.53,24.752,202.0,212.0,322.0,330.0,True,True,1,False,False,False,8686.146,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,47.0,3.0,SOFT,17.0,False,106.974,37.988,44.226,24.76,197.0,209.0,325.0,330.0,False,True,1,False,False,False,8792.482,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,48.0,3.0,SOFT,18.0,False,107.764,38.238,44.456,25.07,183.0,211.0,323.0,339.0,False,True,1,False,False,False,8899.456,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,49.0,3.0,SOFT,19.0,False,107.239,38.244,44.262,24.733,189.0,213.0,325.0,332.0,False,True,1,False,False,False,9007.22,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,50.0,3.0,SOFT,20.0,False,107.801,38.305,44.576,24.92,182.0,205.0,322.0,326.0,False,True,12,False,False,False,9114.459,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOR,5,Audi,51.0,3.0,SOFT,21.0,False,107.605,38.352,44.592,24.661,189.0,190.0,330.0,334.0,False,True,12,False,False,False,9222.26,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,1.0,1.0,MEDIUM,1.0,True,122.768,,48.751,25.027,150.0,185.0,340.0,343.0,False,False,1,False,False,False,3413.247,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,2.0,1.0,MEDIUM,2.0,True,111.382,40.694,45.869,24.819,175.0,188.0,337.0,344.0,True,True,1,False,False,False,3536.272,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,3.0,1.0,MEDIUM,3.0,True,110.8,39.724,45.7,25.376,176.0,189.0,334.0,326.0,True,True,1,False,False,False,3647.654,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,4.0,1.0,MEDIUM,4.0,True,110.298,39.488,45.62,25.19,176.0,194.0,329.0,335.0,True,True,1,False,False,False,3758.454,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,5.0,1.0,MEDIUM,5.0,True,111.059,40.385,45.259,25.415,176.0,193.0,324.0,331.0,False,True,1,False,False,False,3868.752,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,6.0,1.0,MEDIUM,6.0,True,110.189,39.5,45.364,25.325,183.0,191.0,325.0,329.0,True,True,1,False,False,False,3979.811,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,7.0,1.0,MEDIUM,7.0,True,110.414,39.775,45.358,25.281,192.0,194.0,325.0,334.0,False,True,1,False,False,False,4090.0,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,8.0,1.0,MEDIUM,8.0,True,109.925,39.251,45.366,25.308,186.0,191.0,324.0,333.0,True,True,12,False,False,False,4200.414,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,9.0,1.0,MEDIUM,9.0,True,111.182,40.069,45.656,25.457,187.0,184.0,325.0,333.0,False,True,1,False,False,False,4310.339,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,10.0,1.0,MEDIUM,10.0,True,109.935,39.334,45.384,25.217,192.0,192.0,327.0,333.0,False,True,1,False,False,False,4421.521,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,11.0,1.0,MEDIUM,11.0,True,109.829,39.391,45.158,25.28,177.0,194.0,323.0,330.0,True,True,1,False,False,False,4531.456,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,12.0,1.0,MEDIUM,12.0,True,109.844,39.259,45.377,25.208,189.0,191.0,326.0,334.0,False,True,1,False,False,False,4641.285,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,13.0,1.0,MEDIUM,13.0,True,110.837,40.222,45.167,25.448,186.0,192.0,320.0,329.0,False,True,1,False,False,False,4751.129,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,14.0,1.0,MEDIUM,14.0,True,109.319,39.038,44.918,25.363,188.0,198.0,320.0,332.0,True,True,1,False,False,False,4861.966,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,15.0,1.0,MEDIUM,15.0,True,109.347,39.162,44.983,25.202,189.0,197.0,320.0,333.0,False,True,1,False,False,False,4971.285,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,16.0,1.0,MEDIUM,16.0,True,110.029,39.64,45.069,25.32,194.0,201.0,321.0,330.0,False,True,1,False,False,False,5080.632,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,17.0,1.0,MEDIUM,17.0,True,109.557,39.107,45.059,25.391,190.0,191.0,322.0,325.0,False,True,1,False,False,False,5190.661,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,18.0,1.0,MEDIUM,18.0,True,111.096,40.077,45.431,25.588,185.0,192.0,323.0,328.0,False,True,1,False,False,False,5300.218,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,19.0,1.0,MEDIUM,19.0,True,109.955,39.327,45.195,25.433,189.0,192.0,320.0,330.0,False,True,1,False,False,False,5411.314,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,20.0,1.0,MEDIUM,20.0,True,113.455,39.612,45.108,28.735,185.0,194.0,,330.0,False,False,1,False,False,True,5521.269,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,21.0,2.0,SOFT,5.0,False,127.727,57.001,45.077,25.649,181.0,194.0,313.0,320.0,False,False,1,False,True,False,5634.724,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,22.0,2.0,SOFT,6.0,False,108.923,39.088,44.3,25.535,194.0,197.0,313.0,327.0,True,True,1,False,False,False,5762.451,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,23.0,2.0,SOFT,7.0,False,108.926,39.044,44.345,25.537,194.0,195.0,311.0,327.0,False,True,1,False,False,False,5871.374,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,24.0,2.0,SOFT,8.0,False,108.854,38.989,44.292,25.573,192.0,200.0,315.0,323.0,True,True,1,False,False,False,5980.3,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,25.0,2.0,SOFT,9.0,False,108.611,38.785,44.209,25.617,197.0,201.0,312.0,326.0,True,True,1,False,False,False,6089.154,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,26.0,2.0,SOFT,10.0,False,108.727,38.868,44.416,25.443,193.0,201.0,313.0,328.0,False,True,1,False,False,False,6197.765,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,27.0,2.0,SOFT,11.0,False,108.655,38.886,44.234,25.535,194.0,203.0,312.0,326.0,False,True,1,False,False,False,6306.492,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,28.0,2.0,SOFT,12.0,False,108.697,38.749,44.431,25.517,198.0,201.0,314.0,327.0,False,True,1,False,False,False,6415.147,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,29.0,2.0,SOFT,13.0,False,108.703,38.856,44.465,25.382,194.0,202.0,315.0,329.0,False,True,12,False,False,False,6523.844,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,30.0,2.0,SOFT,14.0,False,143.589,40.105,63.64,39.844,125.0,145.0,,144.0,False,False,124,False,False,True,6632.547,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,31.0,3.0,SOFT,5.0,False,,68.605,62.78,36.124,115.0,113.0,275.0,188.0,False,False,4,False,True,False,6776.136,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,32.0,3.0,SOFT,6.0,False,133.892,45.52,58.884,29.488,125.0,167.0,283.0,252.0,False,False,4,False,False,False,6943.704,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,33.0,3.0,SOFT,7.0,False,119.09,42.942,50.042,26.106,101.0,187.0,305.0,320.0,False,False,4,False,False,False,7077.596,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,34.0,3.0,SOFT,8.0,False,135.025,40.03,56.991,38.004,172.0,128.0,250.0,180.0,False,False,4,False,False,False,7196.686,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,35.0,3.0,SOFT,9.0,False,140.042,53.111,57.966,28.965,163.0,157.0,314.0,315.0,False,False,41,False,False,False,7331.711,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,36.0,3.0,SOFT,10.0,False,144.565,42.888,59.224,42.453,152.0,141.0,,198.0,False,False,124,False,False,True,7471.753,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,37.0,4.0,SOFT,11.0,False,,61.099,61.362,39.251,97.0,142.0,211.0,201.0,False,False,4,False,True,False,7616.318,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,38.0,4.0,SOFT,12.0,False,149.16,54.985,62.62,31.555,163.0,100.0,344.0,297.0,False,False,41,False,False,False,7777.997,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,39.0,4.0,SOFT,13.0,False,110.771,40.868,45.16,24.743,181.0,189.0,344.0,340.0,False,True,1,False,False,False,7927.157,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,40.0,4.0,SOFT,14.0,False,109.228,39.663,44.633,24.932,186.0,196.0,335.0,335.0,False,True,12,False,False,False,8037.928,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,41.0,4.0,SOFT,15.0,False,107.719,38.524,44.34,24.855,191.0,202.0,329.0,337.0,True,True,1,False,False,False,8147.156,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,42.0,4.0,SOFT,16.0,False,107.338,38.489,44.094,24.755,192.0,203.0,332.0,338.0,True,True,1,False,False,False,8254.875,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,43.0,4.0,SOFT,17.0,False,107.192,38.379,44.082,24.731,199.0,205.0,332.0,339.0,True,True,1,False,False,False,8362.213,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,44.0,4.0,SOFT,18.0,False,107.361,38.401,44.123,24.837,195.0,204.0,329.0,336.0,False,True,1,False,False,False,8469.405,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,45.0,4.0,SOFT,19.0,False,107.175,38.292,44.067,24.816,195.0,198.0,329.0,337.0,True,True,1,False,False,False,8576.766,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,46.0,4.0,SOFT,20.0,False,107.078,38.178,44.131,24.769,199.0,202.0,329.0,337.0,True,True,1,False,False,False,8683.941,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,47.0,4.0,SOFT,21.0,False,107.389,38.379,44.236,24.774,196.0,201.0,329.0,338.0,False,True,1,False,False,False,8791.019,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,48.0,4.0,SOFT,22.0,False,107.34,38.396,44.42,24.524,195.0,204.0,343.0,347.0,False,True,1,False,False,False,8898.408,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,49.0,4.0,SOFT,23.0,False,106.737,38.31,43.869,24.558,200.0,204.0,335.0,344.0,True,True,1,False,False,False,9005.748,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,50.0,4.0,SOFT,24.0,False,107.235,38.531,44.201,24.503,193.0,200.0,336.0,345.0,False,True,12,False,False,False,9112.485,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,SAI,55,Williams,51.0,4.0,SOFT,25.0,False,108.369,38.699,44.899,24.771,191.0,186.0,333.0,343.0,False,True,12,False,False,False,9219.72,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,1.0,1.0,SOFT,1.0,True,114.6,,45.404,24.907,182.0,193.0,339.0,341.0,False,False,1,False,False,False,3413.247,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,2.0,1.0,SOFT,2.0,True,109.976,39.999,45.047,24.93,186.0,198.0,329.0,342.0,True,True,1,False,False,False,3528.104,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,3.0,1.0,SOFT,3.0,True,108.833,39.269,44.692,24.872,193.0,209.0,338.0,340.0,True,True,1,False,False,False,3638.08,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,4.0,1.0,SOFT,4.0,True,109.322,39.631,44.324,25.367,189.0,205.0,316.0,327.0,False,True,1,False,False,False,3746.913,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,5.0,1.0,SOFT,5.0,True,108.447,38.722,44.244,25.481,196.0,204.0,317.0,322.0,True,True,1,False,False,False,3856.235,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,6.0,1.0,SOFT,6.0,True,107.994,38.518,44.164,25.312,197.0,215.0,318.0,326.0,True,True,1,False,False,False,3964.682,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,7.0,1.0,SOFT,7.0,True,109.033,39.116,44.73,25.187,194.0,208.0,322.0,332.0,False,True,1,False,False,False,4072.676,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,8.0,1.0,SOFT,8.0,True,107.935,38.39,44.412,25.133,198.0,209.0,324.0,333.0,True,True,1,False,False,False,4181.709,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,9.0,1.0,SOFT,9.0,True,108.248,38.504,44.716,25.028,194.0,202.0,331.0,338.0,False,True,12,False,False,False,4289.644,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,10.0,1.0,SOFT,10.0,True,108.643,38.85,44.679,25.114,189.0,204.0,323.0,332.0,False,True,1,False,False,False,4397.892,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,11.0,1.0,SOFT,11.0,True,108.366,38.568,44.746,25.052,188.0,204.0,324.0,334.0,False,True,1,False,False,False,4506.535,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,12.0,1.0,SOFT,12.0,True,108.143,38.53,44.671,24.942,193.0,209.0,327.0,336.0,False,True,1,False,False,False,4614.901,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,13.0,1.0,SOFT,13.0,True,108.13,38.567,44.524,25.039,185.0,206.0,326.0,334.0,False,True,1,False,False,False,4723.044,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,14.0,1.0,SOFT,14.0,True,108.011,38.484,44.467,25.06,194.0,200.0,324.0,335.0,False,True,1,False,False,False,4831.174,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,15.0,1.0,SOFT,15.0,True,108.18,38.592,44.609,24.979,196.0,206.0,324.0,336.0,False,True,1,False,False,False,4939.185,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,16.0,1.0,SOFT,16.0,True,107.883,38.513,44.394,24.976,199.0,210.0,325.0,334.0,True,True,1,False,False,False,5047.365,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,17.0,1.0,SOFT,17.0,True,107.909,38.455,44.406,25.048,195.0,206.0,323.0,333.0,False,True,1,False,False,False,5155.248,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,18.0,1.0,SOFT,18.0,True,108.021,38.517,44.448,25.056,197.0,208.0,322.0,332.0,False,True,1,False,False,False,5263.157,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,19.0,1.0,SOFT,19.0,True,107.598,38.413,44.413,24.772,199.0,209.0,334.0,338.0,True,True,1,False,False,False,5371.178,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,20.0,1.0,SOFT,20.0,True,108.321,38.955,44.413,24.953,199.0,206.0,325.0,337.0,False,True,1,False,False,False,5478.776,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,21.0,1.0,SOFT,21.0,True,107.547,38.336,44.382,24.829,199.0,207.0,329.0,338.0,True,True,1,False,False,False,5587.097,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,22.0,1.0,SOFT,22.0,True,107.806,38.437,44.431,24.938,199.0,209.0,325.0,336.0,False,True,1,False,False,False,5694.644,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,23.0,1.0,SOFT,23.0,True,107.444,38.385,44.137,24.922,198.0,211.0,327.0,337.0,True,True,1,False,False,False,5802.45,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,24.0,1.0,SOFT,24.0,True,107.249,38.249,44.093,24.907,203.0,209.0,329.0,339.0,True,True,1,False,False,False,5909.894,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,25.0,1.0,SOFT,25.0,True,107.482,38.289,44.299,24.894,207.0,209.0,326.0,338.0,False,True,1,False,False,False,6017.143,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,26.0,1.0,SOFT,26.0,True,107.172,38.247,44.206,24.719,197.0,210.0,336.0,342.0,True,True,1,False,False,False,6124.625,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,27.0,1.0,SOFT,27.0,True,107.992,38.672,44.494,24.826,199.0,208.0,327.0,339.0,False,True,1,False,False,False,6231.797,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,28.0,1.0,SOFT,28.0,True,107.249,38.191,44.128,24.93,201.0,208.0,328.0,338.0,False,True,1,False,False,False,6339.789,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,29.0,1.0,SOFT,29.0,True,107.337,38.233,44.246,24.858,203.0,207.0,329.0,338.0,False,True,1,False,False,False,6447.038,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,30.0,1.0,SOFT,30.0,True,107.374,38.267,44.209,24.898,200.0,207.0,327.0,338.0,False,True,12,False,False,False,6554.375,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,31.0,1.0,SOFT,31.0,True,,52.051,60.43,45.013,112.0,144.0,,146.0,False,False,24,False,False,True,6661.749,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,32.0,2.0,MEDIUM,1.0,True,,64.113,59.23,39.332,120.0,168.0,242.0,190.0,False,False,4,False,True,False,6819.304,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,33.0,2.0,MEDIUM,2.0,True,,60.706,67.638,37.198,73.0,176.0,200.0,190.0,False,False,4,False,False,False,6982.043,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,34.0,2.0,MEDIUM,3.0,True,,65.416,61.696,38.711,123.0,173.0,246.0,225.0,False,False,4,False,False,False,7147.486,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,35.0,2.0,MEDIUM,4.0,True,,52.814,62.689,40.461,141.0,147.0,293.0,193.0,False,False,41,False,False,False,7313.363,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,36.0,2.0,MEDIUM,5.0,True,136.263,39.453,53.521,43.289,184.0,121.0,,215.0,False,False,124,False,False,True,7469.293,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,37.0,3.0,MEDIUM,6.0,False,,58.844,62.113,40.046,130.0,185.0,257.0,151.0,False,False,4,False,True,False,7605.556,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,38.0,3.0,MEDIUM,7.0,False,,57.337,62.951,37.67,123.0,105.0,338.0,203.0,False,False,41,False,False,False,7766.569,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,39.0,3.0,MEDIUM,8.0,False,108.253,39.364,44.017,24.872,192.0,209.0,333.0,335.0,False,True,1,False,False,False,7924.488,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,40.0,3.0,MEDIUM,9.0,False,106.628,38.347,43.193,25.088,204.0,219.0,314.0,329.0,True,True,12,False,False,False,8032.741,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,41.0,3.0,MEDIUM,10.0,False,106.251,37.718,43.444,25.089,205.0,218.0,313.0,328.0,True,True,1,False,False,False,8139.369,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,42.0,3.0,MEDIUM,11.0,False,106.155,37.846,43.246,25.063,204.0,213.0,313.0,327.0,True,True,1,False,False,False,8245.62,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,43.0,3.0,MEDIUM,12.0,False,106.167,37.718,43.36,25.089,204.0,216.0,312.0,327.0,False,True,1,False,False,False,8351.775,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,44.0,3.0,MEDIUM,13.0,False,105.846,37.534,43.254,25.058,209.0,218.0,310.0,326.0,True,True,1,False,False,False,8457.942,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,45.0,3.0,MEDIUM,14.0,False,105.733,37.478,43.085,25.17,207.0,214.0,309.0,326.0,True,True,1,False,False,False,8563.788,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,46.0,3.0,MEDIUM,15.0,False,105.856,37.517,43.11,25.229,210.0,214.0,309.0,325.0,False,True,1,False,False,False,8669.521,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,47.0,3.0,MEDIUM,16.0,False,105.844,37.512,43.204,25.128,207.0,220.0,308.0,325.0,False,True,1,False,False,False,8775.377,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,48.0,3.0,MEDIUM,17.0,False,105.792,37.544,43.119,25.129,206.0,219.0,309.0,326.0,False,True,1,False,False,False,8881.221,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,49.0,3.0,MEDIUM,18.0,False,105.618,37.426,43.145,25.047,207.0,219.0,309.0,326.0,True,True,1,False,False,False,8987.013,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,50.0,3.0,MEDIUM,19.0,False,105.932,37.485,43.338,25.109,212.0,211.0,309.0,326.0,False,True,12,False,False,False,9092.631,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,HAD,6,Red Bull Racing,51.0,3.0,MEDIUM,20.0,False,107.805,37.534,44.792,25.479,205.0,207.0,285.0,325.0,False,True,12,False,False,False,9198.563,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,1.0,1.0,MEDIUM,3.0,False,111.904,,44.47,25.661,187.0,201.0,308.0,322.0,False,False,1,False,False,False,3413.247,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,2.0,1.0,MEDIUM,4.0,False,109.535,39.418,44.492,25.625,188.0,208.0,309.0,322.0,True,True,1,False,False,False,3525.408,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,3.0,1.0,MEDIUM,5.0,False,108.858,38.852,44.227,25.779,192.0,206.0,309.0,322.0,True,True,1,False,False,False,3634.943,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,4.0,1.0,MEDIUM,6.0,False,108.619,38.904,44.135,25.58,191.0,203.0,309.0,321.0,True,True,1,False,False,False,3743.801,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,5.0,1.0,MEDIUM,7.0,False,108.169,38.55,44.074,25.545,199.0,202.0,310.0,322.0,True,True,1,False,False,False,3852.42,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,6.0,1.0,MEDIUM,8.0,False,107.932,38.614,43.892,25.426,196.0,204.0,311.0,326.0,True,True,1,False,False,False,3960.589,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,7.0,1.0,MEDIUM,9.0,False,107.812,38.434,43.907,25.471,196.0,207.0,311.0,324.0,True,True,1,False,False,False,4068.521,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,8.0,1.0,MEDIUM,10.0,False,107.687,38.33,43.835,25.522,197.0,202.0,310.0,323.0,True,True,1,False,False,False,4176.333,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,9.0,1.0,MEDIUM,11.0,False,108.016,38.235,44.178,25.603,197.0,199.0,311.0,323.0,False,True,12,False,False,False,4284.02,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,10.0,1.0,MEDIUM,12.0,False,107.891,38.468,43.927,25.496,192.0,205.0,310.0,322.0,False,True,1,False,False,False,4392.036,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,11.0,1.0,MEDIUM,13.0,False,107.869,38.395,43.958,25.516,197.0,206.0,310.0,322.0,False,True,1,False,False,False,4499.927,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,12.0,1.0,MEDIUM,14.0,False,107.497,38.178,43.901,25.418,195.0,206.0,310.0,323.0,True,True,1,False,False,False,4607.796,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,13.0,1.0,MEDIUM,15.0,False,107.607,38.265,43.885,25.457,194.0,206.0,310.0,322.0,False,True,1,False,False,False,4715.293,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,14.0,1.0,MEDIUM,16.0,False,107.566,38.35,43.749,25.467,200.0,208.0,310.0,325.0,False,True,1,False,False,False,4822.9,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,15.0,1.0,MEDIUM,17.0,False,108.011,38.617,44.042,25.352,195.0,205.0,311.0,325.0,False,True,1,False,False,False,4930.466,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,16.0,1.0,MEDIUM,18.0,False,107.503,38.311,43.817,25.375,197.0,205.0,310.0,324.0,False,True,1,False,False,False,5038.477,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,17.0,1.0,MEDIUM,19.0,False,107.925,38.444,44.061,25.42,191.0,207.0,311.0,325.0,False,True,1,False,False,False,5145.98,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,18.0,1.0,MEDIUM,20.0,False,107.87,38.457,43.953,25.46,197.0,207.0,311.0,323.0,False,True,1,False,False,False,5253.905,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,19.0,1.0,MEDIUM,21.0,False,107.58,38.193,43.935,25.452,199.0,207.0,310.0,324.0,False,True,1,False,False,False,5361.775,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,20.0,1.0,MEDIUM,22.0,False,107.572,38.229,43.933,25.41,200.0,207.0,311.0,324.0,False,True,1,False,False,False,5469.355,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,21.0,1.0,MEDIUM,23.0,False,107.465,38.183,43.967,25.315,201.0,212.0,310.0,323.0,True,True,1,False,False,False,5576.927,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,22.0,1.0,MEDIUM,24.0,False,107.191,38.171,43.704,25.316,201.0,209.0,311.0,325.0,True,True,1,False,False,False,5684.392,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,23.0,1.0,MEDIUM,25.0,False,107.109,38.069,43.65,25.39,200.0,209.0,313.0,326.0,True,True,1,False,False,False,5791.583,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,24.0,1.0,MEDIUM,26.0,False,107.363,38.228,43.768,25.367,197.0,204.0,315.0,325.0,False,True,1,False,False,False,5898.692,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,25.0,1.0,MEDIUM,27.0,False,107.364,38.166,43.777,25.421,197.0,210.0,311.0,324.0,False,True,1,False,False,False,6006.055,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,26.0,1.0,MEDIUM,28.0,False,107.176,38.04,43.74,25.396,200.0,208.0,311.0,325.0,False,True,1,False,False,False,6113.419,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,27.0,1.0,MEDIUM,29.0,False,107.058,37.957,43.731,25.37,203.0,208.0,311.0,324.0,True,True,1,False,False,False,6220.595,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,28.0,1.0,MEDIUM,30.0,False,107.005,37.837,43.786,25.382,196.0,212.0,311.0,324.0,True,True,1,False,False,False,6327.653,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,29.0,1.0,MEDIUM,31.0,False,106.991,37.986,43.656,25.349,200.0,212.0,311.0,326.0,True,True,1,False,False,False,6434.658,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,30.0,1.0,MEDIUM,32.0,False,106.937,37.927,43.65,25.36,197.0,208.0,311.0,325.0,True,True,12,False,False,False,6541.649,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,31.0,1.0,MEDIUM,33.0,False,148.248,46.717,59.279,42.252,106.0,162.0,,187.0,False,False,124,False,False,True,6648.586,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,32.0,2.0,SOFT,1.0,False,,69.98,68.433,42.633,75.0,130.0,204.0,181.0,False,False,4,False,True,False,6796.834,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,33.0,2.0,SOFT,2.0,False,,60.133,67.147,40.039,70.0,149.0,129.0,213.0,False,False,4,False,False,False,6977.986,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,34.0,2.0,SOFT,3.0,False,,64.481,61.047,39.106,154.0,137.0,221.0,221.0,False,False,4,False,False,False,7145.233,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,35.0,2.0,SOFT,4.0,False,,53.49,62.156,42.972,137.0,118.0,299.0,183.0,False,False,41,False,False,False,7309.834,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,36.0,2.0,SOFT,5.0,False,128.999,37.957,49.594,41.448,193.0,131.0,,119.0,False,False,124,False,False,True,7468.493,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,37.0,3.0,SOFT,6.0,False,,63.316,61.528,39.93,99.0,142.0,225.0,215.0,False,False,4,False,True,False,7597.492,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,38.0,3.0,SOFT,7.0,False,,59.141,62.459,39.969,120.0,141.0,327.0,186.0,False,False,41,False,False,False,7762.288,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,39.0,3.0,SOFT,8.0,False,106.332,37.835,43.243,25.254,200.0,207.0,311.0,327.0,True,True,1,False,False,False,7923.81,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,40.0,3.0,SOFT,9.0,False,106.039,37.949,42.852,25.238,205.0,209.0,310.0,325.0,True,True,12,False,False,False,8030.142,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,41.0,3.0,SOFT,10.0,False,105.62,37.545,42.867,25.208,206.0,211.0,310.0,326.0,True,True,1,False,False,False,8136.181,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,42.0,3.0,SOFT,11.0,False,105.48,37.418,42.903,25.159,203.0,212.0,309.0,325.0,True,True,1,False,False,False,8241.801,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,43.0,3.0,SOFT,12.0,False,105.721,37.408,43.067,25.246,205.0,212.0,310.0,324.0,False,True,1,False,False,False,8347.281,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,44.0,3.0,SOFT,13.0,False,105.164,37.13,42.863,25.171,203.0,217.0,309.0,325.0,True,True,1,False,False,False,8453.002,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,45.0,3.0,SOFT,14.0,False,105.055,37.244,42.646,25.165,208.0,217.0,309.0,324.0,True,True,1,False,False,False,8558.166,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,46.0,3.0,SOFT,15.0,False,105.259,37.253,42.802,25.204,209.0,217.0,310.0,324.0,False,True,1,False,False,False,8663.221,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,47.0,3.0,SOFT,16.0,False,105.037,37.095,42.663,25.279,209.0,214.0,308.0,321.0,True,True,1,False,False,False,8768.48,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,48.0,3.0,SOFT,17.0,False,104.996,37.083,42.693,25.22,205.0,217.0,309.0,322.0,True,True,1,False,False,False,8873.517,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,49.0,3.0,SOFT,18.0,False,104.916,37.056,42.656,25.204,207.0,217.0,309.0,323.0,True,True,1,False,False,False,8978.513,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,50.0,3.0,SOFT,19.0,False,105.005,37.143,42.615,25.247,208.0,215.0,309.0,322.0,False,True,12,False,False,False,9083.429,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,RUS,63,Mercedes,51.0,3.0,SOFT,20.0,False,107.23,37.324,44.674,25.232,204.0,209.0,308.0,317.0,False,True,12,False,False,False,9188.434,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,1.0,1.0,MEDIUM,1.0,True,126.766,,50.331,25.883,171.0,187.0,316.0,329.0,False,False,1,False,False,False,3413.247,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,2.0,1.0,MEDIUM,2.0,True,111.987,40.286,45.988,25.713,185.0,199.0,321.0,328.0,True,True,1,False,False,False,3540.27,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,3.0,1.0,MEDIUM,3.0,True,112.126,40.273,46.151,25.702,176.0,188.0,315.0,331.0,False,True,1,False,False,False,3652.257,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,4.0,1.0,MEDIUM,4.0,True,111.848,40.19,45.661,25.997,180.0,197.0,306.0,319.0,True,True,1,False,False,False,3764.383,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,5.0,1.0,MEDIUM,5.0,True,111.968,40.383,45.507,26.078,175.0,199.0,304.0,318.0,False,True,1,False,False,False,3876.231,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,6.0,1.0,MEDIUM,6.0,True,111.927,40.428,45.563,25.936,181.0,207.0,304.0,320.0,False,True,1,False,False,False,3988.199,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,7.0,1.0,MEDIUM,7.0,True,111.79,40.152,45.577,26.061,185.0,201.0,302.0,320.0,True,True,1,False,False,False,4100.126,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,8.0,1.0,MEDIUM,8.0,True,111.866,40.207,45.571,26.088,185.0,203.0,302.0,318.0,False,True,12,False,False,False,4211.916,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,9.0,1.0,MEDIUM,9.0,True,112.324,40.054,46.023,26.247,185.0,191.0,300.0,314.0,False,True,1,False,False,False,4323.782,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,10.0,1.0,MEDIUM,10.0,True,111.772,40.15,45.496,26.126,190.0,203.0,300.0,317.0,True,True,1,False,False,False,4436.106,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,11.0,1.0,MEDIUM,11.0,True,112.847,40.998,45.612,26.237,184.0,202.0,299.0,314.0,False,True,1,False,False,False,4547.878,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,12.0,1.0,MEDIUM,12.0,True,112.139,40.233,45.757,26.149,188.0,211.0,299.0,315.0,False,True,1,False,False,False,4660.725,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,13.0,1.0,MEDIUM,13.0,True,112.04,40.489,45.839,25.712,187.0,205.0,318.0,326.0,False,True,1,False,False,False,4772.864,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,14.0,1.0,MEDIUM,14.0,True,111.61,39.945,45.577,26.088,183.0,199.0,299.0,319.0,True,True,1,False,False,False,4884.904,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,15.0,1.0,MEDIUM,15.0,True,111.453,39.875,45.445,26.133,191.0,209.0,297.0,317.0,True,True,1,False,False,False,4996.514,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,16.0,1.0,MEDIUM,16.0,True,112.073,40.181,45.661,26.231,189.0,203.0,298.0,317.0,False,True,1,False,False,False,5107.967,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,17.0,1.0,MEDIUM,17.0,True,111.992,40.375,45.846,25.771,182.0,189.0,307.0,327.0,False,True,1,False,False,False,5220.04,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,18.0,1.0,MEDIUM,18.0,True,111.575,39.93,45.417,26.228,189.0,204.0,298.0,316.0,False,True,1,False,False,False,5332.032,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,19.0,1.0,MEDIUM,19.0,True,112.389,40.74,45.838,25.811,187.0,201.0,302.0,330.0,False,True,1,False,False,False,5443.607,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,20.0,1.0,MEDIUM,20.0,True,112.91,40.856,45.945,26.109,183.0,184.0,300.0,329.0,False,True,1,False,False,False,5555.996,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,21.0,1.0,MEDIUM,21.0,True,111.193,39.578,45.441,26.174,187.0,204.0,297.0,318.0,True,True,1,False,False,False,5668.906,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,22.0,1.0,MEDIUM,22.0,True,111.691,40.109,45.367,26.215,194.0,210.0,298.0,318.0,False,True,1,False,False,False,5780.099,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,23.0,1.0,MEDIUM,23.0,True,111.675,40.083,45.358,26.234,184.0,203.0,297.0,319.0,False,True,1,False,False,False,5891.79,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,24.0,1.0,MEDIUM,24.0,True,113.142,41.151,46.025,25.966,156.0,202.0,302.0,320.0,False,True,1,False,False,False,6003.465,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,25.0,1.0,MEDIUM,25.0,True,111.275,39.635,45.507,26.133,186.0,206.0,299.0,318.0,False,True,1,False,False,False,6116.607,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,26.0,1.0,MEDIUM,26.0,True,119.011,42.653,46.598,29.76,100.0,205.0,,323.0,False,False,1,False,False,True,6227.882,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,27.0,2.0,SOFT,1.0,True,133.575,59.287,48.002,26.286,192.0,203.0,304.0,322.0,False,False,1,False,True,False,6346.893,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,28.0,2.0,SOFT,2.0,True,112.213,39.563,46.928,25.722,189.0,199.0,311.0,325.0,False,True,12,False,False,False,6480.468,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,29.0,2.0,SOFT,3.0,True,131.353,41.434,53.11,36.809,179.0,147.0,198.0,207.0,False,False,124,False,False,False,6592.681,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,30.0,2.0,SOFT,4.0,True,,56.613,57.657,38.485,91.0,161.0,271.0,201.0,False,False,4,False,False,False,6724.034,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,31.0,2.0,SOFT,5.0,True,132.119,46.167,56.499,29.453,114.0,165.0,286.0,275.0,False,False,4,False,False,False,6876.825,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,32.0,2.0,SOFT,6.0,True,148.004,44.209,65.851,37.944,109.0,137.0,275.0,202.0,False,False,4,False,False,False,7008.944,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,33.0,2.0,SOFT,7.0,True,119.837,46.801,46.559,26.477,160.0,196.0,293.0,314.0,False,False,4,False,False,False,7156.948,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,34.0,2.0,SOFT,8.0,True,112.404,40.477,45.707,26.22,185.0,213.0,297.0,317.0,False,False,4,False,False,False,7276.785,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,35.0,2.0,SOFT,9.0,True,111.601,40.012,45.427,26.162,186.0,201.0,290.0,316.0,False,False,412,False,False,False,7389.189,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,36.0,2.0,SOFT,10.0,True,,54.737,60.428,42.331,109.0,101.0,,203.0,False,False,24,False,False,True,7500.79,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,37.0,3.0,SOFT,11.0,False,,61.277,60.074,39.384,99.0,167.0,261.0,215.0,False,False,4,False,True,False,7658.32,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,38.0,3.0,SOFT,12.0,False,115.302,42.005,46.093,27.204,182.0,195.0,296.0,289.0,False,False,41,False,False,False,7819.001,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,39.0,3.0,SOFT,13.0,False,111.254,40.433,45.069,25.752,192.0,210.0,306.0,324.0,False,True,12,False,False,False,7934.303,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,40.0,3.0,SOFT,14.0,False,111.483,40.998,44.795,25.69,191.0,206.0,305.0,324.0,False,True,21,False,False,False,8045.557,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,41.0,3.0,SOFT,15.0,False,109.618,39.364,44.551,25.703,187.0,211.0,304.0,321.0,True,True,1,False,False,False,8157.04,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,42.0,3.0,SOFT,16.0,False,109.925,39.394,44.809,25.722,196.0,207.0,303.0,319.0,False,True,1,False,False,False,8266.658,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,43.0,3.0,SOFT,17.0,False,109.969,39.306,44.95,25.713,194.0,208.0,302.0,320.0,False,True,1,False,False,False,8376.583,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,44.0,3.0,SOFT,18.0,False,109.906,39.273,44.863,25.77,190.0,204.0,301.0,322.0,False,True,1,False,False,False,8486.552,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,45.0,3.0,SOFT,19.0,False,109.644,39.192,44.612,25.84,193.0,205.0,300.0,318.0,False,True,1,False,False,False,8596.458,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,46.0,3.0,SOFT,20.0,False,109.647,39.194,44.68,25.773,192.0,207.0,301.0,320.0,False,True,1,False,False,False,8706.102,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,47.0,3.0,SOFT,21.0,False,109.498,39.041,44.654,25.803,192.0,217.0,300.0,320.0,True,True,1,False,False,False,8815.749,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,48.0,3.0,SOFT,22.0,False,109.258,39.003,44.501,25.754,197.0,207.0,300.0,320.0,True,True,1,False,False,False,8925.247,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,49.0,3.0,SOFT,23.0,False,108.852,38.79,44.348,25.714,198.0,206.0,300.0,320.0,True,True,1,False,False,False,9034.505,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BOT,77,Cadillac,50.0,3.0,SOFT,24.0,False,,,,,,,,,False,False,12,False,False,False,9143.357,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,1.0,1.0,SOFT,1.0,True,113.184,,44.719,25.653,173.0,189.0,310.0,318.0,False,False,1,False,False,False,3413.247,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,2.0,1.0,SOFT,2.0,True,109.807,39.531,44.561,25.715,181.0,200.0,310.0,317.0,True,True,1,False,False,False,3526.688,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,3.0,1.0,SOFT,3.0,True,109.502,39.166,44.529,25.807,178.0,197.0,307.0,316.0,True,True,1,False,False,False,3636.495,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,4.0,1.0,SOFT,4.0,True,109.039,38.834,44.425,25.78,182.0,202.0,307.0,314.0,True,True,1,False,False,False,3745.997,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,5.0,1.0,SOFT,5.0,True,108.716,38.756,44.169,25.791,188.0,202.0,305.0,312.0,True,True,1,False,False,False,3855.036,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,6.0,1.0,SOFT,6.0,True,107.999,38.491,43.889,25.619,187.0,203.0,306.0,315.0,True,True,1,False,False,False,3963.752,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,7.0,1.0,SOFT,7.0,True,108.192,38.511,43.862,25.819,190.0,201.0,306.0,315.0,False,True,1,False,False,False,4071.751,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,8.0,1.0,SOFT,8.0,True,108.311,38.489,43.95,25.872,194.0,202.0,305.0,313.0,False,True,1,False,False,False,4179.943,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,9.0,1.0,SOFT,9.0,True,108.632,38.611,44.248,25.773,196.0,194.0,305.0,314.0,False,True,12,False,False,False,4288.254,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,10.0,1.0,SOFT,10.0,True,108.227,38.469,44.046,25.712,198.0,204.0,305.0,312.0,False,True,1,False,False,False,4396.886,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,11.0,1.0,SOFT,11.0,True,108.553,38.687,44.072,25.794,189.0,200.0,303.0,312.0,False,True,1,False,False,False,4505.113,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,12.0,1.0,SOFT,12.0,True,108.069,38.312,44.011,25.746,191.0,202.0,304.0,313.0,False,True,1,False,False,False,4613.666,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,13.0,1.0,SOFT,13.0,True,108.073,38.426,43.907,25.74,189.0,204.0,304.0,313.0,False,True,1,False,False,False,4721.735,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,14.0,1.0,SOFT,14.0,True,107.898,38.399,43.769,25.73,192.0,207.0,302.0,313.0,True,True,1,False,False,False,4829.808,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,15.0,1.0,SOFT,15.0,True,107.992,38.514,43.843,25.635,193.0,205.0,303.0,314.0,False,True,1,False,False,False,4937.706,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,16.0,1.0,SOFT,16.0,True,107.951,38.431,43.686,25.834,190.0,203.0,302.0,313.0,False,True,1,False,False,False,5045.698,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,17.0,1.0,SOFT,17.0,True,107.959,38.42,43.762,25.777,195.0,200.0,303.0,313.0,False,True,1,False,False,False,5153.649,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,18.0,1.0,SOFT,18.0,True,108.009,38.439,43.758,25.812,193.0,204.0,303.0,312.0,False,True,1,False,False,False,5261.608,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,19.0,1.0,SOFT,19.0,True,108.038,38.385,43.881,25.772,195.0,204.0,303.0,312.0,False,True,1,False,False,False,5369.617,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,20.0,1.0,SOFT,20.0,True,107.838,38.346,43.802,25.69,198.0,204.0,303.0,314.0,True,True,1,False,False,False,5477.655,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,21.0,1.0,SOFT,21.0,True,107.742,38.314,43.77,25.658,191.0,207.0,303.0,315.0,True,True,1,False,False,False,5585.493,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,22.0,1.0,SOFT,22.0,True,107.573,38.276,43.617,25.68,194.0,207.0,303.0,314.0,True,True,1,False,False,False,5693.235,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,23.0,1.0,SOFT,23.0,True,107.592,38.315,43.577,25.7,198.0,204.0,305.0,315.0,False,True,1,False,False,False,5800.808,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,24.0,1.0,SOFT,24.0,True,107.44,38.228,43.472,25.74,199.0,207.0,303.0,315.0,True,True,1,False,False,False,5908.4,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,25.0,1.0,SOFT,25.0,True,107.364,38.073,43.663,25.628,200.0,206.0,304.0,315.0,True,True,1,False,False,False,6015.84,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,26.0,1.0,SOFT,26.0,True,107.252,38.247,43.552,25.453,201.0,206.0,308.0,320.0,True,True,1,False,False,False,6123.204,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,27.0,1.0,SOFT,27.0,True,107.647,38.208,43.774,25.665,195.0,208.0,304.0,315.0,False,True,1,False,False,False,6230.456,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,28.0,1.0,SOFT,28.0,True,107.374,38.129,43.507,25.738,200.0,204.0,303.0,314.0,False,True,1,False,False,False,6338.103,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,29.0,1.0,SOFT,29.0,True,107.394,38.126,43.629,25.639,198.0,207.0,304.0,315.0,False,True,1,False,False,False,6445.477,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,30.0,1.0,SOFT,30.0,True,107.178,38.028,43.505,25.645,197.0,208.0,304.0,316.0,True,True,12,False,False,False,6552.871,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,31.0,1.0,SOFT,31.0,True,,51.86,59.408,41.385,110.0,151.0,,190.0,False,False,24,False,False,True,6660.049,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,32.0,2.0,MEDIUM,1.0,True,,67.566,58.178,40.261,104.0,163.0,257.0,188.0,False,False,4,False,True,False,6812.84,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,33.0,2.0,MEDIUM,2.0,True,,61.174,67.105,38.837,84.0,174.0,209.0,199.0,False,False,4,False,False,False,6978.73,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,34.0,2.0,MEDIUM,3.0,True,,65.095,61.343,38.007,152.0,173.0,253.0,240.0,False,False,4,False,False,False,7145.83,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,35.0,2.0,MEDIUM,4.0,True,,54.12,62.506,41.884,142.0,161.0,288.0,179.0,False,False,41,False,False,False,7310.35,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,36.0,2.0,MEDIUM,5.0,True,134.356,39.389,52.904,42.063,169.0,126.0,,210.0,False,False,124,False,False,True,7468.843,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,37.0,3.0,MEDIUM,6.0,False,,60.601,61.578,39.812,127.0,174.0,271.0,182.0,False,False,4,False,True,False,7603.199,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,38.0,3.0,MEDIUM,7.0,False,,57.531,62.911,38.893,121.0,158.0,328.0,192.0,False,False,41,False,False,False,7765.218,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,39.0,3.0,MEDIUM,8.0,False,108.098,38.847,43.927,25.324,179.0,201.0,312.0,320.0,False,True,1,False,False,False,7924.469,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,40.0,3.0,MEDIUM,9.0,False,118.595,48.302,45.189,25.104,181.0,199.0,321.0,332.0,False,True,12,False,False,False,8032.567,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,41.0,3.0,MEDIUM,10.0,False,107.191,38.213,44.131,24.847,191.0,194.0,327.0,335.0,False,True,1,False,False,False,8151.162,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,42.0,3.0,MEDIUM,11.0,False,107.762,38.53,44.238,24.994,178.0,197.0,321.0,329.0,False,True,1,False,False,False,8258.353,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,43.0,3.0,MEDIUM,12.0,False,107.078,38.169,44.017,24.892,189.0,197.0,322.0,333.0,True,True,1,False,False,False,8366.115,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,44.0,3.0,MEDIUM,13.0,False,107.255,38.087,44.303,24.865,188.0,200.0,325.0,334.0,False,True,1,False,False,False,8473.193,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,45.0,3.0,MEDIUM,14.0,False,107.678,38.35,44.558,24.77,182.0,196.0,333.0,334.0,False,True,1,False,False,False,8580.448,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,46.0,3.0,MEDIUM,15.0,False,107.595,38.72,44.267,24.608,185.0,201.0,332.0,339.0,False,True,1,False,False,False,8688.126,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,47.0,3.0,MEDIUM,16.0,False,107.084,38.294,43.741,25.049,190.0,201.0,313.0,328.0,False,True,1,False,False,False,8795.721,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,48.0,3.0,MEDIUM,17.0,False,106.602,37.883,43.633,25.086,195.0,205.0,317.0,330.0,True,True,1,False,False,False,8902.805,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,49.0,3.0,MEDIUM,18.0,False,106.641,37.909,43.773,24.959,197.0,202.0,319.0,329.0,False,True,1,False,False,False,9009.407,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,50.0,3.0,MEDIUM,19.0,False,106.979,38.042,44.149,24.788,195.0,204.0,327.0,334.0,False,True,12,False,False,False,9116.048,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,PIA,81,McLaren,51.0,3.0,MEDIUM,20.0,False,109.03,38.197,45.647,25.186,183.0,192.0,318.0,328.0,False,True,12,False,False,False,9223.027,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,1.0,1.0,SOFT,1.0,True,119.475,,46.804,24.781,167.0,188.0,340.0,348.0,False,False,1,False,False,False,3413.247,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,2.0,1.0,SOFT,2.0,True,111.001,40.536,45.212,25.253,176.0,189.0,325.0,335.0,True,True,1,False,False,False,3532.979,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,3.0,1.0,SOFT,3.0,True,109.98,39.794,45.087,25.099,181.0,197.0,330.0,337.0,True,True,1,False,False,False,3643.98,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,4.0,1.0,SOFT,4.0,True,110.059,39.854,45.037,25.168,184.0,191.0,327.0,336.0,False,True,1,False,False,False,3753.96,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,5.0,1.0,SOFT,5.0,True,109.304,39.584,44.698,25.022,182.0,195.0,333.0,331.0,True,True,1,False,False,False,3864.019,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,6.0,1.0,SOFT,6.0,True,109.83,39.633,44.732,25.465,189.0,208.0,312.0,327.0,False,True,1,False,False,False,3973.323,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,7.0,1.0,SOFT,7.0,True,109.671,39.477,44.551,25.643,189.0,207.0,310.0,326.0,False,True,1,False,False,False,4083.153,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,8.0,1.0,SOFT,8.0,True,109.174,39.15,44.487,25.537,189.0,205.0,312.0,326.0,True,True,12,False,False,False,4192.824,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,9.0,1.0,SOFT,9.0,True,109.458,38.918,44.967,25.573,193.0,207.0,311.0,325.0,False,True,21,False,False,False,4301.998,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,10.0,1.0,SOFT,10.0,True,109.317,39.028,44.737,25.552,192.0,213.0,310.0,324.0,False,True,1,False,False,False,4411.456,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,11.0,1.0,SOFT,11.0,True,109.334,39.016,44.696,25.622,193.0,212.0,309.0,324.0,False,True,1,False,False,False,4520.773,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,12.0,1.0,SOFT,12.0,True,108.959,38.962,44.489,25.508,192.0,208.0,311.0,325.0,True,True,1,False,False,False,4630.107,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,13.0,1.0,SOFT,13.0,True,109.139,38.915,44.669,25.555,189.0,213.0,309.0,324.0,False,True,1,False,False,False,4739.066,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,14.0,1.0,SOFT,14.0,True,108.991,38.869,44.522,25.6,196.0,213.0,308.0,325.0,False,True,1,False,False,False,4848.205,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,15.0,1.0,SOFT,15.0,True,108.826,38.918,44.429,25.479,194.0,213.0,308.0,327.0,True,True,1,False,False,False,4957.196,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,16.0,1.0,SOFT,16.0,True,109.135,39.066,44.443,25.626,195.0,206.0,308.0,324.0,False,True,1,False,False,False,5066.022,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,17.0,1.0,SOFT,17.0,True,110.029,39.863,44.736,25.43,189.0,215.0,312.0,326.0,False,True,1,False,False,False,5175.157,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,18.0,1.0,SOFT,18.0,True,109.104,38.935,44.591,25.578,195.0,206.0,310.0,324.0,False,True,1,False,False,False,5285.186,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,19.0,1.0,SOFT,19.0,True,108.793,38.944,44.338,25.511,196.0,214.0,308.0,324.0,True,True,1,False,False,False,5394.29,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,20.0,1.0,SOFT,20.0,True,108.638,38.84,44.333,25.465,194.0,215.0,307.0,325.0,True,True,1,False,False,False,5503.083,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,21.0,1.0,SOFT,21.0,True,109.172,38.677,44.447,26.048,198.0,212.0,310.0,327.0,False,True,1,False,False,False,5611.721,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,22.0,1.0,SOFT,22.0,True,109.055,38.885,44.605,25.565,196.0,208.0,307.0,325.0,False,True,1,False,False,False,5720.893,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,23.0,1.0,SOFT,23.0,True,109.029,38.881,44.503,25.645,198.0,211.0,307.0,324.0,False,True,1,False,False,False,5829.948,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,24.0,1.0,SOFT,24.0,True,109.071,38.927,44.59,25.554,198.0,215.0,308.0,326.0,False,True,1,False,False,False,5938.977,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,25.0,1.0,SOFT,25.0,True,108.743,38.743,44.412,25.588,192.0,213.0,307.0,326.0,False,True,1,False,False,False,6048.048,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,26.0,1.0,SOFT,26.0,True,108.548,38.644,44.244,25.66,197.0,211.0,308.0,325.0,True,True,1,False,False,False,6156.791,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,27.0,1.0,SOFT,27.0,True,108.629,38.633,44.435,25.561,196.0,212.0,307.0,325.0,False,True,1,False,False,False,6265.339,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,28.0,1.0,SOFT,28.0,True,108.585,38.633,44.487,25.465,199.0,208.0,312.0,326.0,False,True,1,False,False,False,6373.968,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,29.0,1.0,SOFT,29.0,True,108.978,38.9,44.543,25.535,193.0,212.0,308.0,325.0,False,True,12,False,False,False,6482.553,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,30.0,1.0,SOFT,30.0,True,127.24,38.81,47.508,40.922,198.0,156.0,,226.0,False,False,124,False,False,True,6591.531,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,31.0,2.0,MEDIUM,1.0,True,,68.422,58.451,38.981,97.0,141.0,251.0,201.0,False,False,4,False,True,False,6718.771,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,32.0,2.0,MEDIUM,2.0,True,128.345,43.799,54.341,30.205,119.0,185.0,254.0,256.0,False,False,4,False,False,False,6884.708,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,33.0,2.0,MEDIUM,3.0,True,145.665,43.752,64.446,37.467,94.0,162.0,213.0,193.0,False,False,4,False,False,False,7013.053,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,34.0,2.0,MEDIUM,4.0,True,,62.771,63.196,37.862,168.0,173.0,280.0,225.0,False,False,4,False,False,False,7158.718,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,35.0,2.0,MEDIUM,5.0,True,147.668,51.397,62.404,33.867,156.0,121.0,314.0,237.0,False,False,41,False,False,False,7322.514,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,36.0,2.0,MEDIUM,6.0,True,142.179,43.292,55.828,43.059,146.0,115.0,,209.0,False,False,124,False,False,True,7470.182,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,37.0,3.0,MEDIUM,7.0,False,,61.616,60.725,39.96,85.0,149.0,237.0,221.0,False,False,4,False,True,False,7612.361,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,38.0,3.0,MEDIUM,8.0,False,,54.579,63.828,33.503,151.0,141.0,342.0,234.0,False,False,41,False,False,False,7774.742,False,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,39.0,3.0,MEDIUM,9.0,False,109.42,39.867,44.631,24.922,191.0,197.0,333.0,337.0,False,True,1,False,False,False,7926.549,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,40.0,3.0,MEDIUM,10.0,False,108.453,39.257,44.23,24.966,191.0,208.0,325.0,338.0,True,True,12,False,False,False,8035.969,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,41.0,3.0,MEDIUM,11.0,False,107.784,38.816,43.991,24.977,190.0,208.0,324.0,336.0,True,True,1,False,False,False,8144.422,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,42.0,3.0,MEDIUM,12.0,False,107.516,38.581,44.011,24.924,195.0,212.0,325.0,336.0,True,True,1,False,False,False,8252.206,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,43.0,3.0,MEDIUM,13.0,False,107.464,38.602,43.912,24.95,192.0,210.0,322.0,333.0,True,True,1,False,False,False,8359.722,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,44.0,3.0,MEDIUM,14.0,False,107.039,38.275,43.801,24.963,192.0,205.0,322.0,333.0,True,True,1,False,False,False,8467.186,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,45.0,3.0,MEDIUM,15.0,False,106.978,38.351,43.697,24.93,200.0,211.0,322.0,336.0,True,True,1,False,False,False,8574.225,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,46.0,3.0,MEDIUM,16.0,False,107.225,38.391,43.917,24.917,194.0,215.0,324.0,336.0,False,True,1,False,False,False,8681.203,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,47.0,3.0,MEDIUM,17.0,False,107.652,38.729,43.924,24.999,192.0,212.0,321.0,335.0,False,True,1,False,False,False,8788.428,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,48.0,3.0,MEDIUM,18.0,False,108.665,39.548,44.159,24.958,205.0,207.0,321.0,337.0,False,True,1,False,False,False,8896.08,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,49.0,3.0,MEDIUM,19.0,False,107.255,38.358,43.916,24.981,203.0,206.0,318.0,336.0,False,True,1,False,False,False,9004.745,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,50.0,3.0,MEDIUM,20.0,False,107.243,38.33,44.054,24.859,196.0,207.0,325.0,340.0,False,True,12,False,False,False,9112.0,True,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,R,BEA,87,Haas F1 Team,51.0,3.0,MEDIUM,21.0,False,108.36,38.476,44.971,24.913,198.0,194.0,320.0,334.0,False,True,12,False,False,False,9219.243,True,baku,baku_gp,resolved

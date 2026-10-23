@@ -1,10 +1,17 @@
 from __future__ import annotations
 
+from src.data_sources.fastf1_cache import enable_cache
+
 import os
+import json
 import subprocess
 import sys
 import threading
-import traceback
+import time
+import hashlib
+from dataclasses import replace
+from datetime import datetime, timezone
+from uuid import uuid4
 from pathlib import Path
 from typing import Any
 
@@ -16,18 +23,18 @@ from src.app_services.config_service import (
     build_run_config,
     load_json_config,
     settings_from_config,
-    write_temp_run_config,
 )
 from src.app_services.data_health import validate_data_sources
 from src.app_services.model_signals import load_model_signals
 from src.app_services.output_index import list_core_outputs, read_output_table
-from src.app_services.run_service import run_pipeline_with_config
 from src.track import load_track_profile
 from src.app_services.simulation_jobs import SimulationJobs
+from src.app_services.dashboard_health import output_context, saved_data_health
+from src.app_services.workbench import model_reference, saved_details
 
 
-SESSION_OPTIONS = ["PRE", "Q", "SQ", "S", "FP3", "FP2", "FP1", "R"]
-SESSION_PRIORITY = ["R", "Q", "SQ", "S", "FP3", "FP2", "FP1"]
+SESSION_OPTIONS = ["PRE", "FP1", "FP2", "FP3", "SQ", "S", "Q", "R"]
+SESSION_PRIORITY = SESSION_OPTIONS[1:]
 SESSION_NAME_TO_CODE = {
     "PRACTICE 1": "FP1",
     "FREE PRACTICE 1": "FP1",
@@ -41,7 +48,7 @@ SESSION_NAME_TO_CODE = {
     "SPRINT": "S",
     "RACE": "R",
 }
-TRACK_LAYOUT_CACHE: dict[tuple[int, str, str], list[dict[str, float]]] = {}
+TRACK_LAYOUT_CACHE: dict[tuple[int, str, str], dict[str, Any]] = {}
 PRE_SESSIONS = {"PRE"}
 PRACTICE_SESSIONS = {"FP1", "FP2", "FP3"}
 QUALI_SESSIONS = {"Q", "SQ"}
@@ -49,6 +56,8 @@ RACE_SESSIONS = {"R", "S"}
 
 
 def project_root() -> Path:
+    if getattr(sys, 'frozen', False):
+        return Path.cwd()
     return Path(__file__).resolve().parents[1]
 
 
@@ -143,7 +152,9 @@ def _event_schedule(year: int) -> pd.DataFrame:
     try:
         import fastf1
 
-        fastf1.Cache.enable_cache(str(project_root() / "data" / "cache"))
+        cache = project_root() / "data" / "cache"
+        cache.mkdir(parents=True, exist_ok=True)
+        enable_cache(str(cache))
         schedule = fastf1.get_event_schedule(year).copy()
     except Exception:
         return pd.DataFrame()
@@ -243,9 +254,9 @@ def available_sessions_for_event(
     if row is None:
         if event_text.lower() == "latest":
             return ["PRE"]
-        return SESSION_PRIORITY.copy()
+        return ['PRE', *SESSION_PRIORITY]
 
-    scheduled: set[str] = set()
+    scheduled: list[str] = []
 
     for index in range(1, 6):
         session_code = _session_code(row.get(f"Session{index}"))
@@ -253,11 +264,12 @@ def available_sessions_for_event(
         if session_code is None:
             continue
 
-        scheduled.add(session_code)
+        if session_code not in scheduled:
+            scheduled.append(session_code)
 
     if event_text.lower() != "latest":
-        sessions = [session for session in SESSION_PRIORITY if session in scheduled]
-        return sessions or SESSION_OPTIONS.copy()
+        sessions = scheduled
+        return ['PRE', *sessions] if sessions else SESSION_OPTIONS.copy()
 
     now = now or pd.Timestamp.now(tz="UTC").tz_convert(None)
     available: set[str] = set()
@@ -276,7 +288,7 @@ def available_sessions_for_event(
     if not available:
         return ["PRE"]
 
-    return [session for session in SESSION_PRIORITY if session in available]
+    return ['PRE', *[session for session in scheduled if session in available]]
 
 
 def setup_options_payload(
@@ -287,7 +299,10 @@ def setup_options_payload(
     schedule = _event_schedule(year)
     row = _event_row(schedule, event)
     event_name = str(row.get("EventName", event)) if row is not None else str(event)
-    track_profile = load_track_profile(event_name, path=track_profiles_path)
+    from src.venues import venue_for_context
+    context = {'year': year, 'event': event_name}
+    context['venue'] = venue_for_context(context, event_data=row if row is not None else {})
+    track_profile = load_track_profile(event_name, path=track_profiles_path, metadata=context)
 
     return {
         "sessions": available_sessions_for_event(year, event),
@@ -587,22 +602,23 @@ def track_layout_points(
     event_name: str | None = None,
     session_name: str | None = None,
 ) -> list[dict[str, float]]:
-    laps = read_output_table(output_dir, "lap_details/weekend_lap_details.csv", max_rows=5_000)
+    return track_layout_payload(output_dir, year, event_name, session_name)['points']
 
-    if not laps.empty:
-        year_value = pd.to_numeric(laps.get("Year", pd.Series(dtype="float64")), errors="coerce").dropna()
-        event_value = laps.get("Event", pd.Series(dtype="object")).dropna()
-        session_value = laps.get("Session", pd.Series(dtype="object")).dropna()
 
-        if year is None and not year_value.empty:
-            year = int(year_value.iloc[0])
-        if not event_name and not event_value.empty:
-            event_name = str(event_value.iloc[0])
-        if not session_name and not session_value.empty:
-            session_name = str(session_value.iloc[0])
-
+def track_layout_payload(output_dir, year=None, event_name=None, session_name=None):
+    resolved = output_context(output_dir, year, event_name, session_name or 'Q')
+    year, event_name, session_name = resolved['year'], resolved['event'], resolved['session']
+    def result(status, message, points=None, completion='not_recorded'):
+        return {'points': points or [], 'status': status, 'message': message,
+                'completion': completion, 'event': event_name, 'year': year, 'session': session_name}
     if year is None or not event_name or event_name == "latest":
-        return []
+        return result('context_missing', 'No saved event context. Run a simulation or select a named race.')
+
+    from src.app_services.archive_telemetry import layout
+    from src.venues import resolve_venue
+    archived = layout(project_root(), year, event_name, session_name, resolve_venue(year, event_name), allow_reference=True)
+    if archived['status'] in ('available', 'archive_error'):
+        return archived
 
     session_name = session_name or "Q"
     cache_key = (year, event_name, session_name)
@@ -613,24 +629,24 @@ def track_layout_points(
     try:
         import fastf1
 
-        fastf1.Cache.enable_cache(str(project_root() / "data" / "cache"))
+        enable_cache(str(project_root() / "data" / "cache"))
         session = fastf1.get_session(year, event_name, session_name)
         session.load(laps=True, telemetry=True, weather=False, messages=False)
         telemetry = session.laps.pick_fastest().get_telemetry().add_distance()
+        states = session.session_status.Status.dropna()
+        completion = str(states.iloc[-1]) if not states.empty else 'not_recorded'
     except Exception:
-        TRACK_LAYOUT_CACHE[cache_key] = []
-        return []
+        # Never cache failures forever: Refresh outputs must be able to retry.
+        return result('load_failed', 'Telemetry could not be loaded. Check the connection and Refresh outputs to retry.')
 
     if telemetry.empty or not {"X", "Y", "Distance"}.issubset(set(telemetry.columns)):
-        TRACK_LAYOUT_CACHE[cache_key] = []
-        return []
+        return result('data_missing', 'Session loaded, but usable track coordinates are missing.', completion=completion)
 
     frame = telemetry[["X", "Y", "Distance"]].dropna().copy()
     max_distance = pd.to_numeric(frame["Distance"], errors="coerce").max()
 
     if frame.empty or not pd.notna(max_distance) or float(max_distance) <= 0:
-        TRACK_LAYOUT_CACHE[cache_key] = []
-        return []
+        return result('data_missing', 'Session loaded, but its coordinate/distance data is incomplete.', completion=completion)
 
     step = max(1, len(frame) // 450)
     sampled = frame.iloc[::step].copy()
@@ -642,8 +658,9 @@ def track_layout_points(
         }
         for _, row in sampled.iterrows()
     ]
-    TRACK_LAYOUT_CACHE[cache_key] = points
-    return points
+    payload = result('available', f'{len(points)} track points from {event_name} {session_name}.', points, completion)
+    TRACK_LAYOUT_CACHE[cache_key] = payload
+    return payload
 
 
 def weather_summary(output_dir: str | Path) -> dict[str, Any]:
@@ -651,12 +668,13 @@ def weather_summary(output_dir: str | Path) -> dict[str, Any]:
     commentary_path = Path(output_dir) / "report" / "model_commentary.txt"
     commentary = commentary_path.read_text(encoding="utf-8") if commentary_path.exists() else ""
     values = {
-        "rain": 0.0,
-        "chaos": 0.0,
-        "dnf": 0.0,
-        "degradation": 0.0,
-        "uncertainty": 0.0,
-        "source": "No weather output found yet",
+        "rain": None,
+        "chaos": None,
+        "dnf": None,
+        "degradation": None,
+        "uncertainty": None,
+        "source": "Weather observations were not saved for this run; no rain probability inferred.",
+        "observed": {}, "modifiers": {},
     }
 
     if not summary.empty:
@@ -669,15 +687,25 @@ def weather_summary(output_dir: str | Path) -> dict[str, Any]:
         for column, key in column_map.items():
             if column in summary.columns:
                 value = pd.to_numeric(summary[column], errors="coerce").mean()
-                values[key] = 0.0 if not pd.notna(value) else float(value) * 100
+                values[key] = None if not pd.notna(value) else float(value) * (100 if key in {'chaos', 'dnf'} else 1)
 
     for line in commentary.splitlines():
         if line.lower().startswith("weather modifiers:"):
             values["source"] = line
             break
 
-    if "rain" in commentary.lower() or "wet" in commentary.lower():
-        values["rain"] = max(float(values["rain"]), 55.0)
+    path = Path(output_dir) / 'weather_context.json'
+    if path.is_file():
+        try:
+            saved = json.loads(path.read_text(encoding='utf-8'))
+            values['observed'] = ({key: saved.get(key) for key in ('air_temp_avg', 'track_temp_avg', 'rainfall_flag')}
+                                  if saved.get('weather_source') == 'fastf1_session_weather' else {})
+            values['modifiers'] = {key: saved.get(key) for key in ('chaos_factor', 'strategy_factor', 'dnf_factor', 'degradation_factor', 'uncertainty_factor')}
+            values['source'] = saved.get('weather_source', 'unknown')
+            probability = saved.get('rain_probability')
+            values['rain'] = float(probability) if probability is not None else None
+        except (ValueError, TypeError, OSError):
+            values['source'] = 'Saved weather context could not be read; rain probability unknown.'
 
     return values
 
@@ -768,19 +796,103 @@ class PortableWebApi:
         self.base_config = load_json_config(DEFAULT_CONFIG_PATH)
         self.default_settings = settings_from_config(self.base_config)
         self._window = None
+        from src.app_services.f1_account import F1Account
+        self._f1_account = F1Account()
         self.run_lock = threading.Lock()
+        self._fantasy_lock = threading.Lock()
+        self._fantasy_progress = {'running': False, 'result': None}
+        self._manual_job = None
         self.run_state: dict[str, Any] = {"running": False, "exitCode": None, "log": ""}
-        self._jobs = SimulationJobs(Path.cwd() if getattr(sys, 'frozen', False) else project_root())
+        self._jobs = SimulationJobs(Path.cwd())
+        self._settings_path = self._jobs.root/'config/app_settings.json'
+        self.ui_preferences = {'auto_reload': False, 'follow_pc_runs': True, 'pc_workspace': ''}
+        self.last_output = self.default_settings.output_dir
+        if self._settings_path.is_file():
+            try:
+                saved = json.loads(self._settings_path.read_text(encoding='utf-8'))
+                if not isinstance(saved, dict):
+                    raise ValueError('App settings must be an object.')
+                candidate = settings_from_payload(saved.get('settings', {}), self.default_settings)
+                from src.app_services.workbench import validate_settings
+                validate_settings(candidate)
+                self.default_settings = replace(candidate, post_to_discord=False)
+                self.ui_preferences['auto_reload'] = bool(saved.get('auto_reload', False))
+                self.ui_preferences['follow_pc_runs'] = bool(saved.get('follow_pc_runs', True))
+                self.ui_preferences['pc_workspace'] = str(saved.get('pc_workspace', ''))
+                self.last_output = saved.get('last_output', self.default_settings.output_dir)
+                self.base_config['data'].update({key: value for key, value in saved.get('data_paths', {}).items()
+                                                if key in self.base_config['data'] and str(value).lower().endswith('.csv')})
+            except (ValueError, TypeError, KeyError):
+                self.ui_preferences['settings_error'] = 'Saved app settings could not be loaded; project defaults are in use.'
 
     def lab_state(self, source_dir='outputs'):
-        return self._jobs.state(source_dir)
+        from src.app_services.discord_settings import local_webhook
+        return {**self._jobs.state(source_dir), 'discord_configured': bool(local_webhook(self._jobs.root))}
 
     def lab_historical_events(self, year):
         from src.app_services.historical_runs import historical_events
         return historical_events(year, self._jobs.root)
 
+    def historical_state(self):
+        from src.app_services.historical_library import inventory
+        history = [job for job in self._jobs.history() if job['kind'] == 'historical_download']
+        active = self._jobs.active_id if self._jobs.process and self._jobs.process.poll() is None else None
+        return {**inventory(self._jobs.root), 'jobs': history[:20], 'active_id': active,
+                'active_kind': next((job['kind'] for job in self._jobs.history() if job['id'] == active), None)}
+
+    def historical_start(self, payload):
+        return self.lab_start({'kind': 'historical_download', 'archive': payload})
+
+    def historical_auth_state(self):
+        return self._f1_account.state()
+
+    def historical_auth_start(self):
+        return self._f1_account.start()
+
+    def historical_auth_cancel(self):
+        return self._f1_account.cancel()
+
+    def training_state(self):
+        from src.app_services.model_training import state
+        active = self._jobs.active_id if self._jobs.process and self._jobs.process.poll() is None else None
+        history = [job for job in self._jobs.history() if job['kind'] == 'historical_training']
+        return {**state(self._jobs.root), 'jobs': history[:20], 'active_id': active}
+
+    def training_start(self, payload):
+        return self.lab_start({'kind': 'historical_training', 'training': payload})
+
+    def historical_preview(self, year, mode, table='laps', page=1):
+        from src.app_services.historical_library import preview
+        return preview(self._jobs.root, year, mode, table, page)
+
+    def historical_export(self, payload):
+        from src.app_services.historical_library import export
+        return export(self._jobs.root, payload)
+
+    def historical_open(self):
+        from src.app_services.historical_library import library_root
+        path = library_root(self._jobs.root)
+        path.mkdir(parents=True, exist_ok=True)
+        return self.open_output_dir(str(path))
+
+    def lab_next_race(self):
+        from src.app_services.beta import next_race
+        return next_race(self._jobs.root)
+
+    def lab_share_export(self, job_id):
+        from src.app_services.beta import sharing_export, dump_new
+        from uuid import uuid4
+        folder = self._jobs._folder(job_id)
+        payload = sharing_export(folder)
+        exports = folder/'exports'
+        exports.mkdir(exist_ok=True)
+        path = exports/f'sharing-preview-{uuid4().hex[:8]}.json'
+        dump_new(path, payload)
+        return {'filename':path.name, 'uploaded':False}
+
     def lab_start(self, payload):
         with self.run_lock:
+            self._refresh_manual_run()
             if self.run_state.get('running'):
                 raise ValueError('Race Setup is already running. Wait for it to finish first.')
             return self._jobs.start(payload)
@@ -805,20 +917,34 @@ class PortableWebApi:
 
     def initial_state(self) -> dict[str, Any]:
         settings = settings_to_dict(self.default_settings)
+        automation = self.automation_state()
+        latest = automation['latest'] if self.ui_preferences['follow_pc_runs'] else None
+        if latest:
+            settings.update(latest['context'])
         setup_options = self.setup_options(settings["year"], settings["event"])
         sessions = setup_options["sessions"]
-        event_names = self.events_for_year(self.default_settings.year)
+        event_names = self.events_for_year(settings['year'])
+        if latest:
+            if settings['event'] not in event_names:
+                event_names.append(settings['event'])
+            if settings['session'] not in sessions:
+                sessions.append(settings['session'])
 
         if settings["session"] not in sessions:
             settings["session"] = sessions[0] if sessions else "PRE"
 
         return {
             "settings": settings,
-            "seasons": season_options(self.default_settings.year),
+            "seasons": season_options(settings['year']),
             "events": event_names,
             "sessions": sessions,
             "setupOptions": setup_options,
-            "outputs": self.outputs(settings),
+            "outputs": self.automation_load(latest['id']) if latest else self.outputs({**settings, 'output_dir': self.last_output}),
+            'automation': automation,
+            'modelReference': model_reference(),
+            'projectDefaults': settings_to_dict(settings_from_config(load_json_config(DEFAULT_CONFIG_PATH))),
+            'preferences': self.ui_preferences,
+            'discordConfigured': self.workbench_status()['discordConfigured'],
         }
 
     def events_for_year(self, year: int) -> list[str]:
@@ -836,22 +962,54 @@ class PortableWebApi:
             track_profiles_path=track_profiles_path,
         )
 
+    def setup_track(self, year: int, event: str, session: str = 'Q') -> dict[str, Any]:
+        from src.app_services.archive_telemetry import layout
+        if str(session).upper() not in SESSION_OPTIONS:
+            raise ValueError('Choose a supported session.')
+        options = self.setup_options(int(year), event)
+        profile = options['trackProfile']
+        return layout(self._jobs.root, int(year), profile['event'], session, profile, allow_reference=True)
+
     def outputs(self, settings_payload: dict[str, Any] | None = None) -> dict[str, Any]:
+        self._sync_fia_reference()
         settings = settings_from_payload(settings_payload or {}, self.default_settings)
         output_dir = settings.output_dir
         summary = read_output_table(output_dir, "simulation_summary.csv", max_rows=100)
+        frozen_manifest = None
+        folder = Path(output_dir).resolve()
+        if folder.name == 'source' and (folder.parent / 'frozen/manifest.json').is_file():
+            from src.app_services.beta import verified_snapshot
+            frozen_manifest = verified_snapshot(folder.parent)
+            summary = read_output_table(folder.parent / 'frozen', 'simulation_summary.csv', max_rows=100)
         reliability = read_output_table(output_dir, "debug/reliability_profile.csv", max_rows=100)
         strategy = read_output_table(output_dir, "strategy/predicted_tyre_strategy.csv", max_rows=100)
         fantasy = fantasy_driver_summary(read_output_table(output_dir, "raw_fantasy_results.csv", max_rows=5_000))
         signals = load_model_signals(output_dir)
         files = list_core_outputs(output_dir)
         health = validate_data_sources(build_run_config(self.base_config, settings))
+        context = output_context(output_dir, settings.year, settings.event, settings.session)
+        if frozen_manifest:
+            context = {key: frozen_manifest['context'][key] for key in ('year', 'event', 'session')}
+            context['source'] = 'verified_frozen_forecast'
+        track = track_layout_payload(output_dir, context['year'], context['event'], context['session'])
+        track.update(sectors=sector_leaders(output_dir, context['session']) or track.get('sectors', {}),
+                     fastestLap=fastest_lap(output_dir, context['session']) or track.get('fastestLap', {}))
+
+        from src.app_services.grid_updates import forecast_grid_status
+        grid_context = frozen_manifest['context'] if frozen_manifest else context
+        grid_freshness = forecast_grid_status(self._jobs.root, output_dir, grid_context,
+            index_path=self.base_config.get('data', {}).get('fia_document_index_path'))
 
         return {
+            'gridFreshness': grid_freshness,
+            'details': saved_details(output_dir, summary_override=summary),
             "outputDir": output_dir,
-            "sessionMode": session_mode(settings.session),
+            "sessionMode": session_mode(context['session']),
             "files": [item.__dict__ for item in files],
             "dataHealth": [item.__dict__ for item in health],
+            "savedContext": context,
+            "runHealth": saved_data_health(output_dir, context,
+                {'year': settings.year, 'event': settings.event, 'session': settings.session}, track),
             "summaryTable": table_payload(
                 sorted_view(
                     summary,
@@ -883,12 +1041,7 @@ class PortableWebApi:
                 "featuresPath": signals.features_path,
                 "featuresExist": signals.features_exist,
             },
-            "track": {
-                "points": track_layout_points(output_dir, settings.year, settings.event, settings.session),
-                "sectors": sector_leaders(output_dir, settings.session),
-                "fastestLap": fastest_lap(output_dir, settings.session),
-                "session": settings.session,
-            },
+            "track": track,
             "sessionScreens": session_screen_payloads(output_dir, summary, strategy),
             "weather": weather_summary(output_dir),
             "reliability": {
@@ -901,42 +1054,251 @@ class PortableWebApi:
 
     def start_run(self, settings_payload: dict[str, Any]) -> dict[str, Any]:
         with self.run_lock:
+            self._refresh_manual_run()
+            self._sync_fia_reference()
             if self._jobs.process and self._jobs.process.poll() is None:
                 return {'ok': False, 'message': 'A Simulation Centre job is running. Wait or cancel it first.'}
             if self.run_state.get("running"):
                 return {"ok": False, "message": "A simulation is already running."}
 
             settings = settings_from_payload(settings_payload, self.default_settings)
+            from src.app_services.workbench import validate_settings
+            validate_settings(settings)
+            if settings.post_to_discord:
+                raise ValueError('Use Simulation Centre to upload a verified frozen forecast to Discord.')
+            target = Path(settings.output_dir).resolve()
+            if 'frozen' in {part.lower() for part in target.parts} or target.is_relative_to(self._jobs.run_root):
+                raise ValueError('Choose a separate output directory; archived forecasts remain unchanged.')
+            # Each manual run gets a fresh directory, preserving every prior result.
+            output = target/'workbench_runs'/f"{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}_{uuid4().hex[:8]}"
+            output.mkdir(parents=True, exist_ok=False)
+            settings = replace(settings, output_dir=str(output))
             config = build_run_config(self.base_config, settings)
-            config_path = write_temp_run_config(config)
+            config['ignore_environment_overrides'] = True
+            launched = self._jobs.start_manual(config)
+            self._manual_job = launched["id"]
+            config_path = Path(launched["configPath"])
             self.run_state = {
                 "running": True,
                 "exitCode": None,
                 "log": f"Starting run with config: {config_path}\n",
                 "outputDir": settings.output_dir,
+                'started': time.monotonic(),
             }
 
-        thread = threading.Thread(target=self._run_pipeline, args=(config_path,), daemon=True)
-        thread.start()
-        return {"ok": True, "message": "Simulation started.", "configPath": str(config_path)}
+        return {"ok": True, "message": "Simulation started.", "configPath": str(config_path), 'outputDir': settings.output_dir}
 
-    def _run_pipeline(self, config_path: Path) -> None:
-        def log(text: str) -> None:
-            with self.run_lock:
-                self.run_state["log"] = str(self.run_state.get("log", "")) + text
+    def _refresh_manual_run(self):
+        # Caller holds run_lock. All execution/logging stays in the worker process.
+        if not self._manual_job:
+            return
+        data = self._jobs.status(self._manual_job)
+        running = data['status'] in {'running', 'cancelling'}
+        self.run_state.update(running=running, log=data['log'], status=data['status'],
+                              exitCode=data.get('exit_code'))
+        if not running:
+            self.run_state['elapsedSeconds'] = round(time.monotonic()-self.run_state['started'], 2)
+            if data['status'] == 'completed':
+                self.last_output = data['output_dir']
+                try:
+                    self._persist_preferences()
+                except OSError as exc:
+                    self.run_state['log'] += f'\nResults completed, but app settings could not be saved: {exc}\n'
+            self._manual_job = None
 
-        try:
-            exit_code = run_pipeline_with_config(config_path, log)
-        except Exception:
-            log(traceback.format_exc())
-            exit_code = 1
+    def _persist_preferences(self):
+        from src.app_services.simulation_jobs import write_json
+        self._settings_path.parent.mkdir(parents=True, exist_ok=True)
+        write_json(self._settings_path, {'settings': {**settings_to_dict(self.default_settings), 'post_to_discord': False},
+            'last_output': self.last_output, **self.ui_preferences,
+            'data_paths': self.base_config['data']})
 
-        with self.run_lock:
-            self.run_state["running"] = False
-            self.run_state["exitCode"] = exit_code
+    def automation_state(self):
+        from src.app_services.automation_feed import forecast_feed
+        return {**forecast_feed(self._jobs.root, self.ui_preferences['pc_workspace']),
+                'fia_reference_sync':self._sync_fia_reference(),
+                'following': self.ui_preferences['follow_pc_runs']}
+
+    def _sync_fia_reference(self):
+        from src.app_services.automation_feed import DEFAULT_PC_WORKSPACE
+        from src.app_services.fia_reference_sync import sync_pc_index
+        return sync_pc_index(self._jobs.root,
+            self.ui_preferences['pc_workspace'] or DEFAULT_PC_WORKSPACE,
+            self.base_config.get('data',{}).get('fia_document_index_path','data/fia_documents/fia_document_index.csv'),
+            following=self.ui_preferences['follow_pc_runs'])
+
+    def _fantasy_workspace(self):
+        from src.app_services.automation_feed import DEFAULT_PC_WORKSPACE
+        pc = Path(self.ui_preferences['pc_workspace'] or DEFAULT_PC_WORKSPACE)
+        return pc if pc.is_dir() else self._jobs.root
+
+    def fantasy_state(self, year=None):
+        from src.fantasy_market import history, FIRST_SEASON, archive_root
+        root = self._fantasy_workspace()
+        rows, index, errors = history(root)
+        seasons = sorted({int(row['season']) for row in rows}, reverse=True)
+        selected = int(year) if year else (seasons[0] if seasons else datetime.now().year)
+        selected_rows = [r for r in rows if int(r['season']) == selected]
+        events = {int(r['round']): r['event'] for r in selected_rows}
+        market = [r for r in rows if r['source'] == 'official']
+        if market:
+            latest = max((int(r['season']), int(r['round']), r['captured_at']) for r in market)
+            market = [r for r in market if (int(r['season']), int(r['round']), r['captured_at']) == latest
+                      and r['is_active'].lower() in {'true', '1'}]
+        with self._fantasy_lock:
+            progress = dict(self._fantasy_progress)
+        return {'year': selected, 'seasons': seasons,
+                'supported_seasons': list(range(datetime.now().year, FIRST_SEASON - 1, -1)),
+                'events': [{'round': n, 'event': e} for n, e in sorted(events.items())],
+                'rows': selected_rows, 'market': market, 'errors': errors,
+                'attempts': index.get('attempts', {}), 'progress': progress,
+                'archive': str(archive_root(root)),
+                'completed_weeks': len({(r['season'], r['round']) for r in rows if r['points_status'] == 'completed'}),
+                'total_rows': len(rows)}
+
+    def fantasy_refresh(self, years=None):
+        from src.fantasy_market import collect, FIRST_SEASON
+        selected = [int(y) for y in (years or [datetime.now().year])]
+        if any(y < FIRST_SEASON or y > datetime.now().year for y in selected):
+            raise ValueError('Select a supported Fantasy season.')
+        root = self._fantasy_workspace()
+        with self._fantasy_lock:
+            if self._fantasy_progress['running']:
+                return {'running': True}
+            self._fantasy_progress = {'running': True, 'result': None}
+        def run():
+            try:
+                result = collect(root, selected, force=True)
+            except Exception as exc:
+                result = {'status': 'error', 'error': type(exc).__name__}
+            with self._fantasy_lock:
+                self._fantasy_progress = {'running': False, 'result': result}
+        threading.Thread(target=run, daemon=True).start()
+        return {'running': True}
+
+    def fantasy_open(self):
+        from src.fantasy_market import archive_root
+        path = archive_root(self._fantasy_workspace())
+        path.mkdir(parents=True, exist_ok=True)
+        return self.open_output_dir(str(path))
+
+    def automation_load(self, identifier):
+        from src.app_services.automation_feed import selected_forecast
+        run = selected_forecast(self._jobs.root, self.ui_preferences['pc_workspace'], str(identifier))
+        outputs = self.outputs({**run['context'], 'output_dir': run['output_dir']})
+        outputs['automationRun'] = run
+        return outputs
+
+    def automation_preferences(self, following, pc_workspace=None):
+        if pc_workspace is not None:
+            directory = Path(str(pc_workspace)).expanduser().resolve()
+            if not directory.is_dir():
+                raise ValueError('The PC automation workspace must be an existing directory.')
+            self.ui_preferences['pc_workspace'] = str(directory)
+        self.ui_preferences['follow_pc_runs'] = bool(following)
+        self._persist_preferences()
+        return self.automation_state()
+
+    def workbench_status(self):
+        from src.app_services.discord_settings import local_webhook
+        fia_sync = self._sync_fia_reference()
+        return {'discordConfigured': bool(local_webhook(self._jobs.root)), 'workspace': str(self._jobs.root),
+                'fiaReferenceSync':fia_sync,
+                'dataHealth': [item.__dict__ for item in validate_data_sources(self.base_config)]}
+
+    def workbench_data(self, key='track_profiles', page=1):
+        from src.app_services.workbench import data_preview
+        if key=='fia_document_index':
+            self._sync_fia_reference()
+        return data_preview(self.base_config, str(key), int(page))
+
+    def workbench_open_data(self, key):
+        if key == 'folder':
+            return self.open_output_dir(str(Path(self.base_config['data']['track_profiles_path']).parent))
+        from src.app_services.workbench import data_preview
+        source = data_preview(self.base_config, str(key))['source']
+        if not source['exists']:
+            raise ValueError('The selected source file is missing.')
+        return self.open_output_dir(source['path'])
+
+    def workbench_save(self, payload, data_directory='', auto_reload=False):
+        from src.app_services.workbench import validate_settings
+        settings = settings_from_payload(payload, self.default_settings)
+        validate_settings(settings)
+        data_paths = dict(self.base_config['data'])
+        if data_directory:
+            directory = Path(str(data_directory)).resolve()
+            if not directory.is_dir():
+                raise ValueError('The data directory must exist.')
+            names = {'fantasy_prices_path': 'fantasy_prices.csv', 'track_profiles_path': 'track_profiles.csv',
+                     'team_power_units_path': 'team_power_units.csv', 'fia_document_index_path': 'fia_documents/fia_document_index.csv'}
+            data_paths.update({key: str(directory/name) for key, name in names.items()})
+        self.default_settings = replace(settings, post_to_discord=False)
+        self.base_config['data'] = data_paths
+        self.ui_preferences['auto_reload'] = bool(auto_reload)
+        self._persist_preferences()
+        return {'saved': True, **self.workbench_status()}
+
+    def workbench_export(self, output_dir, kind):
+        from src.app_services.workbench import export_results
+        return export_results(output_dir, kind)
+
+    def workbench_history(self):
+        history = self._jobs.history()
+        self._workbench_runs = {}
+        for run in self.automation_state()['runs']:
+            identifier = 'pc:' + hashlib.sha256(run['id'].encode()).hexdigest()[:16]
+            self._workbench_runs[identifier] = Path(run['id'])
+            history.append({'id': identifier, 'kind': 'forecast', 'status': 'completed',
+                            'label': run['label'] + ' · PC forecast', 'created_at': run['created_at']})
+        locations = {Path(self.default_settings.output_dir).resolve()/'workbench_runs',
+                     Path(self.last_output).resolve().parent}
+        for location in locations:
+            for metadata in location.glob('*/ui_run.json'):
+                try:
+                    saved = json.loads(metadata.read_text(encoding='utf-8'))
+                    context = output_context(metadata.parent, None, 'latest', 'PRE')
+                    identifier = 'workbench:' + hashlib.sha256(str(metadata.parent).encode()).hexdigest()[:16]
+                    self._workbench_runs[identifier] = metadata.parent
+                    history.append({'id': identifier, 'kind': 'monte_carlo', 'status': 'completed',
+                                    'label': f"{context['year']} {context['event']} · {context['session']}",
+                                    'created_at': saved['completed_at_utc']})
+                except (ValueError, TypeError, KeyError, OSError):
+                    continue
+        return {'history': sorted(history, key=lambda item: item['created_at'], reverse=True)}
+
+    def workbench_compare(self, first_id, second_id):
+        from src.app_services.workbench import compare_summaries
+        frames = []
+        for identifier in (first_id, second_id):
+            folder = getattr(self, '_workbench_runs', {}).get(identifier)
+            if folder is None:
+                folder = self._jobs._folder(identifier)
+            if (folder/'frozen/manifest.json').is_file():
+                from src.app_services.beta import verified_snapshot
+                verified_snapshot(folder)
+                folder = folder/'frozen'
+            frames.append(read_output_table(folder, 'simulation_summary.csv', max_rows=100))
+        return compare_summaries(*frames)
+
+    def workbench_weather(self, year, event):
+        from src.app_services.race_weather_updates import capture_weather_update
+        row = _event_row(_event_schedule(int(year)), str(event))
+        if row is None:
+            raise ValueError('No published event was found.')
+        start = next((pd.to_datetime(row.get(f'Session{i}DateUtc'), utc=True, errors='coerce')
+                      for i in range(1, 6) if row.get(f'Session{i}') == 'Race'), None)
+        if start is None or pd.isna(start):
+            raise ValueError('Race UTC start is unavailable.')
+        context = {'year': int(year), 'event': str(row.EventName), 'round': int(row.RoundNumber), 'race_start_utc': start.isoformat()}
+        result = capture_weather_update(self._jobs.root, context)
+        if not result.get('folder'):
+            raise ValueError('Fresh weather is available only for a future race within 14 days. Past race weather remains historical.')
+        return json.loads((Path(result['folder'])/'race_weather.json').read_text(encoding='utf-8'))
 
     def run_status(self) -> dict[str, Any]:
         with self.run_lock:
+            self._refresh_manual_run()
             return dict(self.run_state)
 
     def open_output_dir(self, output_dir: str) -> bool:

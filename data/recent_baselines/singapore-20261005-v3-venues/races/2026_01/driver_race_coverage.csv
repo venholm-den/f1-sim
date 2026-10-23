@@ -1,0 +1,23 @@
+Driver,Team,relative_pace,race_pace,clean_laps,raw_laps,pace_available,thin_pace_sample,source_year,source_round,source_circuit_id,source_layout_id,source_venue_status
+RUS,Mercedes,0.07816588029086802,83.11089079121199,50.0,58.0,True,False,2026,1,albert_park,albert_park_gp,resolved
+ANT,Mercedes,0.0,83.07401752764837,48.0,58.0,True,False,2026,1,albert_park,albert_park_gp,resolved
+LEC,Ferrari,0.1970948119692224,83.19763273346003,48.0,58.0,True,False,2026,1,albert_park,albert_park_gp,resolved
+HAM,Ferrari,0.059741759712537146,83.35399325555296,48.0,58.0,True,False,2026,1,albert_park,albert_park_gp,resolved
+NOR,McLaren,0.16674124823659042,83.52284907398075,47.0,58.0,True,False,2026,1,albert_park,albert_park_gp,resolved
+VER,Red Bull Racing,0.196568878863161,83.51158070688538,45.0,58.0,True,False,2026,1,albert_park,albert_park_gp,resolved
+BEA,Haas F1 Team,1.5964884528875558,84.75656880684487,49.0,57.0,True,False,2026,1,albert_park,albert_park_gp,resolved
+LIN,Racing Bulls,1.7289991125323212,84.8760760430251,47.0,57.0,True,False,2026,1,albert_park,albert_park_gp,resolved
+BOR,Audi,1.6586320943636679,84.69480464838854,49.0,57.0,True,False,2026,1,albert_park,albert_park_gp,resolved
+GAS,Alpine,2.0620991266416695,85.20621925390309,49.0,57.0,True,False,2026,1,albert_park,albert_park_gp,resolved
+OCO,Haas F1 Team,2.091412984833383,85.30429623758718,49.0,57.0,True,False,2026,1,albert_park,albert_park_gp,resolved
+ALB,Williams,1.8948088938142433,85.30508604709524,48.0,57.0,True,False,2026,1,albert_park,albert_park_gp,resolved
+LAW,Racing Bulls,1.2375311185412698,85.1023056449275,45.0,57.0,True,False,2026,1,albert_park,albert_park_gp,resolved
+COL,Alpine,1.9686564685917034,85.2325714228407,32.0,56.0,True,False,2026,1,albert_park,albert_park_gp,resolved
+SAI,Williams,2.1353928221478213,85.39250327985516,39.0,56.0,True,False,2026,1,albert_park,albert_park_gp,resolved
+PER,Cadillac,4.168262225500655,87.4005520667319,42.0,55.0,True,False,2026,1,albert_park,albert_park_gp,resolved
+STR,Aston Martin,3.4616984391132775,87.25617443692336,28.0,43.0,True,False,2026,1,albert_park,albert_park_gp,resolved
+ALO,Aston Martin,3.619084961233483,87.4679773548798,16.0,22.0,True,False,2026,1,albert_park,albert_park_gp,resolved
+BOT,Cadillac,5.048912405826101,87.79907714135491,11.0,16.0,True,False,2026,1,albert_park,albert_park_gp,resolved
+HAD,Red Bull Racing,2.080220525185851,85.37393606725732,9.0,11.0,True,False,2026,1,albert_park,albert_park_gp,resolved
+PIA,McLaren,,,0.0,0.0,False,False,2026,1,albert_park,albert_park_gp,resolved
+HUL,Audi,,,0.0,0.0,False,False,2026,1,albert_park,albert_park_gp,resolved

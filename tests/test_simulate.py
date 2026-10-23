@@ -1,8 +1,10 @@
 from __future__ import annotations
 
 import pandas as pd
+import pytest
 
 from src.simulate import simulate_races
+from src.model_config import SIMULATION_PARAMETERS
 
 
 def _minimal_features() -> pd.DataFrame:
@@ -93,3 +95,38 @@ def test_simulation_summary_contains_probability_columns() -> None:
     assert summary["win_chance"].between(0, 1).all()
     assert summary["podium_chance"].between(0, 1).all()
     assert summary["points_chance"].between(0, 1).all()
+
+
+def test_grid_override_is_scoped_and_default_output_is_unchanged():
+    before = dict(SIMULATION_PARAMETERS)
+    implicit = simulate_races(_minimal_features(), n_sims=100, seed=42)
+    explicit = simulate_races(_minimal_features(), n_sims=100, seed=42,
+                              grid_loss_multiplier=before['grid_loss_multiplier'])
+    for first, second in zip(implicit, explicit):
+        pd.testing.assert_frame_equal(first, second)
+    stronger = simulate_races(_minimal_features(), n_sims=100, seed=42,
+                              grid_loss_multiplier=13.2)
+    assert not implicit[0]['avg_finish'].equals(stronger[0]['avg_finish'])
+    assert stronger[0]['grid_loss_multiplier'].eq(13.2).all()
+    assert SIMULATION_PARAMETERS == before
+    after = simulate_races(_minimal_features(), n_sims=100, seed=42)
+    for first, second in zip(implicit, after):
+        pd.testing.assert_frame_equal(first, second)
+
+
+@pytest.mark.parametrize('weight', [-1, 51, float('nan'), float('inf')])
+def test_invalid_grid_override_is_rejected(weight):
+    with pytest.raises(ValueError, match='grid_loss_multiplier'):
+        simulate_races(_minimal_features(), n_sims=10, grid_loss_multiplier=weight)
+
+
+def test_top10_and_scoring_probabilities_have_distinct_targets():
+    features = pd.DataFrame({'Driver':['A','B'], 'Team':['T','U'],
+        'grid_position':[1,2], 'reliability_score':[.3,.3]})
+    summary, _, results = simulate_races(features, n_sims=1000,
+        weather_modifiers={'dnf_factor':1.5})
+    for row in summary.itertuples():
+        actual = results[results.Driver.eq(row.Driver)]
+        assert row.top10_chance == row.points_chance == 1.0
+        assert row.points_scoring_chance == actual.points.gt(0).mean()
+        assert row.points_scoring_chance < row.top10_chance

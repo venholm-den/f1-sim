@@ -1,0 +1,23 @@
+Year,Event,Round,Session,DriverNumber,BroadcastName,Abbreviation,TeamName,Position,ClassifiedPosition,Status,Points,GridPosition,Time,source_circuit_id,source_layout_id,source_venue_status
+2026,British Grand Prix,9,R,16,C LECLERC,LEC,Ferrari,1.0,1,Finished,25.0,2.0,0 days 01:27:11.335000,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,63,G RUSSELL,RUS,Mercedes,2.0,2,Finished,18.0,4.0,0 days 00:00:00.427000,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,44,L HAMILTON,HAM,Ferrari,3.0,3,Finished,15.0,3.0,0 days 00:00:00.772000,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,1,L NORRIS,NOR,McLaren,4.0,4,Finished,12.0,6.0,0 days 00:00:01.149000,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,6,I HADJAR,HAD,Red Bull Racing,5.0,5,Finished,10.0,5.0,0 days 00:00:01.598000,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,30,L LAWSON,LAW,Racing Bulls,6.0,6,Finished,8.0,10.0,0 days 00:00:02.023000,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,41,A LINDBLAD,LIN,Racing Bulls,7.0,7,Finished,6.0,9.0,0 days 00:00:02.214000,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,5,G BORTOLETO,BOR,Audi,8.0,8,Finished,4.0,11.0,0 days 00:00:02.413000,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,43,F COLAPINTO,COL,Alpine,9.0,9,Finished,2.0,19.0,0 days 00:00:03.229000,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,10,P GASLY,GAS,Alpine,10.0,10,Finished,1.0,15.0,0 days 00:00:03.445000,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,81,O PIASTRI,PIA,McLaren,11.0,11,Finished,0.0,8.0,0 days 00:00:04.014000,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,87,O BEARMAN,BEA,Haas F1 Team,12.0,12,Finished,0.0,13.0,0 days 00:00:05.245000,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,31,E OCON,OCO,Haas F1 Team,13.0,13,Finished,0.0,17.0,0 days 00:00:05.512000,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,11,S PEREZ,PER,Cadillac,14.0,14,Finished,0.0,20.0,0 days 00:00:07.403000,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,12,K ANTONELLI,ANT,Mercedes,15.0,15,Finished,0.0,1.0,0 days 00:00:08.005000,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,77,V BOTTAS,BOT,Cadillac,16.0,16,Finished,0.0,18.0,0 days 00:00:08.162000,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,55,C SAINZ,SAI,Williams,17.0,17,Lapped,0.0,14.0,0 days 00:00:04.391000,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,14,F ALONSO,ALO,Aston Martin,18.0,18,Lapped,0.0,21.0,0 days 00:00:04.980000,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,18,L STROLL,STR,Aston Martin,19.0,19,Lapped,0.0,22.0,0 days 00:00:06.750000,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,3,M VERSTAPPEN,VER,Red Bull Racing,20.0,20,Retired,0.0,7.0,,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,23,A ALBON,ALB,Williams,21.0,R,Retired,0.0,16.0,,silverstone,silverstone_gp,resolved
+2026,British Grand Prix,9,R,27,N HULKENBERG,HUL,Audi,22.0,R,Retired,0.0,12.0,,silverstone,silverstone_gp,resolved

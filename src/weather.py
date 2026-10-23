@@ -16,7 +16,7 @@ DEFAULT_WEATHER_SUMMARY = {
     "humidity_avg": None,
     "pressure_avg": None,
     "wind_speed_avg": None,
-    "rainfall_flag": False,
+    "rainfall_flag": None,
     "chaos_factor": 1.00,
     "strategy_factor": 1.00,
     "dnf_factor": 1.00,
@@ -86,8 +86,12 @@ def _session_datetime(session: Any) -> datetime | None:
     return None
 
 
-def _get_weather_dataframe(session: Any) -> pd.DataFrame:
-    weather_data = getattr(session, "weather_data", None)
+def _get_weather_dataframe(session: Any, *, allow_load: bool = True) -> pd.DataFrame:
+    try:
+        weather_data = getattr(session, "weather_data", None)
+    except Exception:
+        # FastF1 optional properties can raise DataNotLoadedError on access.
+        weather_data = None
 
     if weather_data is not None:
         try:
@@ -98,6 +102,8 @@ def _get_weather_dataframe(session: Any) -> pd.DataFrame:
         except Exception:
             pass
 
+    if not allow_load:
+        return pd.DataFrame()
     try:
         session.load(weather=True, laps=False, telemetry=False, messages=False)
         weather_data = getattr(session, "weather_data", None)
@@ -244,7 +250,7 @@ def _fetch_open_meteo_forecast(
             ]
         ),
         "forecast_days": 7,
-        "timezone": "auto",
+        "timezone": "GMT",
         "wind_speed_unit": "ms",
     }
 
@@ -267,16 +273,21 @@ def _fetch_open_meteo_forecast(
     if forecast.empty or "time" not in forecast.columns:
         return None
 
-    forecast["time"] = pd.to_datetime(forecast["time"], errors="coerce")
+    if payload.get("utc_offset_seconds", 0) != 0:
+        return None
+    forecast["time"] = pd.to_datetime(forecast["time"], errors="coerce", utc=True)
     forecast = forecast.dropna(subset=["time"]).reset_index(drop=True)
 
     if forecast.empty:
         return None
 
     if target_time is None:
-        index = 0
+        return None
     else:
-        target = pd.Timestamp(target_time).tz_localize(None)
+        target = pd.Timestamp(target_time)
+        target = target.tz_localize("UTC") if target.tzinfo is None else target.tz_convert("UTC")
+        if target < forecast["time"].min() or target > forecast["time"].max():
+            return None
         forecast["time_delta"] = (forecast["time"] - target).abs()
         index = int(forecast["time_delta"].idxmin())
 
@@ -370,8 +381,9 @@ def summarize_weather(
     session: Any,
     track_profile: dict[str, Any] | None = None,
     use_forecast: bool = True,
+    allow_load: bool = True,
 ) -> dict[str, Any]:
-    weather_df = _get_weather_dataframe(session)
+    weather_df = _get_weather_dataframe(session, allow_load=allow_load)
 
     if weather_df.empty:
         summary = (

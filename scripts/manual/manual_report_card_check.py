@@ -21,7 +21,7 @@ metadata = {
     "session": "Q",
 }
 
-track_profile = load_track_profile(str(metadata["event"]))
+track_profile = load_track_profile(str(metadata["event"]), metadata=metadata)
 
 strategy_csv_path = "outputs/strategy/predicted_tyre_strategy.csv"
 

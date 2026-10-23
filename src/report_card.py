@@ -361,7 +361,7 @@ def _build_value_rows(summary: pd.DataFrame) -> tuple[str, list[tuple[str, str]]
         f"{'Price':>6} "
         f"{'xFant':>6} "
         f"{'xPPM':>6} "
-        f"{'Pts%':>6}"
+        f"{'Top10%':>6}"
     )
 
     rows: list[tuple[str, str]] = []

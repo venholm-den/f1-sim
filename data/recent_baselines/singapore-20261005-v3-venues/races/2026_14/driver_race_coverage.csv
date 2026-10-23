@@ -1,0 +1,23 @@
+Driver,Team,relative_pace,race_pace,clean_laps,raw_laps,pace_available,thin_pace_sample,source_year,source_round,source_circuit_id,source_layout_id,source_venue_status
+ANT,Mercedes,0.29101117772279395,98.36633819840236,52,57,True,False,2026,14,madring,madring_gp,resolved
+VER,Red Bull Racing,0.28466426943070644,98.26756679022498,52,57,True,False,2026,14,madring,madring_gp,resolved
+NOR,McLaren,0.022416015940208922,98.11220580456556,51,57,True,False,2026,14,madring,madring_gp,resolved
+LEC,Ferrari,0.0,97.94239813149326,38,57,True,False,2026,14,madring,madring_gp,resolved
+RUS,Mercedes,0.07047297896751559,97.93992027363508,42,57,True,False,2026,14,madring,madring_gp,resolved
+LAW,Red Bull Racing,0.9345861476175514,98.94219028297346,42,57,True,False,2026,14,madring,madring_gp,resolved
+COL,Alpine,1.4565904481741825,99.47866816942785,42,57,True,False,2026,14,madring,madring_gp,resolved
+PIA,McLaren,0.8123906013731101,98.83495537658843,40,57,True,False,2026,14,madring,madring_gp,resolved
+LIN,Racing Bulls,1.8936774870063715,99.89679956812881,46,56,True,False,2026,14,madring,madring_gp,resolved
+HUL,Audi,1.870615558651977,100.05744048097552,50,56,True,False,2026,14,madring,madring_gp,resolved
+OCO,Haas F1 Team,1.5636940044327616,99.88151379233923,44,56,True,False,2026,14,madring,madring_gp,resolved
+GAS,Alpine,1.3837148954558103,99.22575200077091,40,56,True,False,2026,14,madring,madring_gp,resolved
+BOR,Audi,1.5241731861202368,99.42104082773174,38,56,True,False,2026,14,madring,madring_gp,resolved
+TSU,Racing Bulls,1.4073999507244395,99.76143478861586,39,56,True,False,2026,14,madring,madring_gp,resolved
+ALB,Williams,3.3130885359400395,101.6312751644477,49,56,True,False,2026,14,madring,madring_gp,resolved
+BEA,Haas F1 Team,1.0137377895344173,99.20730606750452,28,56,True,False,2026,14,madring,madring_gp,resolved
+ALO,Aston Martin,1.7849325948483852,100.4942120573551,35,55,True,False,2026,14,madring,madring_gp,resolved
+BOT,Cadillac,5.005179971507403,103.75075023471355,45,54,True,False,2026,14,madring,madring_gp,resolved
+SAI,Williams,3.998949203296135,102.03781340437419,26,43,True,False,2026,14,madring,madring_gp,resolved
+PER,Cadillac,4.009835820820854,103.51308015057462,22,31,True,False,2026,14,madring,madring_gp,resolved
+STR,Aston Martin,6.4215781584239835,104.20710350416638,10,13,True,False,2026,14,madring,madring_gp,resolved
+HAM,Ferrari,1.6590378363918319,100.96715244892037,3,6,True,True,2026,14,madring,madring_gp,resolved

@@ -1,0 +1,5 @@
+{
+  "enabled": false,
+  "suite_path": "outputs/prediction_trials/suites/REGISTERED_SUITE/suite.json",
+  "suite_sha256": "COPY_THE_REGISTERED_SUITE_SHA256"
+}

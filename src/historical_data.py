@@ -3,6 +3,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from pathlib import Path
 from time import sleep
+from uuid import uuid4
+import os
 from typing import Any, Iterable
 
 import pandas as pd
@@ -47,7 +49,10 @@ def _safe_slug(value: Any) -> str:
 
 def _write_frame(path: Path, frame: pd.DataFrame) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    frame.to_csv(path, index=False)
+    temporary = path.with_name(path.name + "." + uuid4().hex + ".tmp")
+    # Failed serialization/replacement leaves the original archive intact.
+    frame.to_csv(temporary, index=False)
+    os.replace(temporary, path)
 
 
 def _merge_and_write_frame(
@@ -60,8 +65,8 @@ def _merge_and_write_frame(
     if path.exists() and path.stat().st_size > 0:
         try:
             existing = pd.read_csv(path)
-        except Exception:
-            existing = pd.DataFrame()
+        except (OSError, ValueError, pd.errors.ParserError) as exc:
+            raise ValueError(f"Cannot read existing historical archive {path}; original retained.") from exc
     else:
         existing = pd.DataFrame()
 

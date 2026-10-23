@@ -34,6 +34,8 @@ FIA_DOCUMENT_COLUMNS = [
     "summons_reason",
     "status",
     "notes",
+    "first_seen_at_utc", "pdf_sha256", "roster_size", "pit_lane_start", "withdrawn",
+    "target_session", "decision_text", "decision_reference", "extraction_version",
 ]
 
 FIA_DOCUMENTS_BASE_URL = "https://www.fia.com"
@@ -42,6 +44,13 @@ FIA_F1_DOCUMENTS_SEASON_URL_TEMPLATE = (
     "fia-formula-one-world-championship-14/season/season-{year}-{season_id}"
 )
 FIA_F1_SEASON_IDS = {
+    2019: 971,
+    2020: 1059,
+    2021: 1108,
+    2022: 2005,
+    2023: 2042,
+    2024: 2043,
+    2025: 2071,
     2026: 2072,
 }
 
@@ -56,6 +65,7 @@ class FiaDocumentListing:
     document_url: str
     published_at: str
     session: str
+    listing_status: str = 'active'
 
     def to_row(self) -> dict[str, Any]:
         return {
@@ -74,7 +84,7 @@ class FiaDocumentListing:
             "penalty_type": "",
             "penalty_value": "",
             "summons_reason": "",
-            "status": "metadata",
+            "status": "recalled" if self.listing_status == 'recalled' else "metadata",
             "notes": "Fetched from FIA decision documents listing.",
         }
 
@@ -175,12 +185,15 @@ def _listing_from_parser_state(
     raw_published: str,
 ) -> FiaDocumentListing | None:
     title_text = unescape(raw_title).strip()
-    match = re.search(r"\bDoc(?:ument)?\s+([A-Za-z0-9.-]+)\s*-\s*(.+)", title_text, re.I)
-    if not match or not href:
+    match = re.search(r"\bDoc(?:ument)?\.?\s+([A-Za-z0-9.-]+)\s*-\s*(.+)", title_text, re.I)
+    recalled = title_text.casefold().startswith('recalled')
+    if not title_text or (not href and not recalled):
         return None
 
-    doc_number = f"Doc {match.group(1).strip()}"
-    document_title = match.group(2).strip()
+    # Older FIA archive listings publish a title and PDF URL without a document
+    # number. Retain their real metadata rather than discard or invent a number.
+    doc_number = f"Doc {match.group(1).strip()}" if match else ""
+    document_title = match.group(2).strip() if match else title_text
     published_at = _clean_published_at(raw_published)
 
     return FiaDocumentListing(
@@ -191,7 +204,8 @@ def _listing_from_parser_state(
         document_title=document_title,
         document_url=href,
         published_at=published_at,
-        session=infer_fia_session(document_title),
+        session=infer_fia_session(document_title, year=year),
+        listing_status='recalled' if recalled else 'active',
     )
 
 
@@ -231,7 +245,7 @@ def classify_fia_document_type(title: str) -> str:
     return "document"
 
 
-def infer_fia_session(title: str) -> str:
+def infer_fia_session(title: str, year: int | None = None) -> str:
     normalized = title.casefold()
     if "free practice 1" in normalized or "practice 1" in normalized:
         return "FP1"
@@ -239,8 +253,11 @@ def infer_fia_session(title: str) -> str:
         return "FP2"
     if "free practice 3" in normalized or "practice 3" in normalized:
         return "FP3"
-    if "sprint qualifying" in normalized:
+    if "sprint shootout" in normalized:
         return "SQ"
+    if "sprint qualifying" in normalized:
+        # In 2021/2022 this name described the sprint race, not a shootout.
+        return "S" if year in {2021, 2022} else "SQ"
     if "sprint" in normalized:
         return "S"
     if "qualifying" in normalized:
@@ -355,7 +372,7 @@ def load_fia_document_index(
             
     df = df.replace(r"^\s*$", pd.NA, regex=True)
 
-    df["driver"] = df["driver"].astype(str).str.strip().str.upper()
+    df["driver"] = df["driver"].fillna('').astype(str).str.strip().str.upper()
     df["event"] = df["event"].astype(str).str.strip()
     df["document_type"] = df["document_type"].astype(str).str.strip().str.lower()
 
@@ -523,6 +540,7 @@ def build_fia_context(
     event: str | None = None,
     session: str | None = None,
     path: str = FIA_DOCUMENT_INDEX_PATH,
+    *, cutoff: str | None = None, safe_asof: bool = False,
 ) -> dict[str, pd.DataFrame]:
     """
     Returns official FIA context frames for future integration.
@@ -533,6 +551,9 @@ def build_fia_context(
     - report_card.py: show FIA notes and official document links
     """
 
+    if safe_asof:
+        from src.data_sources.fia_asof import context_asof
+        return context_asof(load_fia_document_index(path),year,event,cutoff)
     return {
         "official_grid": official_grid(year=year, event=event, session=session, path=path),
         "penalties": penalties(year=year, event=event, session=session, path=path),
@@ -802,6 +823,13 @@ def merge_fia_document_rows(
         ignore_index=True,
     )
     combined = combined.astype("object").where(pd.notna(combined), "")
+    # CSV reloads turn nullable integers into floats. 1 and 1.0 must identify
+    # the same driver row on subsequent hourly refreshes.
+    for column in ('grid_position','classification_position'):
+        combined[column] = combined[column].map(
+            lambda value: str(int(float(value))) if str(value).strip() and
+            re.fullmatch(r'[-+]?\d+(?:\.0+)?',str(value).strip()) else value)
+    combined['_version_published'] = combined['published_at'].where(combined['extraction_version'].ne(''),'')
     combined["_dedupe_key"] = combined.apply(
         lambda row: "|".join(
             str(row.get(col, "")).strip()
@@ -816,12 +844,13 @@ def merge_fia_document_rows(
                 "classification_position",
                 "penalty_type",
                 "summons_reason",
+                "_version_published", "pdf_sha256", "extraction_version",
             ]
         ),
         axis=1,
     )
     combined = combined.drop_duplicates("_dedupe_key", keep="last")
-    combined = combined.drop(columns=["_dedupe_key"])
+    combined = combined.drop(columns=["_dedupe_key", "_version_published"])
 
     sort_columns = ["year", "event", "doc_number", "driver"]
     return combined.sort_values(sort_columns, kind="stable").reset_index(drop=True)

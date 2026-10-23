@@ -28,7 +28,7 @@
     "use_weather_forecast": true,
     "use_race_control_context": true,
     "use_track_red_flag_base_chance": true,
-    "use_historical_model_calibration": true,
+    "use_historical_model_calibration": false,
     "historical_model_dir": "data/models",
     "historical_finish_weight": 0.15,
     "historical_dnf_weight": 0.3

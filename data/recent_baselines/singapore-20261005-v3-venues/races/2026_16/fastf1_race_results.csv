@@ -1,0 +1,23 @@
+Year,Event,Round,Session,DriverNumber,BroadcastName,Abbreviation,TeamName,Position,ClassifiedPosition,Status,Points,GridPosition,Time,source_circuit_id,source_layout_id,source_venue_status
+2026,Bahrain Grand Prix,16,R,3,M VERSTAPPEN,VER,Red Bull Racing,1.0,1,Finished,25.0,1.0,0 days 01:47:14.808000,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,12,K ANTONELLI,ANT,Mercedes,2.0,2,Finished,18.0,3.0,0 days 00:00:02.307000,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,44,L HAMILTON,HAM,Ferrari,3.0,3,Finished,15.0,2.0,0 days 00:00:04.919000,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,16,C LECLERC,LEC,Ferrari,4.0,4,Finished,12.0,4.0,0 days 00:00:07.258000,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,6,I HADJAR,HAD,Red Bull Racing,5.0,5,Finished,10.0,8.0,0 days 00:00:08.571000,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,81,O PIASTRI,PIA,McLaren,6.0,6,Finished,8.0,6.0,0 days 00:00:09.454000,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,30,L LAWSON,LAW,Racing Bulls,7.0,7,Finished,6.0,11.0,0 days 00:00:12.753000,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,14,F ALONSO,ALO,Aston Martin,8.0,8,Finished,4.0,12.0,0 days 00:00:13.372000,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,1,L NORRIS,NOR,McLaren,9.0,9,Finished,2.0,5.0,0 days 00:00:13.993000,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,41,A LINDBLAD,LIN,Racing Bulls,10.0,10,Finished,1.0,22.0,0 days 00:00:15.928000,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,27,N HULKENBERG,HUL,Audi,11.0,11,Finished,0.0,15.0,0 days 00:00:17.404000,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,18,L STROLL,STR,Aston Martin,12.0,12,Finished,0.0,14.0,0 days 00:00:18.052000,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,43,F COLAPINTO,COL,Alpine,13.0,13,Finished,0.0,21.0,0 days 00:00:18.997000,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,87,O BEARMAN,BEA,Haas F1 Team,14.0,14,Finished,0.0,16.0,0 days 00:00:22.305000,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,31,E OCON,OCO,Haas F1 Team,15.0,15,Finished,0.0,17.0,0 days 00:00:22.532000,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,10,P GASLY,GAS,Alpine,16.0,16,Finished,0.0,9.0,0 days 00:00:23.315000,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,55,C SAINZ,SAI,Williams,17.0,17,Finished,0.0,13.0,0 days 00:00:25.431000,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,5,G BORTOLETO,BOR,Audi,18.0,18,Finished,0.0,10.0,0 days 00:00:28.233000,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,11,S PEREZ,PER,Cadillac,19.0,19,Finished,0.0,20.0,0 days 00:00:29.310000,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,63,G RUSSELL,RUS,Mercedes,20.0,20,Retired,0.0,7.0,,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,23,A ALBON,ALB,Williams,21.0,R,Retired,0.0,18.0,,sepang,sepang_gp,resolved
+2026,Bahrain Grand Prix,16,R,77,V BOTTAS,BOT,Cadillac,22.0,R,Retired,0.0,19.0,,sepang,sepang_gp,resolved

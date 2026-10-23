@@ -401,7 +401,7 @@ def _remove_driver_outlier_laps(driver_laps: pd.DataFrame) -> pd.DataFrame:
     return driver_laps
 
 
-def build_driver_features(laps: pd.DataFrame) -> pd.DataFrame:
+def _build_legacy_driver_features(laps: pd.DataFrame) -> pd.DataFrame:
     prepared = _prepare_laps(laps)
 
     if prepared.empty:
@@ -552,4 +552,20 @@ def build_driver_features(laps: pd.DataFrame) -> pd.DataFrame:
 
     output = output.sort_values("relative_pace").reset_index(drop=True)
 
+    return output
+
+
+def build_driver_features(laps: pd.DataFrame, *, use_stint_pace: bool = False) -> pd.DataFrame:
+    output = _build_legacy_driver_features(laps)
+    if not use_stint_pace or output.empty:
+        return output
+    from src.long_run_pace import attach_long_run_pace
+    prepared = _prepare_laps(laps)
+    clean = prepared[prepared['TruePaceEligible']]
+    # Keep sustained heavy-fuel laps before the legacy fast-lap outlier filter.
+    output = attach_long_run_pace(output, clean)
+    # Lap count and lap variation describe epistemic pace uncertainty, not
+    # mechanical failures. Team/car history is blended later by reliability.py.
+    output['dnf_prob'] = 0.045
+    output['feature_method'] = 'matched_stints_v2'
     return output

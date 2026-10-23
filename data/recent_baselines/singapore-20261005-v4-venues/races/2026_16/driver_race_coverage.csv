@@ -1,0 +1,23 @@
+Driver,Team,relative_pace,race_pace,clean_laps,raw_laps,pace_available,thin_pace_sample,source_year,source_round,source_circuit_id,source_layout_id,source_venue_status
+VER,Red Bull Racing,1.1592411485499952,101.07233909447068,28,55,True,False,2026,16,sepang,sepang_gp,resolved
+ANT,Mercedes,1.09244368197389,101.4122897406078,27,55,True,False,2026,16,sepang,sepang_gp,resolved
+HAM,Ferrari,1.055745165060145,101.61177119674339,26,55,True,False,2026,16,sepang,sepang_gp,resolved
+LEC,Ferrari,2.0801972239875255,102.31219670289632,11,55,True,False,2026,16,sepang,sepang_gp,resolved
+HAD,Red Bull Racing,2.0946978211673013,102.42032511774585,19,55,True,False,2026,16,sepang,sepang_gp,resolved
+PIA,McLaren,0.0,102.91155955760178,28,55,True,False,2026,16,sepang,sepang_gp,resolved
+LAW,Racing Bulls,1.8259399730958563,102.71059874807779,29,55,True,False,2026,16,sepang,sepang_gp,resolved
+ALO,Aston Martin,2.177160505475726,103.31035702654601,18,55,True,False,2026,16,sepang,sepang_gp,resolved
+NOR,McLaren,1.4900258473987975,102.70366207973669,28,55,True,False,2026,16,sepang,sepang_gp,resolved
+LIN,Racing Bulls,2.053211795477509,103.0544617969736,28,55,True,False,2026,16,sepang,sepang_gp,resolved
+HUL,Audi,2.6997411783476934,102.93691712982745,29,55,True,False,2026,16,sepang,sepang_gp,resolved
+STR,Aston Martin,2.1764270258880885,103.23793883647154,27,55,True,False,2026,16,sepang,sepang_gp,resolved
+COL,Alpine,1.8037533804569534,102.50988612162688,27,55,True,False,2026,16,sepang,sepang_gp,resolved
+BEA,Haas F1 Team,2.044032752193999,103.08769159335922,19,55,True,False,2026,16,sepang,sepang_gp,resolved
+OCO,Haas F1 Team,3.0645922043566145,103.67043089309772,27,55,True,False,2026,16,sepang,sepang_gp,resolved
+GAS,Alpine,2.2543937250003694,102.98196316011926,25,55,True,False,2026,16,sepang,sepang_gp,resolved
+SAI,Williams,2.8295000807526947,103.72941609397826,27,55,True,False,2026,16,sepang,sepang_gp,resolved
+BOR,Audi,2.7341811681473445,103.6228447771039,27,55,True,False,2026,16,sepang,sepang_gp,resolved
+PER,Cadillac,3.5194434073547285,104.52527060766884,19,55,True,False,2026,16,sepang,sepang_gp,resolved
+RUS,Mercedes,1.4546384801808045,101.90474418508315,26,50,True,False,2026,16,sepang,sepang_gp,resolved
+ALB,Williams,3.0026382667179377,103.65325190417386,22,42,True,False,2026,16,sepang,sepang_gp,resolved
+BOT,Cadillac,37.44282659819467,139.06305057471263,2,8,True,True,2026,16,sepang,sepang_gp,resolved

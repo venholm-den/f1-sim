@@ -12,6 +12,7 @@ from typing import Any
 
 import numpy as np
 import pandas as pd
+from src.result_status import retirement_label
 
 from src.actual_strategy import (
     build_strategy_comparison,
@@ -324,14 +325,10 @@ def _extract_actual_results_from_race_session(race_session: Any) -> pd.DataFrame
 
         if "Status" in actual.columns:
             actual["actual_status"] = actual["Status"].fillna("").astype(str)
-            actual["actual_dnf"] = actual["actual_status"].str.contains(
-                "accident|collision|retired|dnf|engine|gearbox|brakes|hydraulics",
-                case=False,
-                na=False,
-            )
+            actual["actual_dnf"] = actual["actual_status"].map(retirement_label).astype('boolean')
         else:
             actual["actual_status"] = "classified"
-            actual["actual_dnf"] = False
+            actual["actual_dnf"] = pd.Series(pd.NA, index=actual.index, dtype='boolean')
 
         actual["actual_result_source"] = "fastf1_results"
 
@@ -386,7 +383,7 @@ def _extract_actual_results_from_race_session(race_session: Any) -> pd.DataFrame
         .astype(int)
     )
     final_laps["actual_points"] = final_laps["actual_position"].map(_finish_points_for_position).fillna(0.0)
-    final_laps["actual_dnf"] = False
+    final_laps["actual_dnf"] = pd.Series(pd.NA, index=final_laps.index, dtype='boolean')
     final_laps["actual_status"] = "provisional_from_final_lap"
     final_laps["actual_result_source"] = "fastf1_laps_fallback"
 
@@ -413,7 +410,10 @@ def _extract_actual_results_from_session(year: int, event: str) -> pd.DataFrame:
 def _calculate_basic_actual_fantasy(row: pd.Series) -> float:
     grid_position = row.get("grid_position", row.get("GridPosition", np.nan))
     actual_position = row.get("actual_position", np.nan)
-    actual_dnf = bool(row.get("actual_dnf", False))
+    retirement = row.get('actual_dnf', np.nan)
+    if pd.isna(retirement):
+        return np.nan  # Unknown retirement penalties cannot be scored as zero.
+    actual_dnf = bool(retirement)
 
     finish_points = _finish_points_for_position(actual_position)
     quali_points = _quali_points_for_grid(grid_position)
@@ -445,8 +445,9 @@ def _calculate_basic_actual_fantasy(row: pd.Series) -> float:
 
 def _brier(predicted_probability: pd.Series, actual_outcome: pd.Series) -> float:
     predicted = _prob(predicted_probability)
-    actual = pd.to_numeric(actual_outcome, errors="coerce").fillna(0.0).clip(0.0, 1.0)
-    return float(((predicted - actual) ** 2).mean())
+    actual = pd.to_numeric(actual_outcome, errors="coerce").clip(0.0, 1.0)
+    known = actual.notna()
+    return float(((predicted.loc[known] - actual.loc[known]) ** 2).mean())
 
 
 def _rmse(error: pd.Series) -> float:
@@ -647,6 +648,8 @@ def backtest_prediction_snapshot(
         "year": year,
         "event": event,
         "drivers_compared": int(len(valid)),
+        'retirement_known_drivers': int(valid.actual_dnf.notna().sum()),
+        'retirement_unknown_drivers': int(valid.actual_dnf.isna().sum()),
         "finish_mae": float(valid["finish_abs_error"].mean()),
         "finish_rmse": _rmse(valid["finish_error"]),
         "finish_spearman": float(valid["predicted_finish"].corr(valid["actual_position"], method="spearman")),

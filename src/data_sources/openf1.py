@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+import os
 from typing import Any
 
 import pandas as pd
@@ -8,6 +9,10 @@ import requests
 
 
 OPENF1_BASE_URL = "https://api.openf1.org/v1"
+
+
+class OpenF1AccessUnavailable(requests.HTTPError):
+    """Optional independent data is unavailable; F1 TV is a separate service."""
 
 
 @dataclass(frozen=True)
@@ -18,6 +23,14 @@ class OpenF1Endpoint:
 
 
 OPENF1_ENDPOINTS = {
+    "session_result": OpenF1Endpoint(
+        name="session_result", path="/session_result",
+        purpose="Independent published session classification, including DNF/DNS/DSQ flags.",
+    ),
+    "starting_grid": OpenF1Endpoint(
+        name="starting_grid", path="/starting_grid",
+        purpose="Published starting grid; cross-check only, not a replacement for FIA evidence.",
+    ),
     "sessions": OpenF1Endpoint(
         name="sessions",
         path="/sessions",
@@ -78,7 +91,7 @@ class OpenF1Client:
     ) -> None:
         self.base_url = base_url.rstrip("/")
         self.timeout_seconds = timeout_seconds
-        self.bearer_token = bearer_token
+        self.bearer_token = bearer_token or os.environ.get('OPENF1_TOKEN')
 
     def _headers(self) -> dict[str, str]:
         headers = {
@@ -109,6 +122,11 @@ class OpenF1Client:
             headers=self._headers(),
             timeout=self.timeout_seconds,
         )
+        if response.status_code in (401, 403):
+            raise OpenF1AccessUnavailable(
+                'OpenF1 access unavailable. Historical access may be retried outside the live window; '
+                'F1 TV sign-in does not authenticate OpenF1. Primary FIA/FastF1 data is unchanged.',
+                response=response)
         response.raise_for_status()
 
         data = response.json()
@@ -161,6 +179,12 @@ class OpenF1Client:
             sessions = sessions.sort_values("date_start")
 
         return int(sessions["session_key"].iloc[-1])
+
+    def session_result(self, session_key: int) -> pd.DataFrame:
+        return self.get_dataframe('session_result', {'session_key': session_key})
+
+    def starting_grid(self, session_key: int) -> pd.DataFrame:
+        return self.get_dataframe('starting_grid', {'session_key': session_key})
 
     def live_snapshot(
         self,

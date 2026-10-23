@@ -1,0 +1,23 @@
+Driver,Team,relative_pace,race_pace,clean_laps,raw_laps,pace_available,thin_pace_sample,source_year,source_round,source_circuit_id,source_layout_id,source_venue_status
+RUS,Mercedes,0.0,107.4744198588637,36,51,True,False,2026,15,baku,baku_gp,resolved
+VER,Red Bull Racing,0.3791430084418437,107.72406259302318,36,51,True,False,2026,15,baku,baku_gp,resolved
+HAD,Red Bull Racing,0.7765809339084058,107.91824287577427,35,51,True,False,2026,15,baku,baku_gp,resolved
+LEC,Ferrari,0.965386461871816,107.99531373860486,35,51,True,False,2026,15,baku,baku_gp,resolved
+ANT,Mercedes,0.5158905159165386,107.85919807066671,32,51,True,False,2026,15,baku,baku_gp,resolved
+HAM,Ferrari,1.241836471247609,108.09490796740114,35,51,True,False,2026,15,baku,baku_gp,resolved
+LIN,Racing Bulls,2.0288548193584575,109.2936862478462,35,51,True,False,2026,15,baku,baku_gp,resolved
+OCO,Haas F1 Team,2.027198897611413,109.02329659101561,32,51,True,False,2026,15,baku,baku_gp,resolved
+BEA,Haas F1 Team,2.0614178783782933,109.04636034093232,34,51,True,False,2026,15,baku,baku_gp,resolved
+SAI,Williams,2.0666892149102836,109.32490868252988,30,51,True,False,2026,15,baku,baku_gp,resolved
+HUL,Audi,2.299186106160036,109.59725764204448,34,51,True,False,2026,15,baku,baku_gp,resolved
+LAW,Racing Bulls,1.9096588244491244,108.93593115441169,33,51,True,False,2026,15,baku,baku_gp,resolved
+PIA,McLaren,0.9291296611047812,107.95893018082919,37,51,True,False,2026,15,baku,baku_gp,resolved
+PER,Cadillac,2.5370707702058013,109.87831250106676,36,51,True,False,2026,15,baku,baku_gp,resolved
+BOR,Audi,2.0500169596969613,109.35644958423923,32,51,True,False,2026,15,baku,baku_gp,resolved
+BOT,Cadillac,4.516662324526237,111.81333926685893,32,50,True,False,2026,15,baku,baku_gp,resolved
+COL,Alpine,1.736040788479599,108.95001769606448,26,36,True,False,2026,15,baku,baku_gp,resolved
+GAS,Alpine,1.3691382603716278,108.59602271433025,27,36,True,False,2026,15,baku,baku_gp,resolved
+NOR,McLaren,1.1975954761786056,108.46916351511052,27,36,True,False,2026,15,baku,baku_gp,resolved
+ALB,Williams,2.3938783673566775,109.42162911713059,25,30,True,False,2026,15,baku,baku_gp,resolved
+ALO,Aston Martin,5.158506001159239,112.19256766980956,17,20,True,False,2026,15,baku,baku_gp,resolved
+STR,Aston Martin,5.267769609611932,112.12199967949998,6,8,True,False,2026,15,baku,baku_gp,resolved

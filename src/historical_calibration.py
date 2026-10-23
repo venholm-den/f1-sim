@@ -5,8 +5,10 @@ from pathlib import Path
 from typing import Any
 
 import joblib
+import json
 import numpy as np
 import pandas as pd
+from src.qualifying_features import QUALIFYING_COLUMNS, QUALIFYING_CONTRACT
 
 
 DEFAULT_MODEL_DIR = "data/models"
@@ -146,56 +148,19 @@ def build_current_historical_feature_frame(
     output["DriverCode"] = _series(model_features, "Driver", "")
     output["Team"] = _series(model_features, "Team", "")
 
-    grid = _numeric_series(model_features, "grid_position", np.nan)
-    if grid.isna().all():
-        grid = pd.Series(
-            np.arange(1, len(model_features) + 1),
-            index=model_features.index,
-            dtype="float64",
-        )
-    else:
-        grid = grid.fillna(grid.median())
-
-    output["grid_position"] = grid
-
-    quali_signal = _first_available_numeric(
-        model_features,
-        [
-            "quali_pace_score",
-            "current_relative_pace_capped",
-            "current_relative_pace",
-            "model_pace",
-            "relative_pace",
-        ],
-    )
-    output["q_rank"] = quali_signal.rank(method="min", ascending=True).fillna(grid)
-    output["q_gap_to_best"] = (
-        quali_signal - quali_signal.min()
-        if quali_signal.notna().any()
-        else pd.Series([np.nan] * len(model_features), index=model_features.index)
-    )
-
-    output["q_best_lap"] = _first_available_numeric(
-        model_features,
-        ["best_lap", "projected_lap_time", "race_pace"],
-    )
-    output["q_best_s1"] = _first_available_numeric(
-        model_features,
-        ["best_s1", "sector1_seconds", "Sector1Seconds"],
-    )
-    output["q_best_s2"] = _first_available_numeric(
-        model_features,
-        ["best_s2", "sector2_seconds", "Sector2Seconds"],
-    )
-    output["q_best_s3"] = _first_available_numeric(
-        model_features,
-        ["best_s3", "sector3_seconds", "Sector3Seconds"],
-    )
-    output["q_best_speed_trap"] = _first_available_numeric(
-        model_features,
-        ["best_speed_trap", "speed_trap", "SpeedST"],
-    )
-    output["grid_vs_quali_delta"] = output["grid_position"] - output["q_rank"]
+    # Training is anchored to official Q classification and raw valid Q timing.
+    # Never reconstruct those predictors from a race-pace blend or Sunday grid.
+    contract = _series(model_features, 'qualifying_feature_contract', '')
+    if not contract.eq(QUALIFYING_CONTRACT).all():
+        raise ValueError('Official qualifying feature contract missing; historical calibration requires post-Q inputs.')
+    ranks = _numeric_series(model_features, 'q_rank')
+    if ranks.isna().any() or sorted(ranks) != list(range(1, len(ranks) + 1)):
+        raise ValueError('Official qualifying classification is incomplete for this field.')
+    for column in QUALIFYING_COLUMNS:
+        output[column] = _numeric_series(model_features, column)
+    # This candidate was trained at the post-Q cutoff, before Sunday penalties.
+    output['grid_position'] = output.q_rank
+    output['grid_vs_quali_delta'] = 0.0
 
     for column, default in [
         ("air_temp_avg", np.nan),
@@ -233,6 +198,12 @@ def _load_models(model_dir: str | Path) -> tuple[Any, Any]:
         ]
         raise FileNotFoundError(f"Historical model artifacts missing: {', '.join(missing)}")
 
+    metrics_path = root / 'historical_model_metrics.json'
+    metrics = json.loads(metrics_path.read_text(encoding='utf-8')) if metrics_path.is_file() else {}
+    if metrics.get('promotion_eligible') is not True or metrics.get('activated') is not True:
+        raise ValueError('Historical candidate is inactive or lacks independent promotion evidence.')
+    if metrics.get('qualifying_feature_contract') != QUALIFYING_CONTRACT:
+        raise ValueError('Historical model uses an incompatible qualifying feature contract; retrain before activation.')
     return joblib.load(finish_path), joblib.load(dnf_path)
 
 
@@ -266,7 +237,9 @@ def apply_historical_calibration(
             weather_summary=weather_summary,
         )
         finish_prediction = np.asarray(finish_model.predict(prediction_features), dtype=float)
-        dnf_probability = np.asarray(dnf_model.predict_proba(prediction_features)[:, 1], dtype=float)
+        probabilities = dnf_model.predict_proba(prediction_features)
+        classes = list(dnf_model.classes_)
+        dnf_probability = np.asarray(probabilities[:, classes.index(1)], dtype=float) if 1 in classes else np.zeros(len(output))
     except Exception as exc:
         output["historical_calibration_note"] = str(exc)
         return output

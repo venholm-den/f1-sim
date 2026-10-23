@@ -1,0 +1,23 @@
+year,event,round,Driver,Team,actual_strategy,actual_strategy_sequence,actual_stops,actual_stint_count,actual_first_compound,actual_had_wet_compound,actual_completed_likely,actual_race_laps,actual_driver_max_lap,actual_strategy_source,source_circuit_id,source_layout_id,source_venue_status
+2026,Azerbaijan Grand Prix,15,ALB,Williams,SOFT,SOFT,0,1,SOFT,False,False,51,30,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,ALO,Aston Martin,SOFT,SOFT,0,1,SOFT,False,False,51,20,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,ANT,Mercedes,MEDIUM-SOFT-SOFT,MEDIUM-SOFT-SOFT,2,3,MEDIUM,False,True,51,51,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,BEA,Haas F1 Team,SOFT-MEDIUM-MEDIUM,SOFT-MEDIUM-MEDIUM,2,3,SOFT,False,True,51,51,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,BOR,Audi,MEDIUM-SOFT-SOFT,MEDIUM-SOFT-SOFT,2,3,MEDIUM,False,True,51,51,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,BOT,Cadillac,MEDIUM-SOFT-SOFT,MEDIUM-SOFT-SOFT,2,3,MEDIUM,False,True,51,50,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,COL,Alpine,MEDIUM-SOFT,MEDIUM-SOFT,1,2,MEDIUM,False,False,51,36,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,GAS,Alpine,MEDIUM-SOFT,MEDIUM-SOFT,1,2,MEDIUM,False,False,51,36,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,HAD,Red Bull Racing,SOFT-MEDIUM-MEDIUM,SOFT-MEDIUM-MEDIUM,2,3,SOFT,False,True,51,51,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,HAM,Ferrari,SOFT-MEDIUM-MEDIUM,SOFT-MEDIUM-MEDIUM,2,3,SOFT,False,True,51,51,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,HUL,Audi,MEDIUM-SOFT-SOFT,MEDIUM-SOFT-SOFT,2,3,MEDIUM,False,True,51,51,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,LAW,Racing Bulls,SOFT-MEDIUM-SOFT,SOFT-MEDIUM-SOFT,2,3,SOFT,False,True,51,51,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,LEC,Ferrari,SOFT-MEDIUM-MEDIUM,SOFT-MEDIUM-MEDIUM,2,3,SOFT,False,True,51,51,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,LIN,Racing Bulls,MEDIUM-SOFT-SOFT,MEDIUM-SOFT-SOFT,2,3,MEDIUM,False,True,51,51,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,NOR,McLaren,MEDIUM-SOFT,MEDIUM-SOFT,1,2,MEDIUM,False,False,51,36,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,OCO,Haas F1 Team,SOFT-MEDIUM-MEDIUM,SOFT-MEDIUM-MEDIUM,2,3,SOFT,False,True,51,51,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,PER,Cadillac,MEDIUM-SOFT-SOFT,MEDIUM-SOFT-SOFT,2,3,MEDIUM,False,True,51,51,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,PIA,McLaren,SOFT-MEDIUM-MEDIUM,SOFT-MEDIUM-MEDIUM,2,3,SOFT,False,True,51,51,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,RUS,Mercedes,MEDIUM-SOFT-SOFT,MEDIUM-SOFT-SOFT,2,3,MEDIUM,False,True,51,51,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,SAI,Williams,MEDIUM-SOFT-SOFT-SOFT,MEDIUM-SOFT-SOFT-SOFT,3,4,MEDIUM,False,True,51,51,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,STR,Aston Martin,SOFT,SOFT,0,1,SOFT,False,False,51,8,fastf1_race_lap_stint_data,baku,baku_gp,resolved
+2026,Azerbaijan Grand Prix,15,VER,Red Bull Racing,MEDIUM-SOFT-SOFT,MEDIUM-SOFT-SOFT,2,3,MEDIUM,False,True,51,51,fastf1_race_lap_stint_data,baku,baku_gp,resolved

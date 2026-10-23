@@ -156,7 +156,7 @@ def make_probability_chart(
         y + 0.25,
         chart_data["points_chance"] * 100,
         height=0.22,
-        label="Points %",
+        label="Top 10 %",
     )
 
     ax.set_yticks(y)
@@ -403,7 +403,7 @@ def make_text_report_image(
 
     table["Win%"] = top_report["win_chance"].map(_fmt_percent_1)
     table["Pod%"] = top_report["podium_chance"].map(_fmt_percent_1)
-    table["Pts%"] = top_report["points_chance"].map(_fmt_percent_1)
+    table["Top10%"] = top_report["points_chance"].map(_fmt_percent_1)
     table["DNF%"] = top_report["dnf_chance"].map(_fmt_percent_1)
 
     if "deg_per_lap" in top_report.columns:

@@ -27,6 +27,19 @@ class EmptyWeatherSession:
         return None
 
 
+def test_unloaded_optional_weather_is_unknown_and_does_not_crash():
+    class Unloaded:
+        @property
+        def weather_data(self):
+            raise RuntimeError('Data has not been loaded')
+        def load(self, **kwargs):
+            raise RuntimeError('Not available offline')
+    summary = summarize_weather(Unloaded(), use_forecast=False)
+    assert summary['rainfall_flag'] is None
+    assert summary['weather_source'] == 'neutral_default'
+    assert summary['rain_probability'] is None
+
+
 class FakeForecastResponse:
     def raise_for_status(self) -> None:
         return None
@@ -112,7 +125,8 @@ def test_summarize_weather_uses_open_meteo_forecast_when_session_weather_missing
     assert summary["wind_speed_avg"] == 6.5
     assert summary["rain_probability"] == 60.0
     assert summary["rainfall_flag"] is True
-    assert summary["forecast_time"] == "2026-06-16T14:00:00"
+    assert captured["params"]["timezone"] == "GMT"
+    assert summary["forecast_time"] == "2026-06-16T14:00:00+00:00"
     assert "Forecast rain probability 60%" in " ".join(summary["notes"])
 
 
@@ -125,3 +139,14 @@ def test_summarize_weather_can_disable_forecast() -> None:
 
     assert summary["weather_source"] == "neutral_default"
     assert summary["air_temp_avg"] is None
+
+
+def test_forecast_fallback_converts_offset_to_utc_and_rejects_uncovered_date(monkeypatch):
+    from datetime import datetime
+    from src.weather import _fetch_open_meteo_forecast
+    monkeypatch.setattr('src.weather.requests.get', lambda *args, **kwargs: FakeForecastResponse())
+    summary = _fetch_open_meteo_forecast(41.57, 2.26, datetime.fromisoformat('2026-06-16T16:00:00+02:00'))
+    assert summary['air_temp_avg'] == 22.0
+    assert summary['forecast_time'] == '2026-06-16T14:00:00+00:00'
+    assert _fetch_open_meteo_forecast(41.57, 2.26, datetime.fromisoformat('2026-06-20T14:00:00+00:00')) is None
+    assert _fetch_open_meteo_forecast(41.57, 2.26, None) is None

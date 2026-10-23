@@ -1,0 +1,23 @@
+year,event,round,Driver,Team,actual_strategy,actual_strategy_sequence,actual_stops,actual_stint_count,actual_first_compound,actual_had_wet_compound,actual_completed_likely,actual_race_laps,actual_driver_max_lap,actual_strategy_source
+2026,Dutch Grand Prix,12,ALB,Williams,SOFT-HARD-HARD-MEDIUM,SOFT-HARD-HARD-MEDIUM,3,4,SOFT,False,True,72,66,fastf1_race_lap_stint_data
+2026,Dutch Grand Prix,12,ALO,Aston Martin,SOFT-SOFT-HARD,SOFT-SOFT-HARD,2,3,SOFT,False,True,72,71,fastf1_race_lap_stint_data
+2026,Dutch Grand Prix,12,ANT,Mercedes,MEDIUM-MEDIUM-HARD-HARD-SOFT,MEDIUM-MEDIUM-HARD-HARD-SOFT,4,5,MEDIUM,False,True,72,72,fastf1_race_lap_stint_data
+2026,Dutch Grand Prix,12,BEA,Haas F1 Team,SOFT,SOFT,0,1,SOFT,False,False,72,2,fastf1_race_lap_stint_data
+2026,Dutch Grand Prix,12,BOR,Audi,SOFT-SOFT-MEDIUM-HARD-SOFT,SOFT-SOFT-MEDIUM-HARD-SOFT,4,5,SOFT,False,True,72,71,fastf1_race_lap_stint_data
+2026,Dutch Grand Prix,12,BOT,Cadillac,HARD-HARD-HARD-SOFT,HARD-HARD-HARD-SOFT,3,4,HARD,False,True,72,61,fastf1_race_lap_stint_data
+2026,Dutch Grand Prix,12,COL,Alpine,MEDIUM-MEDIUM-MEDIUM-HARD-SOFT,MEDIUM-MEDIUM-MEDIUM-HARD-SOFT,4,5,MEDIUM,False,True,72,70,fastf1_race_lap_stint_data
+2026,Dutch Grand Prix,12,GAS,Alpine,MEDIUM-MEDIUM-HARD-MEDIUM,MEDIUM-MEDIUM-HARD-MEDIUM,3,4,MEDIUM,False,True,72,71,fastf1_race_lap_stint_data
+2026,Dutch Grand Prix,12,HAM,Ferrari,SOFT-SOFT-HARD-SOFT,SOFT-SOFT-HARD-SOFT,3,4,SOFT,False,True,72,72,fastf1_race_lap_stint_data
+2026,Dutch Grand Prix,12,HUL,Audi,SOFT-SOFT-SOFT-HARD,SOFT-SOFT-SOFT-HARD,3,4,SOFT,False,True,72,71,fastf1_race_lap_stint_data
+2026,Dutch Grand Prix,12,LAW,Red Bull Racing,SOFT-SOFT-MEDIUM-MEDIUM,SOFT-SOFT-MEDIUM-MEDIUM,3,4,SOFT,False,True,72,72,fastf1_race_lap_stint_data
+2026,Dutch Grand Prix,12,LEC,Ferrari,SOFT-SOFT-MEDIUM-HARD-SOFT,SOFT-SOFT-MEDIUM-HARD-SOFT,4,5,SOFT,False,True,72,72,fastf1_race_lap_stint_data
+2026,Dutch Grand Prix,12,LIN,Racing Bulls,SOFT-MEDIUM-MEDIUM-HARD,SOFT-MEDIUM-MEDIUM-HARD,3,4,SOFT,False,True,72,71,fastf1_race_lap_stint_data
+2026,Dutch Grand Prix,12,NOR,McLaren,MEDIUM-SOFT-HARD-HARD,MEDIUM-SOFT-HARD-HARD,3,4,MEDIUM,False,True,72,72,fastf1_race_lap_stint_data
+2026,Dutch Grand Prix,12,OCO,Haas F1 Team,MEDIUM-SOFT-HARD-HARD,MEDIUM-SOFT-HARD-HARD,3,4,MEDIUM,False,False,72,53,fastf1_race_lap_stint_data
+2026,Dutch Grand Prix,12,PER,Cadillac,SOFT-HARD-HARD-SOFT,SOFT-HARD-HARD-SOFT,3,4,SOFT,False,True,72,70,fastf1_race_lap_stint_data
+2026,Dutch Grand Prix,12,PIA,McLaren,MEDIUM-HARD-HARD-SOFT-SOFT,MEDIUM-HARD-HARD-SOFT-SOFT,4,5,MEDIUM,False,True,72,72,fastf1_race_lap_stint_data
+2026,Dutch Grand Prix,12,RUS,Mercedes,MEDIUM-MEDIUM-HARD-HARD,MEDIUM-MEDIUM-HARD-HARD,3,4,MEDIUM,False,True,72,72,fastf1_race_lap_stint_data
+2026,Dutch Grand Prix,12,SAI,Williams,SOFT-SOFT-HARD-SOFT,SOFT-SOFT-HARD-SOFT,3,4,SOFT,False,True,72,70,fastf1_race_lap_stint_data
+2026,Dutch Grand Prix,12,STR,Aston Martin,SOFT-SOFT-HARD-HARD,SOFT-SOFT-HARD-HARD,3,4,SOFT,False,False,72,45,fastf1_race_lap_stint_data
+2026,Dutch Grand Prix,12,TSU,Racing Bulls,SOFT-SOFT-HARD-SOFT,SOFT-SOFT-HARD-SOFT,3,4,SOFT,False,True,72,71,fastf1_race_lap_stint_data
+2026,Dutch Grand Prix,12,VER,Red Bull Racing,SOFT,SOFT,0,1,SOFT,False,False,72,1,fastf1_race_lap_stint_data

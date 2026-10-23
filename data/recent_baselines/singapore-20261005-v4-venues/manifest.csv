@@ -1,0 +1,17 @@
+year,round,event,session,race_start_utc,status,error,captured_at_utc,circuit_id,circuit_name,layout_id,venue_status,result_drivers,lap_drivers,lap_rows,completion_state,feature_drivers,missing_pace_drivers,thin_pace_drivers,clean_laps,weather_rows
+2026,16,Bahrain Grand Prix,R,2026-10-04T07:00:00+00:00,ok,,2026-10-05T00:53:14.062632+00:00,sepang,Sepang International Circuit,sepang_gp,resolved,22,22,1145,Ends,22,,BOT,519,254
+2026,15,Azerbaijan Grand Prix,R,2026-09-26T11:00:00+00:00,ok,,2026-10-05T00:53:14.062632+00:00,baku,Baku City Circuit,baku_gp,resolved,22,22,981,Ends,22,,,672,168
+2026,14,Spanish Grand Prix,R,2026-09-13T13:00:00+00:00,ok,,2026-10-05T00:53:14.062632+00:00,madring,Madring,madring_gp,resolved,22,22,1106,Ends,22,,HAM,834,161
+2026,13,Italian Grand Prix,R,2026-09-06T13:00:00+00:00,ok,,2026-10-05T00:53:14.062632+00:00,monza,Autodromo Nazionale Monza,monza_gp,resolved,22,22,1054,Ends,21,LEC,,868,176
+2026,12,Dutch Grand Prix,R,2026-08-23T13:00:00+00:00,ok,,2026-10-05T00:53:14.062632+00:00,zandvoort,Circuit Zandvoort,zandvoort_gp,resolved,22,22,1368,Ends,20,BEA;VER,,1052,191
+2026,11,Hungarian Grand Prix,R,2026-07-26T13:00:00+00:00,ok,,2026-10-05T00:53:14.062632+00:00,hungaroring,Hungaroring,hungaroring_gp,resolved,22,22,1431,Ends,22,,,1186,157
+2026,10,Belgian Grand Prix,R,2026-07-19T13:00:00+00:00,ok,,2026-10-05T00:53:14.062632+00:00,spa,Circuit de Spa-Francorchamps,spa_gp,resolved,22,22,872,Ends,21,RUS,,663,146
+2026,9,British Grand Prix,R,2026-07-05T14:00:00+00:00,ok,,2026-10-05T00:53:14.062632+00:00,silverstone,Silverstone Circuit,silverstone_gp,resolved,22,22,1113,Ends,22,,,814,156
+2026,8,Austrian Grand Prix,R,2026-06-28T13:00:00+00:00,ok,,2026-10-05T00:53:14.062632+00:00,red_bull_ring,Red Bull Ring,red_bull_ring_gp,resolved,22,22,1339,Ends,21,BOT,PER,1139,149
+2026,7,Barcelona Grand Prix,R,2026-06-14T13:00:00+00:00,ok,,2026-10-05T00:53:14.062632+00:00,catalunya,Circuit de Barcelona-Catalunya,catalunya_since_2023,resolved,22,22,1236,Ends,22,,STR,950,150
+2026,6,Monaco Grand Prix,R,2026-06-07T13:00:00+00:00,ok,,2026-10-05T00:53:14.062632+00:00,monaco,Circuit de Monaco,monaco_gp,resolved,22,22,1452,Ends,21,VER,,975,208
+2026,5,Canadian Grand Prix,R,2026-05-24T20:00:00+00:00,ok,,2026-10-05T00:53:14.062632+00:00,villeneuve,Circuit Gilles Villeneuve,villeneuve_gp,resolved,22,21,1211,Ends,21,LIN,,871,160
+2026,4,Miami Grand Prix,R,2026-05-03T17:00:00+00:00,ok,,2026-10-05T00:53:14.062632+00:00,miami,Miami International Autodrome,miami_gp,resolved,22,22,1040,Ends,22,,HUL;LAW;GAS;HAD,782,168
+2026,3,Japanese Grand Prix,R,2026-03-29T05:00:00+00:00,ok,,2026-10-05T00:53:14.062632+00:00,suzuka,Suzuka Circuit,suzuka_gp,resolved,22,22,1107,Ends,22,,,887,156
+2026,2,Chinese Grand Prix,R,2026-03-15T07:00:00+00:00,ok,,2026-10-05T00:53:14.062632+00:00,shanghai,Shanghai International Circuit,shanghai_gp,resolved,22,18,920,Ends,18,PIA;NOR;BOR;ALB,,729,152
+2026,1,Australian Grand Prix,R,2026-03-08T04:00:00+00:00,ok,,2026-10-05T00:53:14.062632+00:00,albert_park,Albert Park Grand Prix Circuit,albert_park_gp,resolved,22,20,1006,Ends,20,PIA;HUL,,799,148

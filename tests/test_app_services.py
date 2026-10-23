@@ -86,7 +86,7 @@ def test_settings_from_config_reads_defaults() -> None:
     assert settings.event == "latest"
     assert settings.output_dir == "custom"
     assert settings.use_weather_forecast is False
-    assert settings.use_historical_model_calibration is True
+    assert settings.use_historical_model_calibration is False
     assert settings.historical_finish_weight == 0.15
 
 
@@ -236,11 +236,12 @@ def test_available_sessions_for_specific_event_follow_weekend_format(monkeypatch
     monkeypatch.setattr("portable_app.web_backend._event_schedule", lambda year: schedule)
 
     assert available_sessions_for_event(2026, "Canadian Grand Prix", now=now) == [
-        "R",
-        "Q",
-        "FP3",
-        "FP2",
+        "PRE",
         "FP1",
+        "FP2",
+        "FP3",
+        "Q",
+        "R",
     ]
 
 
@@ -265,13 +266,14 @@ def test_specific_event_sessions_fall_back_to_race_weekend_when_schedule_unavail
     monkeypatch.setattr("portable_app.web_backend._event_schedule", lambda year: pd.DataFrame())
 
     assert available_sessions_for_event(2026, "Monaco Grand Prix") == [
-        "R",
-        "Q",
+        "PRE",
+        "FP1",
+        "FP2",
+        "FP3",
         "SQ",
         "S",
-        "FP3",
-        "FP2",
-        "FP1",
+        "Q",
+        "R",
     ]
     assert available_sessions_for_event(2026, "latest") == ["PRE"]
 
@@ -306,7 +308,39 @@ def test_latest_available_sessions_are_time_gated(monkeypatch) -> None:
         2099,
         "latest",
         now=pd.Timestamp("2099-06-22T12:00:00"),
-    ) == ["FP2", "FP1"]
+    ) == ["PRE", "FP1", "FP2"]
+
+
+def test_sprint_session_buttons_follow_each_eras_schedule(monkeypatch):
+    from portable_app import web_backend
+    weekends = [
+        (2021, ['Practice 1', 'Qualifying', 'Practice 2', 'Sprint', 'Race'],
+         ['PRE', 'FP1', 'Q', 'FP2', 'S', 'R']),
+        (2023, ['Practice 1', 'Qualifying', 'Sprint Shootout', 'Sprint', 'Race'],
+         ['PRE', 'FP1', 'Q', 'SQ', 'S', 'R']),
+        (2026, ['Practice 1', 'Sprint Qualifying', 'Sprint', 'Qualifying', 'Race'],
+         ['PRE', 'FP1', 'SQ', 'S', 'Q', 'R']),
+    ]
+    for year, sessions, expected in weekends:
+        row = {'EventName': 'Example Grand Prix', **{f'Session{i}': name for i, name in enumerate(sessions, 1)}}
+        monkeypatch.setattr(web_backend, '_event_schedule', lambda y: pd.DataFrame([row]))
+        assert available_sessions_for_event(year, 'Example Grand Prix') == expected
+
+
+def test_fresh_desktop_workspace_creates_calendar_cache_before_lookup(monkeypatch, tmp_path):
+    import fastf1
+    from portable_app import web_backend
+    monkeypatch.setattr(web_backend, 'project_root', lambda: tmp_path)
+    checked = []
+    def enable_cache(path):
+        assert Path(path).is_dir()
+        checked.append(path)
+    monkeypatch.setattr(fastf1.Cache, 'enable_cache', enable_cache)
+    monkeypatch.setattr(fastf1, 'get_event_schedule', lambda year: pd.DataFrame([{
+        'RoundNumber': 1, 'EventName': 'Example Grand Prix', 'Session1': 'Practice 1',
+        'Session2': 'Sprint Qualifying', 'Session3': 'Sprint', 'Session4': 'Qualifying', 'Session5': 'Race'}]))
+    assert available_sessions_for_event(2026, 'Example Grand Prix') == ['PRE', 'FP1', 'SQ', 'S', 'Q', 'R']
+    assert checked
 
 
 def test_setup_options_payload_uses_selected_track_profile(monkeypatch, tmp_path) -> None:
@@ -343,7 +377,7 @@ def test_setup_options_payload_uses_selected_track_profile(monkeypatch, tmp_path
 
     assert payload["trackProfile"]["event"] == "Monaco Grand Prix"
     assert payload["trackProfile"]["overtaking_difficulty"] == 0.88
-    assert payload["sessions"] == ["FP1"]
+    assert payload["sessions"] == ["PRE", "FP1"]
 
 
 def test_sector_times_table_splits_practice_and_quali() -> None:

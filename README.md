@@ -1,5 +1,9 @@
 # F1 Simulation and Fantasy Model
 
+Main local checkout: `C:\code_project\f1-sim`. See [Local workspace and automation](docs/local-workspace.md) for checkout provenance, backups and preserved Discord settings.
+
+New local experiments: [race-window weather, qualifying pace, pit scenarios and survival modelling](docs/simulation-candidates.md). These candidates are unpromoted; live defaults remain unchanged.
+
 End-to-end Formula 1 race simulation and fantasy projection tooling.
 
 The project loads FastF1 session data, builds driver pace and reliability features, blends current weekend signals with recent race baselines and trained historical-model calibration, runs Monte Carlo race simulations, estimates tyre strategy risk, calculates fantasy scoring, and exposes the workflow through both a CLI and a portable local pywebview app.
@@ -12,8 +16,9 @@ There is no Power BI custom visual implementation in this repository.
 
 - Python owns FastF1 data collection, ML model training, race simulation prototyping, CSV/JSON generation, data reports, and Power BI prep.
 - MATLAB/Simulink provides an optional lap-dynamics and strategy-validation workbench; it does not replace the production simulator.
-- Rust owns the high-speed simulation engine, packaged backend, and portable desktop runtime.
-- React/Tauri owns the future user interface, charts, race setup screens, export buttons, and desktop wrapper.
+- Rust and React/Tauri remain longer-term architectural options. The current
+  downloadable beta uses Python, PyInstaller and pywebview; it does not require
+  a Rust rewrite or a Node.js installation.
 
 See [Architecture](docs/architecture.md).
 
@@ -32,6 +37,11 @@ Double-click **Launch F1 Sim.cmd** to open the Simulation Centre: launch Monte C
 Simulink lap dynamics or scenario experiments, follow logs, and review saved runs.
 See [Simulation Centre guide](docs/simulation-centre.md) for requirements and interpretation.
 
+The new **Forecast next race** workflow automatically selects eligible inputs,
+freezes a local forecast, and supports later race-result scoring. See the
+[Windows beta guide](docs/windows-beta.md) for the packaged app, sharing-preview
+export, and remaining public-release gates. No central uploads are enabled.
+
 ```powershell
 python -m portable_app.web_main
 ```
@@ -46,7 +56,7 @@ pip install -r requirements-dev.txt
 The executable is written to:
 
 ```text
-dist\F1RaceSimulatorPortable\F1RaceSimulatorPortable.exe
+dist\RaceWorkbenchBeta-0.2.0-beta.1-r2\RaceWorkbenchBeta-0.2.0-beta.1-r2.exe
 ```
 
 ## Documentation
@@ -55,6 +65,7 @@ dist\F1RaceSimulatorPortable\F1RaceSimulatorPortable.exe
 - [Architecture](docs/architecture.md)
 - [Development and run commands](docs/development-and-run-commands.md)
 - [Run the portable app](docs/portable-app.md)
+- [Automate session-aware forecasts on Windows](docs/automated-forecasts.md)
 - [Data fields and inputs](docs/data-fields-and-inputs.md)
 - [Parameter reference](docs/parameter-reference.md)
 - [Outputs](docs/outputs.md)
@@ -102,12 +113,16 @@ These are intentionally ignored by Git:
 - `data/historical_model/`
 - `data/models/`
 
-Recreate historical model artifacts with:
+Create a new inactive historical model candidate with:
 
 ```powershell
 python scripts/build_historical_dataset.py --start-year 2022 --end-year 2026 --sessions Q R
-python scripts/train_historical_model.py --historical-dir data\historical_model --model-dir data\models
+python scripts/train_historical_model.py --historical-dir data\historical_model --finish-target grid_residual
 ```
+
+Training writes a unique folder under `outputs/model_candidates` by default and
+preserves existing models. Historical calibration defaults to off; candidates
+need independent promotion review before they can affect forecasts.
 
 ## Tests
 
@@ -176,7 +191,32 @@ It prompts for explicit override (`y`) before allowing the commit to continue.
 
 ## Recent implementation changes
 
+The [qualifying, pace and retirement revision](docs/model-accuracy-revision.md)
+uses official qualifying classifications for historical training/inference and
+adds selectable single-pass pace and outcome-based retirement experiments.
+Retirement distance can determine classification separately from pace. Replay
+supports separate pace/reliability history lengths and checks source stability.
+Experiments remain inactive pending the documented promotion gates.
+
+Offline [prediction data enrichment](docs/prediction-data-enrichment.md) adds
+FIA PDF extraction, original weather-run validation, start-delay labels,
+pit/stint records and experimental practice/reliability training inputs.
+The Model Training page can include downloaded practice sessions with timestamp
+evidence that they preceded qualifying. Candidates remain inactive pending review.
+
+New source forecasts resolve the physical circuit separately from the Grand Prix
+name. Weather, race distance and historical strategy now respect relocated venues;
+see [Circuit identity and validation](docs/circuit-identity.md).
+
 ## Known Limitations
+
+The hourly PC automation can refresh FIA listings and extract verified grids and
+explicit grid decisions. Local configuration, source captures and cutoff rules
+are documented in [FIA document sync](docs/fia-document-sync.md).
+
+Accuracy work and the reproducible offline benchmarks are documented in [Accuracy improvements](docs/accuracy-improvements.md). The matched-stint candidate remains disabled after failing its comparison with the current model. The qualifying/grid experiment improves diagnostic finish ranking but worsens podium probabilities; live grid weighting remains unchanged pending fresh validation.
+
+The hourly task can collect current-weekend practice and compare the stage blend, Q grid multiplier 3.3 and single pace blend in [prospective shadow trials](docs/prospective-prediction-trials.md). Results are scored against official classifications without changing live predictions or posting experimental outputs.
 
 - Tyre inventory is estimated from lap/stint data, not official FIA/Pirelli barcode tracking.
 - Weather, race-control, reliability, and tyre modifiers are modelled conservatively from available data and heuristics.

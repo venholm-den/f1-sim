@@ -1,0 +1,13 @@
+/* The advanced tools share the supplied workbench's palette and components. */
+:root{--bg:#161826;--panel:#232532;--line:#3f424d;--text:#e9e9ed;--muted:#b2b6ca;--accent:#e57669;--blue:#8fb8df}
+body{font-family:Inter,"Segoe UI",system-ui,sans-serif;grid-template-columns:236px minmax(0,1fr)}
+.sidebar{background:var(--bg);padding:24px 14px}.brand{font-weight:500;letter-spacing:0}.brand b{font-size:28px}.brand small{color:#9397ab}
+main{padding:28px 28px 50px}h1{font-size:28px;font-weight:500;letter-spacing:-.025em}h2{font-size:16px;font-weight:500}h3{font-size:18px;font-weight:500}
+.source-strip,.historical-source,.monitor,.chart-panel,.mode{background:var(--panel);border:1px solid var(--line);border-radius:14px}
+.history button.active{background:#e5766915;border-color:#e5766966;box-shadow:none;color:#f1b8af}
+button{border-radius:8px;background:transparent}button:hover{background:#ffffff0a;border-color:#595d6c}button.primary{color:#f3c5be;background:#e576691a;border:1px solid var(--accent)}button.primary:hover{background:#e5766930}
+.mode.selected{background:#e576690c;border-color:var(--accent);box-shadow:none}.mode.selected .mode-number{color:#f1b8af}
+input,select{background:var(--bg);border-color:var(--line);border-radius:8px;color:var(--text)}th{background:var(--panel);font-weight:400}td{border-color:#3f424d66}tr:hover td{background:#ffffff05}
+pre{background:var(--bg);border-color:var(--line);border-radius:8px}.launch-bar{background:transparent;border-color:var(--line)}.table-wrap{border-radius:8px}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #f3b4aa;outline-offset:3px}
+@media(max-width:850px){body{display:block}.sidebar{padding:18px}main{padding:20px}.modes{grid-template-columns:1fr}}

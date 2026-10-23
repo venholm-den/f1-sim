@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>F1 Simulation Centre</title><link rel="stylesheet" href="centre.css"></head>
+<title>F1 Simulation Centre</title><link rel="stylesheet" href="centre.css"><link rel="stylesheet" href="centre-nocturne.css"></head>
 <body>
 <aside class="sidebar">
   <a class="brand" href="centre.html"><b>F1<span> / </span></b><div>SIMULATION CENTRE<small>Race engineering workspace</small></div></a>
@@ -13,6 +13,12 @@
 <main>
   <header><div><div class="eyebrow">WORKSPACE / SIMULATIONS</div><h1>From assumptions to results.</h1>
   <p class="muted">Launch a simulation, follow its progress, and inspect what changed.</p></div><span id="connection" class="badge">Connecting</span></header>
+  <section class="historical-source" aria-label="Race weekend beta">
+    <div class="section-heading"><div><span class="eyebrow">WINDOWS BETA · LOCAL FIRST</span><h2>Before the next race</h2></div><button id="checkNext" class="secondary">Check next race</button></div>
+    <p id="nextRaceInfo" class="muted">One click prepares the latest eligible session inputs and freezes a new forecast. No MATLAB required.</p>
+    <button id="forecastNext" class="primary">Forecast next race →</button>
+    <p class="footnote">10,000 simulations · seed 42 · neutral weather modifiers. Experimental predictions. Reports stay local unless you choose Upload report to Discord. Downloads require internet; saved results remain available offline.</p>
+  </section>
   <label class="input-source">Input source<select id="inputSource"><option value="saved">Saved feature snapshot</option><option value="historical">Historical race / session</option></select></label>
   <section id="historicalSource" class="historical-source" hidden>
     <div class="historical-fields"><label>Year<select id="historicalYear"></select></label><button id="loadHistorical" class="secondary">Load races</button>
@@ -47,6 +53,8 @@
   <section class="review"><div class="section-heading"><div><div class="eyebrow">RESULTS EXPLORER</div><h2 id="reviewTitle">Review your runs</h2></div><button id="openFolder" class="secondary" disabled>Open results folder ↗</button></div>
   <div class="filter-bar"><label>Driver<select id="driverFilter"><option value="">All drivers</option></select></label><label>Scenario<select id="scenarioFilter"><option value="">All scenarios</option></select></label><span id="verification" class="muted"></span></div>
   <button id="reuseInputs" class="secondary" hidden>Use this run's historical inputs</button>
+  <div id="frozenActions" class="filter-bar" hidden><button id="scoreForecast" class="secondary">Score against race results</button><button id="sharePreview" class="secondary">Export sharing preview</button><button id="uploadDiscord" class="secondary">Upload report to Discord</button><span id="discordStatus" class="muted"></span><span class="muted">Frozen locally · no trusted server timestamp</span></div>
+  <p id="betaMessage" class="muted" role="status" hidden></p>
   <div class="chart-panel"><div class="chart-heading"><strong id="chartTitle">Lap-time trace</strong><span id="chartLegend" class="muted">Select a saved run</span></div><canvas id="lapChart" aria-label="Simulation result chart"></canvas><p id="chartEmpty">Your results will appear here after the first run.</p></div>
   <div class="table-toolbar"><span id="rowCount">No results loaded</span><button id="exportCsv" class="text-button" disabled>Export visible table ↓</button></div>
   <p id="exportStatus" class="muted" role="status" hidden></p>

@@ -21,6 +21,8 @@ class RunSettings:
     n_baseline_races: int
     default_overtaking_difficulty: float
     historical_strategy_lookback_years: int
+    weekend_sessions: list[str] | None = None
+    feature_cutoff_utc: str | None = None
 
 
 @dataclass(frozen=True)
@@ -47,10 +49,45 @@ class ModelSettings:
     use_race_control_context: bool
     use_track_red_flag_base_chance: bool
     use_weather_forecast: bool = True
-    use_historical_model_calibration: bool = True
+    use_historical_model_calibration: bool = False
     historical_model_dir: str = "data/models"
     historical_finish_weight: float = 0.15
     historical_dnf_weight: float = 0.30
+    use_stint_pace: bool = False
+    pace_blend: str = 'legacy'
+    retirement_model: str = 'legacy'
+    retirement_history_races: int = 30
+    qualifying_pace_model_path: str | None = None
+    qualifying_classifications_path: str | None = None
+    race_engine: str = 'aggregate_legacy'
+    pit_scenarios_path: str | None = None
+    weather_model: str = 'session_legacy'
+    race_weather_report_path: str | None = None
+    agent_settings: dict | None = None
+
+    def __post_init__(self):
+        if self.pace_blend not in {'legacy', 'single_pace_blend_v1', 'qualifying_partial_pooling_v1'}:
+            raise ValueError('Unknown pace_blend; choose legacy or single_pace_blend_v1.')
+        if self.retirement_model not in {'legacy', 'all_cause_dnf_v2', 'retirement_progress_v1', 'survival_dnf_v1'}:
+            raise ValueError('Unknown retirement_model.')
+        if not 1 <= self.retirement_history_races <= 100:
+            raise ValueError('retirement_history_races must be between 1 and 100.')
+        if self.use_stint_pace and self.pace_blend != 'legacy':
+            raise ValueError('Matched-stint and single-pass pace experiments must be tested separately.')
+        if self.pace_blend == 'qualifying_partial_pooling_v1':
+            if not self.qualifying_pace_model_path or self.use_historical_model_calibration:
+                raise ValueError('Qualifying pace requires its own artifact and separate historical calibration.')
+        if self.race_engine not in {'aggregate_legacy', 'pit_scenarios_v1', 'agent_laps_v1'}:
+            raise ValueError('Unknown race_engine.')
+        if self.agent_settings is not None:
+            if self.race_engine != 'agent_laps_v1':
+                raise ValueError('Agent settings require the agent race engine.')
+            from src.agent_race import AgentSettings
+            AgentSettings(**self.agent_settings)
+        if self.weather_model not in {'session_legacy', 'race_window_v1'}:
+            raise ValueError('Unknown weather_model.')
+        if self.weather_model == 'race_window_v1' and not self.use_weather_forecast:
+            raise ValueError('Race-window weather requires forecast acquisition enabled.')
 
 
 @dataclass(frozen=True)
@@ -60,6 +97,15 @@ class AppConfig:
     data: DataSettings
     model: ModelSettings
     source_path: str
+
+    def __post_init__(self):
+        next_candidate = (self.model.pace_blend == 'qualifying_partial_pooling_v1'
+            or bool(self.model.qualifying_classifications_path)
+            or self.model.race_engine != 'aggregate_legacy'
+            or self.model.weather_model != 'session_legacy'
+            or self.model.retirement_model == 'survival_dnf_v1')
+        if next_candidate and self.outputs.post_to_discord:
+            raise ValueError('Unpromoted simulation candidates support local output only.')
 
 
 def _read_json(path: str | Path) -> dict[str, Any]:
@@ -195,7 +241,8 @@ def load_app_config(
     args: argparse.Namespace | None = None,
 ) -> AppConfig:
     raw = _read_json(config_path)
-    raw = _apply_environment_overrides(raw)
+    if not raw.get('ignore_environment_overrides', False):
+        raw = _apply_environment_overrides(raw)
 
     if args is not None:
         raw = _apply_cli_overrides(raw, args)
@@ -207,6 +254,8 @@ def load_app_config(
 
     return AppConfig(
         run=RunSettings(
+            weekend_sessions=run.get('weekend_sessions'),
+            feature_cutoff_utc=run.get('feature_cutoff_utc'),
             year=int(run.get("year", 2026)),
             event=run.get("event", "latest"),
             session=str(run.get("session", "Q")),
@@ -244,11 +293,22 @@ def load_app_config(
             ),
             use_weather_forecast=bool(model.get("use_weather_forecast", True)),
             use_historical_model_calibration=bool(
-                model.get("use_historical_model_calibration", True)
+                model.get("use_historical_model_calibration", False)
             ),
             historical_model_dir=str(model.get("historical_model_dir", "data/models")),
             historical_finish_weight=float(model.get("historical_finish_weight", 0.15)),
             historical_dnf_weight=float(model.get("historical_dnf_weight", 0.30)),
+            use_stint_pace=bool(model.get('use_stint_pace', False)),
+            pace_blend=str(model.get('pace_blend', 'legacy')),
+            retirement_model=str(model.get('retirement_model', 'legacy')),
+            retirement_history_races=int(model.get('retirement_history_races', 30)),
+            qualifying_pace_model_path=model.get('qualifying_pace_model_path'),
+            qualifying_classifications_path=model.get('qualifying_classifications_path'),
+            race_engine=str(model.get('race_engine', 'aggregate_legacy')),
+            pit_scenarios_path=model.get('pit_scenarios_path'),
+            weather_model=str(model.get('weather_model', 'session_legacy')),
+            race_weather_report_path=model.get('race_weather_report_path'),
+            agent_settings=model.get('agent_settings'),
         ),
         source_path=str(config_path),
     )
@@ -265,6 +325,8 @@ def config_to_dict(config: AppConfig) -> dict[str, Any]:
             "n_baseline_races": config.run.n_baseline_races,
             "default_overtaking_difficulty": config.run.default_overtaking_difficulty,
             "historical_strategy_lookback_years": config.run.historical_strategy_lookback_years,
+            "weekend_sessions": config.run.weekend_sessions,
+            "feature_cutoff_utc": config.run.feature_cutoff_utc,
         },
         "outputs": {
             "output_dir": config.outputs.output_dir,
@@ -289,6 +351,17 @@ def config_to_dict(config: AppConfig) -> dict[str, Any]:
             "historical_model_dir": config.model.historical_model_dir,
             "historical_finish_weight": config.model.historical_finish_weight,
             "historical_dnf_weight": config.model.historical_dnf_weight,
+            "use_stint_pace": config.model.use_stint_pace,
+            "pace_blend": config.model.pace_blend,
+            "retirement_model": config.model.retirement_model,
+            "retirement_history_races": config.model.retirement_history_races,
+            "qualifying_pace_model_path": config.model.qualifying_pace_model_path,
+            "qualifying_classifications_path": config.model.qualifying_classifications_path,
+            "race_engine": config.model.race_engine,
+            "pit_scenarios_path": config.model.pit_scenarios_path,
+            "weather_model": config.model.weather_model,
+            "race_weather_report_path": config.model.race_weather_report_path,
+            "agent_settings": config.model.agent_settings,
         },
         "source_path": config.source_path,
     }

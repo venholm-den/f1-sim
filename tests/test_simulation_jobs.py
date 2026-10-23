@@ -92,7 +92,7 @@ def test_cancel_updates_status_and_wait_marks_cancelled(jobs, monkeypatch):
     jobs.process.wait.return_value = 1
     monkeypatch.setattr(module.subprocess, 'run', Mock())
     assert jobs.cancel()
-    assert jobs.status(folder.name)['status'] == 'cancelling'
+    assert jobs.status(folder.name)['status'] == 'cancelled'
     jobs._wait(folder.name, jobs.process)
     assert jobs.status(folder.name)['status'] == 'cancelled'
 
@@ -109,6 +109,7 @@ def test_workspace_lock_rejects_second_instance_and_releases(tmp_path):
 def test_desktop_bridge_does_not_expose_native_window_or_job_internals(tmp_path, monkeypatch):
     from portable_app import web_backend
     monkeypatch.setattr(web_backend, 'project_root', lambda: tmp_path)
+    monkeypatch.chdir(tmp_path)
     api = web_backend.PortableWebApi()
     native = object()
     api.set_window(native)
@@ -116,3 +117,15 @@ def test_desktop_bridge_does_not_expose_native_window_or_job_internals(tmp_path,
     assert 'window' not in public
     assert 'jobs' not in public
     assert api._window is native
+
+
+@pytest.mark.parametrize('content', ['{', '[]', '{}', '{"id":1,"status":null,"created_at":[]}'])
+def test_bad_history_does_not_block_startup_or_modify_evidence(tmp_path, content):
+    folder = tmp_path/'outputs/app_runs/20261011T000000Z_1234abcd'
+    folder.mkdir(parents=True)
+    path = folder/'job.json'
+    path.write_text(content)
+    jobs = SimulationJobs(tmp_path)
+    assert jobs.history()[0]['status'] == 'unreadable'
+    assert jobs.status(folder.name)['metadata_error']
+    assert path.read_text() == content

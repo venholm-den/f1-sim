@@ -1,0 +1,23 @@
+year,event,round,Driver,Team,actual_strategy,actual_strategy_sequence,actual_stops,actual_stint_count,actual_first_compound,actual_had_wet_compound,actual_completed_likely,actual_race_laps,actual_driver_max_lap,actual_strategy_source,source_circuit_id,source_layout_id,source_venue_status
+2026,Japanese Grand Prix,3,ALB,Williams,MEDIUM-HARD-MEDIUM,MEDIUM-HARD-MEDIUM,2,3,MEDIUM,False,True,53,51,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,ALO,Aston Martin,MEDIUM-HARD-MEDIUM,MEDIUM-HARD-MEDIUM,2,3,MEDIUM,False,True,53,52,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,ANT,Mercedes,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,BEA,Haas F1 Team,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,False,53,21,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,BOR,Audi,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,BOT,Cadillac,HARD-MEDIUM,HARD-MEDIUM,1,2,HARD,False,True,53,52,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,COL,Alpine,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,GAS,Alpine,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,HAD,Red Bull Racing,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,HAM,Ferrari,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,HUL,Audi,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,LAW,Racing Bulls,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,LEC,Ferrari,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,LIN,Racing Bulls,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,NOR,McLaren,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,OCO,Haas F1 Team,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,PER,Cadillac,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,PIA,McLaren,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,RUS,Mercedes,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,SAI,Williams,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,STR,Aston Martin,MEDIUM-HARD-MEDIUM,MEDIUM-HARD-MEDIUM,2,3,MEDIUM,False,False,53,30,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved
+2026,Japanese Grand Prix,3,VER,Red Bull Racing,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,53,53,fastf1_race_lap_stint_data,suzuka,suzuka_gp,resolved

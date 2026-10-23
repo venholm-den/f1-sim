@@ -31,7 +31,7 @@ def test_load_pre_fp1_session_selects_upcoming_latest_event(monkeypatch) -> None
 
     session, metadata = load_pre_fp1_session(2026, "latest")
 
-    assert metadata == {
+    assert {key: value for key, value in metadata.items() if key != 'feature_cutoff_utc'} == {
         "year": 2026,
         "event": "Future Grand Prix",
         "round": 2,
@@ -39,6 +39,7 @@ def test_load_pre_fp1_session_selects_upcoming_latest_event(monkeypatch) -> None
     }
     assert session.laps.empty
     assert session.weather_data.empty
+    assert pd.to_datetime(metadata['feature_cutoff_utc'], utc=True) <= pd.Timestamp.now(tz='UTC')
 
 
 def test_pre_fp1_model_uses_baseline_only() -> None:

@@ -55,7 +55,56 @@ def prepare_historical(job, folder):
 
 
 def run(folder: Path):
+    from src.app_services.f1_account import configure_worker_auth
+    configure_worker_auth()
     job = json.loads((folder/'job.json').read_text(encoding='utf-8'))
+    if job['kind'] == 'manual_run':
+        from datetime import datetime, timezone
+        import time
+        from src.app_services.run_service import run_pipeline_with_config
+        config_path = folder/'manual_config.json'
+        config = json.loads(config_path.read_text(encoding='utf-8'))
+        output_stream = sys.stdout
+        started = time.monotonic()
+        code = run_pipeline_with_config(config_path,
+            lambda text: print(text, end='', file=output_stream, flush=True))
+        if code:
+            raise RuntimeError('Race Setup failed. See the pipeline error above.')
+        output = Path(config['outputs']['output_dir'])
+        write_json(output/'ui_run.json', {'settings': config['run'],
+            'completed_at_utc': datetime.now(timezone.utc).isoformat(),
+            'elapsed_seconds': round(time.monotonic()-started, 2), 'post_to_discord': False})
+        return
+    if job['kind'] == 'historical_training':
+        from src.app_services.model_training import train
+        train(Path.cwd(), folder, json.loads((folder/'training_selection.json').read_text(encoding='utf-8')))
+        return
+    if job['kind'] == 'historical_download':
+        from src.app_services.historical_library import download
+        result = download(Path.cwd(), folder, job['archive'])
+        print(f"Historical download {result['status']}: {result['downloaded']} saved, {result['skipped']} already stored, {result['failed']} unavailable.", flush=True)
+        return
+    if job['kind'] == 'discord':
+        from src.app_services.discord_settings import local_webhook
+        from src.app_services.forecast_automation import post_frozen_forecast
+        webhook = local_webhook(Path.cwd())
+        if not webhook:
+            raise ValueError('Discord webhook is not configured locally.')
+        result = post_frozen_forecast(Path(job['forecast_folder']), webhook_url=webhook)
+        write_json(folder/'upload_result.json', result)
+        if not result.get('ok'):
+            raise RuntimeError('Discord delivery requires review or is waiting for its retry delay. No duplicate was sent.')
+        print('Discord report already delivered; duplicate skipped.' if result.get('skipped')
+              else f"Discord upload complete: {len(result.get('posted_files', []))} attachments.", flush=True)
+        return
+    if job['kind'] in ('forecast','score'):
+        from src.app_services.beta import run_forecast, run_scoring
+        if job['kind'] == 'forecast':
+            run_forecast(folder, job)
+        else:
+            run_scoring(folder, Path(job['forecast_folder']))
+        print('Simulation complete. Results are ready to review.', flush=True)
+        return
     if job.get('input_source') == 'historical':
         prepare_historical(job, folder)
     print(f"Starting {job['label']} using saved features from {job['source_dir']}", flush=True)

@@ -1,0 +1,1041 @@
+Year,Event,Round,Session,Driver,DriverNumber,Team,LapNumber,Stint,Compound,TyreLife,FreshTyre,LapTimeSeconds,Sector1Seconds,Sector2Seconds,Sector3Seconds,SpeedI1,SpeedI2,SpeedFL,SpeedST,IsPersonalBest,IsAccurate,TrackStatus,Deleted,PitOut,PitIn,LapStartTimeSeconds,CleanPushLap,source_circuit_id,source_layout_id,source_venue_status
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,1.0,1.0,MEDIUM,1.0,True,98.115,,34.453,25.729,213.0,183.0,273.0,298.0,False,False,1,False,False,False,3441.749,False,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,2.0,1.0,MEDIUM,2.0,True,92.77,32.593,34.6,25.577,211.0,184.0,271.0,317.0,True,True,1,False,False,False,3540.108,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,3.0,1.0,MEDIUM,3.0,True,93.263,32.816,34.702,25.745,209.0,185.0,270.0,313.0,False,True,1,False,False,False,3632.878,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,4.0,1.0,MEDIUM,4.0,True,93.814,33.089,34.864,25.861,205.0,186.0,273.0,310.0,False,True,1,False,False,False,3726.141,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,5.0,1.0,MEDIUM,5.0,True,93.842,32.883,35.214,25.745,210.0,183.0,281.0,308.0,False,True,12,False,False,False,3819.955,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,6.0,1.0,MEDIUM,6.0,True,130.35,40.675,51.989,37.686,84.0,108.0,249.0,98.0,False,False,24,False,False,False,3913.797,False,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,7.0,1.0,MEDIUM,7.0,True,137.842,41.553,54.69,41.599,119.0,108.0,192.0,132.0,False,False,4,False,False,False,4044.147,False,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,8.0,1.0,MEDIUM,8.0,True,142.399,50.043,54.546,37.81,108.0,97.0,240.0,110.0,False,False,4,False,False,False,4181.989,False,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,9.0,1.0,MEDIUM,9.0,True,147.626,48.536,55.467,43.623,138.0,84.0,228.0,156.0,False,False,4,False,False,False,4324.388,False,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,10.0,1.0,MEDIUM,10.0,True,139.119,48.549,55.495,35.075,120.0,94.0,223.0,211.0,False,False,4,False,False,False,4472.014,False,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,11.0,1.0,MEDIUM,11.0,True,,47.831,47.757,55.27,134.0,125.0,276.0,63.0,False,False,41,False,False,False,4611.133,False,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,12.0,1.0,MEDIUM,12.0,True,92.556,32.418,34.694,25.444,213.0,189.0,281.0,310.0,True,True,1,False,False,False,4761.96,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,13.0,1.0,MEDIUM,13.0,True,92.894,32.681,34.671,25.542,213.0,188.0,274.0,306.0,False,True,1,False,False,False,4854.516,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,14.0,1.0,MEDIUM,14.0,True,92.794,32.324,34.849,25.621,212.0,187.0,276.0,306.0,False,True,1,False,False,False,4947.41,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,15.0,1.0,MEDIUM,15.0,True,92.987,32.39,34.976,25.621,209.0,187.0,276.0,305.0,False,True,1,False,False,False,5040.204,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,16.0,1.0,MEDIUM,16.0,True,92.87,32.306,34.906,25.658,211.0,187.0,275.0,305.0,False,True,12,False,False,False,5133.191,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,17.0,1.0,MEDIUM,17.0,True,93.094,32.405,35.03,25.659,210.0,187.0,276.0,304.0,False,True,1,False,False,False,5226.061,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,18.0,1.0,MEDIUM,18.0,True,93.04,32.364,35.022,25.654,211.0,185.0,276.0,305.0,False,True,1,False,False,False,5319.155,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,19.0,1.0,MEDIUM,19.0,True,93.008,32.283,35.061,25.664,209.0,186.0,276.0,305.0,False,True,1,False,False,False,5412.195,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,20.0,1.0,MEDIUM,20.0,True,93.193,32.444,35.079,25.67,210.0,187.0,276.0,304.0,False,True,1,False,False,False,5505.203,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,21.0,1.0,MEDIUM,21.0,True,92.881,32.334,34.827,25.72,211.0,186.0,276.0,304.0,False,True,1,False,False,False,5598.396,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,22.0,1.0,MEDIUM,22.0,True,93.048,32.369,34.868,25.811,209.0,187.0,275.0,303.0,False,True,1,False,False,False,5691.277,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,23.0,1.0,MEDIUM,23.0,True,93.098,32.291,35.073,25.734,209.0,187.0,276.0,305.0,False,True,1,False,False,False,5784.325,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,24.0,1.0,MEDIUM,24.0,True,93.093,32.353,35.069,25.671,211.0,186.0,278.0,306.0,False,True,1,False,False,False,5877.423,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,25.0,1.0,MEDIUM,25.0,True,93.384,32.476,35.253,25.655,209.0,187.0,278.0,306.0,False,True,1,False,False,False,5970.516,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,26.0,1.0,MEDIUM,26.0,True,93.059,32.397,34.932,25.73,212.0,186.0,279.0,306.0,False,True,1,False,False,False,6063.9,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,27.0,1.0,MEDIUM,27.0,True,98.504,32.644,35.079,30.781,210.0,186.0,,313.0,False,False,1,False,False,True,6156.959,False,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,28.0,2.0,HARD,1.0,True,107.153,46.898,34.483,25.772,213.0,188.0,274.0,301.0,False,False,1,False,True,False,6255.463,False,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,29.0,2.0,HARD,2.0,True,93.451,32.814,34.969,25.668,214.0,187.0,275.0,314.0,False,True,1,False,False,False,6362.616,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,30.0,2.0,HARD,3.0,True,92.247,32.402,34.47,25.375,214.0,188.0,282.0,313.0,True,True,1,False,False,False,6456.067,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,31.0,2.0,HARD,4.0,True,92.069,32.221,34.432,25.416,214.0,188.0,284.0,317.0,True,True,1,False,False,False,6548.314,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,32.0,2.0,HARD,5.0,True,92.155,32.204,34.587,25.364,212.0,187.0,282.0,316.0,False,True,1,False,False,False,6640.383,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,33.0,2.0,HARD,6.0,True,91.991,31.956,34.58,25.455,212.0,186.0,282.0,319.0,True,True,1,False,False,False,6732.538,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,34.0,2.0,HARD,7.0,True,92.32,32.266,34.684,25.37,213.0,185.0,282.0,318.0,False,True,1,False,False,False,6824.529,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,35.0,2.0,HARD,8.0,True,91.869,31.893,34.8,25.176,210.0,187.0,283.0,321.0,True,True,1,False,False,False,6916.849,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,36.0,2.0,HARD,9.0,True,92.326,32.166,34.835,25.325,209.0,186.0,271.0,330.0,False,True,1,False,False,False,7008.718,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,37.0,2.0,HARD,10.0,True,92.391,32.206,34.813,25.372,212.0,183.0,284.0,318.0,False,True,1,False,False,False,7101.044,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,38.0,2.0,HARD,11.0,True,92.383,32.187,34.915,25.281,212.0,186.0,282.0,323.0,False,True,1,False,False,False,7193.435,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,39.0,2.0,HARD,12.0,True,92.657,32.544,34.824,25.289,211.0,183.0,286.0,322.0,False,True,1,False,False,False,7285.818,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,40.0,2.0,HARD,13.0,True,92.64,32.468,34.753,25.419,208.0,186.0,284.0,322.0,False,True,1,False,False,False,7378.475,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,41.0,2.0,HARD,14.0,True,92.676,32.599,34.767,25.31,210.0,183.0,284.0,320.0,False,True,1,False,False,False,7471.115,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,42.0,2.0,HARD,15.0,True,92.662,32.325,34.922,25.415,213.0,186.0,286.0,319.0,False,True,1,False,False,False,7563.791,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,43.0,2.0,HARD,16.0,True,92.491,32.159,34.897,25.435,207.0,186.0,284.0,318.0,False,True,1,False,False,False,7656.453,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,44.0,2.0,HARD,17.0,True,92.591,32.378,34.747,25.466,212.0,186.0,285.0,317.0,False,True,1,False,False,False,7748.944,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,45.0,2.0,HARD,18.0,True,92.469,32.091,34.829,25.549,211.0,186.0,283.0,314.0,False,True,1,False,False,False,7841.535,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,46.0,2.0,HARD,19.0,True,92.715,32.259,34.78,25.676,211.0,186.0,280.0,313.0,False,True,1,False,False,False,7934.004,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,47.0,2.0,HARD,20.0,True,92.235,32.136,34.698,25.401,213.0,186.0,281.0,315.0,False,True,1,False,False,False,8026.719,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,48.0,2.0,HARD,21.0,True,92.398,32.189,34.767,25.442,212.0,185.0,281.0,316.0,False,True,12,False,False,False,8118.954,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,49.0,2.0,HARD,22.0,True,92.269,32.263,34.571,25.435,211.0,187.0,280.0,317.0,False,True,1,False,False,False,8211.352,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,50.0,2.0,HARD,23.0,True,92.428,32.249,34.72,25.459,207.0,187.0,282.0,318.0,False,True,1,False,False,False,8303.621,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,51.0,2.0,HARD,24.0,True,92.394,32.203,34.802,25.389,214.0,185.0,284.0,324.0,False,True,1,False,False,False,8396.049,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,52.0,2.0,HARD,25.0,True,92.464,32.159,35.004,25.301,212.0,183.0,285.0,323.0,False,True,1,False,False,False,8488.443,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,53.0,2.0,HARD,26.0,True,92.738,32.57,34.784,25.384,210.0,187.0,285.0,316.0,False,True,1,False,False,False,8580.907,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,54.0,2.0,HARD,27.0,True,92.038,31.961,34.654,25.423,212.0,187.0,282.0,316.0,False,True,1,False,False,False,8673.645,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,55.0,2.0,HARD,28.0,True,92.493,32.37,34.848,25.275,212.0,186.0,283.0,321.0,False,True,1,False,False,False,8765.683,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,56.0,2.0,HARD,29.0,True,92.849,32.413,34.893,25.543,212.0,187.0,283.0,315.0,False,True,1,False,False,False,8858.176,True,,,unresolved
+2026,Miami Grand Prix,4,R,NOR,1,McLaren,57.0,2.0,HARD,30.0,True,93.474,32.345,34.947,26.182,212.0,186.0,282.0,315.0,False,True,12,False,False,False,8951.025,True,,,unresolved
+2026,Miami Grand Prix,4,R,GAS,10,Alpine,1.0,1.0,MEDIUM,1.0,True,105.243,,37.363,26.123,204.0,176.0,277.0,303.0,False,False,1,False,False,False,3441.749,False,,,unresolved
+2026,Miami Grand Prix,4,R,GAS,10,Alpine,2.0,1.0,MEDIUM,2.0,True,95.576,34.166,35.189,26.221,203.0,183.0,258.0,312.0,True,True,1,False,False,False,3547.236,True,,,unresolved
+2026,Miami Grand Prix,4,R,GAS,10,Alpine,3.0,1.0,MEDIUM,3.0,True,95.046,33.854,35.291,25.901,212.0,181.0,262.0,320.0,True,True,1,False,False,False,3642.812,True,,,unresolved
+2026,Miami Grand Prix,4,R,GAS,10,Alpine,4.0,1.0,MEDIUM,4.0,True,94.856,33.93,35.021,25.905,211.0,185.0,260.0,311.0,True,True,1,False,False,False,3737.858,True,,,unresolved
+2026,Miami Grand Prix,4,R,GAS,10,Alpine,5.0,1.0,MEDIUM,5.0,True,,,,,,,,,False,False,124,False,False,False,3832.714,False,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,1.0,1.0,MEDIUM,1.0,True,107.924,,37.85,26.42,205.0,175.0,279.0,295.0,False,False,1,False,False,False,3441.749,False,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,2.0,1.0,MEDIUM,2.0,True,96.783,34.763,36.096,25.924,210.0,183.0,276.0,291.0,True,True,1,False,False,False,3549.917,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,3.0,1.0,MEDIUM,3.0,True,97.009,34.616,36.358,26.035,203.0,183.0,276.0,277.0,False,True,1,False,False,False,3646.7,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,4.0,1.0,MEDIUM,4.0,True,96.307,34.425,35.585,26.297,210.0,183.0,277.0,282.0,True,True,1,False,False,False,3743.709,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,5.0,1.0,MEDIUM,5.0,True,96.828,34.235,35.829,26.764,208.0,178.0,245.0,292.0,False,False,124,False,False,False,3840.016,False,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,6.0,1.0,MEDIUM,6.0,True,134.677,44.577,51.251,38.849,179.0,129.0,273.0,102.0,False,False,4,False,False,False,3936.844,False,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,7.0,1.0,MEDIUM,7.0,True,128.893,39.402,48.06,41.431,152.0,100.0,273.0,98.0,False,False,4,False,False,False,4071.521,False,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,8.0,1.0,MEDIUM,8.0,True,141.449,42.953,57.7,40.796,115.0,58.0,196.0,95.0,False,False,4,False,False,False,4200.414,False,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,9.0,1.0,MEDIUM,9.0,True,143.123,44.365,58.947,39.811,105.0,88.0,246.0,120.0,False,False,4,False,False,False,4341.863,False,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,10.0,1.0,MEDIUM,10.0,True,140.172,46.616,58.783,34.773,99.0,107.0,217.0,144.0,False,False,4,False,False,False,4484.986,False,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,11.0,1.0,MEDIUM,11.0,True,142.406,46.572,45.727,50.107,115.0,124.0,278.0,39.0,False,False,41,False,False,False,4625.158,False,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,12.0,1.0,MEDIUM,12.0,True,96.951,33.776,36.869,26.306,209.0,184.0,272.0,294.0,False,True,1,False,False,False,4767.564,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,13.0,1.0,MEDIUM,13.0,True,96.605,34.553,35.995,26.057,203.0,182.0,279.0,282.0,False,True,1,False,False,False,4864.515,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,14.0,1.0,MEDIUM,14.0,True,96.571,34.885,35.611,26.075,209.0,182.0,276.0,293.0,False,True,1,False,False,False,4961.12,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,15.0,1.0,MEDIUM,15.0,True,96.214,34.085,35.75,26.379,206.0,183.0,277.0,303.0,True,True,12,False,False,False,5057.691,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,16.0,1.0,MEDIUM,16.0,True,96.404,34.233,35.989,26.182,206.0,182.0,278.0,301.0,False,True,1,False,False,False,5153.905,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,17.0,1.0,MEDIUM,17.0,True,96.436,34.134,35.977,26.325,208.0,182.0,276.0,290.0,False,True,1,False,False,False,5250.309,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,18.0,1.0,MEDIUM,18.0,True,96.558,34.039,36.051,26.468,205.0,182.0,275.0,285.0,False,True,1,False,False,False,5346.745,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,19.0,1.0,MEDIUM,19.0,True,96.405,34.08,35.893,26.432,206.0,182.0,278.0,291.0,False,True,1,False,False,False,5443.303,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,20.0,1.0,MEDIUM,20.0,True,96.498,34.125,36.033,26.34,203.0,182.0,278.0,293.0,False,True,1,False,False,False,5539.708,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,21.0,1.0,MEDIUM,21.0,True,96.52,34.131,36.094,26.295,203.0,180.0,280.0,296.0,False,True,1,False,False,False,5636.206,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,22.0,1.0,MEDIUM,22.0,True,96.255,33.943,35.882,26.43,208.0,183.0,276.0,291.0,False,True,1,False,False,False,5732.726,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,23.0,1.0,MEDIUM,23.0,True,96.617,34.193,36.081,26.343,203.0,182.0,280.0,297.0,False,True,1,False,False,False,5828.981,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,24.0,1.0,MEDIUM,24.0,True,96.353,33.973,36.086,26.294,207.0,184.0,278.0,294.0,False,True,1,False,False,False,5925.598,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,25.0,1.0,MEDIUM,25.0,True,96.732,34.042,36.314,26.376,204.0,184.0,276.0,295.0,False,True,1,False,False,False,6021.951,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,26.0,1.0,MEDIUM,26.0,True,96.278,33.963,35.878,26.437,205.0,184.0,277.0,290.0,False,True,1,False,False,False,6118.683,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,27.0,1.0,MEDIUM,27.0,True,96.385,33.927,35.978,26.48,207.0,183.0,278.0,290.0,False,True,1,False,False,False,6214.961,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,28.0,1.0,MEDIUM,28.0,True,96.919,34.169,36.368,26.382,202.0,180.0,281.0,291.0,False,True,1,False,False,False,6311.346,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,29.0,1.0,MEDIUM,29.0,True,102.282,34.077,36.082,32.123,204.0,182.0,,299.0,False,False,1,False,False,True,6408.265,False,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,30.0,2.0,HARD,1.0,True,109.853,48.761,35.174,25.918,212.0,188.0,285.0,283.0,False,False,1,False,True,False,6510.547,False,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,31.0,2.0,HARD,2.0,True,94.895,32.995,35.639,26.261,211.0,186.0,276.0,290.0,True,True,1,False,False,False,6620.4,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,32.0,2.0,HARD,3.0,True,95.379,33.465,35.692,26.222,208.0,185.0,281.0,284.0,False,True,1,False,False,False,6715.295,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,33.0,2.0,HARD,4.0,True,95.011,33.134,35.651,26.226,211.0,185.0,280.0,286.0,False,True,1,False,False,False,6810.674,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,34.0,2.0,HARD,5.0,True,95.312,33.417,35.695,26.2,209.0,185.0,277.0,295.0,False,True,1,False,False,False,6905.685,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,35.0,2.0,HARD,6.0,True,95.648,33.576,35.946,26.126,206.0,183.0,280.0,295.0,False,True,1,False,False,False,7000.997,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,36.0,2.0,HARD,7.0,True,97.862,33.519,36.116,28.227,208.0,171.0,285.0,279.0,False,True,1,False,False,False,7096.645,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,37.0,2.0,HARD,8.0,True,95.733,33.724,35.673,26.336,205.0,182.0,280.0,281.0,False,True,1,False,False,False,7194.507,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,38.0,2.0,HARD,9.0,True,95.539,33.559,35.875,26.105,208.0,184.0,281.0,297.0,False,True,1,False,False,False,7290.24,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,39.0,2.0,HARD,10.0,True,95.829,33.769,35.878,26.182,206.0,183.0,282.0,289.0,False,True,1,False,False,False,7385.779,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,40.0,2.0,HARD,11.0,True,97.17,33.602,36.429,27.139,207.0,164.0,286.0,260.0,False,True,1,False,False,False,7481.608,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,41.0,2.0,HARD,12.0,True,97.35,33.548,37.053,26.749,211.0,117.0,278.0,296.0,False,True,1,False,False,False,7578.778,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,42.0,2.0,HARD,13.0,True,96.678,33.682,36.926,26.07,208.0,183.0,281.0,304.0,False,True,1,False,False,False,7676.128,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,43.0,2.0,HARD,14.0,True,97.179,33.711,37.059,26.409,208.0,131.0,286.0,304.0,False,True,1,False,False,False,7772.806,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,44.0,2.0,HARD,15.0,True,95.557,33.8,35.652,26.105,206.0,181.0,280.0,300.0,False,True,1,False,False,False,7869.985,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,45.0,2.0,HARD,16.0,True,96.376,33.806,36.619,25.951,205.0,181.0,286.0,304.0,False,True,1,False,False,False,7965.542,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,46.0,2.0,HARD,17.0,True,96.409,33.554,36.47,26.385,206.0,179.0,262.0,305.0,False,True,12,False,False,False,8061.918,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,47.0,2.0,HARD,18.0,True,96.892,34.222,36.034,26.636,206.0,183.0,260.0,296.0,False,True,1,False,False,False,8158.327,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,48.0,2.0,HARD,19.0,True,96.634,34.132,36.058,26.444,208.0,181.0,279.0,298.0,False,True,1,False,False,False,8255.219,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,49.0,2.0,HARD,20.0,True,96.887,34.011,36.14,26.736,209.0,180.0,273.0,296.0,False,True,1,False,False,False,8351.853,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,50.0,2.0,HARD,21.0,True,96.556,34.657,35.626,26.273,208.0,182.0,277.0,302.0,False,True,1,False,False,False,8448.74,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,51.0,2.0,HARD,22.0,True,96.311,33.688,35.833,26.79,206.0,180.0,250.0,311.0,False,True,1,False,False,False,8545.296,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,52.0,2.0,HARD,23.0,True,95.814,34.02,35.861,25.933,206.0,183.0,279.0,302.0,False,True,1,False,False,False,8641.607,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,53.0,2.0,HARD,24.0,True,95.356,33.675,35.6,26.081,211.0,183.0,284.0,299.0,False,True,1,False,False,False,8737.421,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,54.0,2.0,HARD,25.0,True,95.502,33.566,35.719,26.217,209.0,183.0,289.0,294.0,False,True,1,False,False,False,8832.777,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,55.0,2.0,HARD,26.0,True,95.25,33.514,35.681,26.055,211.0,182.0,284.0,306.0,False,True,12,False,False,False,8928.279,True,,,unresolved
+2026,Miami Grand Prix,4,R,PER,11,Cadillac,56.0,2.0,HARD,27.0,True,95.25,33.597,35.613,26.04,207.0,182.0,268.0,318.0,False,True,1,False,False,False,9023.529,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,1.0,1.0,MEDIUM,1.0,True,97.243,,34.209,25.71,213.0,189.0,267.0,311.0,False,False,1,False,False,False,3441.749,False,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,2.0,1.0,MEDIUM,2.0,True,92.936,32.563,34.481,25.892,211.0,188.0,259.0,316.0,True,True,1,False,False,False,3539.236,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,3.0,1.0,MEDIUM,3.0,True,93.224,32.814,34.577,25.833,210.0,186.0,263.0,310.0,False,True,1,False,False,False,3632.172,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,4.0,1.0,MEDIUM,4.0,True,93.586,32.729,35.095,25.762,212.0,184.0,283.0,303.0,False,True,1,False,False,False,3725.396,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,5.0,1.0,MEDIUM,5.0,True,94.602,32.893,35.572,26.137,209.0,186.0,257.0,313.0,False,True,12,False,False,False,3818.982,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,6.0,1.0,MEDIUM,6.0,True,132.093,41.747,51.819,38.527,85.0,101.0,241.0,92.0,False,False,24,False,False,False,3913.584,False,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,7.0,1.0,MEDIUM,7.0,True,137.101,40.592,55.122,41.387,121.0,107.0,226.0,140.0,False,False,4,False,False,False,4045.677,False,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,8.0,1.0,MEDIUM,8.0,True,142.628,50.121,54.811,37.696,90.0,80.0,247.0,97.0,False,False,4,False,False,False,4182.778,False,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,9.0,1.0,MEDIUM,9.0,True,148.02,48.055,56.357,43.608,157.0,77.0,231.0,169.0,False,False,4,False,False,False,4325.406,False,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,10.0,1.0,MEDIUM,10.0,True,138.771,48.165,55.71,34.896,119.0,85.0,207.0,235.0,False,False,4,False,False,False,4473.426,False,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,11.0,1.0,MEDIUM,11.0,True,,48.216,47.879,54.069,133.0,118.0,281.0,61.0,False,False,41,False,False,False,4612.197,False,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,12.0,1.0,MEDIUM,12.0,True,93.043,32.726,34.667,25.65,215.0,187.0,260.0,320.0,False,True,1,False,False,False,4762.357,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,13.0,1.0,MEDIUM,13.0,True,93.07,32.789,34.815,25.466,211.0,187.0,273.0,319.0,False,True,1,False,False,False,4855.4,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,14.0,1.0,MEDIUM,14.0,True,93.314,33.294,34.303,25.717,212.0,186.0,267.0,304.0,False,True,1,False,False,False,4948.47,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,15.0,1.0,MEDIUM,15.0,True,93.18,32.618,34.662,25.9,209.0,186.0,258.0,313.0,False,True,1,False,False,False,5041.784,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,16.0,1.0,MEDIUM,16.0,True,93.658,32.887,34.798,25.973,210.0,185.0,260.0,310.0,False,True,12,False,False,False,5134.964,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,17.0,1.0,MEDIUM,17.0,True,93.053,32.586,34.57,25.897,211.0,185.0,269.0,309.0,False,True,1,False,False,False,5228.622,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,18.0,1.0,MEDIUM,18.0,True,93.244,32.549,34.76,25.935,211.0,184.0,265.0,311.0,False,True,1,False,False,False,5321.675,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,19.0,1.0,MEDIUM,19.0,True,93.345,32.774,34.648,25.923,208.0,184.0,269.0,310.0,False,True,1,False,False,False,5414.919,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,20.0,1.0,MEDIUM,20.0,True,93.011,32.577,34.549,25.885,210.0,184.0,269.0,310.0,False,True,1,False,False,False,5508.264,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,21.0,1.0,MEDIUM,21.0,True,93.149,32.71,34.534,25.905,211.0,185.0,269.0,309.0,False,True,1,False,False,False,5601.275,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,22.0,1.0,MEDIUM,22.0,True,92.779,32.5,34.488,25.791,210.0,186.0,269.0,309.0,True,True,1,False,False,False,5694.424,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,23.0,1.0,MEDIUM,23.0,True,92.994,32.513,34.581,25.9,210.0,184.0,267.0,312.0,False,True,1,False,False,False,5787.203,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,24.0,1.0,MEDIUM,24.0,True,92.802,32.418,34.518,25.866,212.0,184.0,265.0,314.0,False,True,1,False,False,False,5880.197,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,25.0,1.0,MEDIUM,25.0,True,93.068,32.423,34.87,25.775,211.0,186.0,267.0,312.0,False,True,1,False,False,False,5972.999,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,26.0,1.0,MEDIUM,26.0,True,97.884,32.448,34.563,30.873,209.0,184.0,,313.0,False,False,1,False,False,True,6066.067,False,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,27.0,2.0,HARD,1.0,True,105.601,46.283,34.093,25.225,218.0,188.0,266.0,326.0,False,False,1,False,True,False,6163.951,False,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,28.0,2.0,HARD,2.0,True,92.914,32.308,34.583,26.023,216.0,185.0,258.0,292.0,False,True,1,False,False,False,6269.552,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,29.0,2.0,HARD,3.0,True,92.331,32.558,33.975,25.798,214.0,187.0,275.0,290.0,True,True,1,False,False,False,6362.466,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,30.0,2.0,HARD,4.0,True,92.21,32.108,34.411,25.691,212.0,187.0,272.0,301.0,True,True,1,False,False,False,6454.797,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,31.0,2.0,HARD,5.0,True,92.258,31.992,34.515,25.751,212.0,187.0,273.0,301.0,False,True,1,False,False,False,6547.007,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,32.0,2.0,HARD,6.0,True,92.046,32.068,34.325,25.653,213.0,187.0,273.0,309.0,True,True,1,False,False,False,6639.265,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,33.0,2.0,HARD,7.0,True,92.113,32.066,34.475,25.572,212.0,186.0,273.0,309.0,False,True,1,False,False,False,6731.311,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,34.0,2.0,HARD,8.0,True,91.968,31.959,34.466,25.543,211.0,187.0,271.0,312.0,True,True,1,False,False,False,6823.424,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,35.0,2.0,HARD,9.0,True,92.487,32.212,34.578,25.697,214.0,186.0,268.0,304.0,False,True,1,False,False,False,6915.392,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,36.0,2.0,HARD,10.0,True,92.354,32.185,34.587,25.582,212.0,185.0,274.0,313.0,False,True,1,False,False,False,7007.879,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,37.0,2.0,HARD,11.0,True,92.483,32.188,34.704,25.591,211.0,183.0,279.0,312.0,False,True,1,False,False,False,7100.233,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,38.0,2.0,HARD,12.0,True,92.423,32.221,34.621,25.581,211.0,185.0,275.0,311.0,False,True,1,False,False,False,7192.716,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,39.0,2.0,HARD,13.0,True,92.382,32.232,34.598,25.552,214.0,187.0,278.0,313.0,False,True,1,False,False,False,7285.139,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,40.0,2.0,HARD,14.0,True,92.878,32.548,34.608,25.722,213.0,186.0,275.0,317.0,False,True,1,False,False,False,7377.521,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,41.0,2.0,HARD,15.0,True,92.331,32.274,34.579,25.478,211.0,186.0,284.0,309.0,False,True,1,False,False,False,7470.399,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,42.0,2.0,HARD,16.0,True,92.496,32.173,34.72,25.603,213.0,186.0,278.0,311.0,False,True,1,False,False,False,7562.73,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,43.0,2.0,HARD,17.0,True,92.186,32.087,34.567,25.532,210.0,185.0,277.0,314.0,False,True,1,False,False,False,7655.226,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,44.0,2.0,HARD,18.0,True,92.211,32.144,34.561,25.506,213.0,185.0,279.0,319.0,False,True,1,False,False,False,7747.412,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,45.0,2.0,HARD,19.0,True,92.399,32.121,34.66,25.618,213.0,186.0,278.0,311.0,False,True,1,False,False,False,7839.623,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,46.0,2.0,HARD,20.0,True,92.531,32.103,34.801,25.627,211.0,185.0,279.0,314.0,False,True,1,False,False,False,7932.022,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,47.0,2.0,HARD,21.0,True,92.782,32.714,34.489,25.579,211.0,186.0,276.0,313.0,False,True,1,False,False,False,8024.553,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,48.0,2.0,HARD,22.0,True,92.377,32.149,34.682,25.546,214.0,185.0,278.0,314.0,False,True,12,False,False,False,8117.335,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,49.0,2.0,HARD,23.0,True,92.243,32.084,34.65,25.509,212.0,185.0,276.0,317.0,False,True,1,False,False,False,8209.712,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,50.0,2.0,HARD,24.0,True,92.097,32.102,34.587,25.408,213.0,186.0,281.0,320.0,False,True,1,False,False,False,8301.955,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,51.0,2.0,HARD,25.0,True,92.418,32.144,34.714,25.56,213.0,186.0,281.0,321.0,False,True,1,False,False,False,8394.052,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,52.0,2.0,HARD,26.0,True,92.427,32.267,34.588,25.572,210.0,186.0,274.0,314.0,False,True,1,False,False,False,8486.47,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,53.0,2.0,HARD,27.0,True,92.354,32.07,34.676,25.608,212.0,185.0,273.0,316.0,False,True,1,False,False,False,8578.897,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,54.0,2.0,HARD,28.0,True,91.986,32.04,34.599,25.347,213.0,186.0,281.0,321.0,False,True,1,False,False,False,8671.251,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,55.0,2.0,HARD,29.0,True,92.347,32.376,34.451,25.52,211.0,186.0,276.0,315.0,False,True,1,False,False,False,8763.237,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,56.0,2.0,HARD,30.0,True,92.586,32.122,34.808,25.656,213.0,186.0,279.0,316.0,False,True,1,False,False,False,8855.584,True,,,unresolved
+2026,Miami Grand Prix,4,R,ANT,12,Mercedes,57.0,2.0,HARD,31.0,True,93.092,32.418,34.81,25.864,214.0,186.0,269.0,322.0,False,True,12,False,False,False,8948.17,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,1.0,1.0,MEDIUM,1.0,True,109.952,,38.503,27.007,200.0,181.0,263.0,297.0,False,False,1,False,False,False,3441.749,False,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,2.0,1.0,MEDIUM,2.0,True,96.627,34.472,35.834,26.321,204.0,180.0,271.0,304.0,True,True,1,False,False,False,3551.945,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,3.0,1.0,MEDIUM,3.0,True,96.505,34.435,35.967,26.103,203.0,181.0,273.0,299.0,True,True,1,False,False,False,3648.572,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,4.0,1.0,MEDIUM,4.0,True,96.45,34.101,36.003,26.346,204.0,181.0,275.0,302.0,True,True,1,False,False,False,3745.077,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,5.0,1.0,MEDIUM,5.0,True,100.142,33.915,36.24,29.987,205.0,180.0,102.0,278.0,False,False,124,False,False,False,3841.527,False,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,6.0,1.0,MEDIUM,6.0,True,135.182,44.673,51.274,39.235,186.0,150.0,221.0,84.0,False,False,4,False,False,False,3941.669,False,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,7.0,1.0,MEDIUM,7.0,True,129.956,39.034,49.822,41.1,171.0,136.0,214.0,105.0,False,False,4,False,False,False,4076.851,False,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,8.0,1.0,MEDIUM,8.0,True,142.381,40.614,59.926,41.841,155.0,50.0,220.0,108.0,False,False,4,False,False,False,4206.807,False,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,9.0,1.0,MEDIUM,9.0,True,142.229,40.463,63.484,38.282,136.0,107.0,215.0,209.0,False,False,4,False,False,False,4349.188,False,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,10.0,1.0,MEDIUM,10.0,True,140.195,44.824,60.795,34.576,92.0,69.0,215.0,240.0,False,False,4,False,False,False,4491.417,False,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,11.0,1.0,MEDIUM,11.0,True,137.815,44.428,48.072,45.315,137.0,160.0,278.0,40.0,False,False,41,False,False,False,4631.612,False,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,12.0,1.0,MEDIUM,12.0,True,96.8,34.086,36.435,26.279,206.0,180.0,282.0,289.0,False,True,1,False,False,False,4769.427,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,13.0,1.0,MEDIUM,13.0,True,96.349,34.305,35.916,26.128,203.0,180.0,275.0,303.0,True,True,1,False,False,False,4866.227,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,14.0,1.0,MEDIUM,14.0,True,96.482,34.407,35.928,26.147,208.0,179.0,263.0,311.0,False,True,1,False,False,False,4962.576,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,15.0,1.0,MEDIUM,15.0,True,97.635,35.336,36.016,26.283,203.0,180.0,268.0,311.0,False,True,12,False,False,False,5059.058,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,16.0,1.0,MEDIUM,16.0,True,96.143,33.918,35.931,26.294,197.0,180.0,271.0,304.0,True,True,1,False,False,False,5156.693,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,17.0,1.0,MEDIUM,17.0,True,96.453,33.761,36.262,26.43,201.0,180.0,271.0,297.0,False,True,1,False,False,False,5252.836,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,18.0,1.0,MEDIUM,18.0,True,96.939,34.132,36.336,26.471,194.0,179.0,270.0,304.0,False,True,1,False,False,False,5349.289,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,19.0,1.0,MEDIUM,19.0,True,96.836,34.232,36.064,26.54,204.0,181.0,272.0,303.0,False,True,1,False,False,False,5446.228,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,20.0,1.0,MEDIUM,20.0,True,96.221,33.989,35.784,26.448,203.0,181.0,270.0,299.0,False,True,1,False,False,False,5543.064,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,21.0,1.0,MEDIUM,21.0,True,96.561,33.714,36.197,26.65,203.0,181.0,272.0,292.0,False,True,1,False,False,False,5639.285,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,22.0,1.0,MEDIUM,22.0,True,96.294,33.715,36.016,26.563,198.0,181.0,269.0,295.0,False,True,1,False,False,False,5735.846,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,23.0,1.0,MEDIUM,23.0,True,96.386,33.654,36.078,26.654,201.0,182.0,266.0,294.0,False,True,1,False,False,False,5832.14,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,24.0,1.0,MEDIUM,24.0,True,96.666,33.735,36.178,26.753,201.0,181.0,271.0,293.0,False,True,1,False,False,False,5928.526,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,25.0,1.0,MEDIUM,25.0,True,96.477,33.469,36.274,26.734,202.0,182.0,269.0,293.0,False,True,1,False,False,False,6025.192,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,26.0,1.0,MEDIUM,26.0,True,96.269,33.537,35.955,26.777,203.0,182.0,271.0,292.0,False,True,1,False,False,False,6121.669,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,27.0,1.0,MEDIUM,27.0,True,96.071,33.539,35.912,26.62,203.0,183.0,273.0,295.0,True,True,1,False,False,False,6217.938,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,28.0,1.0,MEDIUM,28.0,True,95.985,33.452,35.977,26.556,203.0,183.0,270.0,296.0,True,True,1,False,False,False,6314.009,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,29.0,1.0,MEDIUM,29.0,True,96.08,33.629,35.917,26.534,202.0,182.0,271.0,297.0,False,True,1,False,False,False,6409.994,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,30.0,1.0,MEDIUM,30.0,True,96.191,33.74,35.868,26.583,198.0,183.0,270.0,292.0,False,True,1,False,False,False,6506.074,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,31.0,1.0,MEDIUM,31.0,True,96.39,33.697,35.938,26.755,201.0,182.0,266.0,289.0,False,True,1,False,False,False,6602.265,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,32.0,1.0,MEDIUM,32.0,True,96.335,33.567,35.876,26.892,201.0,182.0,271.0,288.0,False,True,1,False,False,False,6698.655,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,33.0,1.0,MEDIUM,33.0,True,96.708,33.582,36.656,26.47,200.0,181.0,275.0,307.0,False,True,1,False,False,False,6794.99,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,34.0,1.0,MEDIUM,34.0,True,95.644,33.555,35.827,26.262,203.0,182.0,272.0,307.0,True,True,1,False,False,False,6891.698,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,35.0,1.0,MEDIUM,35.0,True,96.543,33.832,36.031,26.68,204.0,180.0,272.0,289.0,False,True,1,False,False,False,6987.342,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,36.0,1.0,MEDIUM,36.0,True,96.451,33.604,36.152,26.695,200.0,182.0,270.0,293.0,False,True,1,False,False,False,7083.885,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,37.0,1.0,MEDIUM,37.0,True,96.558,33.619,36.103,26.836,203.0,182.0,265.0,287.0,False,True,1,False,False,False,7180.336,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,38.0,1.0,MEDIUM,38.0,True,96.87,33.803,36.135,26.932,205.0,183.0,270.0,289.0,False,True,1,False,False,False,7276.894,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,39.0,1.0,MEDIUM,39.0,True,96.394,33.528,35.997,26.869,204.0,182.0,266.0,289.0,False,True,1,False,False,False,7373.764,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,40.0,1.0,MEDIUM,40.0,True,97.717,35.001,35.835,26.881,201.0,180.0,259.0,293.0,False,True,1,False,False,False,7470.158,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,41.0,1.0,MEDIUM,41.0,True,101.789,33.744,36.309,31.736,202.0,181.0,,290.0,False,False,1,False,False,True,7567.875,False,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,42.0,2.0,SOFT,1.0,True,109.347,47.823,35.177,26.347,209.0,184.0,269.0,295.0,False,False,1,False,True,False,7669.664,False,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,43.0,2.0,SOFT,2.0,True,95.55,33.03,35.525,26.995,209.0,179.0,279.0,275.0,True,True,1,False,False,False,7779.011,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,44.0,2.0,SOFT,3.0,True,93.512,32.733,35.079,25.7,207.0,185.0,274.0,316.0,False,True,1,False,False,False,7874.561,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,45.0,2.0,SOFT,4.0,True,94.594,33.059,35.618,25.917,207.0,183.0,277.0,306.0,True,True,1,False,False,False,7968.073,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,46.0,2.0,SOFT,5.0,True,96.389,33.197,36.452,26.74,208.0,183.0,269.0,329.0,False,True,12,False,False,False,8062.667,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,47.0,2.0,SOFT,6.0,True,96.191,33.84,36.147,26.204,204.0,182.0,277.0,291.0,False,True,1,False,False,False,8159.056,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,48.0,2.0,SOFT,7.0,True,96.765,34.601,36.054,26.11,207.0,182.0,282.0,295.0,False,True,1,False,False,False,8255.247,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,49.0,2.0,SOFT,8.0,True,97.677,34.196,36.34,27.141,206.0,179.0,259.0,266.0,False,True,1,False,False,False,8352.012,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,50.0,2.0,SOFT,9.0,True,96.116,34.269,35.73,26.117,208.0,182.0,256.0,302.0,False,True,1,False,False,False,8449.689,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,51.0,2.0,SOFT,10.0,True,95.159,33.589,35.796,25.774,211.0,183.0,259.0,319.0,False,True,1,False,False,False,8545.805,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,52.0,2.0,SOFT,11.0,True,95.091,33.052,35.804,26.235,208.0,184.0,272.0,294.0,False,True,1,False,False,False,8640.964,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,53.0,2.0,SOFT,12.0,True,95.015,32.89,35.866,26.259,206.0,186.0,275.0,291.0,False,True,1,False,False,False,8736.055,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,54.0,2.0,SOFT,13.0,True,94.97,32.731,36.012,26.227,207.0,186.0,274.0,293.0,False,True,1,False,False,False,8831.07,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,55.0,2.0,SOFT,14.0,True,94.944,32.754,35.922,26.268,209.0,186.0,271.0,292.0,False,True,12,False,False,False,8926.04,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALO,14,Aston Martin,56.0,2.0,SOFT,15.0,True,95.246,32.89,35.877,26.479,209.0,185.0,269.0,275.0,False,True,1,False,False,False,9020.984,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,1.0,1.0,MEDIUM,1.0,True,96.094,,34.486,26.068,211.0,188.0,268.0,287.0,False,False,1,False,False,False,3441.749,False,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,2.0,1.0,MEDIUM,2.0,True,93.036,32.306,34.696,26.034,212.0,187.0,265.0,298.0,True,True,1,False,False,False,3538.087,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,3.0,1.0,MEDIUM,3.0,True,93.357,32.59,34.697,26.07,209.0,187.0,270.0,298.0,False,True,1,False,False,False,3631.123,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,4.0,1.0,MEDIUM,4.0,True,94.73,32.82,35.26,26.65,210.0,185.0,275.0,293.0,False,True,1,False,False,False,3724.48,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,5.0,1.0,MEDIUM,5.0,True,93.697,33.187,34.271,26.239,211.0,183.0,267.0,299.0,False,True,12,False,False,False,3819.21,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,6.0,1.0,MEDIUM,6.0,True,129.463,39.229,52.226,38.008,93.0,140.0,270.0,117.0,False,False,24,False,False,False,3912.907,False,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,7.0,1.0,MEDIUM,7.0,True,138.014,41.184,55.067,41.763,136.0,139.0,176.0,137.0,False,False,4,False,False,False,4042.37,False,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,8.0,1.0,MEDIUM,8.0,True,142.808,49.733,53.527,39.548,142.0,144.0,175.0,147.0,False,False,4,False,False,False,4180.384,False,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,9.0,1.0,MEDIUM,9.0,True,147.484,47.881,55.025,44.578,171.0,106.0,194.0,144.0,False,False,4,False,False,False,4323.192,False,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,10.0,1.0,MEDIUM,10.0,True,138.762,48.254,54.401,36.107,162.0,116.0,218.0,162.0,False,False,4,False,False,False,4470.676,False,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,11.0,1.0,MEDIUM,11.0,True,,48.092,48.067,55.734,178.0,142.0,284.0,64.0,False,False,41,False,False,False,4609.438,False,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,12.0,1.0,MEDIUM,12.0,True,92.878,32.29,34.628,25.96,213.0,188.0,270.0,296.0,True,True,1,False,False,False,4761.3,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,13.0,1.0,MEDIUM,13.0,True,94.381,32.533,35.784,26.064,212.0,185.0,282.0,302.0,False,True,1,False,False,False,4854.178,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,14.0,1.0,MEDIUM,14.0,True,93.744,32.501,35.49,25.753,210.0,185.0,276.0,315.0,False,True,1,False,False,False,4948.559,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,15.0,1.0,MEDIUM,15.0,True,93.56,32.977,34.789,25.794,206.0,183.0,250.0,312.0,False,True,1,False,False,False,5042.303,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,16.0,1.0,MEDIUM,16.0,True,93.536,33.073,34.727,25.736,212.0,184.0,277.0,311.0,False,True,12,False,False,False,5135.863,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,17.0,1.0,MEDIUM,17.0,True,95.457,34.048,35.517,25.892,169.0,184.0,274.0,309.0,False,True,1,False,False,False,5229.399,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,18.0,1.0,MEDIUM,18.0,True,93.692,32.874,34.835,25.983,211.0,185.0,275.0,306.0,False,True,1,False,False,False,5324.856,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,19.0,1.0,MEDIUM,19.0,True,93.539,32.757,34.899,25.883,210.0,185.0,275.0,306.0,False,True,1,False,False,False,5418.548,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,20.0,1.0,MEDIUM,20.0,True,93.689,32.831,34.98,25.878,210.0,185.0,278.0,305.0,False,True,1,False,False,False,5512.087,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,21.0,1.0,MEDIUM,21.0,True,98.504,32.83,34.697,30.977,209.0,186.0,,303.0,False,False,1,False,False,True,5605.776,False,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,22.0,2.0,HARD,1.0,True,108.975,48.356,35.418,25.201,214.0,186.0,288.0,312.0,False,False,1,False,True,False,5704.28,False,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,23.0,2.0,HARD,2.0,True,93.886,32.676,34.841,26.369,206.0,185.0,275.0,320.0,False,True,1,False,False,False,5813.255,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,24.0,2.0,HARD,3.0,True,93.588,32.758,35.473,25.357,207.0,186.0,285.0,319.0,False,True,1,False,False,False,5907.141,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,25.0,2.0,HARD,4.0,True,92.986,32.642,34.901,25.443,212.0,185.0,289.0,316.0,False,True,1,False,False,False,6000.729,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,26.0,2.0,HARD,5.0,True,93.905,32.807,35.61,25.488,211.0,185.0,275.0,310.0,False,True,1,False,False,False,6093.715,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,27.0,2.0,HARD,6.0,True,92.922,32.69,34.645,25.587,208.0,184.0,280.0,312.0,False,True,1,False,False,False,6187.62,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,28.0,2.0,HARD,7.0,True,92.652,32.567,34.436,25.649,211.0,183.0,276.0,319.0,True,True,1,False,False,False,6280.542,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,29.0,2.0,HARD,8.0,True,92.786,32.732,34.512,25.542,210.0,184.0,289.0,316.0,False,True,1,False,False,False,6373.194,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,30.0,2.0,HARD,9.0,True,93.416,33.182,34.743,25.491,212.0,185.0,289.0,322.0,False,True,1,False,False,False,6465.98,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,31.0,2.0,HARD,10.0,True,92.945,32.711,34.453,25.781,213.0,185.0,273.0,311.0,False,True,1,False,False,False,6559.396,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,32.0,2.0,HARD,11.0,True,92.995,32.55,34.623,25.822,211.0,184.0,278.0,305.0,False,True,1,False,False,False,6652.341,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,33.0,2.0,HARD,12.0,True,93.075,32.527,34.697,25.851,210.0,184.0,277.0,304.0,False,True,1,False,False,False,6745.336,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,34.0,2.0,HARD,13.0,True,92.971,32.48,34.729,25.762,212.0,182.0,279.0,305.0,False,True,1,False,False,False,6838.411,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,35.0,2.0,HARD,14.0,True,92.993,32.362,34.904,25.727,207.0,184.0,280.0,306.0,False,True,1,False,False,False,6931.382,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,36.0,2.0,HARD,15.0,True,92.879,32.476,34.717,25.686,212.0,183.0,281.0,307.0,False,True,1,False,False,False,7024.375,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,37.0,2.0,HARD,16.0,True,93.155,32.388,35.012,25.755,209.0,182.0,280.0,305.0,False,True,1,False,False,False,7117.254,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,38.0,2.0,HARD,17.0,True,92.993,32.393,34.915,25.685,213.0,185.0,280.0,304.0,False,True,1,False,False,False,7210.409,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,39.0,2.0,HARD,18.0,True,92.755,32.401,34.698,25.656,213.0,186.0,281.0,307.0,False,True,1,False,False,False,7303.402,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,40.0,2.0,HARD,19.0,True,92.767,32.366,34.653,25.748,210.0,184.0,280.0,307.0,False,True,1,False,False,False,7396.157,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,41.0,2.0,HARD,20.0,True,92.686,32.341,34.73,25.615,213.0,184.0,281.0,307.0,False,True,1,False,False,False,7488.924,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,42.0,2.0,HARD,21.0,True,93.042,32.45,34.911,25.681,212.0,186.0,283.0,306.0,False,True,1,False,False,False,7581.61,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,43.0,2.0,HARD,22.0,True,92.612,32.264,34.738,25.61,213.0,184.0,284.0,310.0,True,True,1,False,False,False,7674.652,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,44.0,2.0,HARD,23.0,True,92.515,32.323,34.622,25.57,213.0,182.0,283.0,311.0,True,True,1,False,False,False,7767.264,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,45.0,2.0,HARD,24.0,True,92.874,32.502,34.867,25.505,212.0,184.0,280.0,315.0,False,True,1,False,False,False,7859.779,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,46.0,2.0,HARD,25.0,True,93.468,32.72,34.919,25.829,209.0,181.0,291.0,309.0,False,True,1,False,False,False,7952.653,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,47.0,2.0,HARD,26.0,True,93.678,33.285,34.361,26.032,212.0,185.0,288.0,300.0,False,True,1,False,False,False,8046.121,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,48.0,2.0,HARD,27.0,True,92.892,32.22,34.846,25.826,213.0,183.0,274.0,304.0,False,True,12,False,False,False,8139.799,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,49.0,2.0,HARD,28.0,True,92.734,32.36,34.61,25.764,212.0,185.0,281.0,306.0,False,True,1,False,False,False,8232.691,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,50.0,2.0,HARD,29.0,True,92.566,32.222,34.621,25.723,213.0,185.0,283.0,311.0,False,True,1,False,False,False,8325.425,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,51.0,2.0,HARD,30.0,True,92.578,32.062,34.705,25.811,212.0,186.0,281.0,307.0,False,True,1,False,False,False,8417.991,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,52.0,2.0,HARD,31.0,True,92.579,32.144,34.812,25.623,212.0,186.0,284.0,309.0,False,True,1,False,False,False,8510.569,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,53.0,2.0,HARD,32.0,True,92.679,32.17,34.722,25.787,213.0,185.0,285.0,313.0,False,True,1,False,False,False,8603.148,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,54.0,2.0,HARD,33.0,True,92.667,32.188,34.697,25.782,212.0,186.0,281.0,306.0,False,True,1,False,False,False,8695.827,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,55.0,2.0,HARD,34.0,True,92.941,32.136,35.017,25.788,214.0,186.0,280.0,305.0,False,True,1,False,False,False,8788.494,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,56.0,2.0,HARD,35.0,True,94.211,32.217,35.405,26.589,215.0,186.0,277.0,293.0,False,True,1,False,False,False,8881.435,True,,,unresolved
+2026,Miami Grand Prix,4,R,LEC,16,Ferrari,57.0,2.0,HARD,36.0,True,109.834,41.346,40.868,27.62,206.0,180.0,214.0,277.0,False,True,12,False,False,False,8975.646,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,1.0,1.0,MEDIUM,1.0,True,107.631,,38.092,26.585,204.0,183.0,266.0,297.0,False,False,1,False,False,False,3441.749,False,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,2.0,1.0,MEDIUM,2.0,True,96.569,34.568,36.011,25.99,207.0,182.0,267.0,315.0,True,True,1,False,False,False,3549.624,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,3.0,1.0,MEDIUM,3.0,True,97.019,34.324,36.037,26.658,205.0,182.0,271.0,291.0,False,True,1,False,False,False,3646.193,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,4.0,1.0,MEDIUM,4.0,True,96.418,34.128,35.764,26.526,206.0,183.0,266.0,303.0,True,True,1,False,False,False,3743.212,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,5.0,1.0,MEDIUM,5.0,True,99.194,33.807,37.093,28.294,205.0,181.0,178.0,278.0,False,False,124,False,False,False,3839.63,False,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,6.0,1.0,MEDIUM,6.0,True,136.722,45.722,51.938,39.062,196.0,151.0,256.0,82.0,False,False,4,False,False,False,3938.824,False,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,7.0,1.0,MEDIUM,7.0,True,128.505,38.383,48.857,41.265,170.0,113.0,218.0,98.0,False,False,4,False,False,False,4075.546,False,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,8.0,1.0,MEDIUM,8.0,True,141.458,41.308,59.376,40.774,117.0,55.0,212.0,102.0,False,False,4,False,False,False,4204.051,False,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,9.0,1.0,MEDIUM,9.0,True,142.647,42.959,60.632,39.056,109.0,79.0,214.0,172.0,False,False,4,False,False,False,4345.509,False,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,10.0,1.0,MEDIUM,10.0,True,139.176,45.681,59.716,33.779,106.0,92.0,256.0,147.0,False,False,4,False,False,False,4488.156,False,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,11.0,1.0,MEDIUM,11.0,True,141.17,46.719,46.079,48.372,142.0,164.0,279.0,38.0,False,False,41,False,False,False,4627.332,False,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,12.0,1.0,MEDIUM,12.0,True,97.442,34.243,36.78,26.419,206.0,183.0,267.0,306.0,False,True,1,False,False,False,4768.502,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,13.0,1.0,MEDIUM,13.0,True,96.085,34.162,35.757,26.166,205.0,181.0,263.0,308.0,True,True,1,False,False,False,4865.944,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,14.0,1.0,MEDIUM,14.0,True,96.582,34.558,35.87,26.154,204.0,180.0,268.0,311.0,False,True,1,False,False,False,4962.029,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,15.0,1.0,MEDIUM,15.0,True,100.953,34.239,36.064,30.65,204.0,181.0,264.0,306.0,False,True,12,False,False,False,5058.611,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,16.0,1.0,MEDIUM,16.0,True,96.974,34.067,36.17,26.737,206.0,181.0,271.0,294.0,False,True,1,False,False,False,5159.564,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,17.0,1.0,MEDIUM,17.0,True,96.371,33.661,36.11,26.6,205.0,182.0,268.0,296.0,False,True,1,False,False,False,5256.538,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,18.0,1.0,MEDIUM,18.0,True,96.539,33.809,36.077,26.653,207.0,183.0,269.0,296.0,False,True,1,False,False,False,5352.909,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,19.0,1.0,MEDIUM,19.0,True,97.022,33.863,36.318,26.841,205.0,182.0,266.0,294.0,False,True,1,False,False,False,5449.448,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,20.0,1.0,MEDIUM,20.0,True,96.851,33.896,36.208,26.747,205.0,182.0,267.0,295.0,False,True,1,False,False,False,5546.47,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,21.0,1.0,MEDIUM,21.0,True,101.443,33.888,36.193,31.362,204.0,182.0,,301.0,False,False,1,False,False,True,5643.321,False,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,22.0,2.0,SOFT,4.0,False,110.529,48.548,35.778,26.203,208.0,186.0,270.0,296.0,False,False,1,False,True,False,5744.764,False,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,23.0,2.0,SOFT,5.0,False,95.39,33.294,36.086,26.01,207.0,186.0,263.0,313.0,True,True,1,False,False,False,5855.293,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,24.0,2.0,SOFT,6.0,False,97.141,33.858,36.545,26.738,207.0,185.0,269.0,288.0,False,True,1,False,False,False,5950.683,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,25.0,2.0,SOFT,7.0,False,95.921,33.309,36.026,26.586,206.0,184.0,263.0,289.0,False,True,1,False,False,False,6047.824,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,26.0,2.0,SOFT,8.0,False,96.024,33.577,35.856,26.591,206.0,184.0,268.0,288.0,False,True,1,False,False,False,6143.745,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,27.0,2.0,SOFT,9.0,False,95.818,33.286,35.845,26.687,207.0,185.0,265.0,288.0,False,True,1,False,False,False,6239.769,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,28.0,2.0,SOFT,10.0,False,95.942,33.275,35.903,26.764,207.0,185.0,265.0,287.0,False,True,1,False,False,False,6335.587,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,29.0,2.0,SOFT,11.0,False,95.773,33.29,35.863,26.62,207.0,185.0,267.0,289.0,False,True,1,False,False,False,6431.529,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,30.0,2.0,SOFT,12.0,False,95.505,33.513,35.585,26.407,206.0,185.0,269.0,295.0,False,True,1,False,False,False,6527.302,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,31.0,2.0,SOFT,13.0,False,95.432,33.281,35.645,26.506,208.0,184.0,269.0,292.0,False,True,1,False,False,False,6622.807,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,32.0,2.0,SOFT,14.0,False,95.601,33.349,35.696,26.556,206.0,184.0,271.0,292.0,False,True,1,False,False,False,6718.239,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,33.0,2.0,SOFT,15.0,False,95.203,33.156,35.638,26.409,207.0,185.0,270.0,294.0,True,True,1,False,False,False,6813.84,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,34.0,2.0,SOFT,16.0,False,95.849,33.385,35.928,26.536,206.0,184.0,271.0,292.0,False,True,1,False,False,False,6909.043,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,35.0,2.0,SOFT,17.0,False,98.513,33.348,38.795,26.37,207.0,181.0,275.0,303.0,False,True,1,False,False,False,7004.892,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,36.0,2.0,SOFT,18.0,False,96.018,33.5,35.993,26.525,206.0,182.0,270.0,295.0,False,True,1,False,False,False,7103.405,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,37.0,2.0,SOFT,19.0,False,101.024,33.507,35.922,31.595,205.0,184.0,,292.0,False,False,1,False,False,True,7199.423,False,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,38.0,3.0,SOFT,1.0,True,109.547,47.841,35.496,26.21,211.0,184.0,270.0,302.0,False,False,1,False,True,False,7300.447,False,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,39.0,3.0,SOFT,2.0,True,95.112,33.264,35.512,26.336,206.0,186.0,271.0,295.0,True,True,1,False,False,False,7409.994,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,40.0,3.0,SOFT,3.0,True,94.958,33.199,35.501,26.258,209.0,185.0,271.0,295.0,True,True,1,False,False,False,7505.106,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,41.0,3.0,SOFT,4.0,True,95.144,33.211,35.579,26.354,207.0,185.0,270.0,293.0,False,True,1,False,False,False,7600.064,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,42.0,3.0,SOFT,5.0,True,95.324,33.272,35.65,26.402,208.0,185.0,270.0,291.0,False,True,1,False,False,False,7695.208,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,43.0,3.0,SOFT,6.0,True,95.225,33.036,35.704,26.485,208.0,187.0,244.0,290.0,False,True,1,False,False,False,7790.532,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,44.0,3.0,SOFT,7.0,True,97.379,35.224,35.799,26.356,210.0,184.0,274.0,296.0,False,True,1,False,False,False,7885.757,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,45.0,3.0,SOFT,8.0,True,94.82,33.012,35.556,26.252,210.0,184.0,269.0,298.0,True,True,1,False,False,False,7983.136,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,46.0,3.0,SOFT,9.0,True,95.174,33.029,35.699,26.446,208.0,184.0,268.0,293.0,False,True,12,False,False,False,8077.956,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,47.0,3.0,SOFT,10.0,True,95.215,33.078,35.754,26.383,209.0,186.0,272.0,293.0,False,True,1,False,False,False,8173.13,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,48.0,3.0,SOFT,11.0,True,95.135,32.987,35.72,26.428,208.0,185.0,272.0,292.0,False,True,1,False,False,False,8268.345,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,49.0,3.0,SOFT,12.0,True,95.098,32.974,35.77,26.354,210.0,186.0,271.0,293.0,False,True,1,False,False,False,8363.48,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,50.0,3.0,SOFT,13.0,True,95.187,33.096,35.724,26.367,209.0,185.0,272.0,293.0,False,True,1,False,False,False,8458.578,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,51.0,3.0,SOFT,14.0,True,94.891,32.923,35.69,26.278,209.0,185.0,272.0,295.0,False,True,1,False,False,False,8553.765,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,52.0,3.0,SOFT,15.0,True,94.759,32.821,35.703,26.235,209.0,183.0,272.0,296.0,True,True,1,False,False,False,8648.656,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,53.0,3.0,SOFT,16.0,True,94.811,32.95,35.644,26.217,211.0,186.0,272.0,296.0,False,True,1,False,False,False,8743.415,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,54.0,3.0,SOFT,17.0,True,94.806,32.926,35.582,26.298,211.0,185.0,270.0,295.0,False,True,1,False,False,False,8838.226,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,55.0,3.0,SOFT,18.0,True,96.149,32.944,35.626,27.579,212.0,185.0,271.0,226.0,False,True,12,False,False,False,8933.032,True,,,unresolved
+2026,Miami Grand Prix,4,R,STR,18,Aston Martin,56.0,3.0,SOFT,19.0,True,94.716,33.623,35.444,25.649,211.0,182.0,266.0,324.0,True,True,1,False,False,False,9029.181,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,1.0,1.0,MEDIUM,1.0,True,104.983,,36.586,26.418,211.0,186.0,255.0,293.0,False,False,1,False,False,False,3441.749,False,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,2.0,1.0,MEDIUM,2.0,True,95.404,33.896,35.234,26.274,210.0,184.0,255.0,305.0,True,True,1,False,False,False,3546.976,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,3.0,1.0,MEDIUM,3.0,True,94.932,33.763,35.17,25.999,210.0,185.0,259.0,314.0,True,True,1,False,False,False,3642.38,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,4.0,1.0,MEDIUM,4.0,True,94.77,33.744,35.219,25.807,209.0,185.0,271.0,324.0,True,True,1,False,False,False,3737.312,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,5.0,1.0,MEDIUM,5.0,True,95.888,33.837,35.798,26.253,208.0,185.0,276.0,287.0,False,True,12,False,False,False,3832.082,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,6.0,1.0,MEDIUM,6.0,True,135.327,41.435,49.604,44.288,175.0,130.0,197.0,123.0,False,False,24,False,False,False,3927.97,False,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,7.0,1.0,MEDIUM,7.0,True,127.97,36.259,49.483,42.228,192.0,105.0,240.0,90.0,False,False,4,False,False,False,4063.297,False,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,8.0,1.0,MEDIUM,8.0,True,144.68,46.479,57.298,40.903,99.0,67.0,220.0,100.0,False,False,4,False,False,False,4191.267,False,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,9.0,1.0,MEDIUM,9.0,True,143.515,44.037,57.731,41.747,130.0,66.0,187.0,163.0,False,False,4,False,False,False,4335.947,False,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,10.0,1.0,MEDIUM,10.0,True,140.112,47.224,57.169,35.719,96.0,69.0,229.0,140.0,False,False,4,False,False,False,4479.462,False,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,11.0,1.0,MEDIUM,11.0,True,145.176,46.281,47.048,51.847,97.0,125.0,280.0,55.0,False,False,41,False,False,False,4619.574,False,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,12.0,1.0,MEDIUM,12.0,True,95.206,33.695,35.604,25.907,209.0,186.0,262.0,322.0,False,True,1,False,False,False,4764.75,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,13.0,1.0,MEDIUM,13.0,True,94.553,33.662,35.118,25.773,207.0,184.0,276.0,321.0,True,True,1,False,False,False,4859.956,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,14.0,1.0,MEDIUM,14.0,True,94.161,33.205,35.073,25.883,208.0,184.0,277.0,311.0,True,True,1,False,False,False,4954.509,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,15.0,1.0,MEDIUM,15.0,True,95.47,33.462,36.126,25.882,209.0,183.0,260.0,322.0,False,True,1,False,False,False,5048.67,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,16.0,1.0,MEDIUM,16.0,True,95.245,33.854,35.354,26.037,205.0,183.0,279.0,322.0,False,True,12,False,False,False,5144.14,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,17.0,1.0,MEDIUM,17.0,True,95.824,34.501,35.289,26.034,207.0,182.0,276.0,312.0,False,True,1,False,False,False,5239.385,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,18.0,1.0,MEDIUM,18.0,True,95.189,33.781,35.369,26.039,207.0,182.0,279.0,316.0,False,True,1,False,False,False,5335.209,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,19.0,1.0,MEDIUM,19.0,True,94.979,33.663,35.309,26.007,207.0,182.0,277.0,317.0,False,True,1,False,False,False,5430.398,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,20.0,1.0,MEDIUM,20.0,True,95.212,33.784,35.397,26.031,206.0,182.0,275.0,318.0,False,True,1,False,False,False,5525.377,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,21.0,1.0,MEDIUM,21.0,True,94.879,33.615,35.3,25.964,207.0,185.0,278.0,317.0,False,True,1,False,False,False,5620.589,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,22.0,1.0,MEDIUM,22.0,True,94.8,33.59,35.238,25.972,207.0,184.0,280.0,315.0,False,True,1,False,False,False,5715.468,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,23.0,1.0,MEDIUM,23.0,True,95.097,33.777,35.328,25.992,209.0,184.0,269.0,315.0,False,True,1,False,False,False,5810.268,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,24.0,1.0,MEDIUM,24.0,True,95.901,33.612,36.142,26.147,209.0,182.0,282.0,322.0,False,True,1,False,False,False,5905.365,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,25.0,1.0,MEDIUM,25.0,True,95.119,33.722,35.303,26.094,208.0,185.0,278.0,313.0,False,True,1,False,False,False,6001.266,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,26.0,1.0,MEDIUM,26.0,True,94.964,33.571,35.358,26.035,207.0,183.0,280.0,316.0,False,True,1,False,False,False,6096.385,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,27.0,1.0,MEDIUM,27.0,True,99.764,33.673,35.145,30.946,208.0,184.0,,322.0,False,False,1,False,False,True,6191.349,False,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,28.0,2.0,HARD,1.0,True,107.798,47.468,34.621,25.709,215.0,189.0,249.0,321.0,False,False,1,False,True,False,6291.113,False,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,29.0,2.0,HARD,2.0,True,93.875,33.21,34.972,25.693,208.0,186.0,271.0,315.0,True,True,1,False,False,False,6398.911,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,30.0,2.0,HARD,3.0,True,93.784,33.258,34.81,25.716,211.0,186.0,277.0,315.0,True,True,1,False,False,False,6492.786,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,31.0,2.0,HARD,4.0,True,93.837,33.142,34.87,25.825,211.0,184.0,280.0,317.0,False,True,1,False,False,False,6586.57,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,32.0,2.0,HARD,5.0,True,94.194,33.232,35.097,25.865,210.0,183.0,271.0,314.0,False,True,1,False,False,False,6680.407,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,33.0,2.0,HARD,6.0,True,94.24,33.293,35.104,25.843,211.0,185.0,275.0,313.0,False,True,1,False,False,False,6774.601,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,34.0,2.0,HARD,7.0,True,94.433,33.363,35.117,25.953,210.0,184.0,276.0,311.0,False,True,1,False,False,False,6868.841,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,35.0,2.0,HARD,8.0,True,94.296,33.302,35.247,25.747,210.0,180.0,283.0,314.0,False,True,1,False,False,False,6963.274,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,36.0,2.0,HARD,9.0,True,94.201,33.172,35.251,25.778,211.0,184.0,283.0,312.0,False,True,1,False,False,False,7057.57,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,37.0,2.0,HARD,10.0,True,94.485,33.091,35.38,26.014,207.0,184.0,271.0,309.0,False,True,1,False,False,False,7151.771,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,38.0,2.0,HARD,11.0,True,94.44,33.305,35.117,26.018,210.0,184.0,270.0,309.0,False,True,1,False,False,False,7246.256,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,39.0,2.0,HARD,12.0,True,94.337,33.28,35.029,26.028,210.0,184.0,277.0,310.0,False,True,1,False,False,False,7340.696,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,40.0,2.0,HARD,13.0,True,94.439,33.306,35.169,25.964,207.0,183.0,279.0,315.0,False,True,1,False,False,False,7435.033,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,41.0,2.0,HARD,14.0,True,94.172,33.2,35.07,25.902,210.0,185.0,279.0,311.0,False,True,1,False,False,False,7529.472,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,42.0,2.0,HARD,15.0,True,94.366,33.177,35.213,25.976,209.0,184.0,275.0,310.0,False,True,1,False,False,False,7623.644,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,43.0,2.0,HARD,16.0,True,94.29,33.084,35.28,25.926,209.0,183.0,277.0,309.0,False,True,1,False,False,False,7718.01,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,44.0,2.0,HARD,17.0,True,94.139,33.002,35.108,26.029,209.0,186.0,276.0,307.0,False,True,1,False,False,False,7812.3,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,45.0,2.0,HARD,18.0,True,94.31,33.156,35.091,26.063,210.0,185.0,275.0,308.0,False,True,1,False,False,False,7906.439,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,46.0,2.0,HARD,19.0,True,94.199,33.156,35.034,26.009,209.0,184.0,277.0,309.0,False,True,1,False,False,False,8000.749,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,47.0,2.0,HARD,20.0,True,94.561,33.21,34.971,26.38,210.0,184.0,279.0,310.0,False,True,12,False,False,False,8094.948,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,48.0,2.0,HARD,21.0,True,94.325,33.382,34.917,26.026,210.0,185.0,277.0,310.0,False,True,1,False,False,False,8189.509,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,49.0,2.0,HARD,22.0,True,94.18,33.228,34.959,25.993,210.0,186.0,276.0,308.0,False,True,1,False,False,False,8283.834,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,50.0,2.0,HARD,23.0,True,94.356,33.295,35.014,26.047,208.0,184.0,279.0,309.0,False,True,1,False,False,False,8378.014,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,51.0,2.0,HARD,24.0,True,94.407,33.227,35.131,26.049,209.0,184.0,278.0,310.0,False,True,1,False,False,False,8472.37,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,52.0,2.0,HARD,25.0,True,94.287,33.118,35.169,26.0,211.0,185.0,279.0,310.0,False,True,1,False,False,False,8566.777,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,53.0,2.0,HARD,26.0,True,94.351,33.294,35.164,25.893,211.0,185.0,277.0,311.0,False,True,1,False,False,False,8661.064,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,54.0,2.0,HARD,27.0,True,94.253,33.296,34.963,25.994,210.0,186.0,282.0,310.0,False,True,1,False,False,False,8755.415,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,55.0,2.0,HARD,28.0,True,94.109,33.208,35.015,25.886,211.0,186.0,281.0,311.0,False,True,1,False,False,False,8849.668,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,56.0,2.0,HARD,29.0,True,94.163,33.13,35.053,25.98,211.0,185.0,279.0,311.0,False,True,12,False,False,False,8943.777,True,,,unresolved
+2026,Miami Grand Prix,4,R,ALB,23,Williams,57.0,2.0,HARD,30.0,True,94.298,33.156,35.255,25.887,212.0,183.0,263.0,327.0,False,True,1,False,False,False,9037.94,True,,,unresolved
+2026,Miami Grand Prix,4,R,HUL,27,Audi,1.0,1.0,MEDIUM,1.0,True,114.251,,37.861,32.305,202.0,185.0,,289.0,False,False,1,False,False,True,3441.749,False,,,unresolved
+2026,Miami Grand Prix,4,R,HUL,27,Audi,2.0,2.0,MEDIUM,1.0,True,120.274,58.859,35.18,26.235,210.0,187.0,264.0,300.0,False,False,1,False,True,False,3556.244,False,,,unresolved
+2026,Miami Grand Prix,4,R,HUL,27,Audi,3.0,2.0,MEDIUM,2.0,True,94.93,33.374,35.066,26.49,210.0,186.0,260.0,290.0,True,True,1,False,False,False,3676.518,True,,,unresolved
+2026,Miami Grand Prix,4,R,HUL,27,Audi,4.0,2.0,MEDIUM,3.0,True,94.523,33.228,34.897,26.398,210.0,186.0,262.0,293.0,True,True,1,False,False,False,3771.448,True,,,unresolved
+2026,Miami Grand Prix,4,R,HUL,27,Audi,5.0,2.0,MEDIUM,4.0,True,109.487,33.252,36.287,39.948,209.0,181.0,243.0,210.0,False,False,124,False,False,False,3865.971,False,,,unresolved
+2026,Miami Grand Prix,4,R,HUL,27,Audi,6.0,2.0,MEDIUM,5.0,True,135.15,38.954,49.759,46.437,167.0,133.0,224.0,92.0,False,False,4,False,False,False,3975.458,False,,,unresolved
+2026,Miami Grand Prix,4,R,HUL,27,Audi,7.0,2.0,MEDIUM,6.0,True,,37.13,43.74,90.511,185.0,83.0,,57.0,False,False,4,False,False,True,4110.608,False,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,1.0,1.0,MEDIUM,1.0,True,104.911,,36.327,27.361,207.0,173.0,247.0,306.0,False,False,1,False,False,False,3441.749,False,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,2.0,1.0,MEDIUM,2.0,True,93.464,32.94,34.738,25.786,214.0,186.0,260.0,310.0,True,True,1,False,False,False,3546.904,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,3.0,1.0,MEDIUM,3.0,True,93.239,32.585,34.865,25.789,211.0,185.0,262.0,313.0,True,True,1,False,False,False,3640.368,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,4.0,1.0,MEDIUM,4.0,True,93.536,32.735,34.937,25.864,210.0,184.0,261.0,313.0,False,True,1,False,False,False,3733.607,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,5.0,1.0,MEDIUM,5.0,True,94.09,32.98,35.12,25.99,212.0,184.0,239.0,314.0,False,True,12,False,False,False,3827.143,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,6.0,1.0,MEDIUM,6.0,True,140.948,42.754,52.183,46.011,166.0,136.0,,102.0,False,False,24,False,False,True,3921.233,False,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,7.0,2.0,HARD,1.0,True,142.654,52.723,49.164,40.767,176.0,141.0,223.0,86.0,False,False,4,False,True,False,4062.181,False,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,8.0,2.0,HARD,2.0,True,141.939,41.268,60.077,40.594,103.0,53.0,222.0,110.0,False,False,4,False,False,False,4204.835,False,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,9.0,2.0,HARD,3.0,True,142.583,42.138,62.696,37.749,95.0,92.0,226.0,192.0,False,False,4,False,False,False,4346.774,False,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,10.0,2.0,HARD,4.0,True,140.172,45.957,60.071,34.144,100.0,90.0,226.0,258.0,False,False,4,False,False,False,4489.357,False,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,11.0,2.0,HARD,5.0,True,139.443,46.07,45.171,48.202,121.0,165.0,283.0,38.0,False,False,41,False,False,False,4629.529,False,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,12.0,2.0,HARD,6.0,True,95.784,33.534,36.532,25.718,209.0,185.0,263.0,322.0,False,True,1,False,False,False,4768.972,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,13.0,2.0,HARD,7.0,True,93.56,32.983,34.8,25.777,215.0,185.0,260.0,315.0,False,True,1,False,False,False,4864.756,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,14.0,2.0,HARD,8.0,True,93.63,32.814,35.007,25.809,212.0,185.0,282.0,324.0,False,True,1,False,False,False,4958.316,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,15.0,2.0,HARD,9.0,True,93.552,32.814,35.278,25.46,214.0,185.0,264.0,332.0,False,True,1,False,False,False,5051.946,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,16.0,2.0,HARD,10.0,True,94.118,33.054,35.238,25.826,214.0,184.0,276.0,327.0,False,True,12,False,False,False,5145.498,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,17.0,2.0,HARD,11.0,True,93.799,33.113,34.995,25.691,213.0,183.0,280.0,322.0,False,True,1,False,False,False,5239.616,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,18.0,2.0,HARD,12.0,True,93.67,32.704,35.093,25.873,212.0,185.0,264.0,312.0,False,True,1,False,False,False,5333.415,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,19.0,2.0,HARD,13.0,True,93.381,32.522,34.966,25.893,212.0,185.0,259.0,315.0,False,True,1,False,False,False,5427.085,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,20.0,2.0,HARD,14.0,True,93.862,33.11,34.996,25.756,212.0,183.0,284.0,316.0,False,True,1,False,False,False,5520.466,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,21.0,2.0,HARD,15.0,True,93.341,32.489,35.035,25.817,212.0,186.0,266.0,310.0,False,True,1,False,False,False,5614.328,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,22.0,2.0,HARD,16.0,True,93.324,32.626,34.9,25.798,212.0,185.0,268.0,310.0,False,True,1,False,False,False,5707.669,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,23.0,2.0,HARD,17.0,True,93.355,32.468,35.03,25.857,211.0,186.0,264.0,312.0,False,True,1,False,False,False,5800.993,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,24.0,2.0,HARD,18.0,True,93.11,32.616,34.806,25.688,214.0,186.0,264.0,316.0,True,True,1,False,False,False,5894.348,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,25.0,2.0,HARD,19.0,True,93.499,32.632,35.306,25.561,214.0,187.0,266.0,318.0,False,True,1,False,False,False,5987.458,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,26.0,2.0,HARD,20.0,True,93.844,32.748,35.404,25.692,213.0,183.0,267.0,325.0,False,True,1,False,False,False,6080.957,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,27.0,2.0,HARD,21.0,True,93.472,32.604,34.898,25.97,213.0,186.0,263.0,306.0,False,True,1,False,False,False,6174.801,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,28.0,2.0,HARD,22.0,True,93.778,32.682,34.989,26.107,213.0,186.0,269.0,305.0,False,True,1,False,False,False,6268.273,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,29.0,2.0,HARD,23.0,True,94.35,32.511,35.479,26.36,213.0,186.0,268.0,291.0,False,True,1,False,False,False,6362.051,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,30.0,2.0,HARD,24.0,True,94.172,33.217,35.019,25.936,212.0,186.0,260.0,311.0,False,True,1,False,False,False,6456.401,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,31.0,2.0,HARD,25.0,True,93.281,32.645,34.792,25.844,212.0,187.0,268.0,311.0,False,True,1,False,False,False,6550.573,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,32.0,2.0,HARD,26.0,True,93.582,32.659,34.932,25.991,212.0,186.0,266.0,307.0,False,True,1,False,False,False,6643.854,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,33.0,2.0,HARD,27.0,True,93.542,32.559,34.999,25.984,213.0,185.0,269.0,307.0,False,True,1,False,False,False,6737.436,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,34.0,2.0,HARD,28.0,True,93.462,32.505,35.076,25.881,214.0,187.0,265.0,308.0,False,True,1,False,False,False,6830.978,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,35.0,2.0,HARD,29.0,True,93.45,32.522,34.937,25.991,214.0,187.0,264.0,308.0,False,True,1,False,False,False,6924.44,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,36.0,2.0,HARD,30.0,True,93.354,32.448,35.032,25.874,211.0,188.0,271.0,309.0,False,True,1,False,False,False,7017.89,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,37.0,2.0,HARD,31.0,True,93.113,32.275,34.857,25.981,210.0,185.0,267.0,308.0,False,True,1,False,False,False,7111.244,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,38.0,2.0,HARD,32.0,True,93.148,32.46,34.804,25.884,212.0,187.0,268.0,311.0,False,True,1,False,False,False,7204.357,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,39.0,2.0,HARD,33.0,True,93.168,32.419,34.793,25.956,213.0,187.0,265.0,309.0,False,True,1,False,False,False,7297.505,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,40.0,2.0,HARD,34.0,True,93.505,32.504,34.933,26.068,212.0,181.0,270.0,310.0,False,True,1,False,False,False,7390.673,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,41.0,2.0,HARD,35.0,True,93.775,32.602,35.135,26.038,210.0,185.0,267.0,307.0,False,True,1,False,False,False,7484.178,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,42.0,2.0,HARD,36.0,True,93.382,32.465,34.912,26.005,213.0,187.0,268.0,307.0,False,True,1,False,False,False,7577.953,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,43.0,2.0,HARD,37.0,True,93.739,32.505,35.118,26.116,213.0,186.0,269.0,306.0,False,True,1,False,False,False,7671.335,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,44.0,2.0,HARD,38.0,True,93.651,32.412,35.029,26.21,215.0,187.0,268.0,306.0,False,True,1,False,False,False,7765.074,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,45.0,2.0,HARD,39.0,True,93.448,32.439,34.922,26.087,213.0,188.0,269.0,306.0,False,True,1,False,False,False,7858.725,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,46.0,2.0,HARD,40.0,True,93.693,32.459,35.079,26.155,213.0,188.0,266.0,305.0,False,True,1,False,False,False,7952.173,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,47.0,2.0,HARD,41.0,True,94.983,33.212,35.883,25.888,213.0,184.0,274.0,316.0,False,True,1,False,False,False,8045.866,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,48.0,2.0,HARD,42.0,True,94.368,32.932,35.271,26.165,213.0,184.0,280.0,313.0,False,True,12,False,False,False,8140.849,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,49.0,2.0,HARD,43.0,True,94.4,33.206,35.187,26.007,211.0,185.0,274.0,317.0,False,True,1,False,False,False,8235.217,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,50.0,2.0,HARD,44.0,True,93.592,32.683,35.044,25.865,212.0,184.0,273.0,314.0,False,True,1,False,False,False,8329.617,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,51.0,2.0,HARD,45.0,True,93.895,32.724,35.058,26.113,214.0,186.0,272.0,312.0,False,True,1,False,False,False,8423.209,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,52.0,2.0,HARD,46.0,True,93.931,32.572,35.269,26.09,213.0,186.0,270.0,311.0,False,True,1,False,False,False,8517.104,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,53.0,2.0,HARD,47.0,True,93.873,32.605,35.153,26.115,213.0,187.0,273.0,309.0,False,True,1,False,False,False,8611.035,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,54.0,2.0,HARD,48.0,True,94.243,32.642,35.278,26.323,214.0,188.0,267.0,309.0,False,True,1,False,False,False,8704.908,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,55.0,2.0,HARD,49.0,True,95.873,33.478,35.839,26.556,213.0,185.0,268.0,323.0,False,True,1,False,False,False,8799.151,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,56.0,2.0,HARD,50.0,True,95.577,32.976,35.948,26.653,213.0,184.0,269.0,324.0,False,True,1,False,False,False,8895.024,True,,,unresolved
+2026,Miami Grand Prix,4,R,VER,3,Red Bull Racing,57.0,2.0,HARD,51.0,True,94.614,33.098,35.275,26.241,211.0,182.0,249.0,330.0,False,True,12,False,False,False,8990.601,True,,,unresolved
+2026,Miami Grand Prix,4,R,LAW,30,Racing Bulls,1.0,1.0,MEDIUM,1.0,True,102.841,,36.127,25.913,199.0,186.0,256.0,310.0,False,False,1,False,False,False,3441.749,False,,,unresolved
+2026,Miami Grand Prix,4,R,LAW,30,Racing Bulls,2.0,1.0,MEDIUM,2.0,True,97.079,33.722,36.87,26.487,212.0,186.0,255.0,293.0,True,True,1,False,False,False,3544.834,True,,,unresolved
+2026,Miami Grand Prix,4,R,LAW,30,Racing Bulls,3.0,1.0,MEDIUM,3.0,True,94.814,33.437,35.147,26.23,213.0,186.0,262.0,305.0,True,True,1,False,False,False,3641.913,True,,,unresolved
+2026,Miami Grand Prix,4,R,LAW,30,Racing Bulls,4.0,1.0,MEDIUM,4.0,True,95.184,33.415,35.368,26.401,212.0,186.0,260.0,300.0,False,True,1,False,False,False,3736.727,True,,,unresolved
+2026,Miami Grand Prix,4,R,LAW,30,Racing Bulls,5.0,1.0,MEDIUM,5.0,True,122.852,34.619,35.83,52.403,208.0,182.0,153.0,301.0,False,False,124,False,False,False,3831.911,False,,,unresolved
+2026,Miami Grand Prix,4,R,LAW,30,Racing Bulls,6.0,1.0,MEDIUM,6.0,True,,50.513,49.357,63.212,143.0,100.0,,102.0,False,False,4,False,False,True,3954.763,False,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,1.0,1.0,MEDIUM,1.0,True,105.5,,37.375,25.924,209.0,185.0,289.0,296.0,False,False,1,False,False,False,3441.749,False,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,2.0,1.0,MEDIUM,2.0,True,97.468,35.371,36.014,26.083,213.0,183.0,278.0,325.0,True,True,1,False,False,False,3547.493,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,3.0,1.0,MEDIUM,3.0,True,95.181,34.036,35.311,25.834,211.0,185.0,276.0,325.0,True,True,1,False,False,False,3644.961,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,4.0,1.0,MEDIUM,4.0,True,95.464,34.01,35.389,26.065,211.0,185.0,277.0,309.0,False,True,1,False,False,False,3740.142,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,5.0,1.0,MEDIUM,5.0,True,95.306,33.823,35.446,26.037,210.0,184.0,276.0,314.0,False,True,12,False,False,False,3835.606,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,6.0,1.0,MEDIUM,6.0,True,135.341,45.536,48.146,41.659,193.0,128.0,203.0,142.0,False,False,24,False,False,False,3930.912,False,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,7.0,1.0,MEDIUM,7.0,True,128.906,37.501,48.15,43.255,198.0,99.0,246.0,84.0,False,False,4,False,False,False,4066.253,False,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,8.0,1.0,MEDIUM,8.0,True,143.901,45.215,58.318,40.368,96.0,53.0,230.0,98.0,False,False,4,False,False,False,4195.159,False,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,9.0,1.0,MEDIUM,9.0,True,143.155,44.659,58.107,40.389,97.0,66.0,234.0,150.0,False,False,4,False,False,False,4339.06,False,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,10.0,1.0,MEDIUM,10.0,True,139.98,47.124,57.919,34.937,95.0,83.0,239.0,162.0,False,False,4,False,False,False,4482.215,False,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,11.0,1.0,MEDIUM,11.0,True,144.14,47.089,46.108,50.943,121.0,128.0,284.0,47.0,False,False,41,False,False,False,4622.195,False,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,12.0,1.0,MEDIUM,12.0,True,95.213,33.691,35.613,25.909,210.0,186.0,281.0,301.0,False,True,1,False,False,False,4766.335,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,13.0,1.0,MEDIUM,13.0,True,95.07,33.916,35.39,25.764,210.0,185.0,276.0,294.0,True,True,1,False,False,False,4861.548,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,14.0,1.0,MEDIUM,14.0,True,94.862,33.69,35.293,25.879,212.0,184.0,278.0,309.0,True,True,1,False,False,False,4956.618,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,15.0,1.0,MEDIUM,15.0,True,95.665,34.035,35.537,26.093,211.0,184.0,277.0,321.0,False,True,1,False,False,False,5051.48,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,16.0,1.0,MEDIUM,16.0,True,95.196,33.716,35.456,26.024,211.0,184.0,281.0,316.0,False,True,12,False,False,False,5147.145,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,17.0,1.0,MEDIUM,17.0,True,95.127,33.727,35.455,25.945,211.0,184.0,278.0,312.0,False,True,1,False,False,False,5242.341,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,18.0,1.0,MEDIUM,18.0,True,95.226,33.745,35.535,25.946,210.0,183.0,281.0,315.0,False,True,1,False,False,False,5337.468,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,19.0,1.0,MEDIUM,19.0,True,94.966,33.522,35.479,25.965,209.0,183.0,281.0,316.0,False,True,1,False,False,False,5432.694,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,20.0,1.0,MEDIUM,20.0,True,95.21,33.664,35.576,25.97,209.0,182.0,281.0,318.0,False,True,1,False,False,False,5527.66,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,21.0,1.0,MEDIUM,21.0,True,95.117,33.593,35.607,25.917,209.0,182.0,281.0,316.0,False,True,1,False,False,False,5622.87,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,22.0,1.0,MEDIUM,22.0,True,96.17,33.604,36.195,26.371,209.0,183.0,283.0,271.0,False,True,1,False,False,False,5717.987,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,23.0,1.0,MEDIUM,23.0,True,95.001,33.681,35.441,25.879,210.0,183.0,278.0,320.0,False,True,1,False,False,False,5814.157,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,24.0,1.0,MEDIUM,24.0,True,95.213,33.823,35.486,25.904,212.0,185.0,284.0,315.0,False,True,1,False,False,False,5909.158,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,25.0,1.0,MEDIUM,25.0,True,95.403,33.702,35.717,25.984,210.0,185.0,282.0,314.0,False,True,1,False,False,False,6004.371,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,26.0,1.0,MEDIUM,26.0,True,95.011,33.447,35.522,26.042,210.0,184.0,281.0,314.0,False,True,1,False,False,False,6099.774,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,27.0,1.0,MEDIUM,27.0,True,95.469,33.665,35.687,26.117,208.0,185.0,278.0,309.0,False,True,1,False,False,False,6194.785,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,28.0,1.0,MEDIUM,28.0,True,95.468,33.831,35.598,26.039,209.0,184.0,281.0,310.0,False,True,1,False,False,False,6290.254,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,29.0,1.0,MEDIUM,29.0,True,95.526,33.511,35.71,26.305,209.0,184.0,277.0,307.0,False,True,1,False,False,False,6385.722,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,30.0,1.0,MEDIUM,30.0,True,95.393,33.602,35.655,26.136,209.0,184.0,281.0,306.0,False,True,1,False,False,False,6481.248,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,31.0,1.0,MEDIUM,31.0,True,100.336,33.441,35.398,31.497,210.0,186.0,,310.0,False,False,1,False,False,True,6576.641,False,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,32.0,2.0,HARD,1.0,True,109.454,48.709,34.877,25.868,216.0,191.0,279.0,306.0,False,False,1,False,True,False,6676.977,False,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,33.0,2.0,HARD,2.0,True,93.712,32.71,35.083,25.919,215.0,189.0,278.0,305.0,True,True,1,False,False,False,6786.431,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,34.0,2.0,HARD,3.0,True,94.051,32.781,35.359,25.911,212.0,187.0,279.0,306.0,False,True,1,False,False,False,6880.143,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,35.0,2.0,HARD,4.0,True,93.87,32.718,35.265,25.887,214.0,186.0,279.0,306.0,False,True,1,False,False,False,6974.194,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,36.0,2.0,HARD,5.0,True,94.25,32.911,35.358,25.981,212.0,187.0,279.0,305.0,False,True,1,False,False,False,7068.064,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,37.0,2.0,HARD,6.0,True,94.361,32.983,35.361,26.017,211.0,186.0,279.0,305.0,False,True,1,False,False,False,7162.314,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,38.0,2.0,HARD,7.0,True,94.538,33.133,35.425,25.98,212.0,186.0,282.0,304.0,False,True,1,False,False,False,7256.675,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,39.0,2.0,HARD,8.0,True,94.429,33.03,35.406,25.993,212.0,185.0,280.0,305.0,False,True,1,False,False,False,7351.213,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,40.0,2.0,HARD,9.0,True,94.464,33.158,35.392,25.914,209.0,184.0,282.0,305.0,False,True,1,False,False,False,7445.642,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,41.0,2.0,HARD,10.0,True,94.449,33.009,35.514,25.926,212.0,187.0,282.0,306.0,False,True,1,False,False,False,7540.106,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,42.0,2.0,HARD,11.0,True,94.589,33.019,35.555,26.015,212.0,184.0,283.0,308.0,False,True,1,False,False,False,7634.555,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,43.0,2.0,HARD,12.0,True,94.592,33.189,35.412,25.991,212.0,187.0,282.0,305.0,False,True,1,False,False,False,7729.144,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,44.0,2.0,HARD,13.0,True,94.527,33.04,35.515,25.972,214.0,186.0,282.0,304.0,False,True,1,False,False,False,7823.736,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,45.0,2.0,HARD,14.0,True,94.806,32.99,35.607,26.209,211.0,185.0,281.0,303.0,False,True,1,False,False,False,7918.263,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,46.0,2.0,HARD,15.0,True,95.655,33.245,36.421,25.989,211.0,182.0,288.0,317.0,False,True,1,False,False,False,8013.069,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,47.0,2.0,HARD,16.0,True,94.551,33.415,35.406,25.73,213.0,183.0,278.0,319.0,False,True,12,False,False,False,8108.724,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,48.0,2.0,HARD,17.0,True,94.26,33.311,35.213,25.736,210.0,184.0,283.0,319.0,False,True,1,False,False,False,8203.275,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,49.0,2.0,HARD,18.0,True,94.259,33.033,35.459,25.767,212.0,183.0,286.0,317.0,False,True,1,False,False,False,8297.535,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,50.0,2.0,HARD,19.0,True,96.679,33.093,37.155,26.431,208.0,183.0,246.0,316.0,False,True,1,False,False,False,8391.794,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,51.0,2.0,HARD,20.0,True,94.853,33.859,35.306,25.688,210.0,183.0,288.0,317.0,False,True,1,False,False,False,8488.473,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,52.0,2.0,HARD,21.0,True,94.439,33.152,35.399,25.888,213.0,184.0,282.0,314.0,False,True,1,False,False,False,8583.326,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,53.0,2.0,HARD,22.0,True,94.427,33.012,35.513,25.902,212.0,184.0,283.0,313.0,False,True,1,False,False,False,8677.765,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,54.0,2.0,HARD,23.0,True,94.124,33.026,35.308,25.79,213.0,185.0,286.0,312.0,False,True,1,False,False,False,8772.192,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,55.0,2.0,HARD,24.0,True,94.416,32.967,35.547,25.902,212.0,182.0,285.0,312.0,False,True,1,False,False,False,8866.316,True,,,unresolved
+2026,Miami Grand Prix,4,R,OCO,31,Haas F1 Team,56.0,2.0,HARD,25.0,True,94.407,33.071,35.469,25.867,212.0,186.0,283.0,311.0,False,True,12,False,False,False,8960.732,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,1.0,1.0,MEDIUM,1.0,True,106.549,,37.844,26.021,202.0,185.0,276.0,306.0,False,False,1,False,False,False,3441.749,False,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,2.0,1.0,MEDIUM,2.0,True,96.74,34.996,35.818,25.926,212.0,185.0,268.0,319.0,True,True,1,False,False,False,3548.542,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,3.0,1.0,MEDIUM,3.0,True,96.21,34.525,35.732,25.953,207.0,184.0,257.0,299.0,True,True,1,False,False,False,3645.282,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,4.0,1.0,MEDIUM,4.0,True,95.655,33.944,35.655,26.056,212.0,183.0,263.0,308.0,True,True,1,False,False,False,3741.492,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,5.0,1.0,MEDIUM,5.0,True,97.123,33.677,36.382,27.064,212.0,183.0,263.0,309.0,False,False,124,False,False,False,3837.147,False,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,6.0,1.0,MEDIUM,6.0,True,134.208,44.482,48.237,41.489,175.0,128.0,211.0,135.0,False,False,4,False,False,False,3934.27,False,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,7.0,1.0,MEDIUM,7.0,True,128.705,37.857,48.28,42.568,182.0,124.0,221.0,85.0,False,False,4,False,False,False,4068.478,False,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,8.0,1.0,MEDIUM,8.0,True,142.988,44.134,58.493,40.361,98.0,55.0,204.0,104.0,False,False,4,False,False,False,4197.183,False,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,9.0,1.0,MEDIUM,9.0,True,143.196,44.502,58.409,40.285,101.0,72.0,208.0,146.0,False,False,4,False,False,False,4340.171,False,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,10.0,1.0,MEDIUM,10.0,True,140.944,46.754,58.795,35.395,95.0,91.0,218.0,160.0,False,False,4,False,False,False,4483.367,False,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,11.0,1.0,MEDIUM,11.0,True,142.693,45.924,45.661,51.108,126.0,132.0,275.0,46.0,False,False,41,False,False,False,4624.311,False,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,12.0,1.0,MEDIUM,12.0,True,96.776,33.856,36.82,26.1,211.0,185.0,265.0,311.0,False,True,1,False,False,False,4767.004,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,13.0,1.0,MEDIUM,13.0,True,95.706,33.598,36.345,25.763,211.0,183.0,271.0,315.0,False,True,1,False,False,False,4863.78,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,14.0,1.0,MEDIUM,14.0,True,95.233,33.496,35.842,25.895,212.0,184.0,269.0,314.0,True,True,1,False,False,False,4959.486,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,15.0,1.0,MEDIUM,15.0,True,96.164,33.968,36.037,26.159,211.0,185.0,266.0,310.0,False,True,12,False,False,False,5054.719,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,16.0,1.0,MEDIUM,16.0,True,95.817,33.648,35.857,26.312,212.0,183.0,265.0,300.0,False,True,21,False,False,False,5150.883,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,17.0,1.0,MEDIUM,17.0,True,95.95,33.668,35.841,26.441,212.0,182.0,257.0,295.0,False,True,1,False,False,False,5246.7,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,18.0,1.0,MEDIUM,18.0,True,95.94,33.705,35.777,26.458,211.0,183.0,267.0,299.0,False,True,1,False,False,False,5342.65,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,19.0,1.0,MEDIUM,19.0,True,96.865,33.711,36.688,26.466,212.0,182.0,269.0,300.0,False,True,1,False,False,False,5438.59,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,20.0,1.0,MEDIUM,20.0,True,96.422,34.424,35.772,26.226,205.0,183.0,253.0,309.0,False,True,1,False,False,False,5535.455,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,21.0,1.0,MEDIUM,21.0,True,96.012,34.202,35.567,26.243,209.0,182.0,252.0,312.0,False,True,1,False,False,False,5631.877,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,22.0,1.0,MEDIUM,22.0,True,95.953,34.124,35.53,26.299,211.0,182.0,252.0,307.0,False,True,1,False,False,False,5727.889,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,23.0,1.0,MEDIUM,23.0,True,95.698,33.978,35.373,26.347,211.0,183.0,251.0,307.0,False,True,1,False,False,False,5823.842,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,24.0,1.0,MEDIUM,24.0,True,95.891,33.953,35.552,26.386,212.0,184.0,250.0,306.0,False,True,1,False,False,False,5919.54,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,25.0,1.0,MEDIUM,25.0,True,96.038,33.888,35.68,26.47,212.0,182.0,248.0,303.0,False,True,1,False,False,False,6015.431,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,26.0,1.0,MEDIUM,26.0,True,95.835,33.84,35.591,26.404,211.0,183.0,250.0,302.0,False,True,1,False,False,False,6111.469,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,27.0,1.0,MEDIUM,27.0,True,96.07,33.771,35.8,26.499,212.0,184.0,267.0,298.0,False,True,1,False,False,False,6207.304,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,28.0,1.0,MEDIUM,28.0,True,100.923,33.437,35.694,31.792,212.0,184.0,,295.0,False,False,1,False,False,True,6303.374,False,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,29.0,2.0,HARD,1.0,True,109.027,47.962,35.117,25.948,215.0,188.0,266.0,301.0,False,False,1,False,True,False,6404.297,False,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,30.0,2.0,HARD,2.0,True,94.058,32.711,35.166,26.181,216.0,188.0,261.0,296.0,True,True,1,False,False,False,6513.324,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,31.0,2.0,HARD,3.0,True,94.175,32.902,35.173,26.1,214.0,186.0,264.0,300.0,False,True,1,False,False,False,6607.382,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,32.0,2.0,HARD,4.0,True,94.378,33.105,35.231,26.042,213.0,185.0,266.0,302.0,False,True,1,False,False,False,6701.557,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,33.0,2.0,HARD,5.0,True,95.071,33.427,35.369,26.275,214.0,184.0,265.0,298.0,False,True,1,False,False,False,6795.935,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,34.0,2.0,HARD,6.0,True,95.023,33.2,35.599,26.224,214.0,185.0,265.0,299.0,False,True,1,False,False,False,6891.006,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,35.0,2.0,HARD,7.0,True,94.864,32.987,35.51,26.367,214.0,184.0,261.0,296.0,False,True,1,False,False,False,6986.029,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,36.0,2.0,HARD,8.0,True,94.863,33.1,35.574,26.189,214.0,185.0,268.0,297.0,False,True,1,False,False,False,7080.893,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,37.0,2.0,HARD,9.0,True,95.058,33.09,35.633,26.335,213.0,185.0,267.0,295.0,False,True,1,False,False,False,7175.756,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,38.0,2.0,HARD,10.0,True,94.729,33.054,35.359,26.316,214.0,186.0,264.0,285.0,False,True,1,False,False,False,7270.814,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,39.0,2.0,HARD,11.0,True,94.548,32.963,35.428,26.157,212.0,185.0,267.0,300.0,False,True,1,False,False,False,7365.543,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,40.0,2.0,HARD,12.0,True,94.681,33.038,35.381,26.262,213.0,185.0,270.0,294.0,False,True,1,False,False,False,7460.091,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,41.0,2.0,HARD,13.0,True,94.676,32.956,35.391,26.329,215.0,185.0,264.0,294.0,False,True,1,False,False,False,7554.772,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,42.0,2.0,HARD,14.0,True,94.51,33.025,35.39,26.095,212.0,185.0,270.0,302.0,False,True,1,False,False,False,7649.448,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,43.0,2.0,HARD,15.0,True,94.686,33.056,35.481,26.149,212.0,184.0,273.0,299.0,False,True,1,False,False,False,7743.958,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,44.0,2.0,HARD,16.0,True,98.417,36.742,35.518,26.157,200.0,182.0,267.0,300.0,False,True,1,False,False,False,7838.644,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,45.0,2.0,HARD,17.0,True,94.598,32.977,35.471,26.15,213.0,185.0,266.0,302.0,False,True,1,False,False,False,7937.061,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,46.0,2.0,HARD,18.0,True,94.578,33.285,35.354,25.939,213.0,184.0,276.0,304.0,False,True,1,False,False,False,8031.659,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,47.0,2.0,HARD,19.0,True,94.579,33.286,35.476,25.817,213.0,183.0,276.0,306.0,False,True,12,False,False,False,8126.237,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,48.0,2.0,HARD,20.0,True,95.358,33.095,36.076,26.187,213.0,185.0,277.0,305.0,False,True,1,False,False,False,8220.816,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,49.0,2.0,HARD,21.0,True,94.818,33.278,35.525,26.015,215.0,185.0,273.0,307.0,False,True,1,False,False,False,8316.174,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,50.0,2.0,HARD,22.0,True,94.605,33.198,35.331,26.076,214.0,185.0,279.0,307.0,False,True,1,False,False,False,8410.992,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,51.0,2.0,HARD,23.0,True,94.553,33.016,35.47,26.067,213.0,184.0,275.0,306.0,False,True,1,False,False,False,8505.597,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,52.0,2.0,HARD,24.0,True,94.298,33.06,35.245,25.993,214.0,185.0,278.0,306.0,False,True,1,False,False,False,8600.15,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,53.0,2.0,HARD,25.0,True,97.343,32.961,38.4,25.982,187.0,180.0,274.0,315.0,False,True,1,False,False,False,8694.448,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,54.0,2.0,HARD,26.0,True,94.832,33.526,35.336,25.97,213.0,185.0,277.0,311.0,False,True,1,False,False,False,8791.791,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,55.0,2.0,HARD,27.0,True,94.482,33.071,35.335,26.076,215.0,185.0,280.0,308.0,False,True,1,False,False,False,8886.623,True,,,unresolved
+2026,Miami Grand Prix,4,R,LIN,41,Racing Bulls,56.0,2.0,HARD,28.0,True,104.942,35.663,40.132,29.147,207.0,181.0,214.0,207.0,False,True,12,False,False,False,8981.105,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,1.0,1.0,MEDIUM,1.0,True,101.556,,35.479,26.585,211.0,181.0,259.0,280.0,False,False,1,False,False,False,3441.749,False,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,2.0,1.0,MEDIUM,2.0,True,94.113,33.119,35.025,25.969,211.0,186.0,268.0,309.0,True,True,1,False,False,False,3543.549,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,3.0,1.0,MEDIUM,3.0,True,94.46,33.077,35.266,26.117,211.0,184.0,258.0,315.0,False,True,1,False,False,False,3637.662,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,4.0,1.0,MEDIUM,4.0,True,94.339,33.1,35.171,26.068,212.0,185.0,267.0,305.0,False,True,1,False,False,False,3732.122,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,5.0,1.0,MEDIUM,5.0,True,94.736,33.038,35.262,26.436,212.0,185.0,269.0,275.0,False,True,12,False,False,False,3826.461,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,6.0,1.0,MEDIUM,6.0,True,136.173,42.236,51.997,41.94,150.0,100.0,228.0,112.0,False,False,24,False,False,False,3921.197,False,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,7.0,1.0,MEDIUM,7.0,True,131.996,36.807,53.545,41.644,185.0,91.0,239.0,95.0,False,False,4,False,False,False,4057.37,False,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,8.0,1.0,MEDIUM,8.0,True,143.127,47.528,56.998,38.601,91.0,65.0,244.0,102.0,False,False,4,False,False,False,4189.366,False,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,9.0,1.0,MEDIUM,9.0,True,146.366,45.832,58.158,42.376,125.0,63.0,219.0,167.0,False,False,4,False,False,False,4332.493,False,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,10.0,1.0,MEDIUM,10.0,True,138.133,47.025,57.22,33.888,95.0,69.0,235.0,242.0,False,False,4,False,False,False,4478.859,False,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,11.0,1.0,MEDIUM,11.0,True,147.279,48.18,47.122,51.977,91.0,121.0,281.0,57.0,False,False,41,False,False,False,4616.992,False,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,12.0,1.0,MEDIUM,12.0,True,95.134,33.645,35.491,25.998,206.0,187.0,274.0,294.0,False,True,1,False,False,False,4764.271,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,13.0,1.0,MEDIUM,13.0,True,94.246,33.068,35.319,25.859,212.0,184.0,278.0,318.0,False,True,1,False,False,False,4859.405,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,14.0,1.0,MEDIUM,14.0,True,93.941,32.931,35.12,25.89,213.0,186.0,275.0,318.0,True,True,1,False,False,False,4953.651,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,15.0,1.0,MEDIUM,15.0,True,94.124,32.941,35.36,25.823,211.0,185.0,273.0,317.0,False,True,1,False,False,False,5047.592,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,16.0,1.0,MEDIUM,16.0,True,94.137,32.925,35.235,25.977,210.0,183.0,274.0,314.0,False,True,12,False,False,False,5141.716,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,17.0,1.0,MEDIUM,17.0,True,94.4,33.163,35.345,25.892,212.0,183.0,272.0,317.0,False,True,1,False,False,False,5235.853,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,18.0,1.0,MEDIUM,18.0,True,94.654,33.282,35.335,26.037,211.0,183.0,279.0,313.0,False,True,1,False,False,False,5330.253,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,19.0,1.0,MEDIUM,19.0,True,94.505,33.058,35.452,25.995,210.0,184.0,276.0,313.0,False,True,1,False,False,False,5424.907,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,20.0,1.0,MEDIUM,20.0,True,94.591,33.15,35.425,26.016,211.0,184.0,278.0,311.0,False,True,1,False,False,False,5519.412,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,21.0,1.0,MEDIUM,21.0,True,94.967,33.899,35.27,25.798,208.0,184.0,279.0,319.0,False,True,1,False,False,False,5614.003,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,22.0,1.0,MEDIUM,22.0,True,94.275,33.198,35.177,25.9,210.0,184.0,280.0,313.0,False,True,1,False,False,False,5708.97,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,23.0,1.0,MEDIUM,23.0,True,94.009,32.804,35.273,25.932,208.0,185.0,278.0,315.0,False,True,1,False,False,False,5803.245,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,24.0,1.0,MEDIUM,24.0,True,94.203,32.907,35.347,25.949,211.0,184.0,278.0,314.0,False,True,1,False,False,False,5897.254,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,25.0,1.0,MEDIUM,25.0,True,94.237,32.884,35.367,25.986,211.0,187.0,277.0,311.0,False,True,1,False,False,False,5991.457,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,26.0,1.0,MEDIUM,26.0,True,93.991,32.766,35.252,25.973,212.0,185.0,276.0,312.0,False,True,1,False,False,False,6085.694,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,27.0,1.0,MEDIUM,27.0,True,94.275,32.961,35.272,26.042,209.0,185.0,278.0,313.0,False,True,1,False,False,False,6179.685,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,28.0,1.0,MEDIUM,28.0,True,94.391,32.939,35.293,26.159,210.0,186.0,280.0,309.0,False,True,1,False,False,False,6273.96,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,29.0,1.0,MEDIUM,29.0,True,94.323,32.946,35.329,26.048,210.0,185.0,279.0,310.0,False,True,1,False,False,False,6368.351,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,30.0,1.0,MEDIUM,30.0,True,94.192,32.873,35.332,25.987,209.0,187.0,281.0,311.0,False,True,1,False,False,False,6462.674,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,31.0,1.0,MEDIUM,31.0,True,99.432,32.855,35.16,31.417,206.0,187.0,,310.0,False,False,1,False,False,True,6556.866,False,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,32.0,2.0,HARD,1.0,True,108.726,48.074,34.879,25.773,213.0,189.0,280.0,309.0,False,False,1,False,True,False,6656.298,False,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,33.0,2.0,HARD,2.0,True,93.035,32.531,34.849,25.655,215.0,189.0,278.0,309.0,True,True,1,False,False,False,6765.024,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,34.0,2.0,HARD,3.0,True,93.07,32.333,34.947,25.79,214.0,188.0,277.0,310.0,False,True,1,False,False,False,6858.059,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,35.0,2.0,HARD,4.0,True,93.162,32.394,34.993,25.775,213.0,187.0,276.0,311.0,False,True,1,False,False,False,6951.129,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,36.0,2.0,HARD,5.0,True,93.341,32.462,35.088,25.791,213.0,185.0,277.0,314.0,False,True,1,False,False,False,7044.291,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,37.0,2.0,HARD,6.0,True,93.756,32.709,35.189,25.858,210.0,184.0,278.0,310.0,False,True,1,False,False,False,7137.632,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,38.0,2.0,HARD,7.0,True,93.724,32.588,35.219,25.917,211.0,186.0,270.0,309.0,False,True,1,False,False,False,7231.388,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,39.0,2.0,HARD,8.0,True,93.717,32.65,35.135,25.932,214.0,186.0,280.0,310.0,False,True,1,False,False,False,7325.112,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,40.0,2.0,HARD,9.0,True,93.734,32.566,35.219,25.949,211.0,185.0,277.0,310.0,False,True,1,False,False,False,7418.829,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,41.0,2.0,HARD,10.0,True,93.803,32.636,35.344,25.823,212.0,185.0,282.0,310.0,False,True,1,False,False,False,7512.563,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,42.0,2.0,HARD,11.0,True,93.859,32.697,35.298,25.864,209.0,185.0,281.0,311.0,False,True,1,False,False,False,7606.366,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,43.0,2.0,HARD,12.0,True,93.416,32.498,35.182,25.736,213.0,185.0,281.0,312.0,False,True,1,False,False,False,7700.225,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,44.0,2.0,HARD,13.0,True,93.384,32.541,35.173,25.67,211.0,187.0,281.0,316.0,False,True,1,False,False,False,7793.641,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,45.0,2.0,HARD,14.0,True,93.951,32.704,35.293,25.954,212.0,185.0,278.0,309.0,False,True,1,False,False,False,7887.025,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,46.0,2.0,HARD,15.0,True,93.612,32.605,35.272,25.735,213.0,186.0,281.0,310.0,False,True,1,False,False,False,7980.976,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,47.0,2.0,HARD,16.0,True,93.332,32.408,35.119,25.805,213.0,186.0,281.0,311.0,False,True,12,False,False,False,8074.588,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,48.0,2.0,HARD,17.0,True,93.721,32.644,35.271,25.806,211.0,186.0,281.0,312.0,False,True,1,False,False,False,8167.92,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,49.0,2.0,HARD,18.0,True,93.38,32.431,35.249,25.7,212.0,185.0,283.0,316.0,False,True,1,False,False,False,8261.641,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,50.0,2.0,HARD,19.0,True,94.176,32.703,35.503,25.97,210.0,184.0,284.0,307.0,False,True,1,False,False,False,8355.021,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,51.0,2.0,HARD,20.0,True,93.775,32.746,35.302,25.727,211.0,185.0,283.0,311.0,False,True,1,False,False,False,8449.197,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,52.0,2.0,HARD,21.0,True,93.791,32.407,35.574,25.81,209.0,186.0,280.0,310.0,False,True,1,False,False,False,8542.972,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,53.0,2.0,HARD,22.0,True,93.528,32.418,35.341,25.769,213.0,186.0,280.0,310.0,False,True,1,False,False,False,8636.763,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,54.0,2.0,HARD,23.0,True,93.304,32.361,35.101,25.842,214.0,187.0,280.0,311.0,False,True,1,False,False,False,8730.291,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,55.0,2.0,HARD,24.0,True,93.335,32.504,35.172,25.659,213.0,184.0,282.0,313.0,False,True,1,False,False,False,8823.595,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,56.0,2.0,HARD,25.0,True,93.059,32.271,35.086,25.702,211.0,185.0,282.0,319.0,False,True,12,False,False,False,8916.93,True,,,unresolved
+2026,Miami Grand Prix,4,R,COL,43,Alpine,57.0,2.0,HARD,26.0,True,93.148,32.432,35.27,25.446,212.0,187.0,268.0,331.0,False,True,1,False,False,False,9009.989,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,1.0,1.0,MEDIUM,1.0,True,100.683,,35.479,25.471,215.0,187.0,285.0,301.0,False,False,1,False,False,False,3441.749,False,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,2.0,1.0,MEDIUM,2.0,True,93.545,32.78,35.071,25.694,213.0,186.0,272.0,317.0,True,True,1,False,False,False,3542.676,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,3.0,1.0,MEDIUM,3.0,True,93.789,32.999,35.048,25.742,209.0,186.0,275.0,309.0,False,True,1,False,False,False,3636.221,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,4.0,1.0,MEDIUM,4.0,True,93.971,33.103,35.127,25.741,207.0,185.0,274.0,314.0,False,True,1,False,False,False,3730.01,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,5.0,1.0,MEDIUM,5.0,True,94.184,33.02,35.272,25.892,205.0,185.0,277.0,313.0,False,True,12,False,False,False,3823.981,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,6.0,1.0,MEDIUM,6.0,True,135.026,41.582,54.703,38.741,97.0,102.0,264.0,126.0,False,False,24,False,False,False,3918.165,False,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,7.0,1.0,MEDIUM,7.0,True,134.27,36.947,55.983,41.34,108.0,98.0,255.0,108.0,False,False,4,False,False,False,4053.191,False,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,8.0,1.0,MEDIUM,8.0,True,142.859,48.68,56.568,37.611,92.0,67.0,274.0,111.0,False,False,4,False,False,False,4187.461,False,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,9.0,1.0,MEDIUM,9.0,True,147.2,47.245,57.573,42.382,130.0,64.0,225.0,136.0,False,False,4,False,False,False,4330.32,False,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,10.0,1.0,MEDIUM,10.0,True,137.89,47.441,57.12,33.329,106.0,75.0,257.0,243.0,False,False,4,False,False,False,4477.52,False,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,11.0,1.0,MEDIUM,11.0,True,148.268,49.037,46.595,52.636,93.0,118.0,286.0,59.0,False,False,41,False,False,False,4615.41,False,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,12.0,1.0,MEDIUM,12.0,True,94.726,33.883,35.081,25.762,210.0,186.0,274.0,307.0,False,True,1,False,False,False,4763.678,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,13.0,1.0,MEDIUM,13.0,True,93.754,33.028,35.102,25.624,209.0,182.0,277.0,320.0,False,True,1,False,False,False,4858.404,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,14.0,1.0,MEDIUM,14.0,True,93.554,32.776,35.07,25.708,210.0,185.0,274.0,326.0,False,True,1,False,False,False,4952.158,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,15.0,1.0,MEDIUM,15.0,True,93.777,32.951,35.081,25.745,210.0,183.0,274.0,323.0,False,True,1,False,False,False,5045.712,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,16.0,1.0,MEDIUM,16.0,True,93.705,32.944,35.012,25.749,211.0,183.0,273.0,318.0,False,True,12,False,False,False,5139.489,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,17.0,1.0,MEDIUM,17.0,True,94.005,33.038,35.293,25.674,207.0,183.0,275.0,311.0,False,True,1,False,False,False,5233.194,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,18.0,1.0,MEDIUM,18.0,True,94.232,33.188,35.201,25.843,208.0,182.0,275.0,310.0,False,True,1,False,False,False,5327.199,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,19.0,1.0,MEDIUM,19.0,True,94.024,33.086,35.19,25.748,206.0,183.0,280.0,319.0,False,True,1,False,False,False,5421.431,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,20.0,1.0,MEDIUM,20.0,True,94.217,33.108,35.284,25.825,198.0,184.0,276.0,316.0,False,True,1,False,False,False,5515.455,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,21.0,1.0,MEDIUM,21.0,True,94.197,33.075,35.275,25.847,203.0,184.0,279.0,311.0,False,True,1,False,False,False,5609.672,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,22.0,1.0,MEDIUM,22.0,True,94.167,33.027,35.208,25.932,205.0,184.0,274.0,308.0,False,True,1,False,False,False,5703.869,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,23.0,1.0,MEDIUM,23.0,True,93.926,32.873,35.15,25.903,206.0,185.0,276.0,309.0,False,True,1,False,False,False,5798.036,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,24.0,1.0,MEDIUM,24.0,True,94.057,32.839,35.313,25.905,209.0,185.0,279.0,307.0,False,True,1,False,False,False,5891.962,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,25.0,1.0,MEDIUM,25.0,True,94.19,32.872,35.445,25.873,205.0,185.0,278.0,308.0,False,True,1,False,False,False,5986.019,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,26.0,1.0,MEDIUM,26.0,True,94.984,32.723,35.577,26.684,209.0,185.0,279.0,307.0,False,True,1,False,False,False,6080.209,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,27.0,1.0,MEDIUM,27.0,True,99.396,33.188,35.201,31.007,204.0,184.0,,313.0,False,False,1,False,False,True,6175.193,False,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,28.0,2.0,HARD,1.0,True,107.869,47.745,34.578,25.546,216.0,188.0,278.0,310.0,False,False,1,False,True,False,6274.589,False,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,29.0,2.0,HARD,2.0,True,92.676,32.276,34.769,25.631,211.0,187.0,279.0,308.0,True,True,1,False,False,False,6382.458,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,30.0,2.0,HARD,3.0,True,92.712,32.284,34.838,25.59,212.0,187.0,280.0,308.0,False,True,1,False,False,False,6475.134,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,31.0,2.0,HARD,4.0,True,92.864,32.326,34.851,25.687,211.0,186.0,280.0,308.0,False,True,1,False,False,False,6567.846,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,32.0,2.0,HARD,5.0,True,93.121,32.479,34.874,25.768,210.0,185.0,276.0,310.0,False,True,1,False,False,False,6660.71,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,33.0,2.0,HARD,6.0,True,92.98,32.395,34.831,25.754,211.0,186.0,277.0,310.0,False,True,1,False,False,False,6753.831,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,34.0,2.0,HARD,7.0,True,93.174,32.498,34.994,25.682,213.0,184.0,280.0,318.0,False,True,1,False,False,False,6846.811,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,35.0,2.0,HARD,8.0,True,92.939,32.464,34.927,25.548,212.0,184.0,277.0,316.0,False,True,1,False,False,False,6939.985,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,36.0,2.0,HARD,9.0,True,93.669,32.603,35.035,26.031,211.0,185.0,254.0,313.0,False,True,1,False,False,False,7032.924,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,37.0,2.0,HARD,10.0,True,94.803,32.806,35.528,26.469,209.0,185.0,257.0,303.0,False,True,1,False,False,False,7126.593,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,38.0,2.0,HARD,11.0,True,93.552,32.751,35.043,25.758,209.0,185.0,285.0,311.0,False,True,1,False,False,False,7221.396,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,39.0,2.0,HARD,12.0,True,93.098,32.35,35.057,25.691,211.0,186.0,278.0,310.0,False,True,1,False,False,False,7314.948,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,40.0,2.0,HARD,13.0,True,93.451,32.52,35.215,25.716,210.0,185.0,280.0,311.0,False,True,1,False,False,False,7408.046,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,41.0,2.0,HARD,14.0,True,93.283,32.498,35.061,25.724,210.0,186.0,281.0,311.0,False,True,1,False,False,False,7501.497,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,42.0,2.0,HARD,15.0,True,93.237,32.407,35.066,25.764,210.0,186.0,281.0,306.0,False,True,1,False,False,False,7594.78,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,43.0,2.0,HARD,16.0,True,93.129,32.487,34.988,25.654,212.0,185.0,282.0,313.0,False,True,1,False,False,False,7688.017,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,44.0,2.0,HARD,17.0,True,92.893,32.477,35.037,25.379,209.0,184.0,286.0,317.0,False,True,1,False,False,False,7781.146,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,45.0,2.0,HARD,18.0,True,93.129,32.469,34.995,25.665,203.0,186.0,282.0,315.0,False,True,1,False,False,False,7874.039,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,46.0,2.0,HARD,19.0,True,93.135,32.768,34.791,25.576,205.0,185.0,285.0,312.0,False,True,1,False,False,False,7967.168,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,47.0,2.0,HARD,20.0,True,93.34,32.489,35.128,25.723,212.0,186.0,278.0,307.0,False,True,12,False,False,False,8060.303,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,48.0,2.0,HARD,21.0,True,93.575,32.536,35.194,25.845,212.0,185.0,281.0,291.0,False,True,1,False,False,False,8153.643,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,49.0,2.0,HARD,22.0,True,93.635,32.612,35.194,25.829,210.0,184.0,283.0,292.0,False,True,1,False,False,False,8247.218,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,50.0,2.0,HARD,23.0,True,93.506,32.646,35.17,25.69,209.0,185.0,286.0,306.0,False,True,1,False,False,False,8340.853,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,51.0,2.0,HARD,24.0,True,93.57,32.477,35.335,25.758,211.0,184.0,284.0,294.0,False,True,1,False,False,False,8434.359,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,52.0,2.0,HARD,25.0,True,94.634,33.098,35.721,25.815,210.0,179.0,280.0,301.0,False,True,1,False,False,False,8527.929,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,53.0,2.0,HARD,26.0,True,94.302,33.03,35.476,25.796,212.0,182.0,282.0,310.0,False,True,1,False,False,False,8622.563,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,54.0,2.0,HARD,27.0,True,94.33,32.72,35.605,26.005,209.0,182.0,283.0,304.0,False,True,1,False,False,False,8716.865,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,55.0,2.0,HARD,28.0,True,94.307,32.834,35.641,25.832,211.0,179.0,281.0,304.0,False,True,1,False,False,False,8811.195,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,56.0,2.0,HARD,29.0,True,94.567,32.834,35.64,26.093,206.0,179.0,276.0,309.0,False,True,12,False,False,False,8905.502,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAM,44,Ferrari,57.0,2.0,HARD,30.0,True,94.95,32.821,36.114,26.015,210.0,182.0,276.0,299.0,False,True,1,False,False,False,9000.069,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,1.0,1.0,MEDIUM,1.0,True,109.249,,37.806,26.906,187.0,184.0,252.0,288.0,False,False,1,False,False,False,3441.749,False,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,2.0,1.0,MEDIUM,2.0,True,96.799,33.955,36.04,26.804,209.0,182.0,253.0,294.0,True,True,1,False,False,False,3551.242,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,3.0,1.0,MEDIUM,3.0,True,96.384,33.959,36.089,26.336,207.0,181.0,265.0,296.0,True,True,1,False,False,False,3648.041,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,4.0,1.0,MEDIUM,4.0,True,96.533,34.18,35.664,26.689,203.0,181.0,266.0,300.0,False,True,1,False,False,False,3744.425,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,5.0,1.0,MEDIUM,5.0,True,97.279,33.897,36.094,27.288,207.0,181.0,207.0,283.0,False,False,124,False,False,False,3840.958,False,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,6.0,1.0,MEDIUM,6.0,True,135.495,45.499,50.475,39.521,184.0,121.0,237.0,108.0,False,False,4,False,False,False,3938.237,False,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,7.0,1.0,MEDIUM,7.0,True,128.77,39.016,48.186,41.568,191.0,122.0,227.0,90.0,False,False,4,False,False,False,4073.732,False,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,8.0,1.0,MEDIUM,8.0,True,140.751,41.904,58.134,40.713,119.0,54.0,190.0,96.0,False,False,4,False,False,False,4202.502,False,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,9.0,1.0,MEDIUM,9.0,True,142.618,44.019,58.609,39.99,118.0,115.0,234.0,137.0,False,False,4,False,False,False,4343.253,False,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,10.0,1.0,MEDIUM,10.0,True,140.774,46.963,58.869,34.942,101.0,104.0,238.0,153.0,False,False,4,False,False,False,4485.871,False,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,11.0,1.0,MEDIUM,11.0,True,141.504,46.105,45.16,50.239,149.0,129.0,263.0,40.0,False,False,41,False,False,False,4626.645,False,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,12.0,1.0,MEDIUM,12.0,True,97.16,33.726,36.792,26.642,208.0,182.0,267.0,282.0,False,True,1,False,False,False,4768.149,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,13.0,1.0,MEDIUM,13.0,True,95.549,33.996,35.113,26.44,211.0,180.0,258.0,301.0,True,True,1,False,False,False,4865.309,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,14.0,1.0,MEDIUM,14.0,True,95.807,34.078,35.269,26.46,211.0,182.0,258.0,297.0,False,True,1,False,False,False,4960.858,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,15.0,1.0,MEDIUM,15.0,True,95.722,33.653,35.555,26.514,210.0,181.0,259.0,303.0,False,True,12,False,False,False,5056.665,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,16.0,1.0,MEDIUM,16.0,True,95.485,33.546,35.495,26.444,210.0,181.0,261.0,301.0,True,True,1,False,False,False,5152.387,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,17.0,1.0,MEDIUM,17.0,True,95.493,33.644,35.456,26.393,209.0,181.0,267.0,299.0,False,True,1,False,False,False,5247.872,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,18.0,1.0,MEDIUM,18.0,True,95.843,33.675,35.746,26.422,208.0,180.0,272.0,303.0,False,True,1,False,False,False,5343.365,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,19.0,1.0,MEDIUM,19.0,True,95.793,33.708,35.457,26.628,207.0,179.0,262.0,291.0,False,True,1,False,False,False,5439.208,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,20.0,1.0,MEDIUM,20.0,True,95.789,33.58,35.773,26.436,209.0,182.0,266.0,297.0,False,True,1,False,False,False,5535.001,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,21.0,1.0,MEDIUM,21.0,True,95.15,33.331,35.428,26.391,209.0,182.0,264.0,297.0,True,True,1,False,False,False,5630.79,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,22.0,1.0,MEDIUM,22.0,True,95.049,33.261,35.468,26.32,208.0,183.0,264.0,297.0,True,True,1,False,False,False,5725.94,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,23.0,1.0,MEDIUM,23.0,True,94.653,33.213,35.117,26.323,209.0,183.0,263.0,299.0,True,True,1,False,False,False,5820.989,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,24.0,1.0,MEDIUM,24.0,True,94.996,33.352,35.389,26.255,209.0,183.0,263.0,300.0,False,True,1,False,False,False,5915.642,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,25.0,1.0,MEDIUM,25.0,True,95.001,33.263,35.735,26.003,203.0,182.0,260.0,310.0,False,True,1,False,False,False,6010.638,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,26.0,1.0,MEDIUM,26.0,True,94.911,33.422,35.448,26.041,209.0,184.0,257.0,310.0,False,True,1,False,False,False,6105.639,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,27.0,1.0,MEDIUM,27.0,True,95.252,33.419,35.312,26.521,210.0,182.0,262.0,296.0,False,True,1,False,False,False,6200.55,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,28.0,1.0,MEDIUM,28.0,True,94.973,33.525,35.434,26.014,210.0,184.0,260.0,309.0,False,True,1,False,False,False,6295.802,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,29.0,1.0,MEDIUM,29.0,True,95.023,33.452,35.513,26.058,210.0,183.0,261.0,308.0,False,True,1,False,False,False,6390.775,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,30.0,1.0,MEDIUM,30.0,True,95.026,33.372,35.441,26.213,208.0,184.0,264.0,298.0,False,True,1,False,False,False,6485.798,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,31.0,1.0,MEDIUM,31.0,True,95.204,33.319,35.41,26.475,210.0,183.0,268.0,297.0,False,True,1,False,False,False,6580.824,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,32.0,1.0,MEDIUM,32.0,True,100.472,33.276,35.196,32.0,209.0,183.0,,305.0,False,False,1,False,False,True,6676.028,False,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,33.0,2.0,HARD,1.0,True,108.829,48.591,34.416,25.822,214.0,185.0,267.0,304.0,False,False,1,False,True,False,6776.5,False,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,34.0,2.0,HARD,2.0,True,93.559,32.64,35.155,25.764,213.0,185.0,260.0,309.0,True,True,1,False,False,False,6885.329,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,35.0,2.0,HARD,3.0,True,93.902,32.803,35.163,25.936,213.0,184.0,264.0,300.0,False,True,1,False,False,False,6978.888,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,36.0,2.0,HARD,4.0,True,93.59,32.445,35.269,25.876,213.0,186.0,264.0,301.0,False,True,1,False,False,False,7072.79,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,37.0,2.0,HARD,5.0,True,93.745,32.519,35.301,25.925,213.0,185.0,266.0,301.0,False,True,1,False,False,False,7166.38,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,38.0,2.0,HARD,6.0,True,93.932,32.665,35.359,25.908,212.0,185.0,265.0,304.0,False,True,1,False,False,False,7260.125,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,39.0,2.0,HARD,7.0,True,93.955,32.807,35.188,25.96,212.0,185.0,265.0,305.0,False,True,1,False,False,False,7354.057,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,40.0,2.0,HARD,8.0,True,94.035,32.782,35.369,25.884,212.0,184.0,263.0,304.0,False,True,1,False,False,False,7448.012,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,41.0,2.0,HARD,9.0,True,93.639,32.707,35.255,25.677,213.0,184.0,265.0,313.0,False,True,1,False,False,False,7542.047,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,42.0,2.0,HARD,10.0,True,94.042,32.881,35.15,26.011,212.0,182.0,269.0,310.0,False,True,1,False,False,False,7635.686,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,43.0,2.0,HARD,11.0,True,94.738,33.27,35.409,26.059,210.0,181.0,272.0,302.0,False,True,1,False,False,False,7729.728,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,44.0,2.0,HARD,12.0,True,94.51,33.011,35.519,25.98,212.0,183.0,271.0,302.0,False,True,1,False,False,False,7824.466,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,45.0,2.0,HARD,13.0,True,94.427,32.871,35.523,26.033,213.0,183.0,286.0,295.0,False,True,1,False,False,False,7918.976,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,46.0,2.0,HARD,14.0,True,94.863,33.407,35.2,26.256,213.0,183.0,264.0,291.0,False,True,1,False,False,False,8013.403,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,47.0,2.0,HARD,15.0,True,94.171,32.954,35.407,25.81,211.0,183.0,261.0,318.0,False,True,12,False,False,False,8108.266,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,48.0,2.0,HARD,16.0,True,93.841,32.777,35.278,25.786,209.0,183.0,258.0,318.0,False,True,1,False,False,False,8202.437,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,49.0,2.0,HARD,17.0,True,94.27,32.715,35.814,25.741,213.0,186.0,263.0,319.0,False,True,1,False,False,False,8296.278,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,50.0,2.0,HARD,18.0,True,94.409,32.755,35.723,25.931,212.0,184.0,266.0,302.0,False,True,1,False,False,False,8390.548,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,51.0,2.0,HARD,19.0,True,95.743,32.917,36.526,26.3,213.0,179.0,244.0,314.0,False,True,1,False,False,False,8484.957,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,52.0,2.0,HARD,20.0,True,94.751,33.624,35.369,25.758,213.0,181.0,268.0,315.0,False,True,1,False,False,False,8580.7,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,53.0,2.0,HARD,21.0,True,93.854,32.707,35.332,25.815,214.0,183.0,266.0,311.0,False,True,1,False,False,False,8675.451,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,54.0,2.0,HARD,22.0,True,93.726,32.656,35.259,25.811,213.0,184.0,268.0,311.0,False,True,1,False,False,False,8769.305,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,55.0,2.0,HARD,23.0,True,93.5,32.653,35.061,25.786,212.0,185.0,267.0,312.0,True,True,1,False,False,False,8863.031,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOR,5,Audi,56.0,2.0,HARD,24.0,True,94.088,32.882,35.313,25.893,214.0,185.0,275.0,309.0,False,True,12,False,False,False,8956.531,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,1.0,1.0,MEDIUM,1.0,True,105.235,,36.562,27.239,208.0,180.0,251.0,305.0,False,False,1,False,False,False,3441.749,False,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,2.0,1.0,MEDIUM,2.0,True,95.889,34.802,35.03,26.057,211.0,186.0,256.0,322.0,True,True,1,False,False,False,3547.228,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,3.0,1.0,MEDIUM,3.0,True,95.295,34.279,35.056,25.96,211.0,185.0,254.0,314.0,True,True,1,False,False,False,3643.117,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,4.0,1.0,MEDIUM,4.0,True,94.844,34.167,34.955,25.722,212.0,185.0,264.0,321.0,True,True,1,False,False,False,3738.412,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,5.0,1.0,MEDIUM,5.0,True,96.681,34.299,35.643,26.739,208.0,184.0,258.0,290.0,False,True,12,False,False,False,3833.256,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,6.0,1.0,MEDIUM,6.0,True,134.301,43.913,47.461,42.927,176.0,130.0,205.0,120.0,False,False,24,False,False,False,3929.937,False,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,7.0,1.0,MEDIUM,7.0,True,128.424,37.028,49.207,42.189,176.0,92.0,244.0,80.0,False,False,4,False,False,False,4064.238,False,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,8.0,1.0,MEDIUM,8.0,True,144.658,46.192,57.307,41.159,94.0,63.0,223.0,91.0,False,False,4,False,False,False,4192.662,False,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,9.0,1.0,MEDIUM,9.0,True,143.29,44.337,57.019,41.934,110.0,68.0,222.0,123.0,False,False,4,False,False,False,4337.32,False,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,10.0,1.0,MEDIUM,10.0,True,140.239,47.092,57.138,36.009,91.0,85.0,224.0,161.0,False,False,4,False,False,False,4480.61,False,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,11.0,1.0,MEDIUM,11.0,True,144.363,46.368,46.694,51.301,120.0,123.0,269.0,48.0,False,False,41,False,False,False,4620.849,False,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,12.0,1.0,MEDIUM,12.0,True,95.161,33.837,35.506,25.818,213.0,186.0,259.0,321.0,False,True,1,False,False,False,4765.212,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,13.0,1.0,MEDIUM,13.0,True,94.884,33.952,35.201,25.731,211.0,184.0,271.0,317.0,False,True,1,False,False,False,4860.373,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,14.0,1.0,MEDIUM,14.0,True,93.978,33.339,34.981,25.658,210.0,184.0,271.0,319.0,True,True,1,False,False,False,4955.257,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,15.0,1.0,MEDIUM,15.0,True,94.223,33.518,34.855,25.85,212.0,184.0,261.0,314.0,False,True,1,False,False,False,5049.235,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,16.0,1.0,MEDIUM,16.0,True,94.767,33.601,35.206,25.96,211.0,184.0,265.0,317.0,False,True,12,False,False,False,5143.458,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,17.0,1.0,MEDIUM,17.0,True,94.819,33.444,35.308,26.067,212.0,182.0,267.0,315.0,False,True,1,False,False,False,5238.225,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,18.0,1.0,MEDIUM,18.0,True,95.463,34.208,35.321,25.934,210.0,182.0,269.0,316.0,False,True,1,False,False,False,5333.044,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,19.0,1.0,MEDIUM,19.0,True,94.773,33.519,35.3,25.954,210.0,183.0,272.0,317.0,False,True,1,False,False,False,5428.507,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,20.0,1.0,MEDIUM,20.0,True,94.8,33.525,35.315,25.96,210.0,183.0,278.0,315.0,False,True,1,False,False,False,5523.28,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,21.0,1.0,MEDIUM,21.0,True,94.968,33.466,35.401,26.101,211.0,185.0,264.0,312.0,False,True,1,False,False,False,5618.08,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,22.0,1.0,MEDIUM,22.0,True,94.601,33.346,35.241,26.014,209.0,185.0,273.0,312.0,False,True,1,False,False,False,5713.048,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,23.0,1.0,MEDIUM,23.0,True,94.651,33.307,35.237,26.107,210.0,185.0,272.0,311.0,False,True,1,False,False,False,5807.649,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,24.0,1.0,MEDIUM,24.0,True,94.624,33.253,35.284,26.087,210.0,184.0,270.0,311.0,False,True,1,False,False,False,5902.3,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,25.0,1.0,MEDIUM,25.0,True,95.297,33.334,35.903,26.06,211.0,185.0,275.0,309.0,False,True,1,False,False,False,5996.924,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,26.0,1.0,MEDIUM,26.0,True,96.136,33.381,36.239,26.516,212.0,184.0,273.0,299.0,False,True,1,False,False,False,6092.221,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,27.0,1.0,MEDIUM,27.0,True,94.842,33.668,35.249,25.925,210.0,184.0,277.0,318.0,False,True,1,False,False,False,6188.357,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,28.0,1.0,MEDIUM,28.0,True,99.86,33.553,35.338,30.969,211.0,184.0,,313.0,False,False,1,False,False,True,6283.199,False,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,29.0,2.0,HARD,1.0,True,108.534,48.32,34.474,25.74,218.0,190.0,275.0,310.0,False,False,1,False,True,False,6383.059,False,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,30.0,2.0,HARD,2.0,True,93.026,32.706,34.713,25.607,214.0,187.0,273.0,314.0,True,True,1,False,False,False,6491.593,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,31.0,2.0,HARD,3.0,True,93.311,32.807,34.819,25.685,214.0,186.0,277.0,315.0,False,True,1,False,False,False,6584.619,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,32.0,2.0,HARD,4.0,True,93.737,33.028,34.886,25.823,212.0,187.0,260.0,319.0,False,True,1,False,False,False,6677.93,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,33.0,2.0,HARD,5.0,True,93.547,32.983,34.738,25.826,213.0,185.0,281.0,309.0,False,True,1,False,False,False,6771.667,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,34.0,2.0,HARD,6.0,True,94.042,32.919,35.205,25.918,213.0,186.0,275.0,308.0,False,True,1,False,False,False,6865.214,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,35.0,2.0,HARD,7.0,True,93.968,32.789,35.303,25.876,212.0,184.0,274.0,309.0,False,True,1,False,False,False,6959.256,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,36.0,2.0,HARD,8.0,True,93.818,32.821,35.152,25.845,212.0,186.0,272.0,310.0,False,True,1,False,False,False,7053.224,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,37.0,2.0,HARD,9.0,True,94.082,32.907,35.259,25.916,210.0,186.0,271.0,311.0,False,True,1,False,False,False,7147.042,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,38.0,2.0,HARD,10.0,True,94.237,33.089,35.232,25.916,211.0,184.0,275.0,311.0,False,True,1,False,False,False,7241.124,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,39.0,2.0,HARD,11.0,True,94.234,33.097,35.183,25.954,213.0,184.0,280.0,315.0,False,True,1,False,False,False,7335.361,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,40.0,2.0,HARD,12.0,True,93.988,33.087,35.018,25.883,209.0,184.0,280.0,310.0,False,True,1,False,False,False,7429.595,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,41.0,2.0,HARD,13.0,True,94.315,33.181,35.204,25.93,210.0,184.0,274.0,309.0,False,True,1,False,False,False,7523.583,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,42.0,2.0,HARD,14.0,True,94.394,33.046,35.349,25.999,209.0,185.0,273.0,308.0,False,True,1,False,False,False,7617.898,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,43.0,2.0,HARD,15.0,True,94.241,33.051,35.254,25.936,212.0,185.0,275.0,309.0,False,True,1,False,False,False,7712.292,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,44.0,2.0,HARD,16.0,True,93.866,32.919,34.999,25.948,213.0,185.0,275.0,309.0,False,True,1,False,False,False,7806.533,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,45.0,2.0,HARD,17.0,True,94.046,33.018,35.061,25.967,213.0,186.0,277.0,309.0,False,True,1,False,False,False,7900.399,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,46.0,2.0,HARD,18.0,True,94.07,33.012,35.133,25.925,213.0,185.0,276.0,310.0,False,True,1,False,False,False,7994.445,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,47.0,2.0,HARD,19.0,True,93.978,32.969,35.085,25.924,213.0,184.0,277.0,311.0,False,True,12,False,False,False,8088.515,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,48.0,2.0,HARD,20.0,True,94.004,32.957,35.209,25.838,213.0,185.0,279.0,313.0,False,True,1,False,False,False,8182.493,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,49.0,2.0,HARD,21.0,True,93.98,32.875,35.208,25.897,213.0,184.0,272.0,312.0,False,True,1,False,False,False,8276.497,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,50.0,2.0,HARD,22.0,True,93.893,32.934,35.121,25.838,213.0,184.0,278.0,313.0,False,True,1,False,False,False,8370.477,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,51.0,2.0,HARD,23.0,True,94.102,33.144,35.195,25.763,210.0,187.0,275.0,313.0,False,True,1,False,False,False,8464.37,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,52.0,2.0,HARD,24.0,True,94.172,33.03,35.313,25.829,212.0,186.0,277.0,315.0,False,True,1,False,False,False,8558.472,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,53.0,2.0,HARD,25.0,True,93.989,32.995,35.256,25.738,214.0,185.0,282.0,317.0,False,True,1,False,False,False,8652.644,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,54.0,2.0,HARD,26.0,True,93.858,33.02,35.1,25.738,213.0,186.0,280.0,318.0,False,True,1,False,False,False,8746.633,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,55.0,2.0,HARD,27.0,True,93.951,33.05,35.202,25.699,213.0,186.0,279.0,319.0,False,True,1,False,False,False,8840.491,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,56.0,2.0,HARD,28.0,True,94.341,33.202,35.225,25.914,215.0,184.0,277.0,318.0,False,True,12,False,False,False,8934.442,True,,,unresolved
+2026,Miami Grand Prix,4,R,SAI,55,Williams,57.0,2.0,HARD,29.0,True,94.555,33.396,35.308,25.851,214.0,184.0,279.0,316.0,False,True,1,False,False,False,9028.783,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAD,6,Red Bull Racing,1.0,1.0,HARD,1.0,True,109.627,,38.922,25.914,196.0,181.0,262.0,314.0,False,False,1,False,True,False,3441.749,False,,,unresolved
+2026,Miami Grand Prix,4,R,HAD,6,Red Bull Racing,2.0,1.0,HARD,2.0,True,96.068,33.998,36.071,25.999,206.0,183.0,262.0,289.0,True,True,1,False,False,False,3551.62,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAD,6,Red Bull Racing,3.0,1.0,HARD,3.0,True,95.188,33.917,35.496,25.775,207.0,183.0,260.0,324.0,True,True,1,False,False,False,3647.688,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAD,6,Red Bull Racing,4.0,1.0,HARD,4.0,True,94.833,33.538,35.375,25.92,208.0,182.0,262.0,312.0,True,True,1,False,False,False,3742.876,True,,,unresolved
+2026,Miami Grand Prix,4,R,HAD,6,Red Bull Racing,5.0,1.0,HARD,5.0,True,,,,,,,,,False,False,124,False,False,False,3837.709,False,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,1.0,1.0,MEDIUM,1.0,True,99.258,,34.73,25.557,213.0,186.0,257.0,331.0,False,False,1,False,False,False,3441.749,False,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,2.0,1.0,MEDIUM,2.0,True,93.194,33.022,34.637,25.535,213.0,187.0,283.0,322.0,True,True,1,False,False,False,3541.251,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,3.0,1.0,MEDIUM,3.0,True,93.574,32.852,34.905,25.817,213.0,186.0,263.0,317.0,False,True,1,False,False,False,3634.445,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,4.0,1.0,MEDIUM,4.0,True,93.873,32.893,34.913,26.067,212.0,186.0,263.0,313.0,False,True,1,False,False,False,3728.019,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,5.0,1.0,MEDIUM,5.0,True,93.837,32.666,35.055,26.116,211.0,186.0,259.0,316.0,False,True,12,False,False,False,3821.892,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,6.0,1.0,MEDIUM,6.0,True,130.928,42.079,50.039,38.81,112.0,105.0,242.0,74.0,False,False,24,False,False,False,3915.729,False,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,7.0,1.0,MEDIUM,7.0,True,137.484,41.531,55.3,40.653,136.0,97.0,229.0,124.0,False,False,4,False,False,False,4046.657,False,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,8.0,1.0,MEDIUM,8.0,True,142.95,50.101,55.634,37.215,86.0,73.0,238.0,117.0,False,False,4,False,False,False,4184.141,False,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,9.0,1.0,MEDIUM,9.0,True,147.445,48.471,56.496,42.478,150.0,70.0,231.0,143.0,False,False,4,False,False,False,4327.091,False,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,10.0,1.0,MEDIUM,10.0,True,138.393,48.656,56.276,33.461,115.0,77.0,254.0,172.0,False,False,4,False,False,False,4474.536,False,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,11.0,1.0,MEDIUM,11.0,True,149.958,49.351,47.238,53.369,132.0,107.0,253.0,62.0,False,False,41,False,False,False,4612.929,False,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,12.0,1.0,MEDIUM,12.0,True,94.951,34.169,34.829,25.953,212.0,187.0,260.0,305.0,False,True,1,False,False,False,4762.887,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,13.0,1.0,MEDIUM,13.0,True,93.583,32.744,35.089,25.75,208.0,186.0,274.0,313.0,False,True,1,False,False,False,4857.838,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,14.0,1.0,MEDIUM,14.0,True,93.818,32.804,35.067,25.947,208.0,186.0,266.0,320.0,False,True,1,False,False,False,4951.421,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,15.0,1.0,MEDIUM,15.0,True,93.495,32.665,35.069,25.761,212.0,185.0,271.0,317.0,False,True,1,False,False,False,5045.239,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,16.0,1.0,MEDIUM,16.0,True,93.565,32.708,34.962,25.895,211.0,185.0,258.0,320.0,False,True,12,False,False,False,5138.734,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,17.0,1.0,MEDIUM,17.0,True,93.99,32.802,35.385,25.803,211.0,183.0,276.0,324.0,False,True,1,False,False,False,5232.299,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,18.0,1.0,MEDIUM,18.0,True,94.058,33.056,35.137,25.865,209.0,184.0,266.0,323.0,False,True,1,False,False,False,5326.289,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,19.0,1.0,MEDIUM,19.0,True,93.873,32.939,35.158,25.776,207.0,184.0,276.0,312.0,False,True,1,False,False,False,5420.347,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,20.0,1.0,MEDIUM,20.0,True,99.114,32.987,35.077,31.05,211.0,185.0,,319.0,False,False,1,False,False,True,5514.22,False,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,21.0,2.0,HARD,1.0,True,105.973,46.129,34.405,25.439,216.0,190.0,253.0,332.0,False,False,1,False,True,False,5613.334,False,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,22.0,2.0,HARD,2.0,True,92.636,32.687,34.455,25.494,214.0,187.0,290.0,326.0,True,True,1,False,False,False,5719.307,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,23.0,2.0,HARD,3.0,True,93.752,32.843,35.148,25.761,212.0,187.0,277.0,318.0,False,True,1,False,False,False,5811.943,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,24.0,2.0,HARD,4.0,True,94.363,33.614,35.004,25.745,209.0,186.0,274.0,315.0,False,True,1,False,False,False,5905.695,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,25.0,2.0,HARD,5.0,True,93.069,32.511,35.007,25.551,211.0,188.0,275.0,322.0,False,True,1,False,False,False,6000.058,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,26.0,2.0,HARD,6.0,True,93.423,32.833,34.695,25.895,213.0,186.0,270.0,310.0,False,True,1,False,False,False,6093.127,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,27.0,2.0,HARD,7.0,True,93.205,32.599,34.749,25.857,211.0,187.0,268.0,310.0,False,True,1,False,False,False,6186.55,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,28.0,2.0,HARD,8.0,True,92.957,32.441,34.633,25.883,213.0,187.0,264.0,311.0,False,True,1,False,False,False,6279.755,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,29.0,2.0,HARD,9.0,True,92.906,32.525,34.607,25.774,212.0,186.0,270.0,313.0,False,True,1,False,False,False,6372.712,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,30.0,2.0,HARD,10.0,True,93.639,33.013,34.85,25.776,212.0,186.0,252.0,328.0,False,True,1,False,False,False,6465.618,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,31.0,2.0,HARD,11.0,True,94.234,33.604,34.783,25.847,212.0,184.0,250.0,333.0,False,True,1,False,False,False,6559.257,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,32.0,2.0,HARD,12.0,True,93.326,33.032,34.492,25.802,210.0,185.0,258.0,320.0,False,True,1,False,False,False,6653.491,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,33.0,2.0,HARD,13.0,True,93.547,33.039,34.82,25.688,214.0,185.0,285.0,318.0,False,True,1,False,False,False,6746.817,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,34.0,2.0,HARD,14.0,True,94.33,33.083,34.937,26.31,212.0,185.0,277.0,302.0,False,True,1,False,False,False,6840.364,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,35.0,2.0,HARD,15.0,True,94.952,33.681,34.827,26.444,213.0,185.0,267.0,289.0,False,True,1,False,False,False,6934.694,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,36.0,2.0,HARD,16.0,True,93.722,32.909,35.094,25.719,211.0,185.0,271.0,320.0,False,True,1,False,False,False,7029.646,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,37.0,2.0,HARD,17.0,True,93.203,32.78,34.87,25.553,212.0,184.0,277.0,323.0,False,True,1,False,False,False,7123.368,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,38.0,2.0,HARD,18.0,True,93.237,32.689,34.943,25.605,212.0,185.0,282.0,318.0,False,True,1,False,False,False,7216.571,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,39.0,2.0,HARD,19.0,True,92.977,32.38,34.876,25.721,213.0,185.0,281.0,317.0,False,True,1,False,False,False,7309.808,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,40.0,2.0,HARD,20.0,True,93.177,32.518,35.03,25.629,211.0,185.0,280.0,315.0,False,True,1,False,False,False,7402.785,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,41.0,2.0,HARD,21.0,True,92.898,32.517,34.805,25.576,212.0,187.0,280.0,318.0,False,True,1,False,False,False,7495.962,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,42.0,2.0,HARD,22.0,True,93.198,32.502,34.916,25.78,211.0,186.0,273.0,317.0,False,True,1,False,False,False,7588.86,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,43.0,2.0,HARD,23.0,True,93.293,32.571,35.038,25.684,212.0,187.0,279.0,319.0,False,True,1,False,False,False,7682.058,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,44.0,2.0,HARD,24.0,True,93.747,32.575,35.405,25.767,211.0,186.0,274.0,313.0,False,True,1,False,False,False,7775.351,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,45.0,2.0,HARD,25.0,True,93.07,32.51,34.887,25.673,212.0,187.0,275.0,313.0,False,True,1,False,False,False,7869.098,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,46.0,2.0,HARD,26.0,True,93.302,32.508,34.979,25.815,212.0,187.0,279.0,313.0,False,True,1,False,False,False,7962.168,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,47.0,2.0,HARD,27.0,True,93.261,32.491,35.063,25.707,213.0,186.0,280.0,313.0,False,True,1,False,False,False,8055.47,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,48.0,2.0,HARD,28.0,True,93.272,32.603,34.938,25.731,213.0,187.0,277.0,315.0,False,True,12,False,False,False,8148.731,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,49.0,2.0,HARD,29.0,True,92.741,32.328,34.767,25.646,214.0,185.0,280.0,316.0,False,True,1,False,False,False,8242.003,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,50.0,2.0,HARD,30.0,True,92.701,32.411,34.709,25.581,214.0,187.0,278.0,316.0,False,True,1,False,False,False,8334.744,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,51.0,2.0,HARD,31.0,True,92.807,32.364,34.92,25.523,214.0,186.0,283.0,322.0,False,True,1,False,False,False,8427.445,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,52.0,2.0,HARD,32.0,True,92.877,32.334,35.1,25.443,213.0,188.0,283.0,321.0,False,True,1,False,False,False,8520.252,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,53.0,2.0,HARD,33.0,True,92.446,32.127,34.89,25.429,213.0,185.0,281.0,324.0,True,True,1,False,False,False,8613.129,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,54.0,2.0,HARD,34.0,True,93.81,32.84,35.12,25.85,214.0,186.0,286.0,310.0,False,True,1,False,False,False,8705.575,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,55.0,2.0,HARD,35.0,True,96.203,33.883,35.665,26.655,211.0,184.0,253.0,327.0,False,True,1,False,False,False,8799.385,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,56.0,2.0,HARD,36.0,True,94.187,33.226,35.525,25.436,210.0,184.0,265.0,331.0,False,True,1,False,False,False,8895.588,True,,,unresolved
+2026,Miami Grand Prix,4,R,RUS,63,Mercedes,57.0,2.0,HARD,37.0,True,94.542,32.86,35.629,26.053,214.0,183.0,273.0,334.0,False,True,12,False,False,False,8989.775,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,1.0,1.0,MEDIUM,1.0,True,110.494,,39.11,26.234,195.0,186.0,284.0,293.0,False,False,1,False,False,False,3441.749,False,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,2.0,1.0,MEDIUM,2.0,True,96.788,34.971,35.873,25.944,212.0,187.0,276.0,306.0,True,True,1,False,False,False,3552.487,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,3.0,1.0,MEDIUM,3.0,True,96.607,34.59,36.087,25.93,209.0,185.0,277.0,307.0,True,True,1,False,False,False,3649.275,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,4.0,1.0,MEDIUM,4.0,True,96.617,34.585,36.051,25.981,207.0,185.0,277.0,302.0,False,True,1,False,False,False,3745.882,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,5.0,1.0,MEDIUM,5.0,True,102.642,34.423,36.772,31.447,206.0,185.0,83.0,281.0,False,False,124,False,False,False,3842.499,False,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,6.0,1.0,MEDIUM,6.0,True,137.329,44.266,51.216,41.847,192.0,160.0,,98.0,False,False,4,False,False,True,3945.141,False,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,7.0,2.0,SOFT,1.0,True,128.7,51.346,41.493,35.861,179.0,158.0,233.0,123.0,False,False,4,False,True,False,4082.47,False,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,8.0,2.0,SOFT,2.0,True,140.142,38.863,59.037,42.242,153.0,56.0,268.0,122.0,False,False,4,False,False,False,4211.17,False,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,9.0,2.0,SOFT,3.0,True,143.853,40.627,63.467,39.759,136.0,85.0,272.0,175.0,False,False,4,False,False,False,4351.312,False,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,10.0,2.0,SOFT,4.0,True,138.118,42.34,61.164,34.614,99.0,59.0,251.0,165.0,False,False,4,False,False,False,4495.165,False,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,11.0,2.0,SOFT,5.0,True,136.82,44.735,46.705,45.38,159.0,181.0,285.0,43.0,False,False,41,False,False,False,4633.283,False,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,12.0,2.0,SOFT,6.0,True,96.419,34.192,36.154,26.073,213.0,188.0,280.0,273.0,True,True,1,False,False,False,4770.103,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,13.0,2.0,SOFT,7.0,True,96.61,34.593,36.087,25.93,207.0,187.0,277.0,308.0,False,True,1,False,False,False,4866.522,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,14.0,2.0,SOFT,8.0,True,96.326,34.514,35.922,25.89,207.0,184.0,278.0,306.0,True,True,1,False,False,False,4963.132,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,15.0,2.0,SOFT,9.0,True,96.355,34.098,36.047,26.21,211.0,184.0,276.0,306.0,False,True,12,False,False,False,5059.458,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,16.0,2.0,SOFT,10.0,True,96.08,33.755,36.117,26.208,210.0,185.0,279.0,301.0,True,True,1,False,False,False,5155.813,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,17.0,2.0,SOFT,11.0,True,96.766,34.034,36.35,26.382,209.0,185.0,273.0,298.0,False,True,1,False,False,False,5251.893,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,18.0,2.0,SOFT,12.0,True,96.719,34.158,36.205,26.356,208.0,185.0,274.0,299.0,False,True,1,False,False,False,5348.659,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,19.0,2.0,SOFT,13.0,True,96.902,34.268,36.289,26.345,209.0,184.0,277.0,293.0,False,True,1,False,False,False,5445.378,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,20.0,2.0,SOFT,14.0,True,97.904,34.36,37.279,26.265,202.0,183.0,278.0,307.0,False,True,1,False,False,False,5542.28,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,21.0,2.0,SOFT,15.0,True,102.797,34.603,36.586,31.608,207.0,183.0,,287.0,False,False,1,False,False,True,5640.184,False,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,22.0,3.0,MEDIUM,1.0,True,111.648,49.751,35.662,26.235,210.0,190.0,279.0,276.0,False,False,1,False,True,False,5742.981,False,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,23.0,3.0,MEDIUM,2.0,True,96.375,33.355,36.158,26.862,209.0,188.0,281.0,294.0,False,True,1,False,False,False,5854.629,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,24.0,3.0,MEDIUM,3.0,True,97.448,34.355,36.669,26.424,206.0,187.0,276.0,286.0,False,True,1,False,False,False,5951.004,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,25.0,3.0,MEDIUM,4.0,True,96.449,34.11,36.163,26.176,210.0,185.0,276.0,290.0,False,True,1,False,False,False,6048.452,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,26.0,3.0,MEDIUM,5.0,True,96.262,34.133,35.972,26.157,208.0,185.0,279.0,298.0,False,True,1,False,False,False,6144.901,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,27.0,3.0,MEDIUM,6.0,True,96.571,34.104,36.107,26.36,206.0,185.0,276.0,298.0,False,True,1,False,False,False,6241.163,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,28.0,3.0,MEDIUM,7.0,True,96.649,34.098,36.198,26.353,207.0,183.0,280.0,291.0,False,True,1,False,False,False,6337.734,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,29.0,3.0,MEDIUM,8.0,True,96.481,33.985,36.161,26.335,207.0,184.0,278.0,293.0,False,True,1,False,False,False,6434.383,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,30.0,3.0,MEDIUM,9.0,True,102.584,34.192,36.379,32.013,201.0,184.0,,296.0,False,False,1,False,False,True,6530.864,False,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,31.0,4.0,MEDIUM,10.0,False,108.779,46.409,36.03,26.34,208.0,184.0,283.0,280.0,False,False,1,False,True,False,6633.448,False,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,32.0,4.0,MEDIUM,11.0,False,99.743,34.25,37.357,28.136,207.0,182.0,276.0,207.0,False,True,1,False,False,False,6742.227,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,33.0,4.0,MEDIUM,12.0,False,97.687,34.721,36.209,26.757,201.0,183.0,275.0,295.0,False,True,1,False,False,False,6841.97,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,34.0,4.0,MEDIUM,13.0,False,97.857,35.174,36.464,26.219,206.0,182.0,283.0,288.0,False,True,1,False,False,False,6939.657,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,35.0,4.0,MEDIUM,14.0,False,97.114,34.373,36.342,26.399,203.0,182.0,281.0,295.0,False,True,1,False,False,False,7037.514,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,36.0,4.0,MEDIUM,15.0,False,98.662,34.391,37.967,26.304,202.0,180.0,281.0,303.0,False,True,1,False,False,False,7134.628,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,37.0,4.0,MEDIUM,16.0,False,98.08,34.727,36.831,26.522,199.0,181.0,281.0,293.0,False,True,1,False,False,False,7233.29,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,38.0,4.0,MEDIUM,17.0,False,97.759,34.528,36.701,26.53,205.0,183.0,278.0,290.0,False,True,1,False,False,False,7331.37,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,39.0,4.0,MEDIUM,18.0,False,99.233,35.711,36.834,26.688,203.0,182.0,283.0,288.0,False,True,1,False,False,False,7429.129,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,40.0,4.0,MEDIUM,19.0,False,100.195,37.314,36.502,26.379,205.0,181.0,282.0,296.0,False,True,1,False,False,False,7528.362,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,41.0,4.0,MEDIUM,20.0,False,97.855,34.669,36.747,26.439,204.0,182.0,284.0,293.0,False,True,1,False,False,False,7628.557,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,42.0,4.0,MEDIUM,21.0,False,100.123,34.569,39.095,26.459,205.0,181.0,281.0,306.0,False,True,1,False,False,False,7726.412,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,43.0,4.0,MEDIUM,22.0,False,97.641,34.73,36.503,26.408,204.0,182.0,284.0,294.0,False,True,1,False,False,False,7826.535,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,44.0,4.0,MEDIUM,23.0,False,97.88,34.689,36.544,26.647,207.0,182.0,278.0,298.0,False,True,1,False,False,False,7924.176,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,45.0,4.0,MEDIUM,24.0,False,100.655,34.68,39.534,26.441,206.0,178.0,283.0,296.0,False,True,1,False,False,False,8022.056,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,46.0,4.0,MEDIUM,25.0,False,99.005,34.535,36.917,27.553,201.0,182.0,279.0,236.0,False,True,12,False,False,False,8122.711,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,47.0,4.0,MEDIUM,26.0,False,97.707,34.913,36.44,26.354,208.0,182.0,277.0,299.0,False,True,1,False,False,False,8221.716,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,48.0,4.0,MEDIUM,27.0,False,98.102,34.668,36.515,26.919,205.0,183.0,277.0,296.0,False,True,1,False,False,False,8319.423,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,49.0,4.0,MEDIUM,28.0,False,102.264,36.954,38.619,26.691,202.0,179.0,282.0,293.0,False,True,1,False,False,False,8417.525,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,50.0,4.0,MEDIUM,29.0,False,98.37,35.406,36.595,26.369,207.0,182.0,283.0,302.0,False,True,1,False,False,False,8519.789,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,51.0,4.0,MEDIUM,30.0,False,97.283,34.276,36.62,26.387,204.0,182.0,283.0,295.0,False,True,1,False,False,False,8618.159,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,52.0,4.0,MEDIUM,31.0,False,99.178,36.186,36.589,26.403,203.0,184.0,276.0,295.0,False,True,1,False,False,False,8715.442,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,53.0,4.0,MEDIUM,32.0,False,97.322,34.511,36.462,26.349,205.0,182.0,285.0,292.0,False,True,1,False,False,False,8814.62,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,54.0,4.0,MEDIUM,33.0,False,97.595,34.248,36.415,26.932,207.0,183.0,276.0,302.0,False,True,12,False,False,False,8911.942,True,,,unresolved
+2026,Miami Grand Prix,4,R,BOT,77,Cadillac,55.0,4.0,MEDIUM,34.0,False,99.984,36.528,36.971,26.485,199.0,179.0,281.0,308.0,False,True,1,False,False,False,9009.537,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,1.0,1.0,MEDIUM,1.0,True,98.7,,34.706,25.632,214.0,186.0,266.0,314.0,False,False,1,False,False,False,3441.749,False,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,2.0,1.0,MEDIUM,2.0,True,93.525,32.905,34.639,25.981,213.0,187.0,265.0,316.0,True,True,1,False,False,False,3540.693,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,3.0,1.0,MEDIUM,3.0,True,94.364,33.666,34.945,25.753,211.0,186.0,268.0,322.0,False,True,1,False,False,False,3634.218,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,4.0,1.0,MEDIUM,4.0,True,94.089,33.29,34.946,25.853,211.0,186.0,272.0,318.0,False,True,1,False,False,False,3728.582,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,5.0,1.0,MEDIUM,5.0,True,93.491,32.972,35.003,25.516,207.0,186.0,279.0,322.0,True,True,12,False,False,False,3822.671,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,6.0,1.0,MEDIUM,6.0,True,131.907,42.587,51.84,37.48,97.0,105.0,248.0,99.0,False,False,24,False,False,False,3916.162,False,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,7.0,1.0,MEDIUM,7.0,True,137.314,40.925,55.651,40.738,111.0,102.0,233.0,100.0,False,False,4,False,False,False,4048.069,False,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,8.0,1.0,MEDIUM,8.0,True,143.63,49.504,56.192,37.934,85.0,64.0,234.0,154.0,False,False,4,False,False,False,4185.383,False,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,9.0,1.0,MEDIUM,9.0,True,147.376,47.453,57.423,42.5,122.0,66.0,227.0,114.0,False,False,4,False,False,False,4329.013,False,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,10.0,1.0,MEDIUM,10.0,True,138.535,47.889,56.288,34.358,101.0,77.0,237.0,242.0,False,False,4,False,False,False,4476.389,False,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,11.0,1.0,MEDIUM,11.0,True,148.408,48.402,47.036,52.97,99.0,109.0,281.0,61.0,False,False,41,False,False,False,4614.924,False,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,12.0,1.0,MEDIUM,12.0,True,93.518,32.973,34.946,25.599,213.0,189.0,276.0,313.0,False,True,1,False,False,False,4763.332,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,13.0,1.0,MEDIUM,13.0,True,93.463,32.81,34.989,25.664,211.0,187.0,276.0,314.0,True,True,1,False,False,False,4856.85,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,14.0,1.0,MEDIUM,14.0,True,93.22,32.598,34.938,25.684,212.0,187.0,277.0,316.0,True,True,1,False,False,False,4950.313,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,15.0,1.0,MEDIUM,15.0,True,93.497,32.717,35.101,25.679,211.0,185.0,272.0,313.0,False,True,1,False,False,False,5043.533,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,16.0,1.0,MEDIUM,16.0,True,93.744,32.911,35.104,25.729,211.0,186.0,277.0,313.0,False,True,12,False,False,False,5137.03,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,17.0,1.0,MEDIUM,17.0,True,94.581,32.832,35.996,25.753,207.0,184.0,278.0,319.0,False,True,1,False,False,False,5230.774,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,18.0,1.0,MEDIUM,18.0,True,94.013,33.104,35.169,25.74,211.0,185.0,280.0,316.0,False,True,1,False,False,False,5325.355,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,19.0,1.0,MEDIUM,19.0,True,93.718,32.829,35.179,25.71,208.0,185.0,280.0,318.0,False,True,1,False,False,False,5419.368,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,20.0,1.0,MEDIUM,20.0,True,93.477,32.812,35.122,25.543,212.0,184.0,279.0,320.0,False,True,1,False,False,False,5513.086,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,21.0,1.0,MEDIUM,21.0,True,93.541,32.751,35.036,25.754,211.0,185.0,280.0,318.0,False,True,1,False,False,False,5606.563,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,22.0,1.0,MEDIUM,22.0,True,93.874,32.708,35.309,25.857,207.0,186.0,281.0,306.0,False,True,1,False,False,False,5700.104,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,23.0,1.0,MEDIUM,23.0,True,93.83,32.636,35.224,25.97,210.0,186.0,279.0,305.0,False,True,1,False,False,False,5793.978,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,24.0,1.0,MEDIUM,24.0,True,93.64,32.652,35.072,25.916,212.0,186.0,275.0,305.0,False,True,1,False,False,False,5887.808,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,25.0,1.0,MEDIUM,25.0,True,94.551,32.841,35.826,25.884,211.0,187.0,273.0,304.0,False,True,1,False,False,False,5981.448,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,26.0,1.0,MEDIUM,26.0,True,94.071,32.838,35.349,25.884,211.0,186.0,274.0,304.0,False,True,1,False,False,False,6075.999,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,27.0,1.0,MEDIUM,27.0,True,93.95,32.71,35.273,25.967,211.0,186.0,278.0,302.0,False,True,1,False,False,False,6170.07,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,28.0,1.0,MEDIUM,28.0,True,98.991,32.765,35.098,31.128,211.0,188.0,,303.0,False,False,1,False,False,True,6264.02,False,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,29.0,2.0,HARD,1.0,True,107.494,47.324,34.434,25.736,213.0,188.0,272.0,306.0,False,False,1,False,True,False,6363.011,False,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,30.0,2.0,HARD,2.0,True,91.949,31.898,34.519,25.532,215.0,187.0,281.0,314.0,True,True,1,False,False,False,6470.505,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,31.0,2.0,HARD,3.0,True,92.439,32.073,34.83,25.536,213.0,187.0,280.0,316.0,False,True,1,False,False,False,6562.454,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,32.0,2.0,HARD,4.0,True,92.398,32.236,34.709,25.453,212.0,187.0,281.0,323.0,False,True,1,False,False,False,6654.893,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,33.0,2.0,HARD,5.0,True,93.32,33.037,34.837,25.446,209.0,185.0,286.0,322.0,False,True,1,False,False,False,6747.291,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,34.0,2.0,HARD,6.0,True,94.217,33.241,35.074,25.902,212.0,187.0,289.0,319.0,False,True,1,False,False,False,6840.611,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,35.0,2.0,HARD,7.0,True,94.257,32.687,36.21,25.36,216.0,184.0,282.0,318.0,False,True,1,False,False,False,6934.828,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,36.0,2.0,HARD,8.0,True,93.268,32.403,35.299,25.566,213.0,188.0,283.0,309.0,False,True,1,False,False,False,7029.085,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,37.0,2.0,HARD,9.0,True,92.836,32.187,35.011,25.638,212.0,187.0,280.0,308.0,False,True,1,False,False,False,7122.353,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,38.0,2.0,HARD,10.0,True,92.55,32.19,34.863,25.497,210.0,188.0,280.0,310.0,False,True,1,False,False,False,7215.189,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,39.0,2.0,HARD,11.0,True,92.593,32.04,35.02,25.533,212.0,187.0,283.0,312.0,False,True,1,False,False,False,7307.739,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,40.0,2.0,HARD,12.0,True,92.524,32.056,34.846,25.622,212.0,187.0,281.0,310.0,False,True,1,False,False,False,7400.332,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,41.0,2.0,HARD,13.0,True,92.8,32.305,34.873,25.622,212.0,187.0,280.0,308.0,False,True,1,False,False,False,7492.856,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,42.0,2.0,HARD,14.0,True,92.664,32.163,34.908,25.593,212.0,186.0,284.0,312.0,False,True,1,False,False,False,7585.656,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,43.0,2.0,HARD,15.0,True,92.838,32.384,34.8,25.654,211.0,187.0,281.0,309.0,False,True,1,False,False,False,7678.32,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,44.0,2.0,HARD,16.0,True,92.784,32.152,34.994,25.638,214.0,187.0,281.0,309.0,False,True,1,False,False,False,7771.158,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,45.0,2.0,HARD,17.0,True,92.298,32.012,34.817,25.469,210.0,187.0,282.0,311.0,False,True,1,False,False,False,7863.942,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,46.0,2.0,HARD,18.0,True,92.496,32.078,34.855,25.563,214.0,187.0,283.0,312.0,False,True,1,False,False,False,7956.24,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,47.0,2.0,HARD,19.0,True,92.61,32.306,34.882,25.422,213.0,186.0,284.0,322.0,False,True,1,False,False,False,8048.736,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,48.0,2.0,HARD,20.0,True,93.578,32.872,35.18,25.526,210.0,183.0,282.0,317.0,False,True,12,False,False,False,8141.346,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,49.0,2.0,HARD,21.0,True,92.759,32.304,34.912,25.543,213.0,188.0,281.0,313.0,False,True,1,False,False,False,8234.924,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,50.0,2.0,HARD,22.0,True,92.425,32.073,34.649,25.703,214.0,187.0,284.0,314.0,False,True,1,False,False,False,8327.683,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,51.0,2.0,HARD,23.0,True,92.416,32.095,34.769,25.552,214.0,187.0,285.0,312.0,False,True,1,False,False,False,8420.108,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,52.0,2.0,HARD,24.0,True,92.449,32.186,34.83,25.433,214.0,185.0,283.0,315.0,False,True,1,False,False,False,8512.524,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,53.0,2.0,HARD,25.0,True,92.22,32.094,34.772,25.354,215.0,187.0,286.0,318.0,False,True,1,False,False,False,8604.973,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,54.0,2.0,HARD,26.0,True,91.986,32.078,34.575,25.333,214.0,186.0,286.0,321.0,False,True,1,False,False,False,8697.193,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,55.0,2.0,HARD,27.0,True,92.696,32.27,34.974,25.452,214.0,186.0,288.0,323.0,False,True,1,False,False,False,8789.179,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,56.0,2.0,HARD,28.0,True,93.246,32.448,35.285,25.513,213.0,185.0,287.0,312.0,False,True,1,False,False,False,8881.875,True,,,unresolved
+2026,Miami Grand Prix,4,R,PIA,81,McLaren,57.0,2.0,HARD,29.0,True,93.237,32.345,35.237,25.655,213.0,186.0,284.0,308.0,False,True,12,False,False,False,8975.121,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,1.0,1.0,MEDIUM,1.0,True,105.758,,37.513,25.825,206.0,185.0,288.0,286.0,False,False,1,False,False,False,3441.749,False,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,2.0,1.0,MEDIUM,2.0,True,96.946,34.8,35.808,26.338,208.0,186.0,272.0,316.0,True,True,1,False,False,False,3547.751,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,3.0,1.0,MEDIUM,3.0,True,94.892,33.577,35.332,25.983,211.0,184.0,281.0,305.0,True,True,1,False,False,False,3644.697,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,4.0,1.0,MEDIUM,4.0,True,95.041,33.759,35.26,26.022,210.0,183.0,283.0,315.0,False,True,1,False,False,False,3739.589,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,5.0,1.0,MEDIUM,5.0,True,95.796,33.608,35.698,26.49,203.0,181.0,281.0,297.0,False,True,12,False,False,False,3834.63,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,6.0,1.0,MEDIUM,6.0,True,134.875,44.924,48.134,41.817,180.0,121.0,209.0,128.0,False,False,24,False,False,False,3930.426,False,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,7.0,1.0,MEDIUM,7.0,True,129.357,37.359,48.33,43.668,176.0,94.0,250.0,77.0,False,False,4,False,False,False,4065.301,False,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,8.0,1.0,MEDIUM,8.0,True,143.393,44.754,57.993,40.646,95.0,55.0,232.0,76.0,False,False,4,False,False,False,4194.658,False,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,9.0,1.0,MEDIUM,9.0,True,143.301,44.407,57.49,41.404,105.0,72.0,222.0,145.0,False,False,4,False,False,False,4338.051,False,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,10.0,1.0,MEDIUM,10.0,True,139.786,47.051,57.473,35.262,90.0,88.0,236.0,156.0,False,False,4,False,False,False,4481.352,False,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,11.0,1.0,MEDIUM,11.0,True,144.654,46.78,46.559,51.315,121.0,133.0,283.0,46.0,False,False,41,False,False,False,4621.138,False,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,12.0,1.0,MEDIUM,12.0,True,95.269,33.8,35.516,25.953,210.0,182.0,283.0,311.0,False,True,1,False,False,False,4765.792,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,13.0,1.0,MEDIUM,13.0,True,95.032,33.863,35.306,25.863,207.0,182.0,281.0,307.0,False,True,1,False,False,False,4861.061,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,14.0,1.0,MEDIUM,14.0,True,94.617,33.448,35.231,25.938,207.0,182.0,280.0,301.0,True,True,1,False,False,False,4956.093,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,15.0,1.0,MEDIUM,15.0,True,95.111,33.344,35.524,26.243,209.0,181.0,284.0,309.0,False,True,1,False,False,False,5050.71,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,16.0,1.0,MEDIUM,16.0,True,94.876,33.807,35.205,25.864,209.0,180.0,280.0,316.0,False,True,12,False,False,False,5145.821,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,17.0,1.0,MEDIUM,17.0,True,95.207,33.871,35.451,25.885,208.0,179.0,285.0,321.0,False,True,1,False,False,False,5240.697,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,18.0,1.0,MEDIUM,18.0,True,95.176,33.831,35.47,25.875,206.0,180.0,279.0,323.0,False,True,1,False,False,False,5335.904,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,19.0,1.0,MEDIUM,19.0,True,95.097,33.796,35.436,25.865,208.0,181.0,281.0,324.0,False,True,1,False,False,False,5431.08,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,20.0,1.0,MEDIUM,20.0,True,95.105,33.822,35.439,25.844,206.0,181.0,282.0,325.0,False,True,1,False,False,False,5526.177,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,21.0,1.0,MEDIUM,21.0,True,95.271,33.966,35.486,25.819,208.0,180.0,281.0,320.0,False,True,1,False,False,False,5621.282,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,22.0,1.0,MEDIUM,22.0,True,94.971,33.677,35.312,25.982,207.0,180.0,284.0,318.0,False,True,1,False,False,False,5716.553,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,23.0,1.0,MEDIUM,23.0,True,96.529,34.154,36.188,26.187,209.0,179.0,284.0,310.0,False,True,1,False,False,False,5811.524,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,24.0,1.0,MEDIUM,24.0,True,95.107,33.767,35.307,26.033,209.0,182.0,278.0,320.0,False,True,1,False,False,False,5908.053,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,25.0,1.0,MEDIUM,25.0,True,95.015,33.495,35.506,26.014,208.0,184.0,284.0,314.0,False,True,1,False,False,False,6003.16,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,26.0,1.0,MEDIUM,26.0,True,99.688,33.414,35.395,30.879,209.0,181.0,,332.0,False,False,1,False,False,True,6098.175,False,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,27.0,2.0,HARD,1.0,True,108.534,48.026,34.724,25.784,214.0,183.0,282.0,310.0,False,False,1,False,True,False,6197.863,False,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,28.0,2.0,HARD,2.0,True,93.744,33.077,34.875,25.792,210.0,185.0,284.0,316.0,True,True,1,False,False,False,6306.397,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,29.0,2.0,HARD,3.0,True,94.061,33.097,35.258,25.706,207.0,181.0,285.0,317.0,False,True,1,False,False,False,6400.141,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,30.0,2.0,HARD,4.0,True,93.841,33.077,35.033,25.731,208.0,184.0,287.0,319.0,False,True,1,False,False,False,6494.202,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,31.0,2.0,HARD,5.0,True,94.085,32.994,35.181,25.91,208.0,183.0,282.0,315.0,False,True,1,False,False,False,6588.043,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,32.0,2.0,HARD,6.0,True,94.102,33.116,35.182,25.804,210.0,183.0,285.0,315.0,False,True,1,False,False,False,6682.128,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,33.0,2.0,HARD,7.0,True,93.867,33.002,35.096,25.769,211.0,184.0,287.0,316.0,False,True,1,False,False,False,6776.23,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,34.0,2.0,HARD,8.0,True,94.303,33.235,35.289,25.779,211.0,182.0,287.0,316.0,False,True,1,False,False,False,6870.097,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,35.0,2.0,HARD,9.0,True,94.198,33.156,35.34,25.702,211.0,183.0,287.0,318.0,False,True,1,False,False,False,6964.4,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,36.0,2.0,HARD,10.0,True,94.273,33.182,35.358,25.733,209.0,181.0,287.0,318.0,False,True,1,False,False,False,7058.598,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,37.0,2.0,HARD,11.0,True,94.245,33.187,35.291,25.767,209.0,183.0,287.0,320.0,False,True,1,False,False,False,7152.871,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,38.0,2.0,HARD,12.0,True,94.369,33.376,35.225,25.768,209.0,182.0,284.0,322.0,False,True,1,False,False,False,7247.116,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,39.0,2.0,HARD,13.0,True,94.403,33.383,35.163,25.857,209.0,181.0,283.0,324.0,False,True,1,False,False,False,7341.485,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,40.0,2.0,HARD,14.0,True,94.359,33.441,35.17,25.748,207.0,181.0,283.0,327.0,False,True,1,False,False,False,7435.888,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,41.0,2.0,HARD,15.0,True,94.444,33.491,35.262,25.691,212.0,182.0,283.0,321.0,False,True,1,False,False,False,7530.247,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,42.0,2.0,HARD,16.0,True,94.408,33.396,35.257,25.755,209.0,182.0,283.0,321.0,False,True,1,False,False,False,7624.691,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,43.0,2.0,HARD,17.0,True,94.879,33.431,35.467,25.981,204.0,182.0,286.0,317.0,False,True,1,False,False,False,7719.099,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,44.0,2.0,HARD,18.0,True,94.482,33.342,35.301,25.839,210.0,183.0,286.0,312.0,False,True,1,False,False,False,7813.978,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,45.0,2.0,HARD,19.0,True,94.588,33.221,35.44,25.927,210.0,184.0,285.0,312.0,False,True,1,False,False,False,7908.46,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,46.0,2.0,HARD,20.0,True,94.353,33.212,35.318,25.823,208.0,184.0,287.0,312.0,False,True,1,False,False,False,8003.048,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,47.0,2.0,HARD,21.0,True,97.535,34.937,36.353,26.245,189.0,182.0,285.0,308.0,False,True,12,False,False,False,8097.401,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,48.0,2.0,HARD,22.0,True,94.753,33.345,35.384,26.024,212.0,185.0,285.0,310.0,False,True,1,False,False,False,8194.936,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,49.0,2.0,HARD,23.0,True,94.342,33.094,35.303,25.945,212.0,186.0,286.0,309.0,False,True,1,False,False,False,8289.689,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,50.0,2.0,HARD,24.0,True,94.287,33.156,35.168,25.963,212.0,185.0,286.0,309.0,False,True,1,False,False,False,8384.031,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,51.0,2.0,HARD,25.0,True,94.447,33.134,35.359,25.954,209.0,182.0,287.0,309.0,False,True,1,False,False,False,8478.318,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,52.0,2.0,HARD,26.0,True,94.72,33.114,35.561,26.045,208.0,183.0,287.0,309.0,False,True,1,False,False,False,8572.765,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,53.0,2.0,HARD,27.0,True,94.356,33.07,35.39,25.896,211.0,184.0,288.0,309.0,False,True,1,False,False,False,8667.485,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,54.0,2.0,HARD,28.0,True,95.415,32.943,36.504,25.968,211.0,182.0,288.0,317.0,False,True,1,False,False,False,8761.841,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,55.0,2.0,HARD,29.0,True,95.896,34.829,35.118,25.949,212.0,185.0,290.0,317.0,False,True,1,False,False,False,8857.256,True,,,unresolved
+2026,Miami Grand Prix,4,R,BEA,87,Haas F1 Team,56.0,2.0,HARD,30.0,True,94.514,33.153,35.399,25.962,207.0,182.0,289.0,314.0,False,True,12,False,False,False,8953.152,True,,,unresolved

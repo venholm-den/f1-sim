@@ -97,7 +97,7 @@ def _race_reason(row: pd.Series) -> str:
 
     summary = (
         f"Average finish {finish:.2f}; "
-        f"win {win:.1f}%, podium {podium:.1f}%, points {points:.1f}%, DNF {dnf:.1f}%."
+        f"win {win:.1f}%, podium {podium:.1f}%, top 10 {points:.1f}%, DNF {dnf:.1f}%."
     )
 
     if not parts:

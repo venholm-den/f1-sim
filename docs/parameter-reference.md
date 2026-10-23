@@ -47,11 +47,12 @@ Defined under `model`.
 | Parameter | Purpose |
 | --- | --- |
 | `model_version` | Label written into model outputs. |
+| `use_stint_pace` | Experimental matched-stint race pace and uncertainty model. Defaults to `false`; the current benchmark does not support live promotion. |
 | `use_fastf1_weather` | Keeps FastF1 weather enabled where supported. |
 | `use_weather_forecast` | Allows Open-Meteo forecast fallback when session weather is missing. |
 | `use_race_control_context` | Allows race-control signals to influence chaos/weather modifiers. |
 | `use_track_red_flag_base_chance` | Uses track-specific red-flag baseline chance. |
-| `use_historical_model_calibration` | Enables trained historical finish/DNF model calibration. |
+| `use_historical_model_calibration` | Defaults to `false`. Enables only independently reviewed and activated historical artifacts; inactive/legacy candidates are skipped. |
 | `historical_model_dir` | Folder containing historical sklearn artifacts. |
 | `historical_finish_weight` | Blend weight for historical predicted finish into race pace score. |
 | `historical_dnf_weight` | Blend weight for historical DNF probability into reliability score. |
@@ -76,6 +77,7 @@ Defined mainly in `src\model.py`, `src\performance.py`, and `src\model_config.py
 | `baseline_weight = 1 / (1 + baseline_age * 0.45)` | Downweights older baseline races. |
 | `current_signal_quality` | Scales current-session influence using clean laps, variance, and outlier checks. |
 | Practice pace cap | Reduces overreaction to practice fuel, traffic, and run plans. |
+| `simulate_races(grid_loss_multiplier=...)` | Experimental per-call grid penalty override, finite 0-50; omitted uses the unchanged 1.65 default. Not enabled by automation. See the grid-weight benchmark in the accuracy guide. |
 | Qualifying pace cap | Keeps quali signals strong but bounded. |
 | `model_uncertainty` | Built from baseline spread, baseline coverage, session type, and signal quality. |
 

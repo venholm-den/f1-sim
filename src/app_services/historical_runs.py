@@ -1,4 +1,6 @@
 """Historical session discovery and isolated replay configuration."""
+
+from src.data_sources.fastf1_cache import enable_cache
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -49,7 +51,7 @@ def historical_events(year, root):
     validate_selection({'year':year, 'event':'Schedule', 'session':'Q'})
     cache = Path(root)/'data/cache'
     cache.mkdir(parents=True, exist_ok=True)
-    fastf1.Cache.enable_cache(str(cache))
+    enable_cache(str(cache))
     events = events_from_schedule(fastf1.get_event_schedule(year))
     if not events:
         raise ValueError('No completed sessions found. Check the year and your connection.')

@@ -2,11 +2,12 @@ from __future__ import annotations
 
 import argparse
 import sys
+import os
 from pathlib import Path
 
 import webview
 
-from src.app_services.app_paths import resource_path
+from src.app_services.app_paths import resource_path, initialize_user_workspace
 from portable_app.web_backend import PortableWebApi, project_root
 from portable_app.instance_lock import workspace_lock
 
@@ -18,18 +19,33 @@ def web_asset(path: str) -> Path:
 def main() -> None:
     parser = argparse.ArgumentParser(description="F1 Race Simulator portable web app")
     parser.add_argument("--debug", action="store_true", help="Open developer tools where supported")
-    parser.add_argument('--race-setup', action='store_true', help='Open the original race dashboard')
+    parser.add_argument('--race-setup', action='store_true', help='Open Race Setup (the default)')
+    parser.add_argument('--simulation-centre', action='store_true', help='Open forecasts, scoring and Simulink tools')
+    parser.add_argument('--workspace', type=Path, help='Use a separate local data and results workspace')
     parser.add_argument('--browser', action='store_true', help='Run in a local web browser instead of a desktop window')
     parser.add_argument('--no-open', action='store_true', help='Start the browser server without opening a tab')
     parser.add_argument('--job-worker', help=argparse.SUPPRESS)
     args = parser.parse_args()
 
     if args.job_worker:
+        # Windowed runtimes may supply None OR a dummy stdout stream. Always
+        # own the worker log explicitly, regardless of inherited handles.
+        from contextlib import redirect_stdout, redirect_stderr
         from portable_app.job_worker import run
-        run(Path(args.job_worker))
+        with open(Path(args.job_worker)/'run.log', 'a', encoding='utf-8', buffering=1) as log:
+            with redirect_stdout(log), redirect_stderr(log):
+                try:
+                    run(Path(args.job_worker))
+                except Exception:
+                    # Fail in the log, not a blocking PyInstaller error dialog.
+                    import traceback
+                    traceback.print_exc()
+                    raise SystemExit(1)
         return
 
-    root = Path.cwd() if getattr(sys, 'frozen', False) else project_root()
+    root = (initialize_user_workspace(args.workspace) if args.workspace else
+            initialize_user_workspace() if getattr(sys, 'frozen', False) else project_root())
+    os.chdir(root)
     with workspace_lock(root):
         run_app(args)
 
@@ -38,15 +54,15 @@ def run_app(args):
     api = PortableWebApi()
     if args.browser:
         from portable_app.centre_server import serve
-        serve(api, open_browser=not args.no_open)
+        serve(api, open_browser=not args.no_open, start_page='centre.html' if args.simulation_centre else '')
         return
-    index_path = web_asset('index.html' if args.race_setup else 'centre.html')
+    index_path = web_asset('centre.html' if args.simulation_centre else 'index.html')
     window = webview.create_window(
         "F1 Race Simulator",
         url=index_path.as_uri(),
         js_api=api,
-        width=1440,
-        height=920,
+        width=1664,
+        height=960,
         min_size=(1180, 760),
     )
     api.set_window(window)

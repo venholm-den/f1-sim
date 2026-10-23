@@ -1,0 +1,22 @@
+year,event,round,Driver,Team,actual_strategy,actual_strategy_sequence,actual_stops,actual_stint_count,actual_first_compound,actual_had_wet_compound,actual_completed_likely,actual_race_laps,actual_driver_max_lap,actual_strategy_source,source_circuit_id,source_layout_id,source_venue_status
+2026,Canadian Grand Prix,5,ALB,Williams,SOFT,SOFT,0,1,SOFT,False,False,68,12,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,ALO,Aston Martin,SOFT-SOFT,SOFT-SOFT,1,2,SOFT,False,False,68,24,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,ANT,Mercedes,SOFT-MEDIUM,SOFT-MEDIUM,1,2,SOFT,False,True,68,68,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,BEA,Haas F1 Team,SOFT-MEDIUM,SOFT-MEDIUM,1,2,SOFT,False,True,68,67,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,BOR,Audi,SOFT-MEDIUM,SOFT-MEDIUM,1,2,SOFT,True,True,68,66,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,BOT,Cadillac,SOFT-MEDIUM-SOFT-MEDIUM,SOFT-MEDIUM-SOFT-MEDIUM,3,4,SOFT,True,True,68,64,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,COL,Alpine,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,68,67,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,GAS,Alpine,MEDIUM-HARD,MEDIUM-HARD,1,2,MEDIUM,False,True,68,67,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,HAD,Red Bull Racing,SOFT-MEDIUM-SOFT-SOFT,SOFT-MEDIUM-SOFT-SOFT,3,4,SOFT,False,True,68,67,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,HAM,Ferrari,SOFT-MEDIUM,SOFT-MEDIUM,1,2,SOFT,False,True,68,68,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,HUL,Audi,SOFT-MEDIUM,SOFT-MEDIUM,1,2,SOFT,True,True,68,66,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,LAW,Racing Bulls,MEDIUM-SOFT,MEDIUM-SOFT,1,2,MEDIUM,False,True,68,67,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,LEC,Ferrari,SOFT-MEDIUM,SOFT-MEDIUM,1,2,SOFT,False,True,68,68,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,NOR,McLaren,MEDIUM-MEDIUM,MEDIUM-MEDIUM,1,2,MEDIUM,True,False,68,39,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,OCO,Haas F1 Team,SOFT-MEDIUM-SOFT,SOFT-MEDIUM-SOFT,2,3,SOFT,False,True,68,66,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,PER,Cadillac,SOFT-MEDIUM-SOFT,SOFT-MEDIUM-SOFT,2,3,SOFT,True,False,68,40,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,PIA,McLaren,MEDIUM-MEDIUM-SOFT,MEDIUM-MEDIUM-SOFT,2,3,MEDIUM,False,True,68,66,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,RUS,Mercedes,SOFT,SOFT,0,1,SOFT,False,False,68,30,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,SAI,Williams,MEDIUM-MEDIUM,MEDIUM-MEDIUM,1,2,MEDIUM,True,True,68,67,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,STR,Aston Martin,SOFT-SOFT-MEDIUM,SOFT-SOFT-MEDIUM,2,3,SOFT,False,True,68,64,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved
+2026,Canadian Grand Prix,5,VER,Red Bull Racing,SOFT-MEDIUM,SOFT-MEDIUM,1,2,SOFT,False,True,68,68,fastf1_race_lap_stint_data,villeneuve,villeneuve_gp,resolved

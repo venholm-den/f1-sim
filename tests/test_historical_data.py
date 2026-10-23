@@ -163,3 +163,30 @@ def test_no_skip_existing_preserves_manifest_rows(tmp_path, monkeypatch) -> None
     manifest = pd.read_csv(outputs["manifest"])
 
     assert set(manifest["event"]) == {"One Grand Prix", "Two Grand Prix"}
+
+
+def test_unreadable_archive_is_preserved(tmp_path):
+    import pytest
+    from src.historical_data import _merge_and_write_frame
+    path = tmp_path/'archive.csv'
+    original = b'Year,Driver\n2025,"unterminated'
+    path.write_bytes(original)
+    with pytest.raises(ValueError, match='original retained'):
+        _merge_and_write_frame(path, pd.DataFrame({'Year':[2026], 'Driver':['NEW']}))
+    assert path.read_bytes() == original
+
+
+def test_failed_archive_replace_preserves_original_and_staged_recovery(tmp_path, monkeypatch):
+    import pytest
+    import src.historical_data as module
+    path = tmp_path/'archive.csv'
+    original = b'Year,Driver\n2025,OLD\n'
+    path.write_bytes(original)
+    def fail(*args):
+        raise PermissionError('File locked')
+    monkeypatch.setattr(module.os, 'replace', fail)
+    with pytest.raises(PermissionError):
+        module._merge_and_write_frame(path, pd.DataFrame({'Year':[2026], 'Driver':['NEW']}))
+    assert path.read_bytes() == original
+    staged = list(tmp_path.glob('archive.csv.*.tmp'))
+    assert len(staged) == 1 and len(pd.read_csv(staged[0])) == 2
