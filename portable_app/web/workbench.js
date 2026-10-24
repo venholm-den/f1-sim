@@ -232,7 +232,7 @@ function renderResultsDetails() {
 function renderCandidateOptions(list) {
   state.candidateOptions=list || [];
   $('candidatesPanel').hidden=!state.candidateOptions.length;
-  $('candidateFields').innerHTML=state.candidateOptions.map(item=>`<label id="candidateRow-${item.key}"><span>${escapeHtml(item.label)}</span><select id="candidate-${item.key}" data-candidate="${item.key}">${item.options.map(option=>`<option value="${escapeHtml(option.value)}"${option.value===item.default?' selected':''}>${escapeHtml(option.label)}</option>`).join('')}</select>${item.note?`<small>${escapeHtml(item.note)}</small>`:''}</label>`).join('');
+  $('candidateFields').innerHTML=state.candidateOptions.map(item=>`<label id="candidateRow-${item.key}"><span>${escapeHtml(item.label)}</span><select id="candidate-${item.key}" data-candidate="${item.key}">${item.options.map(option=>`<option value="${escapeHtml(option.value)}"${option.value===item.default?' selected':''}>${escapeHtml(option.label)}${option.lane==='correctness'?' (fact fix)':''}</option>`).join('')}</select>${item.note?`<small>${escapeHtml(item.note)}</small>`:''}</label>`).join('');
   document.querySelectorAll('[data-candidate]').forEach(el=>el.addEventListener('change',updateCandidateRules));
   updateCandidateRules();
 }

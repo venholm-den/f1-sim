@@ -55,8 +55,11 @@ CANDIDATES: dict[str, dict[str, Any]] = {
 
 
 def candidate_options() -> list[dict[str, Any]]:
+    from src.promotion_evidence import lane_for
     return [{'key': key, 'label': item['label'], 'default': item['default'], 'note': item['note'],
-             'options': [{'value': value, 'label': label} for value, label in item['options'].items()]}
+             'options': [{'value': value, 'label': label,
+                          'lane': None if value == item['default'] else lane_for(key, value)}
+                         for value, label in item['options'].items()]}
             for key, item in CANDIDATES.items()]
 
 
