@@ -14,6 +14,9 @@ def test_loopback_bridge_requires_session_and_same_origin(tmp_path):
     (tmp_path/'tyre-strategy.js').write_text('window.TyreStrategy = {};')
     (tmp_path/'tyre-strategy.css').write_text('.tyre-board { color: white; }')
     (tmp_path/'logo.svg').write_text('<svg xmlns="http://www.w3.org/2000/svg"/>')
+    (tmp_path/'fonts').mkdir()
+    (tmp_path/'fonts'/'Barlow-400-latin.woff2').write_bytes(b'wOF2')
+    (tmp_path/'secret.txt').write_text('not served')
     api = Mock()
     api.lab_state.return_value = {'features': True}
     server = make_server(api, tmp_path)
@@ -32,6 +35,13 @@ def test_loopback_bridge_requires_session_and_same_origin(tmp_path):
             with request('/'+asset) as response:
                 assert response.headers['Content-Type'] == content_type
                 assert response.read()
+        with request('/fonts/Barlow-400-latin.woff2') as response:
+            assert response.headers['Content-Type'] == 'font/woff2'
+            assert response.read() == b'wOF2'
+        for path in ['/fonts/missing.woff2', '/fonts/../secret.txt', '/fonts/a/b.woff2', '/secret.txt']:
+            with pytest.raises(urllib.error.HTTPError) as error:
+                request(path)
+            assert error.value.code == 404
         with request('/bridge.js', {'Sec-Fetch-Site':'same-origin'}) as response:
             script = response.read().decode()
         token = script.split("'X-F1-Token':", 1)[1].split('}', 1)[0].strip('"')
