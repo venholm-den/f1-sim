@@ -24,7 +24,13 @@ recommendation table remains expandable. Saved recommendations do not contain
 pit laps: the chart shows sequence, not lap duration or predicted pit windows.
 Stop counts follow the displayed sequence, including historical adjustments.
 
-Frontend data checks: `node --test tests/tyre_strategy.test.cjs tests/shell_focus.test.cjs tests/forecast_answers.test.cjs tests/fantasy_view.test.cjs`.
+Frontend data checks: `node --test tests/tyre_strategy.test.cjs tests/shell_focus.test.cjs tests/forecast_answers.test.cjs tests/fantasy_view.test.cjs tests/replay_events.test.cjs`.
+
+Replay (broadcast phase 5): a Race events list and scrub-bar pins show safety
+cars, VSCs, red flags, track clear, pit entries, early stops and new fastest
+laps, all derived from the saved timing. Click an event to jump just before it.
+Keys: Space play/pause, ←/→ lap, Shift+←/→ 10 s, comma/full stop speed, Esc
+clears the focused driver. The map labels the top three and the focused car.
 
 Fantasy (broadcast phase 4): the picker comes first, under an answer row (best
 team points, usual range, boost, spend or gain over your team) and a sticky
