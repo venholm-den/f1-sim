@@ -69,6 +69,24 @@ def select_weekend(schedule, year, now=None):
     return min(candidates, key=lambda c: c['first_session_utc']) if candidates else None
 
 
+def saved_briefing(roots, year, event):
+    """The saved briefing for one season and Grand Prix, read from disk without fetching anything."""
+    try:
+        year = int(year)
+    except (TypeError, ValueError):
+        return None
+    wanted = str(event or '').strip().casefold()
+    for root in roots:
+        for path in sorted((Path(root) / 'outputs/weekend_briefings').glob(f'{year}_round_*/briefing.json')):
+            try:
+                briefing = json.loads(path.read_text(encoding='utf-8'))
+            except (OSError, ValueError):
+                continue
+            if isinstance(briefing, dict) and str(briefing.get('event', '')).casefold() == wanted:
+                return {key: briefing.get(key) for key in ('year', 'round', 'event', 'format', 'sessions', 'track')}
+    return None
+
+
 def upcoming_weekend(root, now=None):
     import fastf1
     now = _now(now)

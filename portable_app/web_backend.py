@@ -1304,6 +1304,11 @@ class PortableWebApi:
             self._championship_cache[year] = (time.monotonic(), payload)
             return payload
 
+    def weekend_schedule(self, year, event):
+        from src.app_services.automation_feed import DEFAULT_PC_WORKSPACE
+        from src.app_services.weekend_briefing import saved_briefing
+        return saved_briefing([self._jobs.root, Path(self.ui_preferences['pc_workspace'] or DEFAULT_PC_WORKSPACE)], year, event)
+
     def fantasy_open(self):
         from src.fantasy_market import archive_root
         path = archive_root(self._fantasy_workspace())

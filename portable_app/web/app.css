@@ -745,3 +745,48 @@ tr.is-driver-focus td{background:#ff1e3c14;color:var(--text)}
 .workflow:has(>.context-strip[hidden]){display:none}
 @media (max-width:620px){.workflow{display:none}.main>.topbar{margin-top:18px}}
 .workflow:has(>.context-strip[hidden])+.topbar{margin-top:24px}
+
+/* Answer rows: the computed answer first, the maths underneath. */
+.answer-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:2px;margin-bottom:20px}
+.answer{min-width:0;padding:14px 18px 16px;background:var(--panel);border-top:3px solid var(--line)}
+.answer:first-child{border-top-color:var(--red);background:linear-gradient(160deg,#2A0C14,var(--panel) 70%)}
+.answer span{display:block;font:700 12px var(--f-display);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.answer b{display:block;margin:6px 0 4px;font:800 32px/1.05 var(--f-display);text-transform:uppercase;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.answer small{font-size:13px;color:var(--muted)}
+details.maths{margin-bottom:20px}
+details.maths>summary{display:inline-flex;align-items:center;gap:8px;padding:10px 0;cursor:pointer;color:#fff;font:700 14px var(--f-display);letter-spacing:.1em;text-transform:uppercase;list-style:none}
+details.maths>summary::-webkit-details-marker{display:none}
+details.maths>summary::before{content:'+';display:grid;place-items:center;width:20px;height:20px;background:var(--red-fill);color:#fff;font:700 15px var(--f-ui)}
+details.maths[open]>summary::before{content:'−'}
+details.maths>summary:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+details.maths>.footnote{margin:0 0 14px}
+
+/* Weekend hub */
+.hub-strip{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+.hub-strip .kicker{display:inline-block;padding:3px 12px 3px 10px;background:var(--red-fill);color:#fff;font:700 12px var(--f-display);letter-spacing:.14em;text-transform:uppercase;clip-path:polygon(0 0,100% 0,calc(100% - 8px) 100%,0 100%)}
+.hub-strip h2{margin-top:6px;font:800 28px/1.1 var(--f-display);text-transform:uppercase;letter-spacing:.02em}
+.hub-strip .actions{display:flex;gap:8px;flex-wrap:wrap}
+.hub-grid{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:20px}
+.hub-grid>.panel{margin:0}
+.hub-schedule-meta{color:var(--muted);font-size:13px;margin-bottom:10px}
+.hub-sessions{list-style:none;margin:0;padding:0}
+.hub-sessions li{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr) auto 44px;gap:12px;align-items:center;padding:9px 10px;border-bottom:1px solid var(--line-subtle);font-size:14px}
+.hub-sessions li b{font:700 15px var(--f-display);text-transform:uppercase;letter-spacing:.04em}
+.hub-sessions li span{color:var(--text-2);font-variant-numeric:tabular-nums}
+.hub-sessions li.done{color:var(--subtle)}
+.hub-sessions li.done :is(b,span){color:var(--subtle)}
+.hub-sessions li.next{background:var(--red-tint);box-shadow:inset 3px 0 var(--red)}
+.hub-sessions em{font:700 11px var(--f-display);letter-spacing:.12em;text-transform:uppercase;font-style:normal;color:var(--accent-text);text-align:right}
+
+/* Quantile dots: fifty equally likely finishes per driver, stacked over the position axis. */
+.dot-chart{display:grid;gap:10px}
+.dot-row{display:grid;grid-template-columns:44px minmax(0,1fr);align-items:end;gap:10px;padding:4px 0;border-bottom:1px solid var(--line-subtle)}
+.dot-row b{font:800 16px var(--f-display);padding-bottom:2px}
+.dot-grid,.dot-axis{display:grid;grid-template-columns:repeat(var(--positions),minmax(0,1fr))}
+.dot-grid span{display:flex;flex-direction:column-reverse;align-items:center;gap:1px;min-height:7px}
+.dot-grid i{display:block;width:min(7px,80%);aspect-ratio:1;border-radius:50%;background:var(--red)}
+.dot-axis{margin-left:54px;color:var(--subtle);font-size:11px;font-variant-numeric:tabular-nums}
+.dot-axis span{text-align:center;white-space:nowrap}
+.has-driver-focus .view.active .dot-row:not(.is-driver-focus){opacity:.35}
+@media (max-width:1000px){.hub-grid{grid-template-columns:1fr}}
+@media (max-width:620px){.answer-row{grid-template-columns:1fr 1fr}.answer b{font-size:22px}.answer{padding:12px 14px}.hub-strip h2{font-size:22px}.hub-sessions li{grid-template-columns:minmax(0,1fr) auto auto;font-size:13px}.hub-sessions em{display:none}.dot-row{grid-template-columns:36px minmax(0,1fr)}.dot-axis{margin-left:46px;font-size:9px}.dot-grid i{width:min(6px,80%)}}

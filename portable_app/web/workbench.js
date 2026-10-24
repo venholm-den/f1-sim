@@ -1,5 +1,6 @@
 // Presentation for the mockup-based dashboard; all data comes from the Python API.
 const pages = {
+  hub: ['Race weekend', 'The forecast, the schedule and the title fight for the selected Grand Prix.'],
   setup: ['Race setup', 'Configure your race simulation parameters and output preferences.'],
   data: ['Data sources', 'Manage connected data files, configuration paths and data health.'],
   historical: ['Historical data', 'Build your own season-by-season archive of race data.'],
@@ -65,6 +66,7 @@ function navigate(view) {
   clearTimeout(fantasyArchive.timer);
   if(view==='fantasy'){safeAction(()=>refreshFantasyArchive());safeAction(pickFantasyTeam);}
   if(view==='championship')safeAction(()=>refreshChampionship());
+  if(view==='hub')safeAction(refreshHub);
   if(view==='training')safeAction(refreshModelTraining);
   if (typeof refreshHistoricalLibrary === 'function') {
     clearTimeout(state.archiveTimer);
@@ -237,6 +239,7 @@ function renderResultsDetails() {
     ['Position gained / lost','±1 per place, no cap'],['Overtake',`+${rules.overtake_points ?? 1} each`],['Fastest lap (race / sprint)',`+${rules.fastest_lap_bonus} / +${rules.sprint_fastest_lap_bonus}`],
     ['Driver of the Day',`+${rules.dotd_bonus}`],['Not classified (race / sprint / qualifying)',`${rules.dnf_penalty} / ${rules.sprint_dnf_penalty} / ${rules.quali_not_classified_penalty}`],
     ['Constructor qualifying bonus',`${team.neither_q2} to +${team.both_q3}`],['Constructor fastest pit stop','+2 to +20 by time, +5 for the fastest']]);
+  renderForecastViews();
 }
 // Model candidates: off by default, never persisted, validated again by the backend.
 function renderCandidateOptions(list) {

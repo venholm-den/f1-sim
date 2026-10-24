@@ -2,7 +2,7 @@ const state = {
   settings: {},
   outputs: {},
   statusTimer: null,
-  view: 'setup',
+  view: 'hub',
   activeOutputDir: null,
 };
 
@@ -538,5 +538,6 @@ async function boot() {
   initHistoricalLibrary();
   initReplay();
   initModelTraining();
+  if (state.view === 'hub') safeAction(refreshHub);
   await refreshSetupTrack();
 }
