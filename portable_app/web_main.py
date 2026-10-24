@@ -17,7 +17,7 @@ def web_asset(path: str) -> Path:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="F1 Race Simulator portable web app")
+    parser = argparse.ArgumentParser(description="Race Workbench portable web app")
     parser.add_argument("--debug", action="store_true", help="Open developer tools where supported")
     parser.add_argument('--race-setup', action='store_true', help='Open Race Setup (the default)')
     parser.add_argument('--simulation-centre', action='store_true', help='Open forecasts, scoring and Simulink tools')
@@ -62,7 +62,7 @@ def run_app(args):
         return
     index_path = web_asset('centre.html' if args.simulation_centre else 'index.html')
     window = webview.create_window(
-        "F1 Race Simulator",
+        "Race Workbench",
         url=index_path.as_uri(),
         js_api=api,
         width=1664,
