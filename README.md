@@ -226,4 +226,4 @@ The hourly task can collect current-weekend practice and compare the stage blend
 
 ## 2027 production release plan
 
-The [2027 release roadmap](docs/release-plan-2027.md) targets 6 March 2027, subject to provider access, model evidence, clean-machine packaging, pilot and recovery gates.
+The [2027 subscription product roadmap](docs/release-plan-2027.md) targets a conditional paid desktop pilot with hosted forecasts and a mobile companion on 6 March 2027. Native mobile apps and hosted personal simulations follow the pilot; data rights, billing, model evidence, security and recovery remain release gates.

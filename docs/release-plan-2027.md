@@ -1,162 +1,165 @@
-# Production release plan: 2027 season
+# 2027 subscription product release plan
 
-Planning baseline: 24 October 2026. Owner: Kyle; implementation and evidence gathering supported by Codex. Target: **6 March 2027**, conditional on the release gates below.
+Revised 24 October 2026 to reflect the desktop/mobile subscription product. This supersedes the Windows-only scope. Owner: Kyle; Codex supports implementation and evidence gathering.
 
-The [official 2027 calendar](https://www.formula1.com/en/racing/2027) currently lists Bahrain testing on **24–27 February** and the first Grand Prix on **12–14 March**. The opener is a Sprint weekend ([Formula 1 announcement](https://corp.formula1.com/2027-calendar-announced-with-10-sprint-events/)). Freeze the release candidate on **20 February**, review testing integration on **27 February**, and make the final go/no-go decision on **4 March**. Recheck official dates in January and before the opener.
+## Product direction and staged delivery
 
-## Recommended release scope
+The long-term product is desktop and native mobile apps with subscription access to approved forecasts generated on Kyle's PC, personal simulations, optional personal Discord delivery, user-authorised historical downloads and Fantasy analysis.
 
-Ship a stable, local-first Windows 11 x64 desktop application using the existing Python, pywebview and PyInstaller architecture. The essential journey is setup and data access → forecast → inspect assumptions → review and score → export. Improve core usability and accessibility within the current stack. A full visual redesign needs a separate direction decision.
+**6 March 2027 is a conditional paid-pilot target**, covering Windows desktop, hosted published forecasts, customer accounts/subscriptions, mobile-friendly companion, local personal simulations, manually saved Fantasy teams and optional Discord. It is not a promise of native iOS/Android, hosted personal simulation jobs or automatic Fantasy account synchronisation by March. The [official calendar](https://www.formula1.com/en/racing/2027) should be rechecked in January and before the opener; retain the existing 20 February RC freeze, 27 February integration review and 4 March go/no-go.
 
-Defer cloud hosting, central accounts, billing, automatic updates, engine migration and a frontend rewrite. Include fantasy features only if official 2027 rules and prices can be verified; otherwise clearly disable or defer them. Choose the minimum hardware target and distribution audience during the early feasibility gates.
+Native iOS/Android and hosted personal jobs follow measured pilot results, with dates estimated only after capacity/cost and platform feasibility checks. Automatic Fantasy sync requires permitted access; manual team entry remains the fallback. A full UI/engine rewrite is outside this pilot.
 
-This plan schedules engineering work; it does not authorize purchases, contacting pilot users, changing production services, promoting experimental models or publishing a release. Those decisions belong to Kyle at their named gates. Calendar reservations are personal work sessions, not automated execution.
+## Architecture and data boundaries
 
-## Capacity and scope control
-
-Budget: **6 hours per active week**, 17 full weeks (**102 hours**) plus **3 hours** of pre-opener support, **105 hours total**. Keep **21 December–3 January** clear. Nine hours of pre-release contingency are embedded on 15 December, 30 January, 9 February, 18 February and 2 March; the two final support sessions add three hours. This leaves 93 hours of planned delivery and governance work. Task estimates are timeboxes, not proof that every item fits.
-
-At each Saturday gate, record evidence, remaining effort, owner and blockers. Cut optional scope when work exceeds the remaining capacity. Do not absorb overruns by removing acceptance checks. Unresolved provider rights, security, installation or recovery blockers mean HOLD; move the release or retain private beta status. The date is a target, not a waiver.
-
-## Scientific evidence and protected runtime
-
-Keep PRE, FP2 and Q separate and preserve the existing four-model cohort. Independently version the newer form/risk experiment; do not merge cohorts, rewrite frozen forecasts, re-pin old evidence to changed source, or count seeds and stages as additional races. Before release development touches core code, document an isolated stable scientific runtime and an explicit scheduler-routing decision. This planning change does not alter the running task.
-
-The current source baseline reports 841 Python and six JavaScript tests; this is not packaged or clean-machine evidence. Live model defaults remain unchanged. Consult [accuracy improvements](accuracy-improvements.md) and [prospective trials](prospective-prediction-trials.md) for authoritative promotion checks.
-
-New model promotion requires at least six fresh distinct races per requested stage, at least 5% paired loss improvement, no Brier regression, and a qualifying-stage candidate must beat qualifying order, followed by explicit review. Historical factor analysis is diagnostic, not prospective proof. Only six 2026 weekends remain including the current US event, ending [4–6 December in Abu Dhabi](https://www.formula1.com/en/racing/2026); stage availability and capture timing can leave fewer eligible events. Do not promise a new model by March or weaken the threshold to meet the date.
-
-Use the established model if experiments remain inconclusive, with honest descriptions of forecast limitations and experimental outputs. If the agreed product promise requires demonstrated predictive improvement and evidence is insufficient, reduce that promise or delay. Pre-season testing validates feed access and integration; it is not race-outcome validation and must not become a last-minute calibration exercise.
-
-## Mandatory release acceptance
-
-| Area | Evidence required before go/no-go |
+| Component | Responsibility |
 | --- | --- |
-| Scope and claims | Approved must-have/deferred list, supported OS and hardware, accurate forecast limitations; no unsupported accuracy or calibration claims. |
-| Provider access and rights | Real sign-in/download and safe expiry recovery; bounded handling of offline/401/403/429 cases. Review data-source terms, redistribution, branding and intended distribution separately from dependency licences. Unresolved permissions block distribution. |
-| Data correctness | Timestamp cutoffs; announced penalties; roster substitutions; explicit DNS/DQ/NC handling; normal and Sprint state matrix. Bahrain rehearsal must work without an FP2 session. |
-| Reliability | At least 20 defined failure/recovery scenarios, including interruption, cancellation, retry and deduplication; successful isolated backup, restore and upgrade; frozen outputs and delivery receipts preserved. |
-| Usability and pilot | Forecast-to-export task walkthrough, readable missing-data/assumption states, keyboard/contrast/reduced-motion checks; at least three actual pilot users complete onboarding and the core journey. Record native Windows observations. |
-| Package | Versioned onedir ZIP, complete internal dependencies, hashes and chosen signing route; actual clean supported Windows installation and core journey without development Python/Node/MATLAB. Verify WebView2/fallback and minimum hardware. Source tests alone cannot pass this gate. |
-| Security and provenance | Local API and file-boundary review, no bundled credentials/private data/raw archives, redacted support diagnostics, dependency inventory/notices, traceable source/build/artifact hashes. Signing expenditure requires a separate decision. |
-| Operation and support | User setup, privacy, limitations, update, support and rollback instructions; rehearsal of upgrade and rollback; explicit release owner and known-issue list. Zero unresolved P0/P1 defects. |
-| Scientific policy | Stage-specific evidence audit; documented model selection and limitations; no automatic experimental promotion. Factual 2027 reference updates are versioned and verified. |
+| Producer PC | Run approved models in a protected scientific runtime; validate/freeze results; publish outbound with narrowly scoped credentials. No direct public customer access to the home PC. |
+| Hosted service | Store versioned forecasts; serve authenticated/entitled clients; manage app identity, subscriptions and private preferences. Remain useful with explicit freshness labels when the producer is offline. |
+| Desktop | Read published forecasts, run personal scenarios locally, use browser-based personal provider authentication and retain historical archives locally. Never upload F1 passwords or archives by default. |
+| Mobile companion | Responsive access to published forecasts, subscription status and saved preferences/teams. Verify on real mobile browsers. |
+| Later native/mobile execution | Native clients and bounded queued simulations on separate workers; benchmark costs, cancellation, concurrency and isolation before committing allowances. The producer PC is not the promised paid on-demand compute service. |
 
-P0 means data loss, secret exposure or unusable application; P1 means a broken core journey, incorrect stage/cutoff behaviour or failed recovery without a safe workaround. Define the full severity matrix at the first gate. Every gate records artifact/version, evidence location, result and owner; an unchecked requirement remains open.
+Published forecasts carry model version, stage, input cutoff, generation/publication time and provenance. Personal scenarios show changed assumptions and cannot overwrite official results or enter official performance records. User data and Discord destinations are private per account. Desktop-only posting and hosted posting while the desktop is closed are separate capabilities; the pilot must state which is delivered.
 
-## Weekly delivery plan
+## Commercial and integration feasibility
 
-The dated work sessions below each have an outcome and acceptance criterion. A calendar gate is a review of completed evidence, not a claim that the task has passed.
+Start with one paid-tier hypothesis and test value and willingness to pay before setting prices. Define cancellation, renewal, failed-payment, expiry and purchase recovery behaviour. Sandbox first; production charging, purchases, outreach, service changes and publication require their own explicit decisions. Avoid unlimited hosted compute commitments.
 
-### Week 1 — 2026-10-26: Scope, evidence protection and release criteria
+Customer F1 access is separate from this app subscription. A user's authenticated access does not establish rights to commercial derived-output publication, raw-data redistribution or account integration. Review each intended use early and retain evidence. Unresolved rights block the affected feature or commercial release.
 
-- **2026-10-27 — Scope the Windows 1.0 release (1.5h).** Define the forecast -> review -> score -> export journey, supported Windows version and product claims. Defer cloud, billing, engine migration and full UI redesign. Acceptance: Written must-have/deferred list and measurable release checklist.
-- **2026-10-29 — Protect the frozen scientific runtime (1.5h).** Separate release development from pinned 2026 experiments before editing core files. Plan explicit scheduler routing and preserved source/input snapshots; do not blindly re-pin old cohorts. Acceptance: Release branch/runtime boundary recorded; frozen forecasts and receipts remain intact.
-- **2026-10-31 — GATE: scope and release-risk register (3h).** Confirm a local-first Windows release, model-evidence policy, owner decisions, effort budget and top release risks. Review data rights and signing dependencies early. Acceptance: Kyle approves scope; no promise of new model promotion or calibrated probabilities without evidence.
+The [published Fantasy terms](https://fantasy.formula1.com/en/terms) restrict automated extraction and commercial exploitation. Do not promise automatic account/team sync without a permitted route. Advisory recommendations and manually saved teams are the initial scope; do not automatically make transfers.
 
-### Week 2 — 2026-11-02: Provider access and distribution feasibility
+Native mobile billing requires platform/storefront review, not a blanket assumption that web checkout suffices: [Apple guidelines](https://developer.apple.com/app-store/review/guidelines/) and [Google Play payments policy](https://support.google.com/googleplay/android-developer/answer/10281818?hl=en). Recheck these before native implementation. Budget applicable consumer/privacy/tax decisions and support obligations without treating draft policies as proof of compliance.
 
-- **2026-11-03 — Verify provider sign-in and recovery (1.5h).** Exercise FastF1 authentication, expired/missing credentials and restore flows in an isolated workspace. Confirm what users must supply themselves. Acceptance: A documented successful sign-in plus safe failure/recovery; no bundled credentials.
-- **2026-11-05 — Harden offline and provider failure handling (1.5h).** Test cached use, network loss, 401/403, 429 and exhausted access. Bound retries and distinguish unavailable data from healthy/no-event observations. Acceptance: Visible actionable failures; cached results remain usable; no runaway retry loops.
-- **2026-11-07 — GATE: data rights, licences and branding (3h).** Review code/dependency licences separately from underlying data, asset and branding rights. Decide distribution/commercial scope and signing budget. No purchases or public distribution are authorised by this calendar entry. Acceptance: Documented distribution basis and notices plan; unresolved rights/access blockers have an owner and stop public release.
+## Capacity, model evidence and stop conditions
 
-### Week 3 — 2026-11-09: Data contracts and forecast correctness
+Keep 17 six-hour active weeks (102h) plus 3h pre-opener support: **105 hours total**, with 21 December–3 January clear. Nine pre-release contingency hours remain embedded on 15 December, 30 January, 9 February, 18 February and 2 March. These are timeboxes, not reliable estimates that a larger commercial scope will fit. At every Saturday review re-estimate remaining work, cut optional scope or move the pilot; do not remove verification to protect the date.
 
-- **2026-11-10 — Validate rosters, Q ranks and penalties (1.5h).** Build fixtures for complete/partial classifications, DNS/DQ/NC, driver substitutions and announced penalties. Preserve official Q order separately from later race-day grid changes. Acceptance: No fabricated ranks, lost entrants or silent team/driver join errors.
-- **2026-11-12 — Test time cutoffs and Sprint state handling (1.5h).** Rehearse PRE/FP1/SQ/S/Q/R availability and standard weekends against published rules and feed state. Never substitute missing FP2 for an unsupported stage. Acceptance: Target-race outcomes cannot enter features; unavailable inputs remain explicit.
-- **2026-11-14 — GATE: data-contract acceptance matrix (3h).** Run dry/wet, standard/Sprint, missing-data, interrupted-session and late-penalty scenarios. Retain evidence and input/source versions. Acceptance: All must-have correctness scenarios pass; failures cannot create misleading frozen forecasts.
+Preserve existing four-model and independent form/risk cohorts, frozen forecasts, inputs and delivery receipts. Keep PRE/FP2/Q separate. Consult [accuracy improvements](accuracy-improvements.md) and [prospective trials](prospective-prediction-trials.md). Existing promotion gates remain at least six fresh distinct races per requested stage, at least 5% paired loss improvement, no Brier regression, Q beating qualifying order, and explicit review. No inflated race counts or historical diagnostics relabelled prospective evidence. Retain the established model if evidence is insufficient. Testing laps verify integration, not prediction accuracy. A verified model means one that passed a documented process, not guaranteed accuracy.
 
-### Week 4 — 2026-11-16: Usable forecast-to-score journey
+## Mandatory paid-pilot acceptance
 
-- **2026-11-17 — Fix the core navigation and setup journey (1.5h).** Use the current desktop stack. Make forecast, results, comparison and scoring discoverable; distinguish current controls from the saved run being shown. Acceptance: One usable end-to-end workflow, without requiring the unapproved full design-playground rebuild.
-- **2026-11-19 — Make assumptions and missing data legible (1.5h).** Expose roster/grid sources, feature age, uncertainty limits and unavailable prices/weather/strategy. Exercise keyboard, contrast, small-window and reduced-motion behaviour. Acceptance: No mock values presented as model evidence; core screens remain readable and operable.
-- **2026-11-21 — GATE: task-based usability walkthrough (3h).** Rehearse a new user selecting an event, running a forecast, understanding results, scoring an old race and exporting evidence. Acceptance: Core tasks completed without undocumented developer steps; only release-relevant UX defects enter the backlog.
+- Approved scope, price/value hypothesis, distribution/data/branding basis and measured hosting/support assumptions.
+- PC outbound publication is atomic, validated, versioned and safe to retry. PC outages retain the last valid snapshot with visible freshness.
+- Customer authentication, per-user isolation and server-verified entitlements pass; payment events are authenticated and idempotent. Cancellation, expiry, failure and restoration pass.
+- Source tests and actual packaged-client/service acceptance are recorded separately. Clean supported Windows installation and real-phone browser core journeys pass.
+- At least three independent pilot users complete the core journey without developer intervention. Demand/value evidence informs whether to charge.
+- Normal/Sprint cutoffs and missing-data handling are correct; personal scenarios and official forecasts stay distinct. Provider sign-in and recovery are verified without centralising provider credentials.
+- Backup, restore, rollback, secret handling, redacted diagnostics, dependency notices/build provenance and user-facing support/privacy/subscription policies are demonstrated against the actual release.
+- No unresolved P0/P1 defects. P0 includes data loss, exposed secrets or unusable service; P1 includes broken customer access/core journey, incorrect stage/cutoff behaviour or recovery without a safe workaround.
 
-### Week 5 — 2026-11-23: Reliability, backup and recovery
+Each gate records exact versions, evidence location, owner and pass/hold decision. Unresolved commercial permissions, security, billing/access, model claims or recovery failures mean HOLD or a reduced private/non-paid pilot. Model promotion is never an automatic consequence of release scheduling.
 
-- **2026-11-24 — Exercise interruption, cancellation and retry (1.5h).** Run repeated interrupted downloads/simulations, restart the app and verify safe resumption. Check deduplication and frozen-file protection. Acceptance: No corrupted committed runs, duplicate deliveries or silent partial success.
-- **2026-11-26 — Rehearse backup, restore and upgrade (1.5h).** Restore a real saved forecast, evaluation and receipt into an isolated workspace. Test side-by-side upgrade/rollback without deleting existing user data. Acceptance: Recovered hashes match; settings and credentials stay local; rollback steps are documented.
-- **2026-11-28 — GATE: reliability and recovery evidence (3h).** Complete a 20-scenario cached/failed-network regression pack, including restart and recovery. Investigate any data-loss or core-workflow failure. Acceptance: Zero open P0/P1 defects in the covered workflows; retained recovery receipts and logs.
+## Dated delivery sessions
 
-### Week 6 — 2026-11-30: First clean-machine package and signing route
+### Week 1: Product scope and commercial feasibility
 
-- **2026-12-01 — Build the first release-shaped Windows package (1.5h).** Create a uniquely named PyInstaller onedir/ZIP artifact from a recorded commit. Inspect runtime dependencies and absence of secrets, caches and personal archives. Acceptance: Package manifest and checksums; no overwrite of old releases; no Python/MATLAB/Node required for core use.
-- **2026-12-03 — Choose signing and minimum-PC acceptance (1.5h).** Confirm signing/certificate or service route, cost approval and support policy. Define Windows 11 x64 test configurations and a warm-cache performance target on named hardware. Acceptance: Budget/owner decision recorded; signing not postponed to launch week.
-- **2026-12-05 — GATE: clean Windows installation smoke (3h).** Run the actual package on a clean Windows VM/device. Test WebView2 detection/browser fallback, first launch, offline review, export and uninstall/side-by-side replacement. Acceptance: A non-developer machine runs the core product; source-test success is not substituted for packaged proof.
+- **2026-10-27 — Define subscription MVP and staged mobile scope (1.5h).** Specify desktop local sims, PC-produced published forecasts, hosted accounts/subscriptions and a mobile-friendly companion. Native iOS/Android, hosted personal jobs and automatic Fantasy sync follow the pilot. Acceptance: Approved feature/claim matrix, pilot audience and cut list; no all-platform launch promise.
+- **2026-10-29 — Check commercial data and Fantasy integration permissions (1.5h).** Investigate provider access, commercial derived-output publication, branding and Fantasy import permissions. Identify an authorised route or manual-entry fallback. Acceptance: Evidence and owner for each rights question; unresolved rights block affected commercial features.
+- **2026-10-31 — GATE: architecture, capacity and paid-pilot scope (3h).** Map PC outbound publishing to hosted storage/API and desktop/mobile clients. Define subscription value, success measures, budget decisions and protected scientific runtime. Acceptance: One agreed architecture and 105-hour budget; preserve frozen cohorts, forecasts and receipts.
 
-### Week 7 — 2026-12-07: 2026 evidence review and 2027 model policy
+### Week 2: Publishing contracts and scientific isolation
 
-- **2026-12-08 — Audit completed 2026 shadow evidence (1.5h).** After the scheduled 6 December finale, count distinct scored races by cohort/stage. Recheck source/input/result provenance, missing stages and calibration coverage. Acceptance: A coverage ledger; seeds, stages and different cohorts are not inflated into independent race counts.
-- **2026-12-10 — Compare accuracy and probability guardrails (1.5h).** Review paired finish loss, win/podium/top-10/DNF Brier, RPS and calibration. Isolate form contribution from degradation-only control and retirement prior. Acceptance: No retrospective diagnostic is relabelled fresh; insufficient evidence remains an explicit result.
-- **2026-12-12 — GATE: decide 2027 model policy (3h).** Promote only where existing stage-specific fresh-evidence rules and explicit review are satisfied. Few 2026 races remain, so the plan must not depend on new candidates qualifying. Acceptance: Established defaults remain if gates fail; product claims stay honest. If that violates the agreed release promise, reduce scope or delay.
+- **2026-11-03 — Define immutable forecast publication contract (1.5h).** Specify model version, stage, input cutoff, generation/publication times, provenance, checksum and visibility. Keep official forecasts separate from personal scenarios. Acceptance: Versioned schema and example accepted/rejected payloads.
+- **2026-11-05 — Protect forecasting runtime and publisher credentials (1.5h).** Design a stable scientific runtime separate from commercial development; use scoped outbound publisher credentials with explicit scheduler routing. Acceptance: No inbound customer access to home PC; no task changes or re-pinning existing cohorts without a separate decision.
+- **2026-11-07 — GATE: publishing and stale-data failure rehearsal (3h).** Rehearse atomic publication, duplicate/retry handling, failed validation and PC offline states using fixtures. Acceptance: Previous approved forecast stays available; stale/failed runs are labelled and do not overwrite healthy publication.
 
-### Week 8 — 2026-12-14: Pilot preparation and holiday checkpoint
+### Week 3: Hosted foundation and customer identity
 
-- **2026-12-15 — CONTINGENCY: close evidence-review blockers (1.5h).** Reserved capacity for the highest release blocker from the evidence review; if clear, strengthen a missing acceptance fixture. Acceptance: One prioritised issue closed or a documented blocker/owner/date; no new feature scope.
-- **2026-12-17 — Prepare pilot scripts and support diagnostics (1.5h).** Define five core pilot tasks, a local redacted diagnostic bundle and issue template. Identify 3-5 willing pilot users; any outreach is Kyle-led, not an automatic invitation. Acceptance: Pilot checklist, support steps and safe logs ready; no secrets or central telemetry by default.
-- **2026-12-19 — GATE: pilot-ready build and holiday handoff (3h).** Prepare a verified preview package and onboarding instructions. Record known issues, backups and what can run unattended over the break. Acceptance: No open P0/P1 in pilot core tasks; no planned project blocks from 21 December through 3 January.
+- **2026-11-10 — Build minimal hosted forecast storage and read API (1.5h).** Implement authorised retrieval, versioned snapshots, atomic latest pointers and a minimal service deployment draft. Acceptance: Fixture clients read permitted forecasts; raw archives and user secrets excluded.
+- **2026-11-12 — Add customer identity and private data separation (1.5h).** Implement account/session boundaries, secret handling and per-user preferences; distinguish app account from provider account. Acceptance: Cross-user access denied and session expiry/recovery tested.
+- **2026-11-14 — GATE: end-to-end PC-to-client publishing slice (3h).** Exercise PC-generated fixture -> validated publication -> authenticated desktop/mobile-sized reader. Acceptance: Same version/provenance shown across clients; account isolation and offline freshness behaviour pass.
 
-### Week 9 — 2027-01-04: 2027 references and Sprint opener rehearsal
+### Week 4: Subscription product and sandbox billing
 
-- **2027-01-05 — Verify official 2027 calendar and session rules (1.5h).** Recheck the official calendar, Sprint format and supported session-state transitions. Bahrain is currently the 12-14 March Sprint opener. Acceptance: Versioned official references; differences from 2026 are identified rather than assumed.
-- **2027-01-07 — Refresh 2027 entry and reference contracts (1.5h).** Review published drivers, teams, venues, tyres and penalties. Preserve publication cutoffs. Fantasy features stay unavailable where official 2027 rules/prices are not yet verified. Acceptance: No invented entrants or 2026 rules silently presented as 2027 facts.
-- **2027-01-09 — GATE: Bahrain Sprint opener replay (3h).** Use completed Sprint fixtures and the verified 2027 format to rehearse eligible inputs, scoring and missing-session behaviour. Do not require an FP2 that the schedule does not contain. Acceptance: The opener path works with explicit assumptions and no future-data leakage.
+- **2026-11-17 — Define paid value, pricing experiment and usage limits (1.5h).** Identify target customers, ongoing paid value, proposed monthly/annual options and support costs. Avoid unlimited hosted compute promises. Acceptance: Pricing hypothesis, cost assumptions and willingness-to-pay pilot questions; price remains provisional.
+- **2026-11-19 — Integrate checkout sandbox and entitlement records (1.5h).** Implement hosted checkout draft, verified payment events and idempotent entitlement updates; never trust a client paid flag. Acceptance: Sandbox subscription activates exactly once; invalid/replayed events cannot grant access.
+- **2026-11-21 — GATE: cancellation, renewal and purchase recovery (3h).** Exercise active, failed payment, cancelled, expired and restored subscriptions plus account recovery. Document mobile store billing review for later native launch. Acceptance: Cross-device entitlement states consistent; cancellation/access rules clear; no live charges.
 
-### Week 10 — 2027-01-11: Pilot and dependency decision
+### Week 5: Desktop local simulations and provider access
 
-- **2027-01-12 — Run pilot onboarding and clean installs (1.5h).** Have the agreed pilot users execute the core tasks on their machines. Collect consented, redacted feedback; no bulk telemetry or automatic contact. Acceptance: At least three independent task-based pilot runs, or a documented recruitment blocker.
-- **2027-01-14 — Triage pilot defects and performance (1.5h).** Prioritise crashes, wrong data, frozen-run failures and user confusion. Measure warm-cache runtime, memory and cancellation on declared hardware. Acceptance: Issue severity and reproducible evidence; observed performance replaces assumed performance.
-- **2027-01-16 — GATE: pilot exit and dependency freeze (3h).** Close core pilot P0/P1s. Choose the tested FastF1/provider dependency version and lock all runtime dependencies; explicitly assess the currently pinned alpha risk. Acceptance: At least three users finish core tasks without developer intervention; dependency choice and fallbacks documented.
+- **2026-11-24 — Separate official forecasts from My simulations (1.5h).** Expose local scenario controls and saved runs; label altered assumptions and prevent personal runs entering official accuracy records. Acceptance: Personal simulation cannot overwrite published forecasts or validated model policy.
+- **2026-11-26 — Verify personal F1 sign-in and historical downloads (1.5h).** Exercise browser sign-in, access eligibility, expiry and recovery locally. Keep provider credentials/archive on the user's desktop. Acceptance: Real download and safe failure verified; no F1 password or personal archive uploaded to hosted service.
+- **2026-11-28 — GATE: recovery, cutoff and Sprint correctness (3h).** Run core scenarios across PRE/FP2/Q, Sprint/missing sessions, interrupted local jobs and restore/upgrade. Acceptance: No future-data leakage, fabricated stages or damaged frozen outputs; release-blocking defects recorded.
 
-### Week 11 — 2027-01-18: Feature complete and operator documentation
+### Week 6: Early packages and mobile companion
 
-- **2027-01-19 — Close high-impact accessibility and UX defects (1.5h).** Fix keyboard/focus, contrast, scaling and the highest pilot friction. Keep the existing desktop architecture and avoid cosmetic scope expansion. Acceptance: Core workflows usable on supported screen sizes and input methods.
-- **2027-01-21 — Finish user, privacy and support documentation (1.5h).** Document account/access requirements, data locations, backup/restore, updates, known limitations and support process. Explain optional Discord and sharing controls. Acceptance: A new user can install, forecast, interpret, score and recover without private instructions.
-- **2027-01-23 — GATE: feature complete and scope freeze (3h).** Freeze the v1.0 feature list. Remaining work is defects, security, packaging, acceptance and release operations. Acceptance: Any incomplete optional feature is cut or clearly disabled; no new engine, framework or cloud service.
+- **2026-12-01 — Build desktop package and responsive companion slice (1.5h).** Package existing desktop engine and connect both clients to hosted forecasts and app sign-in. Avoid an engine/framework rewrite. Acceptance: Recorded source/artifact hashes; usable core screens on desktop and phone-sized viewport.
+- **2026-12-03 — Decide signing, hosting costs and minimum hardware (1.5h).** Choose supportable deployment/signing route, Windows test hardware, hosting budget and rollback ownership. Acceptance: Owner/cost decisions recorded; no purchases or production deployment implied by work block.
+- **2026-12-05 — GATE: clean Windows and real-phone walkthrough (3h).** Test actual package without developer runtimes and the responsive companion on real mobile browsers, including sign-in and subscription status. Acceptance: Install/read/local-sim journey passes on supported desktop; published forecast readable on phone.
 
-### Week 12 — 2027-01-25: Security, provenance and release buffer
+### Week 7: Evidence review and publication policy
 
-- **2027-01-26 — Review local API, secrets and file boundaries (1.5h).** Inspect local binding, browser/API protections, path validation, credential storage and log redaction. Check untrusted model/artifact handling. Acceptance: No unresolved high-severity exposure; optional external actions require user intent.
-- **2027-01-28 — Complete dependency notices and build provenance (1.5h).** Create the release dependency inventory/SBOM and third-party notices; link the exact source commit, package checksums and approved data/branding decisions. Acceptance: Distribution evidence complete; raw archives, tokens and personal files are not shipped.
-- **2027-01-30 — CONTINGENCY: close release-blocking defects (3h).** Three-hour buffer for the highest outstanding packaging, security or pilot blocker. If clear, repeat the weakest recovery test. Acceptance: No new scope; remaining blocker decisions are escalated before RC freeze.
+- **2026-12-08 — Audit completed 2026 cohorts and stage coverage (1.5h).** Count fresh distinct scored races by stage/cohort and verify provenance. Do not inflate samples with seeds or merge experiments. Acceptance: Coverage ledger distinguishes historical diagnostics from prospective evidence.
+- **2026-12-10 — Evaluate models and publishable performance claims (1.5h).** Review paired loss, Brier, distribution scores and calibration with matched baselines; separate form, wear and risk effects. Acceptance: No unsupported accuracy/verification claim; insufficient fresh evidence remains explicit.
+- **2026-12-12 — GATE: select 2027 published model and fallback (3h).** Apply existing promotion rules: six fresh races per requested stage, >=5% paired improvement, no Brier regression, Q beats qualifying order and explicit review. Acceptance: Established model retained where gates fail; publication claims and subscription promise remain defensible.
 
-### Week 13 — 2027-02-01: End-to-end release rehearsal
+### Week 8: Discord, Fantasy fallback and pilot preparation
 
-- **2027-02-02 — Run source regression and actual EXE acceptance (1.5h).** Run Python/JavaScript CI plus the packaged-EXE smoke and functional checks. Verify the binary contains the tested source changes. Acceptance: Source and packaged validation recorded separately; no stale dist folder treated as current.
-- **2027-02-04 — Rehearse opener workflow and rollback (1.5h).** Exercise forecast -> freeze -> review -> safe export -> official scoring, with failure injection, correct timestamps and a rollback into an isolated workspace. Acceptance: Normal and Sprint fixtures pass; no upload without consent and no duplicate receipt delivery.
-- **2027-02-06 — GATE: complete release rehearsal (3h).** Rehearse download, signature/checksum verification, clean install, upgrade, rollback and user support on the actual release path. Acceptance: Zero open release-blocking P0/P1s; recovery and support runbook demonstrated.
+- **2026-12-15 — CONTINGENCY: close commercial feasibility blockers (1.5h).** Reserve 90 minutes for the highest rights, publishing, billing or package blocker. Acceptance: One prioritised gap closed or explicit owner/hold decision; no new scope.
+- **2026-12-17 — Prepare personal Discord and saved Fantasy team (1.5h).** Add explicit destination/preview/enable/disconnect and deduplicated delivery design; save manually entered team, bank and transfers per user. Acceptance: No cross-user webhook exposure; no automatic Fantasy scraping/account sync without authorised access.
+- **2026-12-19 — GATE: pilot-ready commercial journey and holiday handoff (3h).** Review account -> sandbox subscription -> forecast -> personal sim -> saved team -> optional Discord. Prepare redacted diagnostics and five pilot tasks. Acceptance: Pilot candidate and instructions ready; no critical defects; 21 December-3 January clear.
 
-### Week 14 — 2027-02-08: Launch preparation and RC readiness
+### Week 9: 2027 reference data and cross-device preferences
 
-- **2027-02-09 — CONTINGENCY: remaining pilot and package fixes (1.5h).** Reserved 90 minutes for the highest residual defect. If clear, improve one unverified acceptance scenario. Acceptance: No discretionary new features; evidence gap closed or release risk explicitly recorded.
-- **2027-02-11 — Prepare release notes and distribution draft (1.5h).** Draft the release/download page, supported-platform statement, known limitations and support policy. Keep publication behind the final release decision. Acceptance: Draft assets point to the intended signed package and accurate feature/model claims.
-- **2027-02-13 — GATE: release-candidate readiness (3h).** Audit data access, rights, security, pilot acceptance, package compatibility, rollback and model policy before producing the frozen RC. Acceptance: All mandatory gates have evidence and owners; unresolved P0/P1 blocks RC approval.
+- **2027-01-05 — Recheck official 2027 calendar and Sprint rules (1.5h).** Verify published season/session definitions and stage availability before changing reference data. Acceptance: Versioned official sources; missing FP2 stays unavailable rather than invented.
+- **2027-01-07 — Refresh entrants and Fantasy rules; test user sync (1.5h).** Update only published 2027 facts; synchronise manual team/preferences with timestamp/conflict handling. Disable unverified prices/rules. Acceptance: No stale 2026 facts presented as current; users cannot read each other's teams.
+- **2027-01-09 — GATE: opener rehearsal across desktop and mobile (3h).** Rehearse standard/Sprint fixtures through publishing, entitlements, saved team and desktop scenarios. Acceptance: Consistent forecast version and explicit missing/stale inputs on both clients.
 
-### Week 15 — 2027-02-15: Release candidate freeze
+### Week 10: Paid-product pilot and demand validation
 
-- **2027-02-16 — Build and sign the release candidate (1.5h).** Build the uniquely versioned RC from a recorded commit; sign through the approved route and verify checksums/signatures on another supported machine. Acceptance: A reproducible signed artifact, manifests and test receipts; no private build-only dependency.
-- **2027-02-18 — CONTINGENCY: final RC blockers (1.5h).** Reserved capacity to close the last critical defect or repeat an acceptance failure before the testing-week freeze. Acceptance: No gate waived for the deadline; use a new version for any rebuilt artifact.
-- **2027-02-20 — GATE: freeze RC and model settings (3h).** Freeze the candidate artifact and model/calibration settings before Bahrain testing starts on 24 February. Record the 2027 challenger or established-model decision. Acceptance: Immutable version/provenance. Any later source fix creates a new candidate/version and reruns acceptance; never re-pin old forecasts.
+- **2027-01-12 — Run three-user desktop and mobile pilot (1.5h).** With agreed testers, exercise onboarding, sandbox purchase, published forecast, local sim and recovery; collect consented redacted feedback. Acceptance: At least three independent task runs or documented recruitment blocker; no automatic outreach.
+- **2027-01-14 — Assess willingness to pay and operating economics (1.5h).** Review user value, proposed price, support load, hosting/storage/payment assumptions and measured simulation cost. Acceptance: Evidence-based price/scope proposal; no invented customer demand or unlimited-compute commitment.
+- **2027-01-16 — GATE: pilot exit, dependency freeze and commercial decision (3h).** Resolve core P0/P1s, choose tested provider/runtime pins and decide whether March paid pilot is justified. Acceptance: Three users finish core tasks; rights and value gaps cause scope cut/hold rather than unproven paid launch.
 
-### Week 16 — 2027-02-22: Pre-season live integration
+### Week 11: Feature complete and customer policies
 
-- **2027-02-23 — Prepare testing-week data and monitoring checks (1.5h).** Verify provider access, calendar/session mapping, expected entrants and request limits before testing. Do not interpret testing as a race or fresh accuracy validation. Acceptance: An integration-only test checklist and safe failure/rollback path.
-- **2027-02-25 — Smoke-test pre-season live data (1.5h).** During the published 24-27 February Bahrain test window, verify access, timestamps, driver/team identity and missing-data UI on the packaged build. Acceptance: New-season data loads or fails explicitly; no tuning or performance claims from test lap times.
-- **2027-02-27 — GATE: testing integration and hotfix decision (3h).** Review testing-week compatibility. Permit only evidenced blocking fixes or versioned factual-reference updates; preserve frozen model/calibration policy. Acceptance: If changed, create a new RC/cohort and rerun relevant acceptance. Integration success is not accuracy proof.
+- **2027-01-19 — Close desktop/mobile usability and accessibility gaps (1.5h).** Fix top pilot issues, keyboard/focus, touch controls, readable uncertainty and saved-run settings. Acceptance: Core tasks pass on supported desktop and mobile browsers without developer help.
+- **2027-01-21 — Document privacy, subscriptions, support and recovery (1.5h).** Draft clear renewal/cancellation/refund process, local/cloud data boundaries, account deletion/export and support/rollback instructions; assess applicable commercial obligations. Acceptance: Customer-facing policies match actual behaviour; deletion process protects required records and respects retention decisions.
+- **2027-01-23 — GATE: commercial MVP feature freeze (3h).** Freeze desktop + hosted forecasts + subscriptions + mobile companion + manual Fantasy + optional Discord scope. Acceptance: Cut incomplete optional scope; native apps, hosted personal jobs and authorised Fantasy sync remain a later roadmap.
 
-### Week 17 — 2027-03-01: Release decision and production launch
+### Week 12: Security, notices and contingency
 
-- **2027-03-02 — CONTINGENCY: final evidence audit or blocker fix (1.5h).** Reserved 90 minutes to close a final blocker; otherwise audit every mandatory gate and ensure release notes match the actual build. Acceptance: One final candidate identity and a clear pass/hold recommendation.
-- **2027-03-04 — GATE: final production go/no-go (1.5h).** Review the signed package, data/access rights, supported Windows checks, pilot results, restore/rollback, zero P0/P1s, security and honest model claims. Acceptance: Kyle explicitly approves the exact release or records a hold. A calendar entry never authorises publication by itself.
-- **2027-03-06 — TARGET: production release or hold / rollback window (3h).** Target 6 March, six days before the currently scheduled first GP weekend. Publish only the explicitly approved artifact, verify the real download/clean install, and retain rollback capacity. Acceptance: Approved release verified end to end, or a documented hold. No unsupported model promotion or deadline-driven gate bypass.
+- **2027-01-26 — Review hosted authorisation, payments and secret boundaries (1.5h).** Check cross-user reads/writes, session expiry, webhook verification, local API/file access, credentials and redaction. Acceptance: No unresolved high-severity exposure or shared customer/provider credentials.
+- **2027-01-28 — Complete build provenance, notices and operations runbook (1.5h).** Record dependencies/SBOM, approved data/branding basis, artifact hashes, backups and hosted restore/credential rotation procedures. Acceptance: Traceable packages/service versions and demonstrated safe diagnostics; no raw archives bundled.
+- **2027-01-30 — CONTINGENCY: highest commercial release blocker (3h).** Reserve three hours for the largest security, billing, rights, installation or pilot gap. Acceptance: No added features; explicit hold where evidence cannot be completed.
 
-## Launch decision and first-week support
+### Week 13: Commercial end-to-end rehearsal
 
-- **20 February:** freeze the versioned release candidate and model settings. Any source fix produces a new candidate and repeats affected acceptance checks; preserve scientific provenance.
-- **27 February:** testing integration review. Allow blocking fixes and verified factual updates; do not tune predictive parameters to testing laps.
-- **4 March:** Kyle approves or rejects the exact release artifact against every mandatory gate. Approval includes the selected distribution/signing route and truthful product claims.
-- **6 March:** conditional production release and rollback window. Verify the actual downloaded artifact and clean install after publication. If gates fail, record HOLD and the revised plan.
-- **9 March:** post-release installation, recovery and support buffer (1.5h).
-- **11 March:** final opener reference, access and scheduler readiness check (1.5h), before the Sprint weekend starts on 12 March.
+- **2027-02-02 — Run source, packaged-client and service acceptance (1.5h).** Verify tests and actual binary separately; include subscription state transitions, API authorisation and publication failures. Acceptance: Recorded version-specific evidence; no stale executable counted as current.
+- **2027-02-04 — Rehearse PC outage, restore and subscriber recovery (1.5h).** Exercise PC offline, failed publish, hosted backup restore, retry/dedup and account/purchase recovery. Acceptance: Last valid forecasts remain accessible with freshness labels; no duplicate Discord delivery.
+- **2027-02-06 — GATE: full desktop/mobile commercial rehearsal (3h).** Rehearse download -> account -> sandbox subscription -> forecast -> desktop scenario -> Fantasy -> optional Discord -> cancellation/restore. Acceptance: Zero open P0/P1; real-device checks and operations recovery demonstrated.
 
-The detailed personal calendar schedule and Outlook verification receipts are local-only under ignored `outputs/release_plan/20261024/`. They are not release evidence. This document changes no production code, live configuration, forecasts or scheduled tasks.
+### Week 14: Launch preparation and native-mobile next stage
+
+- **2027-02-09 — CONTINGENCY: close pilot, billing or package gaps (1.5h).** Reserve 90 minutes for highest remaining blocker; otherwise strengthen weakest acceptance evidence. Acceptance: Scope stays frozen; evidence gap closed or explicit hold.
+- **2027-02-11 — Prepare paid-pilot release assets and follow-on mobile backlog (1.5h).** Draft price/value explanation, setup/download/support and known limits. Define native iOS/Android, store billing and hosted job proof-of-concept acceptance for after pilot. Acceptance: Drafts reflect delivered scope; no native app availability or Fantasy account sync promised.
+- **2027-02-13 — GATE: commercial release-candidate readiness (3h).** Audit rights, model claims, entitlements, security, clean-machine/mobile pilot, billing recovery and costs. Acceptance: Every mandatory requirement has evidence/owner; unresolved commercial blockers stop paid pilot.
+
+### Week 15: Commercial release candidate
+
+- **2027-02-16 — Build signed desktop RC and version hosted/mobile companion (1.5h).** Build immutable client artifact and pinned service/frontend versions; validate signing and checkout configuration in sandbox. Acceptance: Manifest identifies exact client/service/schema/model versions and rollback path.
+- **2027-02-18 — CONTINGENCY: final commercial RC blockers (1.5h).** Reserve 90 minutes for blocking fixes and repeated acceptance before freeze. Acceptance: New candidate/version for rebuilt artifacts; no weakened model or commercial gates.
+- **2027-02-20 — GATE: freeze RC, published model and entitlements (3h).** Freeze release candidate, model policy and subscription access behaviour before pre-season integration. Acceptance: Immutable provenance; later changes create new candidates and rerun affected checks.
+
+### Week 16: Pre-season publishing integration
+
+- **2027-02-23 — Prepare live access and publication monitoring (1.5h).** Check provider eligibility, reference identities, outbound publishing and stale-feed alerts on the candidate. Acceptance: Safe integration checklist; users never depend on direct home-PC access.
+- **2027-02-25 — Verify new-season data through PC and both clients (1.5h).** Exercise actual available testing data -> validated publication -> entitled desktop/mobile reader; test explicit missing-data states. Acceptance: Correct identities/timestamps; testing laps do not establish model accuracy or justify tuning.
+- **2027-02-27 — GATE: integration compatibility and hotfix decision (3h).** Review live compatibility and subscription/customer operations; permit only blocking fixes or verified factual references. Acceptance: New RC for changes; no last-minute model promotion, native rewrite or unauthorised Fantasy sync.
+
+### Week 17: Conditional commercial pilot launch
+
+- **2027-03-02 — CONTINGENCY: final release and commercial evidence audit (1.5h).** Reserve 90 minutes for exact-artifact audit of rights, security, billing, claims, costs and recovery. Acceptance: One clear release/hold recommendation with evidence and owner.
+- **2027-03-04 — GATE: paid-pilot go/no-go and explicit launch approval (1.5h).** Review approved distribution/data basis, real-device acceptance, pilot demand, subscription lifecycle, support and exact artifact/service versions. Acceptance: Kyle approves exact paid pilot and any live payment/deployment actions, or records HOLD.
+- **2027-03-06 — TARGET: desktop and mobile-companion paid pilot or HOLD (3h).** Release only the approved desktop/service/mobile companion; verify actual download, access and authorised payment path; retain rollback. Acceptance: Commercial journey verified end to end or HOLD. Native mobile and hosted personal sims follow measured pilot results.
+
+## Pre-opener support and later stages
+
+- **2027-03-09:** Review subscriber access, payment/restore issues, desktop installs and publishing freshness; use rollback if required. Acceptance: Usable service or explicit incident/hold; no new features.
+- **2027-03-11:** Verify provider access, 2027 references, PC publication, subscription access, mobile freshness and read-only scheduler eligibility. Acceptance: Opener ready or explicit incident; preserve model policy and delivery receipts.
+
+After the paid pilot, use observed demand and support/compute costs to size native-mobile work: choose the client approach through a device proof of concept; verify store billing/entitlement restore and review requirements; build bounded hosted jobs with cancellation and per-user isolation; repeat native-device acceptance before store submission. Investigate authorised Fantasy integration independently and keep manual entry until permitted. Do not assign extra hours or release dates to these stages without a revised capacity decision.
+
+The detailed personal calendar and Outlook receipts remain local-only under ignored `outputs/release_plan/20261024/`. Calendar sessions schedule work; they do not execute services, deploy code, charge customers or invite testers. No production code, model settings, frozen forecasts or scheduled tasks change as part of this planning update.
