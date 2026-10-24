@@ -1,5 +1,10 @@
 # Accuracy improvements and validation
 
+[Promotion lanes, fuller race scores and the season challenger](promotion-lanes-and-challenger.md)
+separate factual fixes from accuracy changes, add whole-distribution and
+head-to-head scores with a power check, and freeze one combined challenger per
+season with a sequential test.
+
 The [single degradation candidate](single-degradation.md) counts tyre wear
 once instead of four times and is compared offline against the live engine.
 
