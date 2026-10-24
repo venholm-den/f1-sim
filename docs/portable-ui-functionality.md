@@ -24,7 +24,14 @@ recommendation table remains expandable. Saved recommendations do not contain
 pit laps: the chart shows sequence, not lap duration or predicted pit windows.
 Stop counts follow the displayed sequence, including historical adjustments.
 
-Frontend data checks: `node --test tests/tyre_strategy.test.cjs tests/shell_focus.test.cjs tests/forecast_answers.test.cjs`.
+Frontend data checks: `node --test tests/tyre_strategy.test.cjs tests/shell_focus.test.cjs tests/forecast_answers.test.cjs tests/fantasy_view.test.cjs`.
+
+Fantasy (broadcast phase 4): the picker comes first, under an answer row (best
+team points, usual range, boost, spend or gain over your team) and a sticky
+budget bar. Market chips show price and expected points and cycle through
+picker decides, IN (locked) and OUT. A risk and reward scatter plots each
+driver's expected points against the P10 to P90 spread of simulated scores, with
+the best team in red. Projections and rules sit under "Show the maths".
 
 Weekend hub and answers (broadcast phase 3): the app now opens on Weekend →
 Overview. Its answer row (favourite, contenders, championship leader, forecast),
