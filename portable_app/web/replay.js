@@ -174,18 +174,22 @@ function renderReplayFrame(force = false) {
   const data = replayState.data;
   if (!data) return;
   const t = replayState.t;
+  const placed = {};
   for (const [number, el] of Object.entries(replayState.cars || {})) {
     const point = positionAt(number, t);
     el.style.display = point ? '' : 'none';
     if (point) {
       const [x, y] = replayState.view.project(point);
+      placed[number] = [x, y];
       el.setAttribute('transform', `translate(${x.toFixed(1)} ${y.toFixed(1)})`);
     }
     el.classList.toggle('focused', replayState.focus === number);
     el.classList.toggle('dimmed', Boolean(replayState.focus) && replayState.focus !== number);
   }
   $('replayScrub').value = t;
-  const order = runningOrder(t), totalLaps = Math.max(...Object.values(data.laps).flat().map((lap) => lap.lap));
+  const order = runningOrder(t);
+  hideCrowdedLabels(order, placed);
+  const totalLaps = Math.max(...Object.values(data.laps).flat().map((lap) => lap.lap));
   $('replayClock').textContent = data.race
     ? `Lap ${Math.min(order[0].completed + 1, totalLaps)}/${totalLaps} · ${sessionClock(t - data.start)}`
     : `${sessionClock(t - data.start)} / ${sessionClock(data.end - data.start)}`;
@@ -195,6 +199,20 @@ function renderReplayFrame(force = false) {
   const now = performance.now();
   if (force || !replayState.orderAt || now - replayState.orderAt > 250) { replayState.orderAt = now; renderReplayOrder(t); }
   moveLapCursor(order[0].completed);
+}
+
+// Cars running close together would print their codes on top of each other.
+// Keep the label of the focused car and of whoever is ahead; hide the rest.
+function hideCrowdedLabels(order, placed) {
+  const radius = replayState.view.size * 0.01, kept = [];
+  const ranked = order.map((row) => String(row.driver.number)).filter((number) => placed[number]);
+  if (replayState.focus && placed[replayState.focus]) ranked.unshift(String(replayState.focus));
+  [...new Set(ranked)].forEach((number) => {
+    const [x, y] = placed[number];
+    const clash = kept.some(([kx, ky]) => Math.abs(kx - x) < radius * 6 && Math.abs(ky - y) < radius * 2.2);
+    replayState.cars[number].classList.toggle('label-hidden', clash);
+    if (!clash) kept.push([x, y]);
+  });
 }
 
 function replayTick(now) {

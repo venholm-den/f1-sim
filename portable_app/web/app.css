@@ -161,7 +161,6 @@ input[type=range]{border:0;background:transparent;height:18px;min-height:18px;cu
 .source-card:nth-child(3) .source-title svg{color:var(--blue)}
 .source-card:nth-child(4) .source-title svg{color:var(--amber)}
 .source-card .file-name{display:block;margin:10px 0 7px;overflow:hidden;text-overflow:ellipsis}
-.source-card .source-path{height:38px;overflow:hidden;display:block;overflow-wrap:anywhere}
 .source-card .source-stat{display:flex;justify-content:space-between;gap:8px;color:var(--muted);margin-top:13px}
 .source-stat strong{font-weight:400}
 .source-card .source-footer{margin-top:17px;display:flex;align-items:center;justify-content:space-between}
@@ -221,7 +220,6 @@ input[type=range]{border:0;background:transparent;height:18px;min-height:18px;cu
 .risk-item p{color:var(--subtle);line-height:1.5}
 .risk-item b{font-weight:400}
 .risk-list .risk-item:last-child{border:0}
-.confidence-empty{font-size:24px;font-weight:400;margin:24px 0;color:var(--text-2)}
 .track-map.large{min-height:240px;max-height:70vh}
 .panel.tall{min-height:550px}
 .sector-legend{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
@@ -236,7 +234,7 @@ input[type=range]{border:0;background:transparent;height:18px;min-height:18px;cu
 .metric:nth-child(4)>span{color:var(--amber)}
 .metric:nth-child(5)>span{color:var(--red)}
 .scenario-strip{display:flex;align-items:center;border-radius:6px}
-.scenario-active{padding:10px 15px;margin-right:auto;max-width:50%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.scenario-active{padding:10px 15px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .results-layout{display:grid}
 .results-layout>.panel+.panel{margin-top:0}
 .results-layout .panel-header{gap:5px}
@@ -255,9 +253,6 @@ input[type=range]{border:0;background:transparent;height:18px;min-height:18px;cu
 .insight-list{margin-top:20px}
 .insight-list p{line-height:1.65;border-bottom:1px solid var(--line);padding:12px 0}
 .insight-list p:last-child{border:0}
-.export-bar{display:flex;gap:10px;justify-content:space-between;margin:14px 0}
-.export-bar>div{display:flex;gap:10px;flex-wrap:wrap}
-.session-shortcuts{display:flex;gap:8px;flex-wrap:wrap;margin:13px 0}
 .compare-controls{display:flex;gap:14px;align-items:flex-end;margin:23px 0}
 .compare-controls label{flex:1;min-width:0}
 summary{cursor:pointer}
@@ -300,8 +295,6 @@ details>div{margin-top:12px}
 .about{display:block}
 .about button{margin-top:12px}
 .sidebar-footer{margin-left:0;margin-right:0;font-size:11px}
-.export-bar{display:block}
-.export-bar>div{margin-top:10px}
 .compare-controls{display:grid}
 .view{padding-bottom:20px}
 }
@@ -344,7 +337,10 @@ details>div{margin-top:12px}
 .archive-telemetry small{display:block;font-size:11px;line-height:1.7;color:var(--muted)}
 .archive-actions{display:flex;flex-wrap:wrap}
 .archive-progress-heading{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-top:22px}
-.archive-progress-heading strong{font-size:22px;color:var(--red)}
+.archive-progress-heading strong{font-size:22px;color:var(--text-2)}
+.archive-progress-heading strong[data-state="problem"]{color:var(--red)}
+.archive-progress-heading strong[data-state="busy"]{color:var(--amber)}
+.archive-progress-heading strong[data-state="done"]{color:var(--green)}
 .archive-progress-panel progress{width:100%;height:14px;margin-top:8px}
 .archive-progress-panel details{margin-top:16px}
 .archive-progress-panel .explain-note{margin-top:24px}
@@ -391,11 +387,6 @@ body{background:var(--bg);font:14px/1.5 Inter,"Segoe UI",system-ui,sans-serif}
 .main{padding:0 28px 28px;background:var(--bg);overflow:auto;min-width:0}
 .main>*{flex-shrink:0}
 .workflow{height:56px;display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line-subtle);margin:0 -28px 26px;padding:0 28px;position:sticky;top:0;z-index:5;background:var(--bg)}
-.workflow-steps{display:flex;align-items:center;gap:6px;white-space:nowrap}
-.workflow-steps>span{color:#595d6c}
-.workflow-steps button{border:0;background:transparent;padding:4px 8px;min-height:28px;color:var(--subtle);font-size:12px;font-weight:400}
-.workflow-steps button.active{color:var(--accent-text);background:#e5766915}
-.workflow-steps button:hover{color:var(--text);background:#ffffff0a}
 .context-strip{display:flex;gap:14px;min-width:0;max-width:65%;flex:0 1 auto;overflow:hidden;align-items:center}
 .context-card{background:transparent;box-shadow:none;border:0;border-radius:0;padding:0;min-height:0;gap:6px;flex-shrink:1;min-width:0;display:flex}
 .context-card+ .context-card{border-left:1px solid var(--line);padding-left:14px}
@@ -521,7 +512,6 @@ summary{font-size:13px;color:var(--text-2);text-transform:none}
 .source-card .source-title{font-size:13px}
 .source-card .source-title svg{color:var(--accent-text)!important}
 .source-card .file-name{font-size:12px}
-.source-card .source-path{font-size:11px;color:var(--subtle)}
 .source-card .source-stat{font-size:11px}
 .source-card .source-footer{border:0;border-top:1px solid var(--line);padding:12px 0 0;border-radius:0}
 .source-footer b{font-size:22px}
@@ -553,7 +543,7 @@ summary{font-size:13px;color:var(--text-2);text-transform:none}
 .results-layout select{font-size:12px;min-height:30px}
 .scenario-strip{background:transparent;border:0;padding:0;gap:10px;margin:0 0 20px}
 .scenario-active{background:#e576690c;border:1px solid #e5766966;color:var(--accent-text);font-size:12px;border-radius:8px}
-.scenario-strip button,.export-bar button,.export-bar a{font-size:12px}
+.scenario-strip button,.scenario-strip a{font-size:12px}
 .probability-row{font-size:12px;grid-template-columns:40px 1fr}
 .probability-bar>span{background:var(--red);border-radius:2px}
 .probability-bar.podium>span{background:var(--subtle)}
@@ -595,13 +585,6 @@ summary{font-size:13px;color:var(--text-2);text-transform:none}
 .red{color:#ee9f94!important}
 .amber{color:var(--amber)!important}
 .finish-distribution{grid-column:1/-1}
-.deeper-panel>button{display:flex;align-items:center;justify-content:space-between;width:100%;border:0;border-radius:0;border-top:1px solid var(--line-soft);text-align:left;padding:13px 0;background:transparent}
-.deeper-panel>button:first-of-type{margin-top:12px}
-.deeper-panel b{font-size:13px;font-weight:400}
-.deeper-panel small{display:block;font-size:12px;color:var(--subtle);margin-top:3px}
-.deeper-panel>button:hover{background:#ffffff05}
-.deeper-panel>button>span:last-child{color:var(--subtle)}
-#workflowRun.active{color:var(--accent-text)}
 @media (min-width:1700px){
 .main{padding:0 32px 28px}
 .workflow{margin-left:-32px;margin-right:-32px;padding:0 32px}
@@ -655,8 +638,6 @@ summary{font-size:13px;color:var(--text-2);text-transform:none}
 .nav{gap:14px}
 .main{padding:0 14px 20px}
 .workflow{margin:0 -14px 20px;padding-left:14px;padding-right:14px}
-.workflow-steps{gap:0}
-.workflow-steps button{font-size:11px;padding:4px 6px}
 .context-card:last-child{display:none}
 .setup-fields{grid-template-columns:1fr}
 .wide-field{grid-column:auto}
@@ -689,3 +670,25 @@ summary{font-size:13px;color:var(--text-2);text-transform:none}
 @media (max-width:500px){
 #view-fantasy .form-grid{grid-template-columns:1fr}
 }
+
+/* Results: actions sit beside the run label; wide panels span both columns. */
+.scenario-strip{flex-wrap:wrap}
+.candidate-badges{display:flex;flex-wrap:wrap;gap:6px;margin-right:auto}
+.candidate-badge{font-size:11px;padding:4px 8px;border-radius:999px;border:1px solid var(--violet);color:var(--violet);white-space:nowrap}
+.result-actions{display:flex;flex-wrap:wrap;gap:8px}
+.results-layout>.results-wide{grid-column:1/-1}
+.finish-range{display:grid;gap:9px;margin-top:12px}
+.range-row{display:grid;grid-template-columns:44px minmax(0,1fr) 52px;align-items:center;gap:10px;font-size:12px}
+.range-row b{font-weight:500}
+.range-track{position:relative;height:14px;border-radius:7px;background:var(--line-subtle)}
+.range-track span{position:absolute;top:3px;height:8px;border-radius:4px;background:var(--blue);opacity:.75}
+.range-track i{position:absolute;top:1px;width:12px;height:12px;margin-left:-6px;border-radius:50%;background:var(--red)}
+.range-row small{text-align:right;color:var(--muted);font-variant-numeric:tabular-nums}
+.range-axis{display:grid;grid-template-columns:44px minmax(0,1fr) 52px;gap:10px;font-size:11px;color:var(--subtle)}
+.range-axis div{display:flex;justify-content:space-between}
+.modifier-grid>.empty{grid-column:1/-1;padding:16px 0}
+.slider-control small em{font-style:normal;color:var(--muted)}
+/* Wide tables keep the first column (usually the driver) in view while scrolling. */
+.table-wrap td:first-child,.table-wrap th:first-child{position:sticky;left:0;background:var(--panel)}
+.table-wrap th:first-child{z-index:2}
+button.primary:disabled{background:var(--panel-2);border-color:var(--line);color:var(--subtle);opacity:1}

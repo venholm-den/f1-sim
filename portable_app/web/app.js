@@ -74,6 +74,7 @@ function applySetupOptions(setupOptions, preferredSession) {
   if (Number.isFinite(overtakingDifficulty)) {
     setOvertakingPercent(overtakingDifficulty * 100);
   }
+  $("overtakingDefault").textContent = Number.isFinite(overtakingDifficulty) ? `Track default ${Math.round(overtakingDifficulty * 100)}%` : "";
 }
 
 async function refreshSetupOptions(preferredSession) {
@@ -186,7 +187,7 @@ const columnLabels = {
   ideal_lap: "Ideal lap (s)", avg_lap: "Avg lap (s)", gap_to_fastest: "Gap (s)", ideal_gap_to_fastest: "Ideal gap (s)",
   best_s1: "Best S1 (s)", best_s2: "Best S2 (s)", best_s3: "Best S3 (s)", avg_speed_trap: "Speed trap (km/h)",
   laps_in_run: "Run laps", run_start_lap: "From lap", run_end_lap: "To lap", degradation_per_lap: "Deg / lap (s)",
-  row_count: "Rows", size_bytes: "Size (bytes)", modified_at: "Modified",
+  row_count: "Rows", size_bytes: "Size", modified_at: "Modified", exists: "Saved", GridPosition: "Grid",
 };
 
 function columnLabel(column) {
@@ -381,21 +382,16 @@ function renderOutputs(outputs) {
   renderTable('runHealthTable',{columns:['check','value','detail'],rows});
   const charts = state.outputs.resultsCharts || {};
   const screens = state.outputs.sessionScreens || {};
-  renderBarChart("winChart", charts.win, colors.red, { unit: "%" });
-  renderBarChart("podiumChart", charts.podium, colors.amber, { unit: "%" });
   renderBarChart("dnfChart", charts.dnf, colors.orange, { unit: "%" });
   renderBarChart("fantasyChart", charts.fantasy, colors.blue);
   renderTable("summaryTable", state.outputs.summaryTable);
   $("practiceModeBadge").textContent = sessionModeLabel(state.outputs.sessionMode);
   $("qualiModeBadge").textContent = sessionModeLabel(state.outputs.sessionMode);
-  $("raceModeBadge").textContent = sessionModeLabel(state.outputs.sessionMode);
   renderTable("practiceSectorTable", screens.practice?.sectors);
   renderTable("practicePaceTable", screens.practice?.pace);
   renderTable("practiceLongRunTable", screens.practice?.longRun);
   renderTable("qualiSectorTable", screens.quali?.sectors);
   renderTable("qualiPaceTable", screens.quali?.pace);
-  renderTable("raceScreenSummaryTable", screens.race?.summary);
-  renderTable("raceScreenStrategyTable", screens.race?.strategy);
   renderTable("signalOverviewTable", state.outputs.signals?.overview);
   renderTable("driverSignalsTable", state.outputs.signals?.drivers);
   $("modelCommentary").textContent = state.outputs.signals?.commentary || "No model commentary found yet.";

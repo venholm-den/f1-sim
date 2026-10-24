@@ -36,7 +36,7 @@ function renderAutomationStatus(feed) {
     (health.failures?.length?` Failures: ${health.failures.join(', ')}.`:'')+
     (health.warnings?.length?` Optional checks need attention: ${health.warnings.join(', ')}.`:'');
   renderTable('automationDeliveries',{columns:['Report','Delivery','Last attempt'],rows:deliveries.map(row=>({Report:row.label,Delivery:labels[row.status] || row.status,'Last attempt':row.attempted_at?new Date(row.attempted_at).toLocaleString():'Unknown'}))});
-  $('automationDetails').textContent=`${feed.runs.length} verified forecast(s). ${feed.rejected} incomplete or invalid completed bundle(s) skipped. Checked every 15 seconds while this app is open.`;
+  $('automationDetails').textContent=`${plural(feed.runs.length,'verified forecast')}. ${feed.rejected ? `${plural(feed.rejected,'incomplete or invalid bundle')} skipped. ` : ''}Checked every 15 seconds while this app is open.`;
   if(document.activeElement!==$('pcWorkspaceInput'))$('pcWorkspaceInput').value=feed.pc_workspace;
 }
 

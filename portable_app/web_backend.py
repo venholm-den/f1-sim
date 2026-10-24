@@ -716,6 +716,19 @@ def weather_summary(output_dir: str | Path) -> dict[str, Any]:
     return values
 
 
+def finish_ranges(summary: pd.DataFrame) -> list[dict[str, Any]]:
+    """Middle half of each driver's simulated finishes, best average first."""
+    columns = ["Driver", "avg_finish", "finish_p25", "finish_p75"]
+    if summary.empty or not set(columns).issubset(summary.columns):
+        return []
+    frame = summary[columns].copy()
+    for column in columns[1:]:
+        frame[column] = pd.to_numeric(frame[column], errors="coerce")
+    frame = frame.dropna().sort_values("avg_finish")
+    return [{"driver": str(row.Driver), "mean": float(row.avg_finish), "p25": float(row.finish_p25),
+             "p75": float(row.finish_p75)} for row in frame.itertuples(index=False)]
+
+
 def fantasy_driver_summary(frame: pd.DataFrame) -> pd.DataFrame:
     if frame.empty or "Driver" not in frame.columns or "fantasy_points" not in frame.columns:
         return pd.DataFrame()
@@ -1061,6 +1074,7 @@ class PortableWebApi:
                 "dnf": chart_points(summary, "Driver", "dnf_chance", multiplier=100),
                 "fantasy": chart_points(fantasy, "Driver", "avg_fantasy_points"),
             },
+            "finishRanges": finish_ranges(summary),
             "signals": {
                 "overview": table_payload(signals.overview),
                 "drivers": table_payload(signals.driver_signals, max_rows=50),

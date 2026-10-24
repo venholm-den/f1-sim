@@ -5,7 +5,7 @@ const pages = {
   historical: ['Historical data', 'Build your own season-by-season archive of race data.'],
   training: ['Model training', 'Train and evaluate candidate models from your downloaded session archive.'],
   signals: ['Model signals', 'Inspect how the model blends baseline knowledge with session data.'],
-  weather: ['Weather & reliability', 'Review environmental conditions, disruption and retirement risk.'],
+  weather: ['Weather & risk', 'Conditions, red flags, safety cars and retirement risk for the saved run.'],
   reliability: ['Reliability', 'Inspect historical mechanical failures and simulated retirement risk.'],
   strategy: ['Tyre strategy', 'Inspect tyre recommendations, candidate scores and inventory assumptions.'],
   fantasy: ['Fantasy', 'Weekly market prices, actual Fantasy scores and separate simulation projections.'],
@@ -15,7 +15,6 @@ const pages = {
   settings: ['Settings', 'Local workspace preferences, data paths and integration status.'],
   practice: ['Practice analysis', 'Clean sectors, lap summaries and long-run pace.'],
   quali: ['Qualifying analysis', 'One-lap pace and sector performance from saved sessions.'],
-  race: ['Full race', 'Driver outlook and strategy estimates from saved outputs.'],
   review: ['Race review', 'Completed race observations and diagnostic outliers.'],
   track: ['Track map', 'Real saved-session telemetry and sector leaders.'],
 };
@@ -55,8 +54,6 @@ function navigate(view) {
   $('viewTitle').textContent = pages[view]?.[0] || view;
   $('viewSubtitle').textContent = pages[view]?.[1] || '';
   document.querySelector('.main').scrollTop = 0;
-  document.querySelectorAll('.workflow-steps [data-open-view]').forEach(el=>el.classList.toggle('active',el.dataset.openView===view || (el.dataset.openView==='dashboard' && !['data','historical','training','setup','settings'].includes(view))));
-  $('workflowRun').classList.toggle('active',Boolean(state.manualRunning));
   updateContext();
   document.querySelector('.context-strip').hidden = ['historical','training','replay'].includes(view);
   // PC following only changes what Setup and Results show; Settings has the full controls.
@@ -74,6 +71,12 @@ function navigate(view) {
   if (view === 'compare') safeAction(loadComparisonHistory);
   if (view === 'track') renderTrack(displayedTrack());
 }
+// Job headings: neutral when idle, amber while working, red only for problems.
+function setJobStatus(id, status) {
+  const text=String(status || 'none').replaceAll('_',' ');
+  $(id).textContent=text.charAt(0).toUpperCase()+text.slice(1);
+  $(id).dataset.state=['failed','partial','interrupted','cancelled','paused','no_data'].includes(status)?'problem':['running','starting','cancelling'].includes(status)?'busy':status==='completed'?'done':'idle';
+}
 function notify(message, error=false) {
   const target = $(error ? 'appError' : 'appNotice'); target.textContent = message; target.hidden = false;
   if (!error) $('appError').hidden = true;
@@ -85,10 +88,14 @@ async function safeAction(action) {
 function numeric(value) { return value == null || value === '' || !Number.isFinite(Number(value)) ? null : Number(value); }
 function fmt(value, digits=2) { const n=numeric(value); return n == null ? 'Unknown' : n.toFixed(digits); }
 function pct(value, digits=1) { const n=numeric(value); return n == null ? 'Unknown' : `${(n*100).toFixed(digits)}%`; }
+function plural(count, noun) { return `${count} ${noun}${count === 1 ? '' : 's'}`; }
 function formatCell(column, value) {
+  if (column === 'exists') return value === true || value === 1 || value === '1' || value === 'True' ? 'Saved' : 'Not saved';
   if (value == null || value === '') return '—';
+  if (column === 'size_bytes') { const bytes=numeric(value); return bytes == null ? value : bytes ? `${(bytes/1024).toFixed(1)} KB` : '—'; }
   const n=numeric(value);
-  if (n == null) return value;
+  // Internal codes such as qualifying_classification read as plain words.
+  if (n == null) return /^[a-z][a-z0-9]*(_[a-z0-9]+)+$/.test(value) ? value.replaceAll('_',' ').replace(/^./,c=>c.toUpperCase()) : value;
   if (/chance$|_dnf_rate$/.test(column)) return pct(n);
   if (/^P\d+$/.test(column)) return pct(n);
   if (/price/i.test(column)) return `$${n.toFixed(1)}m`;
@@ -98,6 +105,7 @@ function formatCell(column, value) {
   if (/reliability_score$/.test(column)) return (n*100).toFixed(1);
   if (/points|fantasy|ceiling|floor|positions_gained/.test(column)) return n.toFixed(1);
   if (/^(avg_finish|avg_grid|finish_p\d+)$/.test(column)) return n.toFixed(2);
+  if (/confidence|quality|weight$/.test(column)) return n.toFixed(2);
   return Number.isInteger(n) ? String(n) : n.toFixed(3);
 }
 function definitions(target, pairs) {
@@ -174,12 +182,21 @@ function renderSignals() {
     ['MODEL UNCERTAINTY',overviewMetric('Avg model uncertainty'),'Spread score; not an error probability.'],
     ['PERFORMANCE UNCERTAINTY',overviewMetric('Avg performance uncertainty'),'Spread in projected performance.']];
   $('signalMetrics').innerHTML=metrics.map(([title,value,note])=>`<div class="signal-metric"><h3>${title}</h3><strong>${fmt(value,3)}</strong><small>${note}</small></div>`).join('');
-  renderBarChart('signalScoreChart',[['Qualifying pace','quali_pace_score'],['Race pace','race_pace_score'],['Strategy','strategy_score'],['Reliability','reliability_score']].map(([label,column])=>({label,value:meanScore(column)})).filter(p=>p.value!=null),colors.red);
+  renderBarChart('signalScoreChart',[['Quali pace','quali_pace_score'],['Race pace','race_pace_score'],['Strategy','strategy_score'],['Reliability','reliability_score']].map(([label,column])=>({label,value:meanScore(column)})).filter(p=>p.value!=null),colors.red);
 }
 function renderProbabilityChart() {
   const rows=(state.outputs.summaryTable?.rows || []).slice().sort((a,b)=>Number(b.win_chance)-Number(a.win_chance)).slice(0,Number($('resultTop').value));
   const maxima=Math.max(...rows.flatMap(row=>[Number(row.win_chance)||0,Number(row.podium_chance)||0]),.01);
   $('probabilityChart').innerHTML=rows.length?rows.map(row=>`<div class="probability-row"><b>${escapeHtml(row.Driver)}</b><div class="probability-bars">${['win_chance','podium_chance'].map(key=>`<div class="probability-bar ${key==='podium_chance'?'podium':''}"><span style="width:${Math.max(0,(Number(row[key])||0)/maxima*80)}%"></span><small>${pct(row[key])}</small></div>`).join('')}</div></div>`).join(''):'<div class="empty">Run a simulation to see outcome probabilities.</div>';
+}
+// One bar per driver: P25 to P75 of simulated finishes, with the average marked.
+function renderFinishRange() {
+  const ranges=(state.outputs.finishRanges || []).slice(0,Number($('resultTop').value));
+  if(!ranges.length){$('finishRange').innerHTML='<div class="empty">Finish ranges were not saved for this run.</div>';return;}
+  const last=Math.max(20,...(state.outputs.finishRanges || []).map(r=>Math.ceil(r.p75)));
+  const x=position=>((Math.min(Math.max(position,1),last)-1)/(last-1))*100;
+  $('finishRange').innerHTML=ranges.map(r=>`<div class="range-row" title="${escapeHtml(r.driver)}: P${r.p25.toFixed(0)}–P${r.p75.toFixed(0)}, average ${r.mean.toFixed(1)}"><b>${escapeHtml(r.driver)}</b><div class="range-track"><span style="left:${x(r.p25)}%;width:${Math.max(1.5,x(r.p75)-x(r.p25))}%"></span><i style="left:${x(r.mean)}%"></i></div><small>P${r.p25.toFixed(0)}–P${r.p75.toFixed(0)}</small></div>`).join('')
+    +`<div class="range-axis" aria-hidden="true"><span></span><div><span>P1</span><span>P${Math.round((last+1)/2)}</span><span>P${last}</span></div><span></span></div>`;
 }
 function renderHeatmap() {
   const matrix=state.outputs.details?.positionMatrix || {}, fields=(matrix.columns || []).filter(key=>/^P\d+$/.test(key)).slice(0,10);
@@ -188,18 +205,18 @@ function renderHeatmap() {
   $('finishHeatmap').innerHTML=rows.length?`<table><thead><tr><th>Driver</th>${fields.map(key=>`<th>${key.slice(1)}</th>`).join('')}</tr></thead><tbody>${rows.map(row=>`<tr><td>${escapeHtml(row.Driver)}</td>${fields.map(key=>{const value=numeric(row[key]);return `<td style="background:rgba(229,14,24,${value==null?0:Math.min(.95,.08+value*2)})" title="${key}: ${pct(value)}">${value==null?'—':pct(value,0)}</td>`;}).join('')}</tr>`).join('')}</tbody></table>`:'<div class="empty">Finish distribution has not been saved.</div>';
 }
 function renderResultsDetails() {
-  renderProbabilityChart();renderHeatmap();
+  renderProbabilityChart();renderFinishRange();renderHeatmap();
   const strategyColumn=state.outputs.strategy?.columns?.includes('primary_strategy')?'primary_strategy':'PredictedStrategy';
   renderTable('resultStrategy',compact(state.outputs.strategy,['Driver',strategyColumn,'expected_stops','strategy_confidence','risk_level'],10));
   renderTable('fantasyTable',state.outputs.details?.fantasyTable);
-  renderTable('resultFantasyTable',state.outputs.details?.fantasyTable);
+  renderTable('resultFantasyTable',compact(state.outputs.details?.fantasyTable,['Driver','avg_fantasy_points','fantasy_ceiling_p90','fantasy_floor_p10','fantasy_xppm'],10));
   const details=state.outputs.details || {}, run=details.run || {}, saved=state.outputs.savedContext || {};
   $('resultSims').textContent=run.settings?.n_sims ? Number(run.settings.n_sims).toLocaleString() : details.forecastRun?.n_sims ? Number(details.forecastRun.n_sims).toLocaleString() : 'Not recorded';
   $('resultRuntime').textContent=run.elapsed_seconds == null ? 'Not recorded' : `${Number(run.elapsed_seconds).toFixed(1)} s`;
   const sc=safetyCarSummary(details.risk || {});
   $('safetyCarMetric').hidden=numeric(details.risk?.safety_car_chance)==null;
   $('resultSafetyCar').textContent=sc.value;$('resultSafetyCarNote').textContent=sc.note;
-  $('savedResultLabel').textContent=(state.outputs.summaryTable?.rows || []).length ? `${saved.year || ''} ${displayEventName(saved.event) || 'Saved run'} · ${saved.session || ''}` : 'NO SAVED RUN';
+  $('savedResultLabel').textContent=(state.outputs.summaryTable?.rows || []).length ? `${saved.year || ''} ${displayEventName(saved.event) || 'Saved run'} · ${saved.session || ''}` : 'No saved run';
   const rows=(state.outputs.summaryTable?.rows || []).slice().sort((a,b)=>Number(b.win_chance)-Number(a.win_chance));
   const notes=[];
   if (rows[0]) notes.push(`${rows[0].Driver} leads the modelled win probabilities at ${pct(rows[0].win_chance)}.`);
@@ -220,13 +237,15 @@ function safetyCarSummary(risk) {
 function renderWeatherPanels() {
   const weather=state.outputs.weather || {}, modifiers=weather.modifiers || {}, observed=weather.observed || {};
   const descriptions={chaos_factor:'Disruption multiplier',strategy_factor:'Strategy variance multiplier',dnf_factor:'Retirement risk multiplier',degradation_factor:'Tyre degradation multiplier',uncertainty_factor:'Forecast spread multiplier'};
-  $('modifierCards').innerHTML=Object.entries(descriptions).map(([key,description])=>`<div class="modifier-card"><h3>${key.replace('_factor','').toUpperCase()}</h3><strong>${numeric(modifiers[key])==null?'Unknown':fmt(modifiers[key])+'×'}</strong><small>${description}<br>Read-only model output</small></div>`).join('');
-  definitions('observedWeather',[['Air temperature',observed.air_temp_avg==null?'Not recorded':`${fmt(observed.air_temp_avg,1)} °C`],['Track temperature',observed.track_temp_avg==null?'Not recorded':`${fmt(observed.track_temp_avg,1)} °C`],['Rainfall',observed.rainfall_flag==null?'Unknown':observed.rainfall_flag?'Observed':'Not observed'],['Source',weather.source || 'Unknown']]);
-  renderTable('weatherReliabilityTable',state.outputs.reliability?.table);
+  // A row of "Unknown" tiles says nothing; one line explains the gap instead.
+  const savedModifiers=Object.keys(descriptions).some(key=>numeric(modifiers[key])!=null);
+  $('modifierCards').innerHTML=!savedModifiers?'<div class="empty">Weather multipliers were not saved for this run. Turn on the session weather and race-control options in Race setup to record them.</div>':Object.entries(descriptions).map(([key,description])=>`<div class="modifier-card"><h3>${key.replace('_factor','').toUpperCase()}</h3><strong>${numeric(modifiers[key])==null?'Unknown':fmt(modifiers[key])+'×'}</strong><small>${description}<br>Read-only model output</small></div>`).join('');
+  const observedAny=['air_temp_avg','track_temp_avg','rainfall_flag'].some(key=>observed[key]!=null);
+  if(!observedAny)$('observedWeather').innerHTML=`<div class="empty">No session weather was saved for this run. ${escapeHtml(weather.source || '')}</div>`;
+  else definitions('observedWeather',[['Air temperature',observed.air_temp_avg==null?'Not recorded':`${fmt(observed.air_temp_avg,1)} °C`],['Track temperature',observed.track_temp_avg==null?'Not recorded':`${fmt(observed.track_temp_avg,1)} °C`],['Rainfall',observed.rainfall_flag==null?'Unknown':observed.rainfall_flag?'Observed':'Not observed'],['Source',weather.source || 'Unknown']]);
   const risk=state.outputs.details?.risk || {}, sc=safetyCarSummary(risk);
   const items=[['car','Safety Car Probability',sc.value,sc.note],
     ['flag','Red Flag Probability',pct(state.outputs.details?.risk?.red_flag_chance),'Estimated from simulated event outcomes.'],
-    ['sun','Wet Race Probability','Unavailable','Regional wet-hour ensemble frequency is separate.'],
     ['gauge','Mean Driver DNF',pct(state.outputs.details?.risk?.dnf_chance),'Mean retirement chance across modelled drivers.']];
   $('riskCards').innerHTML=items.map(([symbol,title,value,note])=>`<div class="risk-item"><span>${icon(symbol)}</span><div><b>${title}</b><strong>${escapeHtml(value)}</strong><p>${note}</p></div></div>`).join('');
   renderRaceForecast();
@@ -237,12 +256,12 @@ function renderRaceForecast() {
   const unavailable='<strong>Not captured</strong><p>Fetch a forecast for a future selected race. Historical session observations are shown separately.</p>';
   const content=scheduled ? `<strong>${air==null?'Temperature unknown':fmt(air,1)+' °C'}</strong><p>${escapeHtml(report.event || displayEventName(readSettings().event))} · race window ${escapeHtml(scheduled.start_utc || '')}<br>Captured ${escapeHtml(report.retrieved_at_utc || 'unknown')}<br>Ensemble wet-hour frequency: ${pct(scheduled.wet_hour_frequency)}</p>` : unavailable;
   $('raceForecast').innerHTML=content;$('setupWeatherPreview').innerHTML=state.setupWeather?content:unavailable;
+  $('delayTable').hidden=!scenarios.length;
   renderTable('delayTable',{columns:scenarios.length?['start','wet_hour_members','complete_members','start_delay_probability']:[],rows:scenarios.map(s=>({start:s.delay_minutes?`Start +${s.delay_minutes} min`:'Scheduled',wet_hour_members:pct(s.wet_hour_frequency),complete_members:`${s.complete_member_count}/${s.member_count}`,start_delay_probability:'Unavailable'}))});
-  $('forecastStatus').textContent=report?.status ? `Status: ${report.status}. Target forecast is informational and is not applied to driver probabilities. Delay weights remain uncalibrated.`:'No target-race forecast captured. Missing forecast data remains unknown.';
 }
 function renderSourceCards() {
   const data=state.outputs.dataHealth || [], symbols={fantasy_prices:'shirt',track_profiles:'track',fia_document_index:'file',team_power_units:'gear'};
-  $('sourceCards').innerHTML=data.map(item=>`<button class="source-card ${item.key === (state.previewKey || 'track_profiles')?'selected':''}" data-source="${escapeHtml(item.key)}"><span class="source-title">${icon(symbols[item.key])}${escapeHtml(item.label)}</span><span class="file-name">${escapeHtml(item.path.split(/[\\/]/).pop() || 'No file configured')}</span><span class="source-path" title="${escapeHtml(item.path)}">${escapeHtml(item.path)}</span><span class="source-stat">Rows Loaded<strong>${Number(item.row_count).toLocaleString()}</strong></span><span class="source-stat">Last Updated<strong>${escapeHtml(item.modified_at || 'Unknown')}</strong></span><span class="source-stat">Validation<strong class="${item.status==='valid'?'green':item.status==='missing'?'red':'amber'}">${escapeHtml(item.status)}</strong></span><span class="source-footer"><span>CSV rows</span><b>${Number(item.row_count).toLocaleString()}</b></span></button>`).join('');
+  $('sourceCards').innerHTML=data.map(item=>`<button class="source-card ${item.key === (state.previewKey || 'track_profiles')?'selected':''}" data-source="${escapeHtml(item.key)}"><span class="source-title">${icon(symbols[item.key])}${escapeHtml(item.label)}</span><span class="file-name" title="${escapeHtml(item.path)}">${escapeHtml(item.path.split(/[\\/]/).pop() || 'No file configured')}</span><span class="source-stat">Rows Loaded<strong>${Number(item.row_count).toLocaleString()}</strong></span><span class="source-stat">Last Updated<strong>${escapeHtml(item.modified_at || 'Unknown')}</strong></span><span class="source-stat">Validation<strong class="${item.status==='valid'?'green':item.status==='missing'?'red':'amber'}">${escapeHtml(item.status)}</strong></span><span class="source-footer"><span>CSV rows</span><b>${Number(item.row_count).toLocaleString()}</b></span></button>`).join('');
   $('sourceCards').querySelectorAll('[data-source]').forEach(el=>el.addEventListener('click',()=>safeAction(()=>loadDataPreview(el.dataset.source,1))));
   definitions('dataHealthCounts',[['Files found',data.filter(x=>x.exists).length],['Valid CSVs',data.filter(x=>x.status==='valid').length],['Invalid CSVs',data.filter(x=>x.status==='invalid').length],['Missing files',data.filter(x=>x.status==='missing').length],['Upstream freshness','Not attested']]);
   const track=data.find(x=>x.key==='track_profiles'), path=track?.path || '';
@@ -332,7 +351,7 @@ function initWorkbench() {
   $('previewPrevious').addEventListener('click',()=>safeAction(()=>loadDataPreview(state.previewKey,state.previewPage-1)));
   $('previewNext').addEventListener('click',()=>safeAction(()=>loadDataPreview(state.previewKey,state.previewPage+1)));
   $('openDataEditor').addEventListener('click',()=>safeAction(()=>api().workbench_open_data(state.previewKey || 'track_profiles')));
-  ['reloadData','validateData'].forEach(id=>$(id).addEventListener('click',()=>safeAction(()=>reloadData())));
+  $('reloadData').addEventListener('click',()=>safeAction(()=>reloadData()));
   $('validationLog').addEventListener('click',()=>{const details=$('dataValidationDetails');details.open=true;details.scrollIntoView({behavior:'smooth'});});
   ['fetchSetupWeather','fetchWeather'].forEach(id=>$(id).addEventListener('click',()=>safeAction(fetchRaceWeather)));
   $('autoReloadInput').addEventListener('change',()=>safeAction(()=>savePreferences(false)));
@@ -344,7 +363,7 @@ function initWorkbench() {
     if($('compareA').value===$('compareB').value){$('comparisonTable').innerHTML='<div class="empty">Run A and Run B are the same run. Pick two different runs.</div>';return;}
     renderTable('comparisonTable',await api().workbench_compare($('compareA').value,$('compareB').value));
   }));
-  $('resultTop').addEventListener('change',renderProbabilityChart);
+  $('resultTop').addEventListener('change',()=>{renderProbabilityChart();renderFinishRange();});
   $('outputInput').addEventListener('change',()=>{state.activeOutputDir=null;safeAction(refreshOutputs);});
   ['baselineInput','lookbackInput','seedInput'].forEach(id=>$(id).addEventListener('change',updateContext));
   $('sessionInput').addEventListener('change',()=>safeAction(refreshSetupTrack));
