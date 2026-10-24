@@ -42,4 +42,10 @@ Each phase is one or two PRs. Each one is shippable on its own, behind no flags,
   - An answer row on Results (most likely winner, likely podium, widest range in the top 8, retirement risk), with run details, the heatmap, strategy, Fantasy and insights moved under "Show the maths".
   - Every answer is computed in `forecast.js` and covered by `tests/forecast_answers.test.cjs`.
   - **Deferred:** fifty futures and the ridge chart. Frozen forecasts keep only the summary and position matrix, not per-simulation orders, so fifty futures needs the backend to store a sample of orders first. The quantile dots already show each driver's distribution, so the ridge was left out.
-- **Not yet changed:** Fantasy, Replay and the new screens, which are phases 4–6. The replay driver palette in `replay.js` also still uses the old colours; it moves in phase 5.
+- **Phase 4 is done.** It covers:
+  - An answer row above the picker: the best team's expected points, its usual range (P10 to P90), the boosted driver and the spend, or the gain over your own team when one is entered.
+  - A sticky budget bar with the budget, boost switch, a spend meter and the Pick button.
+  - Market chips grouped into drivers and constructors, showing price and expected points, with explicit IN and OUT states and the best team marked.
+  - A risk and reward scatter: expected points against the spread of simulated scores, falling back to price when floors and ceilings weren't saved.
+  - Alternatives with prices in $m and the gap to the best team in signed points. Projections and scoring rules moved under "Show the maths". The optimiser is unchanged. Covered by `tests/fantasy_view.test.cjs`.
+- **Not yet changed:** Replay and the new screens, which are phases 5–6. The replay driver palette in `replay.js` also still uses the old colours; it moves in phase 5.

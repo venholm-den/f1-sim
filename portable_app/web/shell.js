@@ -22,7 +22,7 @@ function syncShell(view) {
 // Shift-click adds a second driver to compare. Esc or the focus chip clears it.
 const driverFocus = [];
 const DRIVER_COLUMN = /^(driver|code|abbreviation|driver code)$/i;
-const ROW_SELECTOR = 'tr, .probability-row, .range-row, .bar-row, .dot-row';
+const ROW_SELECTOR = 'tr, .probability-row, .range-row, .bar-row, .dot-row, .scatter-point';
 
 function rowDriver(row) {
   if (row.dataset.driver) return row.dataset.driver;

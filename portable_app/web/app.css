@@ -790,3 +790,42 @@ details.maths>.footnote{margin:0 0 14px}
 .has-driver-focus .view.active .dot-row:not(.is-driver-focus){opacity:.35}
 @media (max-width:1000px){.hub-grid{grid-template-columns:1fr}}
 @media (max-width:620px){.answer-row{grid-template-columns:1fr 1fr}.answer b{font-size:22px}.answer{padding:12px 14px}.hub-strip h2{font-size:22px}.hub-sessions li{grid-template-columns:minmax(0,1fr) auto auto;font-size:13px}.hub-sessions em{display:none}.dot-row{grid-template-columns:36px minmax(0,1fr)}.dot-axis{margin-left:46px;font-size:9px}.dot-grid i{width:min(6px,80%)}}
+
+/* Fantasy: a sticky budget bar, market chips with explicit states and the risk/reward scatter. */
+.budget-bar{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:0 0 20px;padding:10px 16px;background:#0B0B12f2;border:1px solid var(--line);border-left:3px solid var(--red);backdrop-filter:blur(6px)}
+.budget-bar label{display:flex;align-items:center;gap:8px;margin:0;color:var(--muted);font:700 12px var(--f-display);letter-spacing:.1em;text-transform:uppercase}
+.budget-input{display:inline-flex;align-items:center;gap:2px;color:var(--text);font:600 15px var(--f-ui);letter-spacing:0;text-transform:none}
+.budget-bar .budget-input input{width:80px;flex:none;padding:5px 6px;text-align:right}
+.budget-bar .picker-boost{font:500 13px var(--f-ui);letter-spacing:0;text-transform:none;color:var(--text-2)}
+.budget-meter{flex:1 1 140px;min-width:100px;height:8px;background:var(--panel-2)}
+.budget-meter span{display:block;height:100%;width:0;background:var(--red);transition:width .2s}
+.budget-spend{font:700 16px var(--f-display);letter-spacing:.04em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.picker-legend{display:flex;gap:6px}
+.picker-legend .picker-chip{pointer-events:none}
+.picker-pool{display:grid;gap:10px}
+.picker-group{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.picker-group>span{flex-basis:100%;color:var(--subtle);font:700 11px var(--f-display);letter-spacing:.12em;text-transform:uppercase}
+.picker-chip{display:inline-grid;grid-template-columns:auto auto;align-items:baseline;gap:0 8px;min-width:96px;padding:6px 10px;border:1px solid var(--line);border-left-width:3px;border-radius:0;background:var(--surface);color:var(--text-2);font-size:12px;text-align:left}
+.picker-chip b{font:700 15px var(--f-display);letter-spacing:.04em;color:var(--text)}
+.picker-chip small{margin:0;color:var(--subtle);font-variant-numeric:tabular-nums}
+.picker-chip .chip-points{grid-column:1/-1;color:var(--muted);font-size:11px}
+.picker-chip .chip-points::after{content:' pts'}
+.picker-chip.in-team{border-color:var(--red);background:var(--red-tint)}
+.picker-chip.locked{border-color:var(--green);background:#3be38b14;color:var(--green)}
+.picker-chip.locked b::after{content:' · IN';font-size:11px;color:var(--green)}
+.picker-chip.out{border-color:var(--line-subtle);background:transparent;color:var(--subtle)}
+.picker-chip.out b{color:var(--subtle);text-decoration:line-through}
+.picker-chip.out b::after{content:' · OUT';font-size:11px;text-decoration:none;display:inline-block;margin-left:4px}
+.picker-legend .picker-chip{min-width:0;padding:3px 8px}
+.picker-legend .picker-chip::before{content:none}
+.scatter svg{display:block;width:100%;height:auto;max-height:360px}
+.scatter-grid line{stroke:var(--line-subtle)}
+.scatter text{fill:var(--subtle);font:11px var(--f-ui)}
+.scatter .scatter-axis{fill:var(--muted);font-size:11px}
+.scatter-point circle{fill:var(--subtle);stroke:var(--bg);stroke-width:1.5}
+.scatter-point text{fill:var(--text-2);font:700 12px var(--f-display);letter-spacing:.04em}
+.scatter-point.picked circle{fill:var(--red)}
+.scatter-point.picked text{fill:#fff}
+.has-driver-focus .view.active .scatter-point:not(.is-driver-focus){opacity:.3}
+.scatter-point.is-driver-focus circle{stroke:#fff;stroke-width:2}
+@media (max-width:620px){.budget-bar{gap:10px;padding:8px 10px}.budget-bar #fantasyPick{flex:1 0 100%}.picker-chip{min-width:84px}}
