@@ -245,6 +245,7 @@ function resetCandidates() {
 function updateCandidateRules() {
   const on=$('candidatesToggle').checked, value=key=>$(`candidate-${key}`)?.value;
   $('candidateFields').hidden=!on;
+  $('candidatePairRow').hidden=!on;
   const agent=value('race_engine')==='agent_laps_v1';
   const blocked={pair_pass_model:!agent, safety_car_model:agent, shared_noise_model:agent, grid_sampling_model:agent};
   if(!$('forecastInput').checked)blocked.weather_model=true;
@@ -357,6 +358,14 @@ async function loadComparisonHistory() {
   const runs=history.filter(r=>['monte_carlo','forecast'].includes(r.kind) && ['completed','existing'].includes(r.status));
   ['compareA','compareB'].forEach((id,index)=>{const selected=$(id).value;$(id).innerHTML=runs.map(r=>`<option value="${escapeHtml(r.id)}">${escapeHtml(r.label)} · ${escapeHtml(r.created_at?.slice(0,16)||'')}</option>`).join('');if(runs.some(r=>r.id===selected))$(id).value=selected;else if(runs[index])$(id).value=runs[index].id;});
   $('compareRuns').disabled=runs.length<2;
+  // A baseline-plus-candidate pair opens straight into its comparison.
+  const preset=state.comparePreset, find=dir=>runs.find(r=>r.outputDir===dir)?.id;
+  if(preset && find(preset.baseline) && find(preset.candidate)){
+    state.comparePreset=null;$('compareA').value=find(preset.baseline);$('compareB').value=find(preset.candidate);
+    renderTable('comparisonTable',await api().workbench_compare($('compareA').value,$('compareB').value));
+    notify('Run A is the established model and Run B the candidate, both with the same seed.');
+    return;
+  }
   if(runs.length<2)$('comparisonTable').innerHTML=`<div class="empty">${runs.length?'Only one saved run so far. Save a second run to compare.':'No saved runs yet. Run a simulation from Race setup first.'}</div>`;
 }
 function applyPreferences(preferences) {

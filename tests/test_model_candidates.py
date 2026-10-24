@@ -61,6 +61,7 @@ def test_candidate_run_is_local_labelled_and_badged(api, monkeypatch):
     entry = next(item for item in history if item['kind'] == 'monte_carlo')
     assert entry['label'].endswith('· candidate')
     assert entry['candidates'] == candidate_labels(saved['candidates'])
+    assert entry['outputDir'] == result['outputDir']
 
 
 def test_initial_state_offers_candidates_switched_off(api):

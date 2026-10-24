@@ -418,9 +418,18 @@ async function refreshOutputs() {
 
 async function startRun() {
   await setPcFollowing(false);
-  const response = await api().start_run({ ...readSettings(), candidates: readCandidates() });
+  const candidates = readCandidates();
+  // With candidates on, the established model can run first on the same seed so the two compare cleanly.
+  const paired = Object.keys(candidates).length > 0 && $("candidateBaselineInput").checked;
+  state.pairRun = paired ? { settings: readSettings(), candidates, baseline: null } : null;
+  await launchRun(readSettings(), paired ? {} : candidates);
+}
+
+async function launchRun(settings, candidates) {
+  const response = await api().start_run({ ...settings, candidates });
   if (!response.ok) {
     $("runLog").textContent = response.message;
+    state.pairRun = null;
     return;
   }
   state.activeOutputDir = response.outputDir;
@@ -445,7 +454,24 @@ async function pollRunStatus() {
     state.statusTimer = setTimeout(() => safeAction(pollRunStatus), 1200);
   } else if (status.exitCode === 0) {
     await refreshOutputs();
+    await continuePairRun();
+  } else {
+    state.pairRun = null;
   }
+}
+
+async function continuePairRun() {
+  const pair = state.pairRun;
+  if (!pair) return;
+  if (!pair.baseline) {
+    pair.baseline = state.activeOutputDir;
+    $("runState").textContent = "Established run complete · starting candidate";
+    await launchRun(pair.settings, pair.candidates);
+    return;
+  }
+  state.pairRun = null;
+  state.comparePreset = { baseline: pair.baseline, candidate: state.activeOutputDir };
+  navigate("compare");
 }
 
 function setupNavigation() {

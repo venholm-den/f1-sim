@@ -1311,7 +1311,7 @@ class PortableWebApi:
                     history.append({'id': identifier, 'kind': 'monte_carlo', 'status': 'completed',
                                     'label': f"{context['year']} {context['event']} · {context['session']}"
                                              + (' · candidate' if candidates else ''),
-                                    'candidates': candidates, 'seed': saved.get('settings', {}).get('random_seed'),
+                                    'candidates': candidates, 'outputDir': str(metadata.parent), 'seed': saved.get('settings', {}).get('random_seed'),
                                     'created_at': saved['completed_at_utc']})
                 except (ValueError, TypeError, KeyError, OSError):
                     continue
