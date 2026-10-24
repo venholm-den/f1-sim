@@ -31,7 +31,7 @@ pip install -r requirements.txt
 python main.py --year 2026 --event latest --session Q --n-sims 5000 --no-discord
 ```
 
-For the portable desktop app:
+For the portable desktop app, Race Workbench:
 
 Double-click **Launch F1 Sim.cmd** to open the Simulation Centre: launch Monte Carlo,
 Simulink lap dynamics or scenario experiments, follow logs, and review saved runs.
