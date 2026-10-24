@@ -5,6 +5,11 @@ separate factual fixes from accuracy changes, add whole-distribution and
 head-to-head scores with a power check, and freeze one combined challenger per
 season with a sequential test.
 
+[Pace uncertainty and the tuned shadow settings](pace-uncertainty.md) samples
+each car's pace per team and per driver in the car-agent engine, adds
+heavy-tailed incidents, and registers the tuned pace and grid settings as a
+named shadow candidate.
+
 The [single degradation candidate](single-degradation.md) counts tyre wear
 once instead of four times and is compared offline against the live engine.
 
