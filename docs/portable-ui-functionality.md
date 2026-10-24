@@ -11,7 +11,7 @@ The gaps below remain explicit; prototype confidence percentages and sample
 forecasts have not been substituted for model outputs.
 
 Rebuilt on 5 October 2026 against the five images under
-`docs/mockups/portable-app/images`. The app opens Race Setup by default.
+`docs/mockups/portable-app/images`. The app now opens on the Weekend overview (see below).
 The Simulation Centre remains available from the Workshop menu for prospective
 forecasts, frozen run history, post-race scoring, Discord and Simulink tools.
 
@@ -24,7 +24,17 @@ recommendation table remains expandable. Saved recommendations do not contain
 pit laps: the chart shows sequence, not lap duration or predicted pit windows.
 Stop counts follow the displayed sequence, including historical adjustments.
 
-Frontend data checks: `node --test tests/tyre_strategy.test.cjs tests/shell_focus.test.cjs`.
+Frontend data checks: `node --test tests/tyre_strategy.test.cjs tests/shell_focus.test.cjs tests/forecast_answers.test.cjs`.
+
+Weekend hub and answers (broadcast phase 3): the app now opens on Weekend →
+Overview. Its answer row (favourite, contenders, championship leader, forecast),
+quantile dots for the top four (each dot is 2% of simulated races), win chance,
+the saved weekend briefing's UK session times and title odds are all read from
+saved files; nothing is fetched to build it. Session times appear only once the
+weekend briefing has run for that Grand Prix. Results opens with a computed
+answer row (most likely winner, likely podium, widest range in the top 8,
+favourite's retirement risk); run details, the finish heatmap, strategy, Fantasy
+projections and insights sit under "Show the maths".
 
 Navigation (October 2026, broadcast phase 2): a top bar with six destinations
 (Weekend, Predict, Fantasy, Replay, Championship, Lab) and a Workshop menu for

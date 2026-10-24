@@ -167,3 +167,20 @@ def test_conflicting_venue_withholds_track_geometry(tmp_path):
     weekend._track_reference(tmp_path, briefing)
     assert briefing['track']['venue_status'] == 'conflict'
     assert not briefing['track'].get('length_km')
+
+
+def test_saved_briefing_reads_matching_event_without_fetching(tmp_path):
+    briefing = selected()
+    folder = tmp_path / 'outputs/weekend_briefings/2026_round_08'
+    folder.mkdir(parents=True)
+    (folder / 'briefing.json').write_text(json.dumps(briefing), encoding='utf-8')
+    (tmp_path / 'outputs/weekend_briefings/2026_round_09').mkdir()
+    (tmp_path / 'outputs/weekend_briefings/2026_round_09/briefing.json').write_text('{broken', encoding='utf-8')
+
+    saved = weekend.saved_briefing([tmp_path / 'missing', tmp_path], '2026', 'monaco grand prix')
+    assert saved['round'] == 8 and saved['format'] == 'Standard'
+    assert [s['code'] for s in saved['sessions']] == ['FP1', 'FP2', 'FP3', 'Q', 'R']
+    assert set(saved) == {'year', 'round', 'event', 'format', 'sessions', 'track'}
+    assert weekend.saved_briefing([tmp_path], 2025, 'Monaco Grand Prix') is None
+    assert weekend.saved_briefing([tmp_path], 2026, 'Canadian Grand Prix') is None
+    assert weekend.saved_briefing([tmp_path], 'latest', 'Monaco Grand Prix') is None

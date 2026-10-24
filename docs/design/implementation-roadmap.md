@@ -37,4 +37,9 @@ Each phase is one or two PRs. Each one is shippable on its own, behind no flags,
   - Section tabs under the bar for destinations with more than one view, and a Workshop menu for Data Sources, Historical Data, Model Training and Settings. All 18 existing views are kept and re-parented, not rewritten.
   - Shared driver focus: click a driver row to highlight it, Shift-click to compare two, Esc or the focus chip to clear. Covered by `tests/shell_focus.test.cjs`.
   - Keys 1–6 switch destination. The footer key strip is deferred to phase 5, where replay adds its own keys.
-- **Not yet changed:** screen layouts and charts, which are phases 3–6. The replay driver palette in `replay.js` also still uses the old colours; it moves in phase 5.
+- **Phase 3 is done.** It covers:
+  - A Weekend overview, now the screen the app opens on, with an answer row (favourite, contenders, championship leader, forecast), quantile dots for the top four, win chance, the saved briefing's session times and title odds. Session times are read from `outputs/weekend_briefings` by `saved_briefing`, without fetching anything.
+  - An answer row on Results (most likely winner, likely podium, widest range in the top 8, retirement risk), with run details, the heatmap, strategy, Fantasy and insights moved under "Show the maths".
+  - Every answer is computed in `forecast.js` and covered by `tests/forecast_answers.test.cjs`.
+  - **Deferred:** fifty futures and the ridge chart. Frozen forecasts keep only the summary and position matrix, not per-simulation orders, so fifty futures needs the backend to store a sample of orders first. The quantile dots already show each driver's distribution, so the ridge was left out.
+- **Not yet changed:** Fantasy, Replay and the new screens, which are phases 4–6. The replay driver palette in `replay.js` also still uses the old colours; it moves in phase 5.

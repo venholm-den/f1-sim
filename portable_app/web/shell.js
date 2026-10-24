@@ -22,7 +22,7 @@ function syncShell(view) {
 // Shift-click adds a second driver to compare. Esc or the focus chip clears it.
 const driverFocus = [];
 const DRIVER_COLUMN = /^(driver|code|abbreviation|driver code)$/i;
-const ROW_SELECTOR = 'tr, .probability-row, .range-row, .bar-row';
+const ROW_SELECTOR = 'tr, .probability-row, .range-row, .bar-row, .dot-row';
 
 function rowDriver(row) {
   if (row.dataset.driver) return row.dataset.driver;
@@ -106,7 +106,7 @@ function setupShell() {
     const menu = document.querySelector('.workshop[open]');
     if (menu && !menu.contains(event.target)) menu.open = false;
   });
-  syncShell(state.view || 'setup');
+  syncShell(state.view || 'hub');
 }
 
 if (typeof module !== 'undefined' && module.exports) module.exports = { nextDriverFocus };
