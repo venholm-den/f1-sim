@@ -85,5 +85,5 @@
     }
   };
 
-  window.CONCEPTS.h = { name: 'H · Recommended hybrid', render(screen, ctx) { return shell(ctx, screens[screen](ctx)); } };
+  window.CONCEPTS.h = { name: 'H · Recommended hybrid', screens, render(screen, ctx) { return shell(ctx, screens[screen](ctx)); } };
 })();
