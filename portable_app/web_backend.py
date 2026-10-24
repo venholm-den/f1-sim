@@ -1222,6 +1222,73 @@ class PortableWebApi:
         threading.Thread(target=run, daemon=True).start()
         return {'running': True}
 
+    def fantasy_team(self, settings_payload=None, budget=None, boost=True, include=None, exclude=None,
+                     current=None, bank=None, free_transfers=None):
+        """Best legal teams for the selected run at the latest official prices.
+
+        With the user's current team, picks are planned transfers: changes past
+        the free transfers cost the game's penalty.
+        """
+        from src.fantasy import add_constructor_fantasy_points, constructor_fantasy_summary
+        from src.fantasy_market import history
+        from src.fantasy_team import market_assets, pick_teams, team_distribution
+        from src.model_config import FANTASY_SCORING
+        settings = settings_from_payload(settings_payload or {}, self.default_settings)
+        folder = Path(settings.output_dir)
+        summary = read_output_table(folder, 'simulation_summary.csv', max_rows=None)
+        if folder.resolve().name == 'source' and (folder.parent / 'frozen/simulation_summary.csv').is_file():
+            summary = read_output_table(folder.parent / 'frozen', 'simulation_summary.csv', max_rows=None)
+        if summary.empty or 'avg_fantasy_points' not in summary:
+            raise ValueError('This run has no Fantasy projections. Run a forecast first.')
+        notes = []
+        raw = read_output_table(folder, 'raw_fantasy_results.csv', max_rows=None)
+        constructors = read_output_table(folder, 'fantasy_constructor_summary.csv', max_rows=None)
+        if constructors.empty and not raw.empty and 'dotd_points' in raw:
+            constructors = constructor_fantasy_summary(raw)
+        if constructors.empty:
+            # Older runs: both drivers' points without Driver of the Day only.
+            dotd = summary.get('avg_dotd_points', pd.Series(0.0, index=summary.index)).fillna(0.0)
+            constructors = (summary.assign(avg_constructor_points=summary['avg_fantasy_points'] - dotd)
+                            .groupby('Team', as_index=False)['avg_constructor_points'].sum())
+            notes.append('Constructor points leave out the qualifying bonus and pit stops; '
+                         're-run the forecast to score them in full.')
+        if 'avg_overtake_points' not in summary:
+            notes.append('This run was scored with the old Fantasy table; re-run it for the verified rules.')
+
+        rows, _, _ = history(self._fantasy_workspace())
+        market = [r for r in rows if r['source'] == 'official' and r['is_active'].lower() in {'true', '1'}]
+        if not market:
+            raise ValueError('No official Fantasy prices archived yet. Refresh the weekly archive first.')
+        latest = max((int(r['season']), int(r['round']), r['captured_at']) for r in market)
+        market = [r for r in market if (int(r['season']), int(r['round']), r['captured_at']) == latest]
+        drivers, teams, missing = market_assets(market, summary, constructors)
+        if missing:
+            notes.append('No current price for ' + ', '.join(missing) + '; left out.')
+        rules = FANTASY_SCORING['team']
+        current = [str(code).strip().upper() for code in (current or []) if str(code).strip()]
+        plan = dict(current=current, bank=bank, free_transfers=free_transfers)
+        picks = pick_teams(drivers, teams, budget=budget, boost=bool(boost),
+                           include=include or (), exclude=exclude or (), **plan)
+        stay = None
+        if current:
+            # The current team as it stands, for the "is a change worth it" comparison.
+            stay = pick_teams(drivers, teams, budget=float('inf'), boost=bool(boost),
+                              include=current, top=1, current=current)[0]
+            stay['budget_left'] = round(float(bank or 0.0), 2)
+            if budget is None:
+                budget = stay['cost'] + float(bank or 0.0)
+        if not raw.empty and 'overtake_points' in raw:
+            pit = (dict(zip(constructors['Team'], constructors['pit_stop_points']))
+                   if 'pit_stop_points' in constructors else None)
+            sims = add_constructor_fantasy_points(raw, pit_stop_points=pit)
+            for team in picks + ([stay] if stay else []):
+                team['range'] = team_distribution(team, raw, sims,
+                                                  rules['boost_multiplier'] if boost else 1.0)
+        return {'teams': picks, 'current': stay, 'drivers': drivers, 'constructors': teams, 'notes': notes,
+                'budget': float(rules['budget'] if budget is None else budget),
+                'rules': rules, 'market': {'season': latest[0], 'round': latest[1],
+                                           'event': market[0]['event'], 'captured_at': latest[2]}}
+
     def fantasy_open(self):
         from src.fantasy_market import archive_root
         path = archive_root(self._fantasy_workspace())

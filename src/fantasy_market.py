@@ -267,10 +267,16 @@ def collect(workspace, years=None, *, force=False, now=None, fetch=None):
             'archive': str(root)}
 
 
-def _capture_rows(root, manifest):
-    folder = (root / manifest['folder']).resolve()
+def _capture_folder(root, manifest):
+    # Captures written on Windows record the folder with backslashes.
+    folder = (root / str(manifest['folder']).replace('\\', '/')).resolve()
     if not folder.is_relative_to(root.resolve()):
         raise ValueError('Fantasy capture path is outside its archive.')
+    return folder
+
+
+def _capture_rows(root, manifest):
+    folder = _capture_folder(root, manifest)
     path = folder / 'rows.csv'
     if hashlib.sha256(path.read_bytes()).hexdigest() != manifest['rows_sha256']:
         raise ValueError('Fantasy capture checksum failed.')
@@ -332,3 +338,109 @@ def snapshot_prices(workspace, metadata, output_dir, *, now=None):
         writer.writerows({'Driver': r['code'], 'Team': r['team'], 'fantasy_price': r['price'],
                           'captured_at': r['captured_at'], 'source_url': r['source_url']} for r in eligible)
     return str(path)
+
+
+def _flag(session, key):
+    return bool(number(((session or {}).get(key) or {}).get('points')))
+
+
+def _position(value):
+    parsed = number(value)
+    return int(parsed) if parsed is not None else None
+
+
+def scored_archive_records(payload, season):
+    """Driver and constructor inputs from a tools capture, with actual points.
+
+    The inputs are what happened (places, passes, flags); the actual session
+    totals stay alongside so a scoring table can be checked against them.
+    Drivers who did not take part in a round (no race status) are left out.
+    """
+    drivers, constructors = [], []
+    for raw_round, result in payload['seasonResult']['raceResults'].items():
+        round_number = int(raw_round)
+        for asset in result['drivers']:
+            if asset.get('raceDnf') is None:
+                continue
+            sessions = asset.get('raceResult') or {}
+            q, r, s = sessions.get('Q') or {}, sessions.get('R') or {}, sessions.get('S')
+            row = {
+                'season': int(season), 'round': round_number, 'sim_id': round_number,
+                'Driver': asset['abbreviation'], 'Team': asset.get('constructorId', ''),
+                'qualifying_position': _position(asset.get('qualifyingPosition')),
+                'qualifying_not_classified': _flag(q, 'notClassifiedPoints'),
+                'qualifying_disqualified': _flag(q, 'disqualifiedPoints'),
+                'finish_position': _position(asset.get('racePosition')),
+                'positions_gained': number(asset.get('racePositionsGained')) or 0.0,
+                'overtakes': number(asset.get('raceOvertakes')) or 0.0,
+                'fastest_lap': bool(asset.get('raceFastestLap')),
+                'dotd': bool(asset.get('raceDriverOfTheDay')),
+                'classified': not _flag(r, 'notClassifiedPoints'),
+                'disqualified': _flag(r, 'disqualifiedPoints'),
+                'actual_qualifying': number((q.get('totalPoints') or {}).get('points')) or 0.0,
+                'actual_race': number((r.get('totalPoints') or {}).get('points')) or 0.0,
+                'actual_sprint': None, 'actual_total': number(asset.get('totalPoints')),
+            }
+            if s:
+                row.update({
+                    'sprint_position': _position(asset.get('sprintPosition')),
+                    'sprint_positions_gained': number(asset.get('sprintPositionsGained')) or 0.0,
+                    'sprint_overtakes': number(asset.get('sprintOvertakes')) or 0.0,
+                    'sprint_fastest_lap': bool(asset.get('sprintFastestLap')),
+                    'sprint_classified': not _flag(s, 'notClassifiedPoints'),
+                    'sprint_disqualified': _flag(s, 'disqualifiedPoints'),
+                    'actual_sprint': number((s.get('totalPoints') or {}).get('points')) or 0.0,
+                })
+            drivers.append(row)
+        for asset in result['constructors']:
+            race = (asset.get('raceResult') or {}).get('R') or {}
+            text = str((race.get('fastestPitStopPoints') or {}).get('text') or '')
+            seconds = number(text.rsplit(' ', 1)[-1].rstrip('s')) if text.endswith('s') else None
+            constructors.append({
+                'season': int(season), 'round': round_number, 'Team': asset['abbreviation'],
+                'fastest_pit_stop_seconds': seconds,
+                'overall_fastest_pit_stop': bool(asset.get('raceOverallFastestPitStop')),
+                'world_record_pit_stop': _flag(race, 'worldRecordPitStopPoints'),
+                'disqualified': any(_flag(sessions, 'disqualifiedPoints')
+                                    for sessions in (asset.get('raceResult') or {}).values()),
+                'actual_pit_stop': sum(number((race.get(key) or {}).get('points')) or 0.0 for key in (
+                    'fastestPitStopPoints', 'overallFastestPitStopPoints', 'worldRecordPitStopPoints')),
+                'actual_total': number(asset.get('totalPoints')),
+            })
+    return drivers, constructors
+
+
+def latest_tools_payload(workspace, season):
+    """The most recent tools capture for a season, checksum verified."""
+    root = archive_root(workspace)
+    index = _read_json(root / 'index.json', {'captures': {}})
+    manifest = index.get('captures', {}).get(f'tools_{int(season)}')
+    if not manifest:
+        return None
+    folder = _capture_folder(root, manifest)
+    raw = (folder / 'raw.json').read_bytes()
+    if hashlib.sha256(raw).hexdigest() != manifest['raw_sha256']:
+        raise ValueError('Fantasy capture checksum failed.')
+    return json.loads(raw)
+
+
+def expected_pit_stop_points(payload, season, team_by_driver, rounds=8):
+    """Each team's mean pit-stop points over its last few archived races.
+
+    The archive names constructors by its own codes, so each one is matched to
+    the run's team through the drivers it fielded. team_by_driver maps driver
+    code to the run's team name.
+    """
+    drivers, constructors = scored_archive_records(payload, season)
+    votes = {}
+    for row in drivers:
+        team = team_by_driver.get(row['Driver'])
+        if team:
+            votes.setdefault(row['Team'], {}).setdefault(team, 0)
+            votes[row['Team']][team] += 1
+    names = {code: max(counts, key=counts.get) for code, counts in votes.items()}
+    history = {}
+    for row in sorted(constructors, key=lambda r: r['round']):
+        if row['Team'] in names and row['actual_total'] is not None:
+            history.setdefault(names[row['Team']], []).append(row['actual_pit_stop'])
+    return {team: sum(values[-rounds:]) / len(values[-rounds:]) for team, values in history.items() if values}

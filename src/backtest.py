@@ -424,9 +424,10 @@ def _calculate_basic_actual_fantasy(row: pd.Series) -> float:
         positions_gained = 0.0
 
     gain_value = _scoring_value("position_gain_points_per_place", 1.0)
-    loss_value = _scoring_value("position_loss_points_per_place", -0.5)
-    min_value = _scoring_value("position_change_min", -5.0)
-    max_value = _scoring_value("position_change_max", 10.0)
+    loss_value = _scoring_value("position_loss_points_per_place", -1.0)
+    # The current rules have no cap; None leaves that side open.
+    min_value = FANTASY_SCORING.get("position_change_min")
+    max_value = FANTASY_SCORING.get("position_change_max")
 
     if positions_gained >= 0:
         position_points = positions_gained * gain_value
@@ -438,7 +439,7 @@ def _calculate_basic_actual_fantasy(row: pd.Series) -> float:
     if actual_dnf:
         position_points = 0.0
 
-    dnf_points = _scoring_value("dnf_penalty", -10.0) if actual_dnf else 0.0
+    dnf_points = _scoring_value("dnf_penalty", -20.0) if actual_dnf else 0.0
 
     return finish_points + quali_points + position_points + dnf_points
 

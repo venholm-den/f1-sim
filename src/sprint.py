@@ -8,7 +8,8 @@ scaled to the shorter distance. Sprint points go 8-1 to the top eight.
 
 Stated assumptions, not fitted values: the sprint grid is the forecast's grid
 (an SQ classification when the run has one), noise scales with the square
-root of distance, and there is no sprint fastest-lap or overtake bonus.
+root of distance, and no sprint fastest lap is drawn (Fantasy estimates the
+sprint overtakes; see src/fantasy.py).
 """
 from __future__ import annotations
 

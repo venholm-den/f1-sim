@@ -62,7 +62,7 @@ function navigate(view) {
   if (view === 'replay') safeAction(refreshReplaySessions);
   clearTimeout(trainingState.timer);
   clearTimeout(fantasyArchive.timer);
-  if(view==='fantasy')safeAction(()=>refreshFantasyArchive());
+  if(view==='fantasy'){safeAction(()=>refreshFantasyArchive());safeAction(pickFantasyTeam);}
   if(view==='training')safeAction(refreshModelTraining);
   if (typeof refreshHistoricalLibrary === 'function') {
     clearTimeout(state.archiveTimer);
@@ -226,7 +226,11 @@ function renderResultsDetails() {
   notes.push('Strategy candidate scores are heuristic. They do not isolate the effect of a tyre strategy on winning.');
   $('resultInsights').innerHTML=notes.map(note=>`<p>${escapeHtml(note)}</p>`).join('');
   const rules=state.reference?.fantasy_scoring || {};
-  definitions('fantasyRules',[['Fastest lap bonus',rules.fastest_lap_bonus],['Driver of the day bonus',rules.dotd_bonus],['DNF penalty',rules.dnf_penalty],['Position gain / place',rules.position_gain_points_per_place],['Position loss / place',rules.position_loss_points_per_place]]);
+  const team=rules.constructor?.qualifying_teamwork || {};
+  definitions('fantasyRules',[['Race finish P1 to P10','25 to 1'],['Qualifying P1 to P10','10 to 1'],['Sprint finish P1 to P8','8 to 1'],
+    ['Position gained / lost','±1 per place, no cap'],['Overtake',`+${rules.overtake_points ?? 1} each`],['Fastest lap (race / sprint)',`+${rules.fastest_lap_bonus} / +${rules.sprint_fastest_lap_bonus}`],
+    ['Driver of the Day',`+${rules.dotd_bonus}`],['Not classified (race / sprint / qualifying)',`${rules.dnf_penalty} / ${rules.sprint_dnf_penalty} / ${rules.quali_not_classified_penalty}`],
+    ['Constructor qualifying bonus',`${team.neither_q2} to +${team.both_q3}`],['Constructor fastest pit stop','+2 to +20 by time, +5 for the fastest']]);
 }
 // Model candidates: off by default, never persisted, validated again by the backend.
 function renderCandidateOptions(list) {
@@ -389,7 +393,7 @@ async function resetForm() {
 }
 function initWorkbench() {
   renderIcons();
-  initFantasyArchive();
+  initFantasyArchive();initFantasyPicker();
   document.querySelectorAll('[data-open-view]').forEach(el=>el.addEventListener('click',()=>{
     if(el.dataset.openView==='track')state.trackViewSource=el.dataset.trackSource || 'saved';
     navigate(el.dataset.openView);

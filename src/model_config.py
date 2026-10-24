@@ -109,8 +109,12 @@ SIMULATION_PARAMETERS = {
 }
 
 
-# Fantasy scoring knobs.
+# Official F1 Fantasy scoring, current season. Every value below was checked
+# against archived component points (scripts/verify_fantasy_scoring.py); the
+# overtake estimate is the only fitted part, because the simulator does not
+# count passes. Earlier seasons differ only where FANTASY_SEASON_OVERRIDES says.
 FANTASY_SCORING = {
+    "season": 2026,
     "finish_points": {
         1: 25,
         2: 18,
@@ -135,11 +139,67 @@ FANTASY_SCORING = {
         9: 2,
         10: 1,
     },
+    "sprint_finish_points": {1: 8, 2: 7, 3: 6, 4: 5, 5: 4, 6: 3, 7: 2, 8: 1},
+    # Grid to finish, one point per place either way and no cap. A driver who
+    # is not classified scores no position change.
     "position_gain_points_per_place": 1.0,
-    "position_loss_points_per_place": -0.5,
-    "position_change_min": -5.0,
-    "position_change_max": 10.0,
-    "fastest_lap_bonus": 5.0,
+    "position_loss_points_per_place": -1.0,
+    "position_change_min": None,
+    "position_change_max": None,
+    "overtake_points": 1.0,
+    "fastest_lap_bonus": 10.0,
+    "sprint_fastest_lap_bonus": 5.0,
     "dotd_bonus": 10.0,
-    "dnf_penalty": -10.0,
+    "dnf_penalty": -20.0,
+    "sprint_dnf_penalty": -10.0,
+    "quali_not_classified_penalty": -5.0,
+    "quali_disqualified_penalty": -5.0,
+    "race_disqualified_penalty": -20.0,
+    "sprint_disqualified_penalty": -10.0,
+    # Fitted to 2025-2026 archived overtakes (727 race, 243 sprint finishes):
+    # base + per place gained/lost. Used only when a run has no pass count.
+    "estimated_overtakes": {
+        "race": {"base": 3.44, "per_place_gained": 0.36, "per_place_lost": 0.08,
+                 "not_classified": 1.5},
+        "sprint": {"base": 1.45, "per_place_gained": 0.36, "per_place_lost": 0.07,
+                   "not_classified": 0.5},
+    },
+    "constructor": {
+        # A constructor scores both drivers' points except Driver of the Day.
+        "q2_cutoff": 16,
+        "q3_cutoff": 10,
+        "qualifying_teamwork": {"neither_q2": -1.0, "one_q2": 1.0, "both_q2": 3.0,
+                                "one_q3": 5.0, "both_q3": 10.0},
+        # Fastest stop of the race, inclusive upper bound in seconds.
+        "pit_stop_bands": [[1.99, 20.0], [2.19, 10.0], [2.49, 5.0], [3.0, 2.0]],
+        "fastest_pit_stop_bonus": 5.0,
+        "world_record_pit_stop_bonus": 15.0,
+    },
+    # Team rules from the game's rulebook; the archive holds no team data, so
+    # these are not archive-checked like the scoring above.
+    "team": {"drivers": 5, "constructors": 2, "budget": 100.0, "boost_multiplier": 2.0,
+             "free_transfers": 2, "transfer_penalty": -10.0},
 }
+
+# Rules that changed between seasons, as found in the archive.
+FANTASY_SEASON_OVERRIDES = {
+    2025: {"sprint_dnf_penalty": -20.0, "sprint_disqualified_penalty": -20.0,
+           "constructor": {"q2_cutoff": 15}},
+    2024: {"sprint_dnf_penalty": -20.0, "sprint_disqualified_penalty": -20.0,
+           "quali_disqualified_penalty": -15.0, "race_disqualified_penalty": -25.0,
+           "constructor": {"q2_cutoff": 15}},
+    2023: {"sprint_dnf_penalty": -20.0, "sprint_disqualified_penalty": -20.0,
+           "quali_disqualified_penalty": -15.0, "race_disqualified_penalty": -25.0,
+           "constructor": {"q2_cutoff": 15}},
+}
+
+
+def fantasy_scoring_for_season(season: int | None = None) -> dict:
+    """The scoring table for one season; the current table when unknown."""
+    override = FANTASY_SEASON_OVERRIDES.get(int(season)) if season is not None else None
+    if not override:
+        return FANTASY_SCORING
+    table = {**FANTASY_SCORING, **{k: v for k, v in override.items() if k != "constructor"}}
+    table["season"] = int(season)
+    table["constructor"] = {**FANTASY_SCORING["constructor"], **override.get("constructor", {})}
+    return table
