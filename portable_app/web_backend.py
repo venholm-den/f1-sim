@@ -1304,6 +1304,14 @@ class PortableWebApi:
             self._championship_cache[year] = (time.monotonic(), payload)
             return payload
 
+    def accuracy_state(self):
+        from src.app_services.accuracy import accuracy_state
+        return accuracy_state(self._jobs.root)
+
+    def driver_intel(self, year=None):
+        from src.app_services.driver_intel import driver_intel
+        return driver_intel(self._jobs.root, year or datetime.now(timezone.utc).year)
+
     def weekend_schedule(self, year, event):
         from src.app_services.automation_feed import DEFAULT_PC_WORKSPACE
         from src.app_services.weekend_briefing import saved_briefing

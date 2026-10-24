@@ -431,6 +431,7 @@ async function launchRun(settings, candidates) {
   const response = await api().start_run({ ...settings, candidates });
   if (!response.ok) {
     $("runLog").textContent = response.message;
+    if (state.pairRun && $("scenarioState")) $("scenarioState").textContent = response.message;
     state.pairRun = null;
     return;
   }
@@ -469,10 +470,12 @@ async function continuePairRun() {
   if (!pair.baseline) {
     pair.baseline = state.activeOutputDir;
     $("runState").textContent = "Established run complete · starting candidate";
+    if ($("scenarioState")) $("scenarioState").textContent = "A finished · running B…";
     await launchRun(pair.settings, pair.candidates);
     return;
   }
   state.pairRun = null;
+  if ($("scenarioState")) $("scenarioState").textContent = "A and B finished · opened in Compare.";
   state.comparePreset = { baseline: pair.baseline, candidate: state.activeOutputDir };
   navigate("compare");
 }
