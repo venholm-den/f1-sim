@@ -172,6 +172,8 @@ function sessionModeLabel(mode) {
 
 // Readable headers for the snake_case columns written by the simulation outputs.
 const columnLabels = {
+  title_chance: "Title", top3_chance: "Top 3", current_points: "Points", expected_points: "Expected final pts",
+  expected_position: "Expected final pos",
   avg_finish: "Avg finish", win_chance: "Win", podium_chance: "Podium", dnf_chance: "DNF",
   points_chance: "Points finish", points_scoring_chance: "Points finish", top5_chance: "Top 5", top10_chance: "Top 10",
   avg_points: "Avg points", avg_grid: "Avg grid", finish_p25: "Finish P25", finish_p75: "Finish P75",
@@ -296,7 +298,7 @@ function renderBarChart(targetId, points, fill = colors.red, { max = null, unit 
         <div class="bar-row">
           <div class="bar-label" title="${escapeHtml(item.label)}">${escapeHtml(item.label)}</div>
           <div class="bar-track"><div class="bar-fill" style="width:${width}%;background:${item.fill || fill}"></div></div>
-          <div class="bar-value">${known ? `${value.toFixed(1)}${unit}` : "Unknown"}</div>
+          <div class="bar-value">${known ? escapeHtml(item.text ?? `${value.toFixed(1)}${unit}`) : "Unknown"}</div>
         </div>`;
     })
     .join("");
