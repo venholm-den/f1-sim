@@ -7,8 +7,10 @@ Two lanes, because two kinds of change reach the model:
   It must not make replays worse beyond simulation noise, and it is not
   expected to win a fresh-race contest by a margin.
 - accuracy: the candidate changes model judgement (fitted or assumed
-  parameters, new mechanisms). It keeps the existing gate: at least six fresh
-  races per stage, at least 5% lower paired loss and no Brier regression.
+  parameters, new mechanisms). It needs at least six fresh races per stage,
+  at least 5% lower paired RPS, and no finish MAE or Brier regression. RPS
+  replaced the MAE-dominated loss as the primary metric on 24 October 2026;
+  the loss is still reported.
 
 Power: the spread of per-race paired differences decides the smallest gain a
 number of races can detect. Reports state it so a gate that cannot decide is
@@ -37,8 +39,10 @@ CORRECTNESS = {
         'Simulates and scores the sprint race that actually takes place on a sprint weekend.',
 }
 
-ACCURACY_GATE = {'min_races': 6, 'min_loss_improvement': 0.05,
-                 'no_regression': ('win_brier', 'podium_brier', 'top10_brier', 'dnf_brier')}
+# Full RPS needs a position matrix; threshold RPS is the fallback for rows
+# that only carry win/podium/top-10 chances.
+ACCURACY_GATE = {'min_races': 6, 'primary_metrics': ('rps', 'threshold_rps'), 'min_primary_improvement': 0.05,
+                 'no_regression': ('finish_mae', 'win_brier', 'podium_brier', 'top10_brier', 'dnf_brier')}
 CORRECTNESS_GATE = {'min_races': 6, 'noise_multiple': 2.0, 'tolerance_floor': 1e-4,
                     'metrics': ('finish_mae', 'win_brier', 'podium_brier', 'top10_brier', 'rps')}
 LOSS = ('finish_mae', 'top10_brier')
@@ -195,23 +199,29 @@ def sequential_tests(pair: pd.DataFrame, bounds=None) -> dict:
 
 def accuracy_decision(seed_rows: pd.DataFrame, candidate: str, baseline: str,
                       race_keys=('round',), bounds=None) -> dict:
-    """The established fresh-race gate, with power and the sequential tests alongside."""
+    """The fresh-race gate, with power and the sequential tests alongside."""
     gate = ACCURACY_GATE
     pair = paired_races(seed_rows, candidate, baseline, race_keys)
     reasons = []
     if len(pair) < gate['min_races']:
         reasons.append(f"Only {len(pair)} paired races; at least {gate['min_races']} are required.")
+    primary = next((m for m in gate['primary_metrics'] if m + '_delta' in pair), None)
     improvement = None
-    if 'loss_delta' in pair and float(pair.loss_baseline.mean()) > 0:
-        improvement = float(-pair.loss_delta.mean() / pair.loss_baseline.mean())
-        if improvement < gate['min_loss_improvement']:
-            reasons.append(f'Loss improvement {improvement:.1%} is below 5%.')
+    if primary is None:
+        reasons.append('RPS or threshold RPS is needed for the primary metric.')
+    elif float(pair[primary + '_baseline'].mean()) > 0:
+        improvement = float(-pair[primary + '_delta'].mean() / pair[primary + '_baseline'].mean())
+        if improvement < gate['min_primary_improvement']:
+            reasons.append(f'{primary} improvement {improvement:.1%} is below 5%.')
     else:
-        reasons.append('Finish MAE and top-10 Brier are both needed for the loss.')
+        reasons.append(f'Baseline {primary} is zero; improvement is undefined.')
+    loss_improvement = None
+    if 'loss_delta' in pair and float(pair.loss_baseline.mean()) > 0:
+        loss_improvement = float(-pair.loss_delta.mean() / pair.loss_baseline.mean())
     for metric in gate['no_regression']:
         if metric + '_delta' in pair and float(pair[metric + '_delta'].mean()) > 0:
             reasons.append(f'{metric} regressed.')
     return {'lane': 'accuracy', 'candidate': candidate, 'baseline': baseline,
-            'paired_races': len(pair), 'loss_improvement': improvement,
-            'power': power_table(pair).to_dict('records'), 'sequential': sequential_tests(pair, bounds),
+            'paired_races': len(pair), 'primary_metric': primary, 'primary_improvement': improvement,
+            'loss_improvement': loss_improvement, 'power': power_table(pair).to_dict('records'), 'sequential': sequential_tests(pair, bounds),
             'passed': not reasons, 'reasons': reasons, 'activated': False, 'promotion_approved': False}

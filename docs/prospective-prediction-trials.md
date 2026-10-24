@@ -58,7 +58,7 @@ The first complete trial per suite/race/stage is immutable; retries reuse it. In
 
 After the existing post-race process has saved complete official results, trial scoring waits at least eight hours after scheduled race start and reports finish MAE, win Brier, podium Brier, top-10 Brier and DNF Brier together. Scoring never downloads results or posts anything. It rechecks prediction, suite, practice, source forecast and official-result hashes. Scores are write-once.
 
-The report groups cohorts by suite and stage and compares candidates on identical races. It reports paired metric differences and whole-race bootstrap finish-error intervals once two races are available. At least six fresh races per stage, at least 5% lower paired finish-MAE-plus-top-10-Brier loss, no win/podium/top-10/DNF Brier regression, and Q finish error beating qualifying order are required for review. No test, report or scheduler run activates a model.
+The report groups cohorts by suite and stage and compares candidates on identical races. It reports paired metric differences and whole-race bootstrap finish-error intervals once two races are available. At least six fresh races per stage, at least 5% lower paired threshold RPS (the mean of win, podium and top-10 Brier), no finish MAE or win/podium/top-10/DNF Brier regression, and Q finish error beating qualifying order are required for review. Threshold RPS is derived when the report is built, so existing score files and suites are not rewritten; suites registered before 24 October 2026 record the earlier loss gate in their manifest, and the report applies the current rule to them. The paired loss is still reported. No test, report or scheduler run activates a model.
 
 ## Commands
 

@@ -326,7 +326,21 @@ def test_review_gate_requires_six_paired_races_and_no_probability_regression(tmp
         (folder/'score.json').write_text(json.dumps(payload))
     result=comparison_report(tmp_path);report=json.loads((Path(result['folder'])/'report.json').read_text())
     assert report['paired_comparisons'][0]['eligible_for_review']
+    assert report['paired_comparisons'][0]['threshold_rps_improvement']>.05
     assert report['activated'] is False and report['promotion_approved'] is False
+    # Finish error alone no longer qualifies; the threshold RPS must improve by 5%.
+    for folder,payload in scores:
+        payload['metrics']['stage_blend'].update(win_brier=.04,podium_brier=.1,top10_brier=.195)
+        (folder/'score.json').write_text(json.dumps(payload))
+    result=comparison_report(tmp_path);report=json.loads((Path(result['folder'])/'report.json').read_text())
+    comparison=report['paired_comparisons'][0]
+    assert comparison['loss_improvement']>.05 and comparison['threshold_rps_improvement']<.05
+    assert not comparison['eligible_for_review']
+    for folder,payload in scores:
+        payload['metrics']['stage_blend'].update(win_brier=.03,podium_brier=.09,top10_brier=.15,finish_mae=4.1)
+        (folder/'score.json').write_text(json.dumps(payload))
+    result=comparison_report(tmp_path);report=json.loads((Path(result['folder'])/'report.json').read_text())
+    assert not report['paired_comparisons'][0]['eligible_for_review']
 
 
 
