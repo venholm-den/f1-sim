@@ -84,7 +84,7 @@ def test_incomplete_calendar_or_testing_never_creates_briefing(change):
 def ready(monkeypatch):
     briefing = selected()
     monkeypatch.setattr(weekend, 'upcoming_weekend', lambda *a: briefing)
-    monkeypatch.setenv('DISCORD_WEBHOOK_URL', 'https://discord.invalid/secret')
+    monkeypatch.setenv('DISCORD_WEBHOOK_URL', 'https://discord.com/api/webhooks/0/secret')
     return briefing
 
 

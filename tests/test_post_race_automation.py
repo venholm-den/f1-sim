@@ -39,7 +39,7 @@ def scoring(monkeypatch):
         (folder / 'forecast_vs_actual.png').write_bytes(b'chart')
 
     monkeypatch.setattr(automation, 'render_analysis', render)
-    monkeypatch.setenv('DISCORD_WEBHOOK_URL', 'https://discord.invalid/test')
+    monkeypatch.setenv('DISCORD_WEBHOOK_URL', 'https://discord.com/api/webhooks/0/test')
 
 
 def test_selects_latest_snapshot_once_per_race_and_waits_eight_hours(tmp_path):

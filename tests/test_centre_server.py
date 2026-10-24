@@ -32,7 +32,7 @@ def test_loopback_bridge_requires_session_and_same_origin(tmp_path):
             with request('/'+asset) as response:
                 assert response.headers['Content-Type'] == content_type
                 assert response.read()
-        with request('/bridge.js') as response:
+        with request('/bridge.js', {'Sec-Fetch-Site':'same-origin'}) as response:
             script = response.read().decode()
         token = script.split("'X-F1-Token':", 1)[1].split('}', 1)[0].strip('"')
         headers = {'X-F1-Token': token, 'Origin':base}
@@ -41,6 +41,7 @@ def test_loopback_bridge_requires_session_and_same_origin(tmp_path):
         api.lab_state.assert_called_once_with()
         for path, test_headers, data in [
             ('/bridge.js', {'Sec-Fetch-Site':'cross-site'}, None),
+            ('/bridge.js', {'Sec-Fetch-Site':'same-site'}, None),
             ('/', {'Host':'evil.example'}, None),
             ('/api/lab_start', {}, b'[]'),
             ('/api/lab_start', {**headers, 'Origin':'https://evil.example'}, b'[]'),

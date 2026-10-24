@@ -443,6 +443,10 @@ def train_historical_models(
     feature_table.to_csv(feature_path, index=False)
     joblib.dump(finish_model, finish_model_path)
     joblib.dump(dnf_model, dnf_model_path)
+    # Loading a joblib file runs code, so record what was trained here and let
+    # the calibration refuse any model file that was swapped afterwards.
+    metrics['model_sha256'] = {path.name: hashlib.sha256(path.read_bytes()).hexdigest()
+                               for path in (finish_model_path, dnf_model_path)}
     metrics_path.write_text(json.dumps(metrics, indent=2), encoding="utf-8")
     predictions = validation[['Year', 'Round', 'Event', 'DriverCode', 'actual_finish_position', 'actual_dnf', 'q_rank']].copy()
     predictions['predicted_finish'] = finish_prediction
