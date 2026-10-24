@@ -30,6 +30,13 @@ python -m portable_app.web_main --repo-workspace          # this checkout's fold
 python -m portable_app.web_main --workspace D:\f1-data    # any other folder
 ```
 
+The saved data folder starts with copies of the bundled run config and
+reference CSVs (fantasy prices, track profiles, power units, FIA index). A new
+release replaces a copy only while it is still exactly what was copied, which
+`config/.bundled_seed.json` records. A file you edited, or the FIA index after a
+sync, is kept. A copy from before this record existed is kept too; delete it to
+take the bundled version on the next launch.
+
 If FastF1 cannot load a session (not run yet, timing data not published, rate
 limit, or no connection), the run stops with a plain-language reason under the
 log instead of only a traceback. The full traceback stays in the log.

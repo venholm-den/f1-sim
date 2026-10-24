@@ -504,3 +504,35 @@ def test_project_root_follows_selected_workspace(tmp_path, monkeypatch):
     assert web_backend.project_root() == tmp_path
     monkeypatch.delenv(web_backend.WORKSPACE_ENV)
     assert web_backend.project_root() == Path(web_backend.__file__).resolve().parents[1]
+
+
+def test_write_json_retries_a_replace_blocked_by_a_reader(tmp_path, monkeypatch):
+    import os
+    from src.app_services import simulation_jobs
+    real_replace, attempts = os.replace, []
+
+    def replace(source, target):
+        attempts.append(source)
+        if len(attempts) < 3:
+            raise PermissionError('target is open in another process')
+        real_replace(source, target)
+
+    monkeypatch.setattr(simulation_jobs.os, 'replace', replace)
+    monkeypatch.setattr(simulation_jobs.time, 'sleep', lambda seconds: None)
+    simulation_jobs.write_json(tmp_path/'job.json', {'status': 'running'})
+    assert json.loads((tmp_path/'job.json').read_text()) == {'status': 'running'}
+    assert len(attempts) == 3 and not list(tmp_path.glob('*.tmp'))
+
+
+def test_open_output_dir_opens_folders_but_never_files(tmp_path):
+    from types import SimpleNamespace
+    from portable_app.web_backend import PortableWebApi
+    opened = []
+    api = SimpleNamespace(default_settings=SimpleNamespace(output_dir=str(tmp_path)),
+                          _open_path=lambda path: opened.append(path) or True)
+    program = tmp_path/'run.bat'
+    program.write_text('echo not opened')
+    assert PortableWebApi.open_output_dir(api, str(program)) is False
+    assert PortableWebApi.open_output_dir(api, str(tmp_path/'missing')) is False
+    assert PortableWebApi.open_output_dir(api, str(tmp_path)) is True
+    assert opened == [tmp_path.resolve()]

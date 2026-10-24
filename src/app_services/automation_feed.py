@@ -10,6 +10,25 @@ from src.app_services.beta import verified_snapshot
 
 DEFAULT_PC_WORKSPACE = Path('C:/code_project/f1-sim')
 
+# The PC-runs panel polls every 15 s. Rehash a snapshot only when its frozen
+# files change; scoring, sharing and Discord still verify from scratch.
+_verified: dict[str, tuple[tuple, dict]] = {}
+
+
+def _file_stamps(frozen: Path) -> tuple:
+    return tuple(sorted((path.name, stat.st_size, stat.st_mtime_ns)
+                        for path in frozen.iterdir() if path.is_file() for stat in [path.stat()]))
+
+
+def cached_snapshot(folder: Path) -> dict:
+    stamps = _file_stamps(Path(folder)/'frozen')
+    cached = _verified.get(str(folder))
+    if cached and cached[0] == stamps:
+        return cached[1]
+    manifest = verified_snapshot(folder)
+    _verified[str(folder)] = (stamps, manifest)
+    return manifest
+
 
 def delivery_status(folder, *, label, kind):
     """Expose receipt facts without webhook URLs, response bodies or payloads."""
@@ -40,7 +59,7 @@ def forecast_feed(workspace: Path, pc_workspace: str = '') -> dict:
                 folder = path.parent.resolve()
                 if not folder.is_relative_to((root / 'outputs/app_runs').resolve()):
                     continue
-                manifest = verified_snapshot(folder)
+                manifest = cached_snapshot(folder)
                 context = manifest['context']
                 year, event, session = int(context['year']), str(context['event']), str(context['session'])
                 if not event.strip() or session not in {'PRE', 'FP1', 'FP2', 'FP3', 'SQ', 'S', 'Q', 'R'}:

@@ -208,6 +208,16 @@ def _post_forecast_batch(folder: Path, webhook_url: str | None, files: list[Path
     return result
 
 
+def _deliver(folder: Path, discord_enabled: bool):
+    """Post first, but hold a failure until this run's captures are saved."""
+    if not discord_enabled:
+        return None, None
+    try:
+        return post_frozen_forecast(folder), None
+    except (ValueError, RuntimeError, OSError, KeyError) as exc:
+        return None, exc
+
+
 def drain_discord_queue(root: Path) -> list[dict]:
     """Retry eligible deliveries across all completed automated forecasts."""
     deliveries = []
@@ -270,7 +280,7 @@ def run_automated_forecast(
             ensemble_shadow = try_capture_shadow(root, existing)
             from src.app_services.prediction_trials import try_capture_trial, try_collect_current_practice
             current_practice = try_collect_current_practice(root, context)
-            discord_result = post_frozen_forecast(existing) if discord_enabled else None
+            discord_result, discord_error = _deliver(existing, discord_enabled)
             prediction_trial = try_capture_trial(root, existing)
             from src.app_services.classification_checks import try_capture_checks
             classification_checks = try_capture_checks(root, existing)
@@ -279,6 +289,8 @@ def run_automated_forecast(
                 weather_update = capture_weather_update(root, context)
             except (ValueError, OSError, KeyError, TypeError) as exc:
                 weather_update = {'status': 'capture_failed', 'error_type': type(exc).__name__}
+            if discord_error:
+                raise discord_error
             return {
                 "status": "skipped",
                 "reason": "already_completed",
@@ -358,10 +370,12 @@ def run_automated_forecast(
         ensemble_shadow = try_capture_shadow(root, folder)
         from src.app_services.prediction_trials import try_capture_trial, try_collect_current_practice
         current_practice = try_collect_current_practice(root, saved_context)
-        discord_result = post_frozen_forecast(folder) if discord_enabled else None
+        discord_result, discord_error = _deliver(folder, discord_enabled)
         prediction_trial = try_capture_trial(root, folder)
         from src.app_services.classification_checks import try_capture_checks
         classification_checks = try_capture_checks(root, folder)
+        if discord_error:
+            raise discord_error
         return {
             "status": "completed",
             "context": saved_context,

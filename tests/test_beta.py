@@ -170,6 +170,18 @@ def test_probability_scores_and_partial_result_rejection():
         beta.score_frames(prediction, actual.head(1))
 
 
+def test_full_field_scores_without_a_non_starter_or_substitute():
+    drivers = [f'D{i:02d}' for i in range(20)]
+    prediction = pd.DataFrame({'Driver':drivers, 'avg_finish':range(1,21), 'win_chance':[.05]*20})
+    # D19 did not start; SUB replaced D18 after the forecast froze.
+    actual = pd.DataFrame({'Driver':drivers[:18]+['SUB'], 'actual_position':range(1,20)})
+    metrics, rows = beta.score_frames(prediction, actual)
+    assert metrics['drivers'] == 18 and len(rows) == 18
+    assert metrics['unscored_drivers'] == ['D18', 'D19', 'SUB']
+    with pytest.raises(ValueError, match='coverage'):
+        beta.score_frames(prediction, actual.head(12))
+
+
 def test_score_worker_uses_frozen_not_mutable_outputs(frozen,tmp_path,monkeypatch):
     from src import backtest
     from types import SimpleNamespace
@@ -193,6 +205,35 @@ def test_packaged_workspace_keeps_user_files_on_upgrade(tmp_path,monkeypatch):
     (target/'config/default_run_config.json').write_text('user settings')
     initialize_user_workspace(target)
     assert (target/'config/default_run_config.json').read_text() == 'user settings'
+
+
+def test_packaged_workspace_takes_new_bundled_data_only_for_unedited_copies(tmp_path,monkeypatch):
+    from src.app_services import app_paths
+    bundle = tmp_path/'bundle'
+    (bundle/'data').mkdir(parents=True)
+    (bundle/'data/track_profiles.csv').write_text('release 1')
+    (bundle/'data/fantasy_prices.csv').write_text('release 1')
+    monkeypatch.setattr(app_paths,'bundled_root',lambda:bundle)
+    target = initialize_user_workspace(tmp_path/'profile')
+    (target/'data/fantasy_prices.csv').write_text('edited by the user')
+    (bundle/'data/track_profiles.csv').write_text('release 2')
+    (bundle/'data/fantasy_prices.csv').write_text('release 2')
+    initialize_user_workspace(target)
+    assert (target/'data/track_profiles.csv').read_text() == 'release 2'
+    assert (target/'data/fantasy_prices.csv').read_text() == 'edited by the user'
+
+
+def test_workspace_without_a_seed_record_keeps_differing_files(tmp_path,monkeypatch):
+    from src.app_services import app_paths
+    bundle = tmp_path/'bundle'
+    (bundle/'data').mkdir(parents=True)
+    (bundle/'data/track_profiles.csv').write_text('release 2')
+    monkeypatch.setattr(app_paths,'bundled_root',lambda:bundle)
+    target = tmp_path/'profile'
+    (target/'data').mkdir(parents=True)
+    (target/'data/track_profiles.csv').write_text('older copy or user edit')
+    initialize_user_workspace(target)
+    assert (target/'data/track_profiles.csv').read_text() == 'older copy or user edit'
 
 
 def test_forecast_config_ignores_environment_and_preserves_empty_allowlist(tmp_path,monkeypatch):

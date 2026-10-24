@@ -23,6 +23,10 @@ from src.venues import venue_for_context
 APP_VERSION = '0.2.0-beta.2'
 
 
+MAX_UNSCORED_DRIVERS = 2
+MIN_SCORED_DRIVERS = 15
+
+
 class ResultsNotReady(ValueError):
     """Official completed results are not yet available; retry without alerting."""
 
@@ -255,12 +259,21 @@ def run_forecast(folder, job, context=None):
 def score_frames(predictions, actual):
     if predictions.Driver.duplicated().any() or actual.Driver.duplicated().any():
         raise ValueError('Duplicate drivers in forecast or actual results.')
-    if set(predictions.Driver) != set(actual.Driver):
+    # A non-starter has no classified position and a late substitute was never
+    # forecast. Score the rest of a full field and record who was left out.
+    common = set(predictions.Driver) & set(actual.Driver)
+    unforecast, unclassified = set(actual.Driver) - common, set(predictions.Driver) - common
+    excluded = sorted(unforecast | unclassified)
+    if excluded and (max(len(unforecast), len(unclassified)) > MAX_UNSCORED_DRIVERS
+                     or len(common) < MIN_SCORED_DRIVERS):
         raise ValueError('Driver coverage differs; refusing to score a partial result.')
+    predictions, actual = predictions[predictions.Driver.isin(common)], actual[actual.Driver.isin(common)]
     if actual.actual_position.isna().any() or actual.actual_position.duplicated().any():
         raise ValueError('Actual classification is incomplete or invalid.')
     data = predictions.merge(actual, on='Driver', validate='one_to_one', suffixes=('','_actual'))
     metrics = {'drivers':len(data), 'finish_mae':float((data.avg_finish-data.actual_position).abs().mean())}
+    if excluded:
+        metrics['unscored_drivers'] = excluded
     for column, limit in [('win_chance',1),('podium_chance',3),('points_chance',10)]:
         if column in data:
             if not data[column].between(0,1).all():

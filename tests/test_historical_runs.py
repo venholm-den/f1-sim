@@ -59,6 +59,9 @@ def test_historical_launch_does_not_require_existing_features(tmp_path, monkeypa
 
 
 def test_prepare_historical_runs_pipeline_and_copies_inputs(tmp_path, monkeypatch):
+    monkeypatch.setenv('POST_TO_DISCORD', 'true')
+    monkeypatch.setenv('F1_SIM_EVENT', 'Monaco Grand Prix')
+    monkeypatch.setenv('F1_SIM_N_SIMS', '5000')
     monkeypatch.setattr(job_worker, 'historical_events', lambda *args: [{'event':'British Grand Prix','sessions':['Q']}])
     def pipeline(config_path, log):
         from src.app_services.run_service import CallbackWriter
@@ -72,6 +75,12 @@ def test_prepare_historical_runs_pipeline_and_copies_inputs(tmp_path, monkeypatc
         (source/'strategy').mkdir()
         (source/'strategy/predicted_tyre_strategy.csv').write_text('Driver,expected_stops\nVER,1\n')
         assert config['run']['session'] == 'Q'
+        # A .env written for CLI runs must not post a replay or swap its event.
+        from src.run_config import load_app_config
+        loaded = load_app_config(str(config_path))
+        assert loaded.outputs.post_to_discord is False
+        assert loaded.run.event == 'British Grand Prix'
+        assert loaded.run.n_sims == 100
         return 0
     monkeypatch.setattr('src.app_services.run_service.run_pipeline_with_config', pipeline)
     job = {'historical':{'year':2024,'event':'British Grand Prix','session':'Q'},
