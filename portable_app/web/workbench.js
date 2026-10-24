@@ -11,6 +11,7 @@ const pages = {
   fantasy: ['Fantasy', 'Weekly market prices, actual Fantasy scores and separate simulation projections.'],
   dashboard: ['Results', 'Post-simulation results, insights and strategy recommendations.'],
   replay: ['Session replay', 'Replay a downloaded session and compare lap telemetry.'],
+  championship: ['Championship', 'Title odds from the current standings, simulating every remaining race and sprint.'],
   compare: ['Compare runs', 'Compare probabilities and expected finishes on matched driver coverage.'],
   settings: ['Settings', 'Local workspace preferences, data paths and integration status.'],
   practice: ['Practice analysis', 'Clean sectors, lap summaries and long-run pace.'],
@@ -55,7 +56,7 @@ function navigate(view) {
   $('viewSubtitle').textContent = pages[view]?.[1] || '';
   document.querySelector('.main').scrollTop = 0;
   updateContext();
-  document.querySelector('.context-strip').hidden = ['historical','training','replay'].includes(view);
+  document.querySelector('.context-strip').hidden = ['historical','training','replay','championship'].includes(view);
   // PC following only changes what Setup and Results show; Settings has the full controls.
   document.querySelector('.automation-strip').hidden = !['setup','dashboard'].includes(view);
   if (typeof pauseReplay === 'function' && view !== 'replay') pauseReplay();
@@ -63,6 +64,7 @@ function navigate(view) {
   clearTimeout(trainingState.timer);
   clearTimeout(fantasyArchive.timer);
   if(view==='fantasy')safeAction(()=>refreshFantasyArchive());
+  if(view==='championship')safeAction(()=>refreshChampionship());
   if(view==='training')safeAction(refreshModelTraining);
   if (typeof refreshHistoricalLibrary === 'function') {
     clearTimeout(state.archiveTimer);
@@ -96,6 +98,9 @@ function formatCell(column, value) {
   const n=numeric(value);
   // Internal codes such as qualifying_classification read as plain words.
   if (n == null) return /^[a-z][a-z0-9]*(_[a-z0-9]+)+$/.test(value) ? value.replaceAll('_',' ').replace(/^./,c=>c.toUpperCase()) : value;
+  // Rare but possible outcomes read as "<0.1%" rather than a misleading 0.0%.
+  if (/chance$/.test(column) && n > 0 && n < 0.0005) return '<0.1%';
+  if (/chance$/.test(column) && n < 1 && n > 0.9995) return '>99.9%';
   if (/chance$|_dnf_rate$/.test(column)) return pct(n);
   if (/^P\d+$/.test(column)) return pct(n);
   if (/price/i.test(column)) return `$${n.toFixed(1)}m`;
@@ -104,7 +109,7 @@ function formatCell(column, value) {
   // Fixed decimals per kind of value, so a column never mixes 22.274 with 13.3.
   if (/reliability_score$/.test(column)) return (n*100).toFixed(1);
   if (/points|fantasy|ceiling|floor|positions_gained/.test(column)) return n.toFixed(1);
-  if (/^(avg_finish|avg_grid|finish_p\d+)$/.test(column)) return n.toFixed(2);
+  if (/^(avg_finish|avg_grid|finish_p\d+|expected_position)$/.test(column)) return n.toFixed(2);
   if (/confidence|quality|weight$/.test(column)) return n.toFixed(2);
   return Number.isInteger(n) ? String(n) : n.toFixed(3);
 }
@@ -390,6 +395,7 @@ async function resetForm() {
 function initWorkbench() {
   renderIcons();
   initFantasyArchive();
+  initChampionship();
   document.querySelectorAll('[data-open-view]').forEach(el=>el.addEventListener('click',()=>{
     if(el.dataset.openView==='track')state.trackViewSource=el.dataset.trackSource || 'saved';
     navigate(el.dataset.openView);

@@ -41,6 +41,7 @@ Frontend data checks: `node --test tests/tyre_strategy.test.cjs`.
 | Weather | Saved observations and five model multipliers; informational future race forecast capture with scheduled/+30/+60/+120-minute start windows, forecast provenance and ensemble coverage. |
 | Reliability | Existing historical team/power-unit reliability inputs and modelled driver retirement risk. |
 | Results | Win/podium bars, finish-position heatmap, driver strategy estimates, fantasy projections, full summary and saved-run health. Run count and runtime are displayed only when recorded. |
+| Championship | Drivers' and constructors' title odds from the current standings: leaders, points still available, title/top-3 chances, expected final points with a P10–P90 range, clinched/eliminated status and the remaining calendar. Uses archived race and sprint classifications, not a saved run. See `docs/championship-odds.md`. |
 | Compare | Completed manual and Simulation Centre probability runs; matched driver comparison with percentage-point deltas. Frozen forecasts are verified before comparison. Different input sessions are explicit in run labels. |
 | Exports | Additive copies of existing CSVs, saved snapshots and images. Missing optional outputs produce a useful explanation. Existing frozen results remain unchanged. |
 | Settings | Locally persisted setup/data paths/auto-reload; restore setup defaults; webhook configuration status without exposing its value. |
