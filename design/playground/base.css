@@ -1,0 +1,65 @@
+/* Shared playground rules. Concept colours and type live in concepts.css. */
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{background:var(--c-bg);color:var(--c-fg);font-family:var(--f-ui);font-size:14px;line-height:1.4;-webkit-font-smoothing:antialiased}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--c-focus,var(--c-accent));outline-offset:2px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.num,.mono{font-family:var(--f-num);font-variant-numeric:tabular-nums}
+.mock-tag{display:inline-flex;align-items:center;gap:6px;font:600 10px/1 var(--f-ui);letter-spacing:.06em;text-transform:uppercase;padding:4px 7px;border-radius:999px;border:1px dashed var(--c-muted);color:var(--c-muted);white-space:nowrap}
+.chart{width:100%;position:relative;min-width:0}
+.svg{display:block;overflow:visible}
+.svg .t,.svg .tl{fill:var(--c-fg);font:600 11px var(--f-num)}
+.svg .tm{fill:var(--c-muted);font:500 10px var(--f-num)}
+.svg .tneg{fill:var(--c-neg);font:600 10px var(--f-num)}
+.svg .grid{stroke:var(--c-grid);stroke-width:1}
+.svg .axis{stroke:var(--c-muted);stroke-width:1}
+.svg .diag{stroke:var(--c-muted);stroke-dasharray:4 4}
+.svg .whisker{stroke:var(--c-muted);stroke-width:1.5}
+.svg .median{fill:var(--c-fg);stroke:var(--c-bg);stroke-width:1.5}
+.svg .bump-line{fill:none;stroke-width:2;stroke-linejoin:round;transition:opacity .2s}
+.svg .bump-line.dim{opacity:.14}
+.svg .line{fill:none;stroke-width:1.8;stroke-linejoin:round}
+.svg .area{fill:var(--c-accent);opacity:.12}
+.svg .band-sc{fill:var(--c-sc);opacity:.16}
+.svg .cursor{stroke:var(--c-accent);stroke-width:1.5}
+.svg .frontier{fill:none;stroke:var(--c-accent);stroke-width:1.5;stroke-dasharray:6 4}
+.svg .calib-dot{fill:var(--c-accent);fill-opacity:.85;stroke:var(--c-bg)}
+.svg .bar-base{fill:var(--c-muted);opacity:.45}
+.svg .bar-model{fill:var(--c-accent)}
+.svg .ridge{stroke-width:1.2}
+.svg .track-outer{fill:none;stroke:var(--c-track-edge);stroke-width:14;stroke-linejoin:round}
+.svg .track-inner{fill:none;stroke:var(--c-track);stroke-width:9;stroke-linejoin:round}
+.svg .car circle{stroke:var(--c-bg);stroke-width:2}
+.svg .car circle.car-second{stroke:var(--c-fg);stroke-dasharray:2 2}
+.svg .car-focus circle{stroke:var(--c-fg);stroke-width:3}
+.svg .tyre{stroke:var(--c-bg);stroke-width:1}
+.svg .tyre-S{fill:var(--tyre-s)}.svg .tyre-M{fill:var(--tyre-m)}.svg .tyre-H{fill:var(--tyre-h)}
+.svg .tyre-label{fill:#111;font:700 9px var(--f-num)}
+html.has-focus .svg [data-driver]:not(.is-focus){opacity:.18}
+html.has-focus .svg path.is-focus{stroke-width:3.5}
+html.has-focus .pbar:not(.is-focus),html.has-focus tr[data-driver]:not(.is-focus){opacity:.4}
+tr[data-driver],.pbar,[data-driver]{cursor:pointer}
+/* probability bars */
+.pbars{display:grid;gap:7px}
+.pbar{display:grid;grid-template-columns:52px 1fr 52px;align-items:center;gap:10px}
+.pbar-code{display:flex;align-items:center;gap:7px;font:600 12px var(--f-num)}
+.pbar-code i{width:3px;height:14px;border-radius:2px}
+.pbar-track{height:10px;background:var(--c-grid);border-radius:var(--bar-r,2px);overflow:hidden}
+.pbar-fill{display:block;height:100%;background:var(--c-accent);border-radius:inherit;transition:width .3s}
+.pbar-val{text-align:right;font:600 12px var(--f-num);font-variant-numeric:tabular-nums}
+/* heatmap */
+table.heat{width:100%;border-collapse:separate;border-spacing:2px;font:500 11px var(--f-num)}
+table.heat th{color:var(--c-muted);font-weight:600;text-align:center;padding:3px}
+table.heat th[scope=row]{text-align:left;color:var(--c-fg)}
+table.heat td{text-align:center;padding:5px 0;border-radius:3px;background:color-mix(in srgb,var(--c-heat) calc(var(--a)*100%),transparent)}
+table.heat td span{color:var(--c-fg)}
+/* tables */
+table.dt{width:100%;border-collapse:collapse}
+table.dt th{font-weight:600;color:var(--c-muted);text-align:left;padding:6px 8px;border-bottom:1px solid var(--c-line);white-space:nowrap}
+table.dt td{padding:6px 8px;border-bottom:1px solid var(--c-grid);white-space:nowrap}
+table.dt .r,table.dt td.num{text-align:right}
+.scroll-x{overflow-x:auto}
+input[type=range]{accent-color:var(--c-accent);width:100%}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
