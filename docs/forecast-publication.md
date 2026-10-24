@@ -32,6 +32,23 @@ Publication time is not part of the payload. The store records it when it accept
 
 Accepted and rejected examples are in [schemas/examples/forecast-publication-v1](schemas/examples/forecast-publication-v1). Regenerate them with `python -m scripts.publication_rehearsal --write-examples docs\schemas\examples\forecast-publication-v1`; the tests check each one still gets its expected verdict.
 
+## Official forecasts and My simulations
+
+`src/app_services/run_class.py` decides which runs are official. A run is an **official forecast** only when three things are true:
+
+- it is a `forecast` job
+- it has a frozen prospective snapshot
+- its settings match the fixed protocol: 10,000 simulations, seed 42 and overtaking difficulty 0.55 (`OFFICIAL_PROTOCOL`, also used as `FORECAST_DEFAULTS`)
+
+Everything else is a **personal simulation**. That covers Race setup runs, what-ifs, replays and forecasts with changed settings. Personal simulations:
+
+- are refused by `build_publication`, so they can never be published
+- are left out of the Accuracy record (`accuracy_state` lists them under `excluded`, with the reason). The page shows a one-line note.
+- cannot be sent as a Discord forecast report
+- show as "My simulation" in the Simulation Centre run history, while official ones show "Official forecast"
+
+Starting a `forecast` job from the app with changed settings is refused, and the error points to What if. A setting missing from an older job record does not count as a change. Nothing is deleted or rewritten: a scored forecast that falls outside the protocol stays on disk and is listed as excluded.
+
 ## Store behaviour
 
 `LocalPublicationStore` is a file-backed stand-in for hosted storage with one producer:

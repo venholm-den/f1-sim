@@ -120,8 +120,12 @@ class SimulationJobs:
         return path
 
     def history(self):
+        from src.app_services.run_class import classify
         with self.lock:
             rows = [self._read_job(p) for p in self.run_root.glob('*/job.json')]
+        for row in rows:
+            if row['status'] != 'unreadable' and row.get('kind') not in ('score', 'discord', 'historical_download', 'historical_training'):
+                row['run_class'] = classify(self.run_root/row['id'], row)['run_class']
         rows.sort(key=lambda row: row['created_at'], reverse=True)
         for key, label, relative, kind in [
             ('existing-experiments','Previous scenario experiments','outputs/matlab/experiments/scenario_comparison.csv','experiments'),
@@ -155,6 +159,12 @@ class SimulationJobs:
             if input_source not in ('saved', 'historical'):
                 raise ValueError('Unknown input source.')
             historical = validate_selection(payload.get('historical', {})) if input_source == 'historical' else None
+            if kind == 'forecast':
+                from src.app_services.run_class import describe, protocol_changes
+                changes = protocol_changes({'n_sims': n_sims, 'seed': seed, 'overtaking_difficulty': difficulty})
+                if changes:
+                    raise ValueError('Official forecasts use the fixed protocol (' + '; '.join(describe(changes))
+                                     + '). Use What if to try other settings.')
             special = kind in ('forecast','score','discord','historical_download','historical_training')
             training = None
             if kind == 'historical_training':
@@ -169,6 +179,10 @@ class SimulationJobs:
                 from src.app_services.beta import verified_snapshot
                 forecast_folder = self._folder(payload.get('forecast_id'))
                 verified_snapshot(forecast_folder)
+                if kind == 'discord':
+                    # Personal runs are never sent anywhere as if they were the forecast.
+                    from src.app_services.run_class import require_official
+                    require_official(forecast_folder)
                 if kind == 'discord':
                     from src.app_services.discord_settings import local_webhook
                     if not local_webhook(self.root):

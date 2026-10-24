@@ -1,10 +1,16 @@
-"""How past frozen forecasts scored against official results, read from saved score jobs."""
+"""How past frozen forecasts scored against official results, read from saved score jobs.
+
+Only official forecasts count. Personal simulations, including forecasts run with
+changed settings, are listed separately with the reason and never enter the record.
+"""
 from __future__ import annotations
 
 import json
 from pathlib import Path
 
 import pandas as pd
+
+from src.app_services.run_class import classify
 
 # Brier scores the score job saves, and how many drivers each one rewards.
 THRESHOLDS = {'win_chance_brier': 1, 'podium_chance_brier': 3, 'points_chance_brier': 10}
@@ -50,13 +56,18 @@ def accuracy_state(root) -> dict:
     """Scored races, newest first, and frozen forecasts that have no score yet."""
     run_root = Path(root) / 'outputs/app_runs'
     jobs = [job for job in (_read(path) for path in run_root.glob('*/job.json')) if job.get('id')]
-    scored, scored_forecasts = [], set()
+    scored, scored_forecasts, excluded = [], set(), []
     for job in jobs:
         folder = run_root / job['id']
         score = _read(folder / 'score.json')
         if job.get('kind') != 'score' or job.get('status') != 'completed' or not score:
             continue
         scored_forecasts.add(job.get('forecast_id'))
+        source = classify(Path(job['forecast_folder'])) if job.get('forecast_folder') else None
+        if source and source['run_class'] != 'official':
+            excluded.append({'id': job['id'], 'forecast_id': job.get('forecast_id'), **_context(job),
+                             'reasons': source['reasons']})
+            continue
         drivers = int(score.get('drivers') or 0)
         comparison = []
         if (folder / 'score_comparison.csv').is_file():
@@ -82,8 +93,15 @@ def accuracy_state(root) -> dict:
         if job.get('kind') != 'forecast' or not manifest or job['id'] in scored_forecasts:
             continue
         context = manifest.get('context') or {}
+        source = classify(folder, job)
+        if source['run_class'] != 'official':
+            excluded.append({'id': job['id'], 'year': context.get('year'), 'event': context.get('event'),
+                             'session': context.get('session'), 'category': manifest.get('category'),
+                             'reasons': source['reasons']})
+            continue
         pending.append({'id': job['id'], 'year': context.get('year'), 'event': context.get('event'),
                         'session': context.get('session'), 'race_start_utc': context.get('race_start_utc'),
                         'category': manifest.get('category'), 'created_at': job.get('created_at')})
     pending.sort(key=lambda row: str(row['created_at'] or ''), reverse=True)
-    return {'scored': scored, 'pending': pending}
+    excluded.sort(key=lambda row: str(row['id']), reverse=True)
+    return {'scored': scored, 'pending': pending, 'excluded': excluded}

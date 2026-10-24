@@ -5,3 +5,4 @@
 .input-source{max-width:290px;margin-bottom:14px}.historical-source{padding:18px 20px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);margin-bottom:26px}.historical-fields{display:flex;flex-wrap:wrap;align-items:flex-end;gap:14px}.historical-fields select{min-width:100px}#historicalEvent{min-width:230px}.historical-source .footnote{margin-bottom:0}
 
 .mode:disabled{opacity:.5}.mode:disabled .mode-footer>span{color:var(--orange)}
+.history .run-class{display:block;font-style:normal;font-size:10px;color:var(--muted);margin-top:4px}

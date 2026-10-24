@@ -234,7 +234,9 @@ def drain_discord_queue(root: Path) -> list[dict]:
 
 # The frozen-forecast protocol shared by PC automation and the Centre's
 # "Forecast next race" button, so both produce comparable snapshots.
-FORECAST_DEFAULTS = {'n_sims': 10_000, 'seed': 42, 'overtaking_difficulty': 0.55}
+from src.app_services.run_class import OFFICIAL_PROTOCOL
+
+FORECAST_DEFAULTS = dict(OFFICIAL_PROTOCOL)
 
 
 def run_automated_forecast(
