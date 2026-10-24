@@ -3,15 +3,12 @@
 *{box-sizing:border-box}
 html, body{width:100%;height:100%;margin:0;overflow:hidden;background:var(--bg);color:var(--text);font-family:var(--f-ui);letter-spacing:0}
 button, input, select{font:inherit}
-.app-shell{display:grid;height:100vh}
-.sidebar{display:flex;flex-direction:column}
-.brand{align-items:center}
+.app-shell{display:grid;grid-template-rows:auto auto minmax(0,1fr);height:100vh}
 .nav-item{cursor:pointer}
 .nav-item:hover, .nav-item.active{color:var(--text)}
-.sidebar-footer{display:flex;align-items:center;margin-top:auto;font-size:13px}
 .status-dot{border-radius:999px;background:var(--green)}
 .status-dot.running{background:var(--amber)}
-.main{display:flex;flex-direction:column;height:100vh}
+.main{display:flex;flex-direction:column;min-height:0}
 .topbar{justify-content:space-between}
 .eyebrow{color:var(--muted);font-size:12px;text-transform:uppercase}
 h1, h2, h3, p{margin:0}
@@ -61,17 +58,10 @@ button.ghost,a.ghost{background:var(--bg);border-color:var(--line)}
 a.button{display:inline-flex;align-items:center;justify-content:center;gap:9px;text-decoration:none}
 svg.icon{width:22px;height:22px;flex:none;vertical-align:middle;stroke:currentColor;stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
 [data-icon]{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
-.sidebar{border-right-color:var(--line-subtle);overflow-y:auto}
-.nav{margin-top:0}
 .nav-item{display:flex;align-items:center;border-left:2px solid transparent;text-decoration:none}
 .nav-item.active{border-color:transparent;border-left-color:var(--red)}
 .nav-item.active [data-icon]{color:var(--red)}
 .nav-item:hover{border-color:transparent}
-.centre-link{text-decoration:none;margin:20px 8px 18px;border-top:1px solid var(--line);display:flex;gap:9px;flex-wrap:wrap;align-items:center}
-.centre-link small{display:block;width:100%;padding-left:31px}
-.sidebar-footer{border:1px solid var(--line);border-radius:6px;gap:11px;color:var(--text);flex-shrink:0}
-.sidebar-footer small{display:block;margin-top:4px}
-.workspace-mark{border:1px solid var(--red);border-radius:100%;width:33px;height:33px;color:var(--text)}
 .status-dot{width:6px;height:6px;margin-left:auto}
 .main{gap:0}
 .topbar{gap:20px;align-items:center;margin-bottom:20px;flex-shrink:0}
@@ -293,7 +283,6 @@ details>div{margin-top:12px}
 .modifier-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 .about{display:block}
 .about button{margin-top:12px}
-.sidebar-footer{margin-left:0;margin-right:0;font-size:11px}
 .compare-controls{display:grid}
 .view{padding-bottom:20px}
 }
@@ -361,27 +350,11 @@ details>div{margin-top:12px}
 .archive-session-options{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 body{background:var(--bg);font:15px/1.45 var(--f-ui)}
-.app-shell{grid-template-columns:236px minmax(0,1fr)}
-.sidebar{background:var(--bg);padding:24px 12px 12px;overflow:auto;gap:22px;border-right:1px solid var(--line-subtle)}
-.brand{padding:0 8px;min-height:38px;display:flex;flex-direction:row;gap:10px;margin:0}
-.brand-logo{width:32px;height:32px;flex:none;display:block}
-.brand b{font-size:14px;font-weight:500;letter-spacing:0}
-.brand small{display:block;font-size:11px;color:var(--subtle);letter-spacing:0}
-.nav{gap:18px;display:flex;flex-direction:column;margin:0}
-.nav-group{display:flex;flex-direction:column;gap:2px}
-.nav-stage{display:flex;gap:8px;align-items:center;padding:0 8px 7px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--subtle)}
-.nav-stage span{border:1px solid #3A3A4C;border-radius:50%;width:16px;height:16px;text-align:center;font-size:9px;line-height:14px;letter-spacing:0}
 .nav-item{border:0;background:transparent;border-radius:var(--radius);min-height:34px;font-size:13px;font-weight:400;padding:6px 10px;color:var(--text-2);gap:10px;box-shadow:none;text-align:left}
 .nav-item svg{height:16px;width:16px;color:inherit}
 .nav-item:hover{background:#ffffff0b;border:0}
 .nav-item.active{color:var(--accent-text);background:#ff1e3c15;border:0;box-shadow:none}
 .nav-item.active:before{display:none}
-.centre-link{margin-top:auto;border:1px solid var(--line);border-radius:var(--radius);padding:10px;color:var(--text-2);font-size:12px;background:transparent}
-.centre-link small{font-size:10px;color:var(--subtle)}
-.sidebar-footer{margin:0;padding:12px 8px;border-top:1px solid var(--line-subtle);background:transparent}
-.sidebar-footer b{font-size:12px;font-weight:400}
-.sidebar-footer small{font-size:10px;color:var(--subtle)}
-.workspace-mark{display:none}
 .main{padding:0 28px 28px;background:var(--bg);overflow:auto;min-width:0}
 .main>*{flex-shrink:0}
 .workflow{height:56px;display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line-subtle);margin:0 -28px 26px;padding:0 28px;position:sticky;top:0;z-index:5;background:var(--bg)}
@@ -591,7 +564,6 @@ summary{font-size:13px;color:var(--text-2);text-transform:none}
 .track-overview .track-map{height:205px}
 }
 @media (max-width:1180px){
-.app-shell{grid-template-columns:205px minmax(0,1fr)}
 .main{padding:0 20px 24px}
 .workflow{margin:0 -20px 22px;padding:0 20px}
 .context-strip{gap:8px;max-width:55%}
@@ -606,11 +578,6 @@ summary{font-size:13px;color:var(--text-2);text-transform:none}
 
 }
 @media (max-width:900px){
-.app-shell{grid-template-columns:180px minmax(0,1fr)}
-.sidebar{padding:18px 8px;gap:18px}
-.brand{padding:0 4px;gap:8px}
-.brand b{font-size:12px}
-.nav-item{font-size:12px}
 .workflow{height:auto;min-height:56px;flex-wrap:wrap;padding-top:8px;padding-bottom:8px;gap:6px}
 .context-strip{max-width:100%;width:100%;flex:1;gap:8px;margin:0}
 .setup-layout{grid-template-columns:1fr}
@@ -627,13 +594,6 @@ summary{font-size:13px;color:var(--text-2);text-transform:none}
 .page-heading p{font-size:13px}
 }
 @media (max-width:620px){
-.app-shell{grid-template-columns:58px minmax(0,1fr)}
-.sidebar{padding:16px 6px}
-.brand>div,.nav-stage,.centre-link,.sidebar-footer{display:none}
-.brand{padding:0}
-.nav-item{font-size:0;justify-content:center;padding:8px;gap:0}
-.nav-item svg{width:18px;height:18px}
-.nav{gap:14px}
 .main{padding:0 14px 20px}
 .workflow{margin:0 -14px 20px;padding-left:14px;padding-right:14px}
 .context-card:last-child{display:none}
@@ -728,7 +688,60 @@ button.primary:disabled{background:var(--panel-2);border-color:var(--line);color
 
 /* Broadcast type: condensed caps for headings and labels, a red rule under the top bar. */
 h2{font-family:var(--f-display);font-weight:700;letter-spacing:.04em;text-transform:uppercase}
-.eyebrow,.nav-stage{font-family:var(--f-display);font-weight:700;letter-spacing:.12em}
-.nav-item.active{box-shadow:inset 3px 0 var(--red)}
 .metric strong{font-family:var(--f-display);font-weight:700;font-size:22px;letter-spacing:.01em}
 td,th{font-variant-numeric:tabular-nums}
+
+/* App shell: broadcast top bar with destinations, section tabs and the Workshop menu. */
+.app-bar{display:flex;align-items:center;gap:22px;height:58px;padding:0 24px;background:linear-gradient(90deg,#000,var(--surface));border-bottom:2px solid var(--red);position:relative;z-index:20;min-width:0}
+.app-bar .brand{display:flex;align-items:center;gap:10px;padding:0;min-height:0;flex:none}
+.app-bar .brand-logo{width:28px;height:28px}
+.app-bar .brand b{font:600 20px var(--f-display);letter-spacing:.04em;white-space:nowrap}
+.app-bar .brand b span{font-weight:800;color:var(--red)}
+.dest-nav{display:flex;gap:2px;align-self:stretch;min-width:0;overflow-x:auto;scrollbar-width:none}
+.dest-item{display:flex;align-items:center;gap:7px;height:100%;padding:0 12px;border:0;border-bottom:3px solid transparent;border-radius:0;background:transparent;color:var(--muted);font:700 15px var(--f-display);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;min-height:0}
+.dest-item kbd{font:600 10px var(--f-ui);color:var(--subtle);border:1px solid var(--line);border-radius:3px;padding:0 4px;line-height:14px}
+.dest-item:hover{color:var(--text);background:#ffffff08}
+.dest-item.active{color:#fff;border-bottom-color:#fff}
+.dest-item.active kbd{color:#fff;border-color:#ffffff55}
+.app-bar-tools{display:flex;align-items:center;gap:12px;margin-left:auto;flex:none}
+.focus-chip{display:inline-flex;align-items:center;gap:6px;min-height:0;padding:4px 10px;border:1px solid var(--red);border-radius:var(--radius);background:var(--red-tint);color:var(--text);font:600 12px var(--f-display);letter-spacing:.08em;text-transform:uppercase}
+.focus-chip b{color:#fff;font-size:14px}
+.focus-chip span{font-size:15px;line-height:1;color:var(--accent-text)}
+.workshop{position:relative}
+.workshop summary{list-style:none;cursor:pointer;padding:6px 10px;border:1px solid var(--line);border-radius:var(--radius);font:700 13px var(--f-display);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.workshop summary::-webkit-details-marker{display:none}
+.workshop summary:after{content:" ▾";font-size:10px}
+.workshop summary:hover,.workshop[open] summary,.workshop summary.active{color:#fff;border-color:#ffffff55}
+.workshop-menu{position:absolute;right:0;top:calc(100% + 8px);min-width:220px;display:grid;gap:2px;padding:6px;background:var(--panel);border:1px solid var(--line);border-top:2px solid var(--red);box-shadow:0 12px 30px #0009;z-index:30}
+.workshop-item{display:flex;align-items:center;gap:10px;min-height:34px;padding:6px 10px;border:0;border-radius:var(--radius);background:transparent;color:var(--text-2);font:500 13px var(--f-ui);text-align:left;text-decoration:none}
+.workshop-item:hover{background:#ffffff0b;color:var(--text)}
+.workshop-item svg{width:16px;height:16px}
+.workspace-status{display:flex;align-items:center;gap:8px;color:var(--subtle);font-size:11px;white-space:nowrap}
+.workspace-status .status-dot{margin:0}
+.sub-nav{display:flex;align-items:stretch;gap:2px;height:44px;padding:0 24px;background:var(--surface);border-bottom:1px solid var(--line-subtle);overflow-x:auto;scrollbar-width:none}
+.sub-nav .nav-group{display:flex;flex-direction:row;gap:2px}
+.sub-nav .nav-item{display:flex;align-items:center;gap:8px;height:100%;min-height:0;padding:0 12px;border:0;border-bottom:2px solid transparent;border-radius:0;background:transparent;box-shadow:none;color:var(--muted);font:600 13px var(--f-ui);white-space:nowrap}
+.sub-nav .nav-item svg{width:15px;height:15px}
+.sub-nav .nav-item:hover{color:var(--text);background:#ffffff06}
+.sub-nav .nav-item.active{color:#fff;background:transparent;border-bottom-color:var(--red)}
+.sub-nav .nav-item.active [data-icon]{color:var(--red)}
+/* Driver focus: the chosen driver's rows stay bright, the rest of the field dims. */
+.has-driver-focus .view.active :is(tbody tr,.probability-row,.range-row,.bar-row){transition:opacity .15s}
+.has-driver-focus .view.active :is(tbody tr,.probability-row,.range-row,.bar-row):not(.is-driver-focus){opacity:.35}
+.has-driver-focus #view-replay :is(tbody tr,.bar-row){opacity:1}
+.is-driver-focus{box-shadow:inset 3px 0 var(--red)}
+tr.is-driver-focus td{background:#ff1e3c14;color:var(--text)}
+@media (max-width:1180px){.app-bar{gap:14px;padding:0 16px}.dest-item{padding:0 9px;font-size:14px}.dest-item kbd,.workspace-status small{display:none}.sub-nav{padding:0 16px}}
+@media (max-width:760px){
+.app-bar{flex-wrap:wrap;height:auto;padding:8px 14px 0;gap:6px 10px}
+.app-bar .brand b{font-size:17px}
+.dest-nav{order:3;flex-basis:100%;height:40px;margin:0 -14px;padding:0 6px}
+.dest-item{font-size:14px;padding:0 10px}
+.sub-nav{height:40px;padding:0 8px}
+.focus-chip{padding:3px 8px}
+}
+
+.eyebrow{font-family:var(--f-display);font-weight:700;letter-spacing:.12em}/* The event strip is the only thing in the workflow bar; drop the bar when the strip is hidden. */
+.workflow:has(>.context-strip[hidden]){display:none}
+@media (max-width:620px){.workflow{display:none}.main>.topbar{margin-top:18px}}
+.workflow:has(>.context-strip[hidden])+.topbar{margin-top:24px}
