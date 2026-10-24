@@ -22,6 +22,7 @@ import pandas as pd
 from src.accuracy_benchmark import build_replay_inputs, evaluate_forecast, session_input_frame, simple_baseline
 from src.model_config import SIMULATION_PARAMETERS
 from src.simulate import simulate_races
+from src.inspection_ledger import discover_reports, inspected_race_keys
 
 
 # Bounds contain every live default, so the current engine is a feasible point.
@@ -270,18 +271,6 @@ def promotion_decision(live, tuned, holdout_races, *, min_gain=0.01, min_holdout
     return not reasons, reasons
 
 
-def inspected_race_keys(paths) -> set[tuple[int, int]]:
-    keys = set()
-    for path in paths:
-        report = json.loads(Path(path).read_text(encoding='utf-8'))
-        for field in ('development_races', 'holdout_races', 'evaluated_races', 'attempted_races',
-                      'fit_races'):
-            keys.update(tuple(int(part) for part in key) for key in report.get(field, []))
-        keys.update((int(row['year']), int(row['round'])) for row in report.get('skipped', [])
-                    if 'year' in row and 'round' in row)
-    return keys
-
-
 def tune_multi_score(races, output_dir, *, fit_years, holdout_years, sessions=('Q',),
                      bounds=TUNABLE_BOUNDS, tune_sims=500, eval_sims=2000, seeds=(42, 123, 777),
                      maxiter=12, popsize=6, optimizer_seed=7, inspected_reports=(), load_failures=None,
@@ -299,6 +288,8 @@ def tune_multi_score(races, output_dir, *, fit_years, holdout_years, sessions=('
     if not seeds or tune_sims < 100 or eval_sims < 100:
         raise ValueError('Use at least one seed and 100 simulations.')
     splits = season_blocks(races, fit_years, holdout_years)
+    inspected_reports = sorted(set(Path(p).resolve() for p in inspected_reports)
+                               | set(discover_reports(Path(__file__).resolve().parents[1])))
     inspected = inspected_race_keys(inspected_reports)
     output_dir = Path(output_dir)
     output_dir.mkdir(parents=True, exist_ok=False)
@@ -350,7 +341,8 @@ def tune_multi_score(races, output_dir, *, fit_years, holdout_years, sessions=('
     root = Path(__file__).resolve().parents[1]
     source_files = ['src/multi_score_tuning.py', 'src/accuracy_benchmark.py', 'src/simulate.py',
                     'src/model_config.py', 'src/features.py', 'src/model.py', 'src/grid.py',
-                    'src/performance.py', 'src/reliability.py', 'src/track.py', 'data/track_profiles.csv']
+                    'src/performance.py', 'src/reliability.py', 'src/track.py',
+                    'src/inspection_ledger.py', 'data/track_profiles.csv']
     input_hashes = {}
     for race in races:
         if race.key not in splits:
@@ -399,6 +391,8 @@ def tune_multi_score(races, output_dir, *, fit_years, holdout_years, sessions=('
         'source_sha256': {name: hashlib.sha256((root / name).read_bytes()).hexdigest()
                           for name in source_files if (root / name).is_file()},
         'inspected_reports': [str(path) for path in inspected_reports],
+        'inspected_report_sha256': {str(path): hashlib.sha256(path.read_bytes()).hexdigest()
+                                    for path in inspected_reports},
         'load_failures': list(load_failures or []), 'skipped': skipped,
         'artifact_sha256': {name: hashlib.sha256((output_dir / name).read_bytes()).hexdigest()
                             for name in artifacts},

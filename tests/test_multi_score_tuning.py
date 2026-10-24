@@ -86,7 +86,9 @@ def test_promotion_requires_gain_and_no_regression():
     assert not promotion_decision(live, better, 3)[0]
 
 
-def test_tuning_selects_on_fit_seasons_and_never_changes_defaults(tmp_path):
+def test_tuning_selects_on_fit_seasons_and_never_changes_defaults(tmp_path, monkeypatch):
+    # Synthetic seasons must not consume the developer's local race ledger.
+    monkeypatch.setattr('src.multi_score_tuning.discover_reports', lambda root: [])
     before = dict(SIMULATION_PARAMETERS)
     bounds = {'grid_loss_multiplier': (0.0, 15.0), 'race_noise_multiplier': (1.0, 8.0)}
     prior = tmp_path / 'prior.json'
@@ -109,3 +111,16 @@ def test_tuning_selects_on_fit_seasons_and_never_changes_defaults(tmp_path):
     assert not predictions.duplicated(['variant', 'year', 'round', 'session', 'Driver']).any()
     with pytest.raises(FileExistsError):
         tune_multi_score(seasons(), tmp_path / 'out', fit_years=[2022], holdout_years=[2024], bounds=bounds)
+
+
+def test_tuning_own_report_cannot_relabel_its_holdout_as_unseen(tmp_path, monkeypatch):
+    prior = tmp_path/'previous_tuning.json'
+    prior.write_text(json.dumps({'holdout_races_evaluated': [[2024, r] for r in range(1, 5)]}))
+    monkeypatch.setattr('src.multi_score_tuning.discover_reports', lambda root: [prior])
+    report = tune_multi_score(seasons(), tmp_path/'out', fit_years=[2022, 2023], holdout_years=[2024],
+        bounds={'grid_loss_multiplier': (0, 3)}, tune_sims=100, eval_sims=100,
+        seeds=[1], maxiter=1, popsize=3)
+    assert report['unseen_holdout_race_count'] == 0
+    assert not report['promotion_gate_passed']
+    assert len(report['previously_inspected_holdout_races']) == 4
+    assert str(prior.resolve()) in report['inspected_report_sha256']

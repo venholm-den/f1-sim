@@ -20,6 +20,7 @@ from src.grid_influence import MAPPINGS, mapped_difficulty
 from src.stage_ensemble import (COMPONENTS, FORECAST_COLUMNS, STAGES, blend,
                                 build_components, metrics, validate_forecast)
 from src.stage_ensemble_benchmark import digest, dump_new
+from src.inspection_ledger import discover_reports, race_keys
 
 CONFIG = 'config/prediction_trials.json'
 ROOT = 'outputs/prediction_trials'
@@ -34,7 +35,8 @@ SOURCES = ('simulate.py','model_config.py','accuracy_candidates.py','stage_ensem
            'app_services/shadow_candidates.py',
            'data_sources/openf1.py','data_sources/fastf1_cache.py','app_services/classification_checks.py','app_services/post_race_automation.py',
            'app_services/forecast_automation.py',
-           'app_services/practice_collection.py','app_services/prediction_trials.py')
+           'app_services/practice_collection.py','app_services/prediction_trials.py',
+           'inspection_ledger.py')
 VARIANTS = ('simulation','stage_blend','stronger_grid','single_pace','grid_influence','frozen_simulation','qualifying_order',CONTROL,*CANDIDATES)
 METRICS = ('finish_mae','win_brier','podium_brier','top10_brier','dnf_brier','loss')
 
@@ -44,7 +46,7 @@ def sources(root):
 
 
 def register_suite(root, ensemble_config, *, now=None, inspected_reports=(), extended_models=False, history_path=None,
-                   grid_candidate_path=None):
+                   grid_candidate_path=None, predecessor=None):
     """Pin existing weights and predeclare comparisons; never train or activate."""
     root = Path(root)
     config = json.loads(Path(ensemble_config).read_text(encoding='utf-8'))
@@ -75,14 +77,12 @@ def register_suite(root, ensemble_config, *, now=None, inspected_reports=(), ext
             if digest(name)!=sha:
                 raise ValueError('Benchmark inspection ledger checksum differs.')
             report=json.loads(Path(name).read_text(encoding='utf-8'))
-            for field in ('development_races','inspected_races','evaluated_races','attempted_races','holdout_races'):
-                inspected.update(tuple(key) for key in report.get(field,[]))
+            inspected.update(race_keys(report))
     inspection_hashes = {}
-    for name in inspected_reports:
+    for name in sorted(set(Path(p) for p in inspected_reports) | set(discover_reports(root))):
         path = Path(name)
         report = json.loads(path.read_text(encoding='utf-8'))
-        for field in ('development_races','inspected_races','evaluated_races','attempted_races','holdout_races'):
-            inspected.update(tuple(key) for key in report.get(field, []))
+        inspected.update(race_keys(report))
         inspection_hashes[str(path.resolve())] = digest(path)
     suite = {'schema_version':1,'created_at_utc':created.isoformat(),'activated':False,
         'inspection_reports_sha256': inspection_hashes,
@@ -129,12 +129,14 @@ def register_suite(root, ensemble_config, *, now=None, inspected_reports=(), ext
         suite['grid_protocol'] = {'selected_on_development': grid['selected_on_development'],
             'baseline': 'simulation', 'automatic_activation': False,
             'policy': 'Fixed stage mapping; strictly earlier circuit history; same seeds and simulations as simulation control'}
+    if predecessor is not None:
+        suite['predecessor'] = predecessor
     dump_new(folder/'suite.json',suite)
     return {'enabled':True,'suite_path':str((folder/'suite.json').relative_to(root)),
             'suite_sha256':digest(folder/'suite.json')}
 
 
-def read_suite(root):
+def _read_suite(root, *, verify_source=True):
     root = Path(root)
     path = root/CONFIG
     if not path.exists():
@@ -148,12 +150,49 @@ def read_suite(root):
     suite = json.loads(suite_path.read_text(encoding='utf-8'))
     if suite['activated'] is not False or suite['promotion_approved'] is not False:
         raise ValueError('Prediction trials cannot activate a live model.')
-    if suite['source_sha256']!=sources(root):
+    if verify_source and suite['source_sha256']!=sources(root):
         raise ValueError('Prediction trial source changed; register a new versioned suite.')
     for name,sha in suite['files'].items():
         if name not in {'ensemble.json','results.csv','historical_practice.csv','candidate_history.json.gz','grid_candidate.json'} or digest(suite_path.parent/name)!=sha:
             raise ValueError('Registered trial input checksum differs.')
     return suite_path,suite,config['suite_sha256']
+
+
+def read_suite(root):
+    return _read_suite(root)
+
+
+def renew_suite(root, ensemble_config, *, now=None, inspected_reports=()):
+    """New cohort after source drift; retain and verify all predecessor evidence.
+
+    The old suite is read with its original hashes, never re-pinned in place.
+    Source verification is bypassed only here to register a separate cohort.
+    Capture and scoring still require their normal integrity checks.
+    """
+    root = Path(root)
+    previous = _read_suite(root, verify_source=False)
+    if previous is None:
+        raise ValueError('No enabled prediction suite to renew.')
+    path, suite, sha = previous
+    config = json.loads(Path(ensemble_config).read_text(encoding='utf-8'))
+    if config['candidate_sha256'] != suite['ensemble_candidate_sha256']:
+        raise ValueError('Renewal must retain the predecessor ensemble.')
+    # Do not silently drop an existing arm or change its protocol.
+    extended = 'candidate_protocol' in suite
+    expected = ['stage_blend', 'stronger_grid', 'single_pace']
+    if extended:
+        expected.extend(CANDIDATES)
+    grid_path = path.parent/'grid_candidate.json' if 'grid_candidate.json' in suite['files'] else None
+    if grid_path:
+        expected.append('grid_influence')
+    if suite['variants'] != expected:
+        raise ValueError('Unsupported predecessor arms; explicit new protocol required.')
+    return register_suite(root, ensemble_config, now=now,
+        inspected_reports=[path, *inspected_reports], extended_models=extended,
+        history_path=path.parent/'candidate_history.json.gz' if 'candidate_history.json.gz' in suite['files'] else None,
+        grid_candidate_path=grid_path,
+        predecessor={'suite_path': str(path.relative_to(root)), 'suite_sha256': sha,
+                     'reason': 'New source version; separate prospective cohort. Earlier captures are preserved.'})
 
 
 def verify_files(folder, manifest):
@@ -480,6 +519,11 @@ def comparison_report(root):
     config_path=root/CONFIG
     config=json.loads(config_path.read_text(encoding='utf-8')) if config_path.is_file() else {}
     active_suite=config.get('suite_sha256') if config.get('enabled') else None
+    try:
+        suite_health = 'verified' if read_suite(root) is not None else 'disabled'
+    except (ValueError, OSError, KeyError) as exc:
+        suite_health = 'invalid'
+        failures.append({'folder': str(config_path), 'error': str(exc)[:250]})
     for path in sorted((root/ROOT/'captures').glob('*/manifest.json')):
         try:
             manifest=json.loads(path.read_text(encoding='utf-8')); context=manifest['context']
@@ -540,7 +584,8 @@ def comparison_report(root):
                     'activated':False,'promotion_approved':False})
     report={'schema_version':1,'created_at_utc':datetime.now(timezone.utc).isoformat(),
         'captures':captures,'candidate_status':candidate_status,'race_metrics':rows,'summary':summaries,'paired_comparisons':comparisons,
-        'failures':failures,'active_suite_sha256':active_suite,'activated':False,'promotion_approved':False,
+        'failures':failures,'active_suite_sha256':active_suite,'suite_health':suite_health,
+        'activated':False,'promotion_approved':False,
         'policy':'At least six fresh races per stage, 5% lower paired loss, no Brier regression, Q beats qualifying. Explicit review required.'}
     folder=root/ROOT/'reports'/(datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')+'_'+uuid4().hex[:8])
     folder.mkdir(parents=True,exist_ok=False)

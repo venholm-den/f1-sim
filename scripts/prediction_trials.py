@@ -8,13 +8,17 @@ from pathlib import Path
 
 from portable_app.instance_lock import workspace_lock
 from src.app_services.prediction_trials import (CONFIG, ROOT, capture_trial,
-    comparison_report, register_suite, score_trials)
+    comparison_report, register_suite, renew_suite, read_suite, score_trials)
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--workspace',type=Path,default=Path(__file__).resolve().parents[1])
     parser.add_argument('--register',action='store_true',help='Pin the existing ensemble and enable local shadow trials.')
+    parser.add_argument('--renew-existing', action='store_true',
+                        help='Create a separate cohort retaining the enabled suite arms and inspection ledger.')
+    parser.add_argument('--verify-only', action='store_true',
+                        help='Verify enabled suite sources/inputs without capture, network access or new reports.')
     parser.add_argument('--ensemble-config',type=Path,default=Path('config/stage_ensemble_shadow.json'))
     parser.add_argument('--inspected-reports',type=Path,nargs='*',default=[],
                         help='Carry inspected benchmark outcomes forward when registering a new suite.')
@@ -25,9 +29,22 @@ def main():
     parser.add_argument('--latest',action='store_true',help='Capture the latest verified automated prospective forecast.')
     parser.add_argument('--score',action='store_true',help='Score completed official-result jobs, without fetching or posting.')
     args=parser.parse_args(); root=args.workspace.resolve(); results={}
+    if args.verify_only:
+        if any((args.register, args.renew_existing, args.latest, args.score, args.forecast_folder)):
+            parser.error('--verify-only cannot be combined with mutations or capture/scoring.')
+        suite = read_suite(root)
+        print(json.dumps({'status': 'verified' if suite else 'disabled',
+                          'suite_sha256': suite[2] if suite else None}))
+        return
+    if args.renew_existing and (args.register or args.extended_models or args.history_packet or args.grid_candidate):
+        parser.error('--renew-existing retains the old protocol; do not combine it with registration/model options.')
     with workspace_lock(root):
-        if args.register:
-            config=register_suite(root,root/args.ensemble_config,
+        if args.register or args.renew_existing:
+            if args.renew_existing:
+                config=renew_suite(root, root/args.ensemble_config,
+                                   inspected_reports=[root/path for path in args.inspected_reports])
+            else:
+                config=register_suite(root,root/args.ensemble_config,
                                   inspected_reports=[root/path for path in args.inspected_reports],
                                   extended_models=args.extended_models,
                                   history_path=root/args.history_packet if args.history_packet else None,

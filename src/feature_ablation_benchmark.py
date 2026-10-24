@@ -14,6 +14,7 @@ from src.accuracy_candidates import (FEATURE_VARIANTS, SUPPORTED_VARIANTS, candi
                                      candidate_simulation_options)
 from src.reliability import classify_result_status
 from src.simulate import simulate_races
+from src.inspection_ledger import inspected_race_keys
 
 
 METRICS = ['finish_mae', 'win_brier', 'podium_brier', 'top10_brier', 'dnf_brier', 'loss']
@@ -86,11 +87,7 @@ def benchmark_feature_ablations(races, output_dir, prior_report, *, seeds=(42, 1
     inspection_hashes = {}
     for path in sorted(inspected):
         report = json.loads(path.read_text(encoding='utf-8'))
-        seen.update(tuple(key) for key in report.get('evaluated_races', []) if tuple(key) not in development)
-        seen.update(tuple(key) for key in report.get('attempted_races', []) if tuple(key) not in development)
-        seen.update((int(row['year']), int(row['round'])) for row in report.get('skipped', [])
-                    if 'year' in row and 'round' in row
-                    and (int(row['year']), int(row['round'])) not in development)
+        seen.update(inspected_race_keys([path]) - development)
         inspection_hashes[str(path)] = hashlib.sha256(path.read_bytes()).hexdigest()
     seeds = list(dict.fromkeys(int(seed) for seed in seeds))
     if not seeds or n_sims < 100 or not sessions or set(sessions) - {'PRE', 'FP2', 'Q'}:
@@ -101,7 +98,7 @@ def benchmark_feature_ablations(races, output_dir, prior_report, *, seeds=(42, 1
         raise ValueError('Duplicate race keys.')
     output_dir.mkdir(parents=True, exist_ok=False)
     root = Path(__file__).resolve().parents[1]
-    source_files = ['src/feature_ablation_benchmark.py', 'src/accuracy_candidates.py',
+    source_files = ['src/feature_ablation_benchmark.py', 'src/inspection_ledger.py', 'src/accuracy_candidates.py',
                     'src/accuracy_benchmark.py', 'src/features.py', 'src/model.py', 'src/model_config.py',
                     'src/performance.py', 'src/reliability.py', 'src/simulate.py', 'src/grid.py',
                     'src/forecast_roster.py', 'src/track.py', 'src/weather.py', 'src/result_status.py',

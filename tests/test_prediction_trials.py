@@ -9,7 +9,7 @@ import pytest
 from src.app_services.beta import freeze_snapshot
 from src.app_services.practice_collection import collect_weekend
 from src.app_services.prediction_trials import (CONFIG, SOURCES, capture_trial,
-    comparison_report, register_suite, score_trials, simulation_inputs)
+    comparison_report, register_suite, renew_suite, read_suite, score_trials, simulation_inputs)
 from src.simulate import simulate_races
 from src.stage_ensemble import validate_forecast, FORECAST_COLUMNS
 from src.stage_ensemble_benchmark import digest
@@ -404,3 +404,37 @@ def test_extended_trial_failure_cannot_block_main_discord_delivery(tmp_path, mon
     calls.clear()
     forecast_automation.run_automated_forecast(tmp_path, n_sims=100, discord_enabled=True)
     assert calls[-1] == 'trial' and all(c == 'delivery' for c in calls[:-1])
+
+
+def test_renewal_preserves_old_suite_and_carries_all_inspections(workspace):
+    root, _ = workspace
+    old_config = json.loads((root/CONFIG).read_text())
+    old_path = root/old_config['suite_path']
+    old_bytes = old_path.read_bytes()
+    # Simulate the merge which invalidated the enabled source-pinned cohort.
+    source = root/'src/simulate.py'
+    source.write_bytes(source.read_bytes() + b'\n# source changed\n')
+    with pytest.raises(ValueError, match='source changed'):
+        read_suite(root)
+    inspected = root/'outputs/multi_score_tuning/run/report.json'
+    inspected.parent.mkdir(parents=True)
+    inspected.write_text(json.dumps({'holdout_races_evaluated': [[2026, 8]]}))
+    config = renew_suite(root, root/'ensemble_config.json', now='2026-06-08T13:03:00Z')
+    assert old_path.read_bytes() == old_bytes
+    new = json.loads((root/config['suite_path']).read_text())
+    old = json.loads(old_bytes)
+    assert new['variants'] == old['variants']
+    assert new['assumptions'] == old['assumptions']
+    assert new['predecessor']['suite_sha256'] == old_config['suite_sha256']
+    assert [2026, 8] in new['inspected_races']
+    assert set(map(tuple, old['inspected_races'])) <= set(map(tuple, new['inspected_races']))
+    (root/CONFIG).write_text(json.dumps(config))
+    assert read_suite(root)[2] == config['suite_sha256']
+
+
+def test_renewal_refuses_tampered_predecessor_inputs(workspace):
+    root, _ = workspace
+    path, _, _ = read_suite(root)
+    (path.parent/'results.csv').write_text('tampered')
+    with pytest.raises(ValueError, match='input checksum'):
+        renew_suite(root, root/'ensemble_config.json')

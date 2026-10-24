@@ -1,5 +1,10 @@
 # Accuracy improvements and validation
 
+[24 October validation recovery and degradation comparison](predictor-validation-recovery.md)
+repairs the inspection ledger, replaces the invalid source-pinned cohort without
+rewriting it, and reports the fixed PRE/FP2/Q degradation replay. Q still loses
+to qualifying order, so no candidate is promoted.
+
 [Promotion lanes, fuller race scores and the season challenger](promotion-lanes-and-challenger.md)
 separate factual fixes from accuracy changes, add whole-distribution and
 head-to-head scores with a power check, and freeze one combined challenger per
