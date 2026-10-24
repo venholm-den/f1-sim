@@ -418,7 +418,7 @@ async function refreshOutputs() {
 
 async function startRun() {
   await setPcFollowing(false);
-  const response = await api().start_run(readSettings());
+  const response = await api().start_run({ ...readSettings(), candidates: readCandidates() });
   if (!response.ok) {
     $("runLog").textContent = response.message;
     return;
@@ -500,6 +500,7 @@ async function boot() {
   setOptions($("yearInput"), initial.seasons, initial.settings.year);
   setOptions($("eventInput"), initial.events, initial.settings.event);
   writeSettings(initial.settings);
+  renderCandidateOptions(initial.modelCandidates);
   applySetupOptions(initial.setupOptions || { sessions: initial.sessions }, initial.settings.session);
   renderOutputs(initial.outputs);
   await loadDataPreview();

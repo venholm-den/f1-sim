@@ -970,8 +970,10 @@ class PortableWebApi:
         if settings["session"] not in sessions:
             settings["session"] = sessions[0] if sessions else "PRE"
 
+        from src.app_services.model_candidates import candidate_options
         return {
             "settings": settings,
+            'modelCandidates': candidate_options(),
             "seasons": season_options(settings['year']),
             "events": event_names,
             "sessions": sessions,
@@ -1112,10 +1114,13 @@ class PortableWebApi:
                 raise ValueError('Choose a separate output directory; archived forecasts remain unchanged.')
             # Each manual run gets a fresh directory, preserving every prior result.
             output = target/'workbench_runs'/f"{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}_{uuid4().hex[:8]}"
-            output.mkdir(parents=True, exist_ok=False)
             settings = replace(settings, output_dir=str(output))
-            config = build_run_config(self.base_config, settings)
+            from src.app_services.model_candidates import apply_candidates
+            config, candidates = apply_candidates(build_run_config(self.base_config, settings),
+                                                  settings_payload.get('candidates'))
             config['ignore_environment_overrides'] = True
+            config['ui_candidates'] = candidates
+            output.mkdir(parents=True, exist_ok=False)
             launched = self._jobs.start_manual(config)
             self._manual_job = launched["id"]
             config_path = Path(launched["configPath"])
@@ -1285,6 +1290,7 @@ class PortableWebApi:
         return export_results(output_dir, kind)
 
     def workbench_history(self):
+        from src.app_services.model_candidates import candidate_labels
         history = self._jobs.history()
         self._workbench_runs = {}
         for run in self.automation_state()['runs']:
@@ -1301,8 +1307,11 @@ class PortableWebApi:
                     context = output_context(metadata.parent, None, 'latest', 'PRE')
                     identifier = 'workbench:' + hashlib.sha256(str(metadata.parent).encode()).hexdigest()[:16]
                     self._workbench_runs[identifier] = metadata.parent
+                    candidates = candidate_labels(saved.get('candidates'))
                     history.append({'id': identifier, 'kind': 'monte_carlo', 'status': 'completed',
-                                    'label': f"{context['year']} {context['event']} · {context['session']}",
+                                    'label': f"{context['year']} {context['event']} · {context['session']}"
+                                             + (' · candidate' if candidates else ''),
+                                    'candidates': candidates, 'seed': saved.get('settings', {}).get('random_seed'),
                                     'created_at': saved['completed_at_utc']})
                 except (ValueError, TypeError, KeyError, OSError):
                     continue

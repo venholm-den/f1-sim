@@ -214,6 +214,7 @@ function renderResultsDetails() {
   $('resultSims').textContent=run.settings?.n_sims ? Number(run.settings.n_sims).toLocaleString() : details.forecastRun?.n_sims ? Number(details.forecastRun.n_sims).toLocaleString() : 'Not recorded';
   $('resultRuntime').textContent=run.elapsed_seconds == null ? 'Not recorded' : `${Number(run.elapsed_seconds).toFixed(1)} s`;
   const sc=safetyCarSummary(details.risk || {});
+  renderCandidateBadges(details.candidates);
   $('safetyCarMetric').hidden=numeric(details.risk?.safety_car_chance)==null;
   $('resultSafetyCar').textContent=sc.value;$('resultSafetyCarNote').textContent=sc.note;
   $('savedResultLabel').textContent=(state.outputs.summaryTable?.rows || []).length ? `${saved.year || ''} ${displayEventName(saved.event) || 'Saved run'} · ${saved.session || ''}` : 'No saved run';
@@ -226,6 +227,44 @@ function renderResultsDetails() {
   $('resultInsights').innerHTML=notes.map(note=>`<p>${escapeHtml(note)}</p>`).join('');
   const rules=state.reference?.fantasy_scoring || {};
   definitions('fantasyRules',[['Fastest lap bonus',rules.fastest_lap_bonus],['Driver of the day bonus',rules.dotd_bonus],['DNF penalty',rules.dnf_penalty],['Position gain / place',rules.position_gain_points_per_place],['Position loss / place',rules.position_loss_points_per_place]]);
+}
+// Model candidates: off by default, never persisted, validated again by the backend.
+function renderCandidateOptions(list) {
+  state.candidateOptions=list || [];
+  $('candidatesPanel').hidden=!state.candidateOptions.length;
+  $('candidateFields').innerHTML=state.candidateOptions.map(item=>`<label id="candidateRow-${item.key}"><span>${escapeHtml(item.label)}</span><select id="candidate-${item.key}" data-candidate="${item.key}">${item.options.map(option=>`<option value="${escapeHtml(option.value)}"${option.value===item.default?' selected':''}>${escapeHtml(option.label)}</option>`).join('')}</select>${item.note?`<small>${escapeHtml(item.note)}</small>`:''}</label>`).join('');
+  document.querySelectorAll('[data-candidate]').forEach(el=>el.addEventListener('change',updateCandidateRules));
+  updateCandidateRules();
+}
+function resetCandidates() {
+  $('candidatesToggle').checked=false;
+  state.candidateOptions?.forEach(item=>{const el=$(`candidate-${item.key}`);if(el)el.value=item.default;});
+  updateCandidateRules();
+}
+// Mirrors the run_config rules, so impossible combinations cannot be picked.
+function updateCandidateRules() {
+  const on=$('candidatesToggle').checked, value=key=>$(`candidate-${key}`)?.value;
+  $('candidateFields').hidden=!on;
+  const agent=value('race_engine')==='agent_laps_v1';
+  const blocked={pair_pass_model:!agent, safety_car_model:agent, shared_noise_model:agent, grid_sampling_model:agent};
+  if(!$('forecastInput').checked)blocked.weather_model=true;
+  (state.candidateOptions || []).forEach(item=>{
+    const el=$(`candidate-${item.key}`);if(!el)return;
+    el.disabled=Boolean(blocked[item.key]);
+    if(el.disabled)el.value=item.default;
+    $(`candidateRow-${item.key}`).classList.toggle('unavailable',el.disabled);
+  });
+  const active=Object.keys(readCandidates()).length;
+  $('candidateMessage').textContent=!on?'':active?`${plural(active,'candidate')} on for the next run. Results will be labelled as a candidate run.`:'All choices match the established model.';
+}
+function readCandidates() {
+  if(!$('candidatesToggle')?.checked)return {};
+  const active={};
+  (state.candidateOptions || []).forEach(item=>{const el=$(`candidate-${item.key}`);if(el && !el.disabled && el.value!==item.default)active[item.key]=el.value;});
+  return active;
+}
+function renderCandidateBadges(labels) {
+  $('candidateBadges').innerHTML=(labels || []).map(label=>`<span class="candidate-badge" title="Unpromoted model candidate">${escapeHtml(label)}</span>`).join('');
 }
 // Safety-car numbers exist only when a run used a safety-car candidate.
 function safetyCarSummary(risk) {
@@ -337,7 +376,7 @@ async function resetForm() {
   const defaults={...(state.projectDefaults || state.initial.settings),...(state.automation?.latest?.context || {})};
   setOptions($('yearInput'),state.initial.seasons,defaults.year);
   const events=await api().events_for_year(defaults.year);setOptions($('eventInput'),events,defaults.event);
-  writeSettings(defaults);await refreshSetupOptions(defaults.session);renderSessionPills();notify('Setup restored to defaults for the latest PC forecast. Saved results are unchanged.');
+  writeSettings(defaults);resetCandidates();await refreshSetupOptions(defaults.session);renderSessionPills();notify('Setup restored to defaults for the latest PC forecast. Saved results are unchanged.');
 }
 function initWorkbench() {
   renderIcons();
@@ -357,6 +396,8 @@ function initWorkbench() {
   $('autoReloadInput').addEventListener('change',()=>safeAction(()=>savePreferences(false)));
   $('saveSettings').addEventListener('click',()=>safeAction(()=>savePreferences(true)));
   ['resetSetup','resetSettings'].forEach(id=>$(id).addEventListener('click',()=>safeAction(resetForm)));
+  $('candidatesToggle').addEventListener('change',updateCandidateRules);
+  $('forecastInput').addEventListener('change',updateCandidateRules);
   $('discordSetup').addEventListener('click',()=>window.location.href='centre.html');
   $('refreshComparisons').addEventListener('click',()=>safeAction(loadComparisonHistory));
   $('compareRuns').addEventListener('click',()=>safeAction(async()=>{

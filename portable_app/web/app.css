@@ -673,6 +673,11 @@ summary{font-size:13px;color:var(--text-2);text-transform:none}
 
 /* Results: actions sit beside the run label; wide panels span both columns. */
 .scenario-strip{flex-wrap:wrap}
+.candidate-fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px 14px;margin-top:12px}
+.candidate-fields label{display:flex;flex-direction:column;gap:4px;font-size:12px}
+.candidate-fields label.unavailable{opacity:.55}
+.candidate-fields small{color:var(--muted);font-size:11px}
+#candidatesToggle:checked{background:var(--violet)}
 .candidate-badges{display:flex;flex-wrap:wrap;gap:6px;margin-right:auto}
 .candidate-badge{font-size:11px;padding:4px 8px;border-radius:999px;border:1px solid var(--violet);color:var(--violet);white-space:nowrap}
 .result-actions{display:flex;flex-wrap:wrap;gap:8px}
