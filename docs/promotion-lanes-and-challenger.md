@@ -11,7 +11,7 @@ forecasts or Discord delivery.
 | Lane | Meaning | Gate |
 | --- | --- | --- |
 | correctness | Gives the model a fact it was missing | At least six paired replay races, and no metric worse than twice the seed noise (floor 0.0001) |
-| accuracy | Changes model judgement: fitted or assumed values, new mechanisms | Unchanged: six fresh races per stage, at least 5% lower paired loss, no Brier regression, Q beats qualifying order |
+| accuracy | Changes model judgement: fitted or assumed values, new mechanisms | Six fresh races per stage, at least 5% lower paired RPS (threshold RPS when rows have no full RPS), no Brier regression, finish MAE no worse than twice the seed noise (race-bootstrap interval for prospective trials), Q beats qualifying order |
 
 Correctness candidates today: `grid_penalty_model: announced_v1` and
 `sprint_model: sprint_v1`. Every other choice is accuracy, including
@@ -74,9 +74,15 @@ Two readings:
    separate race scores, so six races can detect real changes.
 2. The gate's loss is dominated by finish MAE, which barely moves for
    candidates that improve probabilities. On this packet `multi_sc_v1` improves
-   every probability score and would still fail the 5% loss rule. Changing the
-   gate's primary metric is a policy decision. This change reports the
-   evidence and leaves the gate as it is.
+   every probability score and would still fail the 5% loss rule.
+
+On 24 October 2026 Kyle chose RPS as the primary metric: at least 5% lower
+paired RPS. Finish MAE became a no-regression check that tolerates noise:
+offline it may be worse by at most twice the seed noise (the correctness-lane
+rule, floor 0.0001), and in prospective trials it blocks only when the
+whole-race bootstrap 95% interval lies above zero. Brier checks stay strict.
+The paired loss is still reported. On this packet `multi_sc_v1` would still
+not pass: its RPS gain is 3.4% (0.1368 to 0.1321), below 5%.
 
 ## 3. One frozen challenger per season
 

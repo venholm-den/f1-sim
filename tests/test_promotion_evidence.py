@@ -46,11 +46,29 @@ def test_correctness_gate_passes_a_harmless_fix_and_blocks_a_regression():
     assert not correctness_decision(rows({}, races=3), 'cand', 'live')['passed']
 
 
-def test_accuracy_gate_keeps_the_five_percent_rule():
-    better = accuracy_decision(rows({'finish_mae': -.3}, noise=0), 'cand', 'live')
-    assert better['passed'] and better['loss_improvement'] > .05
-    small = accuracy_decision(rows({'finish_mae': -.01}), 'cand', 'live')
+def test_accuracy_gate_uses_five_percent_rps_with_no_mae_regression():
+    better = accuracy_decision(rows({'rps': -.01}, noise=0), 'cand', 'live')
+    assert better['passed'] and better['primary_metric'] == 'rps' and better['primary_improvement'] > .05
+    # A large finish-MAE gain alone no longer passes: the probabilities must improve.
+    mae_only = accuracy_decision(rows({'finish_mae': -.3}, noise=0), 'cand', 'live')
+    assert not mae_only['passed'] and mae_only['loss_improvement'] > .05
+    assert any('rps improvement' in reason for reason in mae_only['reasons'])
+    worse_mae = accuracy_decision(rows({'rps': -.01, 'finish_mae': .05}, noise=0), 'cand', 'live')
+    assert not worse_mae['passed'] and any('finish_mae regressed' in r for r in worse_mae['reasons'])
+    # A finish-MAE change inside twice the seed noise does not block a probability gain.
+    within_noise = accuracy_decision(rows({'rps': -.01, 'finish_mae': .0005}, noise=.01), 'cand', 'live')
+    assert not any('finish_mae' in r for r in within_noise['reasons'])
+    small = accuracy_decision(rows({'rps': -.002}), 'cand', 'live')
     assert not small['passed'] and set(small['sequential']) >= {'loss', 'rps'}
+
+
+def test_accuracy_gate_falls_back_to_threshold_rps():
+    threshold = rows({}, noise=0).drop(columns='rps')
+    threshold['threshold_rps'] = threshold[['win_brier', 'podium_brier', 'top10_brier']].mean(axis=1)
+    threshold.loc[threshold.arm.eq('cand'), ['win_brier', 'podium_brier', 'top10_brier', 'threshold_rps']] -= .01
+    decision = accuracy_decision(threshold, 'cand', 'live')
+    assert decision['primary_metric'] == 'threshold_rps' and decision['passed']
+    assert not accuracy_decision(rows({}).drop(columns='rps'), 'cand', 'live')['passed']
 
 
 def test_power_arithmetic():

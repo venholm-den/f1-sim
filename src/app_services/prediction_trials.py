@@ -38,7 +38,13 @@ SOURCES = ('simulate.py','model_config.py','accuracy_candidates.py','stage_ensem
            'app_services/practice_collection.py','app_services/prediction_trials.py',
            'inspection_ledger.py')
 VARIANTS = ('simulation','stage_blend','stronger_grid','single_pace','grid_influence','frozen_simulation','qualifying_order',CONTROL,*CANDIDATES)
-METRICS = ('finish_mae','win_brier','podium_brier','top10_brier','dnf_brier','loss')
+METRICS = ('finish_mae','win_brier','podium_brier','top10_brier','dnf_brier','loss','threshold_rps')
+# Trials store win/podium/top-10 chances, not position matrices, so the primary
+# RPS gate uses threshold RPS: the mean of those three Briers (src/race_scores.py).
+THRESHOLD_BRIERS = ('win_brier','podium_brier','top10_brier')
+NO_REGRESSION = ('win_brier','podium_brier','top10_brier','dnf_brier')
+POLICY = ('At least six fresh races per stage, 5% lower paired threshold RPS, no Brier regression, finish MAE not '
+          'clearly worse (race-bootstrap 95% interval above zero), Q beats qualifying. Explicit review required.')
 
 
 def sources(root):
@@ -94,8 +100,8 @@ def register_suite(root, ensemble_config, *, now=None, inspected_reports=(), ext
             'practice_component':'FP2 only; FP1/FP3 collected without silently substituting',
             'stage_weights':'Existing fitted weights, no online retraining',
             'cohort':'First complete prospective trial per race and stage for this suite'},
-        'promotion_gate':{'fresh_races_per_stage':6,'minimum_loss_improvement':.05,
-            'no_regression':['win_brier','podium_brier','top10_brier','dnf_brier'],
+        'promotion_gate':{'fresh_races_per_stage':6,'primary_metric':'threshold_rps','minimum_primary_improvement':.05,
+            'no_regression':list(NO_REGRESSION),'finish_mae':'race-bootstrap 95% interval must not lie above zero',
             'q_must_beat_qualifying_order':True,'automatic_activation':False}}
     if extended_models:
         suite['schema_version'] = 2
@@ -546,8 +552,11 @@ def comparison_report(root):
             for variant,values in score['metrics'].items():
                 if variant=='stronger_grid' and not manifest['stronger_grid_applicable']:
                     continue
+                # Derived at report time so frozen score files stay byte-for-byte.
+                derived={'threshold_rps':float(np.mean([values[m] for m in THRESHOLD_BRIERS]))
+                         if all(values.get(m) is not None for m in THRESHOLD_BRIERS) else None}
                 rows.append({'suite':manifest['suite_sha256'],'year':context['year'],'round':context['round'],
-                    'session':context['session'],'variant':variant,**values})
+                    'session':context['session'],'variant':variant,**derived,**values})
         except Exception as exc:
             failures.append({'folder':str(path.parent),'error':str(exc)[:250]})
     frame=pd.DataFrame(rows); summaries=[]; comparisons=[]
@@ -567,6 +576,9 @@ def comparison_report(root):
                 differences={m:float((pair[m+'_candidate']-pair[m+'_baseline']).mean()) if pair[m+'_candidate'].notna().any() else None for m in METRICS}
                 denominator=float(pair.loss_baseline.mean())
                 improvement=float(1-pair.loss_candidate.mean()/denominator) if denominator>0 else None
+                rps_baseline=float(pair.threshold_rps_baseline.mean())
+                rps_improvement=(float(1-pair.threshold_rps_candidate.mean()/rps_baseline)
+                                 if rps_baseline>0 and pair.threshold_rps_candidate.notna().all() else None)
                 intervals = {'finish_delta_ci_low':None,'finish_delta_ci_high':None}
                 if len(pair)>=2:
                     delta=(pair.finish_mae_candidate-pair.finish_mae_baseline).to_numpy()
@@ -576,17 +588,20 @@ def comparison_report(root):
                 q=group[group.variant.eq('qualifying_order')]
                 qp=pair.merge(q[['year','round','finish_mae']],on=['year','round']) if stage=='Q' else pd.DataFrame()
                 beats_q=(len(qp)==len(pair) and float(qp.finish_mae_candidate.mean())<float(qp.finish_mae.mean())) if stage=='Q' else True
-                eligible=(len(pair)>=6 and improvement is not None and improvement>=.05 and beats_q
-                    and all(differences[m] is not None and differences[m]<=0 for m in ('win_brier','podium_brier','top10_brier','dnf_brier')))
+                # Finish MAE blocks only when the whole-race interval shows it clearly worse.
+                mae_clearly_worse=intervals['finish_delta_ci_low'] is None or intervals['finish_delta_ci_low']>0
+                eligible=(len(pair)>=6 and rps_improvement is not None and rps_improvement>=.05 and beats_q
+                    and not mae_clearly_worse
+                    and all(differences[m] is not None and differences[m]<=0 for m in NO_REGRESSION))
                 comparisons.append({'suite':suite,'session':stage,'candidate':variant,'baseline':baseline_name,'paired_races':len(pair),
-                    'loss_improvement':improvement,'q_beats_qualifying_order':beats_q,**intervals,
+                    'threshold_rps_improvement':rps_improvement,'loss_improvement':improvement,'q_beats_qualifying_order':beats_q,**intervals,
                     **{m+'_delta':v for m,v in differences.items()},'eligible_for_review':eligible,
                     'activated':False,'promotion_approved':False})
     report={'schema_version':1,'created_at_utc':datetime.now(timezone.utc).isoformat(),
         'captures':captures,'candidate_status':candidate_status,'race_metrics':rows,'summary':summaries,'paired_comparisons':comparisons,
         'failures':failures,'active_suite_sha256':active_suite,'suite_health':suite_health,
         'activated':False,'promotion_approved':False,
-        'policy':'At least six fresh races per stage, 5% lower paired loss, no Brier regression, Q beats qualifying. Explicit review required.'}
+        'policy':POLICY}
     folder=root/ROOT/'reports'/(datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S%fZ')+'_'+uuid4().hex[:8])
     folder.mkdir(parents=True,exist_ok=False)
     dump_new(folder/'report.json',report)
