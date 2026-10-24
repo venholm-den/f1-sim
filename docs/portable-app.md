@@ -107,3 +107,7 @@ If `data\models\historical_finish_model.joblib` and `data\models\historical_dnf_
 ## Smart App Control
 
 Windows may warn about unsigned locally built executables. For wider distribution, use a signed release build or distribute source instructions until signing is in place.
+
+## Fonts
+
+The UI uses Barlow and Barlow Condensed, bundled as WOFF2 files in `portable_app\web\fonts\` (SIL Open Font License, see `fonts\OFL.txt`) and declared in `fonts.css`. They load from disk, so the app needs no internet access for its typefaces.

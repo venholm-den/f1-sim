@@ -22,3 +22,14 @@ Each phase is one or two PRs. Each one is shippable on its own, behind no flags,
 - **Reduced motion and contrast.** These are checked for each PR against `design-system.md` §4.
 - **No invented data.** Ownership, live timing and a calibrated safety-car probability stay out until real data exists.
 - **The playground stays a reference.** `design/playground` is never imported by the app.
+
+## Status
+
+- **Direction:** Kyle chose **L · Broadcast hybrid**, which applies B's look to the hybrid's screens.
+- **Phase 1 is done.** It covers:
+  - Broadcast tokens in `app.css` and `centre.css`, so the Workbench and the Simulation Centre share one palette.
+  - Barlow and Barlow Condensed bundled in `portable_app/web/fonts/` (SIL OFL 1.1, about 160 KB) and loaded through `fonts.css`. The browser-mode server serves them too.
+  - Condensed upper-case page and panel headings.
+  - Solid red primary buttons using `--red-fill` `#E0122F`, so white text meets 4.5:1.
+  - Hard-coded Nocturne tints replaced with broadcast equivalents.
+- **Not yet changed:** layouts, navigation and charts, which are phases 2–6. The replay driver palette in `replay.js` also still uses the old colours; it moves in phase 5.

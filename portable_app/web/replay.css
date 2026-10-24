@@ -45,7 +45,7 @@
 .lap-line.dimmed{opacity:.2}
 .lap-cursor{stroke:var(--text-2);stroke-dasharray:3 3}
 .telemetry-controls{display:flex;align-items:flex-end;gap:12px;flex-wrap:wrap;margin-top:12px}
-.telemetry-pick{display:flex;gap:6px;margin:0;padding:8px 10px 10px;border:1px solid var(--line);border-radius:8px;min-width:280px}
+.telemetry-pick{display:flex;gap:6px;margin:0;padding:8px 10px 10px;border:1px solid var(--line);border-radius:var(--radius);min-width:280px}
 .telemetry-pick legend{padding:0 4px;font-size:11px;font-weight:700}
 .telemetry-pick.a legend,.tel-lap.a span,.telemetry-readout .a b{color:var(--blue)}
 .telemetry-pick.b legend,.tel-lap.b span,.telemetry-readout .b b{color:var(--orange)}
@@ -65,7 +65,7 @@
 .tel-marker{stroke:var(--bg);stroke-width:2;vector-effect:non-scaling-stroke}
 .tel-marker.a{fill:var(--blue)}.tel-marker.b{fill:var(--orange)}
 .telemetry-summary{display:grid;gap:8px;margin-top:12px}
-.tel-lap{padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+.tel-lap{padding:9px 10px;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg)}
 .tel-lap span{display:block;font-size:11px;font-weight:700}
 .tel-lap strong{display:block;font-size:18px;margin:3px 0;font-variant-numeric:tabular-nums}
 .tel-lap small{color:var(--muted);font-size:11px}

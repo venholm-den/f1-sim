@@ -50,7 +50,10 @@ def make_server(api, assets: Path, port=0):
                     self.respond(403,b'{}'); return
                 script = "window.f1Api=new Proxy({}, {get:(_,method)=>(...args)=>fetch('/api/'+method,{method:'POST',headers:{'Content-Type':'application/json','X-F1-Token':TOKEN},body:JSON.stringify(args)}).then(async r=>{const b=await r.json();if(!r.ok)throw Error(b.error);return b;})});".replace('TOKEN',json.dumps(token))
                 self.respond(200,script.encode(),'text/javascript'); return
-            if '/' in name or name not in {'centre.html','centre.css','centre.js','index.html','app.css','workbench.js','historical.js','training.js','fantasy.js','championship.js','app.js','pc-runs.js','centre-nocturne.css','tyre-strategy.js','tyre-strategy.css','replay.js','replay.css','logo.svg'}:
+            if name.startswith('fonts/') and name.count('/') == 1 and name.endswith('.woff2') and (assets/name).is_file():
+                # Bundled Barlow faces for the broadcast theme; the app runs offline.
+                self.respond(200,(assets/name).read_bytes(),'font/woff2'); return
+            if '/' in name or name not in {'centre.html','centre.css','centre.js','index.html','app.css','workbench.js','historical.js','training.js','fantasy.js','championship.js','app.js','pc-runs.js','centre-nocturne.css','tyre-strategy.js','tyre-strategy.css','replay.js','replay.css','logo.svg','fonts.css'}:
                 self.respond(404,b'{}'); return
             path = assets/name
             types = {'.html':'text/html; charset=utf-8','.js':'text/javascript','.css':'text/css','.svg':'image/svg+xml'}
