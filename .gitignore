@@ -58,6 +58,7 @@ dist/
 notes.txt
 config/stage_ensemble_shadow.json
 config/prediction_trials.json
+config/form_shadow.json
 config/fia_sync.json
 data/fia_documents/cache/
 data/fia_documents/captures/

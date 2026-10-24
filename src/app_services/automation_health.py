@@ -4,7 +4,7 @@ from src.app_services.simulation_jobs import write_json
 
 OPTIONAL = {'fantasy_collection', 'fia_collection', 'ensemble_shadow',
             'ensemble_shadow_scoring', 'prediction_trial', 'prediction_trial_scoring',
-            'prediction_trial_report', 'current_practice', 'weather_update'}
+            'prediction_trial_report', 'current_practice', 'weather_update', 'form_shadow'}
 
 
 def summarize(result):

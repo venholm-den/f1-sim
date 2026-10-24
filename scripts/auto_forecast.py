@@ -131,6 +131,9 @@ def main() -> int:
             except Exception as exc:
                 result['prediction_trial_scoring'] = {'status':'failed','error_type':type(exc).__name__}
         if not args.check_only:
+            if (root/'config/form_shadow.json').is_file():
+                from src.app_services.form_shadow import run_enabled
+                result['form_shadow']=run_enabled(root,result.get('folder'))
             from src.app_services.automation_health import record
             result['health'] = record(root, result)
         print(json.dumps(result, indent=2))

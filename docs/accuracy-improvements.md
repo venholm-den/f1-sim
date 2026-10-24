@@ -1,5 +1,11 @@
 # Accuracy improvements and validation
 
+[Stage-specific form and retirement shadows](form-and-retirement-shadows.md)
+implement the historical-factor follow-up in the simulator. PRE/FP2 form plus
+degradation and a separate PRE retirement prior now collect independent shadow
+evidence. Q candidates remain parked; live settings and the existing trial
+cohort are unchanged.
+
 [Historical predictive-factor analysis, 24 October](historical-predictive-factors.md)
 audits the complete detailed archive and tests recent form, pace, practice,
 reliability, weather and telemetry. Team/driver form is the strongest lead;
