@@ -8,7 +8,8 @@ Two lanes, because two kinds of change reach the model:
   expected to win a fresh-race contest by a margin.
 - accuracy: the candidate changes model judgement (fitted or assumed
   parameters, new mechanisms). It needs at least six fresh races per stage,
-  at least 5% lower paired RPS, and no finish MAE or Brier regression. RPS
+  at least 5% lower paired RPS, no Brier regression, and no finish MAE
+  regression beyond twice the seed noise. RPS
   replaced the MAE-dominated loss as the primary metric on 24 October 2026;
   the loss is still reported.
 
@@ -42,7 +43,9 @@ CORRECTNESS = {
 # Full RPS needs a position matrix; threshold RPS is the fallback for rows
 # that only carry win/podium/top-10 chances.
 ACCURACY_GATE = {'min_races': 6, 'primary_metrics': ('rps', 'threshold_rps'), 'min_primary_improvement': 0.05,
-                 'no_regression': ('finish_mae', 'win_brier', 'podium_brier', 'top10_brier', 'dnf_brier')}
+                 'no_regression': ('win_brier', 'podium_brier', 'top10_brier', 'dnf_brier'),
+                 # Finish MAE may not get worse beyond simulation noise; same rule as the correctness lane.
+                 'noise_tolerant_no_regression': ('finish_mae',)}
 CORRECTNESS_GATE = {'min_races': 6, 'noise_multiple': 2.0, 'tolerance_floor': 1e-4,
                     'metrics': ('finish_mae', 'win_brier', 'podium_brier', 'top10_brier', 'rps')}
 LOSS = ('finish_mae', 'top10_brier')
@@ -221,6 +224,15 @@ def accuracy_decision(seed_rows: pd.DataFrame, candidate: str, baseline: str,
     for metric in gate['no_regression']:
         if metric + '_delta' in pair and float(pair[metric + '_delta'].mean()) > 0:
             reasons.append(f'{metric} regressed.')
+    for metric in gate['noise_tolerant_no_regression']:
+        if metric + '_delta' not in pair:
+            continue
+        noise = np.hypot(seed_noise(seed_rows, candidate, metric, race_keys),
+                         seed_noise(seed_rows, baseline, metric, race_keys))
+        tolerance = max(CORRECTNESS_GATE['noise_multiple'] * noise, CORRECTNESS_GATE['tolerance_floor'])
+        delta = float(pair[metric + '_delta'].mean())
+        if delta > tolerance:
+            reasons.append(f'{metric} regressed by {delta:.4f}, beyond the {tolerance:.4f} noise tolerance.')
     return {'lane': 'accuracy', 'candidate': candidate, 'baseline': baseline,
             'paired_races': len(pair), 'primary_metric': primary, 'primary_improvement': improvement,
             'loss_improvement': loss_improvement, 'power': power_table(pair).to_dict('records'), 'sequential': sequential_tests(pair, bounds),

@@ -42,9 +42,9 @@ METRICS = ('finish_mae','win_brier','podium_brier','top10_brier','dnf_brier','lo
 # Trials store win/podium/top-10 chances, not position matrices, so the primary
 # RPS gate uses threshold RPS: the mean of those three Briers (src/race_scores.py).
 THRESHOLD_BRIERS = ('win_brier','podium_brier','top10_brier')
-NO_REGRESSION = ('finish_mae','win_brier','podium_brier','top10_brier','dnf_brier')
-POLICY = ('At least six fresh races per stage, 5% lower paired threshold RPS, no finish MAE or Brier regression, '
-          'Q beats qualifying. Explicit review required.')
+NO_REGRESSION = ('win_brier','podium_brier','top10_brier','dnf_brier')
+POLICY = ('At least six fresh races per stage, 5% lower paired threshold RPS, no Brier regression, finish MAE not '
+          'clearly worse (race-bootstrap 95% interval above zero), Q beats qualifying. Explicit review required.')
 
 
 def sources(root):
@@ -101,7 +101,7 @@ def register_suite(root, ensemble_config, *, now=None, inspected_reports=(), ext
             'stage_weights':'Existing fitted weights, no online retraining',
             'cohort':'First complete prospective trial per race and stage for this suite'},
         'promotion_gate':{'fresh_races_per_stage':6,'primary_metric':'threshold_rps','minimum_primary_improvement':.05,
-            'no_regression':list(NO_REGRESSION),
+            'no_regression':list(NO_REGRESSION),'finish_mae':'race-bootstrap 95% interval must not lie above zero',
             'q_must_beat_qualifying_order':True,'automatic_activation':False}}
     if extended_models:
         suite['schema_version'] = 2
@@ -588,7 +588,10 @@ def comparison_report(root):
                 q=group[group.variant.eq('qualifying_order')]
                 qp=pair.merge(q[['year','round','finish_mae']],on=['year','round']) if stage=='Q' else pd.DataFrame()
                 beats_q=(len(qp)==len(pair) and float(qp.finish_mae_candidate.mean())<float(qp.finish_mae.mean())) if stage=='Q' else True
+                # Finish MAE blocks only when the whole-race interval shows it clearly worse.
+                mae_clearly_worse=intervals['finish_delta_ci_low'] is None or intervals['finish_delta_ci_low']>0
                 eligible=(len(pair)>=6 and rps_improvement is not None and rps_improvement>=.05 and beats_q
+                    and not mae_clearly_worse
                     and all(differences[m] is not None and differences[m]<=0 for m in NO_REGRESSION))
                 comparisons.append({'suite':suite,'session':stage,'candidate':variant,'baseline':baseline_name,'paired_races':len(pair),
                     'threshold_rps_improvement':rps_improvement,'loss_improvement':improvement,'q_beats_qualifying_order':beats_q,**intervals,

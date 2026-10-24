@@ -54,7 +54,10 @@ def test_accuracy_gate_uses_five_percent_rps_with_no_mae_regression():
     assert not mae_only['passed'] and mae_only['loss_improvement'] > .05
     assert any('rps improvement' in reason for reason in mae_only['reasons'])
     worse_mae = accuracy_decision(rows({'rps': -.01, 'finish_mae': .05}, noise=0), 'cand', 'live')
-    assert not worse_mae['passed'] and 'finish_mae regressed.' in worse_mae['reasons']
+    assert not worse_mae['passed'] and any('finish_mae regressed' in r for r in worse_mae['reasons'])
+    # A finish-MAE change inside twice the seed noise does not block a probability gain.
+    within_noise = accuracy_decision(rows({'rps': -.01, 'finish_mae': .0005}, noise=.01), 'cand', 'live')
+    assert not any('finish_mae' in r for r in within_noise['reasons'])
     small = accuracy_decision(rows({'rps': -.002}), 'cand', 'live')
     assert not small['passed'] and set(small['sequential']) >= {'loss', 'rps'}
 

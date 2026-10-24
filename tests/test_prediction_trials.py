@@ -341,6 +341,15 @@ def test_review_gate_requires_six_paired_races_and_no_probability_regression(tmp
         (folder/'score.json').write_text(json.dumps(payload))
     result=comparison_report(tmp_path);report=json.loads((Path(result['folder'])/'report.json').read_text())
     assert not report['paired_comparisons'][0]['eligible_for_review']
+    # Slightly worse on average but not clearly worse across races: still eligible.
+    for number,(folder,payload) in enumerate(scores):
+        payload['metrics']['stage_blend']['finish_mae']=(4.3,3.8)[number%2]
+        payload['metrics']['qualifying_order']['finish_mae']=4.5
+        (folder/'score.json').write_text(json.dumps(payload))
+    result=comparison_report(tmp_path);report=json.loads((Path(result['folder'])/'report.json').read_text())
+    comparison=report['paired_comparisons'][0]
+    assert comparison['finish_mae_delta']>0 and comparison['finish_delta_ci_low']<0
+    assert comparison['eligible_for_review']
 
 
 
