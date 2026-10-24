@@ -58,6 +58,8 @@ async function loadHistorical(){
   }catch(e){if(request===historicalRequest){el('historicalEvent').replaceChildren(new Option('Calendar unavailable',''));el('historicalNote').textContent='Calendar could not be loaded. Check your connection and try Load races again.';}throw e;}
   finally{if(request===historicalRequest){historicalLoading=false;controls();}}
 }
+// Canvas colours come from the CSS tokens shared with the Workbench.
+function token(name){return getComputedStyle(document.documentElement).getPropertyValue(name).trim();}
 function history(){
   el('history').innerHTML=(appState.history||[]).map(run=>`<button class="${run.id===selected?'active':''}" data-id="${escape(run.id)}"><span class="state">${escape(run.status)}</span><strong>${escape(run.label)}</strong><small>${new Date(run.created_at).toLocaleString([], {month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'})}${run.scenario&&run.kind==='experiments'?' · '+escape(scenarioNames[run.scenario]||run.scenario):''}</small></button>`).join('')||'<p class="muted">No saved runs yet.</p>';
   el('history').querySelectorAll('button').forEach(button=>button.onclick=()=>safely(()=>selectRun(button.dataset.id)));
@@ -67,7 +69,13 @@ async function refresh(){
   applyRunDefaults();
   el('connection').textContent='Local workspace';el('sourceContext').textContent=appState.context.label;
   el('sourceDetail').textContent=`${appState.context.drivers} drivers · ${appState.features?'Features available':'Features missing'} · ${appState.strategies?'Strategy available':'Strategy missing'}${appState.context.modified?' · Updated '+new Date(appState.context.modified).toLocaleDateString():''}`;
-  el('matlabLabel').textContent=appState.matlab?'Installed':'Not found';controls();history();
+  el('matlabLabel').textContent=appState.matlab?'Installed':'Not found';
+  // Simulink modes cannot run without MATLAB, so their cards are disabled rather than selectable.
+  document.querySelectorAll('.mode[data-kind]').forEach(button=>{if(button.dataset.kind==='monte_carlo')return;
+    button.disabled=!appState.matlab;button.title=appState.matlab?'':'MATLAB/Simulink was not found on this PC.';
+    button.querySelector('.mode-footer>span').textContent=appState.matlab?(button.dataset.kind==='lap_dynamics'?'Installed':'Independent verification'):'Not found';});
+  if(!appState.matlab&&kind!=='monte_carlo')document.querySelector('.mode[data-kind="monte_carlo"]').click();
+  controls();history();
 }
 async function selectRun(id){selected=id;lastStatus='';sharingMessage='';el('driverFilter').value='';el('scenarioFilter').value='';el('openFolder').disabled=false;history();await status();await results();}
 async function status(){
@@ -96,7 +104,7 @@ async function status(){
   lastStatus=data.status;
 }
 const headings={Driver:'Driver',Team:'Team',scenario:'Scenario',simulated_rank:'Rank',avg_finish:'Avg. finish',win_chance:'Win %',podium_chance:'Podium %',dnf_chance:'DNF %',points_chance:'Top 10 % (legacy)',top10_chance:'Top 10 %',points_scoring_chance:'Scores points %',avg_points:'Avg. points',simulated_race_time_seconds:'Race time (s)',delta_vs_baseline_seconds:'Δ baseline (s)',pit_stops:'Stops'};
-function format(value,key){if(value===null||value===undefined)return '—';if(typeof value!=='number')return scenarioNames[value]||value;return ['win_chance','podium_chance','dnf_chance','points_chance','top10_chance','points_scoring_chance'].includes(key)?(value*100).toFixed(1):Number.isInteger(value)?String(value):value.toFixed(3);}
+function format(value,key){if(value===null||value===undefined)return '—';if(typeof value!=='number')return scenarioNames[value]||value;return ['win_chance','podium_chance','dnf_chance','points_chance','top10_chance','points_scoring_chance'].includes(key)?(value*100).toFixed(1):Number.isInteger(value)?String(value):/finish|position/.test(key)?value.toFixed(2):/points/.test(key)?value.toFixed(1):value.toFixed(3);}
 async function results(){
   if(!selected)return;const ticket=++loading;
   el('exportCsv').disabled=true;el('exportStatus').hidden=true;
@@ -119,16 +127,16 @@ function draw(data){
   if(!laps.length&&currentRows.length&&'win_chance' in currentRows[0]){
     el('chartTitle').textContent='Win probability';el('chartLegend').textContent='Monte Carlo · saved features';
     const rows=[...currentRows].sort((a,b)=>b.win_chance-a.win_chance).slice(0,10),max=Math.max(.01,...rows.map(r=>r.win_chance));
-    rows.forEach((r,i)=>{const y=6+i*21;ctx.fillStyle='#92a2b7';ctx.font='11px Segoe UI';ctx.fillText(r.Driver,0,y+12);ctx.fillStyle='#eeff85';ctx.fillRect(42,y,(w-112)*r.win_chance/max,12);ctx.fillStyle='#e9eef5';ctx.fillText((100*r.win_chance).toFixed(1)+'%',w-52,y+12);});return;
+    rows.forEach((r,i)=>{const y=6+i*21;ctx.fillStyle=token('--muted');ctx.font='11px Segoe UI';ctx.fillText(r.Driver,0,y+12);ctx.fillStyle=token('--accent');ctx.fillRect(42,y,(w-112)*r.win_chance/max,12);ctx.fillStyle=token('--text');ctx.fillText((100*r.win_chance).toFixed(1)+'%',w-52,y+12);});return;
   }
   el('chartTitle').textContent=`Lap-time trace${data.chart_driver?' · '+data.chart_driver:''}`;
   if(!laps.length){el('chartLegend').textContent='Choose a completed run';return;}
   const groups={};laps.forEach(row=>(groups[row.scenario||'baseline']??=[]).push(row));
-  const palette=['#eeff85','#67c9ff','#ffab84'];
+  const palette=[token('--accent'),token('--blue'),token('--orange')];
   el('chartLegend').innerHTML=Object.keys(groups).map((k,i)=>`<span style="color:${palette[i%palette.length]}">● ${escape(scenarioNames[k]||k)}</span>`).join(' / ');
   const values=laps.map(r=>r.lap_time_seconds),lo=Math.floor(Math.min(...values)-1),hi=Math.ceil(Math.max(...values)+1),maxLap=Math.max(...laps.map(r=>r.lap));
   const x=n=>48+(n-1)/Math.max(1,maxLap-1)*(w-68),y=v=>h-28-(v-lo)/(hi-lo)*(h-46);
-  ctx.font='10px Segoe UI';for(let i=0;i<5;i++){const value=lo+(hi-lo)*i/4,yy=y(value);ctx.strokeStyle='#27313d';ctx.beginPath();ctx.moveTo(44,yy);ctx.lineTo(w-10,yy);ctx.stroke();ctx.fillStyle='#92a2b7';ctx.fillText(value.toFixed(1)+'s',0,yy+3);}
+  ctx.font='10px Segoe UI';for(let i=0;i<5;i++){const value=lo+(hi-lo)*i/4,yy=y(value);ctx.strokeStyle=token('--line');ctx.beginPath();ctx.moveTo(44,yy);ctx.lineTo(w-10,yy);ctx.stroke();ctx.fillStyle=token('--muted');ctx.fillText(value.toFixed(1)+'s',0,yy+3);}
   [1,Math.round(maxLap/2),maxLap].forEach(lap=>ctx.fillText('Lap '+lap,x(lap)-12,h-6));
   Object.values(groups).forEach((rows,index)=>{ctx.strokeStyle=palette[index%palette.length];ctx.lineWidth=2;ctx.beginPath();rows.sort((a,b)=>a.lap-b.lap).forEach((row,i)=>i?ctx.lineTo(x(row.lap),y(row.lap_time_seconds)):ctx.moveTo(x(row.lap),y(row.lap_time_seconds)));ctx.stroke();});
 }
