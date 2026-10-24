@@ -1,5 +1,10 @@
 # Accuracy improvements and validation
 
+[Historical predictive-factor analysis, 24 October](historical-predictive-factors.md)
+audits the complete detailed archive and tests recent form, pace, practice,
+reliability, weather and telemetry. Team/driver form is the strongest lead;
+the apparent gain over qualifying order still needs fresh confirmation.
+
 [24 October validation recovery and degradation comparison](predictor-validation-recovery.md)
 repairs the inspection ledger, replaces the invalid source-pinned cohort without
 rewriting it, and reports the fixed PRE/FP2/Q degradation replay. Q still loses
