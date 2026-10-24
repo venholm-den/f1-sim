@@ -223,3 +223,7 @@ The hourly task can collect current-weekend practice and compare the stage blend
 - Weather, race-control, reliability, and tyre modifiers are modelled conservatively from available data and heuristics.
 - Historical calibration depends on locally generated `data/models/` artifacts.
 - Fantasy value output requires valid prices in `data/fantasy_prices.csv`.
+
+## 2027 production release plan
+
+The [2027 release roadmap](docs/release-plan-2027.md) targets 6 March 2027, subject to provider access, model evidence, clean-machine packaging, pilot and recovery gates.
