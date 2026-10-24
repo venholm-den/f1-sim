@@ -110,7 +110,7 @@ Reference numbers like **[R7]** point to `design-research.md`. Products that wer
 
 **Typography.** IBM Plex Mono throughout, 12–13 px.
 
-**Navigation.** A command line (`RWB>`) at the top. Typing `PRED`, `FAN`, `RPL`, `LAB`, a driver code (focuses that driver) or `LAP 30` works, and function-key style tabs are listed beneath.
+**Navigation.** A command line (`RWB>`) at the top. Typing a screen (`PRED`, `FANT`, `RPLY`, `LAB`), a driver code (focuses that driver) or `LAP 30` works, and function-key style tabs are listed beneath.
 
 **Layouts.** A strict 12-column grid of bordered cells with no gaps. Every panel is titled with a code (for example `B.IQR`, `EVT`, `H2H`).
 

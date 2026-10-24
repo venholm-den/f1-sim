@@ -16,7 +16,7 @@ Opening `index.html` directly also works in Chromium-based browsers. Fonts load 
 
 ## What you can do
 
-- **Shell (`index.html`)**: switch concept (A–E, Hybrid ★) and screen (Weekend, Predict, Fantasy, Replay, Drivers, Lab, Accuracy).
+- **Shell (`index.html`)**: switch concept (A–E, Hybrid ★, and Broadcast hybrid ◆: B's look on the hybrid's screens) and screen (Weekend, Predict, Fantasy, Replay, Drivers, Lab, Accuracy).
   - Views: desktop · mobile (390 × 844) · desktop + mobile · side by side (pick a second concept) · all five.
   - Keys: `[` and `]` change the screen, `,` and `.` change the concept, `M` cycles the view.
   - The URL keeps the state: `?c=h&s=replay&v=both`.
@@ -26,7 +26,7 @@ Opening `index.html` directly also works in Chromium-based browsers. Fonts load 
   - On replay: `Space` plays, `←`/`→` step a lap, `Home`/`End` jump to the start or finish.
   - Fantasy chips cycle lock in → leave out → auto, and the optimiser re-picks the team.
   - Lab sliders re-run the toy simulation.
-  - Concept C has a command line (`PRED`, `FAN`, `RPL`, a driver code, `LAP 30`).
+  - Concept C has a command line: type a screen (`PRED`, `FANT`, `RPLY`), one or two driver codes, or `LAP 30`.
   - `prefers-reduced-motion` is respected.
 
 ## Files

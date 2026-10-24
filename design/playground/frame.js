@@ -67,7 +67,7 @@
     pct: C.pct, esc: C.esc, team: C.team,
     mobile: () => window.innerWidth < 720,
     mockTag: '<span class="mock-tag" title="Generated for design review. Not model output.">Mock data</span>',
-    replayLap: 24.4,
+    replayLap: params.get('lap') ? Number(params.get('lap')) : 24.4,
     live: {},
     labState: { driverNoise: 0.24, safetyCar: 0.45, gridWeight: 0.35, dnfRate: 0.045, sims: 1500, toggles: Object.fromEntries(M.lab.candidates.map((c) => [c.key, c.on])) },
     labResult: null
@@ -105,7 +105,7 @@
   function setLap(lap) {
     ctx.replayLap = Math.max(0, Math.min(M.race.laps, lap));
     const st = C.Replay.state(ctx.replayLap);
-    document.querySelectorAll('.chart-track[data-cid]').forEach((el) => C.Replay.placeCars(el, ctx.replayLap, { focus, labelTop: el.dataset.labels ? Number(el.dataset.labels) : 6 }));
+    document.querySelectorAll('.chart-track[data-cid]').forEach((el) => C.Replay.placeCars(el, ctx.replayLap, { focus, labelTop: el.dataset.labels ? Number(el.dataset.labels) : 3 }));
     document.querySelectorAll('.chart-bump[data-cid], .chart-tyres[data-cid]').forEach((el) => C.update(el, { lap: Math.max(1, ctx.replayLap), focus }));
     document.querySelectorAll('[data-live]').forEach((el) => { const fn = ctx.live[el.dataset.live]; if (fn) el.innerHTML = fn(st); });
     document.querySelectorAll('input[data-scrub]').forEach((el) => { el.value = ctx.replayLap; el.setAttribute('aria-valuetext', 'Lap ' + st.leaderLap + ' of ' + M.race.laps); });
@@ -188,6 +188,11 @@
   function command(raw) {
     const words = raw.trim().toUpperCase().split(/\s+/).filter(Boolean);
     const alias = { HUB: 'hub', WKND: 'hub', PRED: 'predict', FANT: 'fantasy', RPLY: 'replay', REPLAY: 'replay', INTL: 'intel', LAB: 'lab', EVAL: 'eval' };
+    const lapAt = words.indexOf('LAP'), lapN = lapAt >= 0 ? Number(words[lapAt + 1]) : NaN;
+    if (Number.isFinite(lapN)) {
+      if (screen !== 'replay') { location.search = '?c=' + conceptId + '&s=replay&lap=' + lapN; return; }
+      setLap(lapN); const o = document.querySelector('[data-cmd-out]'); if (o) o.textContent = 'LAP ' + Math.max(0, Math.min(M.race.laps, lapN)); return;
+    }
     const codes = words.filter((w) => M.byCode[w]);
     const target = words.map((w) => alias[w]).find(Boolean);
     if (target && target !== screen) { location.search = '?c=' + conceptId + '&s=' + target + (codes[0] ? '&focus=' + codes[0] : ''); return; }

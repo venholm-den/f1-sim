@@ -56,3 +56,27 @@ The hybrid's scores are a projection. It is built and clickable in the playgroun
 3. Mobile still needs dedicated layouts for replay and Fantasy, which is more work than in D.
 
 **Decision needed from Kyle.** Choose one of: H (recommended), A, D, or "another mix". No production code changes until a direction is picked.
+
+## Update: Kyle prefers B's look
+
+Kyle picked **B (Lights Out)** as his favourite look. To keep the hybrid's usability and chart fixes, the playground now has a variant called **L · Broadcast hybrid** (`?c=l`). L applies B's visual identity to the hybrid's screens:
+
+- **From B:** the red-ruled top bar, skewed kickers, Barlow Condensed caps, white position blocks and a lower-third story bar.
+- **From the hybrid:** the answer rows, fifty futures, quantile dots and the pinned river.
+- **Fixes to B's weaknesses:**
+  - The full-height hero is cut to a slim strip, which saves about 170 px of height at 1440 × 900.
+  - The analysis screens (lab, accuracy, drivers) use the hybrid's panel layouts instead of B's feature cards, so they no longer feel bolted on.
+- **Still open:** the race river colours every driver by team, as it does in B and H, so 22 lines remain busy until a driver is focused. Dimming unfocused lines by default is a candidate change for production.
+
+| Criterion (weight) | B Lights Out | H Hybrid | **L Broadcast hybrid (projected)** |
+| --- | --- | --- | --- |
+| Data visualisation (25%) | 6 | 9 | **8** |
+| Usability (20%) | 6 | 8 | **7** |
+| Identity (15%) | 10 | 8 | **10** |
+| Replay (15%) | 8 | 9 | **9** |
+| Fantasy (10%) | 7 | 8 | **8** |
+| Responsive (10%) | 7 | 8 | **7** |
+| Feasibility (5%) | 6 | 6 | **5** |
+| **Weighted total** | **7.10** | **8.30** | **8.00** |
+
+L scores data visualisation and usability one point below H because the condensed capitals are slower to read in dense tables. For that reason, body text stays in Barlow at normal case. L's feasibility is lower because the broadcast detailing (skewed shapes, clip-paths, team stripes) is extra CSS to maintain. If L is confirmed, the roadmap is unchanged. Only phase 1 changes, to use B's tokens and bundle Barlow and Barlow Condensed locally.
