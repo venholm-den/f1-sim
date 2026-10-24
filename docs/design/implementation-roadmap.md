@@ -17,7 +17,7 @@ Each phase is one or two PRs. Each one is shippable on its own, behind no flags,
 
 ## Guardrails for every phase
 
-- **CI stays green.** pytest and `node --test tests/tyre_strategy.test.cjs` must pass. Each phase adds `node --test` coverage for the data shaping it introduces: answer-row values, event derivation and focus state.
+- **CI stays green.** pytest and the `node --test` suites in CI must pass. Each phase adds `node --test` coverage for the data shaping it introduces: answer-row values, event derivation and focus state.
 - **Screenshots.** Before/after screenshots at 1440 × 900 and 390 × 844 go in each PR.
 - **Reduced motion and contrast.** These are checked for each PR against `design-system.md` §4.
 - **No invented data.** Ownership, live timing and a calibrated safety-car probability stay out until real data exists.
@@ -32,4 +32,9 @@ Each phase is one or two PRs. Each one is shippable on its own, behind no flags,
   - Condensed upper-case page and panel headings.
   - Solid red primary buttons using `--red-fill` `#E0122F`, so white text meets 4.5:1.
   - Hard-coded Nocturne tints replaced with broadcast equivalents.
-- **Not yet changed:** layouts, navigation and charts, which are phases 2–6. The replay driver palette in `replay.js` also still uses the old colours; it moves in phase 5.
+- **Phase 2 is done.** It covers:
+  - A broadcast top bar (red rule, Barlow Condensed) replacing the sidebar, with six destinations: Weekend, Predict, Fantasy, Replay, Championship and Lab. Drivers and Accuracy arrive with their screens in phase 6.
+  - Section tabs under the bar for destinations with more than one view, and a Workshop menu for Data Sources, Historical Data, Model Training and Settings. All 18 existing views are kept and re-parented, not rewritten.
+  - Shared driver focus: click a driver row to highlight it, Shift-click to compare two, Esc or the focus chip to clear. Covered by `tests/shell_focus.test.cjs`.
+  - Keys 1–6 switch destination. The footer key strip is deferred to phase 5, where replay adds its own keys.
+- **Not yet changed:** screen layouts and charts, which are phases 3–6. The replay driver palette in `replay.js` also still uses the old colours; it moves in phase 5.

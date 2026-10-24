@@ -96,7 +96,7 @@ The build script bundles:
 
 ## App Icon
 
-The logo lives in `portable_app\web\logo.svg` (sidebar and browser tab). The Windows `.exe` and window icon is `assets\race_workbench.ico`, which `build_portable_app.ps1` passes to PyInstaller with `--icon`. After changing the logo, regenerate the `.ico` with:
+The logo lives in `portable_app\web\logo.svg` (top bar and browser tab). The Windows `.exe` and window icon is `assets\race_workbench.ico`, which `build_portable_app.ps1` passes to PyInstaller with `--icon`. After changing the logo, regenerate the `.ico` with:
 
 ```powershell
 python scripts\make_app_icon.py

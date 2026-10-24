@@ -72,6 +72,7 @@ function navigate(view) {
   }
   if (view === 'compare') safeAction(loadComparisonHistory);
   if (view === 'track') renderTrack(displayedTrack());
+  if (typeof syncShell === 'function') syncShell(view);
 }
 // Job headings: neutral when idle, amber while working, red only for problems.
 function setJobStatus(id, status) {

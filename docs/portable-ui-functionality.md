@@ -12,7 +12,7 @@ forecasts have not been substituted for model outputs.
 
 Rebuilt on 5 October 2026 against the five images under
 `docs/mockups/portable-app/images`. The app opens Race Setup by default.
-The Simulation Centre remains available from the sidebar for prospective
+The Simulation Centre remains available from the Workshop menu for prospective
 forecasts, frozen run history, post-race scoring, Discord and Simulink tools.
 
 ## Implemented and connected
@@ -24,11 +24,18 @@ recommendation table remains expandable. Saved recommendations do not contain
 pit laps: the chart shows sequence, not lap duration or predicted pit windows.
 Stop counts follow the displayed sequence, including historical adjustments.
 
-Frontend data checks: `node --test tests/tyre_strategy.test.cjs`.
+Frontend data checks: `node --test tests/tyre_strategy.test.cjs tests/shell_focus.test.cjs`.
+
+Navigation (October 2026, broadcast phase 2): a top bar with six destinations
+(Weekend, Predict, Fantasy, Replay, Championship, Lab) and a Workshop menu for
+Data Sources, Historical Data, Model Training and Settings. Each destination shows
+its views as tabs underneath. Keys 1–6 switch destination. Clicking a driver row in
+any table or chart highlights that driver across the open view; Shift-click adds a
+second driver, and Esc or the focus chip clears it. Replay keeps its own selection.
 
 | Mockup area | Working functionality |
 | --- | --- |
-| Shell | Dark sidebar, red navigation, event/session/model/weather context cards, responsive panels and original vector icons. |
+| Shell | Broadcast top bar with destinations, section tabs and a Workshop menu, event/session/model/weather context cards, responsive panels and original vector icons. |
 | Race Setup | Season/event/session, simulation count, seed, baseline races, strategy history, overtaking difficulty, existing calibration/weather controls, live logs and measured runtime for new runs. Each manual run writes to a fresh folder. |
 | Model candidates | Off by default and never saved between sessions. Switching on lets one Race Setup run use unpromoted engines and models (car agents, pair overtaking, safety cars, survival retirements, race-window weather, shared team noise, grid sampling, announced penalties, sprint, calibrated track profile). Choices are allowlisted in `src/app_services/model_candidates.py` and validated by the same `run_config` rules as the CLI; impossible combinations are disabled in the form. Candidate runs stay local, are labelled `· candidate` in run history and show badges on Results. With *Also run the established model* ticked (the default), Race Setup first runs the established model on the same seed, then the candidate, and opens Compare with the established run as A and the candidate as B. |
 | Output switches | Snapshot, report images and raw-result choices are passed to the pipeline. Manual simulations never automatically send Discord messages. |
