@@ -119,7 +119,7 @@ def test_discord_posts_frozen_forecast_once(tmp_path, monkeypatch):
         return {"ok": True, "status": 204, "posted_files": kwargs["file_paths"]}
 
     monkeypatch.setattr(forecast_automation, "post_files_to_discord", post)
-    monkeypatch.setenv("DISCORD_WEBHOOK_URL", "https://discord.invalid/test")
+    monkeypatch.setenv("DISCORD_WEBHOOK_URL", "https://discord.com/api/webhooks/0/test")
 
     first = forecast_automation.run_automated_forecast(
         tmp_path, n_sims=100, discord_enabled=True
@@ -154,7 +154,7 @@ def test_complete_bundle_batches_and_does_not_resend(tmp_path, monkeypatch):
         return {'ok': True, 'status': 204, 'posted_files': kwargs['file_paths']}
 
     monkeypatch.setattr(forecast_automation, 'post_files_to_discord', post)
-    result = forecast_automation.post_frozen_forecast(tmp_path, 'https://discord.invalid/test')
+    result = forecast_automation.post_frozen_forecast(tmp_path, 'https://discord.com/api/webhooks/0/test')
     assert result['ok'] and result['batches'] == 2
     assert [len(batch) for batch in calls] == [10, 2]
     assert 'fantasy_value.png' in [path.name for batch in calls for path in batch]
@@ -178,12 +178,12 @@ def test_partial_batch_failure_keeps_successful_batch(tmp_path, monkeypatch):
 
     monkeypatch.setattr(forecast_automation, 'post_files_to_discord', post)
     with pytest.raises(RuntimeError):
-        forecast_automation.post_frozen_forecast(tmp_path, 'https://discord.invalid/test')
+        forecast_automation.post_frozen_forecast(tmp_path, 'https://discord.com/api/webhooks/0/test')
     receipt = tmp_path / 'discord_batch_2_result.json'
     data = json.loads(receipt.read_text())
     data['next_attempt_at'] = '2000-01-01T00:00:00+00:00'
     receipt.write_text(json.dumps(data))
-    result = forecast_automation.post_frozen_forecast(tmp_path, 'https://discord.invalid/test')
+    result = forecast_automation.post_frozen_forecast(tmp_path, 'https://discord.com/api/webhooks/0/test')
     assert result['ok'] and len(calls) == 3
     assert len(calls[-1]) == 2
 
@@ -204,8 +204,8 @@ def test_uncertain_batch_is_not_blindly_retried(tmp_path, monkeypatch):
 
     monkeypatch.setattr(forecast_automation, 'post_files_to_discord', post)
     with pytest.raises(RuntimeError):
-        forecast_automation.post_frozen_forecast(tmp_path, 'https://discord.invalid/test')
-    result = forecast_automation.post_frozen_forecast(tmp_path, 'https://discord.invalid/test')
+        forecast_automation.post_frozen_forecast(tmp_path, 'https://discord.com/api/webhooks/0/test')
+    result = forecast_automation.post_frozen_forecast(tmp_path, 'https://discord.com/api/webhooks/0/test')
     assert result['requires_review'] and len(calls) == 2
 
 
@@ -227,7 +227,7 @@ def test_discord_requires_local_webhook_after_freeze(tmp_path, monkeypatch):
 def test_queue_retries_old_session_after_next_session_becomes_eligible(tmp_path, monkeypatch):
     monkeypatch.setattr(forecast_automation, 'next_race', lambda root: sample_context())
     monkeypatch.setattr(forecast_automation, 'run_forecast', fake_forecast)
-    monkeypatch.setenv('DISCORD_WEBHOOK_URL', 'https://discord.invalid/test')
+    monkeypatch.setenv('DISCORD_WEBHOOK_URL', 'https://discord.com/api/webhooks/0/test')
     monkeypatch.setattr(forecast_automation, 'post_files_to_discord',
                         lambda **kwargs: {'ok': False, 'status': 503})
     with pytest.raises(RuntimeError, match='Discord post failed'):
@@ -253,7 +253,7 @@ def test_queue_retries_old_session_after_next_session_becomes_eligible(tmp_path,
 def test_uncertain_delivery_is_not_automatically_reposted(tmp_path, monkeypatch):
     monkeypatch.setattr(forecast_automation, 'next_race', lambda root: sample_context())
     monkeypatch.setattr(forecast_automation, 'run_forecast', fake_forecast)
-    monkeypatch.setenv('DISCORD_WEBHOOK_URL', 'https://discord.invalid/test')
+    monkeypatch.setenv('DISCORD_WEBHOOK_URL', 'https://discord.com/api/webhooks/0/test')
     calls = []
 
     def post(**kwargs):
@@ -272,7 +272,7 @@ def test_discord_failure_still_captures_trials_and_checks(tmp_path, monkeypatch)
     from src.app_services import classification_checks, prediction_trials
     monkeypatch.setattr(forecast_automation, 'next_race', lambda root: sample_context())
     monkeypatch.setattr(forecast_automation, 'run_forecast', fake_forecast)
-    monkeypatch.setenv('DISCORD_WEBHOOK_URL', 'https://discord.invalid/test')
+    monkeypatch.setenv('DISCORD_WEBHOOK_URL', 'https://discord.com/api/webhooks/0/test')
     monkeypatch.setattr(forecast_automation, 'post_files_to_discord', lambda **kwargs: {'ok': False, 'status': 503})
     captured = []
     monkeypatch.setattr(prediction_trials, 'try_capture_trial', lambda root, folder: captured.append('trial'))

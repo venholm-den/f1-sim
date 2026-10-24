@@ -657,6 +657,13 @@ summary{font-size:13px;color:var(--text-2);text-transform:none}
 .workflow .context-strip{display:none}
 }
 #view-fantasy .actions{display:flex;gap:8px;flex-wrap:wrap}
+#view-championship .panel-header{flex-wrap:wrap;margin-bottom:0}
+#view-championship .actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-left:auto}
+#view-championship .actions select{width:auto;min-width:90px}
+#view-championship .notice{margin:14px 0 0}
+#view-championship>.panel+.result-metrics{margin-top:14px}
+/* The page has its own data, so it does not depend on a saved race run. */
+body.no-run #view-championship .result-metrics{display:grid}
 #view-fantasy .form-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:18px 0}
 #view-fantasy .form-grid label{display:flex;flex-direction:column;gap:8px;font-size:12px;color:var(--muted)}
 #view-fantasy select{width:100%;min-width:0}

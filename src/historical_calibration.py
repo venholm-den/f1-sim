@@ -4,6 +4,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+import hashlib
 import joblib
 import json
 import numpy as np
@@ -204,6 +205,12 @@ def _load_models(model_dir: str | Path) -> tuple[Any, Any]:
         raise ValueError('Historical candidate is inactive or lacks independent promotion evidence.')
     if metrics.get('qualifying_feature_contract') != QUALIFYING_CONTRACT:
         raise ValueError('Historical model uses an incompatible qualifying feature contract; retrain before activation.')
+    # Models trained before hashes were recorded have none; newer ones must match.
+    recorded = metrics.get('model_sha256')
+    if recorded is not None:
+        for path in (finish_path, dnf_path):
+            if not isinstance(recorded, dict) or recorded.get(path.name) != hashlib.sha256(path.read_bytes()).hexdigest():
+                raise ValueError(f'Historical model file {path.name} does not match the hash recorded at training time.')
     return joblib.load(finish_path), joblib.load(dnf_path)
 
 

@@ -13,7 +13,7 @@ import pandas as pd
 
 from src.app_services.beta import ResultsNotReady, digest, run_scoring, verified_snapshot
 from src.app_services.simulation_jobs import write_json
-from src.discord_post import post_files_to_discord, validate_message
+from src.discord_post import delivery_state, post_files_to_discord, validate_message, validate_webhook_url
 from src.app_services.discord_reports import analysis_summary, message_text, post_race_message
 
 
@@ -95,7 +95,7 @@ def post_analysis(folder: Path, webhook_url: str | None = None) -> dict:
     """Persist delivery before sending; never blindly repeat an uncertain upload."""
     receipt_path = folder / 'discord_post_result.json'
     existing = _read(receipt_path)
-    if existing.get('ok') or existing.get('delivery_state') in {'sending', 'uncertain'}:
+    if existing.get('ok') or existing.get('delivery_state') in {'sending', 'uncertain', 'failed'}:
         return {**existing, 'skipped': True, 'requires_review': not bool(existing.get('ok'))}
     now = datetime.now(timezone.utc)
     if existing.get('next_attempt_at') and now < datetime.fromisoformat(existing['next_attempt_at']):
@@ -103,6 +103,7 @@ def post_analysis(folder: Path, webhook_url: str | None = None) -> dict:
     webhook_url = webhook_url or os.getenv('DISCORD_WEBHOOK_URL', '')
     if not webhook_url:
         raise ValueError('DISCORD_WEBHOOK_URL is missing; post-race analysis remains local.')
+    validate_webhook_url(webhook_url)
     payload = _read(folder / 'post_race_embed.json')
     plan = _read(folder / 'post_race_delivery_plan.json')
     names = ('post_race_analysis.txt', 'forecast_vs_actual.png', 'score_comparison.csv', 'actual_results.csv', 'score.json')
@@ -126,12 +127,12 @@ def post_analysis(folder: Path, webhook_url: str | None = None) -> dict:
                                         file_paths=files, username='F1 Sim')
     except Exception:
         response = {'ok': False, 'status': 'network_exception'}
-    uncertain = response.get('status') in {'url_error', 'network_exception'}
+    state = delivery_state(response)
     result = {'ok': bool(response.get('ok')), 'status': response.get('status'),
-              'delivery_state': 'sent' if response.get('ok') else ('uncertain' if uncertain else 'pending'),
+              'delivery_state': state,
               'attempts': attempts, 'attempted_at': datetime.now(timezone.utc).isoformat(),
               'posted_files': [str(path) for path in files]}
-    if not result['ok'] and not uncertain:
+    if state == 'pending':
         delay = min(360, 15 * 2 ** min(attempts - 1, 5))
         result['next_attempt_at'] = (now + timedelta(minutes=delay)).isoformat()
     write_json(receipt_path, result)

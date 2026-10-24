@@ -43,6 +43,35 @@ def validate_message(content: str, embeds: list[dict] | None = None) -> None:
         raise ValueError('Discord embeds exceed 6,000 combined characters.')
 
 
+DISCORD_WEBHOOK_HOSTS = frozenset({
+    "discord.com", "discordapp.com", "ptb.discord.com", "canary.discord.com",
+})
+
+
+def validate_webhook_url(webhook_url: str) -> None:
+    """Fail before delivery reservation unless the URL is a Discord webhook."""
+    parts = urlsplit(webhook_url or "")
+    if (parts.scheme != "https" or parts.hostname not in DISCORD_WEBHOOK_HOSTS
+            or not parts.path.startswith("/api/webhooks/")):
+        raise ValueError("DISCORD_WEBHOOK_URL must be an https://discord.com/api/webhooks/ URL.")
+
+
+def delivery_state(response: dict[str, Any]) -> str:
+    """Classify a post result for the reserve-then-send receipts.
+
+    Transport errors cannot prove whether Discord accepted the message, so they
+    are uncertain. HTTP 413 means the attachments are over Discord's size
+    limit, which no retry fixes.
+    """
+    if response.get("ok"):
+        return "sent"
+    if response.get("status") in {"url_error", "network_exception"}:
+        return "uncertain"
+    if response.get("status") in {413, "invalid_webhook_url"}:
+        return "failed"
+    return "pending"
+
+
 def _guess_content_type(path: Path) -> str:
     guessed, _ = mimetypes.guess_type(str(path))
     return guessed or "application/octet-stream"
@@ -94,6 +123,10 @@ def post_files_to_discord(
 
     if not webhook_url:
         return {"ok": False, "status": "missing_webhook_url"}
+    try:
+        validate_webhook_url(webhook_url)
+    except ValueError:
+        return {"ok": False, "status": "invalid_webhook_url"}
 
     existing_files = [str(Path(path)) for path in file_paths if path and Path(path).exists()]
 

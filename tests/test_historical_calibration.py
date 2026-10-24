@@ -126,3 +126,19 @@ def test_calibration_rejects_synthetic_ranks_and_old_contract(tmp_path):
     result = apply_historical_calibration(_features(), config=HistoricalCalibrationConfig(model_dir=tmp_path))
     assert not result.historical_model_available.any()
     assert 'incompatible' in result.historical_calibration_note.iloc[0]
+
+
+def test_swapped_model_file_is_refused_before_unpickling(tmp_path):
+    import hashlib
+    joblib.dump(_FinishModel(), tmp_path / FINISH_MODEL_FILE)
+    joblib.dump(_DnfModel(), tmp_path / DNF_MODEL_FILE)
+    hashes = {name: hashlib.sha256((tmp_path/name).read_bytes()).hexdigest() for name in (FINISH_MODEL_FILE, DNF_MODEL_FILE)}
+    metrics = {'promotion_eligible': True, 'activated': True,
+               'qualifying_feature_contract': QUALIFYING_CONTRACT, 'model_sha256': hashes}
+    (tmp_path/'historical_model_metrics.json').write_text(json.dumps(metrics))
+    config = HistoricalCalibrationConfig(model_dir=tmp_path)
+    assert apply_historical_calibration(_features(), config=config).historical_model_available.all()
+    joblib.dump(_DnfModel(), tmp_path / FINISH_MODEL_FILE)
+    result = apply_historical_calibration(_features(), config=config)
+    assert not result.historical_model_available.any()
+    assert 'does not match' in result.historical_calibration_note.iloc[0]

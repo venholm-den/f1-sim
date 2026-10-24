@@ -172,6 +172,8 @@ function sessionModeLabel(mode) {
 
 // Readable headers for the snake_case columns written by the simulation outputs.
 const columnLabels = {
+  title_chance: "Title", top3_chance: "Top 3", current_points: "Points", expected_points: "Expected final pts",
+  expected_position: "Expected final pos",
   avg_finish: "Avg finish", win_chance: "Win", podium_chance: "Podium", dnf_chance: "DNF",
   points_chance: "Points finish", points_scoring_chance: "Points finish", top5_chance: "Top 5", top10_chance: "Top 10",
   avg_points: "Avg points", avg_grid: "Avg grid", finish_p25: "Finish P25", finish_p75: "Finish P75",
@@ -296,7 +298,7 @@ function renderBarChart(targetId, points, fill = colors.red, { max = null, unit 
         <div class="bar-row">
           <div class="bar-label" title="${escapeHtml(item.label)}">${escapeHtml(item.label)}</div>
           <div class="bar-track"><div class="bar-fill" style="width:${width}%;background:${item.fill || fill}"></div></div>
-          <div class="bar-value">${known ? `${value.toFixed(1)}${unit}` : "Unknown"}</div>
+          <div class="bar-value">${known ? escapeHtml(item.text ?? `${value.toFixed(1)}${unit}`) : "Unknown"}</div>
         </div>`;
     })
     .join("");
@@ -442,9 +444,10 @@ async function pollRunStatus() {
   const status = await api().run_status();
   state.manualRunning = Boolean(status.running);
   $("runDot").classList.toggle("running", Boolean(status.running));
-  $("runState").textContent = status.running ? "Running" : status.exitCode === 0 ? "Run complete" : status.exitCode ? "Run failed" : "Ready";
+  const cancelled = !status.running && status.status === "cancelled";
+  $("runState").textContent = status.running ? "Running" : cancelled ? "Run cancelled" : status.exitCode === 0 ? "Run complete" : status.exitCode ? "Run failed" : "Ready";
   // The log scrolls to its end, so the plain-language reason goes last.
-  const failure = !status.running && status.exitCode && status.error ? `\n\nRun failed: ${status.error}` : "";
+  const failure = !status.running && !cancelled && status.exitCode && status.error ? `\n\nRun failed: ${status.error}` : "";
   $("runLog").textContent = (status.log || "No run output yet.") + failure;
   $("runLog").scrollTop = $("runLog").scrollHeight;
   $("runButton").disabled = Boolean(status.running);
@@ -452,7 +455,7 @@ async function pollRunStatus() {
   if (status.running) {
     clearTimeout(state.statusTimer);
     state.statusTimer = setTimeout(() => safeAction(pollRunStatus), 1200);
-  } else if (status.exitCode === 0) {
+  } else if (status.exitCode === 0 && !cancelled) {
     await refreshOutputs();
     await continuePairRun();
   } else {

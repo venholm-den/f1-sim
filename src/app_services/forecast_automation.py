@@ -12,7 +12,7 @@ from uuid import uuid4
 from portable_app.instance_lock import workspace_lock
 from src.app_services.beta import next_race, run_forecast, verified_snapshot
 from src.app_services.simulation_jobs import write_json
-from src.discord_post import post_files_to_discord, validate_message
+from src.discord_post import delivery_state, post_files_to_discord, validate_message, validate_webhook_url
 from src.app_services.discord_reports import forecast_message
 from src.app_services.discord_cards import render_forecast_cards
 
@@ -121,7 +121,7 @@ def post_frozen_forecast(folder: Path, webhook_url: str | None = None) -> dict:
     """Deliver all available outputs in batches, without resending successful ones."""
     folder = Path(folder)
     receipt = _read_json(folder / 'discord_post_result.json')
-    if receipt and (receipt.get('ok') or receipt.get('delivery_state') in {'sending', 'uncertain'}):
+    if receipt and (receipt.get('ok') or receipt.get('delivery_state') in {'sending', 'uncertain', 'failed'}):
         return {**receipt, 'skipped': True,
                 'requires_review': not bool(receipt.get('ok'))}
     plan = _forecast_delivery_plan(folder)
@@ -153,7 +153,7 @@ def _post_forecast_batch(folder: Path, webhook_url: str | None, files: list[Path
     existing = _read_json(receipt_path)
     if existing and existing.get("ok"):
         return {**existing, "skipped": True}
-    if existing and existing.get('delivery_state') in {'sending', 'uncertain'}:
+    if existing and existing.get('delivery_state') in {'sending', 'uncertain', 'failed'}:
         return {**existing, 'skipped': True, 'requires_review': True}
     if existing and existing.get('next_attempt_at'):
         if datetime.now(timezone.utc) < datetime.fromisoformat(existing['next_attempt_at']):
@@ -166,6 +166,7 @@ def _post_forecast_batch(folder: Path, webhook_url: str | None, files: list[Path
         raise ValueError(
             "DISCORD_WEBHOOK_URL is missing. Add it to the project .env file before enabling Discord."
         )
+    validate_webhook_url(webhook_url)
 
     message = message or forecast_message(folder)
     validate_message(**message)
@@ -185,11 +186,9 @@ def _post_forecast_batch(folder: Path, webhook_url: str | None, files: list[Path
         )
     except Exception:
         result = {'ok': False, 'status': 'network_exception'}
-    # Transport errors cannot prove whether Discord accepted the message.
-    uncertain = result.get('status') in {'url_error', 'network_exception'}
-    result['delivery_state'] = 'sent' if result.get('ok') else ('uncertain' if uncertain else 'pending')
+    result['delivery_state'] = delivery_state(result)
     result['attempts'] = attempts
-    if not result.get('ok') and not uncertain:
+    if result['delivery_state'] == 'pending':
         delay = min(360, 15 * 2 ** min(attempts - 1, 5))
         result['next_attempt_at'] = (datetime.now(timezone.utc) + timedelta(minutes=delay)).isoformat()
     if "posted_files" in result:

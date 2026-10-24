@@ -820,6 +820,8 @@ class PortableWebApi:
         self.run_lock = threading.Lock()
         self._fantasy_lock = threading.Lock()
         self._fantasy_progress = {'running': False, 'result': None}
+        self._championship_lock = threading.Lock()
+        self._championship_cache: dict[int, tuple[float, dict[str, Any]]] = {}
         self._manual_job = None
         self.run_state: dict[str, Any] = {"running": False, "exitCode": None, "log": ""}
         self._jobs = SimulationJobs(Path.cwd())
@@ -1288,6 +1290,19 @@ class PortableWebApi:
                 'budget': float(rules['budget'] if budget is None else budget),
                 'rules': rules, 'market': {'season': latest[0], 'round': latest[1],
                                            'event': market[0]['event'], 'captured_at': latest[2]}}
+
+    def championship_odds(self, year=None, refresh=False):
+        import time
+        from src.app_services.championship import championship_odds
+        year = int(year or datetime.now(timezone.utc).year)
+        with self._championship_lock:
+            cached = self._championship_cache.get(year)
+            # Results only change after a session, so a short cache keeps tab switches instant.
+            if cached and not refresh and time.monotonic() - cached[0] < 600:
+                return cached[1]
+            payload = championship_odds(self._jobs.root, year)
+            self._championship_cache[year] = (time.monotonic(), payload)
+            return payload
 
     def fantasy_open(self):
         from src.fantasy_market import archive_root
