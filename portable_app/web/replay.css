@@ -13,6 +13,7 @@
 .replay-car text{fill:var(--text);font-weight:600;paint-order:stroke;stroke:var(--bg);stroke-width:3px;stroke-linejoin:round}
 .replay-car.focused circle{stroke:var(--text);stroke-width:3}
 .replay-car.dimmed{opacity:.35}
+.replay-car.label-hidden text{display:none}
 .replay-overlay{position:absolute;bottom:10px;left:10px;padding:5px 9px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--muted);font-size:12px}
 .replay-flag{padding:5px 10px;border-radius:6px;font-size:12px;font-weight:600;border:1px solid currentColor;white-space:nowrap}
 .replay-flag[data-tone=amber],.replay-flag[data-tone=yellow]{color:var(--amber)}

@@ -15,7 +15,7 @@ async function refreshFantasyArchive(year) {
   const last=data.market[0];
   $('fantasyArchiveStatus').textContent=data.progress.running ? 'Collecting public feeds…' :
     `${data.completed_weeks} completed weekends · ${data.total_rows.toLocaleString()} source records · ${data.seasons.join(', ') || 'No seasons downloaded'}${failures.length ? ' · Sources need retry: '+failures.join(', ') : ''}${data.errors.length ? ' · '+data.errors.join('; ') : ''}`;
-  $('fantasyArchivePath').textContent=data.archive;
+  $('fantasyOpenArchive').title=data.archive;
   $('fantasyMarketContext').textContent=last ? `${last.season} ${last.event} · official feed quote captured ${new Date(last.captured_at).toLocaleString()} · ${last.points_status} points` : 'No official market captured yet. Refresh to download current public data.';
   $('fantasyRefresh').disabled=data.progress.running;
   $('fantasyBackfill').disabled=data.progress.running;

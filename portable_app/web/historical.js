@@ -4,7 +4,7 @@ function renderArchiveAuth(account) {
   $('archiveAuthStatus').textContent=account.message+
     (account.expires_at?` Expires ${new Date(account.expires_at).toLocaleString()}.`:'');
   $('archiveAuthSignIn').textContent=account.status==='waiting'?'REOPEN F1 SIGN-IN':
-    account.status==='signed_in'?'SIGN IN AGAIN':'SIGN IN TO F1';
+    account.status==='signed_in'?'Sign in again':'Sign in to F1';
   $('archiveAuthCancel').hidden=account.status!=='waiting';
 }
 async function refreshArchiveAuth() {
@@ -28,6 +28,8 @@ function requestWait(timestamp, asOf) {
   return `${seconds<60?`${seconds}s`:`${Math.ceil(seconds/60)}m`} (${new Date(timestamp*1000).toLocaleTimeString()})`;
 }
 function renderRequestUsage(usage, jobStatus) {
+  // The meter only means something once a download has been chosen.
+  document.querySelector('.archive-request-meter').hidden=jobStatus==='none';
   const available=usage && usage.status!=='unavailable';
   for (const [id,key] of [['archiveRequestsHour','requests_last_hour'],['archiveRequestsJob','requests_job'],
       ['archiveHttpCache','http_cache_hits_job'],['archiveDataCache','data_cache_hits_job']]) {
@@ -115,7 +117,7 @@ async function refreshHistoricalLibrary() {
 }
 async function startHistoricalDownload() {
   $('archiveStart').disabled=true;
-  $('archiveJobStatus').textContent='STARTING';
+  setJobStatus('archiveJobStatus','starting');
   try {
     const job=await api().historical_start(archiveOptions());archiveState.selectedJob=job.id;
     notify('Historical download started. Completed sessions are saved as it progresses.');
@@ -125,7 +127,7 @@ async function startHistoricalDownload() {
 async function pollHistoricalDownload() {
   const job=await api().lab_status(archiveState.selectedJob), progress=job.archive_progress || {};
   const running=['running','cancelling'].includes(job.status);
-  $('archiveJobStatus').textContent=job.status.replaceAll('_',' ').toUpperCase();
+  setJobStatus('archiveJobStatus',job.status);
   $('archiveCurrent').textContent=job.status==='cancelling'?'Stopping after the current session; saved data is retained.':progress.current || 'Starting download worker…';
   $('archiveCounts').textContent=`${progress.processed || 0} / ${progress.total || 0} sessions checked · ${progress.downloaded || 0} saved · ${progress.skipped || 0} already stored · ${progress.failed || 0} unavailable · ${progress.incomplete_telemetry || 0} saved without full telemetry`;
   renderRequestUsage(job.request_usage,job.status);

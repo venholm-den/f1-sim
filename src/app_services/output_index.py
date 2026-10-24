@@ -52,7 +52,7 @@ def _list_outputs(output_dir: str | Path, outputs: list[tuple[str, str]]) -> lis
     return files
 
 
-def read_output_table(output_dir: str | Path, relative_path: str, max_rows: int = 100) -> pd.DataFrame:
+def read_output_table(output_dir: str | Path, relative_path: str, max_rows: int | None = 100) -> pd.DataFrame:
     path = Path(output_dir) / relative_path
 
     if not path.exists():

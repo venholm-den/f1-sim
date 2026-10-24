@@ -96,7 +96,8 @@ def _run(folder: Path):
         output = Path(config['outputs']['output_dir'])
         write_json(output/'ui_run.json', {'settings': config['run'],
             'completed_at_utc': datetime.now(timezone.utc).isoformat(),
-            'elapsed_seconds': round(time.monotonic()-started, 2), 'post_to_discord': False})
+            'elapsed_seconds': round(time.monotonic()-started, 2), 'post_to_discord': False,
+            'candidates': config.get('ui_candidates', {})})
         return
     if job['kind'] == 'historical_training':
         from src.app_services.model_training import train

@@ -10,6 +10,11 @@ and the intended upcoming event, then run `main.py --config YOUR_CONFIG.json
 --no-discord`. The CLI override also neutralises an inherited dotenv delivery
 preference. Enable one candidate at a time for interpretable comparisons.
 
+The portable app's Race Setup also has a **Model candidates** panel (off by
+default) that applies these settings to a single local run, validated by the
+same `run_config` rules. Artifact-based candidates such as qualifying pace
+still need a config file.
+
 ## Race-window weather
 
 Set `model.weather_model` to `race_window_v1`. The run targets the event's

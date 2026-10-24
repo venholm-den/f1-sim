@@ -11,6 +11,7 @@ import pandas as pd
 
 from src.app_services.data_health import DATA_SOURCE_REQUIREMENTS, validate_data_sources
 from src.app_services.output_index import read_output_table
+from src.app_services.model_candidates import candidate_labels
 
 
 def payload(frame: pd.DataFrame) -> dict:
@@ -81,9 +82,10 @@ def saved_details(output_dir: str | Path, summary_override=None) -> dict:
             pass
     return {'positionMatrix': payload(matrix), 'fantasyTable': payload(fantasy),
             'venue': read('venue_context.json'), 'raceWeather': weather,
-            'run': saved_run, 'forecastRun': forecast_config.get('run', {}),
+            'run': saved_run, 'candidates': candidate_labels(saved_run.get('candidates')),
+            'forecastRun': forecast_config.get('run', {}),
             'risk': {column: float(pd.to_numeric(summary[column], errors='coerce').mean())
-                     for column in ('red_flag_chance', 'dnf_chance')
+                     for column in ('red_flag_chance', 'dnf_chance', 'safety_car_chance', 'avg_safety_cars', 'vsc_chance')
                      if column in summary and pd.to_numeric(summary[column], errors='coerce').notna().any()},
             'confidence': None}
 

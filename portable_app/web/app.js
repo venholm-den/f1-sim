@@ -74,6 +74,7 @@ function applySetupOptions(setupOptions, preferredSession) {
   if (Number.isFinite(overtakingDifficulty)) {
     setOvertakingPercent(overtakingDifficulty * 100);
   }
+  $("overtakingDefault").textContent = Number.isFinite(overtakingDifficulty) ? `Track default ${Math.round(overtakingDifficulty * 100)}%` : "";
 }
 
 async function refreshSetupOptions(preferredSession) {
@@ -179,14 +180,14 @@ const columnLabels = {
   primary_strategy: "Strategy", alternative_strategy: "Alternative", expected_stops: "Stops",
   strategy_confidence: "Confidence", risk_level: "Risk", primary_score: "Strategy score",
   quali_pace_score: "Quali pace", race_pace_score: "Race pace", long_run_pace_score: "Long-run pace",
-  strategy_score: "Strategy score", reliability_score: "Reliability", tyre_deg_score: "Tyre deg",
+  strategy_score: "Strategy score", reliability_score: "Reliability (0–100)", tyre_deg_score: "Tyre deg",
   current_weight: "Session weight", model_uncertainty: "Model uncertainty", performance_uncertainty: "Performance uncertainty",
-  engine_reliability_score: "PU reliability", team_dnf_rate: "Team DNF", driver_dnf_rate: "Driver DNF",
+  engine_reliability_score: "PU reliability (0–100)", team_dnf_rate: "Team DNF", driver_dnf_rate: "Driver DNF",
   quali_rank_from_laps: "Rank", clean_laps: "Clean laps", best_lap: "Best lap (s)", median_lap: "Median lap (s)",
   ideal_lap: "Ideal lap (s)", avg_lap: "Avg lap (s)", gap_to_fastest: "Gap (s)", ideal_gap_to_fastest: "Ideal gap (s)",
   best_s1: "Best S1 (s)", best_s2: "Best S2 (s)", best_s3: "Best S3 (s)", avg_speed_trap: "Speed trap (km/h)",
   laps_in_run: "Run laps", run_start_lap: "From lap", run_end_lap: "To lap", degradation_per_lap: "Deg / lap (s)",
-  row_count: "Rows", size_bytes: "Size (bytes)", modified_at: "Modified",
+  row_count: "Rows", size_bytes: "Size", modified_at: "Modified", exists: "Saved", GridPosition: "Grid",
 };
 
 function columnLabel(column) {
@@ -363,9 +364,6 @@ function renderWeather(weather) {
     { label: "Mean driver DNF", value: weather?.dnf, fill: colors.orange },
   ], colors.blue, { max: 100, unit: "%" });
   $("weatherChartSource").textContent = weather?.source || "No weather source available";
-  const observed = weather?.observed || {}, modifiers = weather?.modifiers || {};
-  const number = value => value == null ? 'not recorded' : Number(value).toFixed(2);
-  $("weatherDetails").textContent = `Saved observations — air: ${number(observed.air_temp_avg)} °C; track: ${number(observed.track_temp_avg)} °C; rainfall: ${observed.rainfall_flag == null ? 'not recorded' : observed.rainfall_flag ? 'observed' : 'not observed'}. Model weather multipliers — disruption: ${number(modifiers.chaos_factor)}; DNF: ${number(modifiers.dnf_factor)}; degradation: ${number(modifiers.degradation_factor)}. Spread/degradation scores are not probabilities.`;
 }
 
 function renderOutputs(outputs) {
@@ -384,21 +382,16 @@ function renderOutputs(outputs) {
   renderTable('runHealthTable',{columns:['check','value','detail'],rows});
   const charts = state.outputs.resultsCharts || {};
   const screens = state.outputs.sessionScreens || {};
-  renderBarChart("winChart", charts.win, colors.red, { unit: "%" });
-  renderBarChart("podiumChart", charts.podium, colors.amber, { unit: "%" });
   renderBarChart("dnfChart", charts.dnf, colors.orange, { unit: "%" });
   renderBarChart("fantasyChart", charts.fantasy, colors.blue);
   renderTable("summaryTable", state.outputs.summaryTable);
   $("practiceModeBadge").textContent = sessionModeLabel(state.outputs.sessionMode);
   $("qualiModeBadge").textContent = sessionModeLabel(state.outputs.sessionMode);
-  $("raceModeBadge").textContent = sessionModeLabel(state.outputs.sessionMode);
   renderTable("practiceSectorTable", screens.practice?.sectors);
   renderTable("practicePaceTable", screens.practice?.pace);
   renderTable("practiceLongRunTable", screens.practice?.longRun);
   renderTable("qualiSectorTable", screens.quali?.sectors);
   renderTable("qualiPaceTable", screens.quali?.pace);
-  renderTable("raceScreenSummaryTable", screens.race?.summary);
-  renderTable("raceScreenStrategyTable", screens.race?.strategy);
   renderTable("signalOverviewTable", state.outputs.signals?.overview);
   renderTable("driverSignalsTable", state.outputs.signals?.drivers);
   $("modelCommentary").textContent = state.outputs.signals?.commentary || "No model commentary found yet.";
@@ -425,9 +418,18 @@ async function refreshOutputs() {
 
 async function startRun() {
   await setPcFollowing(false);
-  const response = await api().start_run(readSettings());
+  const candidates = readCandidates();
+  // With candidates on, the established model can run first on the same seed so the two compare cleanly.
+  const paired = Object.keys(candidates).length > 0 && $("candidateBaselineInput").checked;
+  state.pairRun = paired ? { settings: readSettings(), candidates, baseline: null } : null;
+  await launchRun(readSettings(), paired ? {} : candidates);
+}
+
+async function launchRun(settings, candidates) {
+  const response = await api().start_run({ ...settings, candidates });
   if (!response.ok) {
     $("runLog").textContent = response.message;
+    state.pairRun = null;
     return;
   }
   state.activeOutputDir = response.outputDir;
@@ -452,7 +454,24 @@ async function pollRunStatus() {
     state.statusTimer = setTimeout(() => safeAction(pollRunStatus), 1200);
   } else if (status.exitCode === 0) {
     await refreshOutputs();
+    await continuePairRun();
+  } else {
+    state.pairRun = null;
   }
+}
+
+async function continuePairRun() {
+  const pair = state.pairRun;
+  if (!pair) return;
+  if (!pair.baseline) {
+    pair.baseline = state.activeOutputDir;
+    $("runState").textContent = "Established run complete · starting candidate";
+    await launchRun(pair.settings, pair.candidates);
+    return;
+  }
+  state.pairRun = null;
+  state.comparePreset = { baseline: pair.baseline, candidate: state.activeOutputDir };
+  navigate("compare");
 }
 
 function setupNavigation() {
@@ -507,6 +526,7 @@ async function boot() {
   setOptions($("yearInput"), initial.seasons, initial.settings.year);
   setOptions($("eventInput"), initial.events, initial.settings.event);
   writeSettings(initial.settings);
+  renderCandidateOptions(initial.modelCandidates);
   applySetupOptions(initial.setupOptions || { sessions: initial.sessions }, initial.settings.session);
   renderOutputs(initial.outputs);
   await loadDataPreview();

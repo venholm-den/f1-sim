@@ -1,7 +1,6 @@
-/* The advanced tools share the supplied workbench's palette and components. */
-:root{--bg:#161826;--panel:#232532;--line:#3f424d;--text:#e9e9ed;--muted:#b2b6ca;--accent:#e57669;--blue:#8fb8df}
+/* Component overrides matching the Workbench; colour tokens live in centre.css. */
 body{font-family:Inter,"Segoe UI",system-ui,sans-serif;grid-template-columns:236px minmax(0,1fr)}
-.sidebar{background:var(--bg);padding:24px 14px}.brand{font-weight:500;letter-spacing:0}.brand b{font-size:28px}.brand small{color:#9397ab}
+.sidebar{background:var(--bg);padding:24px 14px}
 main{padding:28px 28px 50px}h1{font-size:28px;font-weight:500;letter-spacing:-.025em}h2{font-size:16px;font-weight:500}h3{font-size:18px;font-weight:500}
 .source-strip,.historical-source,.monitor,.chart-panel,.mode{background:var(--panel);border:1px solid var(--line);border-radius:14px}
 .history button.active{background:#e5766915;border-color:#e5766966;box-shadow:none;color:#f1b8af}

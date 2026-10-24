@@ -173,3 +173,23 @@ def test_closing_app_cancels_manual_worker_and_preserves_partial_folder(api, mon
     assert api.run_status()['status'] == 'cancelled'
     assert Path(result['outputDir']).is_dir()
     assert not (Path(result['outputDir'])/'ui_run.json').exists()
+
+
+def test_fantasy_chart_covers_every_driver_not_just_the_first_raw_rows(api, tmp_path):
+    output = tmp_path/'outputs'
+    output.mkdir(exist_ok=True)
+    pd.DataFrame({'Driver': ['AAA', 'BBB', 'CCC'], 'avg_finish': [1, 2, 3],
+                  'avg_fantasy_points': [20.0, 15.0, 10.0]}).to_csv(output/'simulation_summary.csv', index=False)
+    # Raw rows are grouped by driver, so a row cap would only ever reach AAA.
+    pd.DataFrame({'Driver': ['AAA']*6000 + ['BBB']*10, 'fantasy_points': 1.0}).to_csv(
+        output/'raw_fantasy_results.csv', index=False)
+    chart = api.outputs({'output_dir': str(output)})['resultsCharts']['fantasy']
+    assert [point['label'] for point in chart] == ['AAA', 'BBB', 'CCC']
+
+
+def test_safety_car_risk_is_saved_only_when_a_candidate_produced_it(tmp_path):
+    pd.DataFrame({'Driver': ['AAA', 'BBB'], 'red_flag_chance': [.03, .03], 'safety_car_chance': [.4, .4],
+                  'avg_safety_cars': [.6, .6], 'vsc_chance': [.3, .3]}).to_csv(tmp_path/'simulation_summary.csv', index=False)
+    risk = saved_details(tmp_path)['risk']
+    assert risk['safety_car_chance'] == pytest.approx(.4)
+    assert risk['avg_safety_cars'] == pytest.approx(.6)

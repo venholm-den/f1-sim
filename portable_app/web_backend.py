@@ -716,6 +716,19 @@ def weather_summary(output_dir: str | Path) -> dict[str, Any]:
     return values
 
 
+def finish_ranges(summary: pd.DataFrame) -> list[dict[str, Any]]:
+    """Middle half of each driver's simulated finishes, best average first."""
+    columns = ["Driver", "avg_finish", "finish_p25", "finish_p75"]
+    if summary.empty or not set(columns).issubset(summary.columns):
+        return []
+    frame = summary[columns].copy()
+    for column in columns[1:]:
+        frame[column] = pd.to_numeric(frame[column], errors="coerce")
+    frame = frame.dropna().sort_values("avg_finish")
+    return [{"driver": str(row.Driver), "mean": float(row.avg_finish), "p25": float(row.finish_p25),
+             "p75": float(row.finish_p75)} for row in frame.itertuples(index=False)]
+
+
 def fantasy_driver_summary(frame: pd.DataFrame) -> pd.DataFrame:
     if frame.empty or "Driver" not in frame.columns or "fantasy_points" not in frame.columns:
         return pd.DataFrame()
@@ -957,8 +970,10 @@ class PortableWebApi:
         if settings["session"] not in sessions:
             settings["session"] = sessions[0] if sessions else "PRE"
 
+        from src.app_services.model_candidates import candidate_options
         return {
             "settings": settings,
+            'modelCandidates': candidate_options(),
             "seasons": season_options(settings['year']),
             "events": event_names,
             "sessions": sessions,
@@ -1007,7 +1022,10 @@ class PortableWebApi:
             summary = read_output_table(folder.parent / 'frozen', 'simulation_summary.csv', max_rows=100)
         reliability = read_output_table(output_dir, "debug/reliability_profile.csv", max_rows=100)
         strategy = read_output_table(output_dir, "strategy/predicted_tyre_strategy.csv", max_rows=100)
-        fantasy = fantasy_driver_summary(read_output_table(output_dir, "raw_fantasy_results.csv", max_rows=5_000))
+        # The summary already averages every sim. The raw file is grouped by driver,
+        # so a row cap there would only ever reach the first driver or two.
+        fantasy = summary if "avg_fantasy_points" in summary else fantasy_driver_summary(
+            read_output_table(output_dir, "raw_fantasy_results.csv", max_rows=None))
         signals = load_model_signals(output_dir)
         files = list_core_outputs(output_dir)
         health = validate_data_sources(build_run_config(self.base_config, settings))
@@ -1058,6 +1076,7 @@ class PortableWebApi:
                 "dnf": chart_points(summary, "Driver", "dnf_chance", multiplier=100),
                 "fantasy": chart_points(fantasy, "Driver", "avg_fantasy_points"),
             },
+            "finishRanges": finish_ranges(summary),
             "signals": {
                 "overview": table_payload(signals.overview),
                 "drivers": table_payload(signals.driver_signals, max_rows=50),
@@ -1095,10 +1114,13 @@ class PortableWebApi:
                 raise ValueError('Choose a separate output directory; archived forecasts remain unchanged.')
             # Each manual run gets a fresh directory, preserving every prior result.
             output = target/'workbench_runs'/f"{datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ')}_{uuid4().hex[:8]}"
-            output.mkdir(parents=True, exist_ok=False)
             settings = replace(settings, output_dir=str(output))
-            config = build_run_config(self.base_config, settings)
+            from src.app_services.model_candidates import apply_candidates
+            config, candidates = apply_candidates(build_run_config(self.base_config, settings),
+                                                  settings_payload.get('candidates'))
             config['ignore_environment_overrides'] = True
+            config['ui_candidates'] = candidates
+            output.mkdir(parents=True, exist_ok=False)
             launched = self._jobs.start_manual(config)
             self._manual_job = launched["id"]
             config_path = Path(launched["configPath"])
@@ -1268,6 +1290,7 @@ class PortableWebApi:
         return export_results(output_dir, kind)
 
     def workbench_history(self):
+        from src.app_services.model_candidates import candidate_labels
         history = self._jobs.history()
         self._workbench_runs = {}
         for run in self.automation_state()['runs']:
@@ -1284,8 +1307,11 @@ class PortableWebApi:
                     context = output_context(metadata.parent, None, 'latest', 'PRE')
                     identifier = 'workbench:' + hashlib.sha256(str(metadata.parent).encode()).hexdigest()[:16]
                     self._workbench_runs[identifier] = metadata.parent
+                    candidates = candidate_labels(saved.get('candidates'))
                     history.append({'id': identifier, 'kind': 'monte_carlo', 'status': 'completed',
-                                    'label': f"{context['year']} {context['event']} · {context['session']}",
+                                    'label': f"{context['year']} {context['event']} · {context['session']}"
+                                             + (' · candidate' if candidates else ''),
+                                    'candidates': candidates, 'outputDir': str(metadata.parent), 'seed': saved.get('settings', {}).get('random_seed'),
                                     'created_at': saved['completed_at_utc']})
                 except (ValueError, TypeError, KeyError, OSError):
                     continue

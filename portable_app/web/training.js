@@ -23,7 +23,7 @@ async function refreshModelTraining(){
 async function pollModelTraining(){
   const job=await api().lab_status(trainingState.job), progress=job.training_progress || {}, result=job.training_result;
   const running=['running','cancelling'].includes(job.status);
-  $('trainingStatus').textContent=job.status.toUpperCase();
+  setJobStatus('trainingStatus',job.status);
   $('trainingStage').textContent=progress.stage || (running?'Starting training worker…':'Review the job log for details.');
   $('trainingLog').textContent=job.log || 'Waiting for training log…';
   $('trainingStop').disabled=!running || job.status==='cancelling';
@@ -40,7 +40,7 @@ async function pollModelTraining(){
     ]});
     $('trainingCoverage').textContent=`${metrics.train_rows} training driver rows across ${metrics.train_races.length} races · ${metrics.validation_rows} validation rows across ${metrics.validation_races.length} races · ${metrics.excluded_rows_without_qualifying_or_finish} rows without qualifying/finish · ${metrics.excluded_dns_or_disqualified_rows || 0} DNS/disqualified rows excluded · ${metrics.dnf_validation_unknown_rows || 0} unknown validation retirement labels excluded from DNF scoring · finish target: ${metrics.finish_target || 'absolute (older candidate)'}.`;
     $('trainingCandidate').textContent=result.candidate_dir;
-    $('trainingVerified').textContent=result.verified?'FILES VERIFIED · CANDIDATE ONLY · NOT ACTIVATED':'FILES CHANGED · DO NOT USE THIS CANDIDATE';
+    $('trainingVerified').textContent=result.verified?'Files verified · candidate only · not activated':'Files changed · do not use this candidate';
     $('trainingLimitations').textContent=result.limitations;
     if(metrics.feature_coverage){
       const labels={fp1_long_run_relative_pace:'FP1 long runs',fp2_long_run_relative_pace:'FP2 long runs',fp3_long_run_relative_pace:'FP3 long runs',prior_driver_dnf_rate:'Driver reliability',prior_team_dnf_rate:'Team reliability'};

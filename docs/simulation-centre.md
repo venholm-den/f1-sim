@@ -71,6 +71,8 @@ that would necessarily have been available at the selected session's date.
 - Desktop window: pywebview and Microsoft Edge WebView2 runtime.
 - MATLAB with a valid Simulink licence for both lap modes. MATLAB is found on PATH
   or under `C:\Program Files\MATLAB\R*\bin\matlab.exe`.
+  Without MATLAB, both lap-mode cards are disabled and marked *Not found*;
+  Monte Carlo still runs.
 - If features are missing, use Race Setup first or select an output folder inside
   this project containing `driver_model_features.csv`. Experiments additionally
   need `strategy/predicted_tyre_strategy.csv`.
