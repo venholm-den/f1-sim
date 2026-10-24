@@ -15,7 +15,7 @@ from src.app_services.beta import digest
 from src.app_services.discord_cards import number, render_weekend_card
 from src.app_services.historical_runs import SESSION_CODES
 from src.app_services.simulation_jobs import write_json
-from src.discord_post import post_files_to_discord, validate_message
+from src.discord_post import delivery_state, post_files_to_discord, validate_message, validate_webhook_url
 from src.venues import resolve_venue
 
 UK = ZoneInfo('Europe/London')
@@ -148,7 +148,7 @@ def post_briefing(folder, *, now=None, webhook_url=None):
     now = _now(now)
     receipt_path = folder / 'discord_post_result.json'
     receipt = _read(receipt_path)
-    if receipt.get('ok') or receipt.get('delivery_state') in {'sending', 'uncertain'}:
+    if receipt.get('ok') or receipt.get('delivery_state') in {'sending', 'uncertain', 'failed'}:
         return {**receipt, 'skipped': True, 'requires_review': not bool(receipt.get('ok'))}
     plan = _read(folder / 'delivery_plan.json')
     if now.astimezone(UK).date().isoformat() != plan['due_date'] or now.astimezone(UK).hour < POST_HOUR:
@@ -163,6 +163,7 @@ def post_briefing(folder, *, now=None, webhook_url=None):
     webhook_url = webhook_url or os.getenv('DISCORD_WEBHOOK_URL', '')
     if not webhook_url:
         raise ValueError('Discord webhook missing; weekend briefing remains local.')
+    validate_webhook_url(webhook_url)
     attempts = int(receipt.get('attempts', 0)) + 1
     reservation = {'ok': False, 'delivery_state': 'sending', 'attempts': attempts,
                    'attempted_at': now.isoformat()}
@@ -172,11 +173,10 @@ def post_briefing(folder, *, now=None, webhook_url=None):
                                          file_paths=files, username='F1 Sim')
     except Exception:
         response = {'ok': False, 'status': 'network_exception'}
-    uncertain = response.get('status') in {'url_error', 'network_exception'}
+    state = delivery_state(response)
     result = {**reservation, 'ok': bool(response.get('ok')), 'status': response.get('status'),
-              'delivery_state': 'sent' if response.get('ok') else 'uncertain' if uncertain else 'pending',
-              'posted_files': [str(p) for p in files]}
-    if not result['ok'] and not uncertain:
+              'delivery_state': state, 'posted_files': [str(p) for p in files]}
+    if state == 'pending':
         delay = min(360, 15 * 2 ** min(attempts - 1, 5))
         result['next_attempt_at'] = (now + timedelta(minutes=delay)).isoformat()
     write_json(receipt_path, result)

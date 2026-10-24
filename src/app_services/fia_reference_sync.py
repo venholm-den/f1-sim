@@ -23,6 +23,26 @@ def sha(content):
     return hashlib.sha256(content).hexdigest()
 
 
+# Several UI calls sync in one chain and the UI polls; skip rereading and
+# rehashing both indexes when neither file has changed since the last sync.
+_last_sync: dict = {}
+
+
+def _stamp(path):
+    try:
+        info = path.stat()
+        return info.st_mtime_ns, info.st_size, info.st_ino
+    except OSError:
+        return None
+
+
+def _remember(source, target, result):
+    _last_sync.clear()
+    if result.get('status') in {'current', 'updated'}:
+        _last_sync.update(key=(str(source), str(target), _stamp(source), _stamp(target)), result=result)
+    return result
+
+
 def sync_pc_index(workspace, pc_workspace, configured_path, *, following=True):
     """Only the default managed index follows PC runs; custom paths stay local."""
     workspace, pc_workspace = Path(workspace).resolve(), Path(pc_workspace).resolve()
@@ -38,6 +58,8 @@ def sync_pc_index(workspace, pc_workspace, configured_path, *, following=True):
     if not source.is_file():
         return {'status':'pc_index_unavailable','path':str(target),'source_path':str(source)}
     with _lock:
+        if _last_sync.get('key') == (str(source), str(target), _stamp(source), _stamp(target)):
+            return {**_last_sync['result'], 'status': 'current'}
         try:
             source_bytes = source.read_bytes()
             old = target.read_bytes() if target.is_file() else b''
@@ -50,7 +72,7 @@ def sync_pc_index(workspace, pc_workspace, configured_path, *, following=True):
             except (OSError,ValueError):
                 previous = {}
             if previous.get('source_sha256')==source_sha and previous.get('destination_sha256')==local_sha:
-                return {**previous,'status':'current'}
+                return _remember(source, target, {**previous,'status':'current'})
             incoming = pd.read_csv(BytesIO(source_bytes)).fillna('')
             required = {'year','event','document_type','document_title','document_url','published_at'}
             if incoming.empty or not required.issubset(incoming):
@@ -88,7 +110,7 @@ def sync_pc_index(workspace, pc_workspace, configured_path, *, following=True):
             temporary = receipt_path.with_name(receipt_path.name+'.'+uuid4().hex+'.tmp')
             temporary.write_text(json.dumps(result,indent=2),encoding='utf-8')
             os.replace(temporary,receipt_path)
-            return result
+            return _remember(source, target, result)
         except (OSError,ValueError,KeyError,TypeError,pd.errors.ParserError) as exc:
             return {'status':'error','message':str(exc)[:250],'path':str(target),
                     'local_dataset_preserved':True}

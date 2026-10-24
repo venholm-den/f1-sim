@@ -44,6 +44,10 @@ def make_server(api, assets: Path, port=0):
                 self.respond(403,b'{}'); return
             name = urlparse(self.path).path.lstrip('/') or 'index.html'
             if name == 'bridge.js':
+                # The bridge carries the session token, so other loopback ports
+                # (same-site, not same-origin) must not be able to load it.
+                if self.headers.get('Sec-Fetch-Site', 'none') not in {'none', 'same-origin'}:
+                    self.respond(403,b'{}'); return
                 script = "window.f1Api=new Proxy({}, {get:(_,method)=>(...args)=>fetch('/api/'+method,{method:'POST',headers:{'Content-Type':'application/json','X-F1-Token':TOKEN},body:JSON.stringify(args)}).then(async r=>{const b=await r.json();if(!r.ok)throw Error(b.error);return b;})});".replace('TOKEN',json.dumps(token))
                 self.respond(200,script.encode(),'text/javascript'); return
             if '/' in name or name not in {'centre.html','centre.css','centre.js','index.html','app.css','workbench.js','historical.js','training.js','fantasy.js','app.js','pc-runs.js','centre-nocturne.css','tyre-strategy.js','tyre-strategy.css','replay.js','replay.css','logo.svg'}:

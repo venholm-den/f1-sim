@@ -1,19 +1,23 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+import hashlib
 from html import unescape
 from html.parser import HTMLParser
 from io import BytesIO
 from pathlib import Path
 import re
 from typing import Any
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlparse
 
 import pandas as pd
 import requests
 
 
 FIA_DOCUMENT_INDEX_PATH = "data/fia_documents/fia_document_index.csv"
+FIA_PDF_HOSTS = frozenset({"fia.com", "www.fia.com"})
+FIA_PDF_MAX_BYTES = 20_000_000
+_REDIRECT_CODES = {301, 302, 303, 307, 308}
 
 
 FIA_DOCUMENT_COLUMNS = [
@@ -758,9 +762,60 @@ def _read_pdf_text(pdf_bytes: bytes) -> str:
     return "\n".join(page.extract_text() or "" for page in reader.pages)
 
 
+def is_official_fia_url(url: str) -> bool:
+    parsed = urlparse(url)
+    return parsed.scheme == "https" and parsed.hostname in FIA_PDF_HOSTS
+
+
+def fetch_fia_pdf(
+    url: str,
+    *,
+    get=None,
+    timeout: int = 20,
+    max_bytes: int = FIA_PDF_MAX_BYTES,
+) -> bytes:
+    """Download one official FIA PDF.
+
+    Redirects are followed by hand so every hop is checked against the FIA
+    host allowlist, and the body is streamed so an oversized response is
+    rejected before it is held in memory.
+    """
+    get = get or requests.get
+    for _ in range(5):
+        if not is_official_fia_url(url):
+            raise ValueError("Only official HTTPS FIA PDF URLs are accepted.")
+        response = get(url, timeout=timeout, stream=True, allow_redirects=False)
+        if response.status_code not in _REDIRECT_CODES:
+            break
+        location = response.headers.get("Location")
+        response.close()
+        if not location:
+            raise ValueError("FIA redirect had no location.")
+        url = urljoin(url, location)
+    else:
+        raise ValueError("Too many FIA redirects.")
+    try:
+        response.raise_for_status()
+        declared = response.headers.get("Content-Length")
+        if declared and declared.isdigit() and int(declared) > max_bytes:
+            raise ValueError("Expected an official PDF under 20 MB.")
+        chunks, size = [], 0
+        for chunk in response.iter_content(chunk_size=65536):
+            size += len(chunk)
+            if size > max_bytes:
+                raise ValueError("Expected an official PDF under 20 MB.")
+            chunks.append(chunk)
+    finally:
+        response.close()
+    content = b"".join(chunks)
+    if not content.startswith(b"%PDF"):
+        raise ValueError("Expected an official PDF under 20 MB.")
+    return content
+
+
 def _cache_file_for_url(cache_dir: Path, url: str) -> Path:
-    filename = Path(url.split("?", 1)[0]).name or "fia-document.pdf"
-    return cache_dir / filename
+    # Different events reuse file names, so key the cache by the full URL.
+    return cache_dir / f"{hashlib.sha256(url.encode('utf-8')).hexdigest()}.pdf"
 
 
 def download_fia_pdf(
@@ -768,14 +823,14 @@ def download_fia_pdf(
     cache_dir: str | Path | None = None,
     timeout: int = 30,
 ) -> bytes:
+    if not is_official_fia_url(url):
+        raise ValueError("Only official HTTPS FIA PDF URLs are accepted.")
     if cache_dir is not None:
         cache_path = _cache_file_for_url(Path(cache_dir), url)
         if cache_path.exists():
             return cache_path.read_bytes()
 
-    response = requests.get(url, timeout=timeout)
-    response.raise_for_status()
-    content = response.content
+    content = fetch_fia_pdf(url, timeout=timeout)
 
     if cache_dir is not None:
         cache_path = _cache_file_for_url(Path(cache_dir), url)

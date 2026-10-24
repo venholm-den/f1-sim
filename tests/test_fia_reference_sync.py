@@ -101,3 +101,18 @@ def test_app_poll_and_preview_sync_without_a_new_forecast(tmp_path,monkeypatch):
     write_index(pc/RELATIVE_INDEX,[row('Future','17.10.26 21:00 CET')])
     api.workbench_status()
     assert (local/RELATIVE_INDEX).read_bytes()==before
+
+
+def test_unchanged_indexes_are_not_reread_on_every_poll(tmp_path,monkeypatch):
+    local,pc=tmp_path/'desktop',tmp_path/'pc'
+    target,source=local/RELATIVE_INDEX,pc/RELATIVE_INDEX
+    write_index(source,[row()])
+    assert sync_pc_index(local,pc,target)['status']=='updated'
+    reads=[]
+    original=Path.read_bytes
+    monkeypatch.setattr(Path,'read_bytes',lambda self:reads.append(self) or original(self))
+    assert sync_pc_index(local,pc,target)['status']=='current'
+    assert reads==[]
+    write_index(source,[row(),row('Next weekend','17.10.26 12:00 CET',doc_number='Doc 2',document_url='https://www.fia.com/next.pdf')])
+    assert sync_pc_index(local,pc,target)['latest_event']=='Next weekend'
+    assert reads

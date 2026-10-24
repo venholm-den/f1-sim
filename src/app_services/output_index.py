@@ -1,7 +1,9 @@
 from __future__ import annotations
 
+from collections import OrderedDict
 from dataclasses import dataclass
 from pathlib import Path
+import threading
 
 import pandas as pd
 
@@ -52,13 +54,35 @@ def _list_outputs(output_dir: str | Path, outputs: list[tuple[str, str]]) -> lis
     return files
 
 
+# One outputs() call reads the same lap table from several helpers, so keep
+# the last few bounded reads keyed by file identity and hand out copies.
+_TABLE_CACHE: OrderedDict = OrderedDict()
+_TABLE_CACHE_LOCK = threading.Lock()
+_TABLE_CACHE_SIZE = 8
+
+
 def read_output_table(output_dir: str | Path, relative_path: str, max_rows: int | None = 100) -> pd.DataFrame:
     path = Path(output_dir) / relative_path
 
-    if not path.exists():
+    try:
+        info = path.stat()
+    except OSError:
         return pd.DataFrame()
+    key = (str(path.resolve()), info.st_mtime_ns, info.st_size, max_rows)
+    if max_rows is not None:
+        with _TABLE_CACHE_LOCK:
+            cached = _TABLE_CACHE.get(key)
+            if cached is not None:
+                _TABLE_CACHE.move_to_end(key)
+                return cached.copy()
 
     try:
-        return pd.read_csv(path, nrows=max_rows)
+        table = pd.read_csv(path, nrows=max_rows)
     except Exception:
         return pd.DataFrame()
+    if max_rows is not None:
+        with _TABLE_CACHE_LOCK:
+            _TABLE_CACHE[key] = table.copy()
+            while len(_TABLE_CACHE) > _TABLE_CACHE_SIZE:
+                _TABLE_CACHE.popitem(last=False)
+    return table

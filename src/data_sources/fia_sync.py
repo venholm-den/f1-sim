@@ -18,7 +18,7 @@ import pandas as pd
 import requests
 
 from src.data_sources.fia_documents import (FIA_DOCUMENT_COLUMNS,fia_f1_documents_url,
-    parse_fia_document_listing_html,parse_fia_event_urls,merge_fia_document_rows)
+    parse_fia_document_listing_html,parse_fia_event_urls,merge_fia_document_rows,fetch_fia_pdf)
 from src.data_sources.fia_extraction import parse_document,grid_penalty_records,published_utc
 
 EXTRACTION_VERSION = 'fia_v2'
@@ -200,18 +200,12 @@ def refresh(root,*,year=None,force=False,all_events=False,pdf_python=None,
                 roster = rosters[row['event']]
                 if roster.empty:
                     raise ValueError('Same-event cached driver identities unavailable; retained for retry.')
-                from urllib.parse import urlparse
-                parsed = urlparse(key)
-                if parsed.scheme!='https' or parsed.hostname not in {'fia.com','www.fia.com'}:
-                    raise ValueError('Only official HTTPS FIA PDF URLs are accepted.')
-                pdf = client(key,timeout=20);pdf.raise_for_status()
-                if not pdf.content.startswith(b'%PDF') or len(pdf.content)>20_000_000:
-                    raise ValueError('Expected an official PDF under 20 MB.')
-                sha = digest(pdf.content)
+                content = fetch_fia_pdf(key,get=client,timeout=20)
+                sha = digest(content)
                 record['pdf_sha256'] = sha
                 path = cache/f'{sha}.pdf'
                 if not path.exists():
-                    path.write_bytes(pdf.content)
+                    path.write_bytes(content)
                 document = (extractor or extract_pdf)(path,pdf_python or config.get('pdf_python'))
                 extracted_text = json.dumps(document,indent=2)
                 text_path = cache/f'{sha}.{EXTRACTION_VERSION}.{digest(extracted_text.encode())[:12]}.json'

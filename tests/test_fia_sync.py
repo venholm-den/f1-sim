@@ -177,8 +177,11 @@ def listing_html():
 
 def mocked_get(url,**kwargs):
     response=Mock()
+    response.status_code=200
+    response.headers={}
     response.text=listing_html()
     response.content=b'%PDF-test'
+    response.iter_content.return_value=[b'%PDF-test']
     return response
 
 

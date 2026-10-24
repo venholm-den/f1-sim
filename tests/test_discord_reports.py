@@ -137,7 +137,7 @@ def test_compact_bundle_and_retry_are_pinned_even_if_detail_setting_changes(tmp_
     monkeypatch.setattr(forecast_automation, 'post_files_to_discord',
                         lambda **kwargs: sent.append(kwargs) or {'ok': False, 'status': 503})
     with pytest.raises(RuntimeError):
-        forecast_automation.post_frozen_forecast(folder, 'https://discord.invalid/test')
+        forecast_automation.post_frozen_forecast(folder, 'https://discord.com/api/webhooks/0/test')
     receipt = folder / 'discord_post_result.json'
     saved = json.loads(receipt.read_text())
     saved['next_attempt_at'] = '2000-01-01T00:00:00+00:00'
@@ -145,7 +145,7 @@ def test_compact_bundle_and_retry_are_pinned_even_if_detail_setting_changes(tmp_
     monkeypatch.setenv('DISCORD_REPORT_DETAIL', 'full')
     monkeypatch.setattr(forecast_automation, 'post_files_to_discord',
                         lambda **kwargs: sent.append(kwargs) or {'ok': True, 'status': 200})
-    forecast_automation.post_frozen_forecast(folder, 'https://discord.invalid/test')
+    forecast_automation.post_frozen_forecast(folder, 'https://discord.com/api/webhooks/0/test')
     assert [p.name for p in sent[0]['file_paths']] == ['race_outlook.png', 'simulation_summary.csv']
     assert sent[0]['file_paths'] == sent[1]['file_paths']
     assert sent[0]['embeds'] == sent[1]['embeds']
@@ -164,7 +164,7 @@ def test_legacy_partial_batch_keeps_original_attachment_order(tmp_path, monkeypa
     calls = []
     monkeypatch.setattr(forecast_automation, 'post_files_to_discord',
                         lambda **kwargs: calls.append(kwargs) or {'ok': True, 'status': 200})
-    result = forecast_automation.post_frozen_forecast(folder, 'https://discord.invalid/test')
+    result = forecast_automation.post_frozen_forecast(folder, 'https://discord.com/api/webhooks/0/test')
     assert result['ok'] and len(calls) == 1
     assert calls[0]['file_paths'] == [report / '9.png']
     assert first_receipt.read_bytes() == original
@@ -182,7 +182,7 @@ def test_multipart_has_json_embed_no_mentions_and_server_confirmation(tmp_path, 
     requests = []
     monkeypatch.setattr(discord_post, 'urlopen', lambda request, **kwargs: requests.append(request) or response)
     embed = {'title': 'Example', 'fields': [{'name': 'Score', 'value': '4.00'}]}
-    result = discord_post.post_files_to_discord('https://discord.invalid/test?wait=false&thread_id=123', '', [file], embeds=[embed])
+    result = discord_post.post_files_to_discord('https://discord.com/api/webhooks/0/test?wait=false&thread_id=123', '', [file], embeds=[embed])
     assert result['ok']
     request = requests[0]
     assert 'wait=true' in request.full_url and 'thread_id=123' in request.full_url
@@ -198,7 +198,7 @@ def test_invalid_embed_fails_before_http_request(tmp_path, monkeypatch):
     file.write_bytes(b'chart')
     monkeypatch.setattr(discord_post, 'urlopen', lambda *args, **kwargs: pytest.fail('Unexpected request'))
     with pytest.raises(ValueError, match='field value'):
-        discord_post.post_files_to_discord('https://discord.invalid/test', '', [file],
+        discord_post.post_files_to_discord('https://discord.com/api/webhooks/0/test', '', [file],
             embeds=[{'title': 'Example', 'fields': [{'name': 'Score', 'value': 'a' * 1025}]}])
 
 
@@ -211,14 +211,14 @@ def test_new_post_race_embed_uses_three_attachments_and_reuses_saved_payload(tmp
     calls = []
     monkeypatch.setattr(post_race_automation, 'post_files_to_discord',
                         lambda **kwargs: calls.append(kwargs) or {'ok': False, 'status': 503})
-    post_race_automation.post_analysis(tmp_path, 'https://discord.invalid/test')
+    post_race_automation.post_analysis(tmp_path, 'https://discord.com/api/webhooks/0/test')
     path = tmp_path / 'discord_post_result.json'
     receipt = json.loads(path.read_text())
     receipt['next_attempt_at'] = '2000-01-01T00:00:00+00:00'
     path.write_text(json.dumps(receipt))
     monkeypatch.setattr(post_race_automation, 'post_files_to_discord',
                         lambda **kwargs: calls.append(kwargs) or {'ok': True, 'status': 200})
-    post_race_automation.post_analysis(tmp_path, 'https://discord.invalid/test')
+    post_race_automation.post_analysis(tmp_path, 'https://discord.com/api/webhooks/0/test')
     assert len(calls[0]['file_paths']) == 3 and calls[0]['embeds']
     assert calls[0]['embeds'] == calls[1]['embeds'] and calls[0]['file_paths'] == calls[1]['file_paths']
 
