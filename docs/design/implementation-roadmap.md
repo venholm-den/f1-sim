@@ -33,7 +33,7 @@ Each phase is one or two PRs. Each one is shippable on its own, behind no flags,
   - Solid red primary buttons using `--red-fill` `#E0122F`, so white text meets 4.5:1.
   - Hard-coded Nocturne tints replaced with broadcast equivalents.
 - **Phase 2 is done.** It covers:
-  - A broadcast top bar (red rule, Barlow Condensed) replacing the sidebar, with six destinations: Weekend, Predict, Fantasy, Replay, Championship and Lab. Drivers and Accuracy arrive with their screens in phase 6.
+  - A broadcast top bar (red rule, Barlow Condensed) replacing the sidebar, with six destinations: Weekend, Predict, Fantasy, Replay, Championship and Lab. Drivers and Accuracy arrived with their screens in phase 6.
   - Section tabs under the bar for destinations with more than one view, and a Workshop menu for Data Sources, Historical Data, Model Training and Settings. All 18 existing views are kept and re-parented, not rewritten.
   - Shared driver focus: click a driver row to highlight it, Shift-click to compare two, Esc or the focus chip to clear. Covered by `tests/shell_focus.test.cjs`.
   - Keys 1–6 switch destination. The footer key strip is deferred to phase 5, where replay adds its own keys.
@@ -48,4 +48,17 @@ Each phase is one or two PRs. Each one is shippable on its own, behind no flags,
   - Market chips grouped into drivers and constructors, showing price and expected points, with explicit IN and OUT states and the best team marked.
   - A risk and reward scatter: expected points against the spread of simulated scores, falling back to price when floors and ceilings weren't saved.
   - Alternatives with prices in $m and the gap to the best team in signed points. Projections and scoring rules moved under "Show the maths". The optimiser is unchanged. Covered by `tests/fantasy_view.test.cjs`.
-- **Not yet changed:** Replay and the new screens, which are phases 5–6. The replay driver palette in `replay.js` also still uses the old colours; it moves in phase 5.
+- **Phase 5 is done.** It covers:
+  - A race event list beside the running order, derived from timing only: safety car, VSC and red flag starts, track clear, pit entries with the new compound, cars that stop two or more laps before the end, and each new fastest lap. Clicking an event jumps five seconds before it and focuses that driver. The current event follows the playhead.
+  - Event pins on the scrub bar, coloured by kind.
+  - Keyboard controls: Space plays or pauses, ← and → step a lap, Shift with an arrow moves 10 s, comma and full stop change speed, and Esc clears the focus. A key strip under the controls lists them.
+  - Map labels only for the top three and the focused driver, and familiar team colours where the team is known. Covered by `tests/replay_events.test.cjs`.
+  - The playhead already drove the map, running order, flag and lap chart cursor; telemetry stays a separate lap comparison.
+- **Phase 6 is done.** It covers:
+  - **Drivers** (key 6): season answers (points leader, most wins, closest team-mates, fewest retirements), a points chart, team-mate head-to-heads and a season table, built by `src/app_services/driver_intel.py` from downloaded classifications only. Head-to-heads count races both drivers finished.
+  - **Accuracy** (key 8): every scored forecast with its finish error and Brier skill against an even guess for win, podium and top 10, and a predicted-against-actual scatter for the chosen race. Read from saved score jobs by `src/app_services/accuracy.py`.
+  - **What if** in the Lab (key 7): change overtaking difficulty or a model candidate, see the list of changes, and run Race setup as A and the change as B on the same seed, then open Compare. Covered by `tests/insights_view.test.cjs`.
+- **Phase 7 is done.** It covers:
+  - **Freeze a forecast** in the Lab: check the next race, read the protocol and freeze a forecast with the Centre's defaults.
+  - Scoring moved to Accuracy: frozen forecasts without a score are listed there with a Score button, and the job's progress shows in place.
+  - The Simulation Centre is now only for Discord uploads and Simulink experiments, linked from the Workshop menu as "Simulink & Discord tools".

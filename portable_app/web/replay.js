@@ -1,6 +1,9 @@
 // Session replay and lap telemetry review, read from the downloaded historical library.
 const replayState = {sessions: [], data: null, t: 0, playing: false, frame: null, focus: null, colours: {}, telemetry: null, hover: null};
-const replayPalette = ['#e57669', '#8fb8df', '#76c6a0', '#e0b97a', '#b37fea', '#e8a07a', '#6fd3d1', '#f08fc0', '#c9d36a', '#a0a7ff', '#d0d3dc'];
+const replayPalette = ['#FF8A3D', '#5AA9FF', '#3BE38B', '#FFC300', '#C17BFF', '#FF8A99', '#6FD3D1', '#F08FC0', '#C9D36A', '#A0A7FF', '#D6D6E2'];
+// Familiar team colours where the team is known; anyone else takes the next palette colour.
+const replayTeamColours = [[/mclaren/i, '#FF8000'], [/ferrari/i, '#E8002D'], [/red bull racing|^red bull$/i, '#3671C6'], [/mercedes/i, '#27F4D2'],
+  [/aston martin/i, '#229971'], [/alpine/i, '#0093CC'], [/williams/i, '#64C4FF'], [/haas/i, '#B6BABD'], [/racing bulls|rb f1|visa cash app|alphatauri/i, '#6692FF']];
 const trackStatusLabels = {'2': ['Yellow flag', 'yellow'], '4': ['Safety car', 'amber'], '5': ['Red flag', 'red'],
   '6': ['Virtual safety car', 'amber'], '7': ['VSC ending', 'amber']};
 const telemetryChannels = [
@@ -28,7 +31,10 @@ function assignReplayColours(drivers) {
   const teams = {}, colours = {};
   drivers.forEach((driver) => {
     const team = driver.team || driver.number;
-    if (!(team in teams)) teams[team] = {colour: replayPalette[Object.keys(teams).length % replayPalette.length], count: 0};
+    if (!(team in teams)) {
+      const known = replayTeamColours.find(([pattern]) => pattern.test(String(driver.team || '')));
+      teams[team] = {colour: known ? known[1] : replayPalette[Object.keys(teams).filter((t) => !teams[t].known).length % replayPalette.length], known: Boolean(known), count: 0};
+    }
     colours[driver.number] = {colour: teams[team].colour, dashed: teams[team].count++ > 0};
   });
   return colours;
@@ -70,6 +76,7 @@ async function loadReplay() {
       : 'Loaded from timing data. Car telemetry was not downloaded for this session.';
     buildReplayTrack();
     renderLapChart();
+    renderReplayEvents();
     renderReplayFrame(true);
     setupTelemetryPickers();
   } finally {
@@ -199,13 +206,14 @@ function renderReplayFrame(force = false) {
   const now = performance.now();
   if (force || !replayState.orderAt || now - replayState.orderAt > 250) { replayState.orderAt = now; renderReplayOrder(t); }
   moveLapCursor(order[0].completed);
+  markReplayEvent(t);
 }
 
-// Cars running close together would print their codes on top of each other.
-// Keep the label of the focused car and of whoever is ahead; hide the rest.
+// Label only the focused car and the top three, and only where the codes do not overlap.
 function hideCrowdedLabels(order, placed) {
   const radius = replayState.view.size * 0.01, kept = [];
-  const ranked = order.map((row) => String(row.driver.number)).filter((number) => placed[number]);
+  const ranked = order.slice(0, 3).map((row) => String(row.driver.number)).filter((number) => placed[number]);
+  Object.keys(placed).forEach((number) => replayState.cars[number].classList.add('label-hidden'));
   if (replayState.focus && placed[replayState.focus]) ranked.unshift(String(replayState.focus));
   [...new Set(ranked)].forEach((number) => {
     const [x, y] = placed[number];
@@ -482,7 +490,104 @@ function hoverTelemetry(distance) {
   $('telReadout').innerHTML = readout.join('');
 }
 
+// Race events -----------------------------------------------------------------
+// Derived from timing only: track status changes, pit entries, cars that stop
+// well before the end, and each new fastest lap. Nothing is inferred beyond that.
+const NEUTRALISED = ['4', '5', '6'];
+function replayEvents(data) {
+  const events = [], code = (number) => data.drivers.find((d) => d.number === number)?.code || number;
+  let previous = null;
+  for (const row of data.trackStatus || []) {
+    if (NEUTRALISED.includes(row.status) && row.status !== previous) {
+      const [label, tone] = trackStatusLabels[row.status];
+      events.push({t: row.t, kind: 'status', tone, label});
+    } else if (row.status === '1' && NEUTRALISED.includes(previous)) events.push({t: row.t, kind: 'green', tone: 'green', label: 'Track clear'});
+    previous = row.status;
+  }
+  const laps = Object.values(data.laps).flat().filter((lap) => lap.time != null);
+  const typical = laps.length ? laps.map((lap) => lap.time).sort((a, b) => a - b)[Math.floor(laps.length / 2)] : 90;
+  for (const driver of data.drivers) {
+    const own = data.laps[driver.number] || [];
+    own.forEach((lap, index) => {
+      if (!lap.pitIn || lap.end == null) return;
+      const next = own[index + 1];
+      if (!next) return;
+      events.push({t: lap.end, kind: 'pit', number: driver.number, label: `${code(driver.number)} pits`,
+        detail: `end of lap ${lap.lap}${next.compound ? ` · onto ${next.compound.toLowerCase()}` : ''}`});
+    });
+    const last = [...own].reverse().find((lap) => lap.end != null);
+    // A lapped car still crosses the line near the end; one that stopped two laps early retired.
+    if (data.race && last && last.end < data.end - 2 * typical)
+      events.push({t: last.end, kind: 'retired', number: driver.number, label: `${code(driver.number)} stops`, detail: `last timed lap ${last.lap}`});
+  }
+  if (data.race) {
+    let best = Infinity;
+    laps.filter((lap) => !lap.deleted && lap.end != null && lap.lap > 1).sort((a, b) => a.end - b.end).forEach((lap) => {
+      if (lap.time >= best) return;
+      best = lap.time;
+      const number = Object.keys(data.laps).find((n) => data.laps[n].includes(lap));
+      events.push({t: lap.end, kind: 'fastest', number, label: `${code(number)} fastest lap`, detail: `${lapTime(lap.time)} on lap ${lap.lap}`});
+    });
+  }
+  return events.sort((a, b) => a.t - b.t);
+}
+
+function renderReplayEvents() {
+  const data = replayState.data, events = replayEvents(data);
+  replayState.events = events;
+  replayState.eventIndex = -2;
+  const span = Math.max(1, data.end - data.start), at = (t) => ((t - data.start) / span * 100).toFixed(2);
+  $('replayEvents').innerHTML = events.length ? events.map((event, index) =>
+    `<li><button type="button" class="replay-event ${event.kind}" data-index="${index}"${event.number ? ` data-number="${escapeHtml(event.number)}"` : ''}><span class="event-time">${sessionClock(event.t - data.start)}</span><b>${escapeHtml(event.label)}</b>${event.detail ? `<small>${escapeHtml(event.detail)}</small>` : ''}</button></li>`).join('')
+    : '<li class="empty">No safety cars, pit stops or retirements in the timing data.</li>';
+  // Pins on the scrub bar for the moments that change a race: neutralisations, stops and retirements.
+  $('replayPins').innerHTML = events.filter((e) => e.kind !== 'fastest').map((e) => `<i class="pin ${e.kind}" data-tone="${e.tone || ''}" style="left:${at(e.t)}%"></i>`).join('');
+  $('replayEvents').querySelectorAll('[data-index]').forEach((el) => el.addEventListener('click', () => {
+    const event = events[Number(el.dataset.index)];
+    // Start a few seconds early so the moment itself plays.
+    replayState.t = Math.max(data.start, event.t - EVENT_LEAD);
+    if (event.number && replayState.focus !== event.number) replayState.focus = event.number;
+    renderReplayFrame(true); applyLapChartFocus();
+  }));
+}
+// Highlight the latest event at or just ahead of the playhead, without re-rendering the list.
+// Jumping to an event starts five seconds early, so look the same distance ahead.
+const EVENT_LEAD = 5;
+function markReplayEvent(t) {
+  const events = replayState.events || [];
+  let index = -1;
+  for (let i = 0; i < events.length && events[i].t <= t + EVENT_LEAD; i++) index = i;
+  if (index === replayState.eventIndex) return;
+  replayState.eventIndex = index;
+  $('replayEvents').querySelectorAll('.replay-event').forEach((el) => {
+    const i = Number(el.dataset.index);
+    el.classList.toggle('current', i === index);
+    el.classList.toggle('past', i < index);
+  });
+  const current = $('replayEvents').querySelector('.replay-event.current');
+  if (current && replayState.playing) current.scrollIntoView({block: 'nearest'});
+}
+
+const replaySpeeds = ['1', '4', '16', '64'];
+function replayKey(event) {
+  if (state.view !== 'replay' || !replayState.data || event.metaKey || event.ctrlKey || event.altKey) return;
+  if (event.target.closest('input:not([type=range]), select, textarea')) return;
+  const onScrub = event.target === $('replayScrub');
+  // A focused button already toggles on Space; handling it here too would undo the press.
+  if (event.key === ' ' && !event.target.closest('button, summary')) { event.preventDefault(); replayState.playing ? pauseReplay() : playReplay(); }
+  else if ((event.key === 'ArrowLeft' || event.key === 'ArrowRight') && !onScrub) {
+    event.preventDefault();
+    const direction = event.key === 'ArrowRight' ? 1 : -1;
+    if (event.shiftKey) { replayState.t = Math.min(replayState.data.end, Math.max(replayState.data.start, replayState.t + direction * 10)); renderReplayFrame(true); }
+    else stepReplayLap(direction);
+  } else if (event.key === ',' || event.key === '.') {
+    const at = replaySpeeds.indexOf($('replaySpeed').value);
+    $('replaySpeed').value = replaySpeeds[Math.min(replaySpeeds.length - 1, Math.max(0, at + (event.key === '.' ? 1 : -1)))];
+  } else if (event.key === 'Escape' && replayState.focus) { replayState.focus = null; renderReplayFrame(true); applyLapChartFocus(); }
+}
+
 function initReplay() {
+  document.addEventListener('keydown', replayKey);
   $('replayLoad').addEventListener('click', () => safeAction(loadReplay));
   $('replayRefresh').addEventListener('click', () => safeAction(refreshReplaySessions));
   $('replayPlay').addEventListener('click', () => replayState.playing ? pauseReplay() : playReplay());
@@ -498,3 +603,5 @@ function initReplay() {
     resize = setTimeout(() => { if (state.view !== 'replay' || !replayState.data) return; renderLapChart(); moveLapCursor(runningOrder(replayState.t)[0].completed); if (replayState.telemetry) renderTelemetry(); }, 200);
   });
 }
+
+if (typeof module !== 'undefined' && module.exports) module.exports = { replayEvents };

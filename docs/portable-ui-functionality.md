@@ -12,8 +12,8 @@ forecasts have not been substituted for model outputs.
 
 Rebuilt on 5 October 2026 against the five images under
 `docs/mockups/portable-app/images`. The app now opens on the Weekend overview (see below).
-The Simulation Centre remains available from the Workshop menu for prospective
-forecasts, frozen run history, post-race scoring, Discord and Simulink tools.
+Freezing a forecast is in the Lab and scoring it is on Accuracy. The Simulation
+Centre remains available from the Workshop menu for Discord and Simulink tools.
 
 ## Implemented and connected
 
@@ -24,7 +24,13 @@ recommendation table remains expandable. Saved recommendations do not contain
 pit laps: the chart shows sequence, not lap duration or predicted pit windows.
 Stop counts follow the displayed sequence, including historical adjustments.
 
-Frontend data checks: `node --test tests/tyre_strategy.test.cjs tests/shell_focus.test.cjs tests/forecast_answers.test.cjs tests/fantasy_view.test.cjs`.
+Frontend data checks: `node --test tests/tyre_strategy.test.cjs tests/shell_focus.test.cjs tests/forecast_answers.test.cjs tests/fantasy_view.test.cjs tests/replay_events.test.cjs tests/insights_view.test.cjs`.
+
+Replay (broadcast phase 5): a Race events list and scrub-bar pins show safety
+cars, VSCs, red flags, track clear, pit entries, early stops and new fastest
+laps, all derived from the saved timing. Click an event to jump just before it.
+Keys: Space play/pause, ←/→ lap, Shift+←/→ 10 s, comma/full stop speed, Esc
+clears the focused driver. The map labels the top three and the focused car.
 
 Fantasy (broadcast phase 4): the picker comes first, under an answer row (best
 team points, usual range, boost, spend or gain over your team) and a sticky
@@ -43,10 +49,10 @@ answer row (most likely winner, likely podium, widest range in the top 8,
 favourite's retirement risk); run details, the finish heatmap, strategy, Fantasy
 projections and insights sit under "Show the maths".
 
-Navigation (October 2026, broadcast phase 2): a top bar with six destinations
-(Weekend, Predict, Fantasy, Replay, Championship, Lab) and a Workshop menu for
+Navigation (October 2026, broadcast phases 2 and 6): a top bar with eight destinations
+(Weekend, Predict, Fantasy, Replay, Championship, Drivers, Lab, Accuracy) and a Workshop menu for
 Data Sources, Historical Data, Model Training and Settings. Each destination shows
-its views as tabs underneath. Keys 1–6 switch destination. Clicking a driver row in
+its views as tabs underneath. Keys 1–8 switch destination. Clicking a driver row in
 any table or chart highlights that driver across the open view; Shift-click adds a
 second driver, and Esc or the focus chip clears it. Replay keeps its own selection.
 
@@ -66,10 +72,13 @@ second driver, and Esc or the focus chip clears it. Replay keeps its own selecti
 | Reliability | Existing historical team/power-unit reliability inputs and modelled driver retirement risk. |
 | Results | Win/podium bars, finish-position heatmap, driver strategy estimates, fantasy projections, full summary and saved-run health. Run count and runtime are displayed only when recorded. |
 | Championship | Drivers' and constructors' title odds from the current standings: leaders, points still available, title/top-3 chances, expected final points with a P10–P90 range, clinched/eliminated status and the remaining calendar. Uses archived race and sprint classifications, not a saved run. See `docs/championship-odds.md`. |
+| Drivers | Season answers, points chart, team-mate head-to-heads (races both finished) and a season table, from downloaded race and sprint classifications. |
+| Accuracy | Scored frozen forecasts with finish error and Brier skill against an even guess (win, podium, top 10), a predicted-against-actual scatter, and unscored forecasts with a Score button. |
+| What if / Freeze a forecast | Lab tools: run Race setup against one changed setting or model candidate on the same seed and open Compare; check the next race and freeze a prospective forecast. |
 | Compare | Completed manual and Simulation Centre probability runs; matched driver comparison with percentage-point deltas. Frozen forecasts are verified before comparison. Different input sessions are explicit in run labels. |
 | Exports | Additive copies of existing CSVs, saved snapshots and images. Missing optional outputs produce a useful explanation. Existing frozen results remain unchanged. |
 | Settings | Locally persisted setup/data paths/auto-reload; restore setup defaults; webhook configuration status without exposing its value. |
-| Existing tools | Practice, qualifying and race detail views; post-race review; telemetry; prospective forecasting, scoring, verified opt-in Discord uploads and MATLAB/Simulink experiments in Simulation Centre. |
+| Existing tools | Practice, qualifying and race detail views; post-race review; telemetry; verified opt-in Discord uploads and MATLAB/Simulink experiments in Simulation Centre. |
 
 ## Functionality the mockups imply but the engine does not yet support
 

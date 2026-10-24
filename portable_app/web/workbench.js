@@ -1,5 +1,9 @@
 // Presentation for the mockup-based dashboard; all data comes from the Python API.
 const pages = {
+  drivers: ['Drivers', 'Season form and team-mate head-to-heads from the local race archive.'],
+  accuracy: ['Accuracy', 'How frozen forecasts scored against the official results.'],
+  scenario: ['What if', 'Change one thing, run it against Race setup, and compare.'],
+  nextforecast: ['Freeze a forecast', 'Run and freeze the forecast for the next race so it can be scored afterwards.'],
   hub: ['Race weekend', 'The forecast, the schedule and the title fight for the selected Grand Prix.'],
   setup: ['Race setup', 'Configure your race simulation parameters and output preferences.'],
   data: ['Data sources', 'Manage connected data files, configuration paths and data health.'],
@@ -57,7 +61,7 @@ function navigate(view) {
   $('viewSubtitle').textContent = pages[view]?.[1] || '';
   document.querySelector('.main').scrollTop = 0;
   updateContext();
-  document.querySelector('.context-strip').hidden = ['historical','training','replay','championship'].includes(view);
+  document.querySelector('.context-strip').hidden = ['historical','training','replay','championship','drivers','accuracy','nextforecast'].includes(view);
   // PC following only changes what Setup and Results show; Settings has the full controls.
   document.querySelector('.automation-strip').hidden = !['setup','dashboard'].includes(view);
   if (typeof pauseReplay === 'function' && view !== 'replay') pauseReplay();
@@ -67,6 +71,10 @@ function navigate(view) {
   if(view==='fantasy'){safeAction(()=>refreshFantasyArchive());safeAction(pickFantasyTeam);}
   if(view==='championship')safeAction(()=>refreshChampionship());
   if(view==='hub')safeAction(refreshHub);
+  if(view==='drivers')safeAction(refreshDrivers);
+  if(view==='accuracy')safeAction(refreshAccuracy);
+  if(view==='scenario')renderScenarioControls();
+  if(view==='nextforecast')safeAction(refreshNextForecast);
   if(view==='training')safeAction(refreshModelTraining);
   if (typeof refreshHistoricalLibrary === 'function') {
     clearTimeout(state.archiveTimer);
