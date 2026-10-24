@@ -61,7 +61,7 @@ async function loadHistorical(){
 // Canvas colours come from the CSS tokens shared with the Workbench.
 function token(name){return getComputedStyle(document.documentElement).getPropertyValue(name).trim();}
 function history(){
-  el('history').innerHTML=(appState.history||[]).map(run=>`<button class="${run.id===selected?'active':''}" data-id="${escape(run.id)}"><span class="state">${escape(run.status)}</span><strong>${escape(run.label)}</strong><small>${new Date(run.created_at).toLocaleString([], {month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'})}${run.scenario&&run.kind==='experiments'?' · '+escape(scenarioNames[run.scenario]||run.scenario):''}</small></button>`).join('')||'<p class="muted">No saved runs yet.</p>';
+  el('history').innerHTML=(appState.history||[]).map(run=>`<button class="${run.id===selected?'active':''}" data-id="${escape(run.id)}"><span class="state">${escape(run.status)}</span><strong>${escape(run.label)}</strong>${run.run_class?`<em class="run-class">${run.run_class==='official'?'Official forecast':'My simulation'}</em>`:''}<small>${new Date(run.created_at).toLocaleString([], {month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'})}${run.scenario&&run.kind==='experiments'?' · '+escape(scenarioNames[run.scenario]||run.scenario):''}</small></button>`).join('')||'<p class="muted">No saved runs yet.</p>';
   el('history').querySelectorAll('button').forEach(button=>button.onclick=()=>safely(()=>selectRun(button.dataset.id)));
 }
 async function refresh(){

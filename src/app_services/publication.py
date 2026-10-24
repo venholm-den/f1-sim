@@ -67,15 +67,17 @@ def model_fingerprint(source_hashes):
 def build_publication(folder, model_id, visibility='subscribers'):
     """Payload for one verified frozen forecast; adds nothing from local config."""
     from src.app_services.beta import digest, verified_snapshot
+    from src.app_services.run_class import require_official
     folder = Path(folder)
     manifest = verified_snapshot(folder)
+    require_official(folder)
     if manifest['category'] != 'prospective':
         raise ValueError('Only prospective pre-race snapshots can be published as official forecasts.')
     context = manifest['context']
     snapshot_sha = digest(folder/'frozen/manifest.json')
     frame = pd.read_csv(folder/'frozen/simulation_summary.csv')
     predictions = json.loads(frame[[c for c in PREDICTION_FIELDS if c in frame]].to_json(orient='records'))
-    job = json.loads((folder/'job.json').read_text(encoding='utf-8')) if (folder/'job.json').is_file() else {}
+    job = json.loads((folder/'job.json').read_text(encoding='utf-8'))
     event = {'year': int(context['year']), 'round': int(context['round']), 'name': str(context['event']),
              'race_start_utc': context['race_start_utc']}
     payload = {

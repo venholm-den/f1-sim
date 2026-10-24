@@ -38,7 +38,7 @@ def fixture_snapshot(folder, stage, generated_at, cutoff=None):
                   'win_chance': win.round(6), 'podium_chance': (win * 3).clip(upper=1).round(6),
                   'points_chance': (win * 10).clip(upper=1).round(6),
                   'dnf_chance': [0.06] * len(DRIVERS)}).to_csv(folder/'simulation_summary.csv', index=False)
-    (folder/'job.json').write_text(json.dumps({'n_sims': 10000, 'seed': 42, 'overtaking_difficulty': 0.55,
+    (folder/'job.json').write_text(json.dumps({'kind': 'forecast', 'n_sims': 10000, 'seed': 42, 'overtaking_difficulty': 0.55,
                                               'source_dir': 'C:\\private\\never-published'}))
     context = {'year': 2024, 'event': 'Example Grand Prix', 'round': 12, 'session': stage,
                'available_sessions': SESSIONS[stage], 'race_start_utc': RACE_START,

@@ -73,6 +73,13 @@ function renderAccuracyScatter(race) {
   $('accuracyScatterNote').textContent=`${race.year} ${race.event}. On the line means the forecast average matched the result; red marks a miss of five places or more.`;
 }
 
+// Personal simulations stay out of the record; say how many and why in one line.
+function excludedNote(excluded) {
+  if (!excluded.length) return '';
+  const reasons=[...new Set(excluded.flatMap(r=>r.reasons || []))];
+  return `${excluded.length} personal ${excluded.length===1?'run is':'runs are'} left out of this record: ${reasons.join('; ')}.`;
+}
+
 function renderAccuracy() {
   const data=insights.accuracy;
   if (!data) { $('accuracyAnswers').hidden=true; $('accuracyTable').innerHTML=`<div class="empty">${escapeHtml(insights.accuracyError || 'Loading scored forecasts…')}</div>`; return; }
@@ -90,6 +97,9 @@ function renderAccuracy() {
     el.addEventListener('click',pick); el.addEventListener('keydown',e=>{ if(e.key==='Enter')pick(); });
   });
   renderAccuracyScatter(data.scored.find(r=>r.id===insights.selectedScore) || data.scored[0]);
+  const excluded=data.excluded || [];
+  $('accuracyExcluded').hidden=!excluded.length;
+  $('accuracyExcluded').textContent=excludedNote(excluded);
   renderPendingForecasts();
 }
 
@@ -216,5 +226,5 @@ function initInsights() {
   $('nextForecastRun').addEventListener('click',()=>safeAction(freezeNextForecast));
 }
 
-if (typeof module !== 'undefined' && module.exports) module.exports = { driversAnswers, accuracyAnswers, scenarioChanges, signedPercent };
+if (typeof module !== 'undefined' && module.exports) module.exports = { driversAnswers, accuracyAnswers, scenarioChanges, signedPercent, excludedNote };
 else initInsights();

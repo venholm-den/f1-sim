@@ -2,7 +2,7 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 
 global.plural = (count, noun) => `${count} ${noun}${count === 1 ? '' : 's'}`;
-const { driversAnswers, accuracyAnswers, scenarioChanges, signedPercent } = require('../portable_app/web/insights.js');
+const { driversAnswers, accuracyAnswers, scenarioChanges, signedPercent, excludedNote } = require('../portable_app/web/insights.js');
 
 test('Drivers answers come from the season summary', () => {
   const data = {
@@ -41,4 +41,13 @@ test('Scenario changes list only what differs from Race setup', () => {
   assert.deepEqual(scenarioChanges(base, { default_overtaking_difficulty: 0.55 }, {}, options), []);
   assert.deepEqual(scenarioChanges(base, { default_overtaking_difficulty: 0.8 }, { race_engine: 'pit' }, options),
     ['Overtaking difficulty 55 → 80', 'Race engine: Pit-stop scenarios']);
+});
+
+test('Accuracy says how many personal runs were left out and why', () => {
+  assert.equal(excludedNote([]), '');
+  const note = excludedNote([
+    { id: 'a', reasons: ['Changed from the official protocol: Overtaking difficulty 0.55 → 0.7'] },
+    { id: 'b', reasons: ['Changed from the official protocol: Overtaking difficulty 0.55 → 0.7'] },
+  ]);
+  assert.equal(note, '2 personal runs are left out of this record: Changed from the official protocol: Overtaking difficulty 0.55 → 0.7.');
 });
