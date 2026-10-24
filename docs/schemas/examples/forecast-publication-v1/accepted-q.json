@@ -1,0 +1,213 @@
+{
+  "contract": "f1-sim.forecast-publication",
+  "schema_version": 1,
+  "publication_id": "2024-r12-q-4267ceec6815",
+  "kind": "official",
+  "visibility": "subscribers",
+  "event": {
+    "year": 2024,
+    "round": 12,
+    "name": "Example Grand Prix",
+    "race_start_utc": "2024-07-07T14:00:00+00:00"
+  },
+  "stage": "Q",
+  "available_sessions": [
+    "FP1",
+    "FP2",
+    "FP3",
+    "Q"
+  ],
+  "input_cutoff_utc": "2024-07-06T16:30:00Z",
+  "generated_at_utc": "2024-07-06T16:30:00+00:00",
+  "model": {
+    "model_id": "established",
+    "app_version": "0.2.0-beta.2",
+    "source_fingerprint": "18c09e4c7756a83bf2691187cca40ccafbb27508416d2437dab261970a4ecc4b",
+    "settings": {
+      "n_sims": 10000,
+      "seed": 42,
+      "overtaking_difficulty": 0.55
+    }
+  },
+  "provenance": {
+    "snapshot_manifest_sha256": "4267ceec6815fe59e4d2a3895b1380281dd7ae85941c87ea26a090bff188ab4d",
+    "snapshot_schema_version": 1,
+    "category": "prospective",
+    "input_sha256": {
+      "simulation_summary.csv": "2c1c5cef86fd3e0a2878ce31944587f63e95061a99db0b9d9948548c0068b7da"
+    },
+    "timestamp_authority": "local_clock_unattested",
+    "session_evidence": {}
+  },
+  "limitations": [
+    "Experimental model; not a calibrated guarantee.",
+    "Local hashes are not a trusted submission timestamp.",
+    "Session weather modifiers; no live weather forecast in beta."
+  ],
+  "predictions": [
+    {
+      "Driver": "VER",
+      "avg_finish": 1.6,
+      "win_chance": 0.139373,
+      "podium_chance": 0.418118,
+      "points_chance": 1.0,
+      "dnf_chance": 0.06
+    },
+    {
+      "Driver": "NOR",
+      "avg_finish": 2.5,
+      "win_chance": 0.125784,
+      "podium_chance": 0.377352,
+      "points_chance": 1.0,
+      "dnf_chance": 0.06
+    },
+    {
+      "Driver": "LEC",
+      "avg_finish": 3.4,
+      "win_chance": 0.112892,
+      "podium_chance": 0.338676,
+      "points_chance": 1.0,
+      "dnf_chance": 0.06
+    },
+    {
+      "Driver": "PIA",
+      "avg_finish": 4.3,
+      "win_chance": 0.100697,
+      "podium_chance": 0.302091,
+      "points_chance": 1.0,
+      "dnf_chance": 0.06
+    },
+    {
+      "Driver": "SAI",
+      "avg_finish": 5.2,
+      "win_chance": 0.089199,
+      "podium_chance": 0.267596,
+      "points_chance": 0.891986,
+      "dnf_chance": 0.06
+    },
+    {
+      "Driver": "HAM",
+      "avg_finish": 6.1,
+      "win_chance": 0.078397,
+      "podium_chance": 0.235192,
+      "points_chance": 0.783972,
+      "dnf_chance": 0.06
+    },
+    {
+      "Driver": "RUS",
+      "avg_finish": 7.0,
+      "win_chance": 0.068293,
+      "podium_chance": 0.204878,
+      "points_chance": 0.682927,
+      "dnf_chance": 0.06
+    },
+    {
+      "Driver": "PER",
+      "avg_finish": 7.9,
+      "win_chance": 0.058885,
+      "podium_chance": 0.176655,
+      "points_chance": 0.58885,
+      "dnf_chance": 0.06
+    },
+    {
+      "Driver": "ALO",
+      "avg_finish": 8.8,
+      "win_chance": 0.050174,
+      "podium_chance": 0.150523,
+      "points_chance": 0.501742,
+      "dnf_chance": 0.06
+    },
+    {
+      "Driver": "STR",
+      "avg_finish": 9.7,
+      "win_chance": 0.04216,
+      "podium_chance": 0.126481,
+      "points_chance": 0.421603,
+      "dnf_chance": 0.06
+    },
+    {
+      "Driver": "GAS",
+      "avg_finish": 10.6,
+      "win_chance": 0.034843,
+      "podium_chance": 0.10453,
+      "points_chance": 0.348432,
+      "dnf_chance": 0.06
+    },
+    {
+      "Driver": "OCO",
+      "avg_finish": 11.5,
+      "win_chance": 0.028223,
+      "podium_chance": 0.084669,
+      "points_chance": 0.28223,
+      "dnf_chance": 0.06
+    },
+    {
+      "Driver": "ALB",
+      "avg_finish": 12.4,
+      "win_chance": 0.0223,
+      "podium_chance": 0.066899,
+      "points_chance": 0.222997,
+      "dnf_chance": 0.06
+    },
+    {
+      "Driver": "TSU",
+      "avg_finish": 13.3,
+      "win_chance": 0.017073,
+      "podium_chance": 0.05122,
+      "points_chance": 0.170732,
+      "dnf_chance": 0.06
+    },
+    {
+      "Driver": "RIC",
+      "avg_finish": 14.2,
+      "win_chance": 0.012544,
+      "podium_chance": 0.037631,
+      "points_chance": 0.125436,
+      "dnf_chance": 0.06
+    },
+    {
+      "Driver": "HUL",
+      "avg_finish": 15.1,
+      "win_chance": 0.008711,
+      "podium_chance": 0.026132,
+      "points_chance": 0.087108,
+      "dnf_chance": 0.06
+    },
+    {
+      "Driver": "MAG",
+      "avg_finish": 16.0,
+      "win_chance": 0.005575,
+      "podium_chance": 0.016725,
+      "points_chance": 0.055749,
+      "dnf_chance": 0.06
+    },
+    {
+      "Driver": "BOT",
+      "avg_finish": 16.9,
+      "win_chance": 0.003136,
+      "podium_chance": 0.009408,
+      "points_chance": 0.031359,
+      "dnf_chance": 0.06
+    },
+    {
+      "Driver": "ZHO",
+      "avg_finish": 17.8,
+      "win_chance": 0.001394,
+      "podium_chance": 0.004181,
+      "points_chance": 0.013937,
+      "dnf_chance": 0.06
+    },
+    {
+      "Driver": "SAR",
+      "avg_finish": 18.7,
+      "win_chance": 0.000348,
+      "podium_chance": 0.001045,
+      "points_chance": 0.003484,
+      "dnf_chance": 0.06
+    }
+  ],
+  "checksum": {
+    "algorithm": "sha256",
+    "value": "0aa5d25f931b0d2e53cc9f9d7203e6acea52f937e882eeb81ef3ac72e836b3b3"
+  }
+}
