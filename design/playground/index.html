@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Race Workbench design playground</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+:root{--bg:#101114;--panel:#17191E;--line:#2A2D35;--fg:#ECEDEF;--muted:#9A9FAA;--accent:#FFB800;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);font:14px/1.4 "Inter Tight",system-ui,sans-serif}
+button,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.top{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;padding:10px 16px;border-bottom:1px solid var(--line);background:#0B0C0E;position:sticky;top:0;z-index:2}
+.top h1{font-size:15px;margin:0;white-space:nowrap}
+.top h1 span{color:var(--muted);font-weight:500}
+.group{display:flex;gap:2px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:2px;flex-wrap:wrap}
+.group button{border:0;background:none;padding:6px 10px;border-radius:6px;color:var(--muted);font-weight:600;font-size:13px;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.group button[aria-pressed=true],.group button[aria-selected=true]{background:#2A2D35;color:var(--fg)}
+.group button i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.lbl{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.mock{margin-left:auto;font:600 11px "JetBrains Mono",monospace;color:#000;background:var(--accent);padding:4px 8px;border-radius:999px;white-space:nowrap}
+.stage{padding:16px;display:grid;gap:16px}
+.info{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:start;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 16px}
+.info h2{margin:0 0 4px;font-size:17px}
+.info p{margin:0;color:var(--muted);max-width:820px}
+.sw{display:flex;gap:4px;flex-wrap:wrap}
+.sw span{display:grid;gap:3px;font:500 10px "JetBrains Mono",monospace;color:var(--muted);text-align:center}
+.sw b{width:38px;height:24px;border-radius:5px;border:1px solid #ffffff22}
+.frames{display:grid;gap:16px;align-items:start}
+.frame{min-width:0}
+.frame h3{margin:0 0 6px;font-size:13px;color:var(--muted);font-weight:600;display:flex;gap:8px;align-items:center}
+.frame h3 a{color:var(--muted)}
+.viewport{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:10px;background:#000}
+.viewport iframe{position:absolute;left:0;top:0;border:0;transform-origin:0 0;background:#fff}
+.phone{width:410px;padding:10px;border-radius:44px;background:#1E2026;border:1px solid var(--line);margin:0 auto}
+.phone .viewport{border-radius:34px;border:0}
+.m-desktop .frames{grid-template-columns:1fr}
+.m-both .frames{grid-template-columns:minmax(0,1fr) 410px}
+.m-compare .frames{grid-template-columns:1fr 1fr}
+.m-all .frames{grid-template-columns:repeat(auto-fill,minmax(420px,1fr))}
+.m-mobile .frames{grid-template-columns:repeat(auto-fill,410px);justify-content:center}
+.keys{color:var(--muted);font-size:12px;padding:0 16px 20px}
+kbd{font:600 11px "JetBrains Mono",monospace;border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;padding:0 4px;color:var(--fg)}
+select{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:5px 8px}
+@media (max-width:900px){.m-both .frames,.m-compare .frames{grid-template-columns:1fr}.info{grid-template-columns:1fr}.mock{margin-left:0}}
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>Race Workbench <span>· design playground</span></h1>
+  <div><div class="lbl" id="cl">Concept</div><div class="group" role="radiogroup" aria-labelledby="cl" id="concepts"></div></div>
+  <div><div class="lbl" id="sl">Screen</div><div class="group" role="tablist" aria-labelledby="sl" id="screens"></div></div>
+  <div><div class="lbl" id="vl">View</div><div class="group" role="radiogroup" aria-labelledby="vl" id="views"></div></div>
+  <label id="vsWrap" hidden><span class="lbl">Compare with</span><br><select id="vs"></select></label>
+  <span class="mock" title="All numbers are generated in the browser for design review">MOCK DATA · NOT MODEL OUTPUT</span>
+</header>
+<main class="stage" id="stage">
+  <section class="info" id="info" aria-live="polite"></section>
+  <div class="frames" id="frames"></div>
+</main>
+<p class="keys">Playground: <kbd>[</kbd> <kbd>]</kbd> previous/next screen · <kbd>,</kbd> <kbd>.</kbd> previous/next concept · <kbd>M</kbd> cycle view. Inside a frame: <kbd>1</kbd>–<kbd>7</kbd> screens, <kbd>Space</kbd> play replay, <kbd>←</kbd> <kbd>→</kbd> lap, click a driver to focus, <kbd>Shift</kbd>-click to compare two, <kbd>Esc</kbd> to clear. The playground is isolated in <code>design/playground</code> and is not part of the packaged app.</p>
+<script>
+(function () {
+  const CONCEPTS = [
+    { id: 'a', name: 'A · Pit Wall', short: 'Pit Wall', tag: 'Motorsport command centre', desc: 'A tiled, keyboard-first engineering workspace. Monospaced numbers, timing colours with fixed meanings, every panel synchronised to one focused driver and one replay lap.', palette: [['#0B0D10', 'bg'], ['#12151A', 'panel'], ['#E6E8EB', 'text'], ['#FFB800', 'amber'], ['#4FA3FF', 'blue'], ['#2BD47D', 'green'], ['#B36BFF', 'purple'], ['#FF5A5F', 'red']], fonts: 'Inter Tight + JetBrains Mono' },
+    { id: 'b', name: 'B · Lights Out', short: 'Lights Out', tag: 'Premium broadcast', desc: 'Cinematic and team-colour led. Big condensed type, broadcast towers, lower-third captions and a full-bleed replay stage. Strong identity, lower density.', palette: [['#07070C', 'bg'], ['#11111A', 'panel'], ['#FFFFFF', 'text'], ['#FF1E3C', 'red'], ['#FFC300', 'SC'], ['#A3A3B8', 'muted']], fonts: 'Barlow Condensed + Barlow' },
+    { id: 'c', name: 'C · Quant Terminal', short: 'Quant Terminal', tag: 'Quantitative prediction terminal', desc: 'Dense, command-line driven panes like a market terminal. Every number sits next to its distribution and its change since the last forecast. Type a driver code or screen into the command line.', palette: [['#050607', 'bg'], ['#0B0E11', 'pane'], ['#D7DDE3', 'text'], ['#FF9F1C', 'orange'], ['#3BC9DB', 'cyan'], ['#4ADE80', 'up'], ['#F87171', 'down']], fonts: 'IBM Plex Mono' },
+    { id: 'd', name: 'D · Grid', short: 'Grid', tag: 'Modern consumer sports app', desc: 'Light, card-based and mobile-first. Each card leads with one plain answer; distributions and heatmaps sit behind "Show the maths". Bottom tab bar on phones.', palette: [['#F3F4F6', 'bg'], ['#FFFFFF', 'card'], ['#14161A', 'text'], ['#FF3D2E', 'coral'], ['#C8261A', 'coral text'], ['#2F6BFF', 'blue'], ['#12804A', 'green']], fonts: 'Manrope' },
+    { id: 'e', name: 'E · Raceline', short: 'Raceline', tag: 'Experimental data experience', desc: 'Editorial chapters on warm paper. Uncertainty shown as many possible races (fifty futures, quantile dots), the replay as a river of positions with numbered event pins.', palette: [['#F2EFE8', 'paper'], ['#1B1B1F', 'ink'], ['#E4572E', 'vermilion'], ['#B13F1A', 'verm. text'], ['#2E5BFF', 'cobalt'], ['#C98A00', 'SC']], fonts: 'Fraunces + Space Grotesk + Space Mono' },
+    { id: 'h', name: 'H · Recommended hybrid', short: 'Hybrid ★', tag: 'Pit Wall base + Grid answers + Raceline uncertainty', desc: 'The recommendation. Pit Wall\'s synchronised, keyboard-first panels for the desktop app, a row of plain-language answers on every screen (from Grid), and fifty-futures, quantile dots and a pinned position river as the signature charts (from Raceline).', palette: [['#0D0F13', 'bg'], ['#14171D', 'panel'], ['#ECEEF1', 'text'], ['#FFB800', 'amber'], ['#5AA9FF', 'blue'], ['#2BD47D', 'green'], ['#B36BFF', 'purple'], ['#FF6166', 'red']], fonts: 'Inter Tight + JetBrains Mono' }
+  ];
+  const SCREENS = [['hub', 'Weekend hub'], ['predict', 'Prediction'], ['fantasy', 'Fantasy'], ['replay', 'Replay'], ['intel', 'Drivers'], ['lab', 'Sim lab'], ['eval', 'Evaluation']];
+  const VIEWS = [['desktop', 'Desktop'], ['mobile', 'Mobile'], ['both', 'Desktop + mobile'], ['compare', 'Side by side'], ['all', 'All five']];
+  const q = new URLSearchParams(location.search);
+  const state = { c: q.get('c') || 'a', s: q.get('s') || 'hub', v: q.get('v') || 'both', vs: q.get('vs') || 'c' };
+
+  const $ = (id) => document.getElementById(id);
+  function buttons(el, items, key, role) {
+    el.innerHTML = items.map(([k, label, colour]) => '<button type="button" data-k="' + k + '" role="' + role + '">' + (colour ? '<i style="background:' + colour + '"></i>' : '') + label + '</button>').join('');
+    el.onclick = (e) => { const b = e.target.closest('button'); if (b) { state[key] = b.dataset.k; update(); } };
+    el.onkeydown = (e) => {
+      if (!['ArrowLeft', 'ArrowRight'].includes(e.key)) return;
+      const ks = items.map((i) => i[0]), i = ks.indexOf(state[key]);
+      state[key] = ks[(i + (e.key === 'ArrowRight' ? 1 : ks.length - 1)) % ks.length]; update();
+      el.querySelector('[data-k="' + state[key] + '"]').focus();
+    };
+  }
+  buttons($('concepts'), CONCEPTS.map((c) => [c.id, c.short, c.palette[3][0]]), 'c', 'radio');
+  buttons($('screens'), SCREENS, 's', 'tab');
+  buttons($('views'), VIEWS, 'v', 'radio');
+  $('vs').innerHTML = CONCEPTS.map((c) => '<option value="' + c.id + '">' + c.name + '</option>').join('');
+  $('vs').onchange = (e) => { state.vs = e.target.value; update(); };
+
+  function frame(c, mobile, label) {
+    const src = 'frame.html?c=' + c + '&s=' + state.s;
+    const head = '<h3>' + label + ' <a href="' + src + '" target="_blank" rel="noopener">open ↗</a></h3>';
+    if (mobile) return '<div class="frame">' + head + '<div class="phone"><div class="viewport" style="width:390px;height:844px"><iframe title="' + label + ' mobile" src="' + src + '" width="390" height="844"></iframe></div></div></div>';
+    return '<div class="frame">' + head + '<div class="viewport" data-desktop><iframe title="' + label + ' desktop" src="' + src + '"></iframe></div></div>';
+  }
+  function fit() {
+    document.querySelectorAll('[data-desktop]').forEach((vp) => {
+      const W = 1440, scale = vp.clientWidth / W, H = state.v === 'all' ? 900 : Math.min(1000, Math.max(620, window.innerHeight - 220) / scale);
+      vp.style.height = Math.round(H * scale) + 'px';
+      const f = vp.querySelector('iframe');
+      f.style.width = W + 'px'; f.style.height = H + 'px'; f.style.transform = 'scale(' + scale + ')';
+    });
+  }
+  function update() {
+    const c = CONCEPTS.find((x) => x.id === state.c);
+    ['concepts', 'screens', 'views'].forEach((id, i) => $(id).querySelectorAll('button').forEach((b) => b.setAttribute(i === 1 ? 'aria-selected' : 'aria-pressed', b.dataset.k === state[['c', 's', 'v'][i]])));
+    $('vsWrap').hidden = state.v !== 'compare';
+    $('vs').value = state.vs;
+    $('stage').className = 'stage m-' + state.v;
+    $('info').innerHTML = state.v === 'all' ? '<div><h2>All five concepts · ' + SCREENS.find((s) => s[0] === state.s)[1] + '</h2><p>The same mock data rendered by every direction. Click "open" to explore one at full size.</p></div>' :
+      '<div><h2>' + c.name + ' <span style="color:var(--muted);font-weight:500">· ' + c.tag + '</span></h2><p>' + c.desc + '</p><p style="margin-top:6px">Type: ' + c.fonts + '</p></div><div class="sw" aria-label="Palette">' + c.palette.map(([hex, n]) => '<span><b style="background:' + hex + '"></b>' + hex + '<br>' + n + '</span>').join('') + '</div>';
+    let html = '';
+    if (state.v === 'desktop') html = frame(state.c, false, c.name);
+    if (state.v === 'mobile') html = frame(state.c, true, c.name + ' · 390 px');
+    if (state.v === 'both') html = frame(state.c, false, c.name + ' · 1440 px') + frame(state.c, true, '390 px');
+    if (state.v === 'compare') html = frame(state.c, false, c.name) + frame(state.vs, false, CONCEPTS.find((x) => x.id === state.vs).name);
+    if (state.v === 'all') html = CONCEPTS.filter((x) => x.id !== 'h').map((x) => frame(x.id, false, x.name)).join('');
+    $('frames').innerHTML = html;
+    fit();
+    history.replaceState(null, '', '?c=' + state.c + '&s=' + state.s + '&v=' + state.v + (state.v === 'compare' ? '&vs=' + state.vs : ''));
+  }
+  window.addEventListener('resize', fit);
+  window.addEventListener('message', (e) => {
+    const d = e.data;
+    if (!d || d.type !== 'frame' || state.v === 'all' || state.v === 'compare') return;
+    if (d.s !== state.s && SCREENS.some((s) => s[0] === d.s)) { state.s = d.s; update(); }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.target.matches('input,select,textarea')) return;
+    const cycle = (key, list, dir) => { const ks = list.map((i) => i[0] || i.id), i = ks.indexOf(state[key]); state[key] = ks[(i + dir + ks.length) % ks.length]; update(); };
+    if (e.key === ']') cycle('s', SCREENS, 1);
+    if (e.key === '[') cycle('s', SCREENS, -1);
+    if (e.key === '.') cycle('c', CONCEPTS.map((c) => [c.id]), 1);
+    if (e.key === ',') cycle('c', CONCEPTS.map((c) => [c.id]), -1);
+    if (e.key === 'm' || e.key === 'M') cycle('v', VIEWS, 1);
+  });
+  update();
+})();
+</script>
+</body>
+</html>
