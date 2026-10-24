@@ -98,6 +98,7 @@ The active desktop UI is the local web app wrapped with pywebview:
 - Entry point: `portable_app/web_main.py`
 - Python bridge/API: `portable_app/web_backend.py`
 - Web assets: `portable_app/web/`
+- App logo: `portable_app/web/logo.svg`; Windows icon `assets/race_workbench.ico` (rebuild with `python scripts/make_app_icon.py`)
 - Shared services: `src/app_services/`
 
 Older Tkinter/PySide GUI prototypes have been removed so the repository has one clear portable-app path.

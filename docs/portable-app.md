@@ -87,6 +87,14 @@ The build script bundles:
 - FastF1 package data
 - pywebview/pythonnet runtime data
 
+## App Icon
+
+The logo lives in `portable_app\web\logo.svg` (sidebar and browser tab). The Windows `.exe` and window icon is `assets\race_workbench.ico`, which `build_portable_app.ps1` passes to PyInstaller with `--icon`. After changing the logo, regenerate the `.ico` with:
+
+```powershell
+python scripts\make_app_icon.py
+```
+
 If `data\models\historical_finish_model.joblib` and `data\models\historical_dnf_model.joblib` exist before building, they are included in the portable app bundle.
 
 ## Smart App Control
