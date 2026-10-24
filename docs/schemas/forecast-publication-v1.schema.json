@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/venholm-den/f1-sim/docs/schemas/forecast-publication-v1.schema.json",
+  "title": "Forecast publication v1",
+  "description": "Structural shape of an official forecast published from the producer PC. src/app_services/publication.py:validate_publication is authoritative and also checks the checksum, publication id, stage/session consistency, timestamps, field size, win-chance sum and producer-only data.",
+  "type": "object",
+  "required": ["contract", "schema_version", "publication_id", "kind", "visibility", "event", "stage",
+               "available_sessions", "input_cutoff_utc", "generated_at_utc", "model", "provenance",
+               "limitations", "predictions", "checksum"],
+  "additionalProperties": false,
+  "properties": {
+    "contract": {"const": "f1-sim.forecast-publication"},
+    "schema_version": {"const": 1},
+    "publication_id": {"type": "string", "pattern": "^[0-9]{4}-r[0-9]{2}-(pre|fp1|fp2|fp3|sq|s|q)-[0-9a-f]{12}$"},
+    "kind": {"const": "official"},
+    "visibility": {"enum": ["subscribers", "preview"]},
+    "event": {
+      "type": "object",
+      "required": ["year", "round", "name", "race_start_utc"],
+      "additionalProperties": false,
+      "properties": {
+        "year": {"type": "integer"},
+        "round": {"type": "integer", "minimum": 1},
+        "name": {"type": "string"},
+        "race_start_utc": {"type": "string", "format": "date-time"}
+      }
+    },
+    "stage": {"enum": ["PRE", "FP1", "FP2", "FP3", "SQ", "S", "Q"]},
+    "available_sessions": {"type": "array", "items": {"enum": ["FP1", "FP2", "FP3", "SQ", "S", "Q"]}, "uniqueItems": true},
+    "input_cutoff_utc": {"type": "string", "format": "date-time"},
+    "generated_at_utc": {"type": "string", "format": "date-time"},
+    "model": {
+      "type": "object",
+      "required": ["model_id", "app_version", "source_fingerprint", "settings"],
+      "additionalProperties": false,
+      "properties": {
+        "model_id": {"type": "string"},
+        "app_version": {"type": "string"},
+        "source_fingerprint": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "settings": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "n_sims": {"type": "integer"},
+            "seed": {"type": ["integer", "null"]},
+            "overtaking_difficulty": {"type": "number"}
+          }
+        }
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "required": ["snapshot_manifest_sha256", "snapshot_schema_version", "category", "input_sha256",
+                   "timestamp_authority", "session_evidence"],
+      "additionalProperties": false,
+      "properties": {
+        "snapshot_manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "snapshot_schema_version": {"type": "integer"},
+        "category": {"const": "prospective"},
+        "input_sha256": {"type": "object", "additionalProperties": {"type": "string", "pattern": "^[0-9a-f]{64}$"}},
+        "timestamp_authority": {"type": "string"},
+        "session_evidence": {"type": "object", "additionalProperties": {"type": "string"}}
+      }
+    },
+    "limitations": {"type": "array", "items": {"type": "string"}},
+    "predictions": {
+      "type": "array",
+      "minItems": 15,
+      "items": {
+        "type": "object",
+        "required": ["Driver", "avg_finish"],
+        "additionalProperties": false,
+        "properties": {
+          "Driver": {"type": "string", "minLength": 1},
+          "avg_finish": {"type": "number", "minimum": 1},
+          "win_chance": {"type": "number", "minimum": 0, "maximum": 1},
+          "podium_chance": {"type": "number", "minimum": 0, "maximum": 1},
+          "points_chance": {"type": "number", "minimum": 0, "maximum": 1},
+          "dnf_chance": {"type": "number", "minimum": 0, "maximum": 1}
+        }
+      }
+    },
+    "checksum": {
+      "type": "object",
+      "required": ["algorithm", "value"],
+      "additionalProperties": false,
+      "properties": {
+        "algorithm": {"const": "sha256"},
+        "value": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  }
+}
