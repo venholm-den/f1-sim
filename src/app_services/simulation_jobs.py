@@ -10,6 +10,7 @@ import shutil
 import subprocess
 import sys
 import threading
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 from uuid import uuid4
@@ -29,9 +30,20 @@ def records(frame):
 
 
 def write_json(path, value):
-    temporary = path.with_suffix('.tmp')
+    # A unique temp name keeps concurrent writers apart. Windows refuses the
+    # replace while a poller has the target open, so retry briefly.
+    path = Path(path)
+    temporary = path.with_name(f'{path.name}.{uuid4().hex}.tmp')
     temporary.write_text(json.dumps(value, indent=2, allow_nan=False), encoding='utf-8')
-    temporary.replace(path)
+    for attempt in range(20):
+        try:
+            os.replace(temporary, path)
+            return
+        except PermissionError:
+            if attempt == 19:
+                temporary.unlink(missing_ok=True)
+                raise
+            time.sleep(0.05)
 
 
 def matlab_executable():

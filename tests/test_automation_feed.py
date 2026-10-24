@@ -60,6 +60,20 @@ def test_changed_frozen_file_is_rejected_and_never_repaired(roots):
         automation_feed.selected_forecast(local, '', str(bad))
 
 
+def test_repeat_polls_reuse_verification_until_a_frozen_file_changes(roots, monkeypatch):
+    local, pc = roots
+    run = forecast(pc, 'cached', '2026-10-01T14:00:00Z')
+    calls = []
+    original = automation_feed.verified_snapshot
+    monkeypatch.setattr(automation_feed, 'verified_snapshot', lambda folder: calls.append(folder) or original(folder))
+    for _ in range(3):
+        assert automation_feed.forecast_feed(local)['latest']['id'] == str(run)
+    assert len(calls) == 1
+    (run/'frozen/simulation_summary.csv').write_text('tampered after the first poll')
+    result = automation_feed.forecast_feed(local)
+    assert result['latest'] is None and result['rejected'] == 1
+
+
 def test_missing_pc_workspace_and_duplicate_roots(roots):
     local, pc = roots
     forecast(local, 'one', '2026-10-01T14:00:00Z')

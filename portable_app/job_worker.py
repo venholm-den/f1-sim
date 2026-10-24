@@ -27,6 +27,9 @@ def prepare_historical(job, folder):
     source = folder/'source'
     source.mkdir(exist_ok=True)
     config = replay_config(selection, source, job['n_sims'], job['seed'], job['overtaking_difficulty'])
+    # Like Race Setup and frozen forecasts, never let .env switch on Discord
+    # posting or swap the selected event, session or simulation count.
+    config['ignore_environment_overrides'] = True
     # The existing fantasy pipeline updates its price template in-place. Give
     # it a private copy so a past roster cannot overwrite the current season.
     reference = source/'reference'

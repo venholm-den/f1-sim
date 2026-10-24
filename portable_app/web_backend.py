@@ -1265,7 +1265,11 @@ class PortableWebApi:
         source = data_preview(self.base_config, str(key))['source']
         if not source['exists']:
             raise ValueError('The selected source file is missing.')
-        return self.open_output_dir(source['path'])
+        path = Path(source['path']).resolve()
+        # Only a configured CSV opens in its default editor; never a program.
+        if not path.is_file() or path.suffix.lower() != '.csv':
+            raise ValueError('Only configured CSV data files can be opened.')
+        return self._open_path(path)
 
     def workbench_save(self, payload, data_directory='', auto_reload=False):
         from src.app_services.workbench import validate_settings
@@ -1353,6 +1357,12 @@ class PortableWebApi:
 
     def open_output_dir(self, output_dir: str) -> bool:
         path = Path(output_dir or self.default_settings.output_dir).resolve()
+        # os.startfile runs executables and scripts, so this opens folders only.
+        if not path.is_dir():
+            return False
+        return self._open_path(path)
+
+    def _open_path(self, path: Path) -> bool:
         try:
             if os.name == "nt":
                 os.startfile(path)  # type: ignore[attr-defined]

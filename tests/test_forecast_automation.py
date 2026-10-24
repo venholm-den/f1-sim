@@ -266,3 +266,17 @@ def test_uncertain_delivery_is_not_automatically_reposted(tmp_path, monkeypatch)
     second = forecast_automation.run_automated_forecast(tmp_path, n_sims=100, discord_enabled=True)
     assert second['discord']['requires_review']
     assert len(calls) == 1
+
+
+def test_discord_failure_still_captures_trials_and_checks(tmp_path, monkeypatch):
+    from src.app_services import classification_checks, prediction_trials
+    monkeypatch.setattr(forecast_automation, 'next_race', lambda root: sample_context())
+    monkeypatch.setattr(forecast_automation, 'run_forecast', fake_forecast)
+    monkeypatch.setenv('DISCORD_WEBHOOK_URL', 'https://discord.invalid/test')
+    monkeypatch.setattr(forecast_automation, 'post_files_to_discord', lambda **kwargs: {'ok': False, 'status': 503})
+    captured = []
+    monkeypatch.setattr(prediction_trials, 'try_capture_trial', lambda root, folder: captured.append('trial'))
+    monkeypatch.setattr(classification_checks, 'try_capture_checks', lambda root, folder: captured.append('checks'))
+    with pytest.raises(RuntimeError, match='Discord post failed'):
+        forecast_automation.run_automated_forecast(tmp_path, n_sims=100, discord_enabled=True)
+    assert captured == ['trial', 'checks']

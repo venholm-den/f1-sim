@@ -49,6 +49,11 @@ POST_TO_DISCORD=true
 DISCORD_WEBHOOK_URL=...
 ```
 
+These settings apply to `main.py` command-line runs. Race Setup runs and
+Simulation Centre historical replays ignore `.env` run overrides and never post
+to Discord; only a verified frozen forecast is uploaded, from Simulation Centre or
+the scheduled automation.
+
 Keep `.env` local. It is ignored by Git.
 
 ## FastF1 Cache
