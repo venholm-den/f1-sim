@@ -17,7 +17,7 @@ METHODS = {'lab_state','lab_start','lab_status','lab_results','lab_cancel','lab_
            'historical_auth_state','historical_auth_start','historical_auth_cancel',
            'replay_sessions','replay_load','replay_lap',
            'training_state','training_start', 'automation_state','automation_load','automation_preferences',
-           'fantasy_state','fantasy_refresh','fantasy_open','championship_odds'}
+           'fantasy_state','fantasy_refresh','fantasy_open','championship_odds','fantasy_team'}
 
 
 def make_server(api, assets: Path, port=0):

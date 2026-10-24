@@ -29,6 +29,12 @@ Official incomplete gameweeks are marked **provisional**. Missing scores stay bl
 
 New PC forecasts may use a captured official driver quote only when its season and event match, it was captured before simulation time, the race is still in the future and the capture is less than seven days old. The run writes `fantasy_market_prices.csv` with per-driver source URL and capture time, and automated forecasts freeze that file alongside their summary. The manual price template remains the fallback. Historical round prices and actual scores do not enter race probabilities, model training or retrospective value estimates. Existing frozen values remain unchanged.
 
+## Scoring check and team picker
+
+`python -m scripts.verify_fantasy_scoring` re-scores every archived tools capture with the simulator's Fantasy table and prints each session total that differs from the game's. Forecasts now also write `fantasy_constructor_summary.csv`.
+
+The Fantasy view's team picker scores every legal team of five drivers and two constructors for the selected run at the latest active official quote, with the boost on the best driver. Assets can be locked in or left out. With your current team, bank and free transfers entered, it plans transfers: each change past the free ones costs 10 points, and it shows the gain over keeping your team. The team is entered by hand; the app does not sign in to the F1 Fantasy account.
+
 ## Initial verified coverage
 
 11 October 2026: 86 completed weekends across 2023–2026, 2,831 source records including the latest completed and current provisional official feeds, with driver and constructor coverage. This count can increase as the season progresses. The review evidence is under `outputs/fantasy_data/20261011/`.

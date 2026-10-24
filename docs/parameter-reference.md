@@ -132,18 +132,21 @@ Defined in `src\model_config.py` under `SIMULATION_PARAMETERS`.
 
 ## Fantasy Scoring
 
-Defined in `src\model_config.py` under `FANTASY_SCORING`.
+Defined in `src\model_config.py` under `FANTASY_SCORING`: the official 2026 F1 Fantasy rules. `scripts/verify_fantasy_scoring.py` re-scores every archived weekend with them and lists any score that differs from what the game awarded (2025 and 2026: every driver and constructor score matches). `FANTASY_SEASON_OVERRIDES` holds the few rules that differed in 2023 to 2025, and `fantasy_scoring_for_season(year)` returns the table a run uses.
 
 | Parameter/group | Purpose |
 | --- | --- |
-| `finish_points` | Points by race finish. |
-| `quali_points` | Points by qualifying position. |
-| `position_gain_points_per_place` | Reward for race positions gained. |
-| `position_loss_points_per_place` | Penalty for positions lost. |
-| `position_change_min` / `position_change_max` | Caps position-change scoring. |
-| `fastest_lap_bonus` | Fastest lap fantasy bonus. |
-| `dotd_bonus` | Driver of the day fantasy bonus. |
-| `dnf_penalty` | Fantasy DNF penalty. |
+| `finish_points` / `quali_points` / `sprint_finish_points` | Points by race finish (25 to 1), qualifying (10 to 1) and sprint finish (8 to 1). |
+| `position_gain_points_per_place` / `position_loss_points_per_place` | ±1 per place from grid to finish. No position change for a car that is not classified. |
+| `position_change_min` / `position_change_max` | Optional caps; `None` (the game's rule) means uncapped. |
+| `overtake_points` | +1 per overtake. |
+| `estimated_overtakes` | Fitted pass estimate used when a run has no pass count (base plus per place gained or lost). |
+| `fastest_lap_bonus` / `sprint_fastest_lap_bonus` | +10 race, +5 sprint. |
+| `dotd_bonus` | Driver of the Day, +10. |
+| `dnf_penalty` / `sprint_dnf_penalty` / `quali_not_classified_penalty` | Not classified: −20 race, −10 sprint, −5 qualifying. |
+| `*_disqualified_penalty` | Disqualification penalties per session. |
+| `constructor` | Both drivers' points except Driver of the Day, the qualifying teamwork bonus (−1 to +10), and fastest pit stop bands (+2 to +20, +5 for the fastest, +15 for a world record). Pit stops are not simulated: runs add each team's mean pit points from its last eight archived races. |
+| `team` | Five drivers, two constructors, the $100m starting budget, the 2× boost, two free transfers and −10 per extra transfer. These come from the rulebook, not the archive. |
 
 ## Tyre Strategy Parameters
 

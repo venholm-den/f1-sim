@@ -703,3 +703,26 @@ body.no-run #view-championship .result-metrics{display:grid}
 .table-wrap td:first-child,.table-wrap th:first-child{position:sticky;left:0;background:var(--panel)}
 .table-wrap th:first-child{z-index:2}
 button.primary:disabled{background:var(--panel-2);border-color:var(--line);color:var(--subtle);opacity:1}
+
+/* Fantasy team picker */
+.picker-controls{align-items:end}
+.picker-boost{display:flex;align-items:center;gap:8px}
+.picker-pool{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.picker-chip{border:1px solid var(--line);background:var(--surface);color:var(--text-2);border-radius:999px;padding:4px 10px;font-size:12px}
+.picker-chip small{color:var(--subtle);margin-left:4px}
+.picker-chip.locked{border-color:var(--green);color:var(--green);background:transparent}
+.picker-chip.out{border-color:var(--line-subtle);color:var(--subtle);text-decoration:line-through}
+.picker-team{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:14px;margin-top:12px}
+.picker-team:empty{display:none}
+.picker-team table{width:100%;border-collapse:collapse;font-size:13px}
+.picker-team th,.picker-team td{padding:6px 8px;border-bottom:1px solid var(--line-soft);text-align:left}
+.picker-team td.num,.picker-team th.num{text-align:right;font-variant-numeric:tabular-nums}
+.picker-boost-tag{margin-left:6px;padding:1px 6px;border-radius:6px;background:var(--red-tint);color:var(--accent-text);font-size:11px}
+.picker-totals{display:grid;gap:10px;align-content:start}
+.picker-totals div{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--surface)}
+.picker-totals small{display:block;color:var(--subtle);font-size:11px;text-transform:uppercase}
+.picker-totals strong{font-size:20px;font-weight:500}
+@media (max-width:760px){.picker-team{grid-template-columns:1fr}}
+.picker-mine{margin-top:12px;border:1px solid var(--line-soft);border-radius:10px;padding:10px 12px}
+.picker-mine summary{cursor:pointer;color:var(--text-2);font-size:13px}
+.picker-totals .footnote{margin-top:4px;font-size:11px}

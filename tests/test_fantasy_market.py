@@ -189,3 +189,32 @@ def test_used_market_quote_is_frozen_and_verified_with_the_forecast(tmp_path):
     (tmp_path / 'frozen' / quote.name).write_text('changed price')
     with pytest.raises(ValueError, match='changed'):
         verified_snapshot(tmp_path)
+
+
+def test_expected_pit_stop_points_follow_each_team_through_its_drivers():
+    payload = json.loads((Path(__file__).parent / 'fixtures' / 'fantasy_tools_2026_sample.json').read_text())
+    drivers, constructors = market.scored_archive_records(payload, 2026)
+    fielded = {row['Driver']: row['Team'] for row in drivers}
+    names = {code: f'Team {code}' for code in set(fielded.values())}
+
+    expected = market.expected_pit_stop_points(payload, 2026, {d: names[t] for d, t in fielded.items()})
+
+    for code, name in names.items():
+        awarded = [r['actual_pit_stop'] for r in constructors if r['Team'] == code]
+        assert expected[name] == pytest.approx(sum(awarded) / len(awarded))
+
+
+def test_latest_tools_payload_reads_windows_folder_names_and_checks_the_checksum(tmp_path):
+    root = market.archive_root(tmp_path)
+    folder = root / 'captures' / 'one'
+    folder.mkdir(parents=True)
+    raw = b'{"seasonResult": {}}'
+    (folder / 'raw.json').write_bytes(raw)
+    index = {'captures': {'tools_2026': {'folder': 'captures\\one',
+                                         'raw_sha256': hashlib.sha256(raw).hexdigest()}}}
+    (root / 'index.json').write_text(json.dumps(index))
+    assert market.latest_tools_payload(tmp_path, 2026) == {'seasonResult': {}}
+    assert market.latest_tools_payload(tmp_path, 2025) is None
+    (folder / 'raw.json').write_bytes(b'{}')
+    with pytest.raises(ValueError, match='checksum'):
+        market.latest_tools_payload(tmp_path, 2026)

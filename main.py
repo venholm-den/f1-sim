@@ -34,7 +34,8 @@ from src.reliability import (
     infer_reliability_profile,
     load_team_power_units,
 )
-from src.fantasy import ensure_price_template, calculate_fantasy_summary
+from src.fantasy import calculate_fantasy_summary, constructor_fantasy_summary, ensure_price_template
+from src.model_config import fantasy_scoring_for_season
 from src.fantasy_charts import make_fantasy_points_chart, make_fantasy_value_chart
 from src.charts import make_probability_chart, make_text_report_image
 from src.run_config import load_app_config, parse_config_args
@@ -1124,17 +1125,30 @@ def main() -> None:
     market_prices = snapshot_prices(Path.cwd(), metadata, output_dir)
     if market_prices:
         print(f"- observed official fantasy prices: {market_prices}")
+    fantasy_scoring = fantasy_scoring_for_season(year)
     summary, fantasy_results = calculate_fantasy_summary(
         results=results,
         race_summary=race_summary,
         prices_path=market_prices or app_config.data.fantasy_prices_path,
+        scoring=fantasy_scoring,
     )
+    try:
+        from src.fantasy_market import expected_pit_stop_points, latest_tools_payload
+        payload = latest_tools_payload(Path.cwd(), year)
+        pit_points = expected_pit_stop_points(
+            payload, year, dict(zip(summary["Driver"], summary["Team"]))) if payload else {}
+    except (OSError, ValueError, KeyError) as exc:
+        print(f"- constructor pit-stop history unavailable: {type(exc).__name__}")
+        pit_points = {}
+    constructor_summary = constructor_fantasy_summary(fantasy_results, fantasy_scoring, pit_points)
 
     summary_path = _output_path(output_dir, "simulation_summary.csv")
     position_matrix_path = _output_path(output_dir, "position_matrix.csv")
 
     summary.to_csv(summary_path, index=False)
     position_matrix.to_csv(position_matrix_path, index=False)
+    constructor_summary_path = _output_path(output_dir, "fantasy_constructor_summary.csv")
+    constructor_summary.to_csv(constructor_summary_path, index=False)
     prediction_reasoning_path = save_prediction_reasoning_csv(
         race_summary=summary,
         model_features=model_features,
@@ -1151,6 +1165,7 @@ def main() -> None:
 
     print(f"- saved: {summary_path}")
     print(f"- saved: {position_matrix_path}")
+    print(f"- saved: {constructor_summary_path}")
     print(f"- saved: {prediction_reasoning_path}")
 
     if save_raw_results:
