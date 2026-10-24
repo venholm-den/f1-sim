@@ -71,7 +71,7 @@ def run_app(args):
     )
     api.set_window(window)
     window.events.closed += api.lab_cancel
-    webview.start(debug=args.debug)
+    webview.start(debug=args.debug, icon=str(resource_path(Path("assets") / "race_workbench.ico")))
 
 
 if __name__ == "__main__":

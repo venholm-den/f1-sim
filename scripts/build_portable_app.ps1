@@ -25,6 +25,7 @@ if (Test-Path -LiteralPath $ReleasePath) {
     --clean `
     --onedir `
     --windowed `
+    --icon "assets\race_workbench.ico" `
     --name $Name `
     --workpath $WorkPath `
     --add-data "config\default_run_config.json;config" `

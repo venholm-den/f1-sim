@@ -365,10 +365,9 @@ body{background:var(--bg);font:14px/1.5 Inter,"Segoe UI",system-ui,sans-serif}
 .app-shell{grid-template-columns:236px minmax(0,1fr)}
 .sidebar{background:var(--bg);padding:24px 12px 12px;overflow:auto;gap:22px;border-right:1px solid var(--line-subtle)}
 .brand{padding:0 8px;min-height:38px;display:flex;flex-direction:row;gap:10px;margin:0}
-.brand-emblem{width:32px;height:32px;border:1px solid var(--red);border-radius:8px;display:grid;place-items:center;color:var(--red)}
+.brand-logo{width:32px;height:32px;flex:none;display:block}
 .brand b{font-size:14px;font-weight:500;letter-spacing:0}
 .brand small{display:block;font-size:11px;color:var(--subtle);letter-spacing:0}
-.brand-emblem svg{width:17px;height:17px}
 .nav{gap:18px;display:flex;flex-direction:column;margin:0}
 .nav-group{display:flex;flex-direction:column;gap:2px}
 .nav-stage{display:flex;gap:8px;align-items:center;padding:0 8px 7px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--subtle)}

@@ -13,6 +13,7 @@ def test_loopback_bridge_requires_session_and_same_origin(tmp_path):
     (tmp_path/'index.html').write_text('<title>Test centre</title>')
     (tmp_path/'tyre-strategy.js').write_text('window.TyreStrategy = {};')
     (tmp_path/'tyre-strategy.css').write_text('.tyre-board { color: white; }')
+    (tmp_path/'logo.svg').write_text('<svg xmlns="http://www.w3.org/2000/svg"/>')
     api = Mock()
     api.lab_state.return_value = {'features': True}
     server = make_server(api, tmp_path)
@@ -27,7 +28,7 @@ def test_loopback_bridge_requires_session_and_same_origin(tmp_path):
         with request('/') as response:
             assert 'Test centre' in response.read().decode()
             assert response.headers['Cross-Origin-Resource-Policy'] == 'same-origin'
-        for asset, content_type in [('tyre-strategy.js', 'text/javascript'), ('tyre-strategy.css', 'text/css')]:
+        for asset, content_type in [('tyre-strategy.js', 'text/javascript'), ('tyre-strategy.css', 'text/css'), ('logo.svg', 'image/svg+xml')]:
             with request('/'+asset) as response:
                 assert response.headers['Content-Type'] == content_type
                 assert response.read()
