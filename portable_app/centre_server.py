@@ -15,7 +15,7 @@ METHODS = {'lab_state','lab_start','lab_status','lab_results','lab_cancel','lab_
            'workbench_compare','workbench_weather','workbench_history',
            'historical_state','historical_start','historical_preview','historical_export','historical_open',
            'historical_auth_state','historical_auth_start','historical_auth_cancel',
-           'replay_sessions','replay_load','replay_lap','weekend_schedule','accuracy_state','driver_intel',
+           'replay_sessions','replay_load','replay_lap','weekend_schedule','accuracy_state','archive_replay_start','driver_intel',
            'training_state','training_start', 'automation_state','automation_load','automation_preferences',
            'fantasy_state','fantasy_refresh','fantasy_open','championship_odds','fantasy_team'}
 
