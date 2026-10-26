@@ -30,7 +30,9 @@ CANDIDATES: dict[str, dict[str, Any]] = {
         'note': 'Not with the car agents engine, which has its own.'},
     'retirement_model': {
         'label': 'Retirements', 'default': 'legacy',
-        'options': {'legacy': 'Established', 'survival_dnf_v1': 'Survival model'}, 'note': ''},
+        'options': {'legacy': 'Established', 'survival_dnf_v1': 'Survival model',
+                    'season_dnf_v1': "This season's retirements"},
+        'note': "Season model uses each team and driver's real retirements this year."},
     'weather_model': {
         'label': 'Race weather', 'default': 'session_legacy',
         'options': {'session_legacy': 'Established', 'race_window_v1': 'Race-window forecast'},
