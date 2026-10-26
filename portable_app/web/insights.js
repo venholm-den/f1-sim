@@ -1,7 +1,7 @@
 // Drivers, Accuracy and the Lab's what-if runs. Drivers and Accuracy read saved
 // files through the API; a what-if runs Race setup twice and opens Compare.
 
-const insights = {drivers:null, driversError:'', accuracy:null, accuracyError:'', selectedScore:null, request:0, scoring:null};
+const insights = {drivers:null, driversError:'', accuracy:null, accuracyError:'', accuracyScope:'all', selectedScore:null, request:0, scoring:null};
 
 // ---------- Drivers ----------
 function driversAnswers(data) {
@@ -50,27 +50,51 @@ async function refreshDrivers() {
 function signedPercent(value) { return value==null ? '—' : `${value>=0?'+':'−'}${Math.abs(Math.round(value*100))}%`; }
 function mean(values) { const v=values.filter(x=>x!=null && Number.isFinite(Number(x))).map(Number); return v.length ? v.reduce((a,b)=>a+b,0)/v.length : null; }
 
-function accuracyAnswers(data) {
-  const scored=data?.scored || [];
-  if (!scored.length) return [];
-  const mae=mean(scored.map(r=>r.finish_mae)), win=mean(scored.map(r=>r.win_chance_skill)), podium=mean(scored.map(r=>r.podium_chance_skill));
-  return [{label:'Races scored', value:String(scored.length), note:`latest ${scored[0].year || ''} ${scored[0].event || ''}`.trim()},
-    {label:'Finish error', value:mae==null ? '—' : `${mae.toFixed(1)} places`, note:'average gap between predicted and actual finish'},
-    {label:'Win calls', value:signedPercent(win), note:'Brier skill against an even guess'},
-    {label:'Podium calls', value:signedPercent(podium), note:'Brier skill against an even guess'}];
+// "finishers" re-ranks the forecast among cars that finished, so retirements stop counting as misses.
+function finishError(race, scope) { return scope==='finishers' ? race.finishers_finish_mae : race.finish_mae; }
+
+function retirementTally(scored) {
+  const known=scored.filter(r=>r.retirements!=null);
+  if (!known.length) return null;
+  const expected=known.filter(r=>r.expected_retirements!=null);
+  return {races:known.length, actual:known.reduce((s,r)=>s+r.retirements,0),
+    expected:expected.length===known.length ? expected.reduce((s,r)=>s+r.expected_retirements,0) : null};
 }
 
-function renderAccuracyScatter(race) {
-  const rows=(race?.comparison || []).filter(r=>r.avg_finish!=null && r.actual_position!=null);
+function accuracyAnswers(data, scope='all') {
+  const scored=data?.scored || [];
+  if (!scored.length) return [];
+  const mae=mean(scored.map(r=>finishError(r, scope))), win=mean(scored.map(r=>r.win_chance_skill)), podium=mean(scored.map(r=>r.podium_chance_skill));
+  const answers=[{label:'Races scored', value:String(scored.length), note:`latest ${scored[0].year || ''} ${scored[0].event || ''}`.trim()},
+    {label:'Finish error', value:mae==null ? '—' : `${mae.toFixed(1)} places`,
+      note:scope==='finishers' ? 'finishers only, re-ranked without retirements' : 'average gap between predicted and actual finish'},
+    {label:'Win calls', value:signedPercent(win), note:'Brier skill against an even guess'},
+    {label:'Podium calls', value:signedPercent(podium), note:'Brier skill against an even guess'}];
+  const tally=retirementTally(scored);
+  if (tally) answers.push({label:'Retirements', value:`${tally.actual}${tally.expected==null ? '' : ` vs ${tally.expected.toFixed(1)}`}`,
+    note:tally.expected==null ? `in ${tally.races} scored ${tally.races===1?'race':'races'}` : `real against forecast, ${tally.races} ${tally.races===1?'race':'races'}`});
+  return answers;
+}
+
+function renderRetirementRecord(record) {
+  $('accuracyRetirements').innerHTML=record.length ? `<table><thead><tr>${['Driver','Races','Forecast chance','Expected','Retired'].map(c=>`<th>${c}</th>`).join('')}</tr></thead><tbody>${record.map(r=>
+    `<tr${r.retirements>=r.expected+2?' class="flagged"':''}><td>${escapeHtml(r.driver)}</td><td>${r.races}</td><td>${Math.round(r.average_chance*100)}%</td><td>${r.expected.toFixed(1)}</td><td>${r.retirements}</td></tr>`).join('')}</tbody></table>`
+    : '<div class="empty">Scored races with forecast retirement chances will appear here.</div>';
+}
+
+function renderAccuracyScatter(race, scope='all') {
+  const rows=(race?.comparison || []).filter(r=>r.avg_finish!=null && r.actual_position!=null && !(scope==='finishers' && r.actual_dnf===true));
   if (!rows.length) { $('accuracyScatter').innerHTML='<div class="empty">Choose a scored race to compare its forecast with the result.</div>'; return; }
   const n=Math.max(...rows.map(r=>Math.max(r.actual_position,Math.ceil(r.avg_finish)))), W=440, H=360, L=40, R=14, T=12, B=38;
   const px=v=>L+(v-1)/(n-1)*(W-L-R), py=v=>T+(v-1)/(n-1)*(H-T-B);
   const ticks=[1,5,10,15,20].filter(v=>v<=n);
   const grid=ticks.map(v=>`<line x1="${L}" x2="${W-R}" y1="${py(v)}" y2="${py(v)}"/><text x="${L-6}" y="${py(v)+4}" text-anchor="end">P${v}</text><text x="${px(v)}" y="${H-B+16}" text-anchor="middle">P${v}</text>`).join('');
-  const dots=rows.map(r=>{const off=Math.abs(r.avg_finish-r.actual_position)>=5;
-    return `<g class="scatter-point${off?' picked':''}" data-driver="${escapeHtml(r.Driver)}"><title>${escapeHtml(r.Driver)}: forecast ${Number(r.avg_finish).toFixed(1)}, finished P${r.actual_position}</title><circle cx="${px(r.avg_finish)}" cy="${py(r.actual_position)}" r="5"/>${off?`<text x="${px(r.avg_finish)+8}" y="${py(r.actual_position)+4}">${escapeHtml(r.Driver)}</text>`:''}</g>`;}).join('');
+  const dots=rows.map(r=>{const off=Math.abs(r.avg_finish-r.actual_position)>=5, out=r.actual_dnf===true;
+    return `<g class="scatter-point${off?' picked':''}${out?' retired':''}" data-driver="${escapeHtml(r.Driver)}"><title>${escapeHtml(r.Driver)}: forecast ${Number(r.avg_finish).toFixed(1)}, ${out?'retired, classified':'finished'} P${r.actual_position}</title><circle cx="${px(r.avg_finish)}" cy="${py(r.actual_position)}" r="5"/>${off?`<text x="${px(r.avg_finish)+8}" y="${py(r.actual_position)+4}">${escapeHtml(r.Driver)}</text>`:''}</g>`;}).join('');
   $('accuracyScatter').innerHTML=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Forecast average finish against actual finish for ${rows.length} drivers"><g class="scatter-grid">${grid}</g><line class="scatter-diagonal" x1="${px(1)}" y1="${py(1)}" x2="${px(n)}" y2="${py(n)}"/>${dots}<text class="scatter-axis" x="${(L+W-R)/2}" y="${H-4}" text-anchor="middle">Forecast average finish</text><text class="scatter-axis" transform="translate(11 ${(T+H-B)/2}) rotate(-90)" text-anchor="middle">Actual finish</text></svg>`;
-  $('accuracyScatterNote').textContent=`${race.year} ${race.event}. On the line means the forecast average matched the result; red marks a miss of five places or more.`;
+  const retired=(race.comparison || []).filter(r=>r.actual_dnf===true).length;
+  $('accuracyScatterNote').textContent=`${race.year} ${race.event}. On the line means the forecast average matched the result; red marks a miss of five places or more.${
+    scope==='finishers' ? ` ${retired} retired ${retired===1?'driver is':'drivers are'} hidden.` : retired ? ' Hollow dots retired.' : ''}`;
 }
 
 // Personal simulations stay out of the record; say how many and why in one line.
@@ -83,20 +107,24 @@ function excludedNote(excluded) {
 function renderAccuracy() {
   const data=insights.accuracy;
   if (!data) { $('accuracyAnswers').hidden=true; $('accuracyTable').innerHTML=`<div class="empty">${escapeHtml(insights.accuracyError || 'Loading scored forecasts…')}</div>`; return; }
-  const answers=accuracyAnswers(data);
+  const scope=insights.accuracyScope;
+  document.querySelectorAll('[data-accuracy-scope]').forEach(el=>el.setAttribute('aria-pressed', String(el.dataset.accuracyScope===scope)));
+  const answers=accuracyAnswers(data, scope);
   $('accuracyAnswers').hidden=!answers.length;
   $('accuracyAnswers').innerHTML=answerTiles(answers);
   const rows=data.scored.map(r=>({Race:`${r.year || ''} ${r.event || 'Unknown race'}`.trim(), Forecast:r.session || '—', Category:r.category || '—', Drivers:r.drivers,
-    'Finish error':r.finish_mae==null?'—':`${Number(r.finish_mae).toFixed(2)} places`, 'Win skill':signedPercent(r.win_chance_skill),
+    'Finish error':finishError(r, scope)==null?'—':`${Number(finishError(r, scope)).toFixed(2)} places`, Retired:r.retirements==null?'—':`${r.retirements}${r.expected_retirements==null?'':` (${r.expected_retirements.toFixed(1)})`}`,
+    'Win skill':signedPercent(r.win_chance_skill),
     'Podium skill':signedPercent(r.podium_chance_skill), 'Top 10 skill':signedPercent(r.points_chance_skill), id:r.id}));
-  $('accuracyTable').innerHTML=rows.length ? `<table><thead><tr>${['Race','Drivers','Finish error','Win skill','Podium skill','Top 10 skill'].map(c=>`<th>${c}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>
-    `<tr class="selectable-row${r.id===insights.selectedScore?' focused':''}" data-score="${escapeHtml(r.id)}" tabindex="0">${['Race','Drivers','Finish error','Win skill','Podium skill','Top 10 skill'].map(c=>`<td>${escapeHtml(r[c])}</td>`).join('')}</tr>`).join('')}</tbody></table>`
+  $('accuracyTable').innerHTML=rows.length ? `<table><thead><tr>${['Race','Drivers','Finish error','Retired','Win skill','Podium skill','Top 10 skill'].map(c=>`<th>${c}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>
+    `<tr class="selectable-row${r.id===insights.selectedScore?' focused':''}" data-score="${escapeHtml(r.id)}" tabindex="0">${['Race','Drivers','Finish error','Retired','Win skill','Podium skill','Top 10 skill'].map(c=>`<td>${escapeHtml(r[c])}</td>`).join('')}</tr>`).join('')}</tbody></table>`
     : '<div class="empty">No forecasts have been scored yet. Score a frozen forecast below once its race has finished.</div>';
   $('accuracyTable').querySelectorAll('[data-score]').forEach(el=>{
     const pick=()=>{ insights.selectedScore=el.dataset.score; renderAccuracy(); };
     el.addEventListener('click',pick); el.addEventListener('keydown',e=>{ if(e.key==='Enter')pick(); });
   });
-  renderAccuracyScatter(data.scored.find(r=>r.id===insights.selectedScore) || data.scored[0]);
+  renderAccuracyScatter(data.scored.find(r=>r.id===insights.selectedScore) || data.scored[0], scope);
+  renderRetirementRecord(data.retirement_record || []);
   const excluded=data.excluded || [];
   $('accuracyExcluded').hidden=!excluded.length;
   $('accuracyExcluded').textContent=excludedNote(excluded);
@@ -219,6 +247,7 @@ function initInsights() {
   setOptions($('driversSeason'),[now,now-1,now-2,now-3].map(String),String(now));
   $('driversSeason').addEventListener('change',()=>safeAction(refreshDrivers));
   $('accuracyRefresh').addEventListener('click',()=>safeAction(refreshAccuracy));
+  document.querySelectorAll('[data-accuracy-scope]').forEach(el=>el.addEventListener('click',()=>{ insights.accuracyScope=el.dataset.accuracyScope; renderAccuracy(); }));
   $('scenarioOvertaking').addEventListener('input',()=>{ $('scenarioOvertaking').dataset.touched='1'; updateScenarioSummary(); });
   $('scenarioReset').addEventListener('click',()=>{ delete $('scenarioOvertaking').dataset.touched; renderScenarioControls(); });
   $('scenarioRun').addEventListener('click',()=>safeAction(runScenario));
@@ -226,5 +255,5 @@ function initInsights() {
   $('nextForecastRun').addEventListener('click',()=>safeAction(freezeNextForecast));
 }
 
-if (typeof module !== 'undefined' && module.exports) module.exports = { driversAnswers, accuracyAnswers, scenarioChanges, signedPercent, excludedNote };
+if (typeof module !== 'undefined' && module.exports) module.exports = { driversAnswers, accuracyAnswers, retirementTally, scenarioChanges, signedPercent, excludedNote };
 else initInsights();

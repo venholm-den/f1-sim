@@ -2,7 +2,7 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 
 global.plural = (count, noun) => `${count} ${noun}${count === 1 ? '' : 's'}`;
-const { driversAnswers, accuracyAnswers, scenarioChanges, signedPercent, excludedNote } = require('../portable_app/web/insights.js');
+const { driversAnswers, accuracyAnswers, retirementTally, scenarioChanges, signedPercent, excludedNote } = require('../portable_app/web/insights.js');
 
 test('Drivers answers come from the season summary', () => {
   const data = {
@@ -33,6 +33,19 @@ test('Accuracy answers average the scored races', () => {
   assert.equal(answers[0].note, 'latest 2026 Mexico City Grand Prix');
   assert.deepEqual(accuracyAnswers({ scored: [] }), []);
   assert.equal(signedPercent(null), '—');
+});
+
+test('Accuracy can score finishers only and tallies retirements', () => {
+  const scored = [
+    { year: 2026, event: 'Singapore Grand Prix', finish_mae: 4, finishers_finish_mae: 2, retirements: 3, expected_retirements: 0.8 },
+    { year: 2026, event: 'Bahrain Grand Prix', finish_mae: 3, finishers_finish_mae: 3, retirements: 1, expected_retirements: 0.7 },
+  ];
+  assert.equal(accuracyAnswers({ scored })[1].value, '3.5 places');
+  const finishers = accuracyAnswers({ scored }, 'finishers');
+  assert.equal(finishers[1].value, '2.5 places');
+  assert.equal(finishers[4].value, '4 vs 1.5');
+  assert.deepEqual(retirementTally([{ retirements: 2, expected_retirements: null }]), { races: 1, actual: 2, expected: null });
+  assert.equal(retirementTally([{ retirements: null }]), null);
 });
 
 test('Scenario changes list only what differs from Race setup', () => {

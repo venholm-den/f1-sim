@@ -831,6 +831,10 @@ details.maths>.footnote{margin:0 0 14px}
 .scatter-point.picked text{fill:#fff}
 .has-driver-focus .view.active .scatter-point:not(.is-driver-focus){opacity:.3}
 .scatter-point.is-driver-focus circle{stroke:#fff;stroke-width:2}
+.scatter-point.retired circle{fill:none;stroke:var(--subtle);stroke-width:1.5}
+.scatter-point.retired.picked circle{fill:none;stroke:var(--red)}
+.accuracy-scope{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 16px}.accuracy-scope>span{font-size:12px;color:var(--muted)}.accuracy-scope .session-pills{flex:0 0 auto}.accuracy-scope .session-pills button{padding:5px 12px;white-space:nowrap}.accuracy-scope small{flex:1 1 280px;color:var(--muted);font-size:12px}
+#accuracyRetirements tr.flagged td{color:var(--accent-text)}
 @media (max-width:620px){.budget-bar{gap:10px;padding:8px 10px}.budget-bar #fantasyPick{flex:1 0 100%}.picker-chip{min-width:84px}}
 
 /* Drivers, Accuracy and the Lab */

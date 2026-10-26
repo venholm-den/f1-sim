@@ -326,6 +326,10 @@ def _extract_actual_results_from_race_session(race_session: Any) -> pd.DataFrame
         if "Status" in actual.columns:
             actual["actual_status"] = actual["Status"].fillna("").astype(str)
             actual["actual_dnf"] = actual["actual_status"].map(retirement_label).astype('boolean')
+            # Recent feeds can say "Lapped" for a car that stopped; the classification still marks it R.
+            if "ClassifiedPosition" in actual.columns:
+                stopped = actual["ClassifiedPosition"].astype(str).str.strip().str.upper().eq("R")
+                actual.loc[stopped, "actual_dnf"] = True
         else:
             actual["actual_status"] = "classified"
             actual["actual_dnf"] = pd.Series(pd.NA, index=actual.index, dtype='boolean')
