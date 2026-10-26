@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import hashlib
+import json
 from unittest.mock import Mock
 
 import pandas as pd
@@ -71,6 +72,7 @@ def test_launch_snapshots_inputs_and_rejects_concurrent_run(jobs, monkeypatch):
     monkeypatch.setattr(module, 'matlab_executable', lambda: None)
     run = jobs.start({'kind':'monte_carlo'})
     folder = jobs._folder(run['id'])
+    assert json.loads((folder/'job.json').read_text())['n_sims'] == 100_000
     assert (folder/'features.csv').read_text() == (source/'driver_model_features.csv').read_text()
     assert jobs.state()['active_id'] == run['id']
     with pytest.raises(ValueError, match='already running'):

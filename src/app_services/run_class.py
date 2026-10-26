@@ -11,15 +11,17 @@ import json
 import math
 from pathlib import Path
 
-# The protocol every official forecast uses, so frozen snapshots stay comparable.
-OFFICIAL_PROTOCOL = {'n_sims': 10_000, 'seed': 42, 'overtaking_difficulty': 0.55}
+# New forecasts use v2. Unversioned 10k snapshots retain their original status.
+OFFICIAL_PROTOCOL_VERSION = '100k_v2'
+OFFICIAL_PROTOCOL = {'n_sims': 100_000, 'seed': 42, 'overtaking_difficulty': 0.55}
+LEGACY_PROTOCOL = {**OFFICIAL_PROTOCOL, 'n_sims': 10_000}
 SETTING_LABELS = {'n_sims': 'Simulations', 'seed': 'Seed', 'overtaking_difficulty': 'Overtaking difficulty'}
 
 
-def protocol_changes(job: dict) -> list[dict]:
+def protocol_changes(job: dict, *, protocol: dict | None = None) -> list[dict]:
     """Settings that differ from the official protocol. A missing setting is not a change."""
     changes = []
-    for key, official in OFFICIAL_PROTOCOL.items():
+    for key, official in (OFFICIAL_PROTOCOL if protocol is None else protocol).items():
         if job.get(key) is None:
             continue
         try:
@@ -55,7 +57,11 @@ def classify(folder, job: dict | None = None) -> dict:
         reasons.append('No frozen pre-race snapshot')
     elif manifest.get('category') != 'prospective':
         reasons.append(f"Snapshot category is {manifest.get('category')!r}, not prospective")
-    changes = protocol_changes(job)
+    protocol = (LEGACY_PROTOCOL if not job.get('protocol_version') and job.get('n_sims') == 10_000
+                else OFFICIAL_PROTOCOL)
+    if job.get('protocol_version') not in (None, OFFICIAL_PROTOCOL_VERSION):
+        reasons.append('Unknown official protocol version')
+    changes = protocol_changes(job, protocol=protocol)
     if changes:
         reasons.append('Changed from the official protocol: ' + '; '.join(describe(changes)))
     return {'run_class': 'personal' if reasons else 'official', 'reasons': reasons, 'changes': changes}

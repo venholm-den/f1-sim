@@ -38,7 +38,7 @@ Accepted and rejected examples are in [schemas/examples/forecast-publication-v1]
 
 - it is a `forecast` job
 - it has a frozen prospective snapshot
-- its settings match the fixed protocol: 10,000 simulations, seed 42 and overtaking difficulty 0.55 (`OFFICIAL_PROTOCOL`, also used as `FORECAST_DEFAULTS`)
+- its settings match the current fixed protocol: 100,000 simulations, seed 42 and overtaking difficulty 0.55 (`OFFICIAL_PROTOCOL`, also used as `FORECAST_DEFAULTS`). New jobs record `protocol_version=100k_v2`. Existing unversioned 10,000-simulation forecasts retain their legacy official classification; their frozen files are unchanged.
 
 Everything else is a **personal simulation**. That covers Race setup runs, what-ifs, replays and forecasts with changed settings. Personal simulations:
 

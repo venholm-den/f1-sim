@@ -149,7 +149,7 @@ class SimulationJobs:
             scenario = payload.get('scenario', 'all')
             if scenario not in SCENARIOS:
                 raise ValueError('Unknown experiment scenario.')
-            n_sims = int(payload.get('n_sims', 5000))
+            n_sims = int(payload.get('n_sims', 100000))
             seed = int(payload.get('seed', 42))
             difficulty = float(payload.get('overtaking_difficulty', .55))
             if not 100 <= n_sims <= 100000 or not 0 <= seed <= 2**32-1:
@@ -214,6 +214,9 @@ class SimulationJobs:
                     'overtaking_difficulty': difficulty, 'matlab': matlab,
                     'note': 'Uses saved features. Monte Carlo uses neutral weather modifiers; Simulink uses exploratory fuel/tyre assumptions.'}
             if special:
+                if kind == 'forecast':
+                    from src.app_services.run_class import OFFICIAL_PROTOCOL_VERSION
+                    data['protocol_version'] = OFFICIAL_PROTOCOL_VERSION
                 data['historical'] = None
                 data['source_dir'] = str(folder/'source')
                 data['forecast_folder'] = str(forecast_folder) if forecast_folder else None

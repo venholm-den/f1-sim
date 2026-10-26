@@ -10,7 +10,7 @@ Source snapshots, complete Git history bundles and the previous task definition 
 
 ## Automation and Discord
 
-The existing Windows task `F1 Sim - Session Forecast` uses the main checkout's Python interpreter and working directory. It retains its hourly schedule, 10,000 simulations and Discord upload setting.
+The existing Windows task `F1 Sim - Session Forecast` uses the main checkout's Python interpreter. The [protected runtime workflow](protected-forecast-runtime.md) separates its source/config snapshot from development while sharing the existing data and outputs. Inspect the task action for the deployed version; do not infer it from the development branch. The hourly schedule and existing delivery options are preserved. Its simulation count increased from 10,000 to 100,000 on 25 October 2026; the earlier task definition is preserved under `outputs/simulation_count/20261025-100k/scheduled-task-before.xml`.
 
 The two original checkouts had different Discord webhook configurations. The main checkout's existing `.env` is preserved. Scheduled automation explicitly selects the ignored **`.env.automation`**, copied from the previously working automation checkout, so consolidation does not change its Discord destination. Do not commit either environment file or include its contents in reports.
 
@@ -29,4 +29,4 @@ The check does not send Discord messages. Use the existing test environment:
 .\.venv\Scripts\python.exe -m pytest -q
 ```
 
-Existing packaged executables in `dist` have not been rebuilt by consolidation. Source validation does not prove those older binaries include new features. Use source launchers until a new package has been built and tested.
+Packages in `dist` are separately versioned artifacts. Source validation does not prove an existing binary includes current changes. Use the named package's acceptance record to identify its source baseline and the checks actually completed.

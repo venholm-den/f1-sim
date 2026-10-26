@@ -13,8 +13,18 @@ A failed download remains visible in Simulation Centre and is retried at the
 next scheduled check. The runner holds the same workspace lock as Simulation
 Centre, so it skips safely when the app is open and cannot overlap another run.
 
-The automated mode uses 10,000 simulations, seed 42 and overtaking difficulty
+The automated mode uses 100,000 simulations, seed 42 and overtaking difficulty
 0.55 by default. Discord and automated post-race scoring are opt-in.
+
+The default increased on 25 October 2026. Existing unversioned 10,000-simulation
+forecasts retain their official classification and frozen files. New official
+jobs require 100,000 simulations; other counts remain available for personal runs.
+The existing Windows task's explicit count was also updated, preserving its
+schedule, environment file and upload/scoring options.
+
+For source/config isolation and drift checks before scheduled execution, use
+the [protected runtime workflow](protected-forecast-runtime.md). Development
+merges must not silently replace the runtime used to collect a frozen cohort.
 
 ## Post-race analysis
 
