@@ -1,9 +1,8 @@
 ---
 name: comment-code
 description: Add useful commentary to selected code or changed files.
-agent: Docs Maintainer
+disable-model-invocation: true
 ---
-
 Review the selected code or the changed files in this repository.
 
 Add useful code comments only where they help explain:
