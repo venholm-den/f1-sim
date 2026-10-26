@@ -55,14 +55,16 @@ def test_load_reads_previous_season_for_history_and_lists_unreadable_sessions(tm
     assert races[0].sessions['R'].laps.TrackStatus.iloc[0] == '1'
 
 
-def test_actual_outcome_counts_lapped_cars_that_stopped_early_as_retired(tmp_path):
+def test_lap_deficit_does_not_override_status_without_retirement_evidence(tmp_path):
     archive(tmp_path, rounds=1)
     races, _ = replay.load(tmp_path, [2025])
     outcome = replay.actual_outcome(races[0].sessions['R']).set_index('Driver')
     assert outcome.actual_dnf.tolist() == [False, False, False, False]
     session = races[0].sessions['R']
     session.laps = pd.concat([session.laps, pd.DataFrame({'Driver': ['AAA'] * 5, 'LapNumber': [3, 4, 5, 6, 7]})])
-    assert replay.actual_outcome(session).set_index('Driver').actual_dnf.tolist() == [False, True, True, True]
+    assert replay.actual_outcome(session).set_index('Driver').actual_dnf.tolist() == [False, False, False, False]
+    session.results['ClassifiedPosition'] = ['1', 'R', '3', '4']
+    assert replay.actual_outcome(session).set_index('Driver').actual_dnf.tolist() == [False, True, False, False]
 
 
 def test_score_matches_the_official_measures():

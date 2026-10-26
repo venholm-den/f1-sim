@@ -12,7 +12,7 @@ from typing import Any
 
 import numpy as np
 import pandas as pd
-from src.result_status import retirement_label
+from src.result_status import retirement_outcome
 
 from src.actual_strategy import (
     build_strategy_comparison,
@@ -298,6 +298,13 @@ def _extract_actual_results_from_race_session(race_session: Any) -> pd.DataFrame
 
     if results is not None and not results.empty:
         actual = results.copy()
+        event = getattr(race_session, 'event', None)
+        if event is not None and 'Abbreviation' in actual:
+            year = getattr(event.get('EventDate'), 'year', None) or event.get('Year')
+            if year is not None and event.get('RoundNumber') is not None:
+                from src.retirement_evidence import apply_outcome_evidence
+                actual = apply_outcome_evidence(actual, {'year': year, 'round': event['RoundNumber'],
+                                                       'event': event.get('EventName', '')})
 
         driver_col = None
         for candidate in ["Abbreviation", "Driver", "BroadcastName"]:
@@ -325,14 +332,10 @@ def _extract_actual_results_from_race_session(race_session: Any) -> pd.DataFrame
 
         if "Status" in actual.columns:
             actual["actual_status"] = actual["Status"].fillna("").astype(str)
-            actual["actual_dnf"] = actual["actual_status"].map(retirement_label).astype('boolean')
-            # Recent feeds can say "Lapped" for a car that stopped; the classification still marks it R.
-            if "ClassifiedPosition" in actual.columns:
-                stopped = actual["ClassifiedPosition"].astype(str).str.strip().str.upper().eq("R")
-                actual.loc[stopped, "actual_dnf"] = True
         else:
             actual["actual_status"] = "classified"
-            actual["actual_dnf"] = pd.Series(pd.NA, index=actual.index, dtype='boolean')
+        actual["actual_dnf"] = pd.Series([retirement_outcome(row) for row in actual.itertuples()],
+                                          index=actual.index, dtype='boolean')
 
         actual["actual_result_source"] = "fastf1_results"
 

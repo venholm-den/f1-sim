@@ -39,6 +39,31 @@ def retirement_label(status) -> float:
     return 1.0 if outcome in NONFINISH_CLASSES else np.nan
 
 
+RETIREMENT_POLICY_VERSION = 'classified_outcomes_v3'
+
+
+def retirement_outcome(row) -> float:
+    """All-cause label from status and official classification, never lap deficit.
+
+    Withdrawn/non-starting/disqualified entries are outside this target, even
+    when a feed describes their mechanical problem. R establishes retirement
+    without inventing its cause. Numeric classification alone does not prove
+    that a car was still running at the finish; unknown outcomes remain unknown.
+    """
+    outcome = classify_result_status(getattr(row, 'Status', None))
+    classified = str(getattr(row, 'ClassifiedPosition', '')).strip().upper()
+    if outcome in {'did_not_start', 'disqualified'} or classified in {'W', 'D', 'E', 'F', 'DNS', 'DSQ', 'DQ'}:
+        return np.nan
+    verified = getattr(row, 'VerifiedRetirement', np.nan)
+    if not pd.isna(verified):
+        if float(verified) not in (0., 1.):
+            raise ValueError('Verified retirement labels must be zero or one.')
+        return float(verified)
+    if classified == 'R' or outcome in NONFINISH_CLASSES:
+        return 1.0
+    return 0.0 if outcome == 'finished' else np.nan
+
+
 def mechanical_label(status) -> float:
     outcome = classify_result_status(status)
     if outcome == 'mechanical_dnf':

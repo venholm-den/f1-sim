@@ -10,7 +10,8 @@ import numpy as np
 import pandas as pd
 from sklearn.linear_model import Ridge
 
-from src.result_status import classify_result_status, retirement_label
+from src.result_status import classify_result_status, retirement_outcome
+from src.retirement_evidence import apply_outcome_evidence
 
 FORM_WEIGHTS = {'PRE': .35, 'FP2': .25, 'Q': .15}
 FORM_COLUMNS = ['driver_form','team_form','historical_pace','driver_count','team_count','pace_count']
@@ -63,7 +64,8 @@ def packet_from_races(races):
     for race in sorted(races,key=lambda r:r.key):
         if race.year==2021 and race.event=='Belgian Grand Prix':
             continue
-        result=race.sessions['R'].results
+        result=apply_outcome_evidence(race.sessions['R'].results,
+            {'year': race.year, 'round': race.round, 'event': race.event})
         positions=pd.to_numeric(result.Position,errors='coerce')
         if (result.Abbreviation.isna().any() or result.Abbreviation.duplicated().any()
                 or sorted(positions.dropna())!=list(range(1,len(result)+1))):
@@ -81,8 +83,10 @@ def packet_from_races(races):
             rows.append(dict(Year=race.year,Round=race.round,Driver=str(row.Abbreviation),
                 Team=str(row.TeamName),FieldSize=len(result),Position=float(row.Position),
                 QPosition=qpositions.get(str(row.Abbreviation),np.nan),
-                PacePct=pace.get(str(row.Abbreviation),np.nan),Status=row.Status))
-    packet=pd.DataFrame(rows,columns=PACKET_COLUMNS)
+                PacePct=pace.get(str(row.Abbreviation),np.nan),Status=row.Status,
+                ClassifiedPosition=getattr(row, 'ClassifiedPosition', ''),
+                VerifiedRetirement=getattr(row, 'VerifiedRetirement', np.nan)))
+    packet=pd.DataFrame(rows,columns=PACKET_COLUMNS+['ClassifiedPosition', 'VerifiedRetirement'])
     validate_packet(packet)
     packet.attrs['excluded_races']=exclusions
     return packet
@@ -185,7 +189,7 @@ def apply_retirement_prior(features,history,cutoff):
     """Beta(1,9), equal driver/team mix; unknown labels do not imply health."""
     earlier=before(history,cutoff)
     earlier=earlier[earlier.Year.eq(int(cutoff[0]))].copy()
-    earlier['label']=earlier.Status.map(retirement_label)
+    earlier['label']=[retirement_outcome(row) for row in earlier.itertuples()]
     output=features.copy()
     for i,row in output.iterrows():
         driver=earlier[earlier.Driver.eq(str(row.Driver))].label

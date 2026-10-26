@@ -73,6 +73,7 @@ def run(workspace,output,*,years,n_sims=2000,seeds=(42,123,777)):
     hashes=sources(root)
     hashes.update({name:hashlib.sha256((root/name).read_bytes()).hexdigest() for name in (
         'src/form_adjustment.py','src/accuracy_benchmark.py','src/race_scores.py',
+        'src/retirement_evidence.py','data/retirement_labels/verified_outcomes_v1.csv',
         'scripts/benchmark_form_adjustment.py','scripts/benchmark_grid_influence.py')})
     protocol=dict(created_at_utc=datetime.now(timezone.utc).isoformat(),arms=list(ARMS),
         form_weights=FORM_WEIGHTS,ridge_alpha=100.,degradation_multiplier=SINGLE_DEGRADATION_MULTIPLIER,

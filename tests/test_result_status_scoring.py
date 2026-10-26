@@ -26,3 +26,15 @@ def test_discord_retirement_context_counts_only_known_outcomes():
 
 def test_brier_does_not_count_unknown_outcomes_as_failures_or_finishes():
     assert _brier(pd.Series([.1, .99]), pd.Series([0, np.nan])) == pytest.approx(.01)
+
+
+def test_scoring_excludes_withdrawn_mechanical_entries_and_can_read_classification_alone():
+    result = _extract_actual_results_from_race_session(SimpleNamespace(results=pd.DataFrame({
+        'Abbreviation': ['A', 'B'], 'Position': [1, 2],
+        'Status': ['Lapped', 'Brakes'], 'ClassifiedPosition': ['1', 'W']})))
+    assert result.actual_dnf.iloc[0] == False
+    assert pd.isna(result.actual_dnf.iloc[1])
+    missing_status = _extract_actual_results_from_race_session(SimpleNamespace(results=pd.DataFrame({
+        'Abbreviation': ['A', 'B'], 'Position': [1, 2], 'ClassifiedPosition': ['1', 'R']})))
+    assert pd.isna(missing_status.actual_dnf.iloc[0])
+    assert missing_status.actual_dnf.iloc[1] == True

@@ -4,7 +4,8 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
-from src.result_status import NONFINISH_CLASSES, classify_result_status, retirement_label
+from src.result_status import NONFINISH_CLASSES, classify_result_status, retirement_outcome
+from src.retirement_evidence import apply_outcome_evidence
 
 
 def apply_retirement_risk(features, recent_races, metadata):
@@ -24,13 +25,18 @@ def apply_retirement_risk(features, recent_races, metadata):
         results = getattr(session, 'results', pd.DataFrame())
         if not {'Abbreviation', 'TeamName', 'Status'}.issubset(results):
             continue
+        results = apply_outcome_evidence(results, meta)
         if results.Abbreviation.duplicated().any():
             raise ValueError('Retirement history has duplicate driver/race observations.')
         for row in results.itertuples():
+            label = retirement_outcome(row)
+            cause = classify_result_status(row.Status)
+            if label == 1 and cause not in NONFINISH_CLASSES:
+                cause = 'unspecified_dnf'
             rows.append({'Driver': str(row.Abbreviation), 'Team': str(row.TeamName).strip().casefold(),
                 'circuit': str(meta.get('circuit_id') or meta.get('venue', {}).get('circuit_id')
                                or meta.get('event', '')).strip().casefold(),
-                'label': retirement_label(row.Status), 'cause': classify_result_status(row.Status),
+                'label': label, 'cause': cause,
                 'weight': .5 ** (age / 8.)})
     history = pd.DataFrame(rows, columns=['Driver', 'Team', 'circuit', 'label', 'cause', 'weight'])
     known = history.loc[history.label.notna()]
@@ -60,5 +66,5 @@ def apply_retirement_risk(features, recent_races, metadata):
     output['retirement_known_observations'] = len(known)
     output['retirement_unknown_observations'] = len(history) - len(known)
     output['retirement_history_races'] = len(races)
-    output['retirement_model_version'] = 'all_cause_shrunk_v1_experimental'
+    output['retirement_model_version'] = 'all_cause_shrunk_v2_experimental'
     return output

@@ -1,5 +1,11 @@
 # Accuracy improvements and validation
 
+[Retirement calibration review, 26 October](retirement-calibration-review.md)
+audits status/classification disagreements and compares established, all-cause
+and season-based retirement models separately for PRE/FP2/Q. It also repeats
+the independent form/risk benchmark. Source label fixes do not rewrite old
+scores, deploy a model or change the protected scheduled cohort.
+
 [Stage-specific form and retirement shadows](form-and-retirement-shadows.md)
 implement the historical-factor follow-up in the simulator. PRE/FP2 form plus
 degradation and a separate PRE retirement prior now collect independent shadow

@@ -56,6 +56,9 @@ def _session(folder: Path, manifest: dict):
     laps, results = tables.get('laps', pd.DataFrame()), tables.get('results', pd.DataFrame())
     if laps.empty or results.empty:
         raise ValueError('laps or classification missing')
+    if manifest['session'] == 'R':
+        from src.retirement_evidence import apply_outcome_evidence
+        results = apply_outcome_evidence(results, manifest)
     if 'TrackStatus' in laps:
         laps['TrackStatus'] = laps.TrackStatus.astype(str).str.removesuffix('.0')
     laps['LapTime'] = pd.to_timedelta(laps.LapTimeSeconds, unit='s')
@@ -97,18 +100,15 @@ def load(root, years) -> tuple[list, list]:
 def actual_outcome(race_session) -> pd.DataFrame:
     """Finishing position and whether each car retired.
 
-    Archived status text is unreliable for retirements (some say "Lapped"), so a
-    car also counts as retired when classified 'R' or more than three laps short.
+    Classified R supplements status text. Lap deficit alone does not establish
+    retirement; non-starters, disqualifications and unknown outcomes stay unknown.
     """
-    from src.result_status import classify_result_status
+    from src.result_status import retirement_outcome
     results = race_session.results.copy()
     results['actual_position'] = pd.to_numeric(results.Position, errors='coerce')
-    laps = race_session.laps.groupby('Driver').LapNumber.max().reindex(results.Abbreviation).fillna(0).to_numpy()
-    retired = (results.Status.map(classify_result_status).ne('finished')
-               | results.get('ClassifiedPosition', pd.Series('', index=results.index)).astype(str).eq('R')
-               | pd.Series(laps < laps.max() - 3, index=results.index))
+    retired = [retirement_outcome(row) for row in results.itertuples()]
     return pd.DataFrame({'Driver': results.Abbreviation, 'actual_position': results.actual_position,
-                         'actual_dnf': retired.astype(bool)})
+                         'actual_dnf': retired})
 
 
 def score(comparison: pd.DataFrame) -> dict:
@@ -118,7 +118,7 @@ def score(comparison: pd.DataFrame) -> dict:
            'finish_mae': float((comparison.avg_finish - comparison.actual_position).abs().mean()),
            'grid_finish_mae': float((comparison.grid_position - comparison.actual_position).abs().mean()),
            'spearman': float(comparison.avg_finish.corr(comparison.actual_position, method='spearman')),
-           'expected_retirements': float(comparison.dnf_chance.sum()),
+           'expected_retirements': float(comparison.loc[comparison.actual_dnf.notna(), 'dnf_chance'].sum()),
            **finishers_only(comparison)}
     for key, column in PROBABILITIES.items():
         brier = float(((comparison[column] - comparison.actual_position.le(THRESHOLDS[key]).astype(float)) ** 2).mean())

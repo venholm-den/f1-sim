@@ -13,6 +13,7 @@ from src.accuracy_benchmark import (build_replay_inputs, calibration_bins, evalu
 from src.accuracy_candidates import (FEATURE_VARIANTS, SUPPORTED_VARIANTS, candidate_grid_multiplier,
                                      candidate_simulation_options)
 from src.reliability import classify_result_status
+from src.result_status import retirement_outcome
 from src.simulate import simulate_races
 from src.inspection_ledger import inspected_race_keys
 
@@ -26,13 +27,10 @@ def nonfinish_status(status):
 
 def evaluate_with_dnf(prediction, actual):
     metrics, data = evaluate_forecast(prediction, actual)
-    if 'Status' in actual:
-        statuses = actual.set_index('Abbreviation')['Status'].map(nonfinish_status)
-    else:
-        statuses = pd.Series(dtype='object')
-    classified = data.Driver.map(statuses)
-    known = classified.isin(['finished', 'mechanical_dnf', 'non_mechanical_dnf', 'unspecified_dnf'])
-    data['actual_dnf'] = classified.ne('finished').astype(float).where(known)
+    labels = pd.Series([retirement_outcome(row) for row in actual.itertuples()],
+                       index=actual.Abbreviation, dtype=float)
+    data['actual_dnf'] = data.Driver.map(labels)
+    known = data.actual_dnf.notna()
     metrics['dnf_known_drivers'] = int(known.sum())
     metrics['dnf_unknown_drivers'] = int((~known).sum())
     metrics['dnf_brier'] = float(((data.loc[known, 'dnf_chance']
