@@ -103,4 +103,4 @@ def test_replay_variant_never_reads_the_target_race():
     target.sessions['R'].results['Status'] = 'Engine'
     after = build_replay_inputs(target.sessions['Q'], data[:2], metadata=meta, feature_variant='season_dnf_v1')[0]
     pd.testing.assert_frame_equal(before, after)
-    assert before.retirement_model_version.eq('season_outcomes_v1_experimental').all()
+    assert before.retirement_model_version.eq('season_outcomes_v2_experimental').all()

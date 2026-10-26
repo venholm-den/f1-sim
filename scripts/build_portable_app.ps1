@@ -33,6 +33,7 @@ if (Test-Path -LiteralPath $ReleasePath) {
     --add-data "data\team_power_units.csv;data" `
     --add-data "data\track_profiles.csv;data" `
     --add-data "data\track_calibration\track_calibration_v1.csv;data\track_calibration" `
+    --add-data "data\retirement_labels\verified_outcomes_v1.csv;data\retirement_labels" `
     --add-data "data\fia_documents\fia_document_index.csv;data\fia_documents" `
     --add-data "assets;assets" `
     --add-data "portable_app\web;portable_app\web" `

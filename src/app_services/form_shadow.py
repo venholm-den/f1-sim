@@ -43,6 +43,9 @@ def source_hashes(root):
                  'src/app_services/automation_health.py',
                  'scripts/form_shadow.py','scripts/auto_forecast.py'):
         result[name]=digest(root/name)
+    for name in ('src/retirement_evidence.py', 'data/retirement_labels/verified_outcomes_v1.csv'):
+        if (root/name).is_file():
+            result[name]=digest(root/name)
     return result
 
 

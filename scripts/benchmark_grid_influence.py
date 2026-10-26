@@ -14,6 +14,7 @@ from src.circuit_calibration import calibration_venue, observations, sha256
 from src.feature_ablation_benchmark import evaluate_with_dnf
 from src.grid_influence import MAPPINGS, mapped_difficulty, select_mapping
 from src.simulate import simulate_races
+from src.retirement_evidence import apply_outcome_evidence
 
 
 def load_archive(workspace, years):
@@ -42,6 +43,8 @@ def load_archive(workspace, years):
             laps, results = tables['laps'], tables['results']
             if laps.empty or results.empty:
                 raise ValueError('Empty laps/results')
+            if code == 'R':
+                results = apply_outcome_evidence(results, m)
             if 'TrackStatus' in laps:
                 laps['TrackStatus'] = laps.TrackStatus.astype(str).str.removesuffix('.0')
             # Some grid feature fallbacks expect FastF1 timedelta columns.

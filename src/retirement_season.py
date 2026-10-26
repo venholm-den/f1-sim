@@ -13,9 +13,10 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
-from src.result_status import NONFINISH_CLASSES, classify_result_status
+from src.result_status import retirement_outcome
+from src.retirement_evidence import apply_outcome_evidence
 
-VERSION = 'season_outcomes_v1_experimental'
+VERSION = 'season_outcomes_v2_experimental'
 # Declared starting values, not fitted: the field rate before any earlier
 # season is cached, and how many entries (about three races) it counts for.
 FALLBACK_FIELD_RATE = 0.13
@@ -32,16 +33,6 @@ TEAM_WEIGHT = 0.5
 PROBABILITY_CAP = 0.75
 
 
-def retirement_outcome(row) -> float:
-    """1 retired, 0 finished, NaN when the result says nothing about it."""
-    if str(getattr(row, 'ClassifiedPosition', '')).strip().upper() == 'R':
-        return 1.0
-    outcome = classify_result_status(getattr(row, 'Status', None))
-    if outcome in NONFINISH_CLASSES:
-        return 1.0
-    return 0.0 if outcome == 'finished' else np.nan
-
-
 def _observations(recent_races, target):
     rows, keys = [], set()
     for session, meta in recent_races:
@@ -52,14 +43,11 @@ def _observations(recent_races, target):
         results = getattr(session, 'results', pd.DataFrame())
         if not {'Abbreviation', 'TeamName'}.issubset(results):
             continue
+        results = apply_outcome_evidence(results, meta)
         if results.Abbreviation.duplicated().any():
             raise ValueError('Retirement history has duplicate driver/race observations.')
-        laps = pd.to_numeric(results['Laps'], errors='coerce') if 'Laps' in results else None
-        for index, row in enumerate(results.itertuples()):
+        for row in results.itertuples():
             label = retirement_outcome(row)
-            # A car classified after stopping (over 90% distance) still retired.
-            if label == 0 and laps is not None and laps.iloc[index] < laps.max() - 3:
-                label = 1.0
             rows.append({'year': key[0], 'Driver': str(row.Abbreviation),
                          'Team': str(row.TeamName).strip().casefold(), 'label': label})
     return pd.DataFrame(rows, columns=['year', 'Driver', 'Team', 'label'])
