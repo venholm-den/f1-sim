@@ -94,20 +94,49 @@ def _context(job: dict) -> dict:
             'category': manifest.get('category')}
 
 
-def accuracy_state(root) -> dict:
-    """Scored races, newest first, and frozen forecasts that have no score yet."""
-    run_root = Path(root) / 'outputs/app_runs'
-    jobs = [job for job in (_read(path) for path in run_root.glob('*/job.json')) if job.get('id')]
-    scored, scored_forecasts, excluded = [], set(), []
-    for job in jobs:
-        folder = run_root / job['id']
+def _forecast_key(job: dict):
+    """The forecast a score job scored; app score jobs record only its folder."""
+    if job.get('forecast_id'):
+        return job['forecast_id']
+    return Path(job['forecast_folder']).name if job.get('forecast_folder') else None
+
+
+def _race(context: dict) -> tuple:
+    return (context.get('year'), str(context.get('event') or '').casefold())
+
+
+def _jobs(roots) -> list[tuple[Path, dict, bool]]:
+    """(run folder, job, in the first workspace) for every saved job, once each."""
+    seen, jobs = set(), []
+    for index, root in enumerate(dict.fromkeys(Path(root).resolve() for root in roots)):
+        for path in (root / 'outputs/app_runs').glob('*/job.json'):
+            job = _read(path)
+            if job.get('id') and job['id'] not in seen:
+                seen.add(job['id'])
+                jobs.append((path.parent, job, index == 0))
+    return jobs
+
+
+def accuracy_state(root, extra_roots=()) -> dict:
+    """Scored races, newest first, and frozen forecasts that have no score yet.
+
+    extra_roots adds other workspaces, such as the scheduled PC forecasts, so
+    their scored races appear too; only the first root's forecasts can be
+    scored from the app. Each race is listed once: a forecast scored twice shows
+    its latest score, and a race with several scored forecasts shows the latest
+    forecast's. Unscored forecasts of a scored race, and all but the latest
+    unscored forecast of a race, are counted as superseded, not listed.
+    """
+    jobs = _jobs([root, *extra_roots])
+    latest, scored_keys, excluded = {}, set(), []
+    for folder, job, _ in jobs:
         score = _read(folder / 'score.json')
         if job.get('kind') != 'score' or job.get('status') != 'completed' or not score:
             continue
-        scored_forecasts.add(job.get('forecast_id'))
+        scored_keys.add(_forecast_key(job))
         source = classify(Path(job['forecast_folder'])) if job.get('forecast_folder') else None
         if source and source['run_class'] != 'official':
-            excluded.append({'id': job['id'], 'forecast_id': job.get('forecast_id'), **_context(job),
+            excluded.append({'id': job['id'], 'forecast_id': _forecast_key(job), **_context(job),
                              'reasons': source['reasons']})
             continue
         drivers = int(score.get('drivers') or 0)
@@ -122,22 +151,30 @@ def accuracy_state(root) -> dict:
                 frame = frame[keep].sort_values('actual_position')
                 # Blank cells become null so the payload stays valid JSON.
                 comparison = frame.astype(object).where(frame.notna(), None).to_dict('records')
-        scored.append({'id': job['id'], 'forecast_id': job.get('forecast_id'), **_context(job),
-                       'evaluated_at': score.get('evaluated_at_utc') or job.get('finished_at'),
-                       'drivers': drivers, 'finish_mae': score.get('finish_mae'), **finishers,
-                       'expected_retirements': (sum(r['dnf_chance'] for r in comparison if r.get('dnf_chance') is not None)
-                                                if any(r.get('dnf_chance') is not None for r in comparison) else None),
-                       **{key: score.get(key) for key in THRESHOLDS},
-                       **{key.replace('_brier', '_skill'): skill(score.get(key), drivers, places)
-                          for key, places in THRESHOLDS.items()},
-                       'comparison': comparison})
-    scored.sort(key=lambda row: (str(row['evaluated_at'] or ''), row['id']), reverse=True)
+        row = {'id': job['id'], 'forecast_id': _forecast_key(job), **_context(job),
+               'evaluated_at': score.get('evaluated_at_utc') or job.get('finished_at'),
+               'drivers': drivers, 'finish_mae': score.get('finish_mae'), **finishers,
+               'expected_retirements': (sum(r['dnf_chance'] for r in comparison if r.get('dnf_chance') is not None)
+                                        if any(r.get('dnf_chance') is not None for r in comparison) else None),
+               **{key: score.get(key) for key in THRESHOLDS},
+               **{key.replace('_brier', '_skill'): skill(score.get(key), drivers, places)
+                  for key, places in THRESHOLDS.items()},
+               'comparison': comparison}
+        # One row per race: the latest forecast's score, and its latest evaluation.
+        forecast_job = _read(Path(job['forecast_folder']) / 'job.json') if job.get('forecast_folder') else {}
+        rank = (str(forecast_job.get('created_at') or ''), str(row['evaluated_at'] or ''), row['id'])
+        race = _race(row)
+        if race not in latest or rank > latest[race][0]:
+            latest[race] = (rank, row)
+    scored = sorted((row for _, row in latest.values()),
+                    key=lambda row: (str(row['evaluated_at'] or ''), row['id']), reverse=True)
+    scored_races = set(latest)
 
-    pending = []
-    for job in jobs:
-        folder = run_root / job['id']
+    waiting = {}
+    superseded = 0
+    for folder, job, own in jobs:
         manifest = _read(folder / 'frozen/manifest.json')
-        if job.get('kind') != 'forecast' or not manifest or job['id'] in scored_forecasts:
+        if job.get('kind') != 'forecast' or not manifest or job['id'] in scored_keys:
             continue
         context = manifest.get('context') or {}
         source = classify(folder, job)
@@ -146,10 +183,19 @@ def accuracy_state(root) -> dict:
                              'session': context.get('session'), 'category': manifest.get('category'),
                              'reasons': source['reasons']})
             continue
-        pending.append({'id': job['id'], 'year': context.get('year'), 'event': context.get('event'),
-                        'session': context.get('session'), 'race_start_utc': context.get('race_start_utc'),
-                        'category': manifest.get('category'), 'created_at': job.get('created_at')})
-    pending.sort(key=lambda row: str(row['created_at'] or ''), reverse=True)
+        row = {'id': job['id'], 'year': context.get('year'), 'event': context.get('event'),
+               'session': context.get('session'), 'race_start_utc': context.get('race_start_utc'),
+               'category': manifest.get('category'), 'created_at': job.get('created_at'), 'scorable': own}
+        race = _race(context)
+        if race in scored_races:
+            superseded += 1
+            continue
+        if race in waiting:
+            superseded += 1
+            if str(row['created_at'] or '') <= str(waiting[race]['created_at'] or ''):
+                continue
+        waiting[race] = row
+    pending = sorted(waiting.values(), key=lambda row: str(row['created_at'] or ''), reverse=True)
     excluded.sort(key=lambda row: str(row['id']), reverse=True)
-    return {'scored': scored, 'pending': pending, 'excluded': excluded,
+    return {'scored': scored, 'pending': pending, 'superseded': superseded, 'excluded': excluded,
             'retirement_record': retirement_record(scored)}

@@ -23,9 +23,9 @@ def test_even_guess_reference_and_skill():
 def test_accuracy_lists_scored_races_and_unscored_forecasts(tmp_path):
     runs = tmp_path / 'outputs/app_runs'
     context = {'year': 2026, 'event': 'Monaco Grand Prix', 'session': 'Q', 'race_start_utc': '2026-06-07T13:00:00Z'}
-    for forecast in ('f1', 'f2'):
+    for forecast, event in (('f1', 'Monaco Grand Prix'), ('f2', 'Spanish Grand Prix')):
         write(runs / forecast / 'job.json', {'id': forecast, 'kind': 'forecast', 'status': 'completed', 'created_at': forecast})
-        write(runs / forecast / 'frozen/manifest.json', {'context': context, 'category': 'prospective'})
+        write(runs / forecast / 'frozen/manifest.json', {'context': {**context, 'event': event}, 'category': 'prospective'})
     write(runs / 's1/job.json', {'id': 's1', 'kind': 'score', 'status': 'completed', 'created_at': 'x',
                                  'forecast_id': 'f1', 'forecast_folder': str(runs / 'f1')})
     write(runs / 's1/score.json', {'drivers': 20, 'finish_mae': 3.1, 'win_chance_brier': 0.0425,
@@ -43,6 +43,57 @@ def test_accuracy_lists_scored_races_and_unscored_forecasts(tmp_path):
     assert race['comparison'][0]['avg_finish'] is None
     json.dumps(state, allow_nan=False)
     assert [row['id'] for row in state['pending']] == ['f2']
+
+
+def _forecast(runs, forecast_id, event, session, created):
+    write(runs / forecast_id / 'job.json', {'id': forecast_id, 'kind': 'forecast', 'status': 'completed',
+                                            'created_at': created})
+    write(runs / forecast_id / 'frozen/manifest.json', {'context': {'year': 2026, 'event': event, 'session': session},
+                                                        'category': 'prospective'})
+
+
+def _score(runs, score_id, forecast_id, evaluated, mae, record_id=True):
+    job = {'id': score_id, 'kind': 'score', 'status': 'completed', 'created_at': evaluated,
+           'forecast_folder': str(runs / forecast_id)}
+    if record_id:
+        job['forecast_id'] = forecast_id
+    write(runs / score_id / 'job.json', job)
+    write(runs / score_id / 'score.json', {'drivers': 20, 'finish_mae': mae, 'evaluated_at_utc': evaluated})
+
+
+def test_accuracy_lists_each_forecast_once_and_drops_superseded_forecasts(tmp_path):
+    runs = tmp_path / 'outputs/app_runs'
+    _forecast(runs, 'bah_fp3', 'Bahrain Grand Prix', 'FP3', '2026-10-03')
+    _forecast(runs, 'bah_q', 'Bahrain Grand Prix', 'Q', '2026-10-04')
+    _forecast(runs, 'mex_pre', 'Mexico City Grand Prix', 'PRE', '2026-10-25')
+    _forecast(runs, 'mex_fp1', 'Mexico City Grand Prix', 'FP1', '2026-10-30')
+    # The app's score jobs record the forecast folder but not its id; one was scored twice.
+    _score(runs, 's1', 'bah_q', '2026-10-05', 3.0, record_id=False)
+    _score(runs, 's2', 'bah_q', '2026-10-06', 2.5, record_id=False)
+    # Both Singapore forecasts were scored; the later Q forecast represents the race.
+    _forecast(runs, 'sin_pre', 'Singapore Grand Prix', 'PRE', '2026-10-09')
+    _forecast(runs, 'sin_q', 'Singapore Grand Prix', 'Q', '2026-10-10')
+    _score(runs, 's3', 'sin_q', '2026-10-12', 3.2)
+    _score(runs, 's4', 'sin_pre', '2026-10-13', 3.6)
+    state = accuracy_state(tmp_path)
+    assert [(row['id'], row['forecast_id'], row['finish_mae']) for row in state['scored']] == [
+        ('s3', 'sin_q', 3.2), ('s2', 'bah_q', 2.5)]
+    # Bahrain FP3 was superseded by the scored Q forecast, and Mexico PRE by its FP1 forecast.
+    assert [row['id'] for row in state['pending']] == ['mex_fp1']
+    assert state['superseded'] == 2
+
+
+def test_accuracy_reads_scores_from_the_pc_forecast_workspace(tmp_path):
+    app, pc = tmp_path / 'app', tmp_path / 'pc'
+    _forecast(pc / 'outputs/app_runs', 'usa_q', 'United States Grand Prix', 'Q', '2026-10-24')
+    _score(pc / 'outputs/app_runs', 's_usa', 'usa_q', '2026-10-26', 3.2)
+    _forecast(app / 'outputs/app_runs', 'mex_pre', 'Mexico City Grand Prix', 'PRE', '2026-10-25')
+    _forecast(pc / 'outputs/app_runs', 'mex_fp1', 'Mexico City Grand Prix', 'FP1', '2026-10-30')
+    state = accuracy_state(app, [pc, app])
+    assert [row['event'] for row in state['scored']] == ['United States Grand Prix']
+    # Only the app's own forecasts can be scored from the app.
+    assert [(row['id'], row['scorable']) for row in state['pending']] == [('mex_fp1', False)]
+    assert accuracy_state(app)['pending'][0]['scorable'] is True
 
 
 def test_accuracy_scores_finishers_apart_from_retirements_and_tallies_them(tmp_path):

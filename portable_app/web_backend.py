@@ -1307,7 +1307,10 @@ class PortableWebApi:
     def accuracy_state(self):
         from src.app_services.accuracy import accuracy_state
         from src.app_services.archive_replay import latest
-        return {**accuracy_state(self._jobs.root), 'replay': latest(self._jobs.root)}
+        from src.app_services.automation_feed import DEFAULT_PC_WORKSPACE
+        # Scheduled PC forecasts are scored in their own workspace; list those races too.
+        pc_workspace = Path(self.ui_preferences['pc_workspace'] or DEFAULT_PC_WORKSPACE)
+        return {**accuracy_state(self._jobs.root, [pc_workspace]), 'replay': latest(self._jobs.root)}
 
     def archive_replay_start(self, payload):
         return self.lab_start({'kind': 'archive_replay', 'replay': payload})
