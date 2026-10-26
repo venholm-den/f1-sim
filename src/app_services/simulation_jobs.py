@@ -22,7 +22,8 @@ SCENARIOS = ['all', 'stops_0', 'stops_1', 'stops_2', 'stops_3', 'pit_early_5',
              'pit_late_5', 'degradation_low', 'degradation_high', 'pit_loss_low', 'pit_loss_high']
 KINDS = {'monte_carlo': 'Monte Carlo', 'lap_dynamics': 'Lap dynamics', 'experiments': 'Scenario experiments',
          'forecast':'Next race forecast', 'score':'Post-race evaluation', 'discord':'Discord report upload',
-         'historical_download': 'Historical data download', 'historical_training': 'Historical model training'}
+         'historical_download': 'Historical data download', 'historical_training': 'Historical model training',
+         'archive_replay': 'Archive replay'}
 
 
 def records(frame):
@@ -124,7 +125,8 @@ class SimulationJobs:
         with self.lock:
             rows = [self._read_job(p) for p in self.run_root.glob('*/job.json')]
         for row in rows:
-            if row['status'] != 'unreadable' and row.get('kind') not in ('score', 'discord', 'historical_download', 'historical_training'):
+            if row['status'] != 'unreadable' and row.get('kind') not in ('score', 'discord', 'historical_download', 'historical_training',
+                                                                    'archive_replay'):
                 row['run_class'] = classify(self.run_root/row['id'], row)['run_class']
         rows.sort(key=lambda row: row['created_at'], reverse=True)
         for key, label, relative, kind in [
@@ -165,11 +167,15 @@ class SimulationJobs:
                 if changes:
                     raise ValueError('Official forecasts use the fixed protocol (' + '; '.join(describe(changes))
                                      + '). Use What if to try other settings.')
-            special = kind in ('forecast','score','discord','historical_download','historical_training')
+            special = kind in ('forecast','score','discord','historical_download','historical_training','archive_replay')
             training = None
             if kind == 'historical_training':
                 from src.app_services.model_training import prepare
                 training = prepare(self.root, payload.get('training', {}))
+            replay = None
+            if kind == 'archive_replay':
+                from src.app_services.archive_replay import options as replay_options
+                replay = replay_options(self.root, payload.get('replay', {}))
             archive = None
             if kind == 'historical_download':
                 from src.app_services.historical_library import options
@@ -215,6 +221,10 @@ class SimulationJobs:
                     data['archive'] = archive
                     data['label'] += ' · ' + ', '.join(map(str, archive['years']))
                     data['note'] = 'Downloads and checkpoints historical data locally. Does not train or change the prediction model.'
+                if replay:
+                    data.update(replay=replay, n_sims=replay['n_sims'], seed=replay['seed'])
+                    data['label'] += ' · ' + ', '.join(map(str, replay['years']))
+                    data['note'] = 'Retrospective: past races forecast again from the historical library. Kept apart from the official record.'
                 if training:
                     write_json(folder/'training_selection.json', training)
                     data['training'] = {'years': training['years'], 'races': len(training['races'])}
@@ -364,6 +374,9 @@ class SimulationJobs:
             except (OSError, ValueError, KeyError, TypeError):
                 data['request_usage'] = {'status': 'unavailable', 'reason': 'Request monitoring data is unavailable.',
                                          'providers': [], 'guards': []}
+        progress = folder/'replay_progress.json'
+        if data.get('kind') == 'archive_replay' and progress.is_file():
+            data['replay_progress'] = json.loads(progress.read_text(encoding='utf-8'))
         progress = folder/'training_progress.json'
         if data.get('kind') == 'historical_training':
             if progress.is_file():

@@ -106,6 +106,10 @@ def _run(folder: Path):
         from src.app_services.model_training import train
         train(Path.cwd(), folder, json.loads((folder/'training_selection.json').read_text(encoding='utf-8')))
         return
+    if job['kind'] == 'archive_replay':
+        from src.app_services.archive_replay import run as replay
+        replay(Path.cwd(), folder, job['replay'])
+        return
     if job['kind'] == 'historical_download':
         from src.app_services.historical_library import download
         result = download(Path.cwd(), folder, job['archive'])
