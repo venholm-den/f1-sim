@@ -1032,7 +1032,11 @@ def main() -> None:
         from src.retirement_risk import apply_retirement_risk
         retirement_history = [(session, {**context, 'venue': venue_for_context(context, session=session)})
                               for session, context in history_races[:app_config.model.retirement_history_races]]
-        model_features = apply_retirement_risk(model_features, retirement_history, metadata)
+        if app_config.model.retirement_model == 'season_dnf_v1':
+            from src.retirement_season import apply_season_retirement_risk
+            model_features = apply_season_retirement_risk(model_features, retirement_history, metadata)
+        else:
+            model_features = apply_retirement_risk(model_features, retirement_history, metadata)
         if app_config.model.retirement_model == 'retirement_progress_v1':
             from src.retirement_progress import attach_retirement_progress
             model_features = attach_retirement_progress(model_features, retirement_history, metadata)

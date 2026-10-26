@@ -202,10 +202,12 @@ def _prepare_features(features: pd.DataFrame) -> pd.DataFrame:
     if base["reliability_score"].isna().all():
         base["reliability_score"] = _series(base, "dnf_prob", 0.045)
 
+    # A retirement model may declare a higher ceiling; others keep the 30% cap.
+    base["retirement_probability_cap"] = _series(base, "retirement_probability_cap", 0.30).clip(0.30, 0.90)
     base["reliability_score"] = (
         base["reliability_score"]
         .fillna(_series(base, "dnf_prob", 0.045))
-        .clip(0.005, 0.30)
+        .clip(lower=0.005, upper=base["retirement_probability_cap"])
     )
 
     base["performance_uncertainty"] = _series(
@@ -550,7 +552,8 @@ def simulate_races(
         )
 
     dnf_random = rng.random((n_sims, n_drivers))
-    effective_dnf_prob = np.clip(dnf_prob * dnf_factor, 0.002, 0.45)
+    retirement_cap = np.maximum(base["retirement_probability_cap"].to_numpy(dtype=float), 0.45)
+    effective_dnf_prob = np.clip(dnf_prob * dnf_factor, 0.002, retirement_cap)
     dnf_matrix = dnf_random < effective_dnf_prob.reshape(1, n_drivers)
 
     dnf_penalty = rng.uniform(600.0, 1600.0, size=(n_sims, n_drivers))

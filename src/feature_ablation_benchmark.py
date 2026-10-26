@@ -51,7 +51,7 @@ def choose_on_development(race_metrics, variants=FEATURE_VARIANTS):
         loss = dev.groupby('variant')['loss'].mean()
         dnf = dev.groupby('variant')['dnf_brier'].mean()
         eligible = loss[variant] < loss['legacy']
-        if variant in {'decoupled_dnf_v1', 'all_cause_dnf_v2', 'retirement_progress_v1', 'single_pace_retirement_v1', 'survival_dnf_v1'}:
+        if variant in {'decoupled_dnf_v1', 'all_cause_dnf_v2', 'retirement_progress_v1', 'single_pace_retirement_v1', 'survival_dnf_v1', 'season_dnf_v1'}:
             eligible = eligible and pd.notna(dnf[variant]) and dnf[variant] < dnf['legacy']
         selected[variant] = bool(eligible)
     return selected
@@ -190,7 +190,7 @@ def benchmark_feature_ablations(races, output_dir, prior_report, *, seeds=(42, 1
             for metric in ['win_brier', 'podium_brier', 'top10_brier', 'dnf_brier']:
                 if pd.isna(candidate[metric].mean()) or candidate[metric].mean() > legacy[metric].mean():
                     reasons.append(f'{code}_{metric}_missing_or_regressed')
-            if variant in {'decoupled_dnf_v1', 'all_cause_dnf_v2', 'retirement_progress_v1', 'single_pace_retirement_v1', 'survival_dnf_v1'} and candidate.dnf_brier.mean() >= legacy.dnf_brier.mean():
+            if variant in {'decoupled_dnf_v1', 'all_cause_dnf_v2', 'retirement_progress_v1', 'single_pace_retirement_v1', 'survival_dnf_v1', 'season_dnf_v1'} and candidate.dnf_brier.mean() >= legacy.dnf_brier.mean():
                 reasons.append(f'{code}_dnf_brier_not_improved')
         gates[variant] = dict(passed=not reasons, reasons=reasons)
     predictions = pd.concat(prediction_rows, ignore_index=True)

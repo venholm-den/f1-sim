@@ -290,6 +290,40 @@ the existing completed-lap ordering/classification is reused. Weather still
 applies the existing DNF multiplier. Shared incidents, team-correlated failures
 and changing weather hazards are not modelled.
 
+## Retirements from this season's outcomes
+
+Set `model.retirement_model` to `season_dnf_v1` (`src/retirement_season.py`).
+The established retirement chance is built from lap quality and the last two
+races' mechanical failures, so every driver lands near 4% while real rates are
+12–17% a season, and 22% in 2026 to Singapore.
+
+The candidate counts every retirement this season (a classified `R`, any
+non-finish status, or a classified car more than three laps short). The field
+rate starts from the previous two seasons, worth 60 entries, and moves with this
+season's results. Team and driver rates shrink toward the field rate by a
+beta-binomial method-of-moments strength estimated from how much their rates
+really differ, then are averaged equally. With evenly spread retirements the
+strength hits its 400-entry ceiling and everyone gets the field rate; in 2026 it
+is about six entries, so Aston Martin and Cadillac carry their record. Lap
+quality never enters. The model declares a 75% ceiling through
+`retirement_probability_cap`, which the aggregate engine honours; every other
+model keeps the 30% cap. The pit, agent and pace-uncertainty engines keep 45%.
+
+Archive replay after qualifying, live settings, 2,000 sims on seeds 42/123,
+all-cause prior `all_cause_dnf_v2` for comparison:
+
+| Races | DNF Brier: established | `all_cause_dnf_v2` | `season_dnf_v1` | Rank correlation, all drivers |
+| --- | ---: | ---: | ---: | --- |
+| 2022–2024, 61 races | 0.1291 | 0.1205 | 0.1203 | 0.547 / 0.553 / 0.549 |
+| 2025, 20 races | 0.1099 | 0.1039 | 0.1039 | 0.574 / 0.571 / 0.574 |
+
+On season-to-date retirement labels only (no simulation, 2026 races not scored
+as forecasts), DNF Brier for 2026 is 0.190 established, 0.161 all-cause and
+0.155 season. Before 2026 neither candidate can tell who retires (AUC about
+0.5); both win by getting the level right. Ordering barely moves, so the gain is
+in win, podium and points tails and fantasy retirement odds. This is an accuracy
+lane candidate and needs fresh-race evidence before it can become the default.
+
 ## Offline comparisons and acceptance
 
 Run `scripts.benchmark_feature_ablations` with Q-only variants `legacy`,

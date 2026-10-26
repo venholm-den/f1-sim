@@ -74,7 +74,8 @@ class ModelSettings:
     def __post_init__(self):
         if self.pace_blend not in {'legacy', 'single_pace_blend_v1', 'qualifying_partial_pooling_v1'}:
             raise ValueError('Unknown pace_blend; choose legacy or single_pace_blend_v1.')
-        if self.retirement_model not in {'legacy', 'all_cause_dnf_v2', 'retirement_progress_v1', 'survival_dnf_v1'}:
+        if self.retirement_model not in {'legacy', 'all_cause_dnf_v2', 'retirement_progress_v1', 'survival_dnf_v1',
+                                         'season_dnf_v1'}:
             raise ValueError('Unknown retirement_model.')
         if not 1 <= self.retirement_history_races <= 100:
             raise ValueError('retirement_history_races must be between 1 and 100.')
@@ -124,7 +125,7 @@ class AppConfig:
             or bool(self.model.qualifying_classifications_path)
             or self.model.race_engine != 'aggregate_legacy'
             or self.model.weather_model != 'session_legacy'
-            or self.model.retirement_model == 'survival_dnf_v1'
+            or self.model.retirement_model in {'survival_dnf_v1', 'season_dnf_v1'}
             or self.model.safety_car_model != 'off'
             or self.model.shared_noise_model != 'off'
             or self.model.grid_sampling_model != 'off'
