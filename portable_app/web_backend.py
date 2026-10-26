@@ -309,10 +309,16 @@ def setup_options_payload(
     context = {'year': year, 'event': event_name}
     context['venue'] = venue_for_context(context, event_data=row if row is not None else {})
     track_profile = load_track_profile(event_name, path=track_profiles_path, metadata=context)
+    # What the Calibrated track profile candidate would use, so setup can show it.
+    calibrated = None
+    if track_profile.get('venue_status') == 'resolved':
+        from src.track_calibration import apply_track_calibration
+        calibrated = apply_track_calibration(track_profile)
 
     return {
         "sessions": available_sessions_for_event(year, event),
         "trackProfile": track_profile,
+        "calibratedTrackProfile": calibrated,
     }
 
 

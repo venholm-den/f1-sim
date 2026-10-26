@@ -127,6 +127,16 @@ function formatCell(column, value) {
 function definitions(target, pairs) {
   $(target).innerHTML = pairs.map(([label,value])=>`<div><dt>${escapeHtml(label)}</dt><dd>${escapeHtml(value ?? 'Unknown')}</dd></div>`).join('');
 }
+// Follows the Track profile candidate, so the label matches what the next run will use.
+function trackFactorsLabel() {
+  const active=state.setupOptions?.trackProfile || {}, calibrated=state.setupOptions?.calibratedTrackProfile;
+  const values=p=>numeric(p.overtaking_difficulty)==null ? '' : ` · overtaking ${Number(p.overtaking_difficulty).toFixed(2)} · safety car ${pct(p.safety_car_chance)}`;
+  const status=(active.profile_status || 'unknown').replaceAll('_',' ');
+  const ready=calibrated?.calibration_status==='calibrated_v1';
+  if (readCandidates().track_profile_model==='calibrated_v1')
+    return ready ? `calibrated v1${values(calibrated)}` : `${status}${values(active)} (no calibrated values for this circuit)`;
+  return `${status}${values(active)}${ready && active.profile_status==='generic_uncalibrated' ? ' · calibrated values available under Model candidates' : ''}`;
+}
 function overviewMetric(name) { return numeric((state.outputs.signals?.overview?.rows || []).find(row=>row.Metric === name)?.Value); }
 function meanScore(column) {
   const values=(state.outputs.signals?.drivers?.rows || []).map(row=>numeric(row[column])).filter(v=>v!=null);
@@ -143,7 +153,7 @@ function updateWorkbenchContext() {
   const profile=state.setupOptions?.trackProfile || {};
   definitions('venueOverview', [['Circuit', profile.circuit_name || 'Unresolved'], ['Venue country', profile.venue_country],
     ['Race distance', profile.race_laps ? `${profile.race_laps} laps` : 'Generic assumption'],
-    ['Circuit identity', profile.venue_status || 'Unknown'], ['Track factors', (profile.profile_status || 'unknown').replaceAll('_',' ')]]);
+    ['Circuit identity', profile.venue_status || 'Unknown'], ['Track factors', trackFactorsLabel()]]);
   const bad=(state.outputs.dataHealth || []).filter(row=>row.status !== 'valid');
   const values=readSettings();
   const valid=values.n_sims>=1 && values.n_sims<=100000 && values.n_baseline_races>=0 && values.n_baseline_races<=24 && values.historical_strategy_lookback_years>=0 && values.historical_strategy_lookback_years<=20;
@@ -238,7 +248,7 @@ function renderResultsDetails() {
   const notes=[];
   if (rows[0]) notes.push(`${rows[0].Driver} leads the modelled win probabilities at ${pct(rows[0].win_chance)}.`);
   if (details.venue?.circuit_name) notes.push(`This run used ${details.venue.circuit_name}, ${details.venue.race_laps || 'unknown'} laps.`);
-  if (details.venue?.profile_status === 'generic_uncalibrated') notes.push('Circuit-specific calibration is unavailable; this run used generic track factors.');
+  if (details.venue?.profile_status === 'generic_uncalibrated' && details.venue?.calibration_status !== 'calibrated_v1') notes.push('Circuit-specific calibration is unavailable; this run used generic track factors.');
   notes.push('Strategy candidate scores are heuristic. They do not isolate the effect of a tyre strategy on winning.');
   $('resultInsights').innerHTML=notes.map(note=>`<p>${escapeHtml(note)}</p>`).join('');
   const rules=state.reference?.fantasy_scoring || {};
@@ -277,6 +287,7 @@ function updateCandidateRules() {
     $(`candidateRow-${item.key}`).classList.toggle('unavailable',el.disabled);
   });
   const active=Object.keys(readCandidates()).length;
+  updateWorkbenchContext();
   $('candidateMessage').textContent=!on?'':active?`${plural(active,'candidate')} on for the next run. Results will be labelled as a candidate run.`:'All choices match the established model.';
 }
 function readCandidates() {

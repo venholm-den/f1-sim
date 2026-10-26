@@ -536,3 +536,15 @@ def test_open_output_dir_opens_folders_but_never_files(tmp_path):
     assert PortableWebApi.open_output_dir(api, str(tmp_path/'missing')) is False
     assert PortableWebApi.open_output_dir(api, str(tmp_path)) is True
     assert opened == [tmp_path.resolve()]
+
+
+def test_setup_options_payload_includes_calibrated_track_profile(monkeypatch) -> None:
+    schedule = pd.DataFrame({'RoundNumber': [3], 'EventName': ['Japanese Grand Prix'], 'Country': ['Japan'],
+                             'Location': ['Suzuka'], 'EventDate': [pd.Timestamp('2099-04-05T05:00:00')]})
+    monkeypatch.setattr('portable_app.web_backend._event_schedule', lambda year: schedule)
+
+    payload = setup_options_payload(2026, 'Japanese Grand Prix', 'data/track_profiles.csv')
+
+    assert payload['trackProfile']['profile_status'] == 'generic_uncalibrated'
+    assert payload['calibratedTrackProfile']['calibration_status'] == 'calibrated_v1'
+    assert payload['calibratedTrackProfile']['overtaking_difficulty'] == 0.70
