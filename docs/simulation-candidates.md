@@ -223,6 +223,90 @@ and overtaking difficulties for the 13 placeholder circuits instead. Method,
 values and benchmark are in
 [circuit-calibration.md](circuit-calibration.md#calibrated-track-factors-candidate-calibrated_v1).
 
+### Held-out test of `multi_sc_v1` on 2021–2025 (26 October 2026)
+
+`multi_sc_v1` improved paired RPS by 3.4% on the 13 inspected 2026 races,
+against the 5% accuracy bar. To see whether it could be
+tuned past the bar honestly, it was scored on whole earlier seasons built from
+the saved historical library, tuned on 2021–2023 only and scored once on
+2024–2025.
+
+**Packets.** `scripts.build_season_packets` turns saved race sessions into
+one packet per season, in the format `promotion_check score` already reads
+(`src/season_packets.py`). Every table it reads is hash-checked against the
+session manifest, drivers who did not start are left out, and SC/VSC counts
+come from the track-status feed. Nothing is downloaded.
+
+```powershell
+.\.venv\Scripts\python.exe -m scripts.build_season_packets --years 2021 2022 2023 2024 2025 --output-dir outputs\season_packets\2021-2025
+.\.venv\Scripts\python.exe -m scripts.promotion_check score --packet outputs\season_packets\2021-2025\season-2024 outputs\season_packets\2021-2025\season-2025 --arms established multi_sc_v1 multi_sc_gap_reset --output outputs\promotion\sc_holdout.csv
+.\.venv\Scripts\python.exe -m scripts.promotion_check gate --metrics outputs\promotion\sc_holdout.csv --candidate multi_sc_gap_reset --lane accuracy
+```
+
+`score` now takes several packets and writes a `year` column, and `gate`
+pairs races by year and round, so seasons can be pooled. Each race is
+forecast from the three earlier races of the same season with the actual
+grid, as on the 2026 packet; the first three races of each season are not
+scored. 2021 Belgium (no racing laps) is skipped.
+
+**Screen on 2021–2023 (fit only).** One setting at a time, 1,000 sims, two
+seeds, 57 races:
+
+| Change from `multi_sc_v1` | RPS gain | Finish MAE change |
+| --- | ---: | ---: |
+| none | 2.9% | +0.001 |
+| no SC model, race noise x1.25 (spread-only control) | 1.8% | +0.003 |
+| no SC model, race noise x1.5 (spread-only control) | 3.2% | +0.012 |
+| gap retention 0.10 -> 0 (each SC erases earlier gaps) | 3.7% | +0.001 |
+| gap retention 0.30 | 2.0% | +0.000 |
+| no discounted stops (or every driver takes one) | 1.3% | -0.002 |
+| stop saving 20 s under SC, 10 s under VSC | 4.6% | +0.007 |
+| restart noise 4 s per SC | 4.2% | +0.007 |
+| SC chance x1.5 (fit seasons had an SC in 64% of races; profiles average about 42%) | 4.1% | +0.009 |
+| no VSCs | 3.0% | -0.001 |
+
+The SC model is not just extra spread: plain race noise needs more than ten times the
+finish-MAE cost for a similar RPS gain. But every change that adds randomness
+moves RPS and finish MAE together. A 16-setting grid (gap retention 0 or
+0.10, SC restart noise 1.5 or 2.5 s, SC chance x1, x1.25, x1.5 or per-circuit
+rates fitted on 2021–2023) reached 5% only with finish MAE 0.013–0.022 worse,
+well past the gate's noise tolerance (about 0.003 at 2,000 sims and three
+seeds). The one change that is nearly free is erasing earlier gaps completely
+at each SC, which is also closer to a real queue (about a second per car)
+than keeping 10% of a minute-long spread. It was the only candidate taken to
+the held-out seasons.
+
+**Results** (2,000 sims, seeds 42/123/777, `promotion_check gate`, accuracy lane):
+
+| Races | Arm | Paired RPS gain | Finish MAE change | Races with better RPS | Gate |
+| --- | --- | ---: | ---: | ---: | --- |
+| 2021–2023 fit, 56 | `multi_sc_v1` | 3.0% | +0.0007 | 89% | fails: below 5% |
+| 2021–2023 fit, 56 | `multi_sc_gap_reset` | 4.0% | +0.0009 | 89% | fails: below 5% |
+| 2024–2025 held out, 42 | `multi_sc_v1` | 2.9% | −0.0029 | 93% | fails: below 5% |
+| 2024–2025 held out, 42 | `multi_sc_gap_reset` | 3.6% | −0.0035 | 93% | fails: below 5% |
+| 2026 inspected, 13 | `multi_sc_v1` | 3.4% | +0.0078 | 100% | fails: below 5%, finish MAE |
+| 2026 inspected, 13 | `multi_sc_gap_reset` | 4.6% | +0.0140 | 100% | fails: below 5%, finish MAE |
+
+No Brier score regressed in any row. Reading:
+
+1. The SC model is a small, very consistent gain: better RPS in about nine
+   races of ten, in every season, held out or not. The size is stable at
+   3–4.5%, so the 5% bar is out of reach for this mechanism on its own.
+2. Erasing gaps at each SC adds about 0.7–1.2 points of RPS gain with no
+   finish-MAE cost on 2021–2025. On the 13 inspected 2026 races its finish
+   MAE is worse; that packet is small and inspected, but it is the season the
+   model would run on.
+3. Pushing past 5% means more randomness (more or longer SCs, bigger restart
+   shuffles), which the finish-MAE check rightly blocks. The gain left on the
+   table is the established engine's overconfidence (see
+   [multi-score-tuning.md](multi-score-tuning.md)), not a safety-car effect.
+
+`multi_sc_gap_reset` exists only as an offline benchmark arm: it patches
+`apply_neutralisations(gap_retention=0.0)` inside the benchmark scripts.
+`src/simulate.py` and `src/run_config.py` are pinned by the enabled 2026
+prospective suite, so a selectable `multi_sc_v2` should be added after Abu
+Dhabi with a new suite. Live defaults are unchanged.
+
 ## Shared team luck, sampled grids, grid penalties and sprints
 
 Four more local-only candidates, each `off` by default. Each uses its own random

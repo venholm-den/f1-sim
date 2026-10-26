@@ -83,6 +83,8 @@ rule, floor 0.0001), and in prospective trials it blocks only when the
 whole-race bootstrap 95% interval lies above zero. Brier checks stay strict.
 The paired loss is still reported. On this packet `multi_sc_v1` would still
 not pass: its RPS gain is 3.4% (0.1368 to 0.1321), below 5%.
+Held out on 2024–2025 it gains 2.9%, and the best honest variant 3.6%; see
+[simulation-candidates.md](simulation-candidates.md#held-out-test-of-multi_sc_v1-on-20212025-26-october-2026).
 
 ## 3. One frozen challenger per season
 
