@@ -2,7 +2,7 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 
 global.plural = (count, noun) => `${count} ${noun}${count === 1 ? '' : 's'}`;
-const { driversAnswers, accuracyAnswers, retirementTally, scenarioChanges, signedPercent, excludedNote } = require('../portable_app/web/insights.js');
+const { driversAnswers, accuracyAnswers, retirementTally, replayCells, skippedNote, scenarioChanges, signedPercent, excludedNote } = require('../portable_app/web/insights.js');
 
 test('Drivers answers come from the season summary', () => {
   const data = {
@@ -63,4 +63,14 @@ test('Accuracy says how many personal runs were left out and why', () => {
     { id: 'b', reasons: ['Changed from the official protocol: Overtaking difficulty 0.55 → 0.7'] },
   ]);
   assert.equal(note, '2 personal runs are left out of this record: Changed from the official protocol: Overtaking difficulty 0.55 → 0.7.');
+});
+
+test('Archive replay rows read like the official record', () => {
+  const cells = replayCells({ finish_mae: 3.388, finishers_finish_mae: 2.76, grid_finish_mae: null, win_chance_skill: 0.032,
+    podium_chance_skill: -0.1, points_chance_skill: 0.36, retirements: 47, expected_retirements: 16.86 });
+  assert.deepEqual(cells, { 'Finish error': '3.39', 'Finishers only': '2.76', 'Grid order': '—', 'Win skill': '+3%',
+    'Podium skill': '−10%', 'Top 10 skill': '+36%', Retired: '47 (16.9)' });
+  assert.equal(skippedNote([]), '');
+  assert.equal(skippedNote([{ year: 2024, event: 'Monaco Grand Prix', reason: 'Qualifying session classification is incomplete' }]),
+    '1 race was not replayed: 2024 Monaco Grand Prix (Qualifying session classification is incomplete).');
 });

@@ -1,7 +1,7 @@
 // Drivers, Accuracy and the Lab's what-if runs. Drivers and Accuracy read saved
 // files through the API; a what-if runs Race setup twice and opens Compare.
 
-const insights = {drivers:null, driversError:'', accuracy:null, accuracyError:'', accuracyScope:'all', selectedScore:null, request:0, scoring:null};
+const insights = {drivers:null, driversError:'', accuracy:null, accuracyError:'', accuracyScope:'all', selectedScore:null, replayYears:null, replayJob:null, request:0, scoring:null};
 
 // ---------- Drivers ----------
 function driversAnswers(data) {
@@ -129,6 +129,56 @@ function renderAccuracy() {
   $('accuracyExcluded').hidden=!excluded.length;
   $('accuracyExcluded').textContent=excludedNote(excluded);
   renderPendingForecasts();
+  renderArchiveReplay(data.replay);
+}
+
+// ---------- Archive replay (retrospective, never part of the record above) ----------
+const REPLAY_COLUMNS=['Finish error','Finishers only','Grid order','Win skill','Podium skill','Top 10 skill','Retired'];
+function replayCells(r) {
+  const places=v=>v==null ? '—' : `${Number(v).toFixed(2)}`;
+  return {'Finish error':places(r.finish_mae), 'Finishers only':places(r.finishers_finish_mae), 'Grid order':places(r.grid_finish_mae),
+    'Win skill':signedPercent(r.win_chance_skill), 'Podium skill':signedPercent(r.podium_chance_skill), 'Top 10 skill':signedPercent(r.points_chance_skill),
+    Retired:r.retirements==null ? '—' : `${r.retirements} (${Number(r.expected_retirements).toFixed(1)})`};
+}
+
+function replayTable(rows, lead) {
+  const cols=[...lead, ...REPLAY_COLUMNS];
+  return `<table><thead><tr>${cols.map(c=>`<th>${c}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr>${cols.map(c=>`<td>${escapeHtml(r[c])}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+}
+
+function skippedNote(skipped) {
+  if (!skipped?.length) return '';
+  const shown=skipped.slice(0,6).map(r=>`${r.year} ${r.event} (${r.reason})`).join('; ');
+  return `${skipped.length} ${skipped.length===1?'race was':'races were'} not replayed: ${shown}${skipped.length>6?'; …':''}.`;
+}
+
+function renderArchiveReplay(replay) {
+  const available=replay?.available_years || [], latest=replay?.latest;
+  if (!insights.replayYears) insights.replayYears=new Set((latest?.years || available.slice(0,1)).filter(y=>available.includes(y)));
+  $('replayYears').innerHTML=available.map(y=>`<button type="button" data-replay-year="${y}" aria-pressed="${insights.replayYears.has(y)}">${y}</button>`).join('');
+  $('replayYears').querySelectorAll('[data-replay-year]').forEach(el=>el.addEventListener('click',()=>{
+    const y=Number(el.dataset.replayYear); insights.replayYears.has(y) ? insights.replayYears.delete(y) : insights.replayYears.add(y); renderArchiveReplay(replay); }));
+  $('replayRun').disabled=Boolean(insights.replayJob) || !insights.replayYears.size;
+  if (!available.length && !insights.replayJob) $('replayStatus').textContent='Download detailed qualifying and race sessions in Historical data to replay past seasons.';
+  if (!latest) {
+    $('replaySeasons').innerHTML=available.length ? '<div class="empty">Choose seasons and replay them to see how the model would have done.</div>' : '';
+    $('replayRaces').innerHTML=''; $('replaySkipped').hidden=true; return;
+  }
+  const seasons=latest.seasons.map(r=>({Season:String(r.year), Races:r.races, ...replayCells(r)}));
+  $('replaySeasons').innerHTML=replayTable(seasons, ['Season','Races'])
+    + `<p class="footnote">Averages per race, ${Number(latest.n_sims).toLocaleString('en-GB')} simulations each, replayed ${latest.finished_at ? new Date(latest.finished_at).toLocaleString() : ''}. Grid order is the finish error of simply predicting the starting grid. Retired shows real retirements with the forecast's expected number in brackets.</p>`;
+  $('replayRaces').innerHTML=replayTable(latest.races.map(r=>({Race:`${r.year} ${r.event}`, ...replayCells(r)})), ['Race']);
+  $('replaySkipped').hidden=!latest.skipped?.length;
+  $('replaySkipped').textContent=skippedNote(latest.skipped);
+}
+
+async function runArchiveReplay() {
+  const years=[...insights.replayYears].sort();
+  $('replayStatus').textContent='Starting the replay…';
+  const job=await api().archive_replay_start({years});
+  insights.replayJob=job.id; $('replayRun').disabled=true;
+  try { await followJob(job.id,'replayStatus',async()=>{ insights.replayJob=null; await refreshAccuracy(); }); }
+  catch (error) { insights.replayJob=null; $('replayRun').disabled=false; throw error; }
 }
 
 async function refreshAccuracy() {
@@ -142,7 +192,9 @@ async function refreshAccuracy() {
 async function followJob(jobId, statusId, done) {
   const status=await api().lab_status(jobId);
   if (status.status==='running' || status.status==='queued') {
-    $(statusId).textContent=`${status.label || 'Job'} running…${status.progress ? ` ${status.progress[0].toLocaleString('en-GB')} of ${status.progress[1].toLocaleString('en-GB')} simulations.` : ''}`;
+    const replay=status.replay_progress;
+    $(statusId).textContent=replay?.total ? `${status.label || 'Job'} running… ${replay.stage}, ${replay.processed} of ${replay.total} races done.`
+      : `${status.label || 'Job'} running…${status.progress ? ` ${status.progress[0].toLocaleString('en-GB')} of ${status.progress[1].toLocaleString('en-GB')} simulations.` : ''}`;
     setTimeout(()=>safeAction(()=>followJob(jobId,statusId,done)),2000);
     return;
   }
@@ -253,7 +305,8 @@ function initInsights() {
   $('scenarioRun').addEventListener('click',()=>safeAction(runScenario));
   $('nextForecastCheck').addEventListener('click',()=>safeAction(checkNextRace));
   $('nextForecastRun').addEventListener('click',()=>safeAction(freezeNextForecast));
+  $('replayRun').addEventListener('click',()=>safeAction(runArchiveReplay));
 }
 
-if (typeof module !== 'undefined' && module.exports) module.exports = { driversAnswers, accuracyAnswers, retirementTally, scenarioChanges, signedPercent, excludedNote };
+if (typeof module !== 'undefined' && module.exports) module.exports = { driversAnswers, accuracyAnswers, retirementTally, replayCells, skippedNote, scenarioChanges, signedPercent, excludedNote };
 else initInsights();

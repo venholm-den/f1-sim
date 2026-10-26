@@ -1306,7 +1306,11 @@ class PortableWebApi:
 
     def accuracy_state(self):
         from src.app_services.accuracy import accuracy_state
-        return accuracy_state(self._jobs.root)
+        from src.app_services.archive_replay import latest
+        return {**accuracy_state(self._jobs.root), 'replay': latest(self._jobs.root)}
+
+    def archive_replay_start(self, payload):
+        return self.lab_start({'kind': 'archive_replay', 'replay': payload})
 
     def driver_intel(self, year=None):
         from src.app_services.driver_intel import driver_intel
