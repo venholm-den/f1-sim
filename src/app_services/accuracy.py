@@ -43,6 +43,48 @@ def skill(brier, drivers, places):
     return 1 - float(brier) / reference
 
 
+def _retired(frame: pd.DataFrame) -> pd.Series:
+    """True retired, False finished, NA unknown; older scores may lack the column."""
+    if 'actual_dnf' not in frame:
+        return pd.Series(pd.NA, index=frame.index, dtype='boolean')
+    text = frame['actual_dnf'].astype(str).str.strip().str.lower()
+    return text.map({'true': True, '1': True, '1.0': True, 'false': False, '0': False, '0.0': False}).astype('boolean')
+
+
+def finishers_only(frame: pd.DataFrame) -> dict:
+    """Finish error with retired drivers removed and both orders re-ranked.
+
+    It answers how good the forecast was at ordering the cars that finished, so
+    a retirement no forecast could know about does not count as a miss.
+    """
+    retired = _retired(frame)
+    if retired.isna().all():
+        return {'retirements': None, 'finishers_finish_mae': None}
+    finished = frame[retired.eq(False).fillna(False)].dropna(subset=['avg_finish', 'actual_position'])
+    mae = None
+    if len(finished) >= 2:
+        predicted = finished.avg_finish.rank(method='first')
+        actual = finished.actual_position.rank(method='first')
+        mae = float((predicted - actual).abs().mean())
+    return {'retirements': int(retired.eq(True).sum()), 'finishers_finish_mae': mae}
+
+
+def retirement_record(scored: list[dict]) -> list[dict]:
+    """Each driver's forecast retirement chances summed against real retirements."""
+    rows = [row for race in scored for row in race['comparison']
+            if row.get('actual_dnf') is not None and row.get('dnf_chance') is not None]
+    if not rows:
+        return []
+    frame = pd.DataFrame(rows)
+    frame['actual_dnf'] = frame.actual_dnf.astype(bool)
+    grouped = frame.groupby('Driver').agg(races=('Driver', 'size'), expected=('dnf_chance', 'sum'),
+                                          retirements=('actual_dnf', 'sum'), average_chance=('dnf_chance', 'mean'))
+    grouped = grouped.reset_index().sort_values(['retirements', 'expected'], ascending=False)
+    return [{'driver': r.Driver, 'races': int(r.races), 'expected': float(r.expected),
+             'retirements': int(r.retirements), 'average_chance': float(r.average_chance)}
+            for r in grouped.itertuples()]
+
+
 def _context(job: dict) -> dict:
     manifest = _read(Path(job.get('forecast_folder', '')) / 'frozen/manifest.json')
     context = manifest.get('context') or {}
@@ -69,17 +111,22 @@ def accuracy_state(root) -> dict:
                              'reasons': source['reasons']})
             continue
         drivers = int(score.get('drivers') or 0)
-        comparison = []
+        comparison, finishers = [], {'retirements': None, 'finishers_finish_mae': None}
         if (folder / 'score_comparison.csv').is_file():
             frame = pd.read_csv(folder / 'score_comparison.csv')
-            keep = [c for c in ('Driver', 'avg_finish', 'actual_position', 'win_chance', 'podium_chance') if c in frame]
+            frame['actual_dnf'] = _retired(frame)
+            keep = [c for c in ('Driver', 'avg_finish', 'actual_position', 'win_chance', 'podium_chance',
+                                'dnf_chance', 'actual_dnf') if c in frame]
             if 'actual_position' in frame:
+                finishers = finishers_only(frame)
                 frame = frame[keep].sort_values('actual_position')
                 # Blank cells become null so the payload stays valid JSON.
                 comparison = frame.astype(object).where(frame.notna(), None).to_dict('records')
         scored.append({'id': job['id'], 'forecast_id': job.get('forecast_id'), **_context(job),
                        'evaluated_at': score.get('evaluated_at_utc') or job.get('finished_at'),
-                       'drivers': drivers, 'finish_mae': score.get('finish_mae'),
+                       'drivers': drivers, 'finish_mae': score.get('finish_mae'), **finishers,
+                       'expected_retirements': (sum(r['dnf_chance'] for r in comparison if r.get('dnf_chance') is not None)
+                                                if any(r.get('dnf_chance') is not None for r in comparison) else None),
                        **{key: score.get(key) for key in THRESHOLDS},
                        **{key.replace('_brier', '_skill'): skill(score.get(key), drivers, places)
                           for key, places in THRESHOLDS.items()},
@@ -104,4 +151,5 @@ def accuracy_state(root) -> dict:
                         'category': manifest.get('category'), 'created_at': job.get('created_at')})
     pending.sort(key=lambda row: str(row['created_at'] or ''), reverse=True)
     excluded.sort(key=lambda row: str(row['id']), reverse=True)
-    return {'scored': scored, 'pending': pending, 'excluded': excluded}
+    return {'scored': scored, 'pending': pending, 'excluded': excluded,
+            'retirement_record': retirement_record(scored)}
