@@ -12,11 +12,15 @@ from __future__ import annotations
 
 import argparse
 import json
+from contextlib import contextmanager
+from functools import partial
 from pathlib import Path
+from unittest import mock
 
 import numpy as np
 import pandas as pd
 
+import src.safety_car as safety_car
 from src.pit_scenarios import assumed_plans
 from src.simulate import simulate_races
 from src.track import load_track_profile
@@ -58,6 +62,7 @@ ARMS = {
     'established': (lambda f, p: f, lambda f, p: {}),
     'track_sc_v1': (lambda f, p: f, lambda f, p: {'safety_car_probability': p['safety_car_chance']}),
     'multi_sc_v1': (lambda f, p: f, lambda f, p: {'multi_safety_car_probability': p['safety_car_chance']}),
+    'multi_sc_gap_reset': (lambda f, p: f, lambda f, p: {'multi_safety_car_probability': p['safety_car_chance']}),
     'team_noise_v1': (lambda f, p: f, lambda f, p: {'team_noise_seconds': 3.0}),
     'estimated_grid': (lambda f, p: _estimated(f), lambda f, p: {}),
     'estimated_grid_v1': (lambda f, p: _estimated(f), lambda f, p: {'sample_estimated_grid': True}),
@@ -68,6 +73,21 @@ CALIBRATED = {'calibrated_sc': 'track_sc_v1', 'calibrated_overtaking': 'establis
               'calibrated_v1': 'track_sc_v1', 'calibrated_multi_sc': 'multi_sc_v1'}
 for _arm, _base in CALIBRATED.items():
     ARMS[_arm] = ARMS[_base]
+# Offline-only variants of apply_neutralisations settings. src/simulate.py is
+# pinned by the enabled prospective suite, so these patch the call here
+# instead of adding an engine option.
+NEUTRALISATION_SETTINGS = {'multi_sc_gap_reset': {'gap_retention': 0.0}}
+
+
+@contextmanager
+def arm_settings(arm):
+    settings = NEUTRALISATION_SETTINGS.get(arm)
+    if settings is None:
+        yield
+        return
+    with mock.patch.object(safety_car, 'apply_neutralisations',
+                           partial(safety_car.apply_neutralisations, **settings)):
+        yield
 
 
 def _score(summary, actual):
@@ -103,9 +123,10 @@ def run(packet, history_races, n_sims, seeds, arms=('established', 'track_sc_v1'
                 if arm in ('calibrated_overtaking', 'calibrated_v1'):
                     arm_profile['overtaking_difficulty'] = calibrated['overtaking_difficulty']
                 arm_features = transform(features, arm_profile)
-                summary, _, _ = simulate_races(arm_features, n_sims=n_sims, seed=seed,
-                                               overtaking_difficulty=arm_profile['overtaking_difficulty'],
-                                               **options(arm_features, arm_profile))
+                with arm_settings(arm):
+                    summary, _, _ = simulate_races(arm_features, n_sims=n_sims, seed=seed,
+                                                   overtaking_difficulty=arm_profile['overtaking_difficulty'],
+                                                   **options(arm_features, arm_profile))
                 rows.append({'round': int(round_), 'event': event, 'seed': seed, 'arm': arm,
                              'sc_chance': arm_profile['safety_car_chance'],
                              'overtaking_difficulty': arm_profile['overtaking_difficulty'],
