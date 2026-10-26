@@ -82,6 +82,37 @@ function renderDots(targetId, rows, matrix, limit) {
   }).join('')+`<div class="dot-axis" aria-hidden="true" style="--positions:${fields.length}">${fields.map((_,i)=>`<span>${ticks.has(i+1)?`P${i+1}`:''}</span>`).join('')}</div>`;
 }
 
+// Winners across the saved sample races, most wins first, for the line under the futures grid.
+function futureWinners(futures) {
+  const counts={};
+  for (const race of futures?.races || []) if (race.order?.length) counts[race.order[0]]=(counts[race.order[0]]||0)+1;
+  return Object.entries(counts).map(([driver,wins])=>({driver,wins})).sort((a,b)=>b.wins-a.wins || a.driver.localeCompare(b.driver));
+}
+
+function futureColour(team) {
+  const known=typeof replayTeamColours!=='undefined' && replayTeamColours.find(([pattern])=>pattern.test(String(team || '')));
+  return known ? known[1] : 'var(--muted)';
+}
+
+// One tile per saved simulated race. The podium is always shown; every other finisher is
+// in the tile too, and appears when that driver is focused, so focus answers "where did they finish?".
+function renderFutures() {
+  const futures=state.outputs.details?.futures, target=$('futuresGrid');
+  $('futuresPanel').hidden=!(state.outputs.summaryTable?.rows || []).length;
+  if (!futures?.races?.length) {
+    target.innerHTML='<div class="empty">This run was saved before sample races were kept. Run it again to see individual simulated races.</div>';
+    $('futuresNote').textContent='';
+    return;
+  }
+  target.innerHTML=futures.races.map((race,i)=>{
+    const retired=new Set(race.retired || []);
+    const rows=race.order.map((driver,p)=>`<span class="future-pos${p>2?' rest':''}${retired.has(driver)?' out':''}" data-driver="${escapeHtml(driver)}" style="--team:${futureColour(futures.teams?.[driver])}"><em>${retired.has(driver)?'DNF':`P${p+1}`}</em><b>${escapeHtml(driver)}</b></span>`).join('');
+    return `<div class="future" role="listitem" aria-label="Race ${i+1}: ${escapeHtml(race.order.slice(0,3).join(', '))}"><small>${i+1}</small>${rows}</div>`;
+  }).join('');
+  const winners=futureWinners(futures), n=futures.races.length;
+  $('futuresNote').textContent=`Winners in these ${n}: ${winners.slice(0,5).map(w=>`${w.driver} ${w.wins}`).join(' · ')}${winners.length>5?` · ${winners.length-5} others`:''}. Click a driver to see where they finished in each race.`;
+}
+
 function savedRunLabel() {
   const saved=state.outputs.savedContext || {}, settings=readSettings();
   return {year:saved.year || settings.year, event:displayEventName(saved.event || settings.event), session:saved.session || settings.session};
@@ -125,7 +156,7 @@ function renderPredictAnswers() {
   $('predictAnswers').innerHTML=answerTiles(answers);
 }
 
-function renderForecastViews() { renderPredictAnswers(); renderHub(); }
+function renderForecastViews() { renderPredictAnswers(); renderFutures(); renderHub(); }
 
 async function refreshHub() {
   const request=++hub.request, context=savedRunLabel(), key=`${context.year}|${context.event}`;
@@ -140,4 +171,4 @@ async function refreshHub() {
   await Promise.all(jobs);
 }
 
-if (typeof module !== 'undefined' && module.exports) module.exports = { forecastAnswers, hubAnswers, quantileDots, nextSession };
+if (typeof module !== 'undefined' && module.exports) module.exports = { forecastAnswers, hubAnswers, quantileDots, nextSession, futureWinners };

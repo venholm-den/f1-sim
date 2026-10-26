@@ -238,6 +238,8 @@ def run_forecast(folder, job, context=None):
     # them so frozen probabilities, fantasy metrics and charts cannot diverge.
     for name in ('simulation_summary.csv', 'position_matrix.csv', 'driver_roster.csv'):
         shutil.copy2(source/name, folder/name)
+    if (source/'sampled_races.csv').is_file():
+        shutil.copy2(source/'sampled_races.csv', folder/'sampled_races.csv')
     # Informational race forecast for new runs only. Driver rankings remain on
     # the established session-weather model until the candidate passes validation.
     from src.race_weather import collect_race_weather

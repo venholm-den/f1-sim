@@ -70,7 +70,7 @@ second driver, and Esc or the focus chip clears it. Replay keeps its own selecti
 | Model Signals | Saved effective current-session blend, actual engine signal weights, quality/uncertainty metrics, driver signal distributions and existing model commentary. |
 | Weather | Saved observations and five model multipliers; informational future race forecast capture with scheduled/+30/+60/+120-minute start windows, forecast provenance and ensemble coverage. |
 | Reliability | Existing historical team/power-unit reliability inputs and modelled driver retirement risk. |
-| Results | Win/podium bars, finish-position heatmap, driver strategy estimates, fantasy projections, full summary and saved-run health. Run count and runtime are displayed only when recorded. |
+| Results | Win/podium bars, fifty futures (the run's first 50 simulated races from `sampled_races.csv`), finish-position heatmap, driver strategy estimates, fantasy projections, full summary and saved-run health. Run count and runtime are displayed only when recorded. |
 | Championship | Drivers' and constructors' title odds from the current standings: leaders, points still available, title/top-3 chances, expected final points with a P10–P90 range, clinched/eliminated status and the remaining calendar. Uses archived race and sprint classifications, not a saved run. See `docs/championship-odds.md`. |
 | Drivers | Season answers, points chart, team-mate head-to-heads (races both finished) and a season table, from downloaded race and sprint classifications. |
 | Accuracy | Scored frozen forecasts with finish error and Brier skill against an even guess (win, podium, top 10), a predicted-against-actual scatter, and unscored forecasts with a Score button. |

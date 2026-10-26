@@ -70,8 +70,8 @@ async function loadReplay() {
     $('replayScrub').min = data.start; $('replayScrub').max = data.end; $('replayScrub').step = 0.1;
     $('replayNote').textContent = data.positionsMessage || (data.outline.length ? '' : 'No circuit outline is available for this session.');
     $('lapChartTitle').textContent = data.race ? 'Lap chart' : 'Lap times';
-    $('lapChartNote').textContent = data.race ? 'Position at the end of each lap. Click a driver to highlight them.'
-      : 'Representative lap times by lap number (in/out and slow laps hidden). Click a driver to highlight them.';
+    $('lapChartNote').textContent = data.race ? 'Position at the end of each lap. The top three are in colour; click any driver to highlight them.'
+      : 'Representative lap times by lap number (in/out and slow laps hidden). The three fastest are in colour; click any driver to highlight them.';
     $('replayStatus').textContent = data.telemetry ? 'Loaded with car and position telemetry.'
       : 'Loaded from timing data. Car telemetry was not downloaded for this session.';
     buildReplayTrack();
@@ -260,10 +260,20 @@ function focusReplayDriver(number) {
   renderReplayFrame(true);
   applyLapChartFocus();
 }
+// With nobody focused, the chart keeps three drivers in full colour and quietens the rest, so
+// the lines stay readable: the top three at the flag in a race, the three fastest laps otherwise.
+function riverLeaders(series, race, count = 3) {
+  const rank = Object.entries(series).filter(([, values]) => values.length).map(([number, values]) => race
+    ? [number, -values[values.length - 1][0], values[values.length - 1][1]]
+    : [number, Math.min(...values.map((v) => v[1])), 0]);
+  return rank.sort((a, b) => a[1] - b[1] || a[2] - b[2]).slice(0, count).map(([number]) => number);
+}
 function applyLapChartFocus() {
+  const leaders = new Set(replayState.lapLeaders || []);
   $('replayLapChart').querySelectorAll('[data-number]').forEach((el) => {
     el.classList.toggle('focused', el.dataset.number === replayState.focus);
     el.classList.toggle('dimmed', Boolean(replayState.focus) && el.dataset.number !== replayState.focus);
+    el.classList.toggle('quiet', !replayState.focus && !leaders.has(el.dataset.number));
   });
 }
 
@@ -308,6 +318,7 @@ function renderLapChart() {
   }).join('');
   $('replayLapChart').innerHTML = `<svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img" aria-label="${data.race ? 'Position by lap' : 'Lap times by lap'}">${grid}<line id="lapCursor" class="lap-cursor" y1="${top}" y2="${height - bottom}"/>${lines}</svg>`;
   replayState.lapX = x;
+  replayState.lapLeaders = riverLeaders(series, data.race);
   replayState.lapCursorLap = null;
   $('replayLapChart').querySelectorAll('.lap-line').forEach((el) => el.addEventListener('click', () => focusReplayDriver(el.dataset.number)));
   applyLapChartFocus();
@@ -604,4 +615,4 @@ function initReplay() {
   });
 }
 
-if (typeof module !== 'undefined' && module.exports) module.exports = { replayEvents };
+if (typeof module !== 'undefined' && module.exports) module.exports = { replayEvents, riverLeaders };

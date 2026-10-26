@@ -12,7 +12,7 @@ import pandas as pd
 
 from scripts.run_lap_experiments import prepare, verify, sha256
 from src.simulink_export import export_simulink_inputs
-from src.simulate import simulate_races
+from src.simulate import sample_races, simulate_races
 from src.app_services.historical_runs import historical_events, replay_config
 from src.app_services.simulation_jobs import write_json
 
@@ -137,10 +137,11 @@ def _run(folder: Path):
     print(f"Starting {job['label']} using saved features from {job['source_dir']}", flush=True)
     if job['kind'] == 'monte_carlo':
         print(f"Simulating {job['n_sims']:,} races · seed {job['seed']} · neutral weather modifiers", flush=True)
-        summary, positions, _ = simulate_races(pd.read_csv(folder/'features.csv'),
+        summary, positions, results = simulate_races(pd.read_csv(folder/'features.csv'),
             n_sims=job['n_sims'], seed=job['seed'], overtaking_difficulty=job['overtaking_difficulty'])
         summary.to_csv(folder/'simulation_summary.csv', index=False)
         positions.to_csv(folder/'position_matrix.csv', index=False)
+        sample_races(results).to_csv(folder/'sampled_races.csv', index=False)
     else:
         if job['kind'] == 'experiments':
             prepare(folder/'features.csv', folder/'strategies.csv', folder)

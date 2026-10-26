@@ -41,7 +41,7 @@ Each phase is one or two PRs. Each one is shippable on its own, behind no flags,
   - A Weekend overview, now the screen the app opens on, with an answer row (favourite, contenders, championship leader, forecast), quantile dots for the top four, win chance, the saved briefing's session times and title odds. Session times are read from `outputs/weekend_briefings` by `saved_briefing`, without fetching anything.
   - An answer row on Results (most likely winner, likely podium, widest range in the top 8, retirement risk), with run details, the heatmap, strategy, Fantasy and insights moved under "Show the maths".
   - Every answer is computed in `forecast.js` and covered by `tests/forecast_answers.test.cjs`.
-  - **Deferred:** fifty futures and the ridge chart. Frozen forecasts keep only the summary and position matrix, not per-simulation orders, so fifty futures needs the backend to store a sample of orders first. The quantile dots already show each driver's distribution, so the ridge was left out.
+  - **Fifty futures** followed in the finishing pass (below). The ridge chart was left out because the quantile dots already show each driver's distribution.
 - **Phase 4 is done.** It covers:
   - An answer row above the picker: the best team's expected points, its usual range (P10 to P90), the boosted driver and the spend, or the gain over your own team when one is entered.
   - A sticky budget bar with the budget, boost switch, a spend meter and the Pick button.
@@ -62,3 +62,7 @@ Each phase is one or two PRs. Each one is shippable on its own, behind no flags,
   - **Freeze a forecast** in the Lab: check the next race, read the protocol and freeze a forecast with the Centre's defaults.
   - Scoring moved to Accuracy: frozen forecasts without a score are listed there with a Score button, and the job's progress shows in place.
   - The Simulation Centre is now only for Discord uploads and Simulink experiments, linked from the Workshop menu as "Simulink & Discord tools".
+- **Finishing pass is done.** It covers:
+  - **Fifty futures** on Results: each run now saves its first 50 simulated races to `sampled_races.csv` (`sample_races` in `src/simulate.py`), and Results shows one tile per race with its podium in team colours. Focusing a driver shows where they finished, or DNF, in every tile and fades the rest. Runs saved before this show a note asking for a re-run. Frozen forecast snapshots are unchanged.
+  - **The race river** (Replay lap chart) keeps the top three at the flag in colour and quietens everyone else until a driver is focused. In practice and qualifying it keeps the three fastest.
+  - **Phone top bar:** the destination row fades the edge that has more items past it and scrolls the current destination into view, so "Championship" no longer looks cut off.

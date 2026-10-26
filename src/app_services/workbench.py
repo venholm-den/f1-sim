@@ -49,6 +49,19 @@ def model_reference() -> dict:
             'weight_editing_supported': False, 'confidence_probability_available': False}
 
 
+def sampled_futures(frame: pd.DataFrame) -> dict | None:
+    """Saved sample races as finishing orders, or None for runs made before samples were saved."""
+    if frame.empty or not {'sim_id', 'Driver', 'finish_position'}.issubset(frame):
+        return None
+    frame = frame.sort_values(['sim_id', 'finish_position'])
+    retired = frame['dnf'].astype(bool) if 'dnf' in frame else pd.Series(False, index=frame.index)
+    races = [{'order': group['Driver'].astype(str).tolist(),
+              'retired': group.loc[retired.loc[group.index], 'Driver'].astype(str).tolist()}
+             for _, group in frame.groupby('sim_id', sort=True)]
+    teams = dict(zip(frame['Driver'].astype(str), frame['Team'].astype(str))) if 'Team' in frame else {}
+    return {'races': races, 'teams': teams}
+
+
 def saved_details(output_dir: str | Path, summary_override=None) -> dict:
     root = Path(output_dir)
     def read(name):
@@ -81,6 +94,7 @@ def saved_details(output_dir: str | Path, summary_override=None) -> dict:
         except (ValueError, OSError):
             pass
     return {'positionMatrix': payload(matrix), 'fantasyTable': payload(fantasy),
+            'futures': sampled_futures(read_output_table(root, 'sampled_races.csv', max_rows=5000)),
             'venue': read('venue_context.json'), 'raceWeather': weather,
             'run': saved_run, 'candidates': candidate_labels(saved_run.get('candidates')),
             'forecastRun': forecast_config.get('run', {}),
