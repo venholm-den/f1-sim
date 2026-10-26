@@ -26,3 +26,11 @@ test('practice sessions list neutralisations and pits but not retirements or fas
   const kinds = replayEvents(session(false)).map(e => e.kind);
   assert.deepEqual(kinds, ['status', 'pit', 'green']);
 });
+
+test('The river keeps the top three at the flag, or the three fastest laps, in colour', () => {
+  const { riverLeaders } = require('../portable_app/web/replay.js');
+  const race = { 1: [[1, 2], [2, 1]], 4: [[1, 1], [2, 3]], 16: [[1, 3], [2, 2]], 44: [[1, 4]], 55: [] };
+  assert.deepEqual(riverLeaders(race, true), ['1', '16', '4']);
+  const laps = { 1: [[1, 91.2], [2, 90.4]], 4: [[1, 90.1]], 16: [[1, 92.0]], 44: [[2, 90.9]] };
+  assert.deepEqual(riverLeaders(laps, false), ['4', '1', '44']);
+});

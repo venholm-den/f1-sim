@@ -14,7 +14,20 @@ function syncShell(view) {
   const tabs = document.querySelectorAll(`.sub-nav .nav-group[data-dest="${dest}"] .nav-item`).length;
   document.querySelector('.sub-nav').hidden = tabs < 2;
   document.querySelector('.workshop summary').classList.toggle('active', dest === 'workshop');
+  // On a phone the destinations scroll sideways; keep the current one in view.
+  const nav = document.querySelector('.dest-nav'), current = nav.querySelector('.dest-item.active');
+  if (current && nav.scrollWidth > nav.clientWidth) {
+    nav.scrollLeft = Math.max(0, current.offsetLeft - (nav.clientWidth - current.offsetWidth) / 2);
+  }
+  markNavOverflow();
   applyDriverFocus();
+}
+
+// Fade whichever edge of the destination row has more items past it, so a cut-off label reads as "scroll".
+function markNavOverflow() {
+  const nav = document.querySelector('.dest-nav');
+  nav.classList.toggle('more-left', nav.scrollLeft > 2);
+  nav.classList.toggle('more-right', nav.scrollLeft + nav.clientWidth < nav.scrollWidth - 2);
 }
 
 // ---------- driver focus ----------
@@ -22,7 +35,7 @@ function syncShell(view) {
 // Shift-click adds a second driver to compare. Esc or the focus chip clears it.
 const driverFocus = [];
 const DRIVER_COLUMN = /^(driver|code|abbreviation|driver code)$/i;
-const ROW_SELECTOR = 'tr, .probability-row, .range-row, .bar-row, .dot-row, .scatter-point';
+const ROW_SELECTOR = 'tr, .probability-row, .range-row, .bar-row, .dot-row, .scatter-point, .future-pos';
 
 function rowDriver(row) {
   if (row.dataset.driver) return row.dataset.driver;
@@ -75,6 +88,8 @@ function setupShell() {
     navigate(button.dataset.go);
   }));
   document.getElementById('focusChip').addEventListener('click', clearDriverFocus);
+  document.querySelector('.dest-nav').addEventListener('scroll', markNavOverflow, { passive: true });
+  window.addEventListener('resize', markNavOverflow);
 
   const main = document.querySelector('.main');
   main.addEventListener('click', event => {

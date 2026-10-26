@@ -22,7 +22,7 @@ from src.forecast_roster import session_roster, validate_roster, pre_race_roster
 from src.model import build_model_features
 from src.grid import build_grid_features
 from src.weather import summarize_weather
-from src.simulate import simulate_races
+from src.simulate import sample_races, simulate_races
 from src.performance import add_performance_profile
 from src.prediction_reasoning import save_prediction_reasoning_csv
 from src.historical_calibration import (
@@ -1106,6 +1106,7 @@ def main() -> None:
     )
 
     print("- simulation complete")
+    sampled_races = sample_races(results)
 
     if app_config.model.sprint_model == 'sprint_v1':
         from src.sprint import add_sprints, is_sprint_weekend, simulate_sprints
@@ -1147,6 +1148,8 @@ def main() -> None:
 
     summary.to_csv(summary_path, index=False)
     position_matrix.to_csv(position_matrix_path, index=False)
+    if not sampled_races.empty:
+        sampled_races.to_csv(_output_path(output_dir, "sampled_races.csv"), index=False)
     constructor_summary_path = _output_path(output_dir, "fantasy_constructor_summary.csv")
     constructor_summary.to_csv(constructor_summary_path, index=False)
     prediction_reasoning_path = save_prediction_reasoning_csv(

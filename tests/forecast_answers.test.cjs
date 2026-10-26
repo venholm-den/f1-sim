@@ -48,3 +48,10 @@ test('next session is the first that has not started', () => {
   assert.equal(nextSession(sessions, Date.parse('2026-10-24T12:00:00Z')).name, 'Q');
   assert.equal(nextSession(sessions, Date.parse('2026-10-25T12:00:00Z')), null);
 });
+
+test('Future winners are counted from the saved sample races', () => {
+  const { futureWinners } = require('../portable_app/web/forecast.js');
+  const futures = { races: [{ order: ['NOR', 'VER'] }, { order: ['VER', 'NOR'] }, { order: ['NOR', 'PIA'] }, { order: [] }] };
+  assert.deepEqual(futureWinners(futures), [{ driver: 'NOR', wins: 2 }, { driver: 'VER', wins: 1 }]);
+  assert.deepEqual(futureWinners(null), []);
+});

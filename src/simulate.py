@@ -705,6 +705,22 @@ def simulate_races(
     return summarise_results(base, results, grid_loss_multiplier)
 
 
+SAMPLED_RACES = 50
+
+
+def sample_races(results: pd.DataFrame, count: int = SAMPLED_RACES) -> pd.DataFrame:
+    """Finishing order of the first `count` simulated races.
+
+    Every simulation is an independent draw from the same seeded generator, so
+    the first few are a fair sample. The app draws them as "fifty futures".
+    """
+    columns = ["sim_id", "Driver", "Team", "finish_position", "dnf"]
+    if not {"sim_id", "Driver", "finish_position"}.issubset(results.columns):
+        return pd.DataFrame(columns=columns)
+    sample = results.loc[results["sim_id"] < count, [c for c in columns if c in results]]
+    return sample.sort_values(["sim_id", "finish_position"]).reset_index(drop=True)
+
+
 def summarise_results(base, results, grid_loss_multiplier):
     """Shared forecast table contract for aggregate and experimental engines."""
     n_drivers = len(base)
