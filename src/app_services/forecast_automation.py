@@ -234,7 +234,7 @@ def drain_discord_queue(root: Path) -> list[dict]:
 
 # The frozen-forecast protocol shared by PC automation and the Centre's
 # "Forecast next race" button, so both produce comparable snapshots.
-from src.app_services.run_class import OFFICIAL_PROTOCOL
+from src.app_services.run_class import OFFICIAL_PROTOCOL, OFFICIAL_PROTOCOL_VERSION
 
 FORECAST_DEFAULTS = dict(OFFICIAL_PROTOCOL)
 
@@ -315,6 +315,7 @@ def run_automated_forecast(
             "id": job_id,
             "label": "Next race forecast",
             "kind": "forecast",
+            "protocol_version": OFFICIAL_PROTOCOL_VERSION,
             "scenario": "all",
             "input_source": "saved",
             "historical": None,

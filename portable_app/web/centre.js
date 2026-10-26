@@ -10,7 +10,7 @@ const escape = value => String(value??'').replaceAll('&','&amp;').replaceAll('<'
 // Monte Carlo inputs start from the Race Setup defaults; "Forecast next race"
 // keeps the frozen PC-automation protocol and says so.
 let runDefaultsApplied=false;
-function forecastDefaults(){return appState?.forecast_defaults || {n_sims:10000,seed:42,overtaking_difficulty:.55};}
+function forecastDefaults(){return appState?.forecast_defaults || {n_sims:100000,seed:42,overtaking_difficulty:.55};}
 function applyRunDefaults(){
   const run=appState?.run_defaults, forecast=forecastDefaults();
   if(run && !runDefaultsApplied){el('nSims').value=run.n_sims;el('seed').value=run.seed;el('difficulty').value=run.overtaking_difficulty;runDefaultsApplied=true;}

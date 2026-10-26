@@ -44,7 +44,9 @@ def test_runs_once_then_skips_valid_frozen_session(tmp_path, monkeypatch):
     assert second["reason"] == "already_completed"
     jobs = list((tmp_path / "outputs" / "app_runs").glob("*/job.json"))
     assert len(jobs) == 1
-    assert json.loads(jobs[0].read_text(encoding="utf-8"))["status"] == "completed"
+    saved = json.loads(jobs[0].read_text(encoding="utf-8"))
+    assert saved["status"] == "completed"
+    assert saved['protocol_version'] == forecast_automation.OFFICIAL_PROTOCOL_VERSION
 
 
 def test_post_race_queue_runs_even_when_next_forecast_already_exists(tmp_path, monkeypatch):

@@ -1,9 +1,8 @@
 ---
 name: update-readme
 description: Update README.md based on the current project state and recent code changes.
-agent: Docs Maintainer
+disable-model-invocation: true
 ---
-
 Update README.md so it matches the current repository.
 
 Inspect relevant files before editing, especially:

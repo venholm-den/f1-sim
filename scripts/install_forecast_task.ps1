@@ -2,7 +2,7 @@ param(
     [ValidateRange(15, 360)]
     [int]$IntervalMinutes = 60,
     [ValidateRange(100, 100000)]
-    [int]$SimulationCount = 10000,
+    [int]$SimulationCount = 100000,
     [switch]$EnableDiscord,
     [switch]$EnablePostRace,
     [switch]$EnableWeekendBriefing,

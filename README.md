@@ -2,6 +2,8 @@
 
 Main local checkout: `C:\code_project\f1-sim`. See [Local workspace and automation](docs/local-workspace.md) for checkout provenance, backups and preserved Discord settings.
 
+Scheduled forecasting can use a [protected source runtime](docs/protected-forecast-runtime.md) so development changes do not invalidate its shadow cohort. New official forecasts use 100,000 simulations; frozen legacy 10,000-simulation forecasts retain their original classification.
+
 New local experiments: [race-window weather, qualifying pace, pit scenarios, track-rate and multiple safety cars/VSCs, shared team luck, sampled grids, grid penalties, sprints and survival modelling](docs/simulation-candidates.md). These candidates are unpromoted; live defaults remain unchanged. `scripts.build_season_packets` builds whole-season replay packets from the saved historical library so candidates can be scored on held-out seasons. The [single degradation candidate](docs/single-degradation.md) counts tyre wear once, with a weight balanced against pace.
 
 End-to-end Formula 1 race simulation and fantasy projection tooling.

@@ -5,7 +5,7 @@ import pytest
 from scripts import publication_rehearsal as rehearsal
 from src.app_services.accuracy import accuracy_state
 from src.app_services.publication import build_publication
-from src.app_services.run_class import OFFICIAL_PROTOCOL, classify, protocol_changes
+from src.app_services.run_class import OFFICIAL_PROTOCOL, OFFICIAL_PROTOCOL_VERSION, classify, protocol_changes
 from src.app_services.simulation_jobs import SimulationJobs
 
 
@@ -33,6 +33,17 @@ def test_only_protocol_forecasts_are_official(tmp_path):
                                                     'No frozen pre-race snapshot']
     # Older records without a setting are not treated as changed.
     assert protocol_changes({'kind': 'forecast'}) == []
+
+
+def test_100k_default_preserves_legacy_forecast_classification(tmp_path):
+    assert OFFICIAL_PROTOCOL['n_sims'] == 100_000
+    forecast(tmp_path, 'legacy', n_sims=10_000)
+    forecast(tmp_path, 'current', protocol_version=OFFICIAL_PROTOCOL_VERSION)
+    forecast(tmp_path, 'wrong_count', n_sims=10_000, protocol_version=OFFICIAL_PROTOCOL_VERSION)
+    assert classify(tmp_path/'legacy')['run_class'] == 'official'
+    assert classify(tmp_path/'current')['run_class'] == 'official'
+    assert classify(tmp_path/'wrong_count')['run_class'] == 'personal'
+    assert protocol_changes({'n_sims': 10_000})
 
 
 def test_personal_runs_stay_out_of_the_accuracy_record(tmp_path):

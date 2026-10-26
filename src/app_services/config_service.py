@@ -115,7 +115,7 @@ def settings_from_config(config: dict[str, Any]) -> PortableRunSettings:
         year=int(run.get("year", 2026)),
         event=str(run.get("event", "latest")),
         session=str(run.get("session", "Q")),
-        n_sims=int(run.get("n_sims", 50000)),
+        n_sims=int(run.get("n_sims", 100000)),
         random_seed=int(run.get("random_seed", 42)),
         n_baseline_races=int(run.get("n_baseline_races", 5)),
         historical_strategy_lookback_years=int(
