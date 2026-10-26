@@ -153,8 +153,10 @@ async function followJob(jobId, statusId, done) {
 
 function renderPendingForecasts() {
   const pending=insights.accuracy?.pending || [];
-  $('accuracyPending').innerHTML=pending.length ? pending.map(f=>`<li><div><b>${escapeHtml(`${f.year || ''} ${f.event || 'Frozen forecast'}`.trim())}</b><small>${escapeHtml(f.session || '')} inputs · frozen ${f.created_at ? new Date(f.created_at).toLocaleString() : 'at an unknown time'}${f.race_start_utc ? ` · race ${new Date(f.race_start_utc).toLocaleString()}` : ''}</small></div><button type="button" class="ghost" data-score-forecast="${escapeHtml(f.id)}"${insights.scoring?' disabled':''}>Score against results</button></li>`).join('')
+  $('accuracyPending').innerHTML=pending.length ? pending.map(f=>`<li><div><b>${escapeHtml(`${f.year || ''} ${f.event || 'Frozen forecast'}`.trim())}</b><small>${escapeHtml(f.session || '')} inputs · frozen ${f.created_at ? new Date(f.created_at).toLocaleString() : 'at an unknown time'}${f.race_start_utc ? ` · race ${new Date(f.race_start_utc).toLocaleString()}` : ''}</small></div>${f.scorable===false ? '<small>From the PC schedule, which scores it after the race</small>' : `<button type="button" class="ghost" data-score-forecast="${escapeHtml(f.id)}"${insights.scoring?' disabled':''}>Score against results</button>`}</li>`).join('')
     : '<li class="empty">Every frozen forecast has been scored.</li>';
+  const superseded=insights.accuracy?.superseded || 0;
+  if (superseded) $('accuracyPending').insertAdjacentHTML('beforeend', `<li class="empty">${superseded} earlier forecast${superseded===1?' was':'s were'} replaced by a later one for the same race and won't be scored.</li>`);
   $('accuracyPending').querySelectorAll('[data-score-forecast]').forEach(el=>el.addEventListener('click',()=>safeAction(()=>scoreForecast(el.dataset.scoreForecast))));
 }
 

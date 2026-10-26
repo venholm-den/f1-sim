@@ -1306,7 +1306,9 @@ class PortableWebApi:
 
     def accuracy_state(self):
         from src.app_services.accuracy import accuracy_state
-        return accuracy_state(self._jobs.root)
+        from src.app_services.automation_feed import DEFAULT_PC_WORKSPACE
+        # Scheduled PC forecasts are scored in their own workspace; list those races too.
+        return accuracy_state(self._jobs.root, [Path(self.ui_preferences['pc_workspace'] or DEFAULT_PC_WORKSPACE)])
 
     def driver_intel(self, year=None):
         from src.app_services.driver_intel import driver_intel
