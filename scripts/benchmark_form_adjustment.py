@@ -67,7 +67,9 @@ def screening(metrics,baselines):
     return decisions
 
 
-def run(workspace,output,*,years,n_sims=2000,seeds=(42,123,777)):
+def run(workspace,output,*,years,n_sims=2000,seeds=(42,123,777),n_baseline_races=2):
+    if n_baseline_races < 1:
+        raise ValueError('Use positive pace history.')
     output=Path(output);output.mkdir(parents=True,exist_ok=False)
     root=Path(__file__).resolve().parents[1]
     hashes=sources(root)
@@ -79,7 +81,7 @@ def run(workspace,output,*,years,n_sims=2000,seeds=(42,123,777)):
         form_weights=FORM_WEIGHTS,ridge_alpha=100.,degradation_multiplier=SINGLE_DEGRADATION_MULTIPLIER,
         retirement_prior='Beta(1,9); equal same-season driver/team mix; known labels only; engine clipping retained',
         fit_policy='Refit stage-specific models on strictly earlier completed races; fixed settings, no search.',
-        n_sims=n_sims,seeds=list(seeds),source_sha256=hashes,
+        n_sims=n_sims,seeds=list(seeds),n_baseline_races=n_baseline_races,source_sha256=hashes,
         split='2021-2024 development; 2025-2026 previously inspected diagnostics; no fresh validation',
         screening='Form: dev selection, >=6 matched later races, >=5% loss gain, no Brier regression, Q beats Q order. '
                   'Risk: dev selection, >=2% DNF Brier gain, <=1% loss regression and no win/podium/top10 regression.',
@@ -100,7 +102,8 @@ def run(workspace,output,*,years,n_sims=2000,seeds=(42,123,777)):
                 continue
             metadata=dict(year=race.year,round=race.round,event=race.event,session=stage)
             try:
-                base,track,weather=build_replay_inputs(current,races[:index],metadata=metadata)
+                base,track,weather=build_replay_inputs(current,races[:index],metadata=metadata,
+                                                     n_baseline_races=n_baseline_races)
                 actual=race.sessions['R'].results
                 grid_metrics,_=evaluate_forecast(simple_baseline(base,races[:index],'grid_order'),actual)
                 fit=fit_form(table,cutoff,stage)
@@ -169,4 +172,6 @@ if __name__=='__main__':
     parser.add_argument('--workspace',type=Path,required=True)
     parser.add_argument('--output-dir',type=Path,required=True)
     parser.add_argument('--years',type=int,nargs='+',default=list(range(2021,2027)))
-    args=parser.parse_args();run(args.workspace,args.output_dir,years=args.years)
+    parser.add_argument('--history',type=int,default=2,
+                        help='Earlier pace baselines; 2 reproduces the original study, 5 matches app defaults.')
+    args=parser.parse_args();run(args.workspace,args.output_dir,years=args.years,n_baseline_races=args.history)

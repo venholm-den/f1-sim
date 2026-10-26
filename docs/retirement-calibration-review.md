@@ -116,6 +116,12 @@ the degradation-only control to isolate the additional contribution of form.
 Its original diagnostic screen is retained for reproducibility; current live
 promotion still requires the separate RPS/fresh-race review.
 
+An additional fixed `--history 5` run checks transfer to the application's
+current five-race pace baseline. The same arms, 2,000 simulations and three
+seeds are retained, with no parameter search. Decisions about resuming research
+on current application inputs use this run; a pass on the old two-race
+protocol alone is insufficient. Controls remain matched within each run.
+
 Registration or deployment of a new independent cohort is a separate decision
 after reviewing its stage-specific results. The protected runtime's existing
 form/risk hook remains blocked; this work does not bypass its source/benchmark
@@ -127,6 +133,7 @@ Local outputs are append-only under
 `outputs/retirement_review/20261026T231423`: original-policy row audit, corrected
 label audit, protocols, per-seed and per-race scores, predictions, calibration,
 coverage exclusions, source/input hashes and independent form results.
-Final runs are `retirement-verified` and `form-verified`; `retirement`, `form`
+Final runs are `retirement-verified`, `form-verified` (two-race reproduction)
+and `form-live-history` (five-race sensitivity); `retirement`, `form`
 and `first-pass-source` preserve the initial sensitivity run.
 Old artifacts remain available alongside these new outputs.
