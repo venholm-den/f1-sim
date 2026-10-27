@@ -43,7 +43,7 @@ function renderChampionship() {
   const s=data.settings;
   $('championshipMethod').textContent=`${s.n_sims.toLocaleString()} simulated seasons, calculated ${new Date(data.computed_at).toLocaleString()}. `+
     `Each remaining session redraws every driver's result from their own ${data.year} results (half weight after ${s.form_half_life} rounds; sprints at ${s.sprint_weight}× weight), `+
-    `with shared team pace shocks and a team pace drift through the rest of the season. Retirements come from each driver's own record. `+
+    `with each team's and driver's form drifting through the rest of the season towards their better or worse results. Retirements come from each driver's own record. `+
     `This is a form model; it does not use the race simulator, grid penalties or circuit traits. Ties are split on wins. Sources: ${data.sources.join(', ') || 'none'}.`;
 }
 async function refreshChampionship(refresh=false) {

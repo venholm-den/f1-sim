@@ -2,9 +2,11 @@
 
 Each remaining race or sprint is simulated by drawing every current driver's
 result from their own completed results this season, weighted towards recent
-rounds, then re-ranking the draws with a shared per-team shock (car pace on the
-day) and a small per-driver noise. Retirements come from the same draws, so a
-driver's own reliability carries forward. Drivers with little history borrow
+rounds, then ranking the draws. Each team's and each driver's form follows a
+random walk through the rest of the season that shifts which of their own
+results is drawn (better or worse ones), so a driver can string together their
+best results but is never pushed below P1 by added noise. Retirements come from
+the same draws, so a driver's own reliability carries forward. Drivers with little history borrow
 from their team-mates' results. This is a season-level form model; it does not
 use the per-race simulator.
 """
@@ -30,11 +32,19 @@ class OddsSettings:
     sprint_weight: float = 0.5
     # Race-equivalents of team-mates' results mixed into each driver's pool.
     team_prior_weight: float = 1.0
-    # Standard deviations, in finishing places, of the per-session team and driver shocks.
+    # 'pool' moves each driver along their own results as the season goes on. 'places' is the
+    # first model, kept for backtests: it adds team and driver noise to the drawn finishing
+    # place, which pulls front-runners back because nobody can finish above P1.
+    pace_mode: str = 'pool'
+    # Pool mode: per-round random-walk steps of each team's and each driver's form, in logits
+    # of the quantile drawn from the driver's own results (positive = better results).
+    pool_team_drift_sd: float = 0.3
+    pool_driver_drift_sd: float = 0.45
+    # Finishing places of noise that separates drivers who drew the same result.
+    tiebreak_sd: float = 0.5
+    # Places mode: per-session team and driver shocks and the per-round team drift, in places.
     team_shock_sd: float = 1.0
     driver_noise_sd: float = 2.0
-    # Per-round random-walk step, in places, of each team's pace through the rest of the
-    # season (car development); without it long horizons become overconfident.
     team_drift_sd: float = 1.0
 
 
@@ -117,13 +127,32 @@ def form_pools(results: pd.DataFrame, drivers: list[str], teams: dict[str, str],
     return pools
 
 
-def _session_points(pools, team_of, drift, points_table, rng, settings):
+def _tilted_draws(pools, tilt, rng):
+    """Draw from each driver's pool at a quantile pushed towards their better results by tilt."""
+    sims, n = tilt.shape
+    u = rng.random((sims, n)).clip(1e-9, 1 - 1e-9)
+    u = 1.0 / (1.0 + np.exp(-(np.log(u / (1.0 - u)) - tilt)))
+    draws = np.empty((sims, n))
+    for i, (values, weights) in enumerate(pools):
+        order = np.argsort(values, kind='stable')
+        cdf = np.cumsum(weights[order])
+        index = np.searchsorted(cdf, u[:, i] * cdf[-1], side='right').clip(0, len(order) - 1)
+        draws[:, i] = values[order][index]
+    return draws
+
+
+def _session_points(pools, team_of, drift, driver_drift, points_table, rng, settings):
     sims, n = settings.n_sims, len(pools)
-    draws = np.column_stack([rng.choice(values, size=sims, p=weights) for values, weights in pools])
-    retired = np.isinf(draws)
-    scores = (-np.where(retired, 0.0, draws)
-              + (drift + rng.normal(0.0, settings.team_shock_sd, size=drift.shape))[:, team_of]
-              + rng.normal(0.0, settings.driver_noise_sd, size=(sims, n)))
+    if settings.pace_mode == 'pool':
+        draws = _tilted_draws(pools, drift[:, team_of] + driver_drift, rng)
+        retired = np.isinf(draws)
+        scores = -np.where(retired, 0.0, draws) + rng.normal(0.0, settings.tiebreak_sd, size=(sims, n))
+    else:
+        draws = np.column_stack([rng.choice(values, size=sims, p=weights) for values, weights in pools])
+        retired = np.isinf(draws)
+        scores = (-np.where(retired, 0.0, draws)
+                  + (drift + rng.normal(0.0, settings.team_shock_sd, size=drift.shape))[:, team_of]
+                  + rng.normal(0.0, settings.driver_noise_sd, size=(sims, n)))
     scores[retired] = -np.inf
     order = np.argsort(-scores, axis=1)
     table = np.zeros(n)
@@ -211,12 +240,16 @@ def simulate_championship(
     sims = np.arange(settings.n_sims)
     remaining_max = 0.0
     drift = np.zeros((settings.n_sims, len(team_names)))
+    driver_drift = np.zeros((settings.n_sims, len(drivers)))
+    pool_mode = settings.pace_mode == 'pool'
     for item in remaining:
-        drift += rng.normal(0.0, settings.team_drift_sd, size=drift.shape)
+        drift += rng.normal(0.0, settings.pool_team_drift_sd if pool_mode else settings.team_drift_sd, size=drift.shape)
+        if pool_mode:
+            driver_drift += rng.normal(0.0, settings.pool_driver_drift_sd, size=driver_drift.shape)
         for flag, table in (('sprint', SPRINT_POINTS), ('race', RACE_POINTS)):
             if not item.get(flag, flag == 'race'):
                 continue
-            points, winner = _session_points(pools, team_of, drift, np.array(table, float), rng, settings)
+            points, winner = _session_points(pools, team_of, drift, driver_drift, np.array(table, float), rng, settings)
             gained[:, :len(drivers)] += points
             remaining_max += table[0]
             if flag == 'race':

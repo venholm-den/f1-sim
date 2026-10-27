@@ -3,6 +3,7 @@ import json
 import re
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 import pytest
 
@@ -178,3 +179,37 @@ def test_championship_odds_payload(tmp_path):
     assert payload['year'] == 2026 and payload['remaining_races'] == 2 and payload['completed_rounds'] == 2
     assert payload['sources'] == ['archive_detailed']
     json.dumps(payload, allow_nan=False)
+
+
+def test_dominant_driver_is_not_pulled_back_by_noise():
+    # AAA has won every race. Added place noise costs a P1 driver points it can never win
+    # back; drawing from their own results (plus a little team-mate prior) keeps more of them.
+    results, remaining = normalise_results(season(10)), [{'round': r, 'race': True} for r in (11, 12, 13)]
+    pool = {row['name']: row for row in simulate_championship(results, remaining, OddsSettings(n_sims=2000))['drivers']}
+    places = {row['name']: row for row in simulate_championship(
+        results, remaining, OddsSettings(n_sims=2000, pace_mode='places'))['drivers']}
+    gain = {name: rows['AAA']['expected_points'] - rows['AAA']['current_points'] for name, rows in
+            (('pool', pool), ('places', places))}
+    assert gain['pool'] > 0.85 * 3 * 25 > 0.8 * 3 * 25 > gain['places']
+
+
+def test_form_tilt_moves_draws_within_a_drivers_own_results():
+    from src.championship_odds import _tilted_draws
+    rng = np.random.default_rng(1)
+    pools = [(np.array([1.0, 5.0, np.inf]), np.array([0.25, 0.5, 0.25]))]
+    neutral = _tilted_draws(pools, np.zeros((20000, 1)), rng)[:, 0]
+    assert np.mean(neutral == 1) == pytest.approx(0.25, abs=0.02)
+    assert np.mean(np.isinf(neutral)) == pytest.approx(0.25, abs=0.02)
+    better = _tilted_draws(pools, np.full((20000, 1), 2.0), rng)[:, 0]
+    worse = _tilted_draws(pools, np.full((20000, 1), -2.0), rng)[:, 0]
+    assert np.mean(better == 1) > 0.6 and np.mean(np.isinf(worse)) > 0.6
+    assert set(np.unique(np.concatenate([better, worse]))) <= {1.0, 5.0, np.inf}
+
+
+def test_backtest_scores_a_season_cut():
+    from scripts.benchmark_championship_odds import season_rows, summarise
+    rows = season_rows(normalise_results(season(8)), 2026, OddsSettings(n_sims=300), cuts=[6])
+    assert set(rows['cut']) == {6} and rows['champion'].sum() == 1
+    assert rows.loc[rows['driver'].eq('AAA'), 'actual_gain'].item() == 50
+    summary = summarise(rows)
+    assert summary['cuts'] == 1 and summary['combined'] == pytest.approx(summary['title_brier'] + summary['top3_brier'])
