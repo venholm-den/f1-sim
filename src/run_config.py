@@ -55,7 +55,7 @@ class ModelSettings:
     historical_dnf_weight: float = 0.30
     use_stint_pace: bool = False
     pace_blend: str = 'legacy'
-    retirement_model: str = 'legacy'
+    retirement_model: str = 'season_grid_dnf_v1'
     retirement_history_races: int = 30
     qualifying_pace_model_path: str | None = None
     qualifying_classifications_path: str | None = None
@@ -75,7 +75,7 @@ class ModelSettings:
         if self.pace_blend not in {'legacy', 'single_pace_blend_v1', 'qualifying_partial_pooling_v1'}:
             raise ValueError('Unknown pace_blend; choose legacy or single_pace_blend_v1.')
         if self.retirement_model not in {'legacy', 'all_cause_dnf_v2', 'retirement_progress_v1', 'survival_dnf_v1',
-                                         'season_dnf_v1'}:
+                                         'season_dnf_v1', 'season_grid_dnf_v1'}:
             raise ValueError('Unknown retirement_model.')
         if not 1 <= self.retirement_history_races <= 100:
             raise ValueError('retirement_history_races must be between 1 and 100.')
@@ -289,7 +289,7 @@ def load_app_config(
             session=str(run.get("session", "Q")),
             n_sims=int(run.get("n_sims", 50000)),
             random_seed=int(run.get("random_seed", 42)),
-            n_baseline_races=int(run.get("n_baseline_races", 5)),
+            n_baseline_races=int(run.get("n_baseline_races", 10)),
             default_overtaking_difficulty=float(run.get("default_overtaking_difficulty", 0.55)),
             historical_strategy_lookback_years=int(
                 run.get("historical_strategy_lookback_years", 5)
@@ -328,7 +328,7 @@ def load_app_config(
             historical_dnf_weight=float(model.get("historical_dnf_weight", 0.30)),
             use_stint_pace=bool(model.get('use_stint_pace', False)),
             pace_blend=str(model.get('pace_blend', 'legacy')),
-            retirement_model=str(model.get('retirement_model', 'legacy')),
+            retirement_model=str(model.get('retirement_model', 'season_grid_dnf_v1')),
             retirement_history_races=int(model.get('retirement_history_races', 30)),
             qualifying_pace_model_path=model.get('qualifying_pace_model_path'),
             qualifying_classifications_path=model.get('qualifying_classifications_path'),

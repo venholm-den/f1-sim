@@ -15,7 +15,7 @@ REVISION_VARIANTS = ('legacy', 'single_pace_blend_v1', 'all_cause_dnf_v2',
 NEXT_VARIANTS = ('qualifying_partial_pooling_v1', 'pit_scenarios_v1', 'survival_dnf_v1', 'agent_laps_v1',
                  'agent_pair_overtaking_v1')
 DEGRADATION_VARIANTS = ('legacy', 'single_degradation_v1')
-RETIREMENT_VARIANTS = ('legacy', 'all_cause_dnf_v2', 'season_dnf_v1')
+RETIREMENT_VARIANTS = ('legacy', 'all_cause_dnf_v2', 'season_dnf_v1', 'season_grid_dnf_v1')
 SUPPORTED_VARIANTS = tuple(dict.fromkeys(FEATURE_VARIANTS + AUDIT_VARIANTS + REVISION_VARIANTS
                                          + NEXT_VARIANTS + DEGRADATION_VARIANTS + RETIREMENT_VARIANTS))
 

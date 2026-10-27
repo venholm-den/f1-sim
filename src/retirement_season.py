@@ -99,3 +99,108 @@ def apply_season_retirement_risk(features, recent_races, metadata):
     output['retirement_season_observations'] = len(current)
     output['retirement_model_version'] = VERSION
     return output
+
+
+GRID_VERSION = 'season_grid_outcomes_v1_experimental'
+# Declared prior on the grid slope, in log-odds from pole to the last slot.
+# 2022-2025 front rows retired about 5% of the time and the back rows about
+# 25%, roughly 1.8 log-odds; the prior is rounded down and kept loose so each
+# window's own earlier seasons decide it.
+GRID_SLOPE_PRIOR, GRID_SLOPE_PRIOR_SD = 1.5, 0.75
+GRID_FIT_MIN_ENTRIES = 100
+
+
+def _grid_fraction(grid, field_size):
+    """Grid slot scaled to 0 (pole) .. 1 (last); pit-lane starts count as last."""
+    grid = pd.to_numeric(pd.Series(grid), errors='coerce').to_numpy(dtype=float)
+    grid = np.where(~np.isfinite(grid) | (grid < 1), field_size, grid)
+    return (np.clip(grid, 1, field_size) - 1) / max(field_size - 1, 1)
+
+
+def fit_grid_slope(x, y):
+    """Penalised logistic slope of retirement on grid fraction (Newton steps)."""
+    x, y = np.asarray(x, float), np.asarray(y, float)
+    if len(y) < GRID_FIT_MIN_ENTRIES or y.min() == y.max():
+        return GRID_SLOPE_PRIOR
+    beta = np.array([np.log(y.mean() / (1 - y.mean())) - GRID_SLOPE_PRIOR / 2, GRID_SLOPE_PRIOR])
+    design = np.column_stack([np.ones_like(x), x])
+    penalty = np.diag([0.0, 1 / GRID_SLOPE_PRIOR_SD ** 2])
+    for _ in range(25):
+        p = 1 / (1 + np.exp(-design @ beta))
+        gradient = design.T @ (y - p) - penalty @ (beta - [0.0, GRID_SLOPE_PRIOR])
+        hessian = design.T @ (design * (p * (1 - p))[:, None]) + penalty
+        step = np.linalg.solve(hessian, gradient)
+        beta = beta + step
+        if np.abs(step).max() < 1e-8:
+            break
+    return float(beta[1])
+
+
+def _grid_multiplier(x, slope):
+    """Relative risk at grid fraction x, averaging 1 over an evenly spread field."""
+    slots = np.linspace(0, 1, 21)
+    return np.exp(slope * np.asarray(x, float)) / np.exp(slope * slots).mean()
+
+
+def _grid_observations(recent_races, target):
+    rows = []
+    for session, meta in recent_races:
+        key = int(meta['year']), int(meta['round'])
+        if key >= target:
+            raise ValueError('Retirement history must contain unique races strictly before the target cutoff.')
+        results = getattr(session, 'results', pd.DataFrame())
+        if not {'Abbreviation', 'TeamName'}.issubset(results):
+            continue
+        results = apply_outcome_evidence(results, meta)
+        grid = results['GridPosition'] if 'GridPosition' in results else pd.Series(np.nan, index=results.index)
+        fraction = _grid_fraction(grid.to_numpy(), len(results))
+        for row, x in zip(results.itertuples(), fraction):
+            rows.append({'year': key[0], 'Driver': str(row.Abbreviation),
+                         'Team': str(row.TeamName).strip().casefold(), 'label': retirement_outcome(row),
+                         'grid_fraction': x})
+    return pd.DataFrame(rows, columns=['year', 'Driver', 'Team', 'label', 'grid_fraction'])
+
+
+def apply_season_grid_retirement_risk(features, recent_races, metadata):
+    """Season retirements, standardised for where each car starts.
+
+    Front-runners retire far less often than the midfield and back, so a raw
+    season rate overstates a front-running team's risk and understates a
+    backmarker's. The grid slope is fitted on earlier seasons (reliability
+    resets with new cars, and within a season the slope is confounded with
+    which teams break down). This season's team and driver records are then
+    compared with what their own grid slots would predict (observed over
+    expected), shrunk by the same data-driven strength as season_dnf_v1, and
+    applied at this race's grid slot.
+    """
+    target = int(metadata['year']), int(metadata['round'])
+    output = apply_season_retirement_risk(features, recent_races, metadata)
+    history = _grid_observations(recent_races, target)
+    known = history[history.label.notna()]
+    current = known[known.year.eq(target[0])].copy()
+    earlier = known[known.year.between(target[0] - PRIOR_SEASONS, target[0] - 1)]
+    slope = fit_grid_slope(earlier.grid_fraction, earlier.label)
+    field = float(output['retirement_field_prob'].iloc[0]) if len(output) else FALLBACK_FIELD_RATE
+    current['expected'] = field * _grid_multiplier(current.grid_fraction, slope)
+    grid = output['grid_position'] if 'grid_position' in output else pd.Series(np.nan, index=output.index)
+    target_multiplier = _grid_multiplier(_grid_fraction(grid.to_numpy(), len(output)), slope)
+    ratios = {}
+    for level, column, keys in [('team', 'Team', output.Team.astype(str).str.strip().str.casefold()),
+                                ('driver', 'Driver', output.Driver.astype(str))]:
+        counts = current.groupby(column).agg(events=('label', 'sum'), expected=('expected', 'sum'))
+        # Expected counts in field-rate units, so the season model's strength applies.
+        effective = counts['expected'] / field if field > 0 else counts['expected']
+        strength = shrinkage_strength(counts['events'], effective, field)
+        events = keys.map(counts['events']).fillna(0.0)
+        expected = keys.map(counts['expected']).fillna(0.0)
+        ratios[level] = (events + strength * field) / (expected + strength * field)
+        output[f'retirement_{level}_observed_over_expected'] = ratios[level].to_numpy()
+        output[f'retirement_{level}_shrinkage_entries'] = strength
+    ratio = TEAM_WEIGHT * ratios['team'] + (1 - TEAM_WEIGHT) * ratios['driver']
+    probability = (field * target_multiplier * ratio).clip(.005, PROBABILITY_CAP)
+    output['dnf_prob'] = probability.to_numpy()
+    output['reliability_score'] = output['dnf_prob']
+    output['retirement_grid_slope'] = slope
+    output['retirement_grid_multiplier'] = target_multiplier
+    output['retirement_model_version'] = GRID_VERSION
+    return output

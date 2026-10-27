@@ -109,6 +109,19 @@ SIMULATION_PARAMETERS = {
 }
 
 
+# Driver of the Day vote weights (conditional logit, per race). Fitted on the
+# 2024-2025 fan votes in the f1fantasytools archive (48 races); on the 18
+# held-out 2026 races they score 1.47 log loss per race against 3.21 for the
+# earlier hand-set rule and 3.00 for picking a finisher at random. Winners
+# take about 40% of votes, P2-3 about 17% each, the rest rarely.
+DOTD_LOGIT = {
+    "win": 3.80,
+    "podium": 2.65,
+    "top5": 0.95,
+    "top10": 0.85,
+    "gained_in_top10": 0.19,
+}
+
 # Official F1 Fantasy scoring, current season. Every value below was checked
 # against archived component points (scripts/verify_fantasy_scoring.py); the
 # overtake estimate is the only fitted part, because the simulator does not

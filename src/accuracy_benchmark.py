@@ -141,6 +141,11 @@ def build_replay_inputs(current, previous: list[ReplayRace], *, metadata: dict,
         history = [(r.sessions['R'], {'year': r.year, 'round': r.round, 'event': r.event})
                    for r in previous[-retirement_history_races:]]
         features = apply_season_retirement_risk(features, history, metadata)
+    if feature_variant == 'season_grid_dnf_v1':
+        from src.retirement_season import apply_season_grid_retirement_risk
+        history = [(r.sessions['R'], {'year': r.year, 'round': r.round, 'event': r.event})
+                   for r in previous[-retirement_history_races:]]
+        features = apply_season_grid_retirement_risk(features, history, metadata)
     if feature_variant == 'survival_dnf_v1':
         from src.retirement_survival import attach_survival_risk
         history = [(r.sessions['R'], {'year': r.year, 'round': r.round, 'event': r.event})

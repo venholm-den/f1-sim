@@ -1,5 +1,11 @@
 # Accuracy improvements and validation
 
+[Grid-slot retirements, Driver of the Day and the Rhter Mexico comparison, 27 October](season-grid-retirements.md)
+adds an experimental retirement model that accounts for where each car
+starts, tests a ten-race pace history, and refits Driver of the Day on real
+fan votes. With ten races of history the retirement model clears the 5%
+paired-RPS bar at every stage on replay, and both are now the defaults.
+
 [Retirement calibration review, 26 October](retirement-calibration-review.md)
 audits status/classification disagreements and compares established, all-cause
 and season-based retirement models separately for PRE/FP2/Q. It also repeats
