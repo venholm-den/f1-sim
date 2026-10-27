@@ -5,7 +5,7 @@
     "session": "Q",
     "n_sims": 100000,
     "random_seed": 42,
-    "n_baseline_races": 5,
+    "n_baseline_races": 10,
     "default_overtaking_difficulty": 0.55,
     "historical_strategy_lookback_years": 5
   },
@@ -31,6 +31,7 @@
     "use_historical_model_calibration": false,
     "historical_model_dir": "data/models",
     "historical_finish_weight": 0.15,
-    "historical_dnf_weight": 0.3
+    "historical_dnf_weight": 0.3,
+    "retirement_model": "season_grid_dnf_v1"
   }
 }

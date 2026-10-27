@@ -29,12 +29,12 @@ CANDIDATES: dict[str, dict[str, Any]] = {
         'options': {'off': 'Off', 'track_sc_v1': 'Track rate', 'multi_sc_v1': 'Multiple SC and VSC'},
         'note': 'Not with the car agents engine, which has its own.'},
     'retirement_model': {
-        'label': 'Retirements', 'default': 'legacy',
-        'options': {'legacy': 'Established', 'survival_dnf_v1': 'Survival model',
-                    'season_dnf_v1': "This season's retirements",
-                    'season_grid_dnf_v1': "This season's retirements by grid slot"},
-        'note': "Season models use each team and driver's real retirements this year; "
-                "the grid-slot version also lowers risk at the front and raises it at the back."},
+        'label': 'Retirements', 'default': 'season_grid_dnf_v1',
+        'options': {'season_grid_dnf_v1': 'Established (season record by grid slot)',
+                    'legacy': 'Earlier rule (lap quality)', 'survival_dnf_v1': 'Survival model',
+                    'season_dnf_v1': "This season's retirements, ignoring grid slot"},
+        'note': "Uses each team and driver's real retirements this year, with lower risk "
+                "at the front of the grid and higher at the back."},
     'weather_model': {
         'label': 'Race weather', 'default': 'session_legacy',
         'options': {'session_legacy': 'Established', 'race_window_v1': 'Race-window forecast'},

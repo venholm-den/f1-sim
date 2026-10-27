@@ -4,7 +4,7 @@
 adds an experimental retirement model that accounts for where each car
 starts, tests a ten-race pace history, and refits Driver of the Day on real
 fan votes. With ten races of history the retirement model clears the 5%
-paired-RPS bar at every stage on replay; it is not a live default.
+paired-RPS bar at every stage on replay, and both are now the defaults.
 
 [Retirement calibration review, 26 October](retirement-calibration-review.md)
 audits status/classification disagreements and compares established, all-cause

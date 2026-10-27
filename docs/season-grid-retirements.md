@@ -6,7 +6,7 @@ Three gaps stood out, and this change addresses each one.
 
 ## What was different
 
-| | Ours (live: 5 races, established retirements) | Rhter |
+| | Ours (before: 5 races, lap-quality retirements) | Rhter |
 | --- | --- | --- |
 | Retirement chance | 2.9–4.2% for every driver | 8% at the front, 10–14% midfield, 18–53% at the back |
 | Order by average finish | VER, LEC, ANT, PIA, HAD, HAM, NOR, LAW, RUS | ANT, LEC, VER, HAM, RUS, NOR, PIA, HAD, LAW |
@@ -67,7 +67,14 @@ still fails is the Q rule "beat qualifying order": 3.43 finish MAE against
 3.31 for the plain grid on 2025–26 (3.43 against 3.43 on 2021–24). Every
 candidate so far fails that rule.
 
-Neither change is a live default in this commit. Promotion is Kyle's call.
+On 27 October Kyle chose to make both the default: `retirement_model`
+`season_grid_dnf_v1` and `n_baseline_races` 10 (code defaults and
+`config/default_run_config.json`). The earlier rule stays selectable as
+"Earlier rule (lap quality)". This is a promotion on inspected replays, not
+on six fresh races. The protected scheduled runtime keeps its sealed source
+until a new runtime is prepared, so Discord forecasts and the four-arm suite
+do not change with this merge. A saved app setting for baseline races is kept
+as the user set it.
 
 ## 3. Driver of the Day
 

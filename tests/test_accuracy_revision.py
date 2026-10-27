@@ -135,7 +135,7 @@ def test_retirement_classification_orders_distance_and_preserves_occurrence_draw
         sample_completed_laps(_minimal_features(), np.ones((1,4), dtype=bool), 66, np.random.default_rng(1))
 
 
-def test_model_options_default_to_legacy_and_round_trip(tmp_path):
+def test_model_options_defaults_and_round_trip(tmp_path):
     import json
     path = tmp_path/'config.json'
     path.write_text(json.dumps({'model': {'pace_blend': 'single_pace_blend_v1',
@@ -150,4 +150,8 @@ def test_model_options_default_to_legacy_and_round_trip(tmp_path):
         replace(config.model, retirement_model='unknown')
     path.write_text('{}')
     default = load_app_config(path)
-    assert default.model.pace_blend == default.model.retirement_model == 'legacy'
+    assert default.model.pace_blend == 'legacy'
+    # Promoted 27 October 2026 (docs/season-grid-retirements.md); still allowed to post.
+    assert default.model.retirement_model == 'season_grid_dnf_v1'
+    assert default.run.n_baseline_races == 10
+    replace(default, outputs=replace(default.outputs, post_to_discord=True))

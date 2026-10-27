@@ -55,7 +55,7 @@ class ModelSettings:
     historical_dnf_weight: float = 0.30
     use_stint_pace: bool = False
     pace_blend: str = 'legacy'
-    retirement_model: str = 'legacy'
+    retirement_model: str = 'season_grid_dnf_v1'
     retirement_history_races: int = 30
     qualifying_pace_model_path: str | None = None
     qualifying_classifications_path: str | None = None
@@ -125,7 +125,7 @@ class AppConfig:
             or bool(self.model.qualifying_classifications_path)
             or self.model.race_engine != 'aggregate_legacy'
             or self.model.weather_model != 'session_legacy'
-            or self.model.retirement_model in {'survival_dnf_v1', 'season_dnf_v1', 'season_grid_dnf_v1'}
+            or self.model.retirement_model in {'survival_dnf_v1', 'season_dnf_v1'}
             or self.model.safety_car_model != 'off'
             or self.model.shared_noise_model != 'off'
             or self.model.grid_sampling_model != 'off'
@@ -289,7 +289,7 @@ def load_app_config(
             session=str(run.get("session", "Q")),
             n_sims=int(run.get("n_sims", 50000)),
             random_seed=int(run.get("random_seed", 42)),
-            n_baseline_races=int(run.get("n_baseline_races", 5)),
+            n_baseline_races=int(run.get("n_baseline_races", 10)),
             default_overtaking_difficulty=float(run.get("default_overtaking_difficulty", 0.55)),
             historical_strategy_lookback_years=int(
                 run.get("historical_strategy_lookback_years", 5)
@@ -328,7 +328,7 @@ def load_app_config(
             historical_dnf_weight=float(model.get("historical_dnf_weight", 0.30)),
             use_stint_pace=bool(model.get('use_stint_pace', False)),
             pace_blend=str(model.get('pace_blend', 'legacy')),
-            retirement_model=str(model.get('retirement_model', 'legacy')),
+            retirement_model=str(model.get('retirement_model', 'season_grid_dnf_v1')),
             retirement_history_races=int(model.get('retirement_history_races', 30)),
             qualifying_pace_model_path=model.get('qualifying_pace_model_path'),
             qualifying_classifications_path=model.get('qualifying_classifications_path'),
