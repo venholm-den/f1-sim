@@ -14,7 +14,7 @@ function syncShell(view) {
   const tabs = document.querySelectorAll(`.sub-nav .nav-group[data-dest="${dest}"] .nav-item`).length;
   document.querySelector('.sub-nav').hidden = tabs < 2;
   document.querySelector('.workshop summary').classList.toggle('active', dest === 'workshop');
-  // On a phone the destinations scroll sideways; keep the current one in view.
+  // When the destinations overflow and scroll sideways, keep the current one in view.
   const nav = document.querySelector('.dest-nav'), current = nav.querySelector('.dest-item.active');
   if (current && nav.scrollWidth > nav.clientWidth) {
     nav.scrollLeft = Math.max(0, current.offsetLeft - (nav.clientWidth - current.offsetWidth) / 2);
