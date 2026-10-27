@@ -8,6 +8,7 @@ import pandas as pd
 from src.model_config import SIMULATION_PARAMETERS
 
 
+# Race points for the top ten finishers; anyone classified lower scores nothing.
 F1_POINTS = {
     1: 25,
     2: 18,
@@ -22,6 +23,8 @@ F1_POINTS = {
 }
 
 
+# Reads a tuned parameter, falling back to the built-in default when the
+# configured value is missing or not a finite number.
 def _sim_param(key: str, default: float) -> float:
     value = SIMULATION_PARAMETERS.get(key, default)
 
@@ -85,6 +88,8 @@ def _weather_value(
     return _to_float_or_default(weather_modifiers.get(key), default)
 
 
+# Per-race chance of a red flag: a 3.5% base, plus extra for rain and wind,
+# scaled by the chaos factor and clamped to 1%-18%.
 def _calculate_red_flag_probability(weather_modifiers: dict | None) -> float:
     chaos_factor = _weather_value(weather_modifiers, "chaos_factor", 1.0)
     rainfall = bool(weather_modifiers.get("rainfall_flag", False)) if weather_modifiers else False
@@ -119,6 +124,8 @@ def _prepare_features(features: pd.DataFrame) -> pd.DataFrame:
     base["Driver"] = base["Driver"].astype(str)
     base["Team"] = base["Team"].astype(str)
 
+    # Grid fallback order: actual grid -> estimated grid -> qualifying pace
+    # ranking -> model pace. Ranks are made unique so every car has one slot.
     base["grid_position"] = _series(base, "grid_position", np.nan)
 
     if base["grid_position"].isna().all():
@@ -149,6 +156,8 @@ def _prepare_features(features: pd.DataFrame) -> pd.DataFrame:
 
     base["grid_source"] = base["grid_source"].astype(str)
 
+    # Confidence in each grid slot. Official results are trusted fully; a
+    # modelled grid gets 0.38 unless a value was supplied.
     base["grid_confidence"] = _series(base, "grid_confidence", np.nan)
 
     default_grid_confidence = pd.Series(
@@ -233,6 +242,9 @@ def _prepare_features(features: pd.DataFrame) -> pd.DataFrame:
         np.nan,
     )
 
+    # No known winning time: estimate one as the 20th-percentile lap pace
+    # (a strong but not outright-fastest lap) times the race distance, plus a
+    # fixed 28 s allowance for the start and pit stops.
     if base["base_winner_race_time_seconds"].isna().all():
         race_pace = _series(base, "race_pace", np.nan)
         race_pace = race_pace[(race_pace >= 45) & (race_pace <= 160)]
@@ -261,6 +273,7 @@ def _prepare_features(features: pd.DataFrame) -> pd.DataFrame:
     return base
 
 
+# Maps each simulated finishing position to race points.
 def _points_for_positions(positions: np.ndarray) -> np.ndarray:
     points = np.zeros_like(positions, dtype=float)
 
@@ -402,8 +415,12 @@ def simulate_races(
     grid = base["grid_position"].to_numpy(dtype=float)
     grid_confidence = base["grid_confidence"].to_numpy(dtype=float)
 
+    # Deterministic part of each car's race time. Every term is a time loss on
+    # top of the winner's time, so a bigger value means a slower car. Pace
+    # scores are per-lap figures; multiplying by laps gives race distance.
     race_pace_loss = race_pace * race_laps * race_pace_seconds_multiplier
 
+    # Extra loss when long-run pace is worse than the single-lap pace.
     long_run_loss = (
         np.maximum(long_run_pace - race_pace, 0)
         * race_laps
@@ -439,8 +456,11 @@ def simulate_races(
         + strategy_baseline_loss
     )
 
+    # Re-anchor so the quickest car sits exactly on the winning time.
     deterministic_time = deterministic_time - deterministic_time.min() + base_winner_time
 
+    # Random noise, one independent normal draw per driver per simulation.
+    # Each source has its own scale so the spread can be tuned separately.
     race_noise = rng.normal(
         loc=0.0,
         scale=(uncertainty * race_noise_multiplier * uncertainty_factor),
@@ -459,6 +479,8 @@ def simulate_races(
         size=(n_sims, n_drivers),
     )
 
+    # Noise on tyre wear scales with each car's estimated degradation (floored
+    # so no car has zero spread).
     degradation_noise_deg = np.maximum(tyre_deg, 0.01)
     if single_degradation_multiplier is not None:
         # Same overall spread, but a noisy high-wear estimate no longer widens
@@ -531,6 +553,8 @@ def simulate_races(
         projected_times, safety_cars, _ = apply_safety_cars(
             projected_times, safety_car_probability, seed)
 
+    # Red-flagged races restart, so the field bunches up: gaps to the leader
+    # shrink, and extra noise is added to reflect the restart.
     if red_flags.any():
         red_flag_rows = red_flags.reshape(n_sims, 1)
 
@@ -551,11 +575,15 @@ def simulate_races(
             projected_times,
         )
 
+    # Retirement draws. The per-race chance is clipped so it never drops to
+    # zero and never exceeds the car's cap.
     dnf_random = rng.random((n_sims, n_drivers))
     retirement_cap = np.maximum(base["retirement_probability_cap"].to_numpy(dtype=float), 0.45)
     effective_dnf_prob = np.clip(dnf_prob * dnf_factor, 0.002, retirement_cap)
     dnf_matrix = dnf_random < effective_dnf_prob.reshape(1, n_drivers)
 
+    # Retired cars get a large random time penalty so they sort behind every
+    # finisher; the randomness also shuffles their order among themselves.
     dnf_penalty = rng.uniform(600.0, 1600.0, size=(n_sims, n_drivers))
 
     vsc_counts = None
@@ -601,6 +629,8 @@ def simulate_races(
 
     positions_gained = grid_matrix - positions
 
+    # Fastest lap: the car closest to the front (with noise) among those that
+    # finished in the top ten. Only one car per race gets the award.
     fastest_lap_matrix = np.zeros((n_sims, n_drivers), dtype=bool)
 
     fastest_lap_score = (
@@ -623,6 +653,8 @@ def simulate_races(
         fastest_lap_score[np.arange(n_sims), fastest_lap_winners]
     )
 
+    # Driver of the Day: a fan vote, so the score rewards places gained and
+    # strong finishes, plus noise. Only one winner per race.
     dotd_matrix = np.zeros((n_sims, n_drivers), dtype=bool)
 
     dotd_eligible = (
@@ -649,6 +681,8 @@ def simulate_races(
         dotd_score[np.arange(n_sims), dotd_winners]
     )
 
+    # One row per driver per simulated race. Optional columns appear only when
+    # the matching candidate feature is switched on.
     records = []
 
     for driver_idx in range(n_drivers):

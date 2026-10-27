@@ -6,6 +6,8 @@ import numpy as np
 import pandas as pd
 
 
+# Maximum share of the pace estimate that a session can supply, before the
+# signal-quality discount. Race data counts most; pre-FP1 data is not used.
 CURRENT_SESSION_WEIGHTS = {
     "PRE": 0.0,
     "Q": 0.35,
@@ -30,6 +32,7 @@ def _to_numeric(series: pd.Series, default: float = np.nan) -> pd.Series:
     return output
 
 
+# Weighted average that ignores missing values and non-positive weights.
 def _weighted_mean(values: pd.Series, weights: pd.Series) -> float:
     values_numeric = pd.to_numeric(values, errors="coerce")
     weights_numeric = pd.to_numeric(weights, errors="coerce")
@@ -47,6 +50,8 @@ def _weighted_mean(values: pd.Series, weights: pd.Series) -> float:
     )
 
 
+# Weighted standard deviation of each driver's race-to-race pace. Returns 0
+# with fewer than two usable results, so a single race reads as no spread.
 def _weighted_std(values: pd.Series, weights: pd.Series) -> float:
     values_numeric = pd.to_numeric(values, errors="coerce")
     weights_numeric = pd.to_numeric(weights, errors="coerce")
@@ -129,6 +134,7 @@ def _prepare_baseline_features(baseline_features: pd.DataFrame) -> pd.DataFrame:
     ).fillna(0)
 
     # Recent races get more weight, but older races still matter.
+    # Age 0 -> 1.00, age 1 -> ~0.69, age 2 -> ~0.53.
     baseline["baseline_weight"] = 1 / (1 + baseline["baseline_age"] * 0.45)
 
     numeric_cols = [
@@ -181,6 +187,8 @@ def _prepare_baseline_features(baseline_features: pd.DataFrame) -> pd.DataFrame:
     return pd.DataFrame(rows)
 
 
+# How far to trust this weekend's data, from 0 to 1. Three checks multiply
+# together: enough clean laps, consistent lap times, and no extreme outliers.
 def _calculate_current_signal_quality(
     model: pd.DataFrame,
     current_session_type: str,
@@ -202,14 +210,19 @@ def _calculate_current_signal_quality(
         errors="coerce",
     ).fillna(99)
 
+    # Full trust once a driver has 8 clean laps.
     laps_factor = (clean_laps / 8).clip(0.05, 1.0)
 
     # High lap standard deviation usually means mixed runs, traffic,
-    # in/out laps, or unreliable practice sampling.
+    # in/out laps, or unreliable practice sampling. Full trust up to 1.5 s,
+    # heavily discounted by about 6.5 s.
     std_factor = (1 - ((lap_std - 1.5) / 5.0)).clip(0.05, 1.0)
 
     outlier_factor = pd.Series(1.0, index=model.index)
 
+    # Pace more than a few seconds off the field is more likely a traffic or
+    # wrong-run problem than real pace, so it is discounted. Practice is
+    # discounted more sharply than qualifying or the race.
     if session in PRACTICE_SESSIONS:
         outlier_factor = np.select(
             [
@@ -248,6 +261,9 @@ def _calculate_current_signal_quality(
     return quality.clip(0.0, 1.0)
 
 
+# Limits the pace value taken from the current session, in seconds per lap
+# relative to the field. Practice is clipped tightest; qualifying and the race
+# are allowed a wider range.
 def _cap_current_practice_pace(
     current_pace: pd.Series,
     current_session_type: str,
@@ -267,6 +283,9 @@ def _cap_current_practice_pace(
     return pace.clip(lower=-1.00, upper=5.50)
 
 
+# Blends this weekend's data with the historical baseline into one row per
+# driver. Pace columns are relative times: lower is faster and the fastest
+# car is set to zero.
 def build_model_features(
     current_features: pd.DataFrame,
     baseline_features: pd.DataFrame,
@@ -322,6 +341,7 @@ def build_model_features(
     model["blend_current_pace"] = current_pace
     model["blend_baseline_pace"] = baseline_pace
 
+    # Where one side of the blend is missing, the other side is used in full.
     model["effective_current_weight"] = model["current_weight"]
 
     model.loc[baseline_pace.isna() & current_pace.notna(), "effective_current_weight"] = 1.0
@@ -335,6 +355,7 @@ def build_model_features(
         + (1 - model["effective_current_weight"]) * fallback_baseline
     )
 
+    # Shift so the fastest car is zero; the simulator adds the winning time later.
     model["model_pace"] = model["model_pace"] - model["model_pace"].min()
     model["relative_pace"] = model["model_pace"]
 
@@ -383,6 +404,9 @@ def build_model_features(
     else:
         practice_session_penalty = 0.05
 
+    # Uncertainty for the simulator's noise. It starts at 0.85 and grows with
+    # the spread of past results, few baseline races, weak session data and a
+    # practice-session penalty; clipped to 0.90-3.25.
     model["model_uncertainty"] = (
         0.85
         + baseline_std * 0.85
@@ -406,6 +430,7 @@ def build_model_features(
         + (1 - model["effective_current_weight"]) * baseline_deg.fillna(current_deg).fillna(0.0)
     ).clip(-0.10, 0.18)
 
+    # Current-session lap spread first, then the baseline, then a default.
     model["lap_std"] = current_lap_std.fillna(model["baseline_lap_std"]).fillna(1.5)
 
     model["clean_laps"] = pd.to_numeric(
@@ -428,6 +453,7 @@ def build_model_features(
         errors="coerce",
     )
 
+    # Per-race retirement chance, blended like pace and kept between 1.5% and 20%.
     model["dnf_prob"] = (
         model["effective_current_weight"] * current_dnf.fillna(baseline_dnf).fillna(0.045)
         + (1 - model["effective_current_weight"]) * baseline_dnf.fillna(current_dnf).fillna(0.045)
