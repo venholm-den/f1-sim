@@ -5,7 +5,7 @@ from typing import Any
 import numpy as np
 import pandas as pd
 
-from src.model_config import SIMULATION_PARAMETERS
+from src.model_config import DOTD_LOGIT, SIMULATION_PARAMETERS
 
 
 F1_POINTS = {
@@ -625,21 +625,17 @@ def simulate_races(
 
     dotd_matrix = np.zeros((n_sims, n_drivers), dtype=bool)
 
-    dotd_eligible = (
-        (~dnf_matrix)
-        & (
-            (positions <= 5)
-            | ((positions <= 10) & (positions_gained >= 4))
-            | (positions_gained >= 8)
-        )
-    )
-
+    # Driver of the Day is a fan vote, drawn as a conditional logit with the
+    # weights in DOTD_LOGIT (fitted on 2024-2025 votes; see model_config).
+    dotd_eligible = ~dnf_matrix
+    weights = DOTD_LOGIT
     dotd_score = (
-        positions_gained * 1.25
-        + np.where(positions <= 3, 4.0, 0.0)
-        + np.where(positions <= 5, 2.0, 0.0)
-        + np.where((positions <= 10) & (positions_gained >= 4), 2.0, 0.0)
-        + rng.normal(0, 2.75, size=(n_sims, n_drivers))
+        np.where(positions == 1, weights["win"], 0.0)
+        + np.where((positions >= 2) & (positions <= 3), weights["podium"], 0.0)
+        + np.where((positions >= 4) & (positions <= 5), weights["top5"], 0.0)
+        + np.where((positions >= 6) & (positions <= 10), weights["top10"], 0.0)
+        + np.where(positions <= 10, np.clip(positions_gained, 0, None) * weights["gained_in_top10"], 0.0)
+        + rng.gumbel(0.0, 1.0, size=(n_sims, n_drivers))
     )
 
     dotd_score = np.where(dotd_eligible, dotd_score, -np.inf)

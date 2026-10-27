@@ -31,8 +31,10 @@ CANDIDATES: dict[str, dict[str, Any]] = {
     'retirement_model': {
         'label': 'Retirements', 'default': 'legacy',
         'options': {'legacy': 'Established', 'survival_dnf_v1': 'Survival model',
-                    'season_dnf_v1': "This season's retirements"},
-        'note': "Season model uses each team and driver's real retirements this year."},
+                    'season_dnf_v1': "This season's retirements",
+                    'season_grid_dnf_v1': "This season's retirements by grid slot"},
+        'note': "Season models use each team and driver's real retirements this year; "
+                "the grid-slot version also lowers risk at the front and raises it at the back."},
     'weather_model': {
         'label': 'Race weather', 'default': 'session_legacy',
         'options': {'session_legacy': 'Established', 'race_window_v1': 'Race-window forecast'},

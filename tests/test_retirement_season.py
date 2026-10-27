@@ -104,3 +104,39 @@ def test_replay_variant_never_reads_the_target_race():
     after = build_replay_inputs(target.sessions['Q'], data[:2], metadata=meta, feature_variant='season_dnf_v1')[0]
     pd.testing.assert_frame_equal(before, after)
     assert before.retirement_model_version.eq('season_outcomes_v2_experimental').all()
+
+
+def gridded_season(year, rounds, retired):
+    """Like season(), with drivers starting in index order."""
+    history = season(year, rounds, retired)
+    for session, _ in history:
+        session.results['GridPosition'] = np.arange(1, 21)
+    return history
+
+
+def test_grid_slope_is_fitted_on_earlier_seasons_and_lowers_front_row_risk():
+    from src.retirement_season import apply_season_grid_retirement_risk, fit_grid_slope
+    # Earlier season: the back half retires four times as often as the front half.
+    earlier = gridded_season(2025, 20, lambda rnd, i: (i >= 10 and (i + rnd) % 5 == 0)
+                             or (i < 10 and (i + rnd) % 20 == 0))
+    now = earlier + gridded_season(2026, 8, lambda rnd, i: (i + rnd) % 8 == 0)
+    frame = features().assign(grid_position=np.arange(1, 21))
+    output = apply_season_grid_retirement_risk(frame, now, {'year': 2026, 'round': 9})
+    assert output.retirement_grid_slope.iloc[0] > 1.0
+    assert output.loc[0, 'dnf_prob'] < output.loc[19, 'dnf_prob'] / 2
+    # The field still averages close to the season's field rate.
+    assert output.dnf_prob.mean() == pytest.approx(output.retirement_field_prob.iloc[0], rel=.25)
+    # Too little earlier data falls back to the declared prior slope.
+    assert fit_grid_slope([0., 1.], [0., 1.]) == pytest.approx(1.5)
+
+
+def test_grid_model_keeps_a_failing_car_high_wherever_it_starts():
+    from src.retirement_season import apply_season_grid_retirement_risk
+    earlier = gridded_season(2025, 20, lambda rnd, i: (i + rnd) % 9 == 0)
+    now = earlier + gridded_season(2026, 16, lambda rnd, i: i == 0 and rnd % 8 or (i + rnd) % 19 == 0)
+    frame = features().assign(grid_position=np.arange(1, 21))
+    output = apply_season_grid_retirement_risk(frame, now, {'year': 2026, 'round': 17})
+    # D0 starts on pole and still fails most races; observed over expected is far above 1.
+    assert output.loc[0, 'retirement_driver_observed_over_expected'] > 3
+    assert output.loc[0, 'dnf_prob'] > .4
+    assert output.retirement_model_version.eq('season_grid_outcomes_v1_experimental').all()

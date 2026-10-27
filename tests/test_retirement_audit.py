@@ -54,7 +54,7 @@ def test_diagnostic_screen_keeps_q_baseline_and_never_promotes():
             for rnd in range(1, 7):
                 key = dict(year=year, round=rnd, session=stage, split=split)
                 baselines.append({**key, 'finish_mae': 2.9})
-                for arm in ('established', 'all_cause_dnf_v2', 'season_dnf_v1'):
+                for arm in ('established', 'all_cause_dnf_v2', 'season_dnf_v1', 'season_grid_dnf_v1'):
                     new = arm != 'established'
                     rows.append({**key, 'arm': arm, 'rps': .18 if new else .20,
                         'finish_mae': 3.9 if new else 4., 'finishers_finish_mae': 3.,

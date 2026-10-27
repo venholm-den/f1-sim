@@ -17,11 +17,11 @@ from src.feature_ablation_benchmark import evaluate_with_dnf
 from src.race_scores import race_scores
 from src.result_status import RETIREMENT_POLICY_VERSION, retirement_label, retirement_outcome
 from src.retirement_risk import apply_retirement_risk
-from src.retirement_season import apply_season_retirement_risk
+from src.retirement_season import apply_season_grid_retirement_risk, apply_season_retirement_risk
 from src.simulate import simulate_races
 from src.venues import venue_for_context
 
-ARMS = ('established', 'all_cause_dnf_v2', 'season_dnf_v1')
+ARMS = ('established', 'all_cause_dnf_v2', 'season_dnf_v1', 'season_grid_dnf_v1')
 METRICS = ('finish_mae', 'finishers_finish_mae', 'win_brier', 'podium_brier',
            'top10_brier', 'dnf_brier', 'rps', 'threshold_rps', 'log_score', 'pair_brier',
            'expected_retirements', 'expected_retirements_all', 'actual_retirements',
@@ -156,7 +156,8 @@ def run(workspace, output, *, years=tuple(range(2021, 2027)), n_sims=5000,
                         metadata={**metadata, 'session': stage}, n_baseline_races=history)
                     variants = {'established': base,
                         'all_cause_dnf_v2': apply_retirement_risk(base, earlier[-30:], metadata),
-                        'season_dnf_v1': apply_season_retirement_risk(base, earlier[-30:], metadata)}
+                        'season_dnf_v1': apply_season_retirement_risk(base, earlier[-30:], metadata),
+                        'season_grid_dnf_v1': apply_season_grid_retirement_risk(base, earlier[-30:], metadata)}
                     actual = race.sessions['R'].results
                     grid, _ = evaluate_forecast(simple_baseline(base, races[:index], 'grid_order'), actual)
                     episode_rows, episode_predictions = [], []

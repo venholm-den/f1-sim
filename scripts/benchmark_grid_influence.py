@@ -32,7 +32,8 @@ def load_archive(workspace, years):
             for name, info in m['files'].items():
                 if info.get('table') not in ('laps', 'results', 'weather_samples'):
                     continue
-                file = (path.parent/name).resolve()
+                # Windows-written manifests use backslashes; resolve them on any OS.
+                file = (path.parent/name.replace('\\', '/')).resolve()
                 if (not file.is_relative_to(path.parent.resolve()) or not file.is_file()
                         or file.stat().st_size != info['bytes'] or sha256(file) != info['sha256']):
                     raise ValueError('Archive table checksum/path mismatch')

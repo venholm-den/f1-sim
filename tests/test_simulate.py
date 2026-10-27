@@ -198,3 +198,14 @@ def test_multi_safety_car_candidate_keeps_default_draws_and_reports_counts() -> 
     with pytest.raises(ValueError, match="neutralisation"):
         simulate_races(_minimal_features(), n_sims=10, multi_safety_car_probability=0.4,
                        agent_settings={})
+
+
+def test_driver_of_the_day_mostly_goes_to_the_winner_and_never_to_a_retiree() -> None:
+    _, _, results = simulate_races(features=_minimal_features(), n_sims=2000, seed=7,
+                                   overtaking_difficulty=0.72, weather_modifiers=None)
+    assert results.groupby("sim_id").dotd.sum().eq(1).mean() > 0.99
+    assert not (results.dotd & results.dnf).any()
+    votes = results[results.dotd]
+    # With four cars everyone is in the top five, so the winner's share sits
+    # well above a quarter but below certainty.
+    assert 0.45 < votes.finish_position.eq(1).mean() < 0.85
