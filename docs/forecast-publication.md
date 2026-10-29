@@ -10,7 +10,7 @@ Release-plan items for 3 November (publication contract) and 7 November (publish
 | --- | --- |
 | `contract`, `schema_version` | `f1-sim.forecast-publication`, `1` |
 | `publication_id` | `<year>-r<round>-<stage>-<first 12 hex of the frozen manifest sha256>`. Retrying one snapshot always gives the same id. |
-| `kind`, `visibility` | Always `official`; `subscribers` or `preview`. Personal scenarios are a different kind and are rejected. |
+| `kind`, `visibility` | Always `official`; `subscribers` or `preview`. In 2027 nothing is paid, so `subscribers` means signed-in, invited pilot users. Personal scenarios are a different kind and are rejected. |
 | `event` | Year, round, name, scheduled race start (UTC) |
 | `stage`, `available_sessions` | Input stage (PRE, FP1, FP2, FP3, SQ, S, Q) and the completed sessions it used |
 | `input_cutoff_utc`, `generated_at_utc` | Feature cutoff and snapshot freeze time (producer clock, unattested) |
